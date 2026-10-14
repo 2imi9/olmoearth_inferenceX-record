@@ -1,0 +1,44 @@
+[exp110] belgium: label-free 198 chips, map median confidence 0.9021, D 22719, B3 agreement stated 0.8879 reversed 0.8121, 13 s
+[exp110] croatia: label-free 353 chips, map median confidence 0.9827, D 48179, B3 agreement stated 0.8667 reversed 0.6991, 22 s
+[exp110] slovenia: label-free 228 chips, map median confidence 1.0000, D 11788, B3 agreement stated 0.9495 reversed 0.9024, 13 s
+[exp110] sweden: label-free 516 chips, map median confidence 0.9770, D 58279, B3 agreement stated 0.8897 reversed 0.7936, 34 s
+[exp110] B3 stop rules: arm 4 runs = True
+[exp110] belgium: arm 1 N 201943 errors 27378 theta 0.1356 AUROC 0.8372 capture 0.3077 best control ctl_class_rarity lead 0.0183
+[exp110] belgium: arms 2-3, 2000 draws, 79 s
+[exp110] belgium: arm 4, N 201936 D 22584 K_A 7773 K_B 14811, 7 s
+[exp110] belgium: all arms 89 s
+[exp110] croatia: arm 1 N 359818 errors 34968 theta 0.0972 AUROC 0.8697 capture 0.3926 best control ctl_pixel_variance lead 0.1271
+[exp110] croatia: arms 2-3, 2000 draws, 130 s
+[exp110] croatia: arm 4, N 359818 D 47786 K_A 35408 K_B 12378, 9 s
+[exp110] croatia: all arms 146 s
+[exp110] slovenia: arm 1 N 233013 errors 9771 theta 0.0419 AUROC 0.9362 capture 0.6943 best control ctl_class_rarity lead 0.0981
+[exp110] slovenia: arms 2-3, 2000 draws, 86 s
+[exp110] slovenia: arm 4, N 233013 D 11625 K_A 6415 K_B 5210, 8 s
+[exp110] slovenia: all arms 95 s
+[exp110] sweden: arm 1 N 526358 errors 74480 theta 0.1415 AUROC 0.8630 capture 0.3400 best control ctl_pixel_variance lead 0.3067
+[exp110] sweden: arms 2-3, 2000 draws, 184 s
+[exp110] sweden: arm 4, N 525646 D 57754 K_A 16238 K_B 41516, 11 s
+[exp110] sweden: all arms 211 s
+[exp110] pooled: arm 1 N 1321132 errors 146597 theta 0.1110 AUROC 0.8737 capture 0.3850 best control ctl_class_rarity lead 0.2952
+[exp110] pooled: arms 2-3, 2000 draws, 511 s
+[exp110] pooled: arm 4, N 1320413 D 139749 K_A 65834 K_B 73915, 26 s
+[exp110] pooled: all arms 589 s
+{"P1": {"verdict": "holds", "holds": true}, "P2": {"holds": true, "verdict": "holds"}, "P3a": {"holds": true, "verdict": "holds"}, "P3b": {"holds": true, "verdict": "holds"}, "P4a": {"holds": true, "verdict": "holds"}, "P4b": {"holds": true, "verdict": "holds"}}
+     1274.68 real      1085.26 user        68.82 sys
+          1957265408  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+             2824707  page reclaims
+               14303  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   1  messages received
+                   1  signals received
+                7359  voluntary context switches
+             1590343  involuntary context switches
+           190973526  instructions retired
+           146440558  cycles elapsed
+            15254008  peak memory footprint
