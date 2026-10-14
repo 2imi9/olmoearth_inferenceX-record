@@ -34,7 +34,10 @@ RECORD = os.path.join(ROOT, "exp", "out", "upstream_revisions.json")
 # it reaches a model hub, and the literal on it is shaped like a repo id rather than a date, a media type or a
 # path. Written narrow on purpose — this is the forcing function for `check`, so a false positive is noise a
 # reader will learn to ignore and a false negative is the defect it exists to catch.
-SCANNED = ("exp/*.py", "oe_inferencex/*.py")
+# The experiments are read from this checkout. The package is not in it: its files are read from the installed
+# release, the one the record's tests import, and cited as oe_inferencex/<file>:<line>.
+SCANNED = ("exp/*.py",)
+PACKAGE = "oe_inferencex/"
 FETCHERS = ("hf_hub_download", "snapshot_download", "load_model_from_repo_id", "torch.hub.load")
 CONSTANT = re.compile(r"^[A-Z][A-Z0-9_]*(\s*,\s*[A-Z][A-Z0-9_]*)*\s*=")   # HUB = "...", REPO, TREE = "...", ...
 LITERAL = re.compile(r'"([^"\s]{2,}/[^"\s]{2,})"')
@@ -87,25 +90,37 @@ def scan(cache_dir):
     return sorted(set(out))
 
 
-def repos_named_in_the_code(root=ROOT):
+def installed_package():
+    """The directory of the oe_inferencex the record runs against (olmoearth-inferencex from PyPI)."""
+    import oe_inferencex
+    return os.path.dirname(oe_inferencex.__file__)
+
+
+def repos_named_in_the_code(root=ROOT, package=None):
     """{repo_id: [file:line]} for every upstream repository the code fetches by name.
 
     A repo id reaches a hub one of two ways here: inline in the call, or as a module constant the call is given
     a few lines later. Both are literals, so one pass over fetcher lines and top-level constant assignments
     finds both. A literal used as a dict key is a name, not an argument a fetcher is given: exp92's class table
     (`CLASSES = {"Grass/Shrub": 3, ...}`) is shaped like repo ids and reaches no hub.
+
+    The experiments come from `root`; the package's top-level modules from `package`, by default the installed
+    release, cited as `oe_inferencex/<file>:<line>`, the form the record's `named_at` uses.
     """
     import glob
+    pkg = package or installed_package()
+    sources = [(os.path.join(root, pattern), root, "") for pattern in SCANNED]
+    sources.append((os.path.join(pkg, "*.py"), pkg, PACKAGE))
     found = {}
-    for pattern in SCANNED:
-        for path in sorted(glob.glob(os.path.join(root, pattern))):
+    for pattern, base, prefix in sources:
+        for path in sorted(glob.glob(pattern)):
             with open(path, encoding="utf-8") as f:
                 for i, line in enumerate(f, 1):
                     if not (any(fn in line for fn in FETCHERS) or CONSTANT.match(line)):
                         continue
                     for m in LITERAL.finditer(line):
                         if _is_repo_id(m.group(1)) and not line[m.end():].lstrip().startswith(":"):
-                            found.setdefault(m.group(1), []).append(f"{os.path.relpath(path, root)}:{i}")
+                            found.setdefault(m.group(1), []).append(f"{prefix}{os.path.relpath(path, base)}:{i}")
     return found
 
 

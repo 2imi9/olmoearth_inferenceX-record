@@ -14,7 +14,8 @@ Split on 14 October 2026 from 2imi9/olmoearth_inferenceX at commit 0d1161a09927c
 (release 1.12.1). The files are as they were at that commit, with these changes: the thirteen split test files below;
 the links that now cross between the two repositories; the claim citations that named the package's pages, with the
 two demo claims now cited in `docs/Findings.md`; the report's title block and availability section, with the PDF
-rebuilt; and `.gitignore`. Their history is in that repository. Experiments archived before the split are in its
+rebuilt; the upstream-revision check (`scripts/upstream_revision.py` and its test), which now reads the package's
+files from the installed release; and `.gitignore`. Their history is in that repository. Experiments archived before the split are in its
 v1.9.0 tree.
 
 | Path | Contents |
@@ -28,7 +29,8 @@ v1.9.0 tree.
 
 Sixteen test files share their name with a test file of the package. Thirteen hold only the tests of that file that
 use the record; the others stayed with the package. Three are whole copies (`test_model_assisted.py`,
-`test_per_class.py`, `test_trust_zone.py`), kept because claims in the ledger name tests in them as crosschecks.
+`test_per_class.py`, `test_trust_zone.py`), kept because claims in the ledger name tests in them as crosschecks, and
+`test_estimate.py` also keeps one package test that the ledger names as a crosscheck.
 
 Checks
 ------
@@ -52,6 +54,13 @@ The tests that need them skip when they are absent, as do the equality tests aga
 A few scripts written before the split read the package's source tree: `scripts/make_demo_sample.py`,
 `exp/exp78_shipped_tiles.py`, `exp/jobs/e98_read.sh` and `exp/jobs/e99_read.sh`. No test runs them. To rerun one, run
 it from a checkout of the code repository at the matching release.
+
+The cluster jobs (`exp/jobs/` and `scripts/score_area.sh`) were also written before the split. They run in the
+cluster's checkout of the code repository, and several use its `geo` extra, which this project does not define. A job
+given a full commit checks that commit out, so it still runs at any commit from before the split. The others run
+whatever the checkout holds, and `scripts/score_area.sh` and several others first reset it to `origin/main`, which no
+longer holds the experiments. To rerun one of those, check out v1.12.1 in place of the reset. No test runs them
+either.
 
 Licence and citation
 --------------------

@@ -66,14 +66,24 @@ def test_every_repository_the_code_fetches_is_in_the_record():
     assert not missing, "fetched and unpinned: " + "; ".join(f"{r} ({', '.join(named[r])})" for r in missing)
 
 
+def test_the_package_side_is_scanned_from_the_installed_release():
+    """The record has no copy of the package, so the scan reads the installed one; without that the check above
+    would pass while scanning only exp/. The release names allenai/olmoearth_lcc in taskcard.py."""
+    named = upstream.repos_named_in_the_code()
+    assert any(w.startswith("oe_inferencex/taskcard.py:") for w in named.get("allenai/olmoearth_lcc", [])), named
+
+
 def test_a_dict_key_is_not_a_repository(tmp_path):
     """exp92's class names are shaped like repo ids and sit in a module constant as dict keys; they are not
-    repositories. A repo id as a constant's value, or as a dict value, is still found."""
+    repositories. A repo id as a constant's value, or as a dict value, is still found, and a package file is cited
+    under oe_inferencex/ wherever the package is installed."""
     (tmp_path / "exp").mkdir()
     (tmp_path / "exp" / "a.py").write_text('CLASSES = {"Grass/Shrub": 3, "Snow/Ice" : 7}\n'
                                            'HUB = "owner/model"\nMODELS = {"base": "owner/other"}\n')
-    assert upstream.repos_named_in_the_code(str(tmp_path)) == {"owner/model": ["exp/a.py:2"],
-                                                               "owner/other": ["exp/a.py:3"]}
+    (tmp_path / "pkg").mkdir()
+    (tmp_path / "pkg" / "b.py").write_text('x = 1\nhf_hub_download("owner/data", "README.md")\n')
+    assert upstream.repos_named_in_the_code(str(tmp_path), package=str(tmp_path / "pkg")) == {
+        "owner/model": ["exp/a.py:2"], "owner/other": ["exp/a.py:3"], "owner/data": ["oe_inferencex/b.py:2"]}
 
 
 def test_the_scan_reads_a_cache_the_way_the_record_was_built(tmp_path):
