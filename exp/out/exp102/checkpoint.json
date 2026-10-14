@@ -1,0 +1,24 @@
+{
+ "file": "model.ckpt (epoch=60-step=17019.ckpt on scratch)",
+ "bytes": 1162122041,
+ "sha256": "5ce8882718f8b3c5f772fd310fb49affe0aadffaf88cec6474af1442b7324816",
+ "encoder": "OLMOEARTH_V1_2_BASE (RoPE parameters attn.rope_mixed_freqs present in the state dict)",
+ "epoch_kept": 60,
+ "val_segment_accuracy_kept": 0.9011628031730652,
+ "val_segment_accuracy_last_epoch": 0.8895348906517029,
+ "selection": "ModelCheckpoint on val_segment/accuracy (max), the 344 validation points, as Ai2's recipe",
+ "training_job": 1277383,
+ "smoke_job": 1276913,
+ "commit": "3847ae7d55bd6e3f48e908603dfa313518db55fd",
+ "rslearn": "0.1.17",
+ "olmoearth_pretrain_minimal": "0.1.2",
+ "gpu": "NVIDIA B200",
+ "seconds_wall": "about 26 minutes for 100 epochs",
+ "published": {
+  "repo": "https://huggingface.co/2imi9/OlmoEarth-v1_2-FT-AWF-Base",
+  "commit": "7a1db147cc68d4bde8dff3739d85dc793723619e",
+  "date": "2026-10-11",
+  "visibility": "public",
+  "sha256_on_hub_matches": true
+ }
+}

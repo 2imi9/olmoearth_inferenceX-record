@@ -1,0 +1,59 @@
+% The audit pipeline with real rasters, in two rows so that it reads at README width: Sentinel-2 bands in, frozen
+% encoder (narrowing) and head (widening), prediction / confidence / boundary layers; then the review set at a 5%
+% budget (boundary first) drawn on the scene, the reasons per window, the reviewer; the second row runs right to
+% left under the outputs, so the whole figure is one snake. Scene: okavango_80 (exp11, exp37).
+% Build: pdflatex audit_pipeline.tex; export: osascript -l JavaScript pdf2png.js audit_pipeline.pdf ../pipeline.png 3000
+\documentclass[tikz,border=3mm]{standalone}
+\input{style.tex}
+\input{rasters/scene_review.tex}   % defines \sceneReview as a r/c list
+\setlength{\rw}{2.7cm}
+\tikzset{lab/.style={font=\small, text=ink, inner sep=1pt, align=center},
+         sub/.style={font=\footnotesize, text=muted, inner sep=1pt, align=center},
+         tag/.style={font=\footnotesize, text=ink, fill=white, fill opacity=0.85, text opacity=1, inner sep=1.5pt, rounded corners=1pt}}
+\begin{document}
+\begin{tikzpicture}
+  % ================= row 1: input -> encoder -> head -> outputs
+  \stack{in}{0.45}{5.0}{scene_b11.png}{scene_b08.png}{scene_rgb.png}
+  \node[sub, anchor=west] at ($(in.east)+(0.12,0)$) {RGB};
+  \node[sub, anchor=west] at ($(inmid.east)+(0.12,0)$) {NIR};
+  \node[sub, anchor=west] at ($(inback.east)+(0.12,0)$) {SWIR};
+  \node[lab] at (0.85,3.55) {Sentinel-2 window};
+  \encoderShape{enc}{3.9}{5.75}{1.5}{3.6}{oeteal!20}
+  \node[lab, rotate=90, align=center] at (4.6,5.75) {OlmoEarth\\encoder};
+  \node[sub] at (4.65,3.55) {frozen};
+  \decoderShape{head}{6.15}{5.75}{0.8}{1.7}{oeamber!30}
+  \node[sub] at (6.55,4.45) {head};
+  \draw[flow] (3.05,5.75) -- (3.8,5.75);
+  \draw[flow] (5.45,5.75) -- (6.1,5.75);
+  \stack{out}{9.1}{5.0}{scene_boundary.png}{scene_conf.png}{scene_pred.png}
+  \draw[flow] (7.0,5.75) -- (7.65,5.75);
+  % layer names as tags inside the planes, so the right side stays free for the connector
+  \node[tag, anchor=south east] at ($(out.south east)+(-0.1,0.07)$) {prediction};
+  \node[tag, anchor=south east] at ($(outmid.south east)+(-0.1,0.07)$) {confidence};
+  \node[tag, anchor=south east] at ($(outback.south east)+(-0.1,0.07)$) {boundary};
+  \node[lab] at (9.6,7.75) {one forward pass, no labels};
+  % ================= row 2, right to left under the outputs: review set -> reasons -> reviewer (a snake, no wrap-around)
+  \flatraster{rev}{9.2}{0.4}{scene_rgb.png}{3.4cm}
+  \flatcells{rev}{32}{cell}{\sceneReview}{3.4cm}
+  \node[lab] at (9.2,-1.75) {review set at a 5\% budget\\ boundary first, then confidence};
+  % rounded loop: from the middle of the stack's right side, right, down, and into the review set from the right
+  \draw[flow, rounded corners=10pt] (outmid.east) -| (12.9,0.4) -- (rev.east);   % from the middle of the stack's right side
+  \node[card] (why) at (4.9,0.4) {%
+    \begin{tikzpicture}[font=\footnotesize]
+      \node[flat] (c1) at (0,0)      {\includegraphics[width=1.0cm]{rasters/scene_boundary.png}};
+      \node[flat] (c2) at (1.7,0)    {\includegraphics[width=1.0cm]{rasters/scene_conf.png}};
+      \node[flat] (c3) at (0,-1.6)   {\includegraphics[width=1.0cm]{rasters/scene_tilephase.png}};
+      \node[flat] (c4) at (1.7,-1.6) {\includegraphics[width=1.0cm]{rasters/scene_ndwi.png}};
+      \node[sub, below=0.6mm of c1] {boundary};
+      \node[sub, below=0.6mm of c2] {low conf.};
+      \node[sub, below=0.6mm of c3] {unstable};
+      \node[sub, below=0.6mm of c4] {NDWI $\approx 0$};
+    \end{tikzpicture}};
+  \node[lab] at (4.9,2.35) {why each window};
+  \draw[flow] (rev.west) -- (why.east);
+  \draw[part, fill=oeviolet!15] (1.1,1.1) circle (0.33);
+  \draw[part, fill=oeviolet!15] (0.55,-0.15) arc (180:0:0.55) -- cycle;
+  \node[sub] at (1.1,-0.65) {reviewer / agent};
+  \draw[flow] (why.west) -- (1.75,0.4);
+\end{tikzpicture}
+\end{document}

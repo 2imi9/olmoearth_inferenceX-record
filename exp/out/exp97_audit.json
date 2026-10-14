@@ -1,0 +1,171 @@
+{
+ "by_seed": {
+  "97": {
+   "P1": {
+    "holds": true,
+    "max_violation": 0.1175,
+    "rates_above_3se": 0
+   },
+   "P3": {
+    "holds": true,
+    "cells_F_pathwise_above_bound": 132,
+    "of": 366
+   },
+   "P4": {
+    "holds": true,
+    "median_rho": 1.7091836734693877,
+    "median_is_infinite": false,
+    "cells": 213,
+    "rho_quartiles_inverted_cdf": [
+     1.550561797752809,
+     1.7091836734693877,
+     2.1914893617021276
+    ],
+    "cells_never_reaching": 2
+   },
+   "median_area": {
+    "F": 0.17756411961265672,
+    "S(c=0.1)": 0.05772295673076925,
+    "S(c=0.25)": 0.10197599796037285,
+    "S(c=0.5)": 0.047196158008658014,
+    "S(n0=1000)": 0.16529464285714296,
+    "S(n0=300)": 0.14609090909090902
+   },
+   "file": "exp97_summary.json",
+   "sha256": "f1ab29d73fc0ceb985f793ddfbe567c06a9db8122ee26ae0bcf898a415f429a1"
+  },
+  "971": {
+   "P1": {
+    "holds": true,
+    "max_violation": 0.115,
+    "rates_above_3se": 0
+   },
+   "P3": {
+    "holds": true,
+    "cells_F_pathwise_above_bound": 138,
+    "of": 366
+   },
+   "P4": {
+    "holds": true,
+    "median_rho": 1.7091836734693877,
+    "median_is_infinite": false,
+    "cells": 215,
+    "rho_quartiles_inverted_cdf": [
+     1.550561797752809,
+     1.7091836734693877,
+     2.4
+    ],
+    "cells_never_reaching": 1
+   },
+   "median_area": {
+    "F": 0.17829985119047612,
+    "S(c=0.1)": 0.05449278846153847,
+    "S(c=0.25)": 0.10556311374795407,
+    "S(c=0.5)": 0.04782355072463769,
+    "S(n0=1000)": 0.16577232142857146,
+    "S(n0=300)": 0.14300000000000015
+   },
+   "sha256": "011f20494a9b7f98b80afd2a0c8d8b3593fdb5c4a3716935545cc7252fe72e1d"
+  },
+  "972": {
+   "P1": {
+    "holds": true,
+    "max_violation": 0.1075,
+    "rates_above_3se": 0
+   },
+   "P3": {
+    "holds": true,
+    "cells_F_pathwise_above_bound": 135,
+    "of": 366
+   },
+   "P4": {
+    "holds": true,
+    "median_rho": 1.7100371747211895,
+    "median_is_infinite": false,
+    "cells": 213,
+    "rho_quartiles_inverted_cdf": [
+     1.5488721804511278,
+     1.7100371747211895,
+     2.4025974025974026
+    ],
+    "cells_never_reaching": 2
+   },
+   "median_area": {
+    "F": 0.1740993303571427,
+    "S(c=0.1)": 0.05712372562056751,
+    "S(c=0.25)": 0.10256816123188398,
+    "S(c=0.5)": 0.04722049825174826,
+    "S(n0=1000)": 0.16583705357142842,
+    "S(n0=300)": 0.14081534090909098
+   },
+   "sha256": "5079b4d6184771c77207fd3a52a7a4bedbcf2f874a5eb18ab039fa72a8e6deb9"
+  },
+  "973": {
+   "P1": {
+    "holds": true,
+    "max_violation": 0.095,
+    "rates_above_3se": 0
+   },
+   "P3": {
+    "holds": true,
+    "cells_F_pathwise_above_bound": 134,
+    "of": 366
+   },
+   "P4": {
+    "holds": true,
+    "median_rho": 1.7100840336134453,
+    "median_is_infinite": false,
+    "cells": 215,
+    "rho_quartiles_inverted_cdf": [
+     1.550660792951542,
+     1.7100840336134453,
+     2.292929292929293
+    ],
+    "cells_never_reaching": 3
+   },
+   "median_area": {
+    "F": 0.17519503205128173,
+    "S(c=0.1)": 0.057664751139817734,
+    "S(c=0.25)": 0.1052833333333332,
+    "S(c=0.5)": 0.04615941220238094,
+    "S(n0=1000)": 0.1684166666666667,
+    "S(n0=300)": 0.1448605769230769
+   },
+   "sha256": "3ee84bb4a55a4babf0172455977b1549a70452cfe745d60036cc9ecc09250ea9"
+  },
+  "974": {
+   "P1": {
+    "holds": true,
+    "max_violation": 0.0975,
+    "rates_above_3se": 0
+   },
+   "P3": {
+    "holds": true,
+    "cells_F_pathwise_above_bound": 137,
+    "of": 366
+   },
+   "P4": {
+    "holds": true,
+    "median_rho": 1.7087378640776698,
+    "median_is_infinite": false,
+    "cells": 213,
+    "rho_quartiles_inverted_cdf": [
+     1.5510204081632653,
+     1.7087378640776698,
+     2.1914893617021276
+    ],
+    "cells_never_reaching": 2
+   },
+   "median_area": {
+    "F": 0.17343120421245395,
+    "S(c=0.1)": 0.05725455927051677,
+    "S(c=0.25)": 0.10491314102564087,
+    "S(c=0.5)": 0.045858907396950865,
+    "S(n0=1000)": 0.1675706845238093,
+    "S(n0=300)": 0.1432483974358974
+   },
+   "sha256": "bc99f0676825845646b4e9871e2fe09ed0032536cbfef5f7ee87e4d44d081244"
+  }
+ },
+ "p4_holds_on": "5 of 5 seeds"
+}

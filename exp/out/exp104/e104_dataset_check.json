@@ -1,0 +1,82 @@
+{
+ "rslearn": "0.1.17",
+ "windows": 696,
+ "layers": [
+  "label",
+  "mask",
+  "mask_vector",
+  "output",
+  "post_sentinel2",
+  "pre_sentinel2"
+ ],
+ "bad": {
+  "projection": 0,
+  "size": 0,
+  "time_range": 0,
+  "pre_range": 0,
+  "post_range": 0,
+  "centre_pixel": 0,
+  "rslearn_centre_valid_polygon": 0,
+  "repaired_centre_outside_crop": 0
+ },
+ "pre_sentinel2_source": {
+  "class_path": "rslearn.data_sources.planetary_computer.Sentinel2",
+  "space_mode": "CONTAINS",
+  "min_matches": 4,
+  "max_matches": 4,
+  "time_offset_days": -300.0,
+  "duration_days": 180.0
+ },
+ "post_sentinel2_source": {
+  "class_path": "rslearn.data_sources.planetary_computer.Sentinel2",
+  "space_mode": "CONTAINS",
+  "min_matches": 4,
+  "max_matches": 4,
+  "time_offset_days": 7.0,
+  "duration_days": 180.0
+ },
+ "centre_route": "gated: a second route to the windows' own centroid (pyproj, shapely per ring) for every polygon; rslearn's projection for every valid polygon; for an invalid polygon the repaired polygon's centroid within the central 64-px crop",
+ "invalid_polygons": 343,
+ "repaired_centre_off_window_centre": {
+  "n": 3,
+  "distance_px": [
+   1.1,
+   2.3,
+   4.4
+  ],
+  "could_not_make_valid_buffer0_used": 2,
+  "note": "invalid polygons: make_valid's (or buffer(0)'s) repaired polygon is not the rings' polygon"
+ },
+ "ai2_code_letter_off_window_centre": {
+  "n": 24,
+  "distance_px": [
+   2.4,
+   2.7,
+   2.9,
+   3.1,
+   3.9,
+   4.0,
+   4.2,
+   5.6,
+   7.5,
+   12.3,
+   14.9,
+   18.5,
+   26.1,
+   28.4,
+   29.7,
+   32.7,
+   34.4,
+   45.9,
+   59.8,
+   99.8,
+   182.5,
+   197.9,
+   331.8,
+   1871.9
+  ],
+  "note": "shapely's centroid of the unrepaired polygon, as Ai2's deploy code takes it; reported, not gated"
+ },
+ "centre_misses": [],
+ "ok": true
+}

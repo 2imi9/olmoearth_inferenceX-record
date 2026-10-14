@@ -1,0 +1,64 @@
+== 2026-10-12T10:39:45-04:00 job 1298649 on w0001: exp107, commit 1daa6bb531431edf4852beeed1c924a24fef2443 ==
+== smoke ==
+Using CPython 3.13.15
+Creating virtual environment at: .venv
+   Building olmoearth-inferencex @ file:///scratch/qi_zim_neu/olmoearth_inferenceX/e107_code
+      Built olmoearth-inferencex @ file:///scratch/qi_zim_neu/olmoearth_inferenceX/e107_code
+Installed 21 packages in 2.64s
+[exp107] constructed_large_gap          n   50 A 0.090/0.0004 Az 0.146/0.0014 B 0.412/0.0000 C 0.568/0.0000
+[exp107] constructed_large_gap          n  100 A 0.218/0.0001 Az 0.294/0.0003 B 0.822/0.0000 C 0.890/0.0000
+[exp107] constructed_large_gap          n  400 A 0.795/0.0000 Az 0.829/0.0000 B 1.000/0.0000 C 1.000/0.0000
+[exp107] constructed_no_gap             n   50 A 0.009/0.0090 Az 0.022/0.0217 B 0.005/0.0048 C 0.015/0.0152
+[exp107] constructed_no_gap             n  100 A 0.013/0.0133 Az 0.023/0.0232 B 0.006/0.0055 C 0.014/0.0143
+[exp107] constructed_no_gap             n  400 A 0.015/0.0152 Az 0.020/0.0205 B 0.006/0.0063 C 0.005/0.0046
+[exp107] constructed_small              n   50 A 0.006/0.0021 Az 0.032/0.0157 B 0.012/0.0008 C 0.034/0.0032
+[exp107] constructed_small              n  100 A 0.017/0.0052 Az 0.033/0.0118 B 0.023/0.0004 C 0.044/0.0010
+[exp107] constructed_small              n  400 A 0.035/0.0030 Az 0.050/0.0051 B 1.000/0.0000 C 1.000/0.0000
+== the run ==
+[exp107] lcmap_vs_esri_2018             n   50 A 0.030/0.0032 Az 0.054/0.0074 B 0.057/0.0003 C 0.120/0.0012
+[exp107] lcmap_vs_esri_2018             n  100 A 0.057/0.0027 Az 0.089/0.0053 B 0.128/0.0001 C 0.223/0.0003
+[exp107] lcmap_vs_esri_2018             n  200 A 0.102/0.0014 Az 0.133/0.0023 B 0.302/0.0000 C 0.426/0.0000
+[exp107] lcmap_vs_esri_2018             n  400 A 0.193/0.0005 Az 0.229/0.0007 B 0.630/0.0000 C 0.740/0.0000
+[exp107] lcmap_vs_esri_2018             n  800 A 0.374/0.0001 Az 0.403/0.0001 B 0.948/0.0000 C 0.969/0.0000
+[exp107] nlcd_vs_lcmap_A2001            n   50 A 0.050/0.0009 Az 0.096/0.0034 B 0.204/0.0000 C 0.358/0.0000
+[exp107] nlcd_vs_lcmap_A2001            n  100 A 0.121/0.0005 Az 0.173/0.0012 B 0.506/0.0000 C 0.660/0.0000
+[exp107] nlcd_vs_lcmap_A2001            n  200 A 0.248/0.0001 Az 0.320/0.0003 B 0.901/0.0000 C 0.944/0.0000
+[exp107] nlcd_vs_lcmap_A2001            n  400 A 0.514/0.0000 Az 0.561/0.0000 B 1.000/0.0000 C 1.000/0.0000
+[exp107] nlcd_vs_lcmap_A2001            n  800 A 0.840/0.0000 Az 0.861/0.0000 B 1.000/0.0000 C 1.000/0.0000
+[exp107] nlcd_vs_lcmap_A2006            n   50 A 0.059/0.0012 Az 0.097/0.0029 B 0.170/0.0000 C 0.303/0.0001
+[exp107] nlcd_vs_lcmap_A2006            n  100 A 0.129/0.0006 Az 0.187/0.0013 B 0.429/0.0000 C 0.572/0.0000
+[exp107] nlcd_vs_lcmap_A2006            n  200 A 0.269/0.0001 Az 0.321/0.0002 B 0.823/0.0000 C 0.891/0.0000
+[exp107] nlcd_vs_lcmap_A2006            n  400 A 0.527/0.0000 Az 0.576/0.0000 B 0.996/0.0000 C 0.998/0.0000
+[exp107] nlcd_vs_lcmap_A2006            n  800 A 0.853/0.0000 Az 0.870/0.0000 B 1.000/0.0000 C 1.000/0.0000
+[exp107] nlcd_vs_lcmap_A2011            n   50 A 0.017/0.0066 Az 0.032/0.0138 B 0.017/0.0018 C 0.042/0.0059
+[exp107] nlcd_vs_lcmap_A2011            n  100 A 0.026/0.0073 Az 0.044/0.0135 B 0.029/0.0012 C 0.059/0.0035
+[exp107] nlcd_vs_lcmap_A2011            n  200 A 0.037/0.0060 Az 0.052/0.0093 B 0.054/0.0006 C 0.090/0.0014
+[exp107] nlcd_vs_lcmap_A2011            n  400 A 0.054/0.0040 Az 0.069/0.0057 B 0.125/0.0001 C 0.149/0.0002
+[exp107] nlcd_vs_lcmap_A2011            n  800 A 0.083/0.0018 Az 0.095/0.0023 B 0.392/0.0000 C 0.272/0.0000
+[exp107] nlcd_vs_lcmap_B2011            n   50 A 0.014/0.0073 Az 0.028/0.0155 B 0.012/0.0023 C 0.032/0.0074
+[exp107] nlcd_vs_lcmap_B2011            n  100 A 0.022/0.0086 Az 0.037/0.0157 B 0.022/0.0021 C 0.039/0.0046
+[exp107] nlcd_vs_lcmap_B2011            n  200 A 0.028/0.0075 Az 0.041/0.0116 B 0.037/0.0011 C 0.049/0.0018
+[exp107] nlcd_vs_lcmap_B2011            n  400 A 0.037/0.0053 Az 0.048/0.0076 B 0.081/0.0003 C 0.058/0.0001
+[exp107] nlcd_vs_lcmap_B2011            n  800 A 0.047/0.0025 Az 0.056/0.0032 B 0.585/0.0000 C 0.021/0.0000
+[exp107] nlcd_vs_lcmap_B2016            n   50 A 0.080/0.0008 Az 0.124/0.0018 B 0.251/0.0000 C 0.393/0.0000
+[exp107] nlcd_vs_lcmap_B2016            n  100 A 0.176/0.0003 Az 0.248/0.0006 B 0.591/0.0000 C 0.714/0.0000
+[exp107] nlcd_vs_lcmap_B2016            n  200 A 0.377/0.0000 Az 0.431/0.0001 B 0.949/0.0000 C 0.966/0.0000
+[exp107] nlcd_vs_lcmap_B2016            n  400 A 0.692/0.0000 Az 0.733/0.0000 B 1.000/0.0000 C 1.000/0.0000
+[exp107] nlcd_vs_lcmap_B2016            n  800 A 0.958/0.0000 Az 0.965/0.0000 B 1.000/0.0000 C 1.000/0.0000
+[exp107] gfc2020_vs_worldcover          n   50 A 0.005/0.0015 Az 0.032/0.0141 B 0.033/0.0010 C 0.061/0.0026
+[exp107] gfc2020_vs_worldcover          n  100 A 0.017/0.0047 Az 0.038/0.0123 B 0.069/0.0005 C 0.101/0.0011
+[exp107] gfc2020_vs_worldcover          n  200 A 0.032/0.0054 Az 0.052/0.0100 B 0.153/0.0001 C 0.191/0.0002
+[exp107] gfc2020_vs_worldcover          n  400 A 0.048/0.0038 Az 0.070/0.0068 B 0.362/0.0000 C 0.362/0.0000
+[exp107] gfc2020_vs_worldcover          n  800 A 0.081/0.0023 Az 0.100/0.0033 B 0.861/0.0000 C 0.727/0.0000
+[exp107] cgls_vs_esri_eastafrica_2017   n   50 A 0.017/0.0117 Az 0.030/0.0205 B 0.008/0.0037 C 0.024/0.0129
+[exp107] cgls_vs_esri_eastafrica_2017   n  100 A 0.021/0.0118 Az 0.032/0.0190 B 0.011/0.0040 C 0.028/0.0114
+[exp107] cgls_vs_esri_eastafrica_2017   n  200 A 0.027/0.0123 Az 0.035/0.0165 B 0.014/0.0033 C 0.035/0.0099
+[exp107] cgls_vs_esri_eastafrica_2017   n  400 A 0.032/0.0107 Az 0.039/0.0132 B 0.019/0.0024 C 0.043/0.0069
+[exp107] cgls_vs_esri_eastafrica_2017   n  800 A 0.040/0.0081 Az 0.045/0.0095 B 0.030/0.0015 C 0.053/0.0033
+[exp107] odse_vs_esri_europe_2017       n   50 A 0.062/0.0009 Az 0.107/0.0027 B 0.291/0.0000 C 0.409/0.0000
+[exp107] odse_vs_esri_europe_2017       n  100 A 0.145/0.0005 Az 0.204/0.0010 B 0.591/0.0000 C 0.731/0.0000
+[exp107] odse_vs_esri_europe_2017       n  200 A 0.299/0.0001 Az 0.364/0.0002 B 0.922/0.0000 C 0.962/0.0000
+[exp107] odse_vs_esri_europe_2017       n  400 A 0.585/0.0000 Az 0.631/0.0000 B 0.999/0.0000 C 1.000/0.0000
+[exp107] odse_vs_esri_europe_2017       n  800 A 0.887/0.0000 Az 0.902/0.0000 B 1.000/0.0000 C 1.000/0.0000
+{"P1": {"bar": "B right >= A right and >= Az right, each on >= 7 of 9 at n=100; A, Az and B wrong <= 0.05 on every pair", "pairs_meeting": ["lcmap_vs_esri_2018", "nlcd_vs_lcmap_A2001", "nlcd_vs_lcmap_A2006", "nlcd_vs_lcmap_A2011", "nlcd_vs_lcmap_B2011", "nlcd_vs_lcmap_B2016", "gfc2020_vs_worldcover", "odse_vs_esri_europe_2017"], "pairs_meeting_z": ["lcmap_vs_esri_2018", "nlcd_vs_lcmap_A2001", "nlcd_vs_lcmap_A2006", "nlcd_vs_lcmap_B2016", "gfc2020_vs_worldcover", "odse_vs_esri_europe_2017"], "wrong_ok": true, "holds": false}, "P2": {"bar": "C right >= B right + 0.05 on >= 5 of 9 at n=100; C wrong <= 0.05 on every pair", "pairs_meeting": ["lcmap_vs_esri_2018", "nlcd_vs_lcmap_A2001", "nlcd_vs_lcmap_A2006", "nlcd_vs_lcmap_B2016", "odse_vs_esri_europe_2017"], "wrong_ok": true, "holds": true, "decision": "C's verdict replaces the interval's in the package"}}
+== 2026-10-12T10:40:48-04:00 done: /scratch/qi_zim_neu/olmoearth_inferenceX/e107_out/exp107_summary.json ==

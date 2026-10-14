@@ -1,0 +1,75 @@
+{
+ "experiment": "exp89 S2: the real checkpoint on training windows (in-sample, never graded)",
+ "arm": "fld",
+ "utc": "2026-10-01T23:08:29Z",
+ "commit": "5dc780898af0becc236a3a389fe9bd0a2ee5589e",
+ "replica": {
+  "arm": "fld",
+  "device": "cpu",
+  "checkpoint_sha256": "682c20b99f44a81769ad7d3ce1b64d933fae3810bcf5978f9999cfebf1c11855",
+  "encoder_config": {
+   "model_id": "OLMOEARTH_V1_BASE",
+   "revision": "4bd1392a4539404d2c74276c39f3cb4cfff466cc"
+  },
+  "load": "weights_only",
+  "top_level": [
+   "callbacks",
+   "epoch",
+   "global_step",
+   "loops",
+   "lr_schedulers",
+   "optimizer_states",
+   "pytorch-lightning_version",
+   "state_dict"
+  ],
+  "encoder_prefix": "model.encoder.0.encoder.model.",
+  "n_encoder_keys": 231,
+  "n_checkpoint_keys": 239,
+  "head_shape": [
+   10,
+   1536
+  ],
+  "dtype": "float32",
+  "tf32": false,
+  "patch": 4,
+  "head": {
+   "num_conv_layers": 1,
+   "num_fc_layers": 2,
+   "conv_channels": 128,
+   "fc_channels": 512,
+   "in_channels": 1536,
+   "out_channels": 10,
+   "n_keys": 8
+  },
+  "unused_checkpoint_keys": []
+ },
+ "n_windows": 512,
+ "one_batch_output_shape": [
+  2,
+  10
+ ],
+ "expected_columns": 10,
+ "accuracy_in_sample": 0.9765625,
+ "accuracy_bar": null,
+ "accuracy_ok": null,
+ "n_pred_untrained": 0,
+ "n_groups": {
+  "8": 512
+ },
+ "timestamp_conventions": {
+  "rslearn": "day 1, month index, 2024",
+  "exp21": "day 15, month index, 2023",
+  "max_abs_logit_difference": 0.0,
+  "n_predictions_changed": 0
+ },
+ "bf16_autocast": {
+  "max_abs_logit_difference": 0.23438119888305664,
+  "n_predictions_changed": 0,
+  "accuracy_in_sample_bf16": 0.9765625
+ },
+ "k3_features": {
+  "n": 128,
+  "finite": true
+ },
+ "ok": true
+}

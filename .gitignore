@@ -1,0 +1,65 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+data/
+exp/out/exp11_feats.npz
+exp/out/exp17_internals.npz
+exp/out/exp18_feats.npz
+exp/out/exp19_feats.npz
+exp/out/exp20_windows.npz
+exp/out/exp21_stacks.npz
+exp/out/exp22_windows.npz
+exp/out/exp23_geo.npz
+exp/out/exp24_scenes.npz
+exp/out/exp24_feats.npz
+exp/out/exp25_jrc.npz
+exp/out/exp27_*.npz
+exp/out/exp28_*.npz
+exp/out/exp29_*.npz
+exp/out/*_smoke.*
+exp/out/*_smoke_*
+data/floods
+slurm/
+exp/out/exp30_*.npz
+exp/out/exp31_*.npz
+exp/out/exp33_*.npz
+exp/out/exp34_*.npz
+exp/out/exp36_*.npz
+.gstack/
+site/
+stale.txt
+.pytest_cache/
+
+# LaTeX build files (report/)
+report/*.aux
+report/*.log
+report/*.out
+report/*.bbl
+report/*.blg
+report/*.fls
+report/*.fdb_latexmk
+report/*.synctex.gz
+report/*.toc
+
+# Finder metadata
+.DS_Store
+
+# resume checkpoints and diagnostic figures removed after the 2026-09-17 audit; a rerun recreates them
+exp/out/exp73_parts/
+exp/out/exp74_parts/
+exp/out/exp75_parts/
+exp/out/exp76_parts/
+exp/out/suite_regression/
+exp/out/summary_transfer.png
+exp/out/exp05_hard_scenes.png
+
+# exp79: the per-encoder per-unit export, ~45 MB per encoder; lives on the cluster home dir, sha256 in exp79_seeds/*.json
+exp/out/exp79_units/
+
+# exp91: rendered views for the VLM reviewer, rebuilt by `exp91_vlm_reviewer.py prepare`
+exp/out/exp91_views/
+
+# exp92: resumable checkpoint of the map reads
+exp/out/exp92_extract_partial.jsonl
+exp/out/exp94_*_partial*.jsonl

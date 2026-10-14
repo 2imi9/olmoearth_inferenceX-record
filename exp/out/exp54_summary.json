@@ -1,0 +1,1669 @@
+{
+ "experiment": "exp54 the window protocol on Ai2's multi-class embeddings",
+ "smoke": false,
+ "config": {
+  "tasks": {
+   "mados": [
+    "olmoearth_base",
+    "galileo_base",
+    "croma_base",
+    "terramind_base",
+    "clay_large",
+    "anysat"
+   ],
+   "pastis_sentinel2": [
+    "olmoearth_base",
+    "galileo_base",
+    "croma_base",
+    "terramind_base",
+    "clay_large",
+    "anysat"
+   ],
+   "m_cashew_plant": [
+    "olmoearth_base"
+   ],
+   "m_sa_crop_type": [
+    "olmoearth_base"
+   ],
+   "pastis_sentinel1_sentinel2": [
+    "olmoearth_base"
+   ]
+  },
+  "lr": {
+   "mados": 0.005,
+   "pastis_sentinel2": 0.01,
+   "pastis_sentinel1_sentinel2": 0.01,
+   "m_cashew_plant": 0.1,
+   "m_sa_crop_type": 0.5
+  },
+  "epochs": 50,
+  "window": 4,
+  "budgets": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "prereg": "P1 on every task OlmoEarth Base's probe confidence beats the embedding-distance control (pooled lead >= 0.001, one-sided per-tile sign test); stated prediction: boundary-first loses to confidence at the 5% budget on 15 and 19 classes, open on 7 and 10"
+ },
+ "results": {
+  "mados": {
+   "olmoearth_base": {
+    "n_tiles_scored": 41,
+    "n_windows": 22598,
+    "n_errors": 1663,
+    "accuracy": 0.9264094167625454,
+    "pooled_eaurc": {
+     "probe confidence": 0.007793297491292222,
+     "predictive entropy": 0.007905534230931564,
+     "control embedding distance": 0.042297805193584,
+     "boundary first, then confidence": 0.028168101777594642
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 23,
+      "l": 15,
+      "t": 3,
+      "sign_p": 0.2558750795433298,
+      "one_sided": false,
+      "median_gain": 6.052428060836484e-05,
+      "pooled_lead": 0.0001122367396393419
+     },
+     "control embedding distance": {
+      "w": 33,
+      "l": 7,
+      "t": 1,
+      "sign_p": 2.1138511328899767e-05,
+      "one_sided": true,
+      "median_gain": 0.06250000000000003,
+      "pooled_lead": 0.03450450770229178
+     },
+     "boundary first, then confidence": {
+      "w": 8,
+      "l": 17,
+      "t": 16,
+      "sign_p": 0.10775214433670044,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "pooled_lead": 0.02037480428630242
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.291040288634997,
+      "0.1": 0.4954900781719784,
+      "0.2": 0.782922429344558
+     },
+     "predictive entropy": {
+      "0.05": 0.2627781118460613,
+      "0.1": 0.4858689116055322,
+      "0.2": 0.7811184606133493
+     },
+     "control embedding distance": {
+      "0.05": 0.05772699939867709,
+      "0.1": 0.14191220685508119,
+      "0.2": 0.3138905592303067
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.27805171377029464,
+      "0.1": 0.4724758104192861,
+      "0.2": 0.6543646021246743
+     }
+    },
+    "seconds": 217.1345157623291,
+    "classes": 15,
+    "train_tiles": 2651,
+    "test_tiles": 1310,
+    "token_grid": [
+     20,
+     20
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     20,
+     20
+    ],
+    "pixel_accuracy": 0.9212500311510953,
+    "pixel_miou": 0.6682806466417183,
+    "boundary_windows_share": 0.1801044340207098,
+    "share_of_errors_on_boundary": 0.6464221286831028,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 6,
+      "l": 0,
+      "t": 77,
+      "sign_p": 0.015625,
+      "mean_gain": 0.02038518085363056,
+      "pooled_boundary_first": 0.27805171377029464,
+      "pooled_confidence": 0.291040288634997
+     },
+     "0.1": {
+      "w": 7,
+      "l": 0,
+      "t": 76,
+      "sign_p": 0.0078125,
+      "mean_gain": 0.02025597492490532,
+      "pooled_boundary_first": 0.4724758104192861,
+      "pooled_confidence": 0.4954900781719784
+     }
+    },
+    "with_disagreement": {
+     "n_other_encoders": 5,
+     "pooled_eaurc": {
+      "probe confidence": 0.007793297491292222,
+      "predictive entropy": 0.007905534230931564,
+      "control embedding distance": 0.042297805193584,
+      "boundary first, then confidence": 0.028168101777594642,
+      "cross-encoder disagreement": 0.02627539482106114
+     },
+     "tests": {
+      "cross-encoder disagreement": {
+       "w": 23,
+       "l": 18,
+       "t": 0,
+       "sign_p": 0.5327092552361137,
+       "one_sided": false,
+       "median_gain": 0.04344530835284843,
+       "pooled_lead": 0.018482097329768916
+      }
+     },
+     "capture_pooled": {
+      "0.05": 0.08887699199836877,
+      "0.1": 0.17775398399673753,
+      "0.2": 0.35550796799347506
+     }
+    }
+   },
+   "galileo_base": {
+    "n_tiles_scored": 62,
+    "n_windows": 22598,
+    "n_errors": 1602,
+    "accuracy": 0.9291087706876715,
+    "pooled_eaurc": {
+     "probe confidence": 0.005080575691545624,
+     "predictive entropy": 0.00496218562741639,
+     "control embedding distance": 0.049548613937053926,
+     "boundary first, then confidence": 0.025211427828940067
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 34,
+      "l": 26,
+      "t": 2,
+      "sign_p": 0.36629400670329104,
+      "one_sided": false,
+      "median_gain": 0.0001819854331084649,
+      "pooled_lead": -0.00011839006412923438
+     },
+     "control embedding distance": {
+      "w": 49,
+      "l": 13,
+      "t": 0,
+      "sign_p": 2.4087616996330222e-06,
+      "one_sided": true,
+      "median_gain": 0.06626678467745781,
+      "pooled_lead": 0.0444680382455083
+     },
+     "boundary first, then confidence": {
+      "w": 17,
+      "l": 19,
+      "t": 26,
+      "sign_p": 0.8679394004284404,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "pooled_lead": 0.020130852137394444
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.3714107365792759,
+      "0.1": 0.6429463171036205,
+      "0.2": 0.8813982521847691
+     },
+     "predictive entropy": {
+      "0.05": 0.37640449438202245,
+      "0.1": 0.6329588014981273,
+      "0.2": 0.8838951310861424
+     },
+     "control embedding distance": {
+      "0.05": 0.07303370786516854,
+      "0.1": 0.12983770287141075,
+      "0.2": 0.26092384519350814
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.30081716036772216,
+      "0.1": 0.5393258426966292,
+      "0.2": 0.7314814814814814
+     }
+    },
+    "seconds": 219.987202167511,
+    "classes": 15,
+    "train_tiles": 2651,
+    "test_tiles": 1310,
+    "token_grid": [
+     20,
+     20
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     20,
+     20
+    ],
+    "pixel_accuracy": 0.9251515327723367,
+    "pixel_miou": 0.658539815075179,
+    "boundary_windows_share": 0.1717851137268785,
+    "share_of_errors_on_boundary": 0.7247191011235955,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 4,
+      "l": 1,
+      "t": 107,
+      "sign_p": 0.1875,
+      "mean_gain": 0.004549319727891158,
+      "pooled_boundary_first": 0.30081716036772216,
+      "pooled_confidence": 0.3714107365792759
+     },
+     "0.1": {
+      "w": 6,
+      "l": 5,
+      "t": 101,
+      "sign_p": 0.5,
+      "mean_gain": 0.014831889019637034,
+      "pooled_boundary_first": 0.5393258426966292,
+      "pooled_confidence": 0.6429463171036205
+     }
+    }
+   },
+   "croma_base": {
+    "n_tiles_scored": 48,
+    "n_windows": 22598,
+    "n_errors": 1870,
+    "accuracy": 0.9172493140985928,
+    "pooled_eaurc": {
+     "probe confidence": 0.006179457287033157,
+     "predictive entropy": 0.005863743743910445,
+     "control embedding distance": 0.06340616773378178,
+     "boundary first, then confidence": 0.03504667881845908
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 28,
+      "l": 20,
+      "t": 0,
+      "sign_p": 0.31232680747326924,
+      "one_sided": false,
+      "median_gain": 0.0007315183340304889,
+      "pooled_lead": -0.0003157135431227122
+     },
+     "control embedding distance": {
+      "w": 30,
+      "l": 16,
+      "t": 2,
+      "sign_p": 0.027038015929434778,
+      "one_sided": true,
+      "median_gain": 0.017786803407112042,
+      "pooled_lead": 0.057226710446748624
+     },
+     "boundary first, then confidence": {
+      "w": 11,
+      "l": 17,
+      "t": 20,
+      "sign_p": 0.34492845088243484,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "pooled_lead": 0.028867221531425926
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.32192513368983955,
+      "0.1": 0.5834224598930481,
+      "0.2": 0.8652406417112299
+     },
+     "predictive entropy": {
+      "0.05": 0.36470588235294116,
+      "0.1": 0.604812834224599,
+      "0.2": 0.8759358288770054
+     },
+     "control embedding distance": {
+      "0.05": 0.08609625668449197,
+      "0.1": 0.13475935828877006,
+      "0.2": 0.23048128342245988
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.23836898395721925,
+      "0.1": 0.4681818181818182,
+      "0.2": 0.576991274978891
+     }
+    },
+    "seconds": 110.68600916862488,
+    "classes": 15,
+    "train_tiles": 2651,
+    "test_tiles": 1310,
+    "token_grid": [
+     15,
+     15
+    ],
+    "pixels_per_token_side": 5,
+    "window_grid": [
+     20,
+     20
+    ],
+    "pixel_accuracy": 0.9116610317796552,
+    "pixel_miou": 0.6146107210550447,
+    "boundary_windows_share": 0.12779892025842995,
+    "share_of_errors_on_boundary": 0.5486631016042781,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 4,
+      "l": 0,
+      "t": 86,
+      "sign_p": 0.0625,
+      "mean_gain": 0.020454545454545454,
+      "pooled_boundary_first": 0.23836898395721925,
+      "pooled_confidence": 0.32192513368983955
+     },
+     "0.1": {
+      "w": 7,
+      "l": 4,
+      "t": 79,
+      "sign_p": 0.2744140625,
+      "mean_gain": 0.028717727758144223,
+      "pooled_boundary_first": 0.4681818181818182,
+      "pooled_confidence": 0.5834224598930481
+     }
+    }
+   },
+   "terramind_base": {
+    "n_tiles_scored": 54,
+    "n_windows": 22598,
+    "n_errors": 1388,
+    "accuracy": 0.9385786352774582,
+    "pooled_eaurc": {
+     "probe confidence": 0.004806534041894439,
+     "predictive entropy": 0.005020854187427177,
+     "control embedding distance": 0.03748069186958056,
+     "boundary first, then confidence": 0.02112113215514803
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 22,
+      "l": 28,
+      "t": 4,
+      "sign_p": 0.47988766169832786,
+      "one_sided": false,
+      "median_gain": -0.00019568442384353363,
+      "pooled_lead": 0.00021432014553273825
+     },
+     "control embedding distance": {
+      "w": 36,
+      "l": 18,
+      "t": 0,
+      "sign_p": 0.009917163364034143,
+      "one_sided": true,
+      "median_gain": 0.02151736257997693,
+      "pooled_lead": 0.032674157827686116
+     },
+     "boundary first, then confidence": {
+      "w": 13,
+      "l": 23,
+      "t": 18,
+      "sign_p": 0.13249816396273673,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "pooled_lead": 0.016314598113253594
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.39121037463976943,
+      "0.1": 0.6657060518731989,
+      "0.2": 0.845821325648415
+     },
+     "predictive entropy": {
+      "0.05": 0.35518731988472624,
+      "0.1": 0.6527377521613833,
+      "0.2": 0.8472622478386167
+     },
+     "control embedding distance": {
+      "0.05": 0.03818443804034582,
+      "0.1": 0.10230547550432277,
+      "0.2": 0.23270893371757925
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.3173631123919308,
+      "0.1": 0.5246757925072046,
+      "0.2": 0.6743515850144092
+     }
+    },
+    "seconds": 102.35446548461914,
+    "classes": 15,
+    "train_tiles": 2651,
+    "test_tiles": 1310,
+    "token_grid": [
+     14,
+     14
+    ],
+    "pixels_per_token_side": 5,
+    "window_grid": [
+     20,
+     20
+    ],
+    "pixel_accuracy": 0.9319438560348671,
+    "pixel_miou": 0.6519817605799728,
+    "boundary_windows_share": 0.15634126913886184,
+    "share_of_errors_on_boundary": 0.6570605187319885,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 7,
+      "l": 0,
+      "t": 90,
+      "sign_p": 0.0078125,
+      "mean_gain": 0.012441917548606593,
+      "pooled_boundary_first": 0.3173631123919308,
+      "pooled_confidence": 0.39121037463976943
+     },
+     "0.1": {
+      "w": 8,
+      "l": 1,
+      "t": 88,
+      "sign_p": 0.01953125,
+      "mean_gain": 0.01990237463119579,
+      "pooled_boundary_first": 0.5246757925072046,
+      "pooled_confidence": 0.6657060518731989
+     }
+    }
+   },
+   "clay_large": {
+    "n_tiles_scored": 77,
+    "n_windows": 22598,
+    "n_errors": 3265,
+    "accuracy": 0.8555181874502168,
+    "pooled_eaurc": {
+     "probe confidence": 0.03526748761967062,
+     "predictive entropy": 0.03592021117938882,
+     "control embedding distance": 0.1503908373945192,
+     "boundary first, then confidence": 0.07731419845246708
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 41,
+      "l": 33,
+      "t": 3,
+      "sign_p": 0.4159851975073048,
+      "one_sided": false,
+      "median_gain": 0.0017431630349592497,
+      "pooled_lead": 0.0006527235597181963
+     },
+     "control embedding distance": {
+      "w": 48,
+      "l": 29,
+      "t": 0,
+      "sign_p": 0.019769766438988878,
+      "one_sided": true,
+      "median_gain": 0.025968720821662072,
+      "pooled_lead": 0.11512334977484857
+     },
+     "boundary first, then confidence": {
+      "w": 15,
+      "l": 29,
+      "t": 33,
+      "sign_p": 0.048766765904474596,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "pooled_lead": 0.04204671083279646
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.21500765696784074,
+      "0.1": 0.40551301684532925,
+      "0.2": 0.6508422664624809
+     },
+     "predictive entropy": {
+      "0.05": 0.1807044410413476,
+      "0.1": 0.36049004594180706,
+      "0.2": 0.5960183767228178
+     },
+     "control embedding distance": {
+      "0.05": 0.0444104134762634,
+      "0.1": 0.0888208269525268,
+      "0.2": 0.1675344563552833
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.19220381456216065,
+      "0.1": 0.35209800918836137,
+      "0.2": 0.5782542113323124
+     }
+    },
+    "seconds": 246.1638023853302,
+    "classes": 15,
+    "train_tiles": 2651,
+    "test_tiles": 1310,
+    "token_grid": [
+     16,
+     16
+    ],
+    "pixels_per_token_side": 5,
+    "window_grid": [
+     20,
+     20
+    ],
+    "pixel_accuracy": 0.8471519591962187,
+    "pixel_miou": 0.3927970788863703,
+    "boundary_windows_share": 0.1935569519426498,
+    "share_of_errors_on_boundary": 0.5751914241960184,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 7,
+      "l": 0,
+      "t": 148,
+      "sign_p": 0.0078125,
+      "mean_gain": 0.012319508448540706,
+      "pooled_boundary_first": 0.19220381456216065,
+      "pooled_confidence": 0.21500765696784074
+     },
+     "0.1": {
+      "w": 7,
+      "l": 1,
+      "t": 147,
+      "sign_p": 0.03515625,
+      "mean_gain": 0.007198141840498082,
+      "pooled_boundary_first": 0.35209800918836137,
+      "pooled_confidence": 0.40551301684532925
+     }
+    }
+   },
+   "anysat": {
+    "n_tiles_scored": 62,
+    "n_windows": 22598,
+    "n_errors": 4004,
+    "accuracy": 0.8228161784228692,
+    "pooled_eaurc": {
+     "probe confidence": 0.0525890604499577,
+     "predictive entropy": 0.05352924774091172,
+     "control embedding distance": 0.12415126258950229,
+     "boundary first, then confidence": 0.11594072292664948
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 35,
+      "l": 25,
+      "t": 2,
+      "sign_p": 0.2450608330229457,
+      "one_sided": false,
+      "median_gain": 0.004325505550535364,
+      "pooled_lead": 0.0009401872909540199
+     },
+     "control embedding distance": {
+      "w": 46,
+      "l": 16,
+      "t": 0,
+      "sign_p": 8.816355627572149e-05,
+      "one_sided": true,
+      "median_gain": 0.0832524333381344,
+      "pooled_lead": 0.07156220213954459
+     },
+     "boundary first, then confidence": {
+      "w": 22,
+      "l": 12,
+      "t": 28,
+      "sign_p": 0.12144948495551944,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "pooled_lead": 0.06335166247669177
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.1446053946053946,
+      "0.1": 0.28346653346653344,
+      "0.2": 0.48476523476523475
+     },
+     "predictive entropy": {
+      "0.05": 0.17382617382617382,
+      "0.1": 0.31843156843156845,
+      "0.2": 0.495004995004995
+     },
+     "control embedding distance": {
+      "0.05": 0.04695304695304695,
+      "0.1": 0.07792207792207792,
+      "0.2": 0.18731268731268733
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.12437562437562437,
+      "0.1": 0.21548451548451547,
+      "0.2": 0.3494838494838495
+     }
+    },
+    "seconds": 1388.8098587989807,
+    "classes": 15,
+    "train_tiles": 2651,
+    "test_tiles": 1310,
+    "token_grid": [
+     20,
+     20
+    ],
+    "pixels_per_token_side": 1,
+    "window_grid": [
+     20,
+     20
+    ],
+    "pixel_accuracy": 0.8191741221621353,
+    "pixel_miou": 0.49920469850154764,
+    "boundary_windows_share": 0.14195946543941942,
+    "share_of_errors_on_boundary": 0.2614885114885115,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 2,
+      "l": 3,
+      "t": 124,
+      "sign_p": 0.8125,
+      "mean_gain": 0.009142809743865419,
+      "pooled_boundary_first": 0.12437562437562437,
+      "pooled_confidence": 0.1446053946053946
+     },
+     "0.1": {
+      "w": 3,
+      "l": 9,
+      "t": 117,
+      "sign_p": 0.980712890625,
+      "mean_gain": 0.006336446842559787,
+      "pooled_boundary_first": 0.21548451548451547,
+      "pooled_confidence": 0.28346653346653344
+     }
+    }
+   },
+   "phi_vs_olmoearth_base": {
+    "galileo_base": {
+     "phi": 0.3288400211709874,
+     "p_base_wrong_given_model_wrong": 0.34408602150537637
+    },
+    "croma_base": {
+     "phi": 0.26114558357223394,
+     "p_base_wrong_given_model_wrong": 0.27956989247311825
+    },
+    "terramind_base": {
+     "phi": 0.31622489064317477,
+     "p_base_wrong_given_model_wrong": 0.3958333333333333
+    },
+    "clay_large": {
+     "phi": 0.26995074136150854,
+     "p_base_wrong_given_model_wrong": 0.23708920187793428
+    },
+    "anysat": {
+     "phi": 0.4371787327837015,
+     "p_base_wrong_given_model_wrong": 0.30126182965299686
+    }
+   }
+  },
+  "pastis_sentinel2": {
+   "olmoearth_base": {
+    "n_tiles_scored": 1930,
+    "n_windows": 458638,
+    "n_errors": 87167,
+    "accuracy": 0.8099437900915318,
+    "pooled_eaurc": {
+     "probe confidence": 0.03863929176338316,
+     "predictive entropy": 0.04249154410675572,
+     "control embedding distance": 0.16122794436561125,
+     "boundary first, then confidence": 0.06273726823437568
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 1300,
+      "l": 629,
+      "t": 1,
+      "sign_p": 1.3051339147075463e-53,
+      "one_sided": false,
+      "median_gain": 0.0019332341355110484,
+      "pooled_lead": 0.00385225234337256
+     },
+     "control embedding distance": {
+      "w": 1886,
+      "l": 44,
+      "t": 0,
+      "sign_p": 0.0,
+      "one_sided": true,
+      "median_gain": 0.09272968299263531,
+      "pooled_lead": 0.1225886526022281
+     },
+     "boundary first, then confidence": {
+      "w": 1221,
+      "l": 644,
+      "t": 65,
+      "sign_p": 3.2067090045094e-41,
+      "one_sided": false,
+      "median_gain": 0.002908111633575714,
+      "pooled_lead": 0.024097976470992523
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.1565500705542235,
+      "0.1": 0.2975667397065403,
+      "0.2": 0.5306595385868506
+     },
+     "predictive entropy": {
+      "0.05": 0.17078710980072734,
+      "0.1": 0.29847304599217594,
+      "0.2": 0.48981839457592896
+     },
+     "control embedding distance": {
+      "0.05": 0.046278981724735276,
+      "0.1": 0.0990397742264848,
+      "0.2": 0.20457283146144756
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.14812014666861098,
+      "0.1": 0.2753427470685205,
+      "0.2": 0.4815672524236157
+     }
+    },
+    "seconds": 299.9882414340973,
+    "classes": 19,
+    "train_tiles": 5820,
+    "test_tiles": 1984,
+    "token_grid": [
+     16,
+     16
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     16,
+     16
+    ],
+    "pixel_accuracy": 0.8007464104372539,
+    "pixel_miou": 0.4982313812393665,
+    "boundary_windows_share": 0.550216074551171,
+    "share_of_errors_on_boundary": 0.7977445592942283,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 225,
+      "l": 173,
+      "t": 1555,
+      "sign_p": 0.005242975133945531,
+      "mean_gain": -4.686954279404765e-05,
+      "pooled_boundary_first": 0.14812014666861098,
+      "pooled_confidence": 0.1565500705542235
+     },
+     "0.1": {
+      "w": 354,
+      "l": 285,
+      "t": 1314,
+      "sign_p": 0.0035487474002843956,
+      "mean_gain": 0.0002424848168331867,
+      "pooled_boundary_first": 0.2753427470685205,
+      "pooled_confidence": 0.2975667397065403
+     }
+    },
+    "with_disagreement": {
+     "n_other_encoders": 5,
+     "pooled_eaurc": {
+      "probe confidence": 0.03863929176338316,
+      "predictive entropy": 0.04249154410675572,
+      "control embedding distance": 0.16122794436561125,
+      "boundary first, then confidence": 0.06273726823437568,
+      "cross-encoder disagreement": 0.15307260034905976
+     },
+     "tests": {
+      "cross-encoder disagreement": {
+       "w": 1848,
+       "l": 82,
+       "t": 0,
+       "sign_p": 0.0,
+       "one_sided": false,
+       "median_gain": 0.08887700120499926,
+       "pooled_lead": 0.1144333085856766
+      }
+     },
+     "capture_pooled": {
+      "0.05": 0.05437585801581233,
+      "0.1": 0.10875171603162466,
+      "0.2": 0.21750343206324932
+     }
+    }
+   },
+   "galileo_base": {
+    "n_tiles_scored": 1932,
+    "n_windows": 458638,
+    "n_errors": 107480,
+    "accuracy": 0.7656539580235393,
+    "pooled_eaurc": {
+     "probe confidence": 0.05389913261166085,
+     "predictive entropy": 0.05885287824111342,
+     "control embedding distance": 0.2023815475153073,
+     "boundary first, then confidence": 0.07931010217025929
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 1229,
+      "l": 703,
+      "t": 0,
+      "sign_p": 2.8182334662110357e-33,
+      "one_sided": false,
+      "median_gain": 0.0024572820133976075,
+      "pooled_lead": 0.004953745629452569
+     },
+     "control embedding distance": {
+      "w": 1869,
+      "l": 63,
+      "t": 0,
+      "sign_p": 0.0,
+      "one_sided": true,
+      "median_gain": 0.12344258805752474,
+      "pooled_lead": 0.14848241490364644
+     },
+     "boundary first, then confidence": {
+      "w": 1300,
+      "l": 585,
+      "t": 47,
+      "sign_p": 2.9204549653309112e-62,
+      "one_sided": false,
+      "median_gain": 0.003979755167939668,
+      "pooled_lead": 0.025410969558598437
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.13373650911797544,
+      "0.1": 0.25729438034983254,
+      "0.2": 0.4726367696315594
+     },
+     "predictive entropy": {
+      "0.05": 0.14518980275400076,
+      "0.1": 0.2671566803126163,
+      "0.2": 0.45687569780424264
+     },
+     "control embedding distance": {
+      "0.05": 0.04235206550055824,
+      "0.1": 0.09411053219203573,
+      "0.2": 0.19805545217714923
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.12697491548358306,
+      "0.1": 0.24260869177317473,
+      "0.2": 0.44119766924261333
+     }
+    },
+    "seconds": 305.877409696579,
+    "classes": 19,
+    "train_tiles": 5820,
+    "test_tiles": 1984,
+    "token_grid": [
+     16,
+     16
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     16,
+     16
+    ],
+    "pixel_accuracy": 0.755922882975385,
+    "pixel_miou": 0.38380100016421315,
+    "boundary_windows_share": 0.5411784457458824,
+    "share_of_errors_on_boundary": 0.782973576479345,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 270,
+      "l": 167,
+      "t": 1517,
+      "sign_p": 4.7681575977701797e-07,
+      "mean_gain": 0.0016762856834630102,
+      "pooled_boundary_first": 0.12697491548358306,
+      "pooled_confidence": 0.13373650911797544
+     },
+     "0.1": {
+      "w": 378,
+      "l": 296,
+      "t": 1280,
+      "sign_p": 0.0008939026908510753,
+      "mean_gain": 2.2965824394216437e-05,
+      "pooled_boundary_first": 0.24260869177317473,
+      "pooled_confidence": 0.25729438034983254
+     }
+    }
+   },
+   "croma_base": {
+    "n_tiles_scored": 1940,
+    "n_windows": 458638,
+    "n_errors": 99972,
+    "accuracy": 0.782024167208125,
+    "pooled_eaurc": {
+     "probe confidence": 0.04934489299830899,
+     "predictive entropy": 0.053999427588995036,
+     "control embedding distance": 0.1870568642346726,
+     "boundary first, then confidence": 0.07662044718668666
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 1290,
+      "l": 649,
+      "t": 1,
+      "sign_p": 9.892336917369222e-49,
+      "one_sided": false,
+      "median_gain": 0.0025998586746005733,
+      "pooled_lead": 0.004654534590686044
+     },
+     "control embedding distance": {
+      "w": 1874,
+      "l": 66,
+      "t": 0,
+      "sign_p": 0.0,
+      "one_sided": true,
+      "median_gain": 0.09479715310636558,
+      "pooled_lead": 0.1377119712363636
+     },
+     "boundary first, then confidence": {
+      "w": 1313,
+      "l": 553,
+      "t": 74,
+      "sign_p": 4.3054474587554335e-71,
+      "one_sided": false,
+      "median_gain": 0.0035667164207231414,
+      "pooled_lead": 0.027275554188377668
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.13895890849437842,
+      "0.1": 0.2653342936022086,
+      "0.2": 0.482645140639379
+     },
+     "predictive entropy": {
+      "0.05": 0.1510522946424999,
+      "0.1": 0.27035569959588684,
+      "0.2": 0.4597787380466531
+     },
+     "control embedding distance": {
+      "0.05": 0.052204617292841995,
+      "0.1": 0.10291881726883527,
+      "0.2": 0.20598767654943384
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.13203989215425915,
+      "0.1": 0.2481366701868442,
+      "0.2": 0.44332224935207565
+     }
+    },
+    "seconds": 585.2733566761017,
+    "classes": 19,
+    "train_tiles": 5820,
+    "test_tiles": 1984,
+    "token_grid": [
+     15,
+     15
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     16,
+     16
+    ],
+    "pixel_accuracy": 0.7680321225509178,
+    "pixel_miou": 0.4424681175856959,
+    "boundary_windows_share": 0.5122078850858411,
+    "share_of_errors_on_boundary": 0.7485395910855039,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 173,
+      "l": 170,
+      "t": 1611,
+      "sign_p": 0.45701220000080467,
+      "mean_gain": -0.00092108609921525,
+      "pooled_boundary_first": 0.13203989215425915,
+      "pooled_confidence": 0.13895890849437842
+     },
+     "0.1": {
+      "w": 305,
+      "l": 328,
+      "t": 1321,
+      "sign_p": 0.8299335733854685,
+      "mean_gain": -0.0027771023959995917,
+      "pooled_boundary_first": 0.2481366701868442,
+      "pooled_confidence": 0.2653342936022086
+     }
+    }
+   },
+   "terramind_base": {
+    "n_tiles_scored": 1939,
+    "n_windows": 458638,
+    "n_errors": 104392,
+    "accuracy": 0.7723869369742585,
+    "pooled_eaurc": {
+     "probe confidence": 0.054027885574749204,
+     "predictive entropy": 0.05941131532553666,
+     "control embedding distance": 0.18895936972051003,
+     "boundary first, then confidence": 0.07918786338468319
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 1302,
+      "l": 637,
+      "t": 0,
+      "sign_p": 2.151447205321788e-52,
+      "one_sided": false,
+      "median_gain": 0.003409262584426559,
+      "pooled_lead": 0.005383429750787455
+     },
+     "control embedding distance": {
+      "w": 1881,
+      "l": 58,
+      "t": 0,
+      "sign_p": 0.0,
+      "one_sided": true,
+      "median_gain": 0.10685394522797265,
+      "pooled_lead": 0.13493148414576084
+     },
+     "boundary first, then confidence": {
+      "w": 1272,
+      "l": 621,
+      "t": 46,
+      "sign_p": 1.8203201824487243e-51,
+      "one_sided": false,
+      "median_gain": 0.0032808870381600685,
+      "pooled_lead": 0.02515997780993398
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.13676335351367921,
+      "0.1": 0.2622040003065369,
+      "0.2": 0.4766169821442256
+     },
+     "predictive entropy": {
+      "0.05": 0.14718560809257414,
+      "0.1": 0.2665529925664802,
+      "0.2": 0.45504444785041
+     },
+     "control embedding distance": {
+      "0.05": 0.04896926967583723,
+      "0.1": 0.09843666181316577,
+      "0.2": 0.20178749329450532
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.12965151580385742,
+      "0.1": 0.24524285822024292,
+      "0.2": 0.4410738884766424
+     }
+    },
+    "seconds": 242.6582272052765,
+    "classes": 19,
+    "train_tiles": 5820,
+    "test_tiles": 1984,
+    "token_grid": [
+     14,
+     14
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     16,
+     16
+    ],
+    "pixel_accuracy": 0.7605629500608243,
+    "pixel_miou": 0.4030272237436882,
+    "boundary_windows_share": 0.5369921375899948,
+    "share_of_errors_on_boundary": 0.7733542800214576,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 204,
+      "l": 158,
+      "t": 1593,
+      "sign_p": 0.008950451358664808,
+      "mean_gain": 0.001256606593081976,
+      "pooled_boundary_first": 0.12965151580385742,
+      "pooled_confidence": 0.13676335351367921
+     },
+     "0.1": {
+      "w": 340,
+      "l": 302,
+      "t": 1313,
+      "sign_p": 0.07207799110442283,
+      "mean_gain": 0.0008114541199965911,
+      "pooled_boundary_first": 0.24524285822024292,
+      "pooled_confidence": 0.2622040003065369
+     }
+    }
+   },
+   "clay_large": {
+    "n_tiles_scored": 1952,
+    "n_windows": 458638,
+    "n_errors": 150108,
+    "accuracy": 0.6727091954875086,
+    "pooled_eaurc": {
+     "probe confidence": 0.09376443943051743,
+     "predictive entropy": 0.09896549952833458,
+     "control embedding distance": 0.2812621631277902,
+     "boundary first, then confidence": 0.11785154287024685
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 1129,
+      "l": 822,
+      "t": 1,
+      "sign_p": 3.871625699442456e-12,
+      "one_sided": false,
+      "median_gain": 0.0029231518983965157,
+      "pooled_lead": 0.005201060097817151
+     },
+     "control embedding distance": {
+      "w": 1864,
+      "l": 88,
+      "t": 0,
+      "sign_p": 0.0,
+      "one_sided": true,
+      "median_gain": 0.1396956611454699,
+      "pooled_lead": 0.18749772369727274
+     },
+     "boundary first, then confidence": {
+      "w": 1209,
+      "l": 679,
+      "t": 64,
+      "sign_p": 1.5594327715292067e-34,
+      "one_sided": false,
+      "median_gain": 0.0033576325277426128,
+      "pooled_lead": 0.024087103439729418
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.10367868468036347,
+      "0.1": 0.20278066458816318,
+      "0.2": 0.3855957044261465
+     },
+     "predictive entropy": {
+      "0.05": 0.1121525834732326,
+      "0.1": 0.21402590135102725,
+      "0.2": 0.39327017880459403
+     },
+     "control embedding distance": {
+      "0.05": 0.03640045833666427,
+      "0.1": 0.08095504570042902,
+      "0.2": 0.17546699709542463
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.0995119058044786,
+      "0.1": 0.19361044263543434,
+      "0.2": 0.3670355351685827
+     }
+    },
+    "seconds": 910.6352291107178,
+    "classes": 19,
+    "train_tiles": 5820,
+    "test_tiles": 1984,
+    "token_grid": [
+     16,
+     16
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     16,
+     16
+    ],
+    "pixel_accuracy": 0.665366306414826,
+    "pixel_miou": 0.21508841995925684,
+    "boundary_windows_share": 0.5529393552213292,
+    "share_of_errors_on_boundary": 0.7615250353079116,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 263,
+      "l": 174,
+      "t": 1525,
+      "sign_p": 1.2041070267818798e-05,
+      "mean_gain": 0.0017402065971745446,
+      "pooled_boundary_first": 0.0995119058044786,
+      "pooled_confidence": 0.10367868468036347
+     },
+     "0.1": {
+      "w": 442,
+      "l": 301,
+      "t": 1219,
+      "sign_p": 1.296108470226243e-07,
+      "mean_gain": 0.0022856979258718303,
+      "pooled_boundary_first": 0.19361044263543434,
+      "pooled_confidence": 0.20278066458816318
+     }
+    }
+   },
+   "anysat": {
+    "n_tiles_scored": 1929,
+    "n_windows": 458638,
+    "n_errors": 101229,
+    "accuracy": 0.7792834435873173,
+    "pooled_eaurc": {
+     "probe confidence": 0.05165488947547126,
+     "predictive entropy": 0.05607106743456985,
+     "control embedding distance": 0.1719053135453624,
+     "boundary first, then confidence": 0.0781968370038866
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 1257,
+      "l": 672,
+      "t": 0,
+      "sign_p": 5.9442711572381e-41,
+      "one_sided": false,
+      "median_gain": 0.0023062966570754073,
+      "pooled_lead": 0.004416177959098586
+     },
+     "control embedding distance": {
+      "w": 1861,
+      "l": 68,
+      "t": 0,
+      "sign_p": 0.0,
+      "one_sided": true,
+      "median_gain": 0.08846003112365926,
+      "pooled_lead": 0.12025042406989114
+     },
+     "boundary first, then confidence": {
+      "w": 1231,
+      "l": 624,
+      "t": 74,
+      "sign_p": 9.192035739118783e-46,
+      "one_sided": false,
+      "median_gain": 0.002910000287327144,
+      "pooled_lead": 0.026541947528415342
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.13463533177251577,
+      "0.1": 0.2597674579418941,
+      "0.2": 0.47318456173626133
+     },
+     "predictive entropy": {
+      "0.05": 0.14644024933566469,
+      "0.1": 0.26487469005917275,
+      "0.2": 0.4568256132136048
+     },
+     "control embedding distance": {
+      "0.05": 0.05180333698841241,
+      "0.1": 0.10531567041065307,
+      "0.2": 0.21441484159677562
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.12930306999418098,
+      "0.1": 0.24529884321549933,
+      "0.2": 0.4391711601099602
+     }
+    },
+    "seconds": 903.8207633495331,
+    "classes": 19,
+    "train_tiles": 5820,
+    "test_tiles": 1984,
+    "token_grid": [
+     16,
+     16
+    ],
+    "pixels_per_token_side": 1,
+    "window_grid": [
+     16,
+     16
+    ],
+    "pixel_accuracy": 0.7666123647548859,
+    "pixel_miou": 0.4375876653971207,
+    "boundary_windows_share": 0.5369310872627213,
+    "share_of_errors_on_boundary": 0.7697991682225449,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 224,
+      "l": 176,
+      "t": 1550,
+      "sign_p": 0.00933076015867996,
+      "mean_gain": 0.0002882280944168949,
+      "pooled_boundary_first": 0.12930306999418098,
+      "pooled_confidence": 0.13463533177251577
+     },
+     "0.1": {
+      "w": 372,
+      "l": 335,
+      "t": 1243,
+      "sign_p": 0.08785987042960387,
+      "mean_gain": -0.0004928341822972843,
+      "pooled_boundary_first": 0.24529884321549933,
+      "pooled_confidence": 0.2597674579418941
+     }
+    }
+   },
+   "phi_vs_olmoearth_base": {
+    "galileo_base": {
+     "phi": 0.08074681305429458,
+     "p_base_wrong_given_model_wrong": 0.24562524726863263
+    },
+    "croma_base": {
+     "phi": 0.07997274801859319,
+     "p_base_wrong_given_model_wrong": 0.24778606639619596
+    },
+    "terramind_base": {
+     "phi": 0.08100700729567652,
+     "p_base_wrong_given_model_wrong": 0.24686000417275192
+    },
+    "clay_large": {
+     "phi": 0.049618087114275324,
+     "p_base_wrong_given_model_wrong": 0.21624943071328914
+    },
+    "anysat": {
+     "phi": 0.07999168770295165,
+     "p_base_wrong_given_model_wrong": 0.24734137117367552
+    }
+   }
+  },
+  "m_cashew_plant": {
+   "olmoearth_base": {
+    "n_tiles_scored": 50,
+    "n_windows": 204800,
+    "n_errors": 71109,
+    "accuracy": 0.6527880859374999,
+    "pooled_eaurc": {
+     "probe confidence": 0.13078398724443888,
+     "predictive entropy": 0.13349947196102116,
+     "control embedding distance": 0.26641036195073264,
+     "boundary first, then confidence": 0.14396856093908686
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 30,
+      "l": 20,
+      "t": 0,
+      "sign_p": 0.20263875106454066,
+      "one_sided": false,
+      "median_gain": 0.0005658618073910715,
+      "pooled_lead": 0.0027154847165822837
+     },
+     "control embedding distance": {
+      "w": 50,
+      "l": 0,
+      "t": 0,
+      "sign_p": 8.881784197001252e-16,
+      "one_sided": true,
+      "median_gain": 0.129037103796585,
+      "pooled_lead": 0.13562637470629377
+     },
+     "boundary first, then confidence": {
+      "w": 47,
+      "l": 3,
+      "t": 0,
+      "sign_p": 3.708322537931963e-11,
+      "one_sided": false,
+      "median_gain": 0.006431933593714148,
+      "pooled_lead": 0.013184573694647983
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.08854012853506589,
+      "0.1": 0.17342389852198736,
+      "0.2": 0.32985979271259613
+     },
+     "predictive entropy": {
+      "0.05": 0.08755572431056546,
+      "0.1": 0.16937377828404282,
+      "0.2": 0.32322209565596477
+     },
+     "control embedding distance": {
+      "0.05": 0.05450786820233726,
+      "0.1": 0.1066953550183521,
+      "0.2": 0.20801867555443052
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.08862333413023199,
+      "0.1": 0.173727423157875,
+      "0.2": 0.33204481851804973
+     }
+    },
+    "seconds": 921.6090064048767,
+    "classes": 7,
+    "train_tiles": 1350,
+    "test_tiles": 50,
+    "token_grid": [
+     64,
+     64
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     64,
+     64
+    ],
+    "pixel_accuracy": 0.651824951171875,
+    "pixel_miou": 0.2611742713871542,
+    "boundary_windows_share": 0.76458984375,
+    "share_of_errors_on_boundary": 0.8740384480164255,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 34,
+      "l": 6,
+      "t": 10,
+      "sign_p": 4.182292286714073e-06,
+      "mean_gain": 0.0007279551332786168,
+      "pooled_boundary_first": 0.08862333413023199,
+      "pooled_confidence": 0.08854012853506589
+     },
+     "0.1": {
+      "w": 39,
+      "l": 6,
+      "t": 5,
+      "sign_p": 2.708884494495578e-07,
+      "mean_gain": 0.0017924320713378406,
+      "pooled_boundary_first": 0.173727423157875,
+      "pooled_confidence": 0.17342389852198736
+     }
+    }
+   }
+  },
+  "m_sa_crop_type": {
+   "olmoearth_base": {
+    "n_tiles_scored": 1000,
+    "n_windows": 4096000,
+    "n_errors": 1392774,
+    "accuracy": 0.65996728515625,
+    "pooled_eaurc": {
+     "probe confidence": 0.06718643256650826,
+     "predictive entropy": 0.07068304035501431,
+     "control embedding distance": 0.27606719238284405,
+     "boundary first, then confidence": 0.0982351875227268
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 566,
+      "l": 434,
+      "t": 0,
+      "sign_p": 3.351030790892153e-05,
+      "one_sided": false,
+      "median_gain": 0.0005049633855108947,
+      "pooled_lead": 0.003496607788506051
+     },
+     "control embedding distance": {
+      "w": 976,
+      "l": 24,
+      "t": 0,
+      "sign_p": 1.1675438536105188e-253,
+      "one_sided": true,
+      "median_gain": 0.1477485832580863,
+      "pooled_lead": 0.2088807598163358
+     },
+     "boundary first, then confidence": {
+      "w": 554,
+      "l": 437,
+      "t": 9,
+      "sign_p": 0.00022533347345958806,
+      "one_sided": false,
+      "median_gain": 0.00029790617620371624,
+      "pooled_lead": 0.031048754956218533
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.1069268955336616,
+      "0.1": 0.2104842565987016,
+      "0.2": 0.40522367591583414
+     },
+     "predictive entropy": {
+      "0.05": 0.10993958818875137,
+      "0.1": 0.211079471615639,
+      "0.2": 0.39584239797698695
+     },
+     "control embedding distance": {
+      "0.05": 0.046373639944456174,
+      "0.1": 0.09295836941241005,
+      "0.2": 0.18875065157735568
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.10465473561169443,
+      "0.1": 0.20491986851609714,
+      "0.2": 0.3939111807683028
+     }
+    },
+    "seconds": 4065.4831817150116,
+    "classes": 10,
+    "train_tiles": 3000,
+    "test_tiles": 1000,
+    "token_grid": [
+     64,
+     64
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     64,
+     64
+    ],
+    "pixel_accuracy": 0.6566286926269531,
+    "pixel_miou": 0.2878136666867046,
+    "boundary_windows_share": 0.412957275390625,
+    "share_of_errors_on_boundary": 0.7067779840806908,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 647,
+      "l": 196,
+      "t": 157,
+      "sign_p": 2.722987699608634e-57,
+      "mean_gain": 0.005497313464565596,
+      "pooled_boundary_first": 0.10465473561169443,
+      "pooled_confidence": 0.1069268955336616
+     },
+     "0.1": {
+      "w": 677,
+      "l": 224,
+      "t": 99,
+      "sign_p": 7.518974192482368e-54,
+      "mean_gain": 0.006823062823328662,
+      "pooled_boundary_first": 0.20491986851609714,
+      "pooled_confidence": 0.2104842565987016
+     }
+    }
+   }
+  },
+  "pastis_sentinel1_sentinel2": {
+   "olmoearth_base": {
+    "n_tiles_scored": 1931,
+    "n_windows": 458638,
+    "n_errors": 89361,
+    "accuracy": 0.8051600608758978,
+    "pooled_eaurc": {
+     "probe confidence": 0.03944887168860667,
+     "predictive entropy": 0.043662059502448884,
+     "control embedding distance": 0.16454466784158261,
+     "boundary first, then confidence": 0.0637063376929399
+    },
+    "tests": {
+     "predictive entropy": {
+      "w": 1289,
+      "l": 640,
+      "t": 2,
+      "sign_p": 3.394999757615776e-50,
+      "one_sided": false,
+      "median_gain": 0.001959806103130013,
+      "pooled_lead": 0.004213187813842216
+     },
+     "control embedding distance": {
+      "w": 1881,
+      "l": 50,
+      "t": 0,
+      "sign_p": 0.0,
+      "one_sided": true,
+      "median_gain": 0.09302839909692744,
+      "pooled_lead": 0.12509579615297595
+     },
+     "boundary first, then confidence": {
+      "w": 1221,
+      "l": 635,
+      "t": 75,
+      "sign_p": 1.0878129023195974e-42,
+      "one_sided": false,
+      "median_gain": 0.0026430121675502793,
+      "pooled_lead": 0.024257466004333234
+     }
+    },
+    "capture_pooled": {
+     "probe confidence": {
+      "0.05": 0.1546312149595461,
+      "0.1": 0.2946923154396213,
+      "0.2": 0.5286758205481138
+     },
+     "predictive entropy": {
+      "0.05": 0.17039871979946508,
+      "0.1": 0.30070164837009433,
+      "0.2": 0.4919931513747608
+     },
+     "control embedding distance": {
+      "0.05": 0.04895871800897483,
+      "0.1": 0.09996530925123935,
+      "0.2": 0.20470898938015467
+     },
+     "boundary first, then confidence": {
+      "0.05": 0.14619845870620318,
+      "0.1": 0.2731915974516638,
+      "0.2": 0.48047372380397796
+     }
+    },
+    "seconds": 285.64624881744385,
+    "classes": 19,
+    "train_tiles": 5820,
+    "test_tiles": 1984,
+    "token_grid": [
+     16,
+     16
+    ],
+    "pixels_per_token_side": 4,
+    "window_grid": [
+     16,
+     16
+    ],
+    "pixel_accuracy": 0.7946433010923437,
+    "pixel_miou": 0.47582928391916574,
+    "boundary_windows_share": 0.5478220295745229,
+    "share_of_errors_on_boundary": 0.7958393482615459,
+    "boundary_first_vs_confidence": {
+     "0.05": {
+      "w": 216,
+      "l": 150,
+      "t": 1585,
+      "sign_p": 0.00032978644079179547,
+      "mean_gain": -1.559159820480052e-05,
+      "pooled_boundary_first": 0.14619845870620318,
+      "pooled_confidence": 0.1546312149595461
+     },
+     "0.1": {
+      "w": 366,
+      "l": 273,
+      "t": 1312,
+      "sign_p": 0.000133529783294654,
+      "mean_gain": 0.0007276161734953217,
+      "pooled_boundary_first": 0.2731915974516638,
+      "pooled_confidence": 0.2946923154396213
+     }
+    }
+   }
+  }
+ },
+ "failures": [],
+ "prereg": {
+  "P1_per_task": {
+   "mados": true,
+   "pastis_sentinel2": true,
+   "m_cashew_plant": true,
+   "m_sa_crop_type": true,
+   "pastis_sentinel1_sentinel2": true
+  },
+  "P1": true,
+  "complete": true
+ },
+ "n_failures": 0
+}

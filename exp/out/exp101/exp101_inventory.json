@@ -1,0 +1,117 @@
+{
+ "experiment": "exp101: filter, then shake. A two-step error ranking (set aside the most confident share q, rank the rest by the replica's instability over 320 perturbed views) fitted on exp98's graded validation points and tested on exp99's plots",
+ "prereg_page": "docs/plan/two_step.md",
+ "mode": "inventory: counts only; no class, probability or perturbed reading at a unit",
+ "utc": "2026-10-11T03:19:54Z",
+ "commit": "2a07349dcb346d8ba7d8bb22b093443e0b92e6c7",
+ "dirty": false,
+ "prereg_status": "draft",
+ "design": {
+  "views": {
+   "orientation": [
+    "0 quarter turn(s)",
+    "1 quarter turn(s)",
+    "2 quarter turn(s)",
+    "3 quarter turn(s)",
+    "0 quarter turn(s), flipped",
+    "1 quarter turn(s), flipped",
+    "2 quarter turn(s), flipped",
+    "3 quarter turn(s), flipped"
+   ],
+   "time": [
+    "all twelve months",
+    "without January to March",
+    "without April to June",
+    "without July to September",
+    "without October to December"
+   ],
+   "context_px": [
+    16,
+    32
+   ],
+   "phase_px": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "n_views": 320,
+   "index": "((orientation x 5 + time) x 2 + context) x 4 + phase",
+   "v0": "view 0: identity, all twelve months, 16 px, phase 0, the unit at (8, 8)"
+  },
+  "instability": "the share of the other 319 views whose class (argmax over ten channels) differs from V0's; ties broken by the mean total-variation distance of the ten-channel softmax to V0's",
+  "rule": "R(q): the most confident share q of the units (in design weight) set aside; the others by instability, most unstable first, ties by confidence, least confident first; then the units set aside, least confident first",
+  "q_grid": [
+   0.5,
+   0.6,
+   0.7,
+   0.8
+  ],
+  "budget": 0.1,
+  "budgets_reported": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "p1_margin": 0.05,
+  "level": 0.9,
+  "kinds": {
+   "orientation": 7,
+   "time": 4,
+   "context": 1,
+   "phase": 3
+  },
+  "dose_k": [
+   4,
+   8,
+   16,
+   32,
+   64,
+   128,
+   319
+  ],
+  "dose_draws": 20,
+  "seed": 101
+ },
+ "cannot_show": [
+  "Whether the gain holds for a model or legend other than FT-AWF's, or for a whole map: the units are points.",
+  "Why a view changes the class: a season removed may hide the season that separates grass from shrub, or show the model a series shorter than it was trained on.",
+  "With 271 plots and a 10% review of about 27, a difference of a few errors is within noise; P1's bar is set so that only a large gain passes."
+ ],
+ "F": {
+  "n_units": 259,
+  "source": "the deployed run's rslearn dataset",
+  "n_roots": 1,
+  "n_windows": 270,
+  "n_windows_with_12_groups": 270,
+  "in_no_window": 0,
+  "in_two_or_more_windows": 32,
+  "only_in_windows_without_12_groups": 0,
+  "failed_reads": {},
+  "took_a_later_window_to_avoid_clamping": 241,
+  "read": 259,
+  "clamped_at_a_window_edge": 18,
+  "graded_validation_points": 259
+ },
+ "E": {
+  "n_units": 271,
+  "source": "the deployed run's rslearn dataset",
+  "n_roots": 1,
+  "n_windows": 313,
+  "n_windows_with_12_groups": 271,
+  "in_no_window": 0,
+  "in_two_or_more_windows": 36,
+  "only_in_windows_without_12_groups": 0,
+  "failed_reads": {},
+  "took_a_later_window_to_avoid_clamping": 249,
+  "read": 271,
+  "clamped_at_a_window_edge": 22,
+  "selected": 309,
+  "with_input": 271,
+  "with_input_by_country": {
+   "kenya": 192,
+   "tanzania": 79
+  }
+ },
+ "seconds": 419.4
+}

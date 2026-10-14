@@ -1,0 +1,846 @@
+{
+ "experiment": "exp37 cue enrichment on identical windows",
+ "device": "cuda",
+ "smoke": false,
+ "config": {
+  "patch": 4,
+  "tf32": false,
+  "autocast": false,
+  "compile": false,
+  "cues": {
+   "boundary": "indicator > 0",
+   "low_confidence": "top 20% of -|logit| within the unit, ties included",
+   "unstable": "top 20% of aligned tile-phase within the unit",
+   "ndwi_ambiguous": "|patch-mean NDWI| < 0.1",
+   "dihedral_disagree": "top 20% of exp36's std over 8 transforms within the unit (when cached for every unit)"
+  },
+  "budgets": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "n_boot": 2000,
+  "bootstrap": "cluster bootstrap of the enrichment ratio (scene in A, tile in B)",
+  "review_set": "confidence's k = max(1, round(b n)) most suspect valid windows per unit, ties by descending raster position (assess.review_mask)",
+  "prereg": "none; descriptive measurement for the cue library"
+ },
+ "part_a": {
+  "skipped": [
+   {
+    "scene": "itezhitezhi",
+    "reason": "0 errors"
+   },
+   {
+    "scene": "okavango",
+    "reason": "1 errors"
+   },
+   {
+    "scene": "shire",
+    "reason": "0 errors"
+   },
+   {
+    "scene": "tete",
+    "reason": "6 errors"
+   }
+  ],
+  "scene_set_warning": {
+   "missing": [],
+   "extra": [
+    "itezhitezhi",
+    "okavango",
+    "shire",
+    "tete"
+   ]
+  },
+  "crop_size": 128,
+  "grid": 32,
+  "feats_source": "exp/out/exp11_feats.npz",
+  "scenes_requested": [
+   "barotse",
+   "cuando_20",
+   "cuando_50",
+   "cuando_80",
+   "delta",
+   "itezhitezhi",
+   "kafue_20",
+   "kafue_50",
+   "kafue_80",
+   "kazungula",
+   "luangwa_conf",
+   "okavango",
+   "okavango_50",
+   "okavango_80",
+   "okavango_sep",
+   "rovuma_20",
+   "rovuma_50",
+   "rovuma_80",
+   "save_20",
+   "save_50",
+   "save_80",
+   "shire",
+   "shire_20",
+   "shire_50",
+   "shire_80",
+   "shire_liwonde",
+   "tete",
+   "vicfalls_up",
+   "zambezi_20",
+   "zambezi_50",
+   "zambezi_80"
+  ],
+  "n_scenes": 27,
+  "scenes": [
+   "barotse",
+   "cuando_20",
+   "cuando_50",
+   "cuando_80",
+   "delta",
+   "kafue_20",
+   "kafue_50",
+   "kafue_80",
+   "kazungula",
+   "luangwa_conf",
+   "okavango_50",
+   "okavango_80",
+   "okavango_sep",
+   "rovuma_20",
+   "rovuma_50",
+   "rovuma_80",
+   "save_20",
+   "save_50",
+   "save_80",
+   "shire_20",
+   "shire_50",
+   "shire_80",
+   "shire_liwonde",
+   "vicfalls_up",
+   "zambezi_20",
+   "zambezi_50",
+   "zambezi_80"
+  ],
+  "analysis": {
+   "n_windows": 27648,
+   "n_errors": 1844,
+   "error_rate": 0.06669560185185185,
+   "cues": {
+    "boundary": {
+     "n": 27648,
+     "n_errors": 1844,
+     "n_with_cue": 6766,
+     "share_errors": 0.85412147505423,
+     "share_correct": 0.2011703611843125,
+     "enrichment": 4.245762000057668,
+     "precision": 0.23278155483298849,
+     "boot_lo": 3.462786751448531,
+     "boot_hi": 5.370398217287921,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true,
+     "per_river": {
+      "Cuando": {
+       "share_errors": 0.9748201438848921,
+       "share_correct": 0.2712956335003579
+      },
+      "Kafue": {
+       "share_errors": 0.975609756097561,
+       "share_correct": 0.24243466299862448
+      },
+      "Luangwa": {
+       "share_errors": 0.8653846153846154,
+       "share_correct": 0.15329218106995884
+      },
+      "Okavango": {
+       "share_errors": 0.8162162162162162,
+       "share_correct": 0.15587114651887773
+      },
+      "Rovuma": {
+       "share_errors": 0.9694656488549618,
+       "share_correct": 0.25161509690581435
+      },
+      "Save": {
+       "share_errors": 0.6774193548387096,
+       "share_correct": 0.08887381275440977
+      },
+      "Shire": {
+       "share_errors": 0.7333333333333333,
+       "share_correct": 0.25620311598384304
+      },
+      "Zambezi": {
+       "share_errors": 0.9821428571428571,
+       "share_correct": 0.1798780487804878
+      }
+     }
+    },
+    "low_confidence": {
+     "n": 27648,
+     "n_errors": 1844,
+     "n_with_cue": 5535,
+     "share_errors": 0.5683297180043384,
+     "share_correct": 0.1738877693380871,
+     "enrichment": 3.2683708587884888,
+     "precision": 0.18934056007226738,
+     "boot_lo": 2.7340446925454507,
+     "boot_hi": 3.961272582806274,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true,
+     "per_river": {
+      "Cuando": {
+       "share_errors": 0.6690647482014388,
+       "share_correct": 0.15354330708661418
+      },
+      "Kafue": {
+       "share_errors": 0.6829268292682927,
+       "share_correct": 0.17297111416781294
+      },
+      "Luangwa": {
+       "share_errors": 0.7884615384615384,
+       "share_correct": 0.16872427983539096
+      },
+      "Okavango": {
+       "share_errors": 0.43783783783783786,
+       "share_correct": 0.18496709386906823
+      },
+      "Rovuma": {
+       "share_errors": 0.8778625954198473,
+       "share_correct": 0.17001020061203673
+      },
+      "Save": {
+       "share_errors": 0.6774193548387096,
+       "share_correct": 0.18012211668928088
+      },
+      "Shire": {
+       "share_errors": 0.36507936507936506,
+       "share_correct": 0.1702250432775534
+      },
+      "Zambezi": {
+       "share_errors": 0.7107142857142857,
+       "share_correct": 0.1794425087108014
+      }
+     }
+    },
+    "unstable": {
+     "n": 27648,
+     "n_errors": 1844,
+     "n_with_cue": 5535,
+     "share_errors": 0.7440347071583514,
+     "share_correct": 0.16133157649976748,
+     "enrichment": 4.611835595367307,
+     "precision": 0.24787714543812106,
+     "boot_lo": 3.870796983717609,
+     "boot_hi": 5.401545485719567,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true,
+     "per_river": {
+      "Cuando": {
+       "share_errors": 0.8237410071942446,
+       "share_correct": 0.1381531853972799
+      },
+      "Kafue": {
+       "share_errors": 0.9390243902439024,
+       "share_correct": 0.15852819807427784
+      },
+      "Luangwa": {
+       "share_errors": 0.8653846153846154,
+       "share_correct": 0.1646090534979424
+      },
+      "Okavango": {
+       "share_errors": 0.7567567567567568,
+       "share_correct": 0.1645306546588154
+      },
+      "Rovuma": {
+       "share_errors": 0.9465648854961832,
+       "share_correct": 0.16695001700102005
+      },
+      "Save": {
+       "share_errors": 0.8870967741935484,
+       "share_correct": 0.17130257801899593
+      },
+      "Shire": {
+       "share_errors": 0.49682539682539684,
+       "share_correct": 0.14627813040969417
+      },
+      "Zambezi": {
+       "share_errors": 0.9178571428571428,
+       "share_correct": 0.1710220673635308
+      }
+     }
+    },
+    "ndwi_ambiguous": {
+     "n": 27648,
+     "n_errors": 1844,
+     "n_with_cue": 1727,
+     "share_errors": 0.2017353579175705,
+     "share_correct": 0.05251123856766393,
+     "enrichment": 3.841755849228774,
+     "precision": 0.2154024319629415,
+     "boot_lo": 2.2671204825096454,
+     "boot_hi": 6.877536425792254,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true,
+     "per_river": {
+      "Cuando": {
+       "share_errors": 0.13309352517985612,
+       "share_correct": 0.009663564781675018
+      },
+      "Kafue": {
+       "share_errors": 0.21951219512195122,
+       "share_correct": 0.07152682255845942
+      },
+      "Luangwa": {
+       "share_errors": 0.09615384615384616,
+       "share_correct": 0.09670781893004116
+      },
+      "Okavango": {
+       "share_errors": 0.22702702702702704,
+       "share_correct": 0.019743678559057846
+      },
+      "Rovuma": {
+       "share_errors": 0.33587786259541985,
+       "share_correct": 0.10540632437946276
+      },
+      "Save": {
+       "share_errors": 0.16129032258064516,
+       "share_correct": 0.013229308005427409
+      },
+      "Shire": {
+       "share_errors": 0.24603174603174602,
+       "share_correct": 0.02971725331794576
+      },
+      "Zambezi": {
+       "share_errors": 0.11785714285714285,
+       "share_correct": 0.07505807200929152
+      }
+     }
+    },
+    "dihedral_disagree": {
+     "n": 27648,
+     "n_errors": 1844,
+     "n_with_cue": 5535,
+     "share_errors": 0.6523861171366594,
+     "share_correct": 0.16788094869012557,
+     "enrichment": 3.886004470589649,
+     "precision": 0.21734417344173443,
+     "boot_lo": 3.332900285319373,
+     "boot_hi": 4.5946835306564395,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true,
+     "per_river": {
+      "Cuando": {
+       "share_errors": 0.8057553956834532,
+       "share_correct": 0.13994273443092342
+      },
+      "Kafue": {
+       "share_errors": 0.7804878048780488,
+       "share_correct": 0.1674690508940853
+      },
+      "Luangwa": {
+       "share_errors": 0.8076923076923077,
+       "share_correct": 0.16769547325102882
+      },
+      "Okavango": {
+       "share_errors": 0.5297297297297298,
+       "share_correct": 0.17907862833391064
+      },
+      "Rovuma": {
+       "share_errors": 0.9236641221374046,
+       "share_correct": 0.16797007820469229
+      },
+      "Save": {
+       "share_errors": 0.75,
+       "share_correct": 0.17706919945725916
+      },
+      "Shire": {
+       "share_errors": 0.44126984126984126,
+       "share_correct": 0.15637622619734565
+      },
+      "Zambezi": {
+       "share_errors": 0.7821428571428571,
+       "share_correct": 0.1765389082462253
+      }
+     }
+    }
+   },
+   "unexplained": {
+    "share_of_errors_without_cue": 0.0650759219088937,
+    "share_of_correct_without_cue": 0.6336226941559449,
+    "share_of_errors_with_two_or_more": 0.8443600867678959,
+    "mean_cues_per_error": 3.0206073752711498,
+    "mean_cues_per_correct": 0.7567818942799566
+   },
+   "cooccurrence": {
+    "names": [
+     "boundary",
+     "low_confidence",
+     "unstable",
+     "ndwi_ambiguous",
+     "dihedral_disagree"
+    ],
+    "among_errors": [
+     [
+      1575,
+      1002,
+      1326,
+      292,
+      1135
+     ],
+     [
+      1002,
+      1048,
+      993,
+      101,
+      972
+     ],
+     [
+      1326,
+      993,
+      1372,
+      208,
+      1083
+     ],
+     [
+      292,
+      101,
+      208,
+      372,
+      117
+     ],
+     [
+      1135,
+      972,
+      1083,
+      117,
+      1203
+     ]
+    ],
+    "among_correct": [
+     [
+      5191,
+      1983,
+      2967,
+      856,
+      1928
+     ],
+     [
+      1983,
+      4487,
+      2600,
+      315,
+      2609
+     ],
+     [
+      2967,
+      2600,
+      4163,
+      582,
+      2410
+     ],
+     [
+      856,
+      315,
+      582,
+      1355,
+      396
+     ],
+     [
+      1928,
+      2609,
+      2410,
+      396,
+      4332
+     ]
+    ]
+   },
+   "review_set": {
+    "0.05": {
+     "n_windows": 1377,
+     "error_rate_in_set": 0.345679012345679,
+     "errors_captured": 0.25813449023861174,
+     "share_with_any_cue": 1.0,
+     "cues": {
+      "boundary": {
+       "share_in_set": 0.7676107480029049,
+       "error_rate_with_cue": 0.44370860927152317,
+       "error_rate_without_cue": 0.021875
+      },
+      "low_confidence": {
+       "share_in_set": 1.0,
+       "error_rate_with_cue": 0.345679012345679,
+       "error_rate_without_cue": null
+      },
+      "unstable": {
+       "share_in_set": 0.9658678286129266,
+       "error_rate_with_cue": 0.3526315789473684,
+       "error_rate_without_cue": 0.14893617021276595
+      },
+      "ndwi_ambiguous": {
+       "share_in_set": 0.08496732026143791,
+       "error_rate_with_cue": 0.3504273504273504,
+       "error_rate_without_cue": 0.34523809523809523
+      },
+      "dihedral_disagree": {
+       "share_in_set": 0.9564270152505446,
+       "error_rate_with_cue": 0.357630979498861,
+       "error_rate_without_cue": 0.08333333333333333
+      }
+     }
+    },
+    "0.1": {
+     "n_windows": 2754,
+     "error_rate_in_set": 0.26615831517792304,
+     "errors_captured": 0.3975054229934924,
+     "share_with_any_cue": 1.0,
+     "cues": {
+      "boundary": {
+       "share_in_set": 0.6768336964415396,
+       "error_rate_with_cue": 0.38090128755364805,
+       "error_rate_without_cue": 0.025842696629213482
+      },
+      "low_confidence": {
+       "share_in_set": 1.0,
+       "error_rate_with_cue": 0.26615831517792304,
+       "error_rate_without_cue": null
+      },
+      "unstable": {
+       "share_in_set": 0.8667392883079158,
+       "error_rate_with_cue": 0.2987012987012987,
+       "error_rate_without_cue": 0.05449591280653951
+      },
+      "ndwi_ambiguous": {
+       "share_in_set": 0.08206245461147423,
+       "error_rate_with_cue": 0.26548672566371684,
+       "error_rate_without_cue": 0.2662183544303797
+      },
+      "dihedral_disagree": {
+       "share_in_set": 0.8623819898329702,
+       "error_rate_with_cue": 0.29936842105263156,
+       "error_rate_without_cue": 0.05804749340369393
+      }
+     }
+    },
+    "0.2": {
+     "n_windows": 5535,
+     "error_rate_in_set": 0.18934056007226738,
+     "errors_captured": 0.5683297180043384,
+     "share_with_any_cue": 1.0,
+     "cues": {
+      "boundary": {
+       "share_in_set": 0.5392953929539296,
+       "error_rate_with_cue": 0.335678391959799,
+       "error_rate_without_cue": 0.01803921568627451
+      },
+      "low_confidence": {
+       "share_in_set": 1.0,
+       "error_rate_with_cue": 0.18934056007226738,
+       "error_rate_without_cue": null
+      },
+      "unstable": {
+       "share_in_set": 0.6491418247515809,
+       "error_rate_with_cue": 0.2763707208460896,
+       "error_rate_without_cue": 0.02832131822863028
+      },
+      "ndwi_ambiguous": {
+       "share_in_set": 0.07515808491418248,
+       "error_rate_with_cue": 0.24278846153846154,
+       "error_rate_without_cue": 0.18499706974018362
+      },
+      "dihedral_disagree": {
+       "share_in_set": 0.6469738030713641,
+       "error_rate_with_cue": 0.2714325607372242,
+       "error_rate_without_cue": 0.038894575230296824
+      }
+     }
+    }
+   },
+   "n_units": 27,
+   "dihedral_missing_units": 0,
+   "cluster": "scene"
+  }
+ },
+ "part_b": {
+  "floods_dir": "/home/qi_zim_neu/olmoearth_inferenceX/data/floods",
+  "train_tiles": 600,
+  "bolivia_tiles": 441,
+  "crop": 60,
+  "feats_source": "/home/qi_zim_neu/olmoearth_inferenceX/exp/out/exp18_feats.npz",
+  "head_acc": 0.9115925058548009,
+  "n_tiles_with_valid_patches": 440,
+  "analysis": {
+   "n_windows": 81984,
+   "n_errors": 7248,
+   "error_rate": 0.08840749414519906,
+   "cues": {
+    "boundary": {
+     "n": 81984,
+     "n_errors": 7248,
+     "n_with_cue": 21400,
+     "share_errors": 0.7504139072847682,
+     "share_correct": 0.21356508242346392,
+     "enrichment": 3.5137481219744653,
+     "precision": 0.2541588785046729,
+     "boot_lo": 3.241690242284884,
+     "boot_hi": 3.8103229216890413,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence": {
+     "n": 81984,
+     "n_errors": 7248,
+     "n_with_cue": 16467,
+     "share_errors": 0.5889900662251656,
+     "share_correct": 0.16321451509312782,
+     "enrichment": 3.6086868002462675,
+     "precision": 0.2592457642557843,
+     "boot_lo": 3.3771356313918504,
+     "boot_hi": 3.8530735990050298,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "unstable": {
+     "n": 81984,
+     "n_errors": 7248,
+     "n_with_cue": 16467,
+     "share_errors": 0.5831953642384106,
+     "share_correct": 0.16377649325626203,
+     "enrichment": 3.560922282820413,
+     "precision": 0.25669520859901623,
+     "boot_lo": 3.331344511690767,
+     "boot_hi": 3.8239202634209506,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "ndwi_ambiguous": {
+     "n": 81984,
+     "n_errors": 7248,
+     "n_with_cue": 8526,
+     "share_errors": 0.4828918322295806,
+     "share_correct": 0.06725005352172982,
+     "enrichment": 7.18054197642458,
+     "precision": 0.41050903119868637,
+     "boot_lo": 6.161691241024011,
+     "boot_hi": 8.49119313628876,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "dihedral_disagree": {
+     "n": 81984,
+     "n_errors": 7248,
+     "n_with_cue": 16467,
+     "share_errors": 0.5790562913907285,
+     "share_correct": 0.16417790622992934,
+     "enrichment": 3.5270049709354105,
+     "precision": 0.25487338312989616,
+     "boot_lo": 3.286697076734942,
+     "boot_hi": 3.789383483218724,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    }
+   },
+   "unexplained": {
+    "share_of_errors_without_cue": 0.049530905077262696,
+    "share_of_correct_without_cue": 0.6463284093341897,
+    "share_of_errors_with_two_or_more": 0.7991169977924945,
+    "mean_cues_per_error": 2.9845474613686536,
+    "mean_cues_per_correct": 0.7719840505245129
+   },
+   "cooccurrence": {
+    "names": [
+     "boundary",
+     "low_confidence",
+     "unstable",
+     "ndwi_ambiguous",
+     "dihedral_disagree"
+    ],
+    "among_errors": [
+     [
+      5439,
+      3652,
+      3792,
+      2541,
+      3556
+     ],
+     [
+      3652,
+      4269,
+      3279,
+      1772,
+      3641
+     ],
+     [
+      3792,
+      3279,
+      4227,
+      1801,
+      3280
+     ],
+     [
+      2541,
+      1772,
+      1801,
+      3500,
+      1731
+     ],
+     [
+      3556,
+      3641,
+      3280,
+      1731,
+      4197
+     ]
+    ],
+    "among_correct": [
+     [
+      15961,
+      5960,
+      7539,
+      2860,
+      5972
+     ],
+     [
+      5960,
+      12198,
+      7891,
+      1992,
+      9580
+     ],
+     [
+      7539,
+      7891,
+      12240,
+      1970,
+      7854
+     ],
+     [
+      2860,
+      1992,
+      1970,
+      5026,
+      1970
+     ],
+     [
+      5972,
+      9580,
+      7854,
+      1970,
+      12270
+     ]
+    ]
+   },
+   "review_set": {
+    "0.05": {
+     "n_windows": 4043,
+     "error_rate_in_set": 0.3791738807815978,
+     "errors_captured": 0.2115066225165563,
+     "share_with_any_cue": 1.0,
+     "cues": {
+      "boundary": {
+       "share_in_set": 0.7313875834776157,
+       "error_rate_with_cue": 0.4616165032127156,
+       "error_rate_without_cue": 0.15469613259668508
+      },
+      "low_confidence": {
+       "share_in_set": 1.0,
+       "error_rate_with_cue": 0.3791738807815978,
+       "error_rate_without_cue": null
+      },
+      "unstable": {
+       "share_in_set": 0.8778135048231511,
+       "error_rate_with_cue": 0.38095238095238093,
+       "error_rate_without_cue": 0.36639676113360325
+      },
+      "ndwi_ambiguous": {
+       "share_in_set": 0.26787039327232254,
+       "error_rate_with_cue": 0.5096952908587258,
+       "error_rate_without_cue": 0.3314189189189189
+      },
+      "dihedral_disagree": {
+       "share_in_set": 0.9465743259955478,
+       "error_rate_with_cue": 0.37731904886333945,
+       "error_rate_without_cue": 0.41203703703703703
+      }
+     }
+    },
+    "0.1": {
+     "n_windows": 8075,
+     "error_rate_in_set": 0.3301547987616099,
+     "errors_captured": 0.3678256070640177,
+     "share_with_any_cue": 1.0,
+     "cues": {
+      "boundary": {
+       "share_in_set": 0.6777708978328173,
+       "error_rate_with_cue": 0.43047688653389365,
+       "error_rate_without_cue": 0.1191391237509608
+      },
+      "low_confidence": {
+       "share_in_set": 1.0,
+       "error_rate_with_cue": 0.3301547987616099,
+       "error_rate_without_cue": null
+      },
+      "unstable": {
+       "share_in_set": 0.8357894736842105,
+       "error_rate_with_cue": 0.33204919247295894,
+       "error_rate_without_cue": 0.32051282051282054
+      },
+      "ndwi_ambiguous": {
+       "share_in_set": 0.25671826625386995,
+       "error_rate_with_cue": 0.49300530631934397,
+       "error_rate_without_cue": 0.2739086971009663
+      },
+      "dihedral_disagree": {
+       "share_in_set": 0.9331269349845202,
+       "error_rate_with_cue": 0.32926343729263435,
+       "error_rate_without_cue": 0.3425925925925926
+      }
+     }
+    },
+    "0.2": {
+     "n_windows": 16402,
+     "error_rate_in_set": 0.25929764662845994,
+     "errors_captured": 0.5867825607064018,
+     "share_with_any_cue": 1.0,
+     "cues": {
+      "boundary": {
+       "share_in_set": 0.5836483355688331,
+       "error_rate_with_cue": 0.3801316201817612,
+       "error_rate_without_cue": 0.08991067506223459
+      },
+      "low_confidence": {
+       "share_in_set": 1.0,
+       "error_rate_with_cue": 0.25929764662845994,
+       "error_rate_without_cue": null
+      },
+      "unstable": {
+       "share_in_set": 0.6795512742348494,
+       "error_rate_with_cue": 0.29355822716669655,
+       "error_rate_without_cue": 0.18664383561643835
+      },
+      "ndwi_ambiguous": {
+       "share_in_set": 0.22832581392513107,
+       "error_rate_with_cue": 0.4712950600801068,
+       "error_rate_without_cue": 0.19657106739353716
+      },
+      "dihedral_disagree": {
+       "share_in_set": 0.804170223143519,
+       "error_rate_with_cue": 0.27558756633813497,
+       "error_rate_without_cue": 0.19240348692403486
+      }
+     }
+    }
+   },
+   "n_units": 440,
+   "dihedral_missing_units": 0,
+   "cluster": "tile"
+  }
+ },
+ "failures": [],
+ "runtime_s": 23.99540376663208,
+ "n_failures": 0
+}

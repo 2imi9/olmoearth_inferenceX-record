@@ -1,0 +1,17 @@
+== 2026-10-12T01:19:08-04:00 job 1292574 on w0004: exp106, commit 5169e46e5895a6d8bbd2d4448a19cffad74a68a7 ==
+== smoke ==
+Using CPython 3.13.15
+Creating virtual environment at: .venv
+   Building olmoearth-inferencex @ file:///scratch/qi_zim_neu/olmoearth_inferenceX/e106_code
+      Built olmoearth-inferencex @ file:///scratch/qi_zim_neu/olmoearth_inferenceX/e106_code
+Installed 21 packages in 2.65s
+[exp106] east_africa_cgls   n   3000 err 0.259 d 0.333 AUROC own 0.784 d 0.755 comb 0.859 gain +0.076 f_err/f_ok 0.697/0.212
+[exp106] europe_odse        n   3000 err 0.258 d 0.331 AUROC own 0.786 d 0.759 comb 0.868 gain +0.082 f_err/f_ok 0.760/0.186
+[exp106] conus_lcmap        n   3000 err 0.261 d 0.196 AUROC own 0.767 d 0.501 comb 0.687 gain -0.080 f_err/f_ok 0.242/0.199
+{"P1": {"bar": "AUROC(c) - AUROC(u) >= 0.02 on at least 2 of 3", "cells_meeting": ["east_africa_cgls", "europe_odse"], "holds": true, "blind_cells_meeting": ["east_africa_cgls", "europe_odse"], "reading": "cell 3 is not blind for P1 (exp92 graded d and u on its rows); reported, not a bar"}, "P2": {"bar": "f_err >= 2.0 f_ok on all 3 (floor 20 confident errors)", "by_cell": {"east_africa_cgls": true, "europe_odse": true, "conus_lcmap": false}, "holds": false, "determined": true}}
+== the run ==
+[exp106] east_africa_cgls   n  12574 err 0.419 d 0.415 AUROC own 0.721 d 0.626 comb 0.718 gain -0.002 f_err/f_ok 0.307/0.212
+[exp106] europe_odse        n   4807 err 0.105 d 0.182 AUROC own 0.787 d 0.769 comb 0.863 gain +0.077 f_err/f_ok 0.458/0.111
+[exp106] conus_lcmap        n   4794 err 0.177 d 0.212 AUROC own 0.753 d 0.725 comb 0.832 gain +0.079 f_err/f_ok 0.583/0.117
+{"P1": {"bar": "AUROC(c) - AUROC(u) >= 0.02 on at least 2 of 3", "cells_meeting": ["europe_odse", "conus_lcmap"], "holds": true, "blind_cells_meeting": ["europe_odse"], "reading": "cell 3 is not blind for P1 (exp92 graded d and u on its rows); reported, not a bar"}, "P2": {"bar": "f_err >= 2.0 f_ok on all 3 (floor 20 confident errors)", "by_cell": {"east_africa_cgls": false, "europe_odse": true, "conus_lcmap": true}, "holds": false, "determined": true}}
+== 2026-10-12T01:19:28-04:00 done: /scratch/qi_zim_neu/olmoearth_inferenceX/e106_out/exp106_summary.json ==

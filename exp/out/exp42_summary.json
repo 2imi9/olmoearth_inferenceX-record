@@ -1,0 +1,246 @@
+{
+ "experiment": "exp42 window design: four alternatives to the 4-px grid window",
+ "smoke": false,
+ "testbeds": {
+  "bolivia": {
+   "tiles": 441,
+   "crop": 60,
+   "grid": 15,
+   "head": "exp18 head retrained from the valid split (seed 0)"
+  },
+  "test": {
+   "tiles": 800,
+   "crop": 60,
+   "grid": 15,
+   "head": "exp18 head retrained from the valid split (seed 0)"
+  }
+ },
+ "results": {
+  "bolivia": {
+   "tiles": 441,
+   "tiles_analysed": 441,
+   "pixel_accuracy_mean": {
+    "W0 grid": 0.8968894257840277,
+    "W1 shift-averaged": 0.9070736899739421,
+    "W3 spectral split": 0.9083531010811338
+   },
+   "prereg_W1_vs_W0_pixel": {
+    "w": 321,
+    "l": 66,
+    "t": 53,
+    "sign_p": 1.2525387530387647e-41,
+    "one_sided": true,
+    "mean_gain": 0.010184264189914255,
+    "median_gain": 0.007079101261926679,
+    "n_tiles": 440
+   },
+   "W3_vs_W1_pixel": {
+    "w": 217,
+    "l": 158,
+    "t": 65,
+    "sign_p": 0.0026957419381090646,
+    "one_sided": false,
+    "mean_gain": 0.0012794111071918498,
+    "median_gain": 0.0,
+    "n_tiles": 440
+   },
+   "W3_vs_W1_pixel_in_boundary_windows": {
+    "w": 216,
+    "l": 155,
+    "t": 19,
+    "sign_p": 0.0018012055085237458,
+    "mean_gain": 0.005085698384980078,
+    "n_tiles": 390,
+    "acc_W1": 0.7847193538632682,
+    "acc_W3": 0.7898050522482485
+   },
+   "W2_vs_W0_window": {
+    "w": 175,
+    "l": 121,
+    "t": 142,
+    "sign_p": 0.0020150120807516316,
+    "acc_W0": 0.9020349662211923,
+    "acc_W2": 0.9045219235462605,
+    "share_of_windows_deferred": 0.38963585916687793,
+    "n_tiles": 438
+   },
+   "purity": {
+    "share_of_windows_impure": 0.10271391142308717,
+    "share_of_errors_on_impure_windows": 0.4499604743083004,
+    "error_rate_impure": 0.38821443186468424,
+    "error_rate_pure": 0.05432372505543237
+   },
+   "selective_accuracy": {
+    "confidence": {
+     "0.8": 0.9534757580529456,
+     "0.9": 0.9380486816048401
+    },
+    "tile-phase (W4 purity proxy)": {
+     "0.8": 0.9542281245078998,
+     "0.9": 0.9383293570971917
+    },
+    "W1 confidence": {
+     "0.8": 0.9576400188966459,
+     "0.9": 0.9424303379021066
+    },
+    "mean-logit confidence": {
+     "0.8": 0.9574125592707294,
+     "0.9": 0.9408398434454476
+    }
+   },
+   "capture_pooled": {
+    "confidence": {
+     "0.05": 0.2580237154150198,
+     "0.1": 0.46292490118577073,
+     "0.2": 0.7481422924901185
+    },
+    "W1 confidence": {
+     "0.05": 0.3075098814229249,
+     "0.1": 0.5166798418972331,
+     "0.2": 0.7721739130434783
+    },
+    "mean-logit confidence": {
+     "0.05": 0.2741501976284585,
+     "0.1": 0.49628458498023714,
+     "0.2": 0.7780237154150198
+    },
+    "tile-phase": {
+     "0.05": 0.24015810276679841,
+     "0.1": 0.4344664031620553,
+     "0.2": 0.7157312252964427
+    }
+   },
+   "eaurc_pooled": {
+    "confidence": 0.010500740858457102,
+    "W1 confidence": 0.009104852587650567,
+    "mean-logit confidence": 0.009281122157478276,
+    "tile-phase": 0.011153158198824845
+   }
+  },
+  "test": {
+   "tiles": 800,
+   "tiles_analysed": 800,
+   "pixel_accuracy_mean": {
+    "W0 grid": 0.9411450783656607,
+    "W1 shift-averaged": 0.9502769988454557,
+    "W3 spectral split": 0.9483006762049516
+   },
+   "prereg_W1_vs_W0_pixel": {
+    "w": 583,
+    "l": 78,
+    "t": 139,
+    "sign_p": 8.870794815447311e-97,
+    "one_sided": true,
+    "mean_gain": 0.009131920479794881,
+    "median_gain": 0.00615574022776233,
+    "n_tiles": 800
+   },
+   "W3_vs_W1_pixel": {
+    "w": 226,
+    "l": 404,
+    "t": 170,
+    "sign_p": 1.2598147577518617e-12,
+    "one_sided": false,
+    "mean_gain": -0.0019763226405039615,
+    "median_gain": -0.0003077870113881165,
+    "n_tiles": 800
+   },
+   "W3_vs_W1_pixel_in_boundary_windows": {
+    "w": 211,
+    "l": 400,
+    "t": 42,
+    "sign_p": 1.76411680657834e-14,
+    "mean_gain": -0.009060317725930215,
+    "n_tiles": 653,
+    "acc_W1": 0.8597797976879037,
+    "acc_W3": 0.8507194799619734
+   },
+   "W2_vs_W0_window": {
+    "w": 253,
+    "l": 241,
+    "t": 306,
+    "sign_p": 0.6207059273860797,
+    "acc_W0": 0.9518435152522179,
+    "acc_W2": 0.9514748224854387,
+    "share_of_windows_deferred": 0.4019945695092267,
+    "n_tiles": 800
+   },
+   "purity": {
+    "share_of_windows_impure": 0.09845407658801208,
+    "share_of_errors_on_impure_windows": 0.579736804867695,
+    "error_rate_impure": 0.27800773563140396,
+    "error_rate_pure": 0.02200864042920554
+   },
+   "selective_accuracy": {
+    "confidence": {
+     "0.8": 0.9791211357835204,
+     "0.9": 0.9717891887067504
+    },
+    "tile-phase (W4 purity proxy)": {
+     "0.8": 0.9776196593316762,
+     "0.9": 0.9700711034421206
+    },
+    "W1 confidence": {
+     "0.8": 0.9797550925076325,
+     "0.9": 0.9727932645107548
+    },
+    "mean-logit confidence": {
+     "0.8": 0.9791461603910512,
+     "0.9": 0.9714396215749859
+    }
+   },
+   "capture_pooled": {
+    "confidence": {
+     "0.05": 0.41460308476015284,
+     "0.1": 0.6400169803311164,
+     "0.2": 0.8229800481109382
+    },
+    "W1 confidence": {
+     "0.05": 0.44361115041743315,
+     "0.1": 0.6602518749115608,
+     "0.2": 0.819442479128343
+    },
+    "mean-logit confidence": {
+     "0.05": 0.40399037781236735,
+     "0.1": 0.6429885382764964,
+     "0.2": 0.8318947219470779
+    },
+    "tile-phase": {
+     "0.05": 0.3401726333663506,
+     "0.1": 0.5743597000141503,
+     "0.2": 0.7990660817885948
+    }
+   },
+   "eaurc_pooled": {
+    "confidence": 0.009827380110989178,
+    "W1 confidence": 0.010857730294762271,
+    "mean-logit confidence": 0.010088477716215486,
+    "tile-phase": 0.013095100738103172
+   }
+  }
+ },
+ "failures": [],
+ "config": {
+  "shifts": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "patch": 4,
+  "pure_threshold": 0.1,
+  "coverages": [
+   0.8,
+   0.9
+  ],
+  "budgets": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "prereg": "W1 (shift-averaged) beats W0 (grid) on pixel accuracy per tile, one-sided exact sign test, on both testbeds; all else two-sided or descriptive"
+ },
+ "prereg": {
+  "supported": true
+ }
+}

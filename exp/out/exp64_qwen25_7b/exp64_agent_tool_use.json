@@ -1,0 +1,24 @@
+{
+ "E": {
+  "runs": 40,
+  "parse_ok": 37,
+  "used_review_set": 17,
+  "used_compare_on_comparison_cards": 1,
+  "comparison_cards": 10,
+  "no_tool_at_all": 23,
+  "declined": 10,
+  "max_output_tokens": 8192
+ },
+ "E_forced": {
+  "runs": 40,
+  "parse_ok": 40,
+  "used_review_set": 30,
+  "used_compare_on_comparison_cards": 8,
+  "comparison_cards": 10,
+  "no_tool_at_all": 10,
+  "declined": 10,
+  "max_output_tokens": 8192
+ },
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "derived_from": "exp64_answers_E.jsonl in this directory: tool names per run, counted"
+}

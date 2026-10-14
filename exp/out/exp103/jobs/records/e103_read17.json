@@ -1,0 +1,29 @@
+{
+ "job": "1281902",
+ "year": "17",
+ "layer": "output_v12",
+ "plan": "window",
+ "conditions": true,
+ "view": {
+  "windows": 271,
+  "with_scl": 271,
+  "missing_collected": 0,
+  "metadata_differs": 0,
+  "roots": [
+   {
+    "root_id": "root_0",
+    "windows": 271
+   }
+  ]
+ },
+ "roots": [
+  {
+   "root_id": "root_0",
+   "windows": 271
+  }
+ ],
+ "parts_read": 271,
+ "windows_read": 271,
+ "largest_sum_deviation": 4.6401996200984286e-07,
+ "seconds": 341.1
+}

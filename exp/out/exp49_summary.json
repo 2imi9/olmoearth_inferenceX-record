@@ -1,0 +1,900 @@
+{
+ "experiment": "exp49 SHRUG-FM's reliability signals under the label-free window protocol",
+ "smoke": false,
+ "config": {
+  "rankers": [
+   "averaged confidence",
+   "tile-phase",
+   "control NDWI level",
+   "ensemble mutual information",
+   "ensemble average entropy",
+   "ensemble predictive entropy",
+   "embedding normalized distance",
+   "embedding NCDD",
+   "input extremity max",
+   "input extremity mean",
+   "embedding NCDD raw",
+   "fusion linear (labelled)",
+   "fusion poly2 (labelled)"
+  ],
+  "fusion_inputs": [
+   "averaged confidence",
+   "tile-phase",
+   "control NDWI level",
+   "ensemble mutual information",
+   "ensemble average entropy",
+   "ensemble predictive entropy",
+   "embedding normalized distance",
+   "embedding NCDD",
+   "input extremity max",
+   "input extremity mean"
+  ],
+  "primary_against": [
+   "ensemble mutual information",
+   "embedding NCDD"
+  ],
+  "min_lead": 0.001,
+  "ensemble_members": 8,
+  "kmeans_k": 64,
+  "n_input_stats": 14,
+  "shifts": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "prereg": "the averaged decision's own confidence beats ensemble mutual information and -NCDD, pooled lead >= 0.001 and a one-sided per-tile sign test, on BOTH testbeds under v1.2; secondary: each labelled fusion against confidence (beats_confidence = pooled lead <= -0.001 and two-sided sign p < 0.05) and the tile-level bridge"
+ },
+ "results": {
+  "v1": {
+   "train_seconds": 101.38521909713745,
+   "train_windows": 111321,
+   "train_errors": 3595,
+   "kmeans_cluster_sizes": {
+    "min": 977,
+    "median": 2085.0,
+    "max": 3853
+   },
+   "bolivia": {
+    "n_tiles_scored": 319,
+    "n_windows": 71373,
+    "n_errors": 5895,
+    "pooled_eaurc": {
+     "averaged confidence": 0.009405838605203925,
+     "tile-phase": 0.011276117153987672,
+     "control NDWI level": 0.011266391697527668,
+     "ensemble mutual information": 0.012012990267552003,
+     "ensemble average entropy": 0.00792896099990362,
+     "ensemble predictive entropy": 0.007571191663356776,
+     "embedding normalized distance": 0.06571512298531068,
+     "embedding NCDD": 0.0859088585811849,
+     "embedding NCDD raw": 0.07002824339370353,
+     "input extremity max": 0.04841589241744653,
+     "input extremity mean": 0.036446223782661984,
+     "fusion linear (labelled)": 0.006676489366875053,
+     "fusion poly2 (labelled)": 0.008217169734968967
+    },
+    "tests": {
+     "tile-phase": {
+      "w": 232,
+      "l": 84,
+      "t": 3,
+      "sign_p": 3.47866846006934e-17,
+      "one_sided": false,
+      "median_gain": 0.000693347534800398,
+      "pooled_lead": 0.0018702785487837471
+     },
+     "control NDWI level": {
+      "w": 142,
+      "l": 174,
+      "t": 3,
+      "sign_p": 0.08101504780530613,
+      "one_sided": false,
+      "median_gain": -0.00024229718531357085,
+      "pooled_lead": 0.0018605530923237433
+     },
+     "ensemble mutual information": {
+      "w": 217,
+      "l": 99,
+      "t": 3,
+      "sign_p": 1.3772857345049031e-11,
+      "one_sided": true,
+      "median_gain": 0.0012831089279875252,
+      "pooled_lead": 0.0026071516623480777
+     },
+     "ensemble average entropy": {
+      "w": 112,
+      "l": 198,
+      "t": 9,
+      "sign_p": 1.1891203752894099e-06,
+      "one_sided": false,
+      "median_gain": -0.0001614507306234175,
+      "pooled_lead": -0.0014768776053003044
+     },
+     "ensemble predictive entropy": {
+      "w": 103,
+      "l": 210,
+      "t": 6,
+      "sign_p": 1.4521345405534306e-09,
+      "one_sided": false,
+      "median_gain": -0.0002529459909897749,
+      "pooled_lead": -0.0018346469418471486
+     },
+     "embedding normalized distance": {
+      "w": 307,
+      "l": 12,
+      "t": 0,
+      "sign_p": 3.663168056533698e-75,
+      "one_sided": false,
+      "median_gain": 0.041632447491931866,
+      "pooled_lead": 0.05630928438010675
+     },
+     "embedding NCDD": {
+      "w": 313,
+      "l": 6,
+      "t": 0,
+      "sign_p": 1.3324608361281197e-84,
+      "one_sided": true,
+      "median_gain": 0.06887118203967452,
+      "pooled_lead": 0.07650301997598097
+     },
+     "embedding NCDD raw": {
+      "w": 310,
+      "l": 9,
+      "t": 0,
+      "sign_p": 1.6220783245892913e-79,
+      "one_sided": false,
+      "median_gain": 0.04250865161348265,
+      "pooled_lead": 0.060622404788499604
+     },
+     "input extremity max": {
+      "w": 258,
+      "l": 61,
+      "t": 0,
+      "sign_p": 5.6003390550483975e-30,
+      "one_sided": false,
+      "median_gain": 0.02728667250876055,
+      "pooled_lead": 0.03901005381224261
+     },
+     "input extremity mean": {
+      "w": 244,
+      "l": 75,
+      "t": 0,
+      "sign_p": 5.097163264038046e-22,
+      "one_sided": false,
+      "median_gain": 0.018207351435299095,
+      "pooled_lead": 0.02704038517745806
+     },
+     "fusion linear (labelled)": {
+      "w": 94,
+      "l": 223,
+      "t": 2,
+      "sign_p": 3.073518864683864e-13,
+      "one_sided": false,
+      "median_gain": -0.0007031232378842188,
+      "pooled_lead": -0.002729349238328872,
+      "beats_confidence": true
+     },
+     "fusion poly2 (labelled)": {
+      "w": 140,
+      "l": 176,
+      "t": 3,
+      "sign_p": 0.04879226376204773,
+      "one_sided": false,
+      "median_gain": -0.00010561119157123858,
+      "pooled_lead": -0.0011886688702349574,
+      "beats_confidence": true
+     }
+    },
+    "prereg_passes": true,
+    "tile_level": {
+     "n_tiles": 438,
+     "n_failures": 145,
+     "failure_rate": 0.3310502283105023,
+     "per_ranker": {
+      "averaged confidence": {
+       "aurc": 0.16704497346269234,
+       "risk_at_0.5": 0.1095890410958904,
+       "risk_at_0.75": 0.16768292682926833
+      },
+      "tile-phase": {
+       "aurc": 0.18780630149174557,
+       "risk_at_0.5": 0.1187214611872146,
+       "risk_at_0.75": 0.2195121951219512
+      },
+      "control NDWI level": {
+       "aurc": 0.2269014857543739,
+       "risk_at_0.5": 0.14155251141552516,
+       "risk_at_0.75": 0.25
+      },
+      "ensemble mutual information": {
+       "aurc": 0.22643454268332572,
+       "risk_at_0.5": 0.2009132420091324,
+       "risk_at_0.75": 0.25914634146341464
+      },
+      "ensemble average entropy": {
+       "aurc": 0.16323185291887307,
+       "risk_at_0.5": 0.10502283105022836,
+       "risk_at_0.75": 0.1707317073170732
+      },
+      "ensemble predictive entropy": {
+       "aurc": 0.1627821107829248,
+       "risk_at_0.5": 0.10502283105022836,
+       "risk_at_0.75": 0.1707317073170732
+      },
+      "embedding normalized distance": {
+       "aurc": 0.3298163832738536,
+       "risk_at_0.5": 0.319634703196347,
+       "risk_at_0.75": 0.32012195121951215
+      },
+      "embedding NCDD": {
+       "aurc": 0.2808108176963646,
+       "risk_at_0.5": 0.3378995433789954,
+       "risk_at_0.75": 0.3292682926829268
+      },
+      "embedding NCDD raw": {
+       "aurc": 0.20960777882252396,
+       "risk_at_0.5": 0.2374429223744292,
+       "risk_at_0.75": 0.29268292682926833
+      },
+      "input extremity max": {
+       "aurc": 0.35064830580906414,
+       "risk_at_0.5": 0.34246575342465757,
+       "risk_at_0.75": 0.36890243902439024
+      },
+      "input extremity mean": {
+       "aurc": 0.4102973514391114,
+       "risk_at_0.5": 0.4794520547945206,
+       "risk_at_0.75": 0.426829268292683
+      },
+      "fusion linear (labelled)": {
+       "aurc": 0.17493656221304882,
+       "risk_at_0.5": 0.10502283105022836,
+       "risk_at_0.75": 0.17682926829268297
+      },
+      "fusion poly2 (labelled)": {
+       "aurc": 0.16145917682973998,
+       "risk_at_0.5": 0.10502283105022836,
+       "risk_at_0.75": 0.18597560975609762
+      }
+     }
+    },
+    "seconds": 3.508807420730591
+   },
+   "test": {
+    "n_tiles_scored": 426,
+    "n_windows": 149684,
+    "n_errors": 6680,
+    "pooled_eaurc": {
+     "averaged confidence": 0.010889805917348215,
+     "tile-phase": 0.013116827257409432,
+     "control NDWI level": 0.010628328760186876,
+     "ensemble mutual information": 0.010679378581520866,
+     "ensemble average entropy": 0.010822201325598876,
+     "ensemble predictive entropy": 0.010696482189475186,
+     "embedding normalized distance": 0.03465803628504975,
+     "embedding NCDD": 0.040741382239687075,
+     "embedding NCDD raw": 0.02945624304482434,
+     "input extremity max": 0.03485071774276376,
+     "input extremity mean": 0.03283303318594009,
+     "fusion linear (labelled)": 0.006779501437070288,
+     "fusion poly2 (labelled)": 0.010160775843524124
+    },
+    "tests": {
+     "tile-phase": {
+      "w": 326,
+      "l": 97,
+      "t": 3,
+      "sign_p": 4.977582887742022e-30,
+      "one_sided": false,
+      "median_gain": 0.0006022959663428446,
+      "pooled_lead": 0.002227021340061216
+     },
+     "control NDWI level": {
+      "w": 316,
+      "l": 108,
+      "t": 2,
+      "sign_p": 9.63243077867951e-25,
+      "one_sided": false,
+      "median_gain": 0.0019064017470666536,
+      "pooled_lead": -0.00026147715716133904
+     },
+     "ensemble mutual information": {
+      "w": 341,
+      "l": 85,
+      "t": 0,
+      "sign_p": 1.0649964654691775e-37,
+      "one_sided": true,
+      "median_gain": 0.0020560650794891984,
+      "pooled_lead": -0.00021042733582734945
+     },
+     "ensemble average entropy": {
+      "w": 189,
+      "l": 221,
+      "t": 16,
+      "sign_p": 0.12567079660740832,
+      "one_sided": false,
+      "median_gain": -2.539310895302712e-05,
+      "pooled_lead": -6.760459174933939e-05
+     },
+     "ensemble predictive entropy": {
+      "w": 174,
+      "l": 240,
+      "t": 12,
+      "sign_p": 0.00137166657738081,
+      "one_sided": false,
+      "median_gain": -4.39674988155987e-05,
+      "pooled_lead": -0.00019332372787302966
+     },
+     "embedding normalized distance": {
+      "w": 421,
+      "l": 5,
+      "t": 0,
+      "sign_p": 1.333680044840881e-117,
+      "one_sided": false,
+      "median_gain": 0.030287948998814696,
+      "pooled_lead": 0.023768230367701537
+     },
+     "embedding NCDD": {
+      "w": 418,
+      "l": 8,
+      "t": 0,
+      "sign_p": 1.4812055619419944e-112,
+      "one_sided": true,
+      "median_gain": 0.048112508222160656,
+      "pooled_lead": 0.02985157632233886
+     },
+     "embedding NCDD raw": {
+      "w": 417,
+      "l": 9,
+      "t": 0,
+      "sign_p": 1.3792944541590456e-110,
+      "one_sided": false,
+      "median_gain": 0.02846965226265202,
+      "pooled_lead": 0.018566437127476125
+     },
+     "input extremity max": {
+      "w": 406,
+      "l": 20,
+      "t": 0,
+      "sign_p": 1.2286208463342692e-94,
+      "one_sided": false,
+      "median_gain": 0.024877770788597015,
+      "pooled_lead": 0.023960911825415543
+     },
+     "input extremity mean": {
+      "w": 403,
+      "l": 23,
+      "t": 0,
+      "sign_p": 7.744112780541484e-91,
+      "one_sided": false,
+      "median_gain": 0.032913463737311674,
+      "pooled_lead": 0.021943227268591874
+     },
+     "fusion linear (labelled)": {
+      "w": 155,
+      "l": 265,
+      "t": 6,
+      "sign_p": 8.884419026010925e-08,
+      "one_sided": false,
+      "median_gain": -0.00013417109634381163,
+      "pooled_lead": -0.004110304480277927,
+      "beats_confidence": true
+     },
+     "fusion poly2 (labelled)": {
+      "w": 185,
+      "l": 232,
+      "t": 9,
+      "sign_p": 0.02416655304314046,
+      "one_sided": false,
+      "median_gain": -4.363342223717389e-05,
+      "pooled_lead": -0.0007290300738240912,
+      "beats_confidence": false
+     }
+    },
+    "prereg_passes": false,
+    "tile_level": {
+     "n_tiles": 800,
+     "n_failures": 176,
+     "failure_rate": 0.22,
+     "per_ranker": {
+      "averaged confidence": {
+       "aurc": 0.11978388960967852,
+       "risk_at_0.5": 0.10499999999999998,
+       "risk_at_0.75": 0.10666666666666669
+      },
+      "tile-phase": {
+       "aurc": 0.12940441724322402,
+       "risk_at_0.5": 0.10750000000000004,
+       "risk_at_0.75": 0.15000000000000002
+      },
+      "control NDWI level": {
+       "aurc": 0.19230198744894436,
+       "risk_at_0.5": 0.19999999999999996,
+       "risk_at_0.75": 0.20499999999999996
+      },
+      "ensemble mutual information": {
+       "aurc": 0.1173124766890699,
+       "risk_at_0.5": 0.10499999999999998,
+       "risk_at_0.75": 0.14
+      },
+      "ensemble average entropy": {
+       "aurc": 0.11959023654091049,
+       "risk_at_0.5": 0.10499999999999998,
+       "risk_at_0.75": 0.11333333333333329
+      },
+      "ensemble predictive entropy": {
+       "aurc": 0.1177135732622895,
+       "risk_at_0.5": 0.10499999999999998,
+       "risk_at_0.75": 0.10999999999999999
+      },
+      "embedding normalized distance": {
+       "aurc": 0.2145771459378438,
+       "risk_at_0.5": 0.20750000000000002,
+       "risk_at_0.75": 0.21333333333333337
+      },
+      "embedding NCDD": {
+       "aurc": 0.20879680641693188,
+       "risk_at_0.5": 0.20499999999999996,
+       "risk_at_0.75": 0.21499999999999997
+      },
+      "embedding NCDD raw": {
+       "aurc": 0.13922072667198096,
+       "risk_at_0.5": 0.16000000000000003,
+       "risk_at_0.75": 0.18333333333333335
+      },
+      "input extremity max": {
+       "aurc": 0.2995544257523861,
+       "risk_at_0.5": 0.29500000000000004,
+       "risk_at_0.75": 0.2466666666666667
+      },
+      "input extremity mean": {
+       "aurc": 0.32823225517582716,
+       "risk_at_0.5": 0.31000000000000005,
+       "risk_at_0.75": 0.26
+      },
+      "fusion linear (labelled)": {
+       "aurc": 0.13784431645351616,
+       "risk_at_0.5": 0.09999999999999998,
+       "risk_at_0.75": 0.10499999999999998
+      },
+      "fusion poly2 (labelled)": {
+       "aurc": 0.1476361740694695,
+       "risk_at_0.5": 0.09750000000000003,
+       "risk_at_0.75": 0.09999999999999998
+      }
+     }
+    },
+    "seconds": 6.0055084228515625
+   }
+  },
+  "v1_2": {
+   "train_seconds": 98.00839686393738,
+   "train_windows": 111321,
+   "train_errors": 3606,
+   "kmeans_cluster_sizes": {
+    "min": 880,
+    "median": 2073.0,
+    "max": 4422
+   },
+   "bolivia": {
+    "n_tiles_scored": 324,
+    "n_windows": 71373,
+    "n_errors": 6199,
+    "pooled_eaurc": {
+     "averaged confidence": 0.01162524136632951,
+     "tile-phase": 0.013299754742021153,
+     "control NDWI level": 0.009714993709867878,
+     "ensemble mutual information": 0.01758603524181561,
+     "ensemble average entropy": 0.011702006537050863,
+     "ensemble predictive entropy": 0.011529900590191124,
+     "embedding normalized distance": 0.07677861993394541,
+     "embedding NCDD": 0.08880620879376702,
+     "embedding NCDD raw": 0.06550668939314491,
+     "input extremity max": 0.05378749848688364,
+     "input extremity mean": 0.04179449426214301,
+     "fusion linear (labelled)": 0.008871608557905041,
+     "fusion poly2 (labelled)": 0.010100794350315634
+    },
+    "tests": {
+     "tile-phase": {
+      "w": 216,
+      "l": 106,
+      "t": 2,
+      "sign_p": 8.610438503077224e-10,
+      "one_sided": false,
+      "median_gain": 0.000349119864613097,
+      "pooled_lead": 0.0016745133756916435
+     },
+     "control NDWI level": {
+      "w": 142,
+      "l": 182,
+      "t": 0,
+      "sign_p": 0.030102826001022497,
+      "one_sided": false,
+      "median_gain": -0.0004480908714596458,
+      "pooled_lead": -0.001910247656461632
+     },
+     "ensemble mutual information": {
+      "w": 263,
+      "l": 61,
+      "t": 0,
+      "sign_p": 2.48677990809654e-31,
+      "one_sided": true,
+      "median_gain": 0.004894395512618246,
+      "pooled_lead": 0.005960793875486099
+     },
+     "ensemble average entropy": {
+      "w": 161,
+      "l": 160,
+      "t": 3,
+      "sign_p": 1.0,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "pooled_lead": 7.676517072135319e-05
+     },
+     "ensemble predictive entropy": {
+      "w": 157,
+      "l": 164,
+      "t": 3,
+      "sign_p": 0.7377685949775268,
+      "one_sided": false,
+      "median_gain": -8.43211218596717e-06,
+      "pooled_lead": -9.534077613838551e-05
+     },
+     "embedding normalized distance": {
+      "w": 314,
+      "l": 10,
+      "t": 0,
+      "sign_p": 1.8452045866257895e-79,
+      "one_sided": false,
+      "median_gain": 0.04729408521397126,
+      "pooled_lead": 0.06515337856761591
+     },
+     "embedding NCDD": {
+      "w": 318,
+      "l": 6,
+      "t": 0,
+      "sign_p": 4.5731718214237756e-86,
+      "one_sided": true,
+      "median_gain": 0.06764114048043926,
+      "pooled_lead": 0.07718096742743752
+     },
+     "embedding NCDD raw": {
+      "w": 319,
+      "l": 5,
+      "t": 0,
+      "sign_p": 1.7147704168629706e-87,
+      "one_sided": false,
+      "median_gain": 0.03622994984482977,
+      "pooled_lead": 0.0538814480268154
+     },
+     "input extremity max": {
+      "w": 259,
+      "l": 65,
+      "t": 0,
+      "sign_p": 1.4669371678324778e-28,
+      "one_sided": false,
+      "median_gain": 0.023138621908768905,
+      "pooled_lead": 0.04216225712055413
+     },
+     "input extremity mean": {
+      "w": 239,
+      "l": 85,
+      "t": 0,
+      "sign_p": 4.323842957314507e-18,
+      "one_sided": false,
+      "median_gain": 0.016460316406524855,
+      "pooled_lead": 0.0301692528958135
+     },
+     "fusion linear (labelled)": {
+      "w": 97,
+      "l": 223,
+      "t": 4,
+      "sign_p": 1.4421066335962656e-12,
+      "one_sided": false,
+      "median_gain": -0.0005953144169078784,
+      "pooled_lead": -0.0027536328084244686,
+      "beats_confidence": true
+     },
+     "fusion poly2 (labelled)": {
+      "w": 147,
+      "l": 175,
+      "t": 2,
+      "sign_p": 0.13228725863201574,
+      "one_sided": false,
+      "median_gain": -0.00010175460488460303,
+      "pooled_lead": -0.001524447016013876,
+      "beats_confidence": false
+     }
+    },
+    "prereg_passes": true,
+    "tile_level": {
+     "n_tiles": 438,
+     "n_failures": 145,
+     "failure_rate": 0.3310502283105023,
+     "per_ranker": {
+      "averaged confidence": {
+       "aurc": 0.14008640872291733,
+       "risk_at_0.5": 0.08675799086757996,
+       "risk_at_0.75": 0.17682926829268297
+      },
+      "tile-phase": {
+       "aurc": 0.15740311773097995,
+       "risk_at_0.5": 0.1004566210045662,
+       "risk_at_0.75": 0.2164634146341463
+      },
+      "control NDWI level": {
+       "aurc": 0.2031109449304716,
+       "risk_at_0.5": 0.11415525114155256,
+       "risk_at_0.75": 0.25609756097560976
+      },
+      "ensemble mutual information": {
+       "aurc": 0.17181848427971952,
+       "risk_at_0.5": 0.1552511415525114,
+       "risk_at_0.75": 0.22865853658536583
+      },
+      "ensemble average entropy": {
+       "aurc": 0.13737473870221809,
+       "risk_at_0.5": 0.0730593607305936,
+       "risk_at_0.75": 0.1707317073170732
+      },
+      "ensemble predictive entropy": {
+       "aurc": 0.1368481236124015,
+       "risk_at_0.5": 0.0730593607305936,
+       "risk_at_0.75": 0.16768292682926833
+      },
+      "embedding normalized distance": {
+       "aurc": 0.4332200013301269,
+       "risk_at_0.5": 0.4337899543378996,
+       "risk_at_0.75": 0.38414634146341464
+      },
+      "embedding NCDD": {
+       "aurc": 0.4633849073455195,
+       "risk_at_0.5": 0.4885844748858448,
+       "risk_at_0.75": 0.41768292682926833
+      },
+      "embedding NCDD raw": {
+       "aurc": 0.20490821618672156,
+       "risk_at_0.5": 0.228310502283105,
+       "risk_at_0.75": 0.2621951219512195
+      },
+      "input extremity max": {
+       "aurc": 0.3575357608398105,
+       "risk_at_0.5": 0.3470319634703196,
+       "risk_at_0.75": 0.3871951219512195
+      },
+      "input extremity mean": {
+       "aurc": 0.4138371103938668,
+       "risk_at_0.5": 0.4840182648401826,
+       "risk_at_0.75": 0.42987804878048785
+      },
+      "fusion linear (labelled)": {
+       "aurc": 0.14633322296565293,
+       "risk_at_0.5": 0.07762557077625576,
+       "risk_at_0.75": 0.18292682926829273
+      },
+      "fusion poly2 (labelled)": {
+       "aurc": 0.13666696109211016,
+       "risk_at_0.5": 0.0821917808219178,
+       "risk_at_0.75": 0.19207317073170727
+      }
+     }
+    },
+    "seconds": 4.244154453277588
+   },
+   "test": {
+    "n_tiles_scored": 428,
+    "n_windows": 149684,
+    "n_errors": 6525,
+    "pooled_eaurc": {
+     "averaged confidence": 0.006378234184421032,
+     "tile-phase": 0.008072824096565316,
+     "control NDWI level": 0.01055363837496065,
+     "ensemble mutual information": 0.008569669934142798,
+     "ensemble average entropy": 0.006636263102945795,
+     "ensemble predictive entropy": 0.006582478039104165,
+     "embedding normalized distance": 0.03432292644548619,
+     "embedding NCDD": 0.04125264269143891,
+     "embedding NCDD raw": 0.03390379860316983,
+     "input extremity max": 0.0339137072407095,
+     "input extremity mean": 0.0318615480080326,
+     "fusion linear (labelled)": 0.00595661768489384,
+     "fusion poly2 (labelled)": 0.00836744199817436
+    },
+    "tests": {
+     "tile-phase": {
+      "w": 338,
+      "l": 84,
+      "t": 6,
+      "sign_p": 3.5027547917528306e-37,
+      "one_sided": false,
+      "median_gain": 0.0005183075704822858,
+      "pooled_lead": 0.0016945899121442835
+     },
+     "control NDWI level": {
+      "w": 332,
+      "l": 96,
+      "t": 0,
+      "sign_p": 1.6350402679852021e-31,
+      "one_sided": false,
+      "median_gain": 0.0022610680047401863,
+      "pooled_lead": 0.004175404190539618
+     },
+     "ensemble mutual information": {
+      "w": 352,
+      "l": 76,
+      "t": 0,
+      "sign_p": 7.933853894854524e-44,
+      "one_sided": true,
+      "median_gain": 0.002535608319711228,
+      "pooled_lead": 0.002191435749721766
+     },
+     "ensemble average entropy": {
+      "w": 169,
+      "l": 242,
+      "t": 17,
+      "sign_p": 0.00037091933347023373,
+      "one_sided": false,
+      "median_gain": -5.301000447217089e-05,
+      "pooled_lead": 0.00025802891852476275
+     },
+     "ensemble predictive entropy": {
+      "w": 167,
+      "l": 249,
+      "t": 12,
+      "sign_p": 6.79742950665572e-05,
+      "one_sided": false,
+      "median_gain": -5.613405378722072e-05,
+      "pooled_lead": 0.00020424385468313308
+     },
+     "embedding normalized distance": {
+      "w": 423,
+      "l": 5,
+      "t": 0,
+      "sign_p": 3.4133910452831644e-118,
+      "one_sided": false,
+      "median_gain": 0.03510146030217417,
+      "pooled_lead": 0.027944692261065163
+     },
+     "embedding NCDD": {
+      "w": 425,
+      "l": 3,
+      "t": 0,
+      "sign_p": 1.885184236363728e-122,
+      "one_sided": true,
+      "median_gain": 0.04820673322780464,
+      "pooled_lead": 0.03487440850701788
+     },
+     "embedding NCDD raw": {
+      "w": 419,
+      "l": 9,
+      "t": 0,
+      "sign_p": 3.597767250273352e-111,
+      "one_sided": false,
+      "median_gain": 0.0312229627799115,
+      "pooled_lead": 0.027525564418748802
+     },
+     "input extremity max": {
+      "w": 413,
+      "l": 14,
+      "t": 1,
+      "sign_p": 3.699639966676627e-103,
+      "one_sided": false,
+      "median_gain": 0.026854953211408374,
+      "pooled_lead": 0.02753547305628847
+     },
+     "input extremity mean": {
+      "w": 410,
+      "l": 18,
+      "t": 0,
+      "sign_p": 7.61772263508136e-98,
+      "one_sided": false,
+      "median_gain": 0.03383873161734213,
+      "pooled_lead": 0.02548331382361157
+     },
+     "fusion linear (labelled)": {
+      "w": 154,
+      "l": 267,
+      "t": 7,
+      "sign_p": 4.0083357773584616e-08,
+      "one_sided": false,
+      "median_gain": -0.00016057628796510402,
+      "pooled_lead": -0.00042161649952719184,
+      "beats_confidence": false
+     },
+     "fusion poly2 (labelled)": {
+      "w": 199,
+      "l": 219,
+      "t": 10,
+      "sign_p": 0.3527364796611927,
+      "one_sided": false,
+      "median_gain": -1.5558571546555894e-05,
+      "pooled_lead": 0.0019892078137533284,
+      "beats_confidence": false
+     }
+    },
+    "prereg_passes": true,
+    "tile_level": {
+     "n_tiles": 800,
+     "n_failures": 194,
+     "failure_rate": 0.2425,
+     "per_ranker": {
+      "averaged confidence": {
+       "aurc": 0.13429217703554258,
+       "risk_at_0.5": 0.13,
+       "risk_at_0.75": 0.1166666666666667
+      },
+      "tile-phase": {
+       "aurc": 0.14251968043411123,
+       "risk_at_0.5": 0.13249999999999995,
+       "risk_at_0.75": 0.15666666666666662
+      },
+      "control NDWI level": {
+       "aurc": 0.22776258943048197,
+       "risk_at_0.5": 0.22999999999999998,
+       "risk_at_0.75": 0.24
+      },
+      "ensemble mutual information": {
+       "aurc": 0.14207237366680098,
+       "risk_at_0.5": 0.13,
+       "risk_at_0.75": 0.16333333333333333
+      },
+      "ensemble average entropy": {
+       "aurc": 0.13613011309888964,
+       "risk_at_0.5": 0.13,
+       "risk_at_0.75": 0.12
+      },
+      "ensemble predictive entropy": {
+       "aurc": 0.13517562445300577,
+       "risk_at_0.5": 0.13,
+       "risk_at_0.75": 0.12
+      },
+      "embedding normalized distance": {
+       "aurc": 0.26876377056248413,
+       "risk_at_0.5": 0.28500000000000003,
+       "risk_at_0.75": 0.2483333333333333
+      },
+      "embedding NCDD": {
+       "aurc": 0.2844482093605692,
+       "risk_at_0.5": 0.25249999999999995,
+       "risk_at_0.75": 0.255
+      },
+      "embedding NCDD raw": {
+       "aurc": 0.16439902713485544,
+       "risk_at_0.5": 0.17000000000000004,
+       "risk_at_0.75": 0.19666666666666666
+      },
+      "input extremity max": {
+       "aurc": 0.31922332530322683,
+       "risk_at_0.5": 0.3075,
+       "risk_at_0.75": 0.2566666666666667
+      },
+      "input extremity mean": {
+       "aurc": 0.3575649365569268,
+       "risk_at_0.5": 0.32999999999999996,
+       "risk_at_0.75": 0.2783333333333333
+      },
+      "fusion linear (labelled)": {
+       "aurc": 0.16291826650384691,
+       "risk_at_0.5": 0.12749999999999995,
+       "risk_at_0.75": 0.125
+      },
+      "fusion poly2 (labelled)": {
+       "aurc": 0.16959482714030197,
+       "risk_at_0.5": 0.125,
+       "risk_at_0.75": 0.1216666666666667
+      }
+     }
+    },
+    "seconds": 7.790110111236572
+   }
+  }
+ },
+ "failures": [],
+ "prereg": {
+  "supported": true,
+  "complete": true
+ },
+ "n_failures": 0
+}

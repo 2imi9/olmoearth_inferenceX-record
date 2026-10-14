@@ -1,0 +1,1052 @@
+[
+{
+"id": "V001",
+"label": "water",
+"note": "Window sits where the upper-left river channel ends. The left two columns are dark purple in SWIR and dark green in NIR, matching the channel. The third column is dark and mixed, the fourth is lighter land, so about 10-12 of 16 pixels look like water."
+},
+{
+"id": "V002",
+"label": "land",
+"note": "Dense forest below a cloud. Green in SWIR and maroon in NIR, the same as the surrounding canopy, so the vegetation has a normal NIR signal."
+},
+{
+"id": "V003",
+"label": "?",
+"note": "Inside a large dark patch between a turbid river (top) and land. It is uniformly dim in all composites: dark olive in SWIR, dark purple in NIR. That is clearly brighter than the small black open-water patch, so it could be flooded or wet vegetation or just dark vegetation."
+},
+{
+"id": "V004",
+"label": "land",
+"note": "Pale pinkish-grey pixels between black meandering channels. Mid-tone in SWIR and pale grey-green in NIR, clearly brighter than the black channels."
+},
+{
+"id": "V005",
+"label": "land",
+"note": "Textured floodplain canopy just above a narrow black meandering river. Window pixels are mid-tone blue-purple in SWIR with SWIR brightness similar to vegetation elsewhere in the chip. The river pixels are much darker."
+},
+{
+"id": "V006",
+"label": "water",
+"note": "Large region that is black in SWIR and NIR, beside a bright bank or levee arc. Only the top-left 2-3 pixels touch a bright sand patch; the rest are black with no NIR, unlike vegetation."
+},
+{
+"id": "V007",
+"label": "water",
+"note": "Backwater just east of the bright sandy bank of a large river. Dark maroon in SWIR and dark green in NIR, the same as the river itself."
+},
+{
+"id": "V008",
+"label": "?",
+"note": "Uniformly black in all composites, a few pixels west of a cloud, where its shadow would fall (sun from the east). Cannot separate water from cloud shadow."
+},
+{
+"id": "V009",
+"label": "land",
+"note": "Bright green in SWIR; uniform vegetation next to a linear feature."
+},
+{
+"id": "V010",
+"label": "water",
+"note": "Chip is mostly dark with low NIR (dark green in NIR, navy in SWIR), with scattered lighter speckles and clouds at the edges. Window pixels are mostly dark with a few lighter bluish ones; looks like flooded savanna, but confidence is moderate."
+},
+{
+"id": "V011",
+"label": "land",
+"note": "Mid-grey-purple in SWIR and grey-green in NIR, beside a bright roof or bare spot and road-like lines. Much brighter than the black water at the chip's top-left; looks like built-up or bare ground."
+},
+{
+"id": "V012",
+"label": "water",
+"note": "Inside a black region bounded by bright red vegetation in NIR. Black or dark teal in NIR and black in SWIR. The region lies north of the bright patch, not west of it, so it does not fit a cloud shadow."
+},
+{
+"id": "V013",
+"label": "?",
+"note": "Very dark, at the edge between a pure-black zone and dark maroon (slight NIR) pixels. Clouds sit east and north of it, so the window is likely in cloud shadow."
+},
+{
+"id": "V014",
+"label": "water",
+"note": "Left edge of a narrow channel that is blue in SWIR and green in NIR (low SWIR and NIR, high red: turbid water). It connects to black water downstream. Three of four columns are dark navy-purple and clearly darker than the pink land to the left."
+},
+{
+"id": "V015",
+"label": "land",
+"note": "Light green in SWIR; a vegetated strip next to a black area."
+},
+{
+"id": "V016",
+"label": "?",
+"note": "Exactly on the boundary between turbid flood water (pink in true colour, saturated blue in SWIR, green in NIR) and olive vegetated land. The right two columns are water-like and the left two land-like, roughly 8 and 8."
+},
+{
+"id": "V017",
+"label": "land",
+"note": "Pink-white in true colour, magenta in SWIR (high SWIR, so not water) and bright in NIR. Bare or bright ground west of the dark water area."
+},
+{
+"id": "V018",
+"label": "land",
+"note": "Green vegetation in SWIR with a slight purple soil tint; the small blue ponds are elsewhere in the chip."
+},
+{
+"id": "V019",
+"label": "water",
+"note": "Western shore of a black water body beside a bright sandbar. Columns 2-4 are very dark in SWIR and NIR, close to the open water; column 1 is greyer land. Mixed shoreline pixels."
+},
+{
+"id": "V020",
+"label": "land",
+"note": "Green vegetation in true colour and SWIR, a few brown soil pixels on the bottom row; the dark pond is well away."
+},
+{
+"id": "V021",
+"label": "land",
+"note": "Upper-left half covered by a bright linear feature (road or levee: cyan-grey in SWIR, lavender in NIR). The lower-right pixels are dark, but the neighbouring dark area has a canopy-like texture with faint NIR, which looks more like forest than water. Moderate confidence."
+},
+{
+"id": "V022",
+"label": "water",
+"note": "Uniform pinkish-brown in true colour, flat dark blue in SWIR (red high, NIR/SWIR low): turbid floodwater, away from the vegetated edge"
+},
+{
+"id": "V023",
+"label": "land",
+"note": "Tan/brown/pink in SWIR, mauve-grey in NIR; between vegetation and the red turbid-water patches but not water-like itself; hazy chip"
+},
+{
+"id": "V024",
+"label": "water",
+"note": "Large dark, noisy area; dark blue in SWIR and NIR below red (no vegetation signal); clouds only at the bottom edge; the dark area is too large and in the wrong place to be their shadow"
+},
+{
+"id": "V025",
+"label": "?",
+"note": "Hazy, washed-out chip with bright haze/cloud to the left; window dull purple in SWIR, grey-teal in NIR; cannot separate water from land under the haze"
+},
+{
+"id": "V026",
+"label": "land",
+"note": "Pale under haze but bright in SWIR and pink (vegetation) in NIR; not dark anywhere in the window"
+},
+{
+"id": "V027",
+"label": "?",
+"note": "Window in a white cloud/artefact region next to no-data (black) and blocky cyan tiles; surface not visible"
+},
+{
+"id": "V028",
+"label": "land",
+"note": "Grey-brown, medium brightness in SWIR (the turbid river is deep blue); grey in NIR; not open water, possibly wet ground"
+},
+{
+"id": "V029",
+"label": "?",
+"note": "Window inside a grey-white cumulus cloud field (white in NIR too); surface not visible"
+},
+{
+"id": "V030",
+"label": "land",
+"note": "Dark green in true colour, bright green in SWIR (strong NIR): vegetation, clear of the cloud below"
+},
+{
+"id": "V031",
+"label": "?",
+"note": "On the river bank: about 8-9 of 16 pixels black (river) in SWIR, the rest bright sand bar or bank; too close to half to call"
+},
+{
+"id": "V032",
+"label": "water",
+"note": "Large uniform grey-blue area, dark blue in SWIR and teal (low NIR) in NIR, unlike the pink vegetation on the right: flooded surface"
+},
+{
+"id": "V033",
+"label": "water",
+"note": "Wide dark band (river or flood) beside a cloud; dark navy in SWIR, dark teal (not maroon) in NIR, so water rather than shadowed vegetation; some cloud-shadow risk"
+},
+{
+"id": "V034",
+"label": "?",
+"note": "Purple, medium brightness in SWIR and grey-teal in NIR; wet or flooded transition zone between yellow vegetation and the black open water; cannot say which dominates"
+},
+{
+"id": "V035",
+"label": "water",
+"note": "Same dark, noisy flooded expanse as V024 (dark in SWIR, low NIR); window at the edge of the cloud at the bottom; its pixels still dark"
+},
+{
+"id": "V036",
+"label": "land",
+"note": "Pinkish/beige, bright in SWIR (SWIR high): dry ground or sparse vegetation, no dark pixels"
+},
+{
+"id": "V037",
+"label": "?",
+"note": "Small dark depression or pond in vegetation; about half the window low in NIR, the rest vegetation; dark maroon rather than black in SWIR; no clear majority"
+},
+{
+"id": "V038",
+"label": "land",
+"note": "Light teal in true colour, tan/yellow in SWIR: vegetation or dry ground, not dark"
+},
+{
+"id": "V039",
+"label": "water",
+"note": "Extensive dark area; dark navy in SWIR, dark teal in NIR with no vegetation tone anywhere; clouds at the top do not match a shadow footprint"
+},
+{
+"id": "V040",
+"label": "land",
+"note": "Dark patch just below a cloud (likely shadow), but olive-green in SWIR and magenta in NIR: shadowed vegetation, not water"
+},
+{
+"id": "V041",
+"label": "?",
+"note": "Very dark region beside a cloud; a narrow black channel crosses the right half, the left half is dark maroon (some NIR); shadow or flooded forest cannot be ruled out"
+},
+{
+"id": "V042",
+"label": "?",
+"note": "Window inside a bright strip, white in true colour, SWIR and NIR, with colour fringes at its edges typical of cloud parallax; probably cloud over a flooded area; surface not visible"
+},
+{
+"id": "V043",
+"label": "?",
+"note": "Dark spot inside a heavily cloudy, hazy chip; dark brown in SWIR and dark in NIR, but it could be a cloud gap or cloud shadow. Cannot judge."
+},
+{
+"id": "V044",
+"label": "water",
+"note": "Near-black in SWIR and NIR, part of a dark band with a straight edge along a bright riparian vegetation strip (river or flood). The window sits at the band's west edge next to a grey hazy patch."
+},
+{
+"id": "V045",
+"label": "water",
+"note": "Near-black in every band with no NIR signal and a slight teal tint, unlike shaded vegetation. Some cloud nearby, so shadow is a minor risk."
+},
+{
+"id": "V046",
+"label": "water",
+"note": "Dark in SWIR and NIR with faint vegetation speckles (flooded scrub). A road embankment stays bright through the dark area, so it is flooding rather than cloud shadow. Large cloud to the north."
+},
+{
+"id": "V047",
+"label": "land",
+"note": "Pale cream in SWIR and light green in true colour: bright vegetation or soil. Not dark anywhere."
+},
+{
+"id": "V048",
+"label": "land",
+"note": "Uniform green in SWIR, dark green in true colour: vegetation or forest."
+},
+{
+"id": "V049",
+"label": "land",
+"note": "Mottled grey-green in true colour, moderate pinkish in SWIR: soil and sparse vegetation. Dark water body lies elsewhere in the chip."
+},
+{
+"id": "V050",
+"label": "?",
+"note": "On the edge of a bright white cloud, white and lavender in SWIR. Ground not visible."
+},
+{
+"id": "V051",
+"label": "?",
+"note": "Reddish-brown in true colour, magenta-purple in SWIR, green (low NIR) in the NIR composite, inside a depression ringed by bright soil. Could be muddy shallow water or wet soil; genuinely ambiguous."
+},
+{
+"id": "V052",
+"label": "water",
+"note": "Narrow meandering river channel with an oxbow. About 12 of 16 pixels are dark in NIR and SWIR; one column is bank."
+},
+{
+"id": "V053",
+"label": "land",
+"note": "Pale grey-green in true colour and SWIR, bright. Dark water lies just east of the window but outside it."
+},
+{
+"id": "V054",
+"label": "land",
+"note": "Green in SWIR: vegetation, away from the central cloud."
+},
+{
+"id": "V055",
+"label": "land",
+"note": "Bright green in SWIR: vegetated field or forest."
+},
+{
+"id": "V056",
+"label": "?",
+"note": "Dark area right next to a cloud, darkening gradually from sunlit vegetation. Still reddish in NIR, so likely shaded vegetation under cloud shadow; cannot judge reliably."
+},
+{
+"id": "V057",
+"label": "land",
+"note": "Bright mottled area, cream in SWIR and pink in NIR. Dark turbid water (blue in SWIR) lies east of the window, not in it. Slight haze possible."
+},
+{
+"id": "V058",
+"label": "?",
+"note": "Dark grey in all composites, neither a vegetation nor a clear water signature. Large dark region next to clouds, possibly cloud shadow or wetland."
+},
+{
+"id": "V059",
+"label": "land",
+"note": "Green in SWIR: vegetation north of a cloud bank."
+},
+{
+"id": "V060",
+"label": "land",
+"note": "Bright pale band, pink in NIR and pale in SWIR: vegetation or soil. Dark water lies to the east. Some haze nearby."
+},
+{
+"id": "V061",
+"label": "?",
+"note": "On the boundary between turbid flood water (navy in SWIR, teal in NIR; bottom two rows) and mixed mauve land (top rows). Roughly half each."
+},
+{
+"id": "V062",
+"label": "land",
+"note": "The top row crosses a dark linear feature; the other rows are green and yellow-green vegetation in SWIR. Mostly land."
+},
+{
+"id": "V063",
+"label": "land",
+"note": "Bright green in SWIR: vegetation."
+},
+{
+"id": "V064",
+"label": "?",
+"note": "Purple in SWIR, teal in NIR (low NIR), but SWIR brighter than the dark-blue river channel; close to a bright cloud with haze around it; cannot tell turbid water from hazy ground"
+},
+{
+"id": "V065",
+"label": "?",
+"note": "Dark patch inside dense vegetation next to a black oxbow channel; darker than the forest in NIR and SWIR but not as dark as the channel; looks like a mixed pixel or flooded forest, ambiguous"
+},
+{
+"id": "V066",
+"label": "water",
+"note": "Large uniform dark body between cloud masses; black in SWIR and NIR with no vegetation red in NIR and no texture; looks like a lake rather than cloud shadow (some shadow risk)"
+},
+{
+"id": "V067",
+"label": "?",
+"note": "Window on a bright white or pink cloud band in a cloud-covered chip"
+},
+{
+"id": "V068",
+"label": "land",
+"note": "Pink in true colour, violet in SWIR; B12 as high as the vegetation patches and far above the dark river channel, so not open water; probably bare or hazy ground"
+},
+{
+"id": "V069",
+"label": "water",
+"note": "Smooth area, deep blue in SWIR (B12 and NIR at the bottom of the range), cyan in NIR; sediment-laden floodwater next to a river channel"
+},
+{
+"id": "V070",
+"label": "land",
+"note": "Green in SWIR, vegetated area; the dark area is off the window to the lower right"
+},
+{
+"id": "V071",
+"label": "?",
+"note": "Edge zone between a black lake and the violet land area; window pixels darker or bluer than the surrounding land but much brighter than the lake; mixed"
+},
+{
+"id": "V072",
+"label": "land",
+"note": "At the edge of a dark flooded or water area; 3 of 4 rows olive in SWIR and magenta in NIR like the vegetated side; one dark corner pixel"
+},
+{
+"id": "V073",
+"label": "?",
+"note": "Inside a bright cloud"
+},
+{
+"id": "V074",
+"label": "?",
+"note": "Edge of a bright white cloud; most of the window is cloud, left column vegetation"
+},
+{
+"id": "V075",
+"label": "?",
+"note": "Dark area at a cloud edge in a heavily clouded chip; faint red in NIR suggests shadowed ground; cloud shadow likely"
+},
+{
+"id": "V076",
+"label": "?",
+"note": "Pale cyan-white in true colour, mauve in SWIR; hazy or thin-cloud patch; not dark in SWIR but surface unclear"
+},
+{
+"id": "V077",
+"label": "land",
+"note": "Uniform green vegetation, yellow-green in SWIR"
+},
+{
+"id": "V078",
+"label": "water",
+"note": "Dark channel between two vegetated blocks; near black in SWIR; river or flooded channel"
+},
+{
+"id": "V079",
+"label": "?",
+"note": "Small bright clouds cover most of the window, pink in SWIR; green vegetation around"
+},
+{
+"id": "V080",
+"label": "?",
+"note": "Dark slate grey in SWIR, lower NIR than nearby vegetation but not dark like the lake or blue like the turbid water; possibly wet or flooded vegetation, ambiguous"
+},
+{
+"id": "V081",
+"label": "?",
+"note": "Speckled scene with many small bright clouds; window dark maroon in SWIR with low NIR; possible cloud shadow, cannot judge"
+},
+{
+"id": "V082",
+"label": "?",
+"note": "Bright white cloud over the window"
+},
+{
+"id": "V083",
+"label": "land",
+"note": "Violet in SWIR, B12 well above the black lake; forest-like texture with lighter patches; not open water"
+},
+{
+"id": "V084",
+"label": "land",
+"note": "Olive-green in SWIR, vegetated; the blue turbid water and black water areas are away from the window"
+},
+{
+"id": "V085",
+"label": "water",
+"note": "Window sits in a large dark patch, black in SWIR and in NIR with a few dark-navy pixels. Bright green tree dots inside the patch point to flooded ground rather than shadow. The scene is hazy and there is cloud to the lower right, so confidence is moderate."
+},
+{
+"id": "V086",
+"label": "?",
+"note": "Window is on the edge of a black region beside a bright, hazy, possibly cloudy area. Its pixels mix black, dark green and mid grey. Water or cloud shadow cannot be told apart."
+},
+{
+"id": "V087",
+"label": "land",
+"note": "Uniform green vegetation, light green in SWIR, next to a darker forest patch that is also green in SWIR."
+},
+{
+"id": "V088",
+"label": "water",
+"note": "Wide flat area, grey-blue in true colour and uniformly dark navy in SWIR, which reads as turbid floodwater. Vegetation and a black river channel lie to the east."
+},
+{
+"id": "V089",
+"label": "water",
+"note": "Black in SWIR and in NIR, in a dark zone with sharp edges and bright vegetation patches around it, southeast of a large cloud. A cloud shadow cannot be fully excluded."
+},
+{
+"id": "V090",
+"label": "water",
+"note": "On a meandering dark channel. Most pixels are black or dark navy in SWIR."
+},
+{
+"id": "V091",
+"label": "land",
+"note": "Pale green in true colour and bright yellow-green in SWIR, so vegetation or grassland. Small cloud bits lie to the east."
+},
+{
+"id": "V092",
+"label": "land",
+"note": "Bright mottled surface, pale yellow-beige in SWIR, which is not water. A small white cloud is adjacent but not over the window."
+},
+{
+"id": "V093",
+"label": "water",
+"note": "At the junction of black channels. In the 12 px NIR and SWIR views about 10 to 12 of the 16 pixels are black or very dark."
+},
+{
+"id": "V094",
+"label": "?",
+"note": "Window is in a saturated white, cloud-like band at the chip edge (lavender in SWIR). Likely cloud over the window."
+},
+{
+"id": "V095",
+"label": "land",
+"note": "Bright green vegetation in true colour, yellow-green in SWIR."
+},
+{
+"id": "V096",
+"label": "?",
+"note": "Dark region directly west of a bright cloud, faintly green in SWIR. Probably cloud shadow over forest, so it cannot be judged."
+},
+{
+"id": "V097",
+"label": "land",
+"note": "Green vegetation, bright green in SWIR, a few pixels east of a broad dark river."
+},
+{
+"id": "V098",
+"label": "land",
+"note": "Olive and yellow in SWIR, so vegetation, with a small cloud edge in the top row. The black meander lies just outside the window."
+},
+{
+"id": "V099",
+"label": "water",
+"note": "Black in all bands, in elongated dark zones between vegetation strips that stay bright (riparian pattern). Looks like flooded ground, but a large cloud is nearby, so confidence is moderate."
+},
+{
+"id": "V100",
+"label": "?",
+"note": "Lavender in SWIR, inside a hazy region that brightens into cloud at the bottom right. The window looks under thin cloud."
+},
+{
+"id": "V101",
+"label": "?",
+"note": "Mid-tone mauve in SWIR, in the transition between a dark zone and a hazy pink area. Neither clearly water (the nearby river is black) nor clearly land."
+},
+{
+"id": "V102",
+"label": "?",
+"note": "Dark patch enclosed by bright clouds, black to dark green in SWIR. Cloud shadow is likely."
+},
+{
+"id": "V103",
+"label": "?",
+"note": "Window is in a white cloud area (white or cream in both composites)."
+},
+{
+"id": "V104",
+"label": "land",
+"note": "Green vegetation, uniformly yellow in SWIR. The dark channels are farther to the southeast."
+},
+{
+"id": "V105",
+"label": "water",
+"note": "Dark teal-black in SWIR, in a large dark matrix with scattered bright green tree dots (flooded savanna pattern). Cloud is well to the west."
+},
+{
+"id": "V106",
+"label": "land",
+"note": "Edge between vegetation (yellow-green in SWIR) and a pale area that is pink in SWIR (dry or bright ground). No dark pixels; the water is far off to the east."
+},
+{
+"id": "V107",
+"label": "?",
+"note": "The whole chip is noisy and low in contrast. The 32-pixel SWIR and the NIR views show no structure, and the window is a mix of dark reddish and purple noise. Cannot judge."
+},
+{
+"id": "V108",
+"label": "land",
+"note": "Uniform green vegetation in SWIR and dark green in true colour. The clouds are nearby, but the window is clear."
+},
+{
+"id": "V109",
+"label": "land",
+"note": "Mostly bright green vegetation in SWIR, with a few darker green (shaded) pixels on the lower side. Not black."
+},
+{
+"id": "V110",
+"label": "water",
+"note": "Black in SWIR and nearly black in true colour, inside a large dark body along the chip's left edge with no green signal. Likely river or floodwater."
+},
+{
+"id": "V111",
+"label": "land",
+"note": "Vegetation with thin cloud haze over the right half. SWIR stays greenish under the haze."
+},
+{
+"id": "V112",
+"label": "land",
+"note": "Speckled yellow-green and pink in SWIR in a field area, away from the black river channels."
+},
+{
+"id": "V113",
+"label": "water",
+"note": "Uniform dark brown in true colour, dark navy in SWIR and dark teal in the NIR view (low NIR), unlike the red vegetation next to it. Turbid water, possibly under thin shadow."
+},
+{
+"id": "V114",
+"label": "?",
+"note": "Dark strip right at the edge of a large cloud. Faint green tint in SWIR, dark grey in NIR, with haze from the cloud edge. Cannot separate water from cloud shadow or haze."
+},
+{
+"id": "V115",
+"label": "land",
+"note": "Reddish brown in true colour and purple in SWIR (SWIR not dark): a bare, burned or ploughed field. The black lake is far to the top right."
+},
+{
+"id": "V116",
+"label": "water",
+"note": "At the east edge of a large uniform black area in SWIR and NIR with no vegetation signal; the vegetation starts just east of the window. The cloud is to the south, so this is unlikely to be its shadow."
+},
+{
+"id": "V117",
+"label": "land",
+"note": "Mostly green vegetation in SWIR at the edge of a black water body to the east. A few darker pixels."
+},
+{
+"id": "V118",
+"label": "land",
+"note": "Green vegetation in true colour and SWIR. The dark pond is far to the north-west."
+},
+{
+"id": "V119",
+"label": "land",
+"note": "Dark green canopy in true colour, uniform orange-yellow in SWIR (high NIR and SWIR). The bright area on the left is far away."
+},
+{
+"id": "V120",
+"label": "land",
+"note": "Dull olive-brown in true colour, grey-green in SWIR and dull reddish in NIR. Not dark like the water channels to the west, though there is some haze; moderate confidence."
+},
+{
+"id": "V121",
+"label": "water",
+"note": "Uniform tan in true colour and blue in SWIR (low NIR and SWIR): sediment-laden floodwater. Small clouds and shadows at the top, away from the window."
+},
+{
+"id": "V122",
+"label": "water",
+"note": "Large area that is pink in true colour, blue-purple in SWIR and low in NIR (green in the CIR view). That spectrum fits sediment-laden floodwater; the white patches with high NIR are cloud or land. Moderate confidence."
+},
+{
+"id": "V123",
+"label": "water",
+"note": "At a small dark pond: about 12 of 16 pixels are black or blue in SWIR and cyan or black in NIR (low NIR). The left column is olive land."
+},
+{
+"id": "V124",
+"label": "land",
+"note": "Medium to bright green vegetation in SWIR beside a darker shaded patch."
+},
+{
+"id": "V125",
+"label": "water",
+"note": "Black in true colour, SWIR and NIR: a dark pond or lagoon at the edge of pale grassland. One mixed pixel."
+},
+{
+"id": "V126",
+"label": "land",
+"note": "Pale field, lavender in SWIR, away from the black ponds along the road."
+},
+{
+"id": "V127",
+"label": "land",
+"note": "pinkish in true colour, pink/lilac in SWIR, not dark; bare or sparse vegetated ground well north of the black river channel"
+},
+{
+"id": "V128",
+"label": "land",
+"note": "lavender in SWIR, same as the wide surrounding area; bright in the NIR view; the dark water body is far off to the east"
+},
+{
+"id": "V129",
+"label": "land",
+"note": "mauve in true colour, pink in SWIR (high B12), so not dark; bare or wet soil beside a bright sand bar near the meandering channels; somewhat lower NIR than the vegetation around it"
+},
+{
+"id": "V130",
+"label": "water",
+"note": "large continuous dark region next to vegetation; window dark navy in SWIR and low in NIR; region much larger than the small clouds in the chip, so flooding more likely than cloud shadow (moderate confidence)"
+},
+{
+"id": "V131",
+"label": "land",
+"note": "forest/vegetation, bright green in SWIR; the dark ponds are elsewhere in the chip"
+},
+{
+"id": "V132",
+"label": "?",
+"note": "dark in all bands at the edge of red vegetation (NIR view) and west of a large cloud; faint vegetation texture inside the dark area points to cloud shadow; cannot separate shadow from water"
+},
+{
+"id": "V133",
+"label": "land",
+"note": "bright green vegetation in SWIR inside a river meander loop; clouds at the top of the chip but the window is clear"
+},
+{
+"id": "V134",
+"label": "land",
+"note": "green vegetation in SWIR, clear of the clouds to the east"
+},
+{
+"id": "V135",
+"label": "water",
+"note": "inside a large continuous dark region (black, slight blue in SWIR, navy in true colour) with a sharp, irregular shoreline-like edge against vegetated land; cloud in the chip, so this is moderate confidence"
+},
+{
+"id": "V136",
+"label": "?",
+"note": "dark pixels right at the edge of a large cloud/haze, likely cloud shadow or haze-contaminated; cannot judge"
+},
+{
+"id": "V137",
+"label": "land",
+"note": "uniform green vegetation in SWIR between two small clouds; window clear"
+},
+{
+"id": "V138",
+"label": "?",
+"note": "window sits on a cloud edge; transitional hazy maroon pixels in SWIR, mostly cloudy chip"
+},
+{
+"id": "V139",
+"label": "land",
+"note": "green in true colour, yellow-green in SWIR; vegetation away from the river channel"
+},
+{
+"id": "V140",
+"label": "?",
+"note": "dark gap fully surrounded by cloud; could be cloud shadow or water seen through the gap"
+},
+{
+"id": "V141",
+"label": "water",
+"note": "narrow black river channel crosses the window; the lower two rows are clearly dark in SWIR/NIR, the second row is mixed and the top row is land; borderline majority water"
+},
+{
+"id": "V142",
+"label": "?",
+"note": "not reviewed: image not opened before the answer was returned"
+},
+{
+"id": "V143",
+"label": "?",
+"note": "not reviewed: image not opened before the answer was returned"
+},
+{
+"id": "V144",
+"label": "?",
+"note": "not reviewed: image not opened before the answer was returned"
+},
+{
+"id": "V145",
+"label": "?",
+"note": "not reviewed: image not opened before the answer was returned"
+},
+{
+"id": "V146",
+"label": "?",
+"note": "not reviewed: image not opened before the answer was returned"
+},
+{
+"id": "V147",
+"label": "?",
+"note": "not reviewed: image not opened before the answer was returned"
+},
+{
+"id": "V148",
+"label": "land",
+"note": "Pale whitish in true colour, light lavender-pink in SWIR (high SWIR), pale grey in NIR; not dark like the black water on the chip's right. Bright soil or grass, maybe under slight haze."
+},
+{
+"id": "V149",
+"label": "?",
+"note": "Chip mostly covered by cloud. The window is grey under cloud or cloud-shadow cover at the chip edge."
+},
+{
+"id": "V150",
+"label": "?",
+"note": "Dark in true colour, SWIR and NIR, right next to a cloud. Likely cloud shadow; cannot tell water from shadow."
+},
+{
+"id": "V151",
+"label": "water",
+"note": "Broad dark area, near-black blue in SWIR and dark in true colour. Low NIR with no vegetation signal. Open or flooded water."
+},
+{
+"id": "V152",
+"label": "land",
+"note": "Medium-bright green in SWIR, dark green in true colour. Vegetation."
+},
+{
+"id": "V153",
+"label": "land",
+"note": "Pale bright surface in true colour and SWIR, pink (vegetated) in NIR. Grassland beside a straight road."
+},
+{
+"id": "V154",
+"label": "?",
+"note": "On the edge of a dark, low-NIR patch (possible swamp or water) and green vegetation. Half dark and half green, so mixed."
+},
+{
+"id": "V155",
+"label": "?",
+"note": "In forest: two columns bright green, the other two near-black in SWIR and NIR (small pond or shadow). About half and half."
+},
+{
+"id": "V156",
+"label": "water",
+"note": "Uniformly black in SWIR and dark in true colour, inside a large dark water body."
+},
+{
+"id": "V157",
+"label": "water",
+"note": "Near-black in SWIR and NIR along a dark channel-like strip. A cloud sits at the chip bottom, far from the window; small chance this is shadow."
+},
+{
+"id": "V158",
+"label": "land",
+"note": "Pale yellow-green grassland in SWIR. A reddish track or bare-soil line (not dark) clips one corner."
+},
+{
+"id": "V159",
+"label": "water",
+"note": "Red in true colour, blue-violet in SWIR, red above NIR (green in the NIR composite). Reads as turbid shallow floodwater beside a black river channel."
+},
+{
+"id": "V160",
+"label": "?",
+"note": "Featureless white-lavender in true colour, uniform cyan in NIR, with no-data blocks in the chip. Looks like thick cloud or saturated data."
+},
+{
+"id": "V161",
+"label": "water",
+"note": "Noisy, low-signal chip with no vegetation signal in NIR, dark bluish-purple in SWIR. Fits broad open floodwater; a cloud at the bottom-left is away from the window. Moderate confidence."
+},
+{
+"id": "V162",
+"label": "?",
+"note": "Boundary window: the left columns are violet (floodwater-like) and the right columns are green levee vegetation. Roughly half and half."
+},
+{
+"id": "V163",
+"label": "land",
+"note": "Bright green in SWIR, dark green in true colour. Forest at the top edge of the chip."
+},
+{
+"id": "V164",
+"label": "?",
+"note": "At the edge of black water: one column black, the rest dim grey in SWIR and NIR (possibly flooded vegetation). Mixed or ambiguous."
+},
+{
+"id": "V165",
+"label": "water",
+"note": "Reddish in true colour, violet-blue in SWIR, low NIR against red (green in the NIR composite). Turbid floodwater signature near a black river; the bottom row is a little lighter. Moderate confidence."
+},
+{
+"id": "V166",
+"label": "?",
+"note": "On the edge of a bright cloud. The pixels are hazy or partly shadowed, reddish-grey in SWIR."
+},
+{
+"id": "V167",
+"label": "land",
+"note": "Olive to yellow-green in SWIR, green-grey in true colour. Grassland or vegetation."
+},
+{
+"id": "V168",
+"label": "water",
+"note": "Dark navy in SWIR, dark purple in true colour, low NIR with no vegetation red, in a dark region at the chip's left edge. Flooded or open water."
+},
+{
+"id": "V169",
+"label": "water",
+"note": "Dark in true colour and SWIR. Sits inside a large uniform dark area bounded by a curving vegetated levee; no NIR signal."
+},
+{
+"id": "V170",
+"label": "land",
+"note": "Dark olive in SWIR, mid-dark purple in false colour, so NIR is present. Dark vegetation or canopy beside a navy-black water patch, not part of it."
+},
+{
+"id": "V171",
+"label": "?",
+"note": "Cloud edge: about half the window is under a bright white cloud (pale pink-white in SWIR), the rest is green vegetation. The majority can't be judged."
+},
+{
+"id": "V172",
+"label": "?",
+"note": "Broad pink (true colour), blue-violet (SWIR) area with low NIR. Could be shallow turbid flood water or wet or bare ground. Window is at the lighter lavender part, so not decidable."
+},
+{
+"id": "V173",
+"label": "water",
+"note": "Dark navy in SWIR and dark teal in false colour, inside the dark zone on the right of the chip. Looks like flooded or open water, perhaps with a little vegetation."
+},
+{
+"id": "V174",
+"label": "land",
+"note": "Uniform bright green vegetation, yellow in SWIR."
+},
+{
+"id": "V175",
+"label": "?",
+"note": "Same pink, lilac, low-NIR surface as V172, between a dark lake and a black river meander. Can't tell turbid shallow water from bare or wet ground."
+},
+{
+"id": "V176",
+"label": "water",
+"note": "Black in true colour, SWIR and NIR across a large smooth area, with no vegetation response. Clouds are in the chip, but the dark area is not where their shadows would fall."
+},
+{
+"id": "V177",
+"label": "land",
+"note": "Mottled pale pink, green and white; light in SWIR, NIR high (pink in false colour). Dry grassland; water is only at the far corner."
+},
+{
+"id": "V178",
+"label": "land",
+"note": "Dark green patch, but green in SWIR and crimson in false colour: vegetation, possibly shaded. A small dark pond lies just below it."
+},
+{
+"id": "V179",
+"label": "land",
+"note": "Pale tan strip, pink in SWIR (SWIR bright), between green vegetation and a dark area. Dry ground."
+},
+{
+"id": "V180",
+"label": "water",
+"note": "In a black zone in SWIR and NIR with scattered green tree crowns. Looks like flooded ground with sparse trees; window at its edge, mostly dark."
+},
+{
+"id": "V181",
+"label": "land",
+"note": "Bright white-lavender bank just east of a black river channel. High in all bands; one column on the river side may be a wet margin."
+},
+{
+"id": "V182",
+"label": "land",
+"note": "Purple-pink in SWIR, pale cyan in false colour; not the navy or teal of the lake at top right, and behind its vegetated shore. Chip is hazy and has no-data blocks nearby."
+},
+{
+"id": "V183",
+"label": "?",
+"note": "Grey pixels at the fringe of a bright cloud: thin cloud or haze over the window."
+},
+{
+"id": "V184",
+"label": "land",
+"note": "Dark green vegetation, green in SWIR; clouds elsewhere in the chip."
+},
+{
+"id": "V185",
+"label": "water",
+"note": "Cream-white in true colour, pure blue in SWIR, cyan in false colour. Sediment-laden river beside forest."
+},
+{
+"id": "V186",
+"label": "land",
+"note": "Bright whitish in all composites with NIR present, unlike the dendritic channel nearby that is navy in SWIR and teal in false colour. Hazy chip with no-data blocks to the left."
+},
+{
+"id": "V187",
+"label": "land",
+"note": "Vegetation, green in SWIR throughout."
+},
+{
+"id": "V188",
+"label": "land",
+"note": "Grey-green, mauve in false colour so NIR is present. Between sunlit vegetation and a dark area near a cloud; probably light haze."
+},
+{
+"id": "V189",
+"label": "water",
+"note": "Black in SWIR and NIR in a dark strip inside darker vegetation (maroon in false colour). Probably a channel or pond; clouds are in the chip, so moderate confidence."
+},
+{
+"id": "V190",
+"label": "?",
+"note": "Mixed mosaic between low-NIR patches (turbid water look: blue in SWIR, green in NIR) and vegetated patches; the 16 pixels are heterogeneous (red, olive, dark grey, teal) and not black like the river channel. Too mixed to call."
+},
+{
+"id": "V191",
+"label": "land",
+"note": "At the edge of a vegetated patch inside a dark (likely flooded) area; mid green in SWIR and medium red in NIR, as bright as the nearby vegetation. Vegetation dominates."
+},
+{
+"id": "V192",
+"label": "?",
+"note": "Very dark in all bands at the edge of a large dark region next to cloud and haze. NIR is near black with a slight red tint, so it could be water or vegetation in cloud shadow."
+},
+{
+"id": "V193",
+"label": "land",
+"note": "Inside the bright green vegetated band in SWIR, away from the dark region and the cloud. Vegetation."
+},
+{
+"id": "V194",
+"label": "land",
+"note": "Dark green vegetation, green in SWIR and red in NIR; the right column is under the haze at the cloud edge, but most pixels are clear vegetation."
+},
+{
+"id": "V195",
+"label": "water",
+"note": "Inside a large dark region that is black in SWIR and dark teal (low NIR) in NIR, with lake-like edges against vegetation. Thin haze from the nearby cloud greys the window but shows no vegetation signal."
+},
+{
+"id": "V196",
+"label": "water",
+"note": "Whole area is dark navy in SWIR and dark teal-green in NIR with no vegetation red. The window sits on the edge of a slightly brighter N-S band, likely a turbid channel. Flooded."
+},
+{
+"id": "V197",
+"label": "?",
+"note": "Large smooth region with a lake-like rim: teal in true colour, mid-brown (not dark) in SWIR, purple in NIR. Small patches nearby are black in every band, unlike this region. Could be wetland or flooded grassland; ambiguous."
+},
+{
+"id": "V198",
+"label": "?",
+"note": "Mottled pink and teal mosaic; the window is mauve in SWIR (between the blue turbid-water areas and the cream land) and muted grey-green in NIR. Not resolvable."
+},
+{
+"id": "V199",
+"label": "land",
+"note": "Light cyan in true colour, yellow in SWIR and pink (high NIR) in NIR; vegetated land north-east of the river bend. The right column is slightly darker but not water-like."
+},
+{
+"id": "V200",
+"label": "land",
+"note": "Pale green land in SWIR beside a bright straight linear feature (road), which only touches the bottom-right corner. No dark pixels."
+},
+{
+"id": "V201",
+"label": "land",
+"note": "Dark area right next to a cloud, probably cloud shadow, but NIR stays dark red with texture like the vegetation outside it and SWIR shows dark green. Shadowed vegetation rather than water."
+},
+{
+"id": "V202",
+"label": "land",
+"note": "Uniform green vegetation in both composites, a few pixels west of a road and its dark water-filled ditch."
+},
+{
+"id": "V203",
+"label": "water",
+"note": "Large area that is black in true colour and SWIR and dark teal-black in NIR, beside a bright vegetated levee strip. Open flood water."
+},
+{
+"id": "V204",
+"label": "water",
+"note": "Edge of a large dark region that is teal-black (low NIR) in NIR with scattered trees. Most window pixels are black or dark, with a column of sparse vegetation. Mixed edge near a cloud; water dominates."
+},
+{
+"id": "V205",
+"label": "water",
+"note": "Extensive dark navy region in SWIR, dark teal (low NIR) in NIR, with isolated pink tree crowns standing in it. Flooded area."
+},
+{
+"id": "V206",
+"label": "water",
+"note": "In the dark ring around a green algae or turbid patch: black in true colour, navy-black in SWIR and black in NIR. Open water."
+},
+{
+"id": "V207",
+"label": "land",
+"note": "Bright yellow-green in SWIR and green in true colour. Vegetated land."
+},
+{
+"id": "V208",
+"label": "land",
+"note": "In the dark part of a chip whose stretch is set by a cloud; window pixels are dark-to-medium red in NIR and green in SWIR. Vegetation, not water."
+},
+{
+"id": "V209",
+"label": "water",
+"note": "Upper edge of a large region that is blue in SWIR, green (red above NIR) in NIR and pink in true colour, crossed by a channel. Turbid flood water; the window is navy in SWIR."
+},
+{
+"id": "V210",
+"label": "land",
+"note": "Light pink and yellow in SWIR, mottled light tones in true colour; open land away from the dark river channels."
+}
+]

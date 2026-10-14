@@ -1,0 +1,263 @@
+{
+ "what": "The upstream revision every recorded number was measured against. Each experiment calls hf_hub_download or snapshot_download with no revision=, so a run took whatever main pointed at that day and nothing recorded which bytes those were. These are those bytes, read back out of the Hugging Face caches the runs actually used.",
+ "measured_on": "2026-09-21",
+ "how": {
+  "aicr": "python scripts/upstream_revision.py scan --cache /scratch/qi_zim_neu/olmoearth_inferenceX/hf, run inside an srun on the cpu partition; the readings below were taken with the equivalent find over refs/main",
+  "laptop": "python scripts/upstream_revision.py scan",
+  "again": "python scripts/upstream_revision.py check asks the Hub what main points at now and names what has moved"
+ },
+ "what_this_is_not": "Not a generator's output. This is a measurement of someone else's system at a point in time and cannot be recomputed, only re-measured. A revision of null means the sha was not recoverable, and the entry says why rather than being left out.",
+ "cross_checks": [
+  "allenai/olmoearth-paper-embeddings read the same in two separate cache trees on aicr, which the experiments populated on different days.",
+  "allenai/OlmoEarth-v1-Base, allenai/OlmoEarth-v1-Nano and isp-uv-es/WorldFloodsv2 read the same on aicr and on the laptop: two machines, two independent downloads, one sha each."
+ ],
+ "coverage": "Twenty repositories. scripts/upstream_revision.py finds fifteen of them by scanning the code for repo ids on fetcher lines and top-level constants; that scan is a lower bound, since a repo id assigned inside a function (allenai/OlmoEarth-v1-Base, at oe_inferencex/taskcard.py:379) is not reached. The record may pin more than the scan finds, never less, and the test asserts that direction. The six entries exp89 added on 1 October 2026 were resolved with the Hub API before any exp89 run, not read back from a cache; two of them have no revision because the Hub answers 401.",
+ "repos": {
+  "125oii/dfc2020": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": "1e76e6471e2b1f1f7add66ca845818a26867698c",
+   "read_from": [
+    "aicr:$HF_HOME/hub"
+   ],
+   "carries": "DFC2020, the land-cover testbed of exp66",
+   "named_at": [
+    "exp/exp66_dfc2020.py:98"
+   ]
+  },
+  "Qwen/Qwen2.5-7B-Instruct": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+   "read_from": [
+    "aicr:$HF_HOME/hub"
+   ],
+   "carries": "the smaller agent of the exp64 benchmark",
+   "named_at": []
+  },
+  "Qwen/Qwen3.8-27B": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+   "read_from": [
+    "aicr:$HF_HOME/hub"
+   ],
+   "carries": "the bf16 weights behind the NVFP4 quantisation exp64 serves",
+   "named_at": []
+  },
+  "allenai/OlmoEarth-v1-Base": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": "4bd1392a4539404d2c74276c39f3cb4cfff466cc",
+   "read_from": [
+    "aicr:$HF_HOME/hub",
+    "laptop:~/.cache/huggingface/hub"
+   ],
+   "carries": "the v1 Base encoder almost every map in the record was inferred with",
+   "named_at": [
+    "oe_inferencex/taskcard.py:379"
+   ]
+  },
+  "allenai/OlmoEarth-v1-FT-AWF-Base": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": "a347b1546ab881c92aa125400ed5acc8126394ca",
+   "read_from": [
+    "aicr:$HF_HOME/hub"
+   ],
+   "carries": "the fine-tuned AWF head of exp21",
+   "named_at": [
+    "exp/exp21_finetuned_awf.py:54",
+    "exp/exp89_finetuned_checkpoints.py:174"
+   ]
+  },
+  "allenai/OlmoEarth-v1-FT-ForestLossDriver-Base": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": "15502f8acb4caed6e3a7d777b0fb569c1f7eb791",
+   "read_from": [
+    "hf-api:2026-10-01 (resolved before any run; no cache has read it back yet)"
+   ],
+   "carries": "the fine-tuned Forest Loss Driver checkpoint of exp89's arm F (model.ckpt, 381,184,175 bytes, sha256 682c20b9...); its dataset is a Cloud Storage object, pinned in the run script by generation, size and MD5",
+   "named_at": [
+    "exp/exp89_finetuned_checkpoints.py:176"
+   ]
+  },
+  "allenai/OlmoEarth-v1-FT-Mangrove-Base": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": "57ee738b5b4474ad61391ed612e4fbc2a034353e",
+   "read_from": [
+    "hf-api:2026-10-01 (resolved before any run; no cache has read it back yet)"
+   ],
+   "carries": "the fine-tuned Mangrove checkpoint of exp89 (model.ckpt, 1,041,362,118 bytes, sha256 ffb51fbb...)",
+   "named_at": [
+    "exp/exp89_finetuned_checkpoints.py:170"
+   ]
+  },
+  "allenai/OlmoEarth-v1-FT-Nandi-Base": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": null,
+   "why": "The Hub answers 401 (checked 1 October 2026), though Ai2's doc links it. exp89's arm N runs only if it is published and pinned here.",
+   "read_from": [],
+   "carries": "the fine-tuned Nandi checkpoint, exp89's arm N (not run)",
+   "named_at": [
+    "exp/exp89_finetuned_checkpoints.py:172"
+   ]
+  },
+  "allenai/OlmoEarth-v1-Nano": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": "529248a4dc3c54014c56b7504641cec98de31d1c",
+   "read_from": [
+    "aicr:$HF_HOME/hub",
+    "laptop:~/.cache/huggingface/hub"
+   ],
+   "carries": "the smallest size of the series",
+   "named_at": []
+  },
+  "allenai/OlmoEarth-v1_2-Base": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": "2e99a734a30e9aeb993aaa39946c6dcf554739e0",
+   "read_from": [
+    "aicr:$HF_HOME/hub"
+   ],
+   "carries": "the v1.2 Base encoder, the second checkpoint of the difference atlas",
+   "named_at": [
+    "exp/exp03_more_channels.py:6",
+    "exp/exp03_more_channels.py:108",
+    "oe_inferencex/taskcard.py:379"
+   ]
+  },
+  "allenai/olmoearth-paper-embeddings": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": "6ea2c7973d2d6b79cd2221370bea6319f0eada68",
+   "read_from": [
+    "aicr:$HF_HOME/paper_embeddings",
+    "aicr:$HF_HOME/paper_embeddings/hub"
+   ],
+   "carries": "the sixteen encoders' embeddings over Ai2's twenty-four published tasks; every suite experiment reads them, directly or through exp54 and exp70",
+   "named_at": [
+    "exp/exp41_two_view_disagreement.py:51",
+    "exp/exp51_their_probe.py:106",
+    "exp/exp70_task_suite.py:85"
+   ]
+  },
+  "allenai/olmoearth_lcc": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": null,
+   "why": "Held in neither cache, so there is no sha to read back. oe_inferencex.taskcard fetches its README to fill a task card's provenance fields; no recorded number rests on it, and a re-upload would change a citation, not a result.",
+   "read_from": [],
+   "carries": "the served land-cover product's dataset card",
+   "named_at": [
+    "oe_inferencex/taskcard.py:323"
+   ]
+  },
+  "allenai/olmoearth_projects": {
+   "host": "github",
+   "repo_type": "git",
+   "revision": "f3c9b0c89c7670b3525647dda4c14b76245d682d",
+   "read_from": [
+    "aicr:$SCRATCH/deploy/olmoearth_projects (the clone exp/jobs/e98_env.sh checks out at this commit)",
+    "github.com raw files at this commit (exp104's three configuration files, their sha256 in exp/exp104_forest_loss.py AI2)"
+   ],
+   "carries": "Ai2's project configurations: the AWF deployment (exp98, exp99, and the recipe of exp102 and exp103) and the Forest Loss Driver configuration (exp104)",
+   "named_at": [
+    "exp/exp104_forest_loss.py:136"
+   ]
+  },
+  "allenai/olmoearth_projects_awf": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": "da8eb6aab65b518cb8223912ba9091cbaa5dad2f",
+   "read_from": [
+    "hf-api:2026-10-01 (resolved before any run; no cache has read it back yet)"
+   ],
+   "carries": "the AWF rslearn dataset (dataset.tar, 1,869,219,840 bytes) exp89's arm A downloads and extracts under E89_DATA (it no longer reads the cluster's data/awf, which the scratch purge had partly removed); exp04 to exp21 read an earlier unpinned download",
+   "named_at": [
+    "exp/exp89_finetuned_checkpoints.py:175"
+   ]
+  },
+  "allenai/olmoearth_projects_mangrove": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": "3a878b8a9e54ef627939d48cab334f74e89fa634",
+   "read_from": [
+    "hf-api:2026-10-01 (resolved before any run; no cache has read it back yet)"
+   ],
+   "carries": "the Mangrove rslearn dataset of exp89 (mangrove.tar, 62,433,280 bytes, sha256 ef9dba6a...; annotation_features.geojson)",
+   "named_at": [
+    "exp/exp89_finetuned_checkpoints.py:171"
+   ]
+  },
+  "allenai/olmoearth_projects_nandi": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": null,
+   "why": "The Hub answers 401 (checked 1 October 2026), though Ai2's doc links it. exp89's arm N runs only if it is published and pinned here.",
+   "read_from": [],
+   "carries": "the Nandi rslearn dataset, exp89's arm N (not run)",
+   "named_at": [
+    "exp/exp89_finetuned_checkpoints.py:173"
+   ]
+  },
+  "gastruc/anysat": {
+   "host": "github",
+   "repo_type": "torch.hub",
+   "revision": null,
+   "why": "Fetched by torch.hub.load from GitHub, not from the Hub. torch.hub caches by branch rather than by commit, so the cache cannot be read back for a sha, and exp39's AnySat comparison (archived on 10 October 2026; in the v1.9.0 tree) is therefore the one upstream dependency in the record that is genuinely unpinnable as run.",
+   "read_from": [],
+   "carries": "AnySat, the outside representation of exp39 (archived) and exp41",
+   "named_at": []
+  },
+  "isp-uv-es/WorldFloodsv2": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": "1f3faa2989e69930ac31d5c0a79fd224461123f8",
+   "read_from": [
+    "aicr:$HF_HOME/hub",
+    "laptop:~/.cache/huggingface/hub"
+   ],
+   "carries": "WorldFloods v2, the post-event optical arbiter of exp62",
+   "named_at": [
+    "exp/exp62_fourth_cell.py:70"
+   ]
+  },
+  "links-ads/geoid-flood": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": "868407460bf3db492f50730a57585916baa71dc6",
+   "read_from": [
+    "laptop:~/.cache/huggingface/hub"
+   ],
+   "carries": "GEOID-Flood, the multi-event testbed of exp55 and exp61",
+   "named_at": [
+    "exp/exp55_geoid_flood.py:116"
+   ]
+  },
+  "nvidia/Qwen3.8-27B-NVFP4": {
+   "host": "huggingface",
+   "repo_type": "model",
+   "revision": "dbb8f445b3145f8a4c18ddc769f032d57d32867c",
+   "read_from": [
+    "aicr:$HF_HOME/hub"
+   ],
+   "carries": "the quantised agent exp64 serves under vLLM",
+   "named_at": []
+  },
+  "orion-ai-lab/Kuro-Siwo-Webdataset": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": "e8e61b7b1254b04bfa2b5e26d43db90cb86b5004",
+   "read_from": [
+    "aicr:$HF_HOME/hub"
+   ],
+   "carries": "Kuro Siwo, the null pair of the evidence hunt",
+   "named_at": []
+  }
+ }
+}

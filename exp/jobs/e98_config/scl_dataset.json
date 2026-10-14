@@ -1,0 +1,36 @@
+{
+  "layers": {
+    "sentinel2_scl": {
+      "band_sets": [
+        {
+          "bands": [
+            "SCL"
+          ],
+          "dtype": "uint8"
+        }
+      ],
+      "data_source": {
+        "class_path": "rslearn.data_sources.planetary_computer.PlanetaryComputer",
+        "ingest": false,
+        "init_args": {
+          "asset_bands": {
+            "SCL": [
+              "SCL"
+            ]
+          },
+          "cache_dir": "cache/planetary_computer",
+          "collection_name": "sentinel-2-l2a",
+          "sort_by": "eo:cloud_cover"
+        },
+        "query_config": {
+          "max_matches": 12,
+          "min_matches": 12,
+          "period_duration": "30d",
+          "space_mode": "PER_PERIOD_MOSAIC"
+        }
+      },
+      "resampling_method": "nearest",
+      "type": "raster"
+    }
+  }
+}

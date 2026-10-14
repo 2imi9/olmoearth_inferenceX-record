@@ -1,0 +1,1238 @@
+{
+ "experiment": "exp65 calibrate on the record: the ranker fusion and the side rule refitted held-out through the package",
+ "smoke": false,
+ "device": "cuda",
+ "config": {
+  "pairs": [
+   "offsets",
+   "backbones",
+   "sensors",
+   "finetune"
+  ],
+  "folds": 5,
+  "min_lead": 0.001,
+  "min_gain": 0.05,
+  "families": {
+   "offsets": "OlmoEarth v1 frozen S2 head",
+   "backbones": "OlmoEarth v1 / v1.2 frozen S2 heads",
+   "sensors": "OlmoEarth v1 frozen S2 / S1 heads",
+   "finetune": "OlmoEarth v1 frozen S2 head / FT-S2 v1"
+  },
+  "prereg": "P1 cross-fitted ranker fusion beats confidence on both testbeds (held-out E-AURC lead >= 0.001, per-tile p < 0.05); P2 cross-fitted side rule beats the raw margin rule by >= 0.05 on all 8 pair-testbeds; P3 the frozen-fitted rule applied to the fine-tuned pair is below the margin rule on both testbeds",
+  "floods": {
+   "train": 600,
+   "bolivia": 441,
+   "test": 800
+  },
+  "second_backbone": "v1.2 Base"
+ },
+ "results": {
+  "ranker": {
+   "bolivia": {
+    "n_windows": 71373,
+    "n_errors": 6325,
+    "weights": {
+     "confidence": {
+      "weight": 0.3758112807363139,
+      "direction": "higher is more suspect"
+     },
+     "tile_phase": {
+      "weight": 0.5170692809287821,
+      "direction": "higher is more suspect"
+     },
+     "boundary": {
+      "weight": 0.15388029707120962,
+      "direction": "higher is more suspect"
+     },
+     "ndwi_level": {
+      "weight": 1.7414892683656238,
+      "direction": "higher is more suspect"
+     },
+     "s2_variance": {
+      "weight": -0.020627498651987076,
+      "direction": "higher is less suspect"
+     }
+    },
+    "held_out_excess_aurc": 0.008373341219391487,
+    "confidence_excess_aurc": 0.010500746913433601,
+    "lead_over_confidence": 0.0021274056940421143,
+    "best_single": "confidence",
+    "best_single_excess_aurc": 0.010500746913433601,
+    "singles": {
+     "confidence": {
+      "as_given": 0.010500746913433601,
+      "flipped": 0.2128265008891978
+     },
+     "tile_phase": {
+      "as_given": 0.011153158198824845,
+      "flipped": 0.20799208437710984
+     },
+     "boundary": {
+      "as_given": 0.031726996040744894,
+      "flipped": 0.2001724915276851
+     },
+     "ndwi_level": {
+      "as_given": 0.01211357965323535,
+      "flipped": 0.2131733857877216
+     },
+     "s2_variance": {
+      "as_given": 0.06398850737882643,
+      "flipped": 0.10515122712220644
+     }
+    },
+    "held_out_capture": {
+     "0.05": 0.3116205533596838,
+     "0.1": 0.5726482213438735
+    },
+    "ece": 0.15860252979052794,
+    "tiles_vs_confidence": {
+     "w": 263,
+     "l": 69,
+     "t": 1,
+     "sign_p": 4.064985235419094e-28
+    },
+    "fusion": {
+     "kind": "ranker",
+     "names": [
+      "confidence",
+      "tile_phase",
+      "boundary",
+      "ndwi_level",
+      "s2_variance"
+     ],
+     "mu": [
+      -0.4456549517358574,
+      0.04300357015967075,
+      0.08613201070432797,
+      -0.3486003606997531,
+      89.16260733364673
+     ],
+     "sd": [
+      0.10833752539298339,
+      0.06791977843658953,
+      0.17873871622029716,
+      0.1680879617512785,
+      79.74134142228927
+     ],
+     "w": [
+      0.3758112807363139,
+      0.5170692809287821,
+      0.15388029707120962,
+      1.7414892683656238,
+      -0.020627498651987076
+     ],
+     "b": -2.0486546453995644,
+     "family": "OlmoEarth v1 frozen S2 head",
+     "n_fit": 71373,
+     "baseline": null
+    }
+   },
+   "test": {
+    "n_windows": 149684,
+    "n_errors": 7067,
+    "weights": {
+     "confidence": {
+      "weight": 0.5058762232098055,
+      "direction": "higher is more suspect"
+     },
+     "tile_phase": {
+      "weight": 0.5197105063600979,
+      "direction": "higher is more suspect"
+     },
+     "boundary": {
+      "weight": 0.11130645103170274,
+      "direction": "higher is more suspect"
+     },
+     "ndwi_level": {
+      "weight": 0.8386783514266353,
+      "direction": "higher is more suspect"
+     },
+     "s2_variance": {
+      "weight": -0.15314703855410158,
+      "direction": "higher is less suspect"
+     }
+    },
+    "held_out_excess_aurc": 0.006892889732939661,
+    "confidence_excess_aurc": 0.009827431141912285,
+    "lead_over_confidence": 0.0029345414089726237,
+    "best_single": "confidence",
+    "best_single_excess_aurc": 0.009827431141912285,
+    "singles": {
+     "confidence": {
+      "as_given": 0.009827431141912285,
+      "flipped": 0.13232978577499205
+     },
+     "tile_phase": {
+      "as_given": 0.013095100738103172,
+      "flipped": 0.12355041261006684
+     },
+     "boundary": {
+      "as_given": 0.016788095559870965,
+      "flipped": 0.12153870348155664
+     },
+     "ndwi_level": {
+      "as_given": 0.011499563442391057,
+      "flipped": 0.09856488699795504
+     },
+     "s2_variance": {
+      "as_given": 0.032108814721724374,
+      "flipped": 0.06491795791846816
+     }
+    },
+    "held_out_capture": {
+     "0.05": 0.4470072166407245,
+     "0.1": 0.6838828357152964
+    },
+    "ece": 0.21989963845882313,
+    "tiles_vs_confidence": {
+     "w": 318,
+     "l": 134,
+     "t": 8,
+     "sign_p": 1.2613775763357595e-18
+    },
+    "fusion": {
+     "kind": "ranker",
+     "names": [
+      "confidence",
+      "tile_phase",
+      "boundary",
+      "ndwi_level",
+      "s2_variance"
+     ],
+     "mu": [
+      -0.46603709548808286,
+      0.03453862808469427,
+      0.06967845594719542,
+      -0.31519059253323306,
+      88.97309185616282
+     ],
+     "sd": [
+      0.08719331446420968,
+      0.06700043954537986,
+      0.16598272013126267,
+      0.1637311314723638,
+      76.02908655126343
+     ],
+     "w": [
+      0.5058762232098055,
+      0.5197105063600979,
+      0.11130645103170274,
+      0.8386783514266353,
+      -0.15314703855410158
+     ],
+     "b": -1.2703072386247234,
+     "family": "OlmoEarth v1 frozen S2 head",
+     "n_fit": 149684,
+     "baseline": null
+    }
+   }
+  },
+  "side": {
+   "offsets": {
+    "train_fit": {
+     "n_disagree": 2683,
+     "weights": {
+      "margin:a": {
+       "weight": -0.10512053875794433,
+       "direction": "favours a"
+      },
+      "margin:b": {
+       "weight": 0.08332195945904025,
+       "direction": "favours b"
+      },
+      "margin:a-b": {
+       "weight": -0.1284431196590392,
+       "direction": "favours a"
+      },
+      "rank:a": {
+       "weight": -0.6420336654251847,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": -0.3324077373083015,
+       "direction": "favours a"
+      },
+      "rank:a-b": {
+       "weight": -0.23941818368210213,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.42241993213282,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.3765002185764371,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.459083362112592,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": 0.018836497339804456,
+       "direction": "favours b"
+      },
+      "boundary:b": {
+       "weight": -0.05527528773599991,
+       "direction": "favours a"
+      },
+      "boundary:a-b": {
+       "weight": 0.04102027268887145,
+       "direction": "favours b"
+      },
+      "tile_phase:a": {
+       "weight": -0.07117215210087804,
+       "direction": "favours a"
+      },
+      "tile_phase:b": {
+       "weight": -0.07117215210087804,
+       "direction": "favours a"
+      },
+      "tile_phase:a-b": {
+       "weight": 0.0,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": -0.06770207645766013,
+       "direction": "favours a"
+      }
+     }
+    },
+    "bolivia": {
+     "n_disagree": 2458,
+     "cross_fit": 0.75793327908869,
+     "margin_rule": 0.5134255492270138,
+     "always_a": 0.38974776240846215,
+     "always_b": 0.6102522375915378,
+     "gain": 0.24450772986167624,
+     "tiles": {
+      "w": 186,
+      "l": 57,
+      "t": 37,
+      "sign_p": 1.8800115248087374e-17
+     },
+     "weights": {
+      "margin:a": {
+       "weight": 0.41717188231271873,
+       "direction": "favours b"
+      },
+      "margin:b": {
+       "weight": -0.009022444675450176,
+       "direction": "favours a"
+      },
+      "margin:a-b": {
+       "weight": 0.31481345445495573,
+       "direction": "favours b"
+      },
+      "rank:a": {
+       "weight": -0.7665258703154739,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": -0.08363589900903419,
+       "direction": "favours a"
+      },
+      "rank:a-b": {
+       "weight": -0.49503114991051866,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.387515752688071,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.37939505437508136,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.44034531752029515,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": -0.23351765301229377,
+       "direction": "favours a"
+      },
+      "boundary:b": {
+       "weight": -0.35813221836286246,
+       "direction": "favours a"
+      },
+      "boundary:a-b": {
+       "weight": 0.08058237070021783,
+       "direction": "favours b"
+      },
+      "tile_phase:a": {
+       "weight": -0.04354226529266154,
+       "direction": "favours a"
+      },
+      "tile_phase:b": {
+       "weight": -0.04354226529266154,
+       "direction": "favours a"
+      },
+      "tile_phase:a-b": {
+       "weight": 0.0,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": -0.12811319974472565,
+       "direction": "favours a"
+      }
+     },
+     "train_fit_applied": {
+      "n_disagree": 2458,
+      "share_right": 0.6354759967453214,
+      "margin_rule": 0.5134255492270138
+     }
+    },
+    "test": {
+     "n_disagree": 3852,
+     "cross_fit": 0.6902907580477674,
+     "margin_rule": 0.582294911734164,
+     "always_a": 0.4984423676012461,
+     "always_b": 0.5015576323987538,
+     "gain": 0.10799584631360337,
+     "tiles": {
+      "w": 230,
+      "l": 107,
+      "t": 60,
+      "sign_p": 9.067652503906316e-12
+     },
+     "weights": {
+      "margin:a": {
+       "weight": -0.17981031506173875,
+       "direction": "favours a"
+      },
+      "margin:b": {
+       "weight": 0.010048943493503812,
+       "direction": "favours b"
+      },
+      "margin:a-b": {
+       "weight": -0.1359729524520583,
+       "direction": "favours a"
+      },
+      "rank:a": {
+       "weight": -0.2741849354124084,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": -0.12873680546783872,
+       "direction": "favours a"
+      },
+      "rank:a-b": {
+       "weight": -0.09686576099839996,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.40560479229627805,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.17364123972225629,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.3561409717760637,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": 0.06865001270546367,
+       "direction": "favours b"
+      },
+      "boundary:b": {
+       "weight": 0.018421322411106663,
+       "direction": "favours b"
+      },
+      "boundary:a-b": {
+       "weight": 0.025155892777708945,
+       "direction": "favours b"
+      },
+      "tile_phase:a": {
+       "weight": 0.014009435953990434,
+       "direction": "favours b"
+      },
+      "tile_phase:b": {
+       "weight": 0.014009435953990434,
+       "direction": "favours b"
+      },
+      "tile_phase:a-b": {
+       "weight": 0.0,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": -0.12604130359892227,
+       "direction": "favours a"
+      }
+     },
+     "train_fit_applied": {
+      "n_disagree": 3852,
+      "share_right": 0.6806853582554517,
+      "margin_rule": 0.582294911734164
+     }
+    }
+   },
+   "backbones": {
+    "train_fit": {
+     "n_disagree": 1877,
+     "weights": {
+      "margin:a": {
+       "weight": 0.24701282986729733,
+       "direction": "favours b"
+      },
+      "margin:b": {
+       "weight": 0.9004414913949005,
+       "direction": "favours b"
+      },
+      "margin:a-b": {
+       "weight": -0.4109349738175603,
+       "direction": "favours a"
+      },
+      "rank:a": {
+       "weight": -0.5346713315341535,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": -0.7465265379850267,
+       "direction": "favours a"
+      },
+      "rank:a-b": {
+       "weight": 0.11392320414770785,
+       "direction": "favours b"
+      },
+      "signed:a": {
+       "weight": 0.3229112882801737,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.5058663460714262,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.4744823084731754,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": -0.18036903057243764,
+       "direction": "favours a"
+      },
+      "boundary:b": {
+       "weight": -0.034462463593898804,
+       "direction": "favours a"
+      },
+      "boundary:a-b": {
+       "weight": -0.08108627708827,
+       "direction": "favours a"
+      },
+      "tile_phase:a": {
+       "weight": -0.038517599191222204,
+       "direction": "favours a"
+      },
+      "tile_phase:b": {
+       "weight": 0.13230838546050383,
+       "direction": "favours b"
+      },
+      "tile_phase:a-b": {
+       "weight": -0.2032764387743702,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": 0.02558209843052858,
+       "direction": "favours b"
+      }
+     }
+    },
+    "bolivia": {
+     "n_disagree": 2850,
+     "cross_fit": 0.771578947368421,
+     "margin_rule": 0.5596491228070175,
+     "always_a": 0.5533333333333333,
+     "always_b": 0.44666666666666666,
+     "gain": 0.21192982456140352,
+     "tiles": {
+      "w": 188,
+      "l": 63,
+      "t": 28,
+      "sign_p": 6.26194868198802e-16
+     },
+     "weights": {
+      "margin:a": {
+       "weight": -0.07106911982380627,
+       "direction": "favours a"
+      },
+      "margin:b": {
+       "weight": -0.4948448785309811,
+       "direction": "favours a"
+      },
+      "margin:a-b": {
+       "weight": 0.2695966762828199,
+       "direction": "favours b"
+      },
+      "rank:a": {
+       "weight": 0.382604013696818,
+       "direction": "favours b"
+      },
+      "rank:b": {
+       "weight": 1.0996484680479037,
+       "direction": "favours b"
+      },
+      "rank:a-b": {
+       "weight": -0.4696397097980058,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.29744796813307434,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.6175498735143257,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.5080986903008966,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": 0.27544676368237775,
+       "direction": "favours b"
+      },
+      "boundary:b": {
+       "weight": -0.03855768907544087,
+       "direction": "favours a"
+      },
+      "boundary:a-b": {
+       "weight": 0.1839640776464781,
+       "direction": "favours b"
+      },
+      "tile_phase:a": {
+       "weight": 0.10666992539118524,
+       "direction": "favours b"
+      },
+      "tile_phase:b": {
+       "weight": 0.09360253024583316,
+       "direction": "favours b"
+      },
+      "tile_phase:a-b": {
+       "weight": 0.012999375772085167,
+       "direction": "favours b"
+      },
+      "ndwi": {
+       "weight": 0.08687248281343794,
+       "direction": "favours b"
+      }
+     },
+     "train_fit_applied": {
+      "n_disagree": 2850,
+      "share_right": 0.6964912280701754,
+      "margin_rule": 0.5596491228070175
+     }
+    },
+    "test": {
+     "n_disagree": 2971,
+     "cross_fit": 0.6539885560417368,
+     "margin_rule": 0.5772467182766745,
+     "always_a": 0.47391450690003367,
+     "always_b": 0.5260854930999663,
+     "gain": 0.07674183776506227,
+     "tiles": {
+      "w": 167,
+      "l": 91,
+      "t": 81,
+      "sign_p": 1.2902069264483198e-06
+     },
+     "weights": {
+      "margin:a": {
+       "weight": 0.08888707929968796,
+       "direction": "favours b"
+      },
+      "margin:b": {
+       "weight": -0.1431662850864827,
+       "direction": "favours a"
+      },
+      "margin:a-b": {
+       "weight": 0.15065467631073998,
+       "direction": "favours b"
+      },
+      "rank:a": {
+       "weight": -0.4073354087823147,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": 0.22956504807087683,
+       "direction": "favours b"
+      },
+      "rank:a-b": {
+       "weight": -0.41878801766349527,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.19367971619455415,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.242664281528772,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.2486661469871866,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": -0.16939608757478963,
+       "direction": "favours a"
+      },
+      "boundary:b": {
+       "weight": -0.17920365682103828,
+       "direction": "favours a"
+      },
+      "boundary:a-b": {
+       "weight": 0.0035843611873186193,
+       "direction": "favours b"
+      },
+      "tile_phase:a": {
+       "weight": -0.12098686462880373,
+       "direction": "favours a"
+      },
+      "tile_phase:b": {
+       "weight": 0.03469785919935856,
+       "direction": "favours b"
+      },
+      "tile_phase:a-b": {
+       "weight": -0.16358729844171577,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": 0.14566792703075612,
+       "direction": "favours b"
+      }
+     },
+     "train_fit_applied": {
+      "n_disagree": 2971,
+      "share_right": 0.6523056210030292,
+      "margin_rule": 0.5772467182766745
+     }
+    }
+   },
+   "sensors": {
+    "train_fit": {
+     "n_disagree": 7146,
+     "weights": {
+      "margin:a": {
+       "weight": -0.6657718861970238,
+       "direction": "favours a"
+      },
+      "margin:b": {
+       "weight": -0.12591268608005604,
+       "direction": "favours a"
+      },
+      "margin:a-b": {
+       "weight": -0.4308590633181745,
+       "direction": "favours a"
+      },
+      "rank:a": {
+       "weight": -1.157100400363338,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": -0.4819709876751411,
+       "direction": "favours a"
+      },
+      "rank:a-b": {
+       "weight": -0.6300746242162727,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.6888016726807504,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.33349742191203446,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.5897038641350848,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": 0.015260871424082336,
+       "direction": "favours b"
+      },
+      "boundary:b": {
+       "weight": 0.16596039682929328,
+       "direction": "favours b"
+      },
+      "boundary:a-b": {
+       "weight": -0.09571994174756311,
+       "direction": "favours a"
+      },
+      "tile_phase:a": {
+       "weight": -0.2547038765584098,
+       "direction": "favours a"
+      },
+      "tile_phase:b": {
+       "weight": -0.07204914698180422,
+       "direction": "favours a"
+      },
+      "tile_phase:a-b": {
+       "weight": -0.21883617275786676,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": -0.1922030371670191,
+       "direction": "favours a"
+      }
+     }
+    },
+    "bolivia": {
+     "n_disagree": 7761,
+     "cross_fit": 0.7965468367478418,
+     "margin_rule": 0.6821285916763303,
+     "always_a": 0.6733668341708543,
+     "always_b": 0.32663316582914576,
+     "gain": 0.11441824507151144,
+     "tiles": {
+      "w": 176,
+      "l": 87,
+      "t": 55,
+      "sign_p": 2.1591010062452697e-08
+     },
+     "weights": {
+      "margin:a": {
+       "weight": 0.4383046233351088,
+       "direction": "favours b"
+      },
+      "margin:b": {
+       "weight": 0.4082146671692719,
+       "direction": "favours b"
+      },
+      "margin:a-b": {
+       "weight": 0.04622204745272108,
+       "direction": "favours b"
+      },
+      "rank:a": {
+       "weight": -1.7398283500929372,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": -0.6553441201499385,
+       "direction": "favours a"
+      },
+      "rank:a-b": {
+       "weight": -0.6052848647241021,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.51583844905457,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.2385842023612935,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.4316711566881063,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": 0.11976750223001,
+       "direction": "favours b"
+      },
+      "boundary:b": {
+       "weight": 0.07459143717277984,
+       "direction": "favours b"
+      },
+      "boundary:a-b": {
+       "weight": 0.028393995730807576,
+       "direction": "favours b"
+      },
+      "tile_phase:a": {
+       "weight": -0.1883855126621159,
+       "direction": "favours a"
+      },
+      "tile_phase:b": {
+       "weight": -0.14943821913388228,
+       "direction": "favours a"
+      },
+      "tile_phase:a-b": {
+       "weight": -0.07938177228618465,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": 0.08271751831610255,
+       "direction": "favours b"
+      }
+     },
+     "train_fit_applied": {
+      "n_disagree": 7761,
+      "share_right": 0.7252931323283082,
+      "margin_rule": 0.6821285916763303
+     }
+    },
+    "test": {
+     "n_disagree": 12535,
+     "cross_fit": 0.8602313522138013,
+     "margin_rule": 0.6980454726765057,
+     "always_a": 0.8422018348623853,
+     "always_b": 0.1577981651376147,
+     "gain": 0.16218587953729557,
+     "tiles": {
+      "w": 301,
+      "l": 87,
+      "t": 99,
+      "sign_p": 5.161324203587001e-29
+     },
+     "weights": {
+      "margin:a": {
+       "weight": -0.3007722144358044,
+       "direction": "favours a"
+      },
+      "margin:b": {
+       "weight": 0.03154039002425477,
+       "direction": "favours b"
+      },
+      "margin:a-b": {
+       "weight": -0.24216487971815812,
+       "direction": "favours a"
+      },
+      "rank:a": {
+       "weight": -1.9689667250536833,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": -1.1128881163243403,
+       "direction": "favours a"
+      },
+      "rank:a-b": {
+       "weight": -1.0764478849131578,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.05609299635045255,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.49615089625671327,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.27807917411084754,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": -0.01783806828637351,
+       "direction": "favours a"
+      },
+      "boundary:b": {
+       "weight": 0.035651414027788514,
+       "direction": "favours b"
+      },
+      "boundary:a-b": {
+       "weight": -0.0349866801100513,
+       "direction": "favours a"
+      },
+      "tile_phase:a": {
+       "weight": -0.15338780063439478,
+       "direction": "favours a"
+      },
+      "tile_phase:b": {
+       "weight": -0.07621444670133637,
+       "direction": "favours a"
+      },
+      "tile_phase:a-b": {
+       "weight": -0.09692009684259675,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": -0.07924357746762029,
+       "direction": "favours a"
+      }
+     },
+     "train_fit_applied": {
+      "n_disagree": 12535,
+      "share_right": 0.8635819704826486,
+      "margin_rule": 0.6980454726765057
+     }
+    }
+   },
+   "finetune": {
+    "train_fit": {
+     "n_disagree": 3014,
+     "weights": {
+      "margin:a": {
+       "weight": 0.0712407565995254,
+       "direction": "favours b"
+      },
+      "margin:b": {
+       "weight": 0.5975335542180089,
+       "direction": "favours b"
+      },
+      "margin:a-b": {
+       "weight": -0.4075277232270402,
+       "direction": "favours a"
+      },
+      "rank:a": {
+       "weight": -1.0093862806225087,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": -0.8455942597878193,
+       "direction": "favours a"
+      },
+      "rank:a-b": {
+       "weight": -0.03583936283833926,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.270126134239516,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.26730738724031766,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.3151502924349229,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": 0.3712216906667086,
+       "direction": "favours b"
+      },
+      "boundary:b": {
+       "weight": 0.6413266528373355,
+       "direction": "favours b"
+      },
+      "boundary:a-b": {
+       "weight": -0.12701167110485231,
+       "direction": "favours a"
+      },
+      "tile_phase:a": {
+       "weight": -0.11451148454731391,
+       "direction": "favours a"
+      },
+      "tile_phase:b": {
+       "weight": 0.059547433033806496,
+       "direction": "favours b"
+      },
+      "tile_phase:a-b": {
+       "weight": -0.21060758680745625,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": 0.04373843901576622,
+       "direction": "favours b"
+      }
+     }
+    },
+    "bolivia": {
+     "n_disagree": 5073,
+     "cross_fit": 0.7488665483934556,
+     "margin_rule": 0.6108811354228267,
+     "always_a": 0.2483737433471319,
+     "always_b": 0.7516262566528681,
+     "gain": 0.13798541297062883,
+     "tiles": {
+      "w": 176,
+      "l": 73,
+      "t": 41,
+      "sign_p": 2.7255079788437138e-11
+     },
+     "weights": {
+      "margin:a": {
+       "weight": 0.0988489707374853,
+       "direction": "favours b"
+      },
+      "margin:b": {
+       "weight": 0.3811492207176635,
+       "direction": "favours b"
+      },
+      "margin:a-b": {
+       "weight": -0.20648255975487115,
+       "direction": "favours a"
+      },
+      "rank:a": {
+       "weight": -0.035490285828672384,
+       "direction": "favours a"
+      },
+      "rank:b": {
+       "weight": 0.530687420895013,
+       "direction": "favours b"
+      },
+      "rank:a-b": {
+       "weight": -0.39348051164952624,
+       "direction": "favours a"
+      },
+      "signed:a": {
+       "weight": 0.3854784261093423,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": 0.24984251749676073,
+       "direction": "favours b"
+      },
+      "signed:a-b": {
+       "weight": 0.07544889372158667,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": 0.09244210523637247,
+       "direction": "favours b"
+      },
+      "boundary:b": {
+       "weight": 0.12059514007548264,
+       "direction": "favours b"
+      },
+      "boundary:a-b": {
+       "weight": -0.010571961681843246,
+       "direction": "favours a"
+      },
+      "tile_phase:a": {
+       "weight": 0.15565903974767245,
+       "direction": "favours b"
+      },
+      "tile_phase:b": {
+       "weight": 0.2724708180437559,
+       "direction": "favours b"
+      },
+      "tile_phase:a-b": {
+       "weight": -0.06365957764088485,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": -0.1188881300789569,
+       "direction": "favours a"
+      }
+     },
+     "train_fit_applied": {
+      "n_disagree": 5073,
+      "share_right": 0.355016755371575,
+      "margin_rule": 0.6108811354228267
+     }
+    },
+    "test": {
+     "n_disagree": 4029,
+     "cross_fit": 0.7282204020848846,
+     "margin_rule": 0.5544800198560437,
+     "always_a": 0.28294862248696945,
+     "always_b": 0.7170513775130305,
+     "gain": 0.17374038222884092,
+     "tiles": {
+      "w": 204,
+      "l": 97,
+      "t": 49,
+      "sign_p": 3.3264850741684664e-10
+     },
+     "weights": {
+      "margin:a": {
+       "weight": 0.036146310977658073,
+       "direction": "favours b"
+      },
+      "margin:b": {
+       "weight": 0.8558883639018208,
+       "direction": "favours b"
+      },
+      "margin:a-b": {
+       "weight": -0.5687643542996305,
+       "direction": "favours a"
+      },
+      "rank:a": {
+       "weight": 0.4738747006279508,
+       "direction": "favours b"
+      },
+      "rank:b": {
+       "weight": 0.008572052784256254,
+       "direction": "favours b"
+      },
+      "rank:a-b": {
+       "weight": 0.3170818448137,
+       "direction": "favours b"
+      },
+      "signed:a": {
+       "weight": 0.058088533042497045,
+       "direction": "favours b"
+      },
+      "signed:b": {
+       "weight": -0.24496479238097202,
+       "direction": "favours a"
+      },
+      "signed:a-b": {
+       "weight": 0.17005244989096674,
+       "direction": "favours b"
+      },
+      "boundary:a": {
+       "weight": -0.1034056422348569,
+       "direction": "favours a"
+      },
+      "boundary:b": {
+       "weight": 0.1528098842397007,
+       "direction": "favours b"
+      },
+      "boundary:a-b": {
+       "weight": -0.1473632545794276,
+       "direction": "favours a"
+      },
+      "tile_phase:a": {
+       "weight": 0.24453630202589072,
+       "direction": "favours b"
+      },
+      "tile_phase:b": {
+       "weight": 0.3959176081763112,
+       "direction": "favours b"
+      },
+      "tile_phase:a-b": {
+       "weight": -0.06049335504350333,
+       "direction": "favours a"
+      },
+      "ndwi": {
+       "weight": 0.03531422504720757,
+       "direction": "favours b"
+      }
+     },
+     "train_fit_applied": {
+      "n_disagree": 4029,
+      "share_right": 0.5328865723504592,
+      "margin_rule": 0.5544800198560437
+     }
+    }
+   }
+  },
+  "transfer": {
+   "bolivia": {
+    "lock_raised": true,
+    "frozen_rule_forced": {
+     "n_disagree": 5073,
+     "share_right": 0.43820224719101125,
+     "margin_rule": 0.6108811354228267
+    },
+    "own_cross_fit": 0.7488665483934556
+   },
+   "test": {
+    "lock_raised": true,
+    "frozen_rule_forced": {
+     "n_disagree": 4029,
+     "share_right": 0.49193348225366096,
+     "margin_rule": 0.5544800198560437
+    },
+    "own_cross_fit": 0.7282204020848846
+   }
+  },
+  "finetune": {
+   "train": {
+    "train_tiles": 6837,
+    "best_val_miou": 0.9164793636247431,
+    "train_seconds": 665.7393264770508
+   }
+  }
+ },
+ "failures": [],
+ "prereg": {
+  "P1": true,
+  "P2": true,
+  "P3": true,
+  "n_tested": {
+   "P1": 2,
+   "P2": 8,
+   "P3": 2
+  },
+  "complete": true
+ },
+ "n_failures": 0,
+ "seconds": 762.3424346446991
+}

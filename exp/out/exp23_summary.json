@@ -1,0 +1,277 @@
+{
+ "n_scenes": 24,
+ "min_errors": 8,
+ "tests": {
+  "T1_enrichment": {
+   "median_share_errors": 0.10800385728061716,
+   "median_share_correct": 0.00789886157399769,
+   "pooled_share_errors": 0.09869203329369798,
+   "wins_losses_ties": [
+    17,
+    3,
+    4
+   ],
+   "sign_p": 0.0025768280029296875
+  },
+  "T2_mechanism_tile_vs_confidence": {
+   "median_diff": 0.0,
+   "wins_losses_ties": [
+    8,
+    8,
+    8
+   ],
+   "sign_p": 1.0,
+   "n_scenes": 24
+  },
+  "T3_signal_vs_confidence": {
+   "E_case": {
+    "all_patches_all_scenes": {
+     "wlt": [
+      9,
+      15,
+      0
+     ],
+     "sign_p": 0.30745625495910645,
+     "median_gain": -0.0018206150352528064
+    },
+    "all_patches_same_scenes": {
+     "wlt": [
+      9,
+      14,
+      0
+     ],
+     "sign_p": 0.4048728942871094,
+     "median_gain": -0.0014250661707458736
+    },
+    "stable_patches": {
+     "wlt": [
+      9,
+      14,
+      0
+     ],
+     "sign_p": 0.4048728942871094,
+     "median_gain": -0.0014211691235894986,
+     "n_scenes": 23
+    }
+   },
+   "tile-phase (aligned)": {
+    "all_patches_all_scenes": {
+     "wlt": [
+      23,
+      1,
+      0
+     ],
+     "sign_p": 2.9802322387695312e-06,
+     "median_gain": 0.003129673550583782
+    },
+    "all_patches_same_scenes": {
+     "wlt": [
+      22,
+      1,
+      0
+     ],
+     "sign_p": 5.7220458984375e-06,
+     "median_gain": 0.0031267541296733947
+    },
+    "stable_patches": {
+     "wlt": [
+      21,
+      2,
+      0
+     ],
+     "sign_p": 6.604194641113281e-05,
+     "median_gain": 0.0026424537685621526,
+     "n_scenes": 23
+    }
+   },
+   "boundary": {
+    "all_patches_all_scenes": {
+     "wlt": [
+      16,
+      8,
+      0
+     ],
+     "sign_p": 0.15158963203430176,
+     "median_gain": 0.002686721866374017
+    },
+    "all_patches_same_scenes": {
+     "wlt": [
+      15,
+      8,
+      0
+     ],
+     "sign_p": 0.21003961563110352,
+     "median_gain": 0.0024018625861939443
+    },
+    "stable_patches": {
+     "wlt": [
+      18,
+      5,
+      0
+     ],
+     "sign_p": 0.010622024536132812,
+     "median_gain": 0.0021626829520364536,
+     "n_scenes": 23
+    }
+   },
+   "E_dist": {
+    "all_patches_all_scenes": {
+     "wlt": [
+      12,
+      12,
+      0
+     ],
+     "sign_p": 1.0,
+     "median_gain": -3.4458275371775744e-05
+    },
+    "all_patches_same_scenes": {
+     "wlt": [
+      11,
+      12,
+      0
+     ],
+     "sign_p": 1.0,
+     "median_gain": -0.00022542384257254276
+    },
+    "stable_patches": {
+     "wlt": [
+      12,
+      11,
+      0
+     ],
+     "sign_p": 1.0,
+     "median_gain": 0.00027177572253893746,
+     "n_scenes": 23
+    }
+   },
+   "control": {
+    "all_patches_all_scenes": {
+     "wlt": [
+      12,
+      12,
+      0
+     ],
+     "sign_p": 1.0,
+     "median_gain": 0.0003901835452286861
+    },
+    "all_patches_same_scenes": {
+     "wlt": [
+      11,
+      12,
+      0
+     ],
+     "sign_p": 1.0,
+     "median_gain": -0.00019913688294253886
+    },
+    "stable_patches": {
+     "wlt": [
+      10,
+      13,
+      0
+     ],
+     "sign_p": 0.6776394844055176,
+     "median_gain": -0.0002654630676200098,
+     "n_scenes": 23
+    }
+   }
+  }
+ },
+ "scenes": {
+  "barotse": {
+   "n_err": 97,
+   "n_err_stable": 97
+  },
+  "cuando_20": {
+   "n_err": 49,
+   "n_err_stable": 42
+  },
+  "cuando_50": {
+   "n_err": 168,
+   "n_err_stable": 155
+  },
+  "cuando_80": {
+   "n_err": 61,
+   "n_err_stable": 55
+  },
+  "delta": {
+   "n_err": 29,
+   "n_err_stable": 29
+  },
+  "kazungula": {
+   "n_err": 18,
+   "n_err_stable": 14
+  },
+  "luangwa_conf": {
+   "n_err": 52,
+   "n_err_stable": 41
+  },
+  "okavango_50": {
+   "n_err": 96,
+   "n_err_stable": 92
+  },
+  "okavango_80": {
+   "n_err": 76,
+   "n_err_stable": 54
+  },
+  "okavango_sep": {
+   "n_err": 13,
+   "n_err_stable": 13
+  },
+  "rovuma_20": {
+   "n_err": 39,
+   "n_err_stable": 30
+  },
+  "rovuma_50": {
+   "n_err": 74,
+   "n_err_stable": 51
+  },
+  "rovuma_80": {
+   "n_err": 18,
+   "n_err_stable": 12
+  },
+  "save_20": {
+   "n_err": 25,
+   "n_err_stable": 15
+  },
+  "save_50": {
+   "n_err": 76,
+   "n_err_stable": 71
+  },
+  "save_80": {
+   "n_err": 23,
+   "n_err_stable": 6
+  },
+  "shire_20": {
+   "n_err": 303,
+   "n_err_stable": 295
+  },
+  "shire_50": {
+   "n_err": 123,
+   "n_err_stable": 122
+  },
+  "shire_80": {
+   "n_err": 188,
+   "n_err_stable": 180
+  },
+  "shire_liwonde": {
+   "n_err": 17,
+   "n_err_stable": 17
+  },
+  "vicfalls_up": {
+   "n_err": 23,
+   "n_err_stable": 19
+  },
+  "zambezi_20": {
+   "n_err": 51,
+   "n_err_stable": 45
+  },
+  "zambezi_50": {
+   "n_err": 16,
+   "n_err_stable": 14
+  },
+  "zambezi_80": {
+   "n_err": 47,
+   "n_err_stable": 47
+  }
+ }
+}

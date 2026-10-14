@@ -1,0 +1,12 @@
+{
+ "roots": [
+  {
+   "root_id": "root_0",
+   "windows": 4
+  }
+ ],
+ "rule": "one window per part",
+ "parts_read": 4,
+ "pilot": true,
+ "experiment": "exp99"
+}

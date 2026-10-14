@@ -1,0 +1,32 @@
+== 2026-10-11T17:21:00-04:00 job 1286734 on w0004: exp104 prepare, commit 7fd49950736dddf763e479e447c00f6698f1d96a, page draft ==
+rslearn 0.1.17
+== the GPU smoke's two synthetic windows ==
+smoke_ds-prepare1: 16 s
+smoke_ds-ingest1: 3 s
+smoke_ds-materialize1: 179 s
+  Total windows requested: 2, duration: 11.4s
+  Layer post_sentinel2: prepared=2, skipped=0, rejected=0, failed=0
+  Layer pre_sentinel2: prepared=2, skipped=0, rejected=0, failed=0
+smoke_ds-prepare2: 4 s
+smoke_ds-ingest2: 3 s
+smoke_ds-materialize2: 4 s
+  Total windows requested: 2, duration: 0.0s
+  Layer post_sentinel2: prepared=0, skipped=2, rejected=0, failed=0
+  Layer pre_sentinel2: prepared=0, skipped=2, rejected=0, failed=0
+== the sampled alerts' windows ==
+dataset-prepare1: 289 s
+dataset-ingest1: 4 s
+dataset-materialize1: 2111 s
+  Total windows requested: 696, duration: <n>.1s
+  Layer post_sentinel2: prepared=696, skipped=0, rejected=0, failed=0
+  Layer pre_sentinel2: prepared=696, skipped=0, rejected=0, failed=0
+dataset-prepare2: 4 s
+dataset-ingest2: 3 s
+dataset-materialize2: 6 s
+  Total windows requested: 696, duration: 0.9s
+  Layer post_sentinel2: prepared=0, skipped=696, rejected=0, failed=0
+  Layer pre_sentinel2: prepared=0, skipped=696, rejected=0, failed=0
+{"windows": 696, "all_eight": 696, "pre_four": 696, "post_four": 696, "none": 0, "with_output": 0, "output_without_all_eight": 0} {"agriculture": 300, "mining": 389, "roads": 7}
+2.3G	<private>/dataset
+on scratch: 6.5M	/scratch/qi_zim_neu/olmoearth_inferenceX/e104_out
+on scratch: 2.3G	<private>

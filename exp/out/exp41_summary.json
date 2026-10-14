@@ -1,0 +1,1636 @@
+{
+ "experiment": "exp41 two-view disagreement from the paper embeddings",
+ "device": "cuda",
+ "smoke": false,
+ "repo": "allenai/olmoearth-paper-embeddings",
+ "config": {
+  "budgets": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "prereg_budget": 0.1,
+  "n_boot": 2000,
+  "probe": "multinomial logistic, L-BFGS, ridge 1e-3, standardised features, fitted on 80% of valid units",
+  "partner_selection": "lowest held-out-valid phi with OlmoEarth among outside partners",
+  "primary": "weighted disagreement (selected partner)",
+  "family_references": [
+   "olmoearth_nano",
+   "olmoearth_tiny",
+   "olmoearth_large"
+  ],
+  "limitation": "no imagery in the dump: no pixel control; a pass means beats confidence"
+ },
+ "tasks": {
+  "sen1floods11": {
+   "kind": "seg",
+   "n_classes": 2,
+   "models": {
+    "olmoearth": "olmoearth_base",
+    "partners": [
+     "galileo_base",
+     "clay_large",
+     "panopticon"
+    ],
+    "family": [
+     "olmoearth_nano",
+     "olmoearth_tiny",
+     "olmoearth_large"
+    ],
+    "outside_with_correlation": [
+     "galileo_base",
+     "clay_large",
+     "panopticon"
+    ]
+   },
+   "held_out_valid_units": 487,
+   "selected_partner": "clay_large",
+   "selection_rule": "lowest held-out-valid phi with OlmoEarth among outside partners",
+   "error_correlation": {
+    "galileo_base": {
+     "family": false,
+     "phi_held": 0.7772307792628549,
+     "phi_test": 0.7982678514070243,
+     "p_err_given_oe_err_test": 0.8060988944235208,
+     "p_err_given_oe_ok_test": 0.01568142851091807,
+     "acc_held": 0.925284600045435,
+     "acc_test": 0.918422985051951
+    },
+    "clay_large": {
+     "family": false,
+     "phi_held": 0.7234310546463898,
+     "phi_test": 0.788725298476989,
+     "p_err_given_oe_err_test": 0.8145628315717005,
+     "p_err_given_oe_ok_test": 0.01869064215587874,
+     "acc_held": 0.916803392483025,
+     "acc_test": 0.9149590215822481
+    },
+    "panopticon": {
+     "family": false,
+     "phi_held": 0.7462989543648139,
+     "phi_test": 0.7700920206368556,
+     "p_err_given_oe_err_test": 0.8042157696513181,
+     "p_err_given_oe_ok_test": 0.021204458940071714,
+     "acc_held": 0.9227015338533121,
+     "acc_test": 0.9135173915612312
+    },
+    "olmoearth_nano": {
+     "family": true,
+     "phi_held": 0.6907983417535584,
+     "phi_test": 0.7700350837439001,
+     "p_err_given_oe_err_test": 0.8041145263839955,
+     "p_err_given_oe_ok_test": 0.02120261731605399,
+     "acc_held": 0.9076659010020951,
+     "acc_test": 0.9135275201093883
+    },
+    "olmoearth_tiny": {
+     "family": true,
+     "phi_held": 0.7111157319555874,
+     "phi_test": 0.7890097497418409,
+     "p_err_given_oe_err_test": 0.822763536224841,
+     "p_err_given_oe_ok_test": 0.019723793229821786,
+     "acc_held": 0.9117382268554745,
+     "acc_test": 0.9133283253289668
+    },
+    "olmoearth_large": {
+     "family": true,
+     "phi_held": 0.7700309046864499,
+     "phi_test": 0.80798434332773,
+     "p_err_given_oe_err_test": 0.8243834285020046,
+     "p_err_given_oe_ok_test": 0.01605711981053372,
+     "acc_held": 0.9228950534703115,
+     "acc_test": 0.9165542679169797
+    }
+   },
+   "falsification_correlation": {
+    "selected_phi_held": 0.7234310546463898,
+    "family_phi_held_min": 0.6907983417535584,
+    "outside_below_family": false
+   },
+   "heads": {
+    "olmoearth_base": {
+     "acc_held": 0.9235008540104838,
+     "acc_test": 0.9166319201195169
+    },
+    "galileo_base": {
+     "acc_held": 0.925284600045435,
+     "acc_test": 0.918422985051951
+    },
+    "clay_large": {
+     "acc_held": 0.916803392483025,
+     "acc_test": 0.9149590215822481
+    },
+    "panopticon": {
+     "acc_held": 0.9227015338533121,
+     "acc_test": 0.9135173915612312
+    },
+    "olmoearth_nano": {
+     "acc_held": 0.9076659010020951,
+     "acc_test": 0.9135275201093883
+    },
+    "olmoearth_tiny": {
+     "acc_held": 0.9117382268554745,
+     "acc_test": 0.9133283253289668
+    },
+    "olmoearth_large": {
+     "acc_held": 0.9228950534703115,
+     "acc_test": 0.9165542679169797
+    }
+   },
+   "n_test_windows": 592385,
+   "n_test_errors": 49386,
+   "n_units_scored": 1579,
+   "per_unit_tests": {
+    "constant score": {
+     "eaurc_vs_confidence": {
+      "w": 53,
+      "l": 1526,
+      "t": 0,
+      "sign_p": 0.0,
+      "one_sided": false,
+      "median_gain": -0.045152819231821725
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 107,
+       "l": 1472,
+       "t": 0,
+       "sign_p": 3.5442996228555767e-307,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 94,
+       "l": 1485,
+       "t": 0,
+       "sign_p": 2.4e-322,
+       "one_sided": false
+      },
+      "0.2": {
+       "w": 74,
+       "l": 1505,
+       "t": 0,
+       "sign_p": 0.0,
+       "one_sided": false
+      }
+     }
+    },
+    "disagreement (selected partner)": {
+     "eaurc_vs_confidence": {
+      "w": 75,
+      "l": 1503,
+      "t": 1,
+      "sign_p": 0.0,
+      "one_sided": false,
+      "median_gain": -0.030507717254917837
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 455,
+       "l": 1101,
+       "t": 23,
+       "sign_p": 6.915168503115898e-62,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 276,
+       "l": 1279,
+       "t": 24,
+       "sign_p": 3.08956277363564e-154,
+       "one_sided": false
+      },
+      "0.2": {
+       "w": 147,
+       "l": 1411,
+       "t": 21,
+       "sign_p": 2.1103169276405388e-259,
+       "one_sided": false
+      }
+     }
+    },
+    "weighted disagreement (selected partner)": {
+     "eaurc_vs_confidence": {
+      "w": 78,
+      "l": 1499,
+      "t": 2,
+      "sign_p": 1.0,
+      "one_sided": true,
+      "median_gain": -0.03042214863024301
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 462,
+       "l": 1047,
+       "t": 70,
+       "sign_p": 2.18556760238732e-52,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 281,
+       "l": 1263,
+       "t": 35,
+       "sign_p": 1.0,
+       "one_sided": true
+      },
+      "0.2": {
+       "w": 147,
+       "l": 1409,
+       "t": 23,
+       "sign_p": 6.924193252856226e-259,
+       "one_sided": false
+      }
+     }
+    },
+    "accuracy-weighted vote (all outside partners)": {
+     "eaurc_vs_confidence": {
+      "w": 150,
+      "l": 1426,
+      "t": 3,
+      "sign_p": 4.1758477836483615e-261,
+      "one_sided": false,
+      "median_gain": -0.021184088665287495
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 618,
+       "l": 800,
+       "t": 161,
+       "sign_p": 1.4874959238445176e-06,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 458,
+       "l": 1007,
+       "t": 114,
+       "sign_p": 1.3523402902001763e-47,
+       "one_sided": false
+      },
+      "0.2": {
+       "w": 287,
+       "l": 1208,
+       "t": 84,
+       "sign_p": 2.1699402811166173e-134,
+       "one_sided": false
+      }
+     }
+    },
+    "weighted disagreement (olmoearth_nano, same family)": {
+     "eaurc_vs_confidence": {
+      "w": 106,
+      "l": 1472,
+      "t": 1,
+      "sign_p": 4.800036732313764e-308,
+      "one_sided": false,
+      "median_gain": -0.02906140697860521
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 450,
+       "l": 1040,
+       "t": 89,
+       "sign_p": 5.635505034430508e-54,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 293,
+       "l": 1247,
+       "t": 39,
+       "sign_p": 4.878436144846886e-140,
+       "one_sided": false
+      },
+      "0.2": {
+       "w": 171,
+       "l": 1377,
+       "t": 31,
+       "sign_p": 3.053284808345109e-234,
+       "one_sided": false
+      }
+     }
+    },
+    "weighted disagreement (olmoearth_tiny, same family)": {
+     "eaurc_vs_confidence": {
+      "w": 92,
+      "l": 1486,
+      "t": 1,
+      "sign_p": 0.0,
+      "one_sided": false,
+      "median_gain": -0.029836776317474036
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 445,
+       "l": 1064,
+       "t": 70,
+       "sign_p": 1.2288463611578157e-58,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 276,
+       "l": 1269,
+       "t": 34,
+       "sign_p": 4.464903416287256e-152,
+       "one_sided": false
+      },
+      "0.2": {
+       "w": 155,
+       "l": 1399,
+       "t": 25,
+       "sign_p": 1.242032059643094e-250,
+       "one_sided": false
+      }
+     }
+    },
+    "weighted disagreement (olmoearth_large, same family)": {
+     "eaurc_vs_confidence": {
+      "w": 85,
+      "l": 1492,
+      "t": 2,
+      "sign_p": 0.0,
+      "one_sided": false,
+      "median_gain": -0.03168756391488899
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 459,
+       "l": 1065,
+       "t": 55,
+       "sign_p": 1.2376190108300408e-55,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 255,
+       "l": 1286,
+       "t": 38,
+       "sign_p": 1.5797571799198904e-165,
+       "one_sided": false
+      },
+      "0.2": {
+       "w": 144,
+       "l": 1415,
+       "t": 20,
+       "sign_p": 1.2789475027473115e-262,
+       "one_sided": false
+      }
+     }
+    },
+    "weighted disagreement (galileo_base)": {
+     "eaurc_vs_confidence": {
+      "w": 93,
+      "l": 1484,
+      "t": 2,
+      "sign_p": 5.4e-323,
+      "one_sided": false,
+      "median_gain": -0.03046594784591247
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 483,
+       "l": 1018,
+       "t": 78,
+       "sign_p": 3.889003549140333e-44,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 305,
+       "l": 1240,
+       "t": 34,
+       "sign_p": 1.198260261066588e-133,
+       "one_sided": false
+      },
+      "0.2": {
+       "w": 180,
+       "l": 1377,
+       "t": 22,
+       "sign_p": 1.9502393888380615e-228,
+       "one_sided": false
+      }
+     }
+    },
+    "weighted disagreement (panopticon)": {
+     "eaurc_vs_confidence": {
+      "w": 96,
+      "l": 1481,
+      "t": 2,
+      "sign_p": 2.08604e-319,
+      "one_sided": false,
+      "median_gain": -0.029423694719977078
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 482,
+       "l": 1020,
+       "t": 77,
+       "sign_p": 1.352364597028663e-44,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 308,
+       "l": 1232,
+       "t": 39,
+       "sign_p": 8.323909153207001e-131,
+       "one_sided": false
+      },
+      "0.2": {
+       "w": 170,
+       "l": 1381,
+       "t": 28,
+       "sign_p": 6.702648363058094e-236,
+       "one_sided": false
+      }
+     }
+    },
+    "combination conf+weighted disagreement (U+)": {
+     "eaurc_vs_confidence": {
+      "w": 759,
+      "l": 489,
+      "t": 331,
+      "sign_p": 2.1052300964703913e-14,
+      "one_sided": false,
+      "median_gain": 0.0
+     },
+     "capture_vs_confidence": {
+      "0.05": {
+       "w": 444,
+       "l": 273,
+       "t": 862,
+       "sign_p": 1.7897584381376493e-10,
+       "one_sided": false
+      },
+      "0.1": {
+       "w": 356,
+       "l": 227,
+       "t": 996,
+       "sign_p": 1.0256366987021834e-07,
+       "one_sided": false
+      },
+      "0.2": {
+       "w": 247,
+       "l": 150,
+       "t": 1182,
+       "sign_p": 1.2915000162392778e-06,
+       "one_sided": false
+      }
+     }
+    }
+   },
+   "median_eaurc": {
+    "confidence (OlmoEarth)": 0.007991850333875495,
+    "constant score": 0.06061124790061593,
+    "disagreement (selected partner)": 0.04566255018250287,
+    "weighted disagreement (selected partner)": 0.04566255018250287,
+    "accuracy-weighted vote (all outside partners)": 0.03446232351344765,
+    "weighted disagreement (olmoearth_nano, same family)": 0.04566735644289895,
+    "weighted disagreement (olmoearth_tiny, same family)": 0.04493297988844008,
+    "weighted disagreement (olmoearth_large, same family)": 0.04815901820282075,
+    "weighted disagreement (galileo_base)": 0.04566255018250287,
+    "weighted disagreement (panopticon)": 0.046228920273044996,
+    "combination conf+weighted disagreement (U+)": 0.007578202930970905
+   },
+   "pooled_capture": {
+    "confidence (OlmoEarth)": {
+     "0.05": 0.2624023002470336,
+     "0.1": 0.4543392864374519,
+     "0.2": 0.6830275786660187
+    },
+    "constant score": {
+     "0.05": 0.04999957797716013,
+     "0.1": 0.09999915595432025,
+     "0.2": 0.2
+    },
+    "disagreement (selected partner)": {
+     "0.05": 0.20009446101180017,
+     "0.1": 0.2421943784895644,
+     "0.2": 0.32639563482722866
+    },
+    "weighted disagreement (selected partner)": {
+     "0.05": 0.20009446101180017,
+     "0.1": 0.2421943784895644,
+     "0.2": 0.32639563482722866
+    },
+    "accuracy-weighted vote (all outside partners)": {
+     "0.05": 0.2797756449196128,
+     "0.1": 0.36215174028795827,
+     "0.2": 0.43302430087083993
+    },
+    "weighted disagreement (olmoearth_nano, same family)": {
+     "0.05": 0.20775577723483699,
+     "0.1": 0.24945247112551508,
+     "0.2": 0.3328472666753271
+    },
+    "weighted disagreement (olmoearth_tiny, same family)": {
+     "0.05": 0.19182132257600704,
+     "0.1": 0.2343566645238526,
+     "0.2": 0.3194287845025292
+    },
+    "weighted disagreement (olmoearth_large, same family)": {
+     "0.05": 0.1931467608747252,
+     "0.1": 0.2356123435319069,
+     "0.2": 0.3205449425740348
+    },
+    "weighted disagreement (galileo_base)": {
+     "0.05": 0.21008220455176768,
+     "0.1": 0.25165645598732206,
+     "0.2": 0.33480636249297063
+    },
+    "weighted disagreement (panopticon)": {
+     "0.05": 0.20766157712404065,
+     "0.1": 0.24936322887123757,
+     "0.2": 0.33276794030147494
+    },
+    "combination conf+weighted disagreement (U+)": {
+     "0.05": 0.2141580498282691,
+     "0.1": 0.3114542140626829,
+     "0.2": 0.45650977802726656
+    }
+   },
+   "pooled_eaurc": {
+    "confidence (OlmoEarth)": 0.021459894820646114,
+    "constant score": 0.07979208108442314,
+    "disagreement (selected partner)": 0.06683740706699372,
+    "weighted disagreement (selected partner)": 0.066818589229932,
+    "accuracy-weighted vote (all outside partners)": 0.05618814089652959,
+    "weighted disagreement (olmoearth_nano, same family)": 0.06617239506143419,
+    "weighted disagreement (olmoearth_tiny, same family)": 0.0675356608388936,
+    "weighted disagreement (olmoearth_large, same family)": 0.06740443136447354,
+    "weighted disagreement (galileo_base)": 0.06594087341798342,
+    "weighted disagreement (panopticon)": 0.06618968070417953,
+    "combination conf+weighted disagreement (U+)": 0.04442355144773134
+   },
+   "pooled_capture_gain_vs_confidence": {
+    "constant score": {
+     "0.05": {
+      "gain": -0.21240272226987347,
+      "boot_lo": -0.22914291013503077,
+      "boot_hi": -0.1968625703226656,
+      "p_better": 0.0
+     },
+     "0.1": {
+      "gain": -0.3543401304831317,
+      "boot_lo": -0.38016806103866707,
+      "boot_hi": -0.33144303127526403,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.4830275786660187,
+      "boot_lo": -0.5122110664984414,
+      "boot_hi": -0.4549398230744466,
+      "p_better": 0.0
+     }
+    },
+    "disagreement (selected partner)": {
+     "0.05": {
+      "gain": -0.06230783923523342,
+      "boot_lo": -0.07683584063051087,
+      "boot_hi": -0.04822089048589933,
+      "p_better": 0.0
+     },
+     "0.1": {
+      "gain": -0.2121449079478875,
+      "boot_lo": -0.23310651753269931,
+      "boot_hi": -0.19295995249922937,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.35663194383879004,
+      "boot_lo": -0.3800467014160928,
+      "boot_hi": -0.3336359774656173,
+      "p_better": 0.0
+     }
+    },
+    "weighted disagreement (selected partner)": {
+     "0.05": {
+      "gain": -0.06230783923523342,
+      "boot_lo": -0.07683584063051087,
+      "boot_hi": -0.04822089048589933,
+      "p_better": 0.0
+     },
+     "0.1": {
+      "gain": -0.2121449079478875,
+      "boot_lo": -0.23310651753269931,
+      "boot_hi": -0.19295995249922937,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.35663194383879004,
+      "boot_lo": -0.3800467014160928,
+      "boot_hi": -0.3336359774656173,
+      "p_better": 0.0
+     }
+    },
+    "accuracy-weighted vote (all outside partners)": {
+     "0.05": {
+      "gain": 0.017373344672579227,
+      "boot_lo": 0.0064015332389356265,
+      "boot_hi": 0.02814056125687071,
+      "p_better": 0.999
+     },
+     "0.1": {
+      "gain": -0.09218754614949365,
+      "boot_lo": -0.11204816111073454,
+      "boot_hi": -0.0732261472491006,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.2500032777951788,
+      "boot_lo": -0.2718999334174083,
+      "boot_hi": -0.22845077295216779,
+      "p_better": 0.0
+     }
+    },
+    "weighted disagreement (olmoearth_nano, same family)": {
+     "0.05": {
+      "gain": -0.05464652301219661,
+      "boot_lo": -0.07062667050083628,
+      "boot_hi": -0.038860997396992315,
+      "p_better": 0.0
+     },
+     "0.1": {
+      "gain": -0.20488681531193684,
+      "boot_lo": -0.2252491833039739,
+      "boot_hi": -0.18545685776820356,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.3501803119906916,
+      "boot_lo": -0.37409799789338055,
+      "boot_hi": -0.3271661714577137,
+      "p_better": 0.0
+     }
+    },
+    "weighted disagreement (olmoearth_tiny, same family)": {
+     "0.05": {
+      "gain": -0.07058097767102656,
+      "boot_lo": -0.0848033150586087,
+      "boot_hi": -0.05700647632755626,
+      "p_better": 0.0
+     },
+     "0.1": {
+      "gain": -0.21998262191359932,
+      "boot_lo": -0.2404703936574101,
+      "boot_hi": -0.2019376806471823,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.3635987941634895,
+      "boot_lo": -0.38814544322265,
+      "boot_hi": -0.3402401514378383,
+      "p_better": 0.0
+     }
+    },
+    "weighted disagreement (olmoearth_large, same family)": {
+     "0.05": {
+      "gain": -0.06925553937230838,
+      "boot_lo": -0.08445361327397585,
+      "boot_hi": -0.05457446109154771,
+      "p_better": 0.0
+     },
+     "0.1": {
+      "gain": -0.218726942905545,
+      "boot_lo": -0.2401632029292888,
+      "boot_hi": -0.19958714187315768,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.3624826360919839,
+      "boot_lo": -0.3867017950393094,
+      "boot_hi": -0.3379497553868301,
+      "p_better": 0.0
+     }
+    },
+    "weighted disagreement (galileo_base)": {
+     "0.05": {
+      "gain": -0.05232009569526591,
+      "boot_lo": -0.0668155762314461,
+      "boot_hi": -0.03845762220348935,
+      "p_better": 0.0
+     },
+     "0.1": {
+      "gain": -0.20268283045012986,
+      "boot_lo": -0.22369041763730277,
+      "boot_hi": -0.18440042879654714,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.3482212161730481,
+      "boot_lo": -0.3725792054341976,
+      "boot_hi": -0.3241589116944249,
+      "p_better": 0.0
+     }
+    },
+    "weighted disagreement (panopticon)": {
+     "0.05": {
+      "gain": -0.05474072312299294,
+      "boot_lo": -0.06970618258463633,
+      "boot_hi": -0.04011400396973344,
+      "p_better": 0.0
+     },
+     "0.1": {
+      "gain": -0.20497605756621434,
+      "boot_lo": -0.2261695996362305,
+      "boot_hi": -0.18551907508835788,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.35025963836454377,
+      "boot_lo": -0.3756942446391965,
+      "boot_hi": -0.3258817501410244,
+      "p_better": 0.0
+     }
+    },
+    "combination conf+weighted disagreement (U+)": {
+     "0.05": {
+      "gain": -0.048244250418764484,
+      "boot_lo": -0.05836869157323348,
+      "boot_hi": -0.03812101180517945,
+      "p_better": 0.0
+     },
+     "0.1": {
+      "gain": -0.142885072374769,
+      "boot_lo": -0.15982914762243772,
+      "boot_hi": -0.1273386338948907,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.22651780063875215,
+      "boot_lo": -0.2501719616762931,
+      "boot_hi": -0.2022302130747846,
+      "p_better": 0.0
+     }
+    }
+   },
+   "prereg": {
+    "capture_10_per_unit": {
+     "w": 281,
+     "l": 1263,
+     "t": 35,
+     "sign_p": 1.0,
+     "one_sided": true
+    },
+    "capture_10_pooled": {
+     "gain": -0.2121449079478875,
+     "boot_lo": -0.23310651753269931,
+     "boot_hi": -0.19295995249922937,
+     "p_better": 0.0
+    },
+    "eaurc_per_unit": {
+     "w": 78,
+     "l": 1499,
+     "t": 2,
+     "sign_p": 1.0,
+     "one_sided": true,
+     "median_gain": -0.03042214863024301
+    },
+    "supported_vs_confidence": false
+   }
+  },
+  "awf_sentinel2": {
+   "kind": "cls",
+   "n_classes": 9,
+   "models": {
+    "olmoearth": "olmoearth_base",
+    "partners": [
+     "croma_base",
+     "galileo_base",
+     "terramind_base",
+     "dino_v3_dinov3_vitl16_sat",
+     "dino_v3_dinov3_vit7b16_sat",
+     "anysat",
+     "clay_large",
+     "copernicusfm",
+     "panopticon",
+     "satlas_base",
+     "prithvi_v2_Prithvi-EO-2.0-300M"
+    ],
+    "family": [
+     "olmoearth_nano",
+     "olmoearth_tiny",
+     "olmoearth_large"
+    ],
+    "outside_with_correlation": [
+     "croma_base",
+     "galileo_base",
+     "terramind_base",
+     "dino_v3_dinov3_vitl16_sat",
+     "dino_v3_dinov3_vit7b16_sat",
+     "anysat",
+     "clay_large",
+     "copernicusfm",
+     "panopticon",
+     "satlas_base",
+     "prithvi_v2_Prithvi-EO-2.0-300M"
+    ]
+   },
+   "held_out_valid_units": 39,
+   "selected_partner": "panopticon",
+   "selection_rule": "lowest held-out-valid phi with OlmoEarth among outside partners",
+   "error_correlation": {
+    "croma_base": {
+     "family": false,
+     "phi_held": 0.22445701677816263,
+     "phi_test": 0.5495155830663166,
+     "p_err_given_oe_err_test": 0.7704918032786885,
+     "p_err_given_oe_ok_test": 0.19424460431654678,
+     "acc_held": 0.7692307692307693,
+     "acc_test": 0.63
+    },
+    "galileo_base": {
+     "family": false,
+     "phi_held": 0.3118047822311618,
+     "phi_test": 0.6386412722488044,
+     "p_err_given_oe_err_test": 0.8032786885245902,
+     "p_err_given_oe_ok_test": 0.14388489208633093,
+     "acc_held": 0.6923076923076923,
+     "acc_test": 0.655
+    },
+    "terramind_base": {
+     "family": false,
+     "phi_held": 0.5542857142857143,
+     "phi_test": 0.5071238168967489,
+     "p_err_given_oe_err_test": 0.7213114754098361,
+     "p_err_given_oe_ok_test": 0.19424460431654678,
+     "acc_held": 0.6410256410256411,
+     "acc_test": 0.645
+    },
+    "dino_v3_dinov3_vitl16_sat": {
+     "family": false,
+     "phi_held": 0.3400132682063907,
+     "phi_test": 0.39789419267624304,
+     "p_err_given_oe_err_test": 0.7540983606557377,
+     "p_err_given_oe_ok_test": 0.3237410071942446,
+     "acc_held": 0.5128205128205128,
+     "acc_test": 0.545
+    },
+    "dino_v3_dinov3_vit7b16_sat": {
+     "family": false,
+     "phi_held": 0.42012039454531436,
+     "phi_test": 0.4779529290579456,
+     "p_err_given_oe_err_test": 0.7704918032786885,
+     "p_err_given_oe_ok_test": 0.2589928057553957,
+     "acc_held": 0.5641025641025641,
+     "acc_test": 0.585
+    },
+    "anysat": {
+     "family": false,
+     "phi_held": 0.24520241353315525,
+     "phi_test": 0.3246189296626171,
+     "p_err_given_oe_err_test": 0.6885245901639344,
+     "p_err_given_oe_ok_test": 0.3381294964028777,
+     "acc_held": 0.5897435897435898,
+     "acc_test": 0.555
+    },
+    "clay_large": {
+     "family": false,
+     "phi_held": 0.35387166498534905,
+     "phi_test": 0.3316702605317003,
+     "p_err_given_oe_err_test": 0.6885245901639344,
+     "p_err_given_oe_ok_test": 0.33093525179856115,
+     "acc_held": 0.5897435897435898,
+     "acc_test": 0.56
+    },
+    "copernicusfm": {
+     "family": false,
+     "phi_held": 0.37796447300922725,
+     "phi_test": 0.38979006457873033,
+     "p_err_given_oe_err_test": 0.7049180327868853,
+     "p_err_given_oe_ok_test": 0.28776978417266186,
+     "acc_held": 0.6666666666666666,
+     "acc_test": 0.585
+    },
+    "panopticon": {
+     "family": false,
+     "phi_held": -0.002857142857142857,
+     "phi_test": 0.6169960066929622,
+     "p_err_given_oe_err_test": 0.819672131147541,
+     "p_err_given_oe_ok_test": 0.17266187050359713,
+     "acc_held": 0.6410256410256411,
+     "acc_test": 0.63
+    },
+    "satlas_base": {
+     "family": false,
+     "phi_held": 0.31232634594487185,
+     "phi_test": 0.3734922322898235,
+     "p_err_given_oe_err_test": 0.7868852459016393,
+     "p_err_given_oe_ok_test": 0.381294964028777,
+     "acc_held": 0.5641025641025641,
+     "acc_test": 0.495
+    },
+    "prithvi_v2_Prithvi-EO-2.0-300M": {
+     "family": false,
+     "phi_held": 0.5155039872806568,
+     "phi_test": 0.41515019032344086,
+     "p_err_given_oe_err_test": 0.8032786885245902,
+     "p_err_given_oe_ok_test": 0.35251798561151076,
+     "acc_held": 0.48717948717948717,
+     "acc_test": 0.51
+    },
+    "olmoearth_nano": {
+     "family": true,
+     "phi_held": 0.4781910357447812,
+     "phi_test": 0.4994389523688397,
+     "p_err_given_oe_err_test": 0.819672131147541,
+     "p_err_given_oe_ok_test": 0.2805755395683453,
+     "acc_held": 0.7692307692307693,
+     "acc_test": 0.555
+    },
+    "olmoearth_tiny": {
+     "family": true,
+     "phi_held": 0.3972224997224028,
+     "phi_test": 0.6020200809856975,
+     "p_err_given_oe_err_test": 0.7704918032786885,
+     "p_err_given_oe_ok_test": 0.1510791366906475,
+     "acc_held": 0.6153846153846154,
+     "acc_test": 0.66
+    },
+    "olmoearth_large": {
+     "family": true,
+     "phi_held": 0.4781910357447812,
+     "phi_test": 0.6978886605739579,
+     "p_err_given_oe_err_test": 0.7377049180327869,
+     "p_err_given_oe_ok_test": 0.06474820143884892,
+     "acc_held": 0.7692307692307693,
+     "acc_test": 0.73
+    }
+   },
+   "falsification_correlation": {
+    "selected_phi_held": -0.002857142857142857,
+    "family_phi_held_min": 0.3972224997224028,
+    "outside_below_family": true
+   },
+   "heads": {
+    "olmoearth_base": {
+     "acc_held": 0.6410256410256411,
+     "acc_test": 0.695
+    },
+    "croma_base": {
+     "acc_held": 0.7692307692307693,
+     "acc_test": 0.63
+    },
+    "galileo_base": {
+     "acc_held": 0.6923076923076923,
+     "acc_test": 0.655
+    },
+    "terramind_base": {
+     "acc_held": 0.6410256410256411,
+     "acc_test": 0.645
+    },
+    "dino_v3_dinov3_vitl16_sat": {
+     "acc_held": 0.5128205128205128,
+     "acc_test": 0.545
+    },
+    "dino_v3_dinov3_vit7b16_sat": {
+     "acc_held": 0.5641025641025641,
+     "acc_test": 0.585
+    },
+    "anysat": {
+     "acc_held": 0.5897435897435898,
+     "acc_test": 0.555
+    },
+    "clay_large": {
+     "acc_held": 0.5897435897435898,
+     "acc_test": 0.56
+    },
+    "copernicusfm": {
+     "acc_held": 0.6666666666666666,
+     "acc_test": 0.585
+    },
+    "panopticon": {
+     "acc_held": 0.6410256410256411,
+     "acc_test": 0.63
+    },
+    "satlas_base": {
+     "acc_held": 0.5641025641025641,
+     "acc_test": 0.495
+    },
+    "prithvi_v2_Prithvi-EO-2.0-300M": {
+     "acc_held": 0.48717948717948717,
+     "acc_test": 0.51
+    },
+    "olmoearth_nano": {
+     "acc_held": 0.7692307692307693,
+     "acc_test": 0.555
+    },
+    "olmoearth_tiny": {
+     "acc_held": 0.6153846153846154,
+     "acc_test": 0.66
+    },
+    "olmoearth_large": {
+     "acc_held": 0.7692307692307693,
+     "acc_test": 0.73
+    }
+   },
+   "n_test_windows": 200,
+   "n_test_errors": 61,
+   "pooled_capture": {
+    "confidence (OlmoEarth)": {
+     "0.05": 0.11475409836065574,
+     "0.1": 0.2459016393442623,
+     "0.2": 0.36065573770491804
+    },
+    "constant score": {
+     "0.05": 0.049999999999999996,
+     "0.1": 0.09999999999999999,
+     "0.2": 0.19999999999999998
+    },
+    "disagreement (selected partner)": {
+     "0.05": 0.07650273224043716,
+     "0.1": 0.15300546448087432,
+     "0.2": 0.30601092896174864
+    },
+    "weighted disagreement (selected partner)": {
+     "0.05": 0.08196721311475409,
+     "0.1": 0.18032786885245902,
+     "0.2": 0.3114754098360656
+    },
+    "accuracy-weighted vote (all outside partners)": {
+     "0.05": 0.09836065573770492,
+     "0.1": 0.21311475409836064,
+     "0.2": 0.4262295081967213
+    },
+    "weighted disagreement (olmoearth_nano, same family)": {
+     "0.05": 0.08196721311475409,
+     "0.1": 0.16393442622950818,
+     "0.2": 0.2459016393442623
+    },
+    "weighted disagreement (olmoearth_tiny, same family)": {
+     "0.05": 0.06557377049180328,
+     "0.1": 0.18032786885245902,
+     "0.2": 0.32786885245901637
+    },
+    "weighted disagreement (olmoearth_large, same family)": {
+     "0.05": 0.08196721311475409,
+     "0.1": 0.19672131147540983,
+     "0.2": 0.39470365699873894
+    },
+    "weighted disagreement (croma_base)": {
+     "0.05": 0.11475409836065574,
+     "0.1": 0.18032786885245902,
+     "0.2": 0.36065573770491804
+    },
+    "weighted disagreement (galileo_base)": {
+     "0.05": 0.09836065573770492,
+     "0.1": 0.16393442622950818,
+     "0.2": 0.3770491803278688
+    },
+    "weighted disagreement (terramind_base)": {
+     "0.05": 0.11475409836065574,
+     "0.1": 0.21311475409836064,
+     "0.2": 0.36065573770491804
+    },
+    "weighted disagreement (dino_v3_dinov3_vitl16_sat)": {
+     "0.05": 0.03278688524590164,
+     "0.1": 0.14754098360655737,
+     "0.2": 0.2786885245901639
+    },
+    "weighted disagreement (dino_v3_dinov3_vit7b16_sat)": {
+     "0.05": 0.09836065573770492,
+     "0.1": 0.16393442622950818,
+     "0.2": 0.2786885245901639
+    },
+    "weighted disagreement (anysat)": {
+     "0.05": 0.09836065573770492,
+     "0.1": 0.18032786885245902,
+     "0.2": 0.29508196721311475
+    },
+    "weighted disagreement (clay_large)": {
+     "0.05": 0.11475409836065574,
+     "0.1": 0.18032786885245902,
+     "0.2": 0.32786885245901637
+    },
+    "weighted disagreement (copernicusfm)": {
+     "0.05": 0.09836065573770492,
+     "0.1": 0.14754098360655737,
+     "0.2": 0.26229508196721313
+    },
+    "weighted disagreement (satlas_base)": {
+     "0.05": 0.06557377049180328,
+     "0.1": 0.13114754098360656,
+     "0.2": 0.26229508196721313
+    },
+    "weighted disagreement (prithvi_v2_Prithvi-EO-2.0-300M)": {
+     "0.05": 0.04918032786885246,
+     "0.1": 0.14754098360655737,
+     "0.2": 0.3114754098360656
+    },
+    "combination conf+weighted disagreement (U+)": {
+     "0.05": 0.11475409836065574,
+     "0.1": 0.19672131147540983,
+     "0.2": 0.3770491803278688
+    }
+   },
+   "pooled_eaurc": {
+    "confidence (OlmoEarth)": 0.09061597773267804,
+    "constant score": 0.25211023589841197,
+    "disagreement (selected partner)": 0.2110197703000133,
+    "weighted disagreement (selected partner)": 0.20950694249105334,
+    "accuracy-weighted vote (all outside partners)": 0.11553684414439852,
+    "weighted disagreement (olmoearth_nano, same family)": 0.22214244982877707,
+    "weighted disagreement (olmoearth_tiny, same family)": 0.19813480678392364,
+    "weighted disagreement (olmoearth_large, same family)": 0.1856333763426413,
+    "weighted disagreement (croma_base)": 0.193240375752701,
+    "weighted disagreement (galileo_base)": 0.18460523095115983,
+    "weighted disagreement (terramind_base)": 0.1847251968258151,
+    "weighted disagreement (dino_v3_dinov3_vitl16_sat)": 0.1862970064520049,
+    "weighted disagreement (dino_v3_dinov3_vit7b16_sat)": 0.18130920508925197,
+    "weighted disagreement (anysat)": 0.17821826807792443,
+    "weighted disagreement (clay_large)": 0.17011388681670228,
+    "weighted disagreement (copernicusfm)": 0.20167595560919033,
+    "weighted disagreement (satlas_base)": 0.20817983391511546,
+    "weighted disagreement (prithvi_v2_Prithvi-EO-2.0-300M)": 0.1874423544613295,
+    "combination conf+weighted disagreement (U+)": 0.09982384897947605
+   },
+   "pooled_capture_gain_vs_confidence": {
+    "constant score": {
+     "0.05": {
+      "gain": -0.06475409836065574,
+      "boot_lo": -0.12077375946173256,
+      "boot_hi": -0.02462686567164178,
+      "p_better": 0.002
+     },
+     "0.1": {
+      "gain": -0.1459016393442623,
+      "boot_lo": -0.21917021276595747,
+      "boot_hi": -0.071875,
+      "p_better": 0.0
+     },
+     "0.2": {
+      "gain": -0.16065573770491806,
+      "boot_lo": -0.26666666666666666,
+      "boot_hi": -0.08813559322033898,
+      "p_better": 0.0
+     }
+    },
+    "disagreement (selected partner)": {
+     "0.05": {
+      "gain": -0.03825136612021858,
+      "boot_lo": -0.09411977834612106,
+      "boot_hi": 0.004628773524910239,
+      "p_better": 0.039
+     },
+     "0.1": {
+      "gain": -0.09289617486338797,
+      "boot_lo": -0.16384023075405954,
+      "boot_hi": -0.016194453923063443,
+      "p_better": 0.0065
+     },
+     "0.2": {
+      "gain": -0.054644808743169404,
+      "boot_lo": -0.17387076491674378,
+      "boot_hi": 0.02739775445254897,
+      "p_better": 0.0795
+     }
+    },
+    "weighted disagreement (selected partner)": {
+     "0.05": {
+      "gain": -0.03278688524590165,
+      "boot_lo": -0.10417444029850746,
+      "boot_hi": 0.033898305084745756,
+      "p_better": 0.1015
+     },
+     "0.1": {
+      "gain": -0.06557377049180327,
+      "boot_lo": -0.15154083204930663,
+      "boot_hi": 0.044776119402985065,
+      "p_better": 0.0995
+     },
+     "0.2": {
+      "gain": -0.04918032786885246,
+      "boot_lo": -0.17809442270058706,
+      "boot_hi": 0.048406927551559925,
+      "p_better": 0.113
+     }
+    },
+    "accuracy-weighted vote (all outside partners)": {
+     "0.05": {
+      "gain": -0.016393442622950824,
+      "boot_lo": -0.0847457627118644,
+      "boot_hi": 0.05663098693759055,
+      "p_better": 0.226
+     },
+     "0.1": {
+      "gain": -0.03278688524590165,
+      "boot_lo": -0.10419407894736844,
+      "boot_hi": 0.07578671328671314,
+      "p_better": 0.2935
+     },
+     "0.2": {
+      "gain": 0.06557377049180324,
+      "boot_lo": -0.0556372549019608,
+      "boot_hi": 0.1607142857142857,
+      "p_better": 0.7905
+     }
+    },
+    "weighted disagreement (olmoearth_nano, same family)": {
+     "0.05": {
+      "gain": -0.03278688524590165,
+      "boot_lo": -0.1014554163596168,
+      "boot_hi": 0.033898305084745756,
+      "p_better": 0.136
+     },
+     "0.1": {
+      "gain": -0.0819672131147541,
+      "boot_lo": -0.18518518518518517,
+      "boot_hi": 0.015151515151515138,
+      "p_better": 0.029
+     },
+     "0.2": {
+      "gain": -0.11475409836065575,
+      "boot_lo": -0.23915217391304347,
+      "boot_hi": 0.0,
+      "p_better": 0.012
+     }
+    },
+    "weighted disagreement (olmoearth_tiny, same family)": {
+     "0.05": {
+      "gain": -0.04918032786885246,
+      "boot_lo": -0.1207027168234065,
+      "boot_hi": 0.020408163265306117,
+      "p_better": 0.0655
+     },
+     "0.1": {
+      "gain": -0.06557377049180327,
+      "boot_lo": -0.1636363636363636,
+      "boot_hi": 0.03334745762711858,
+      "p_better": 0.0675
+     },
+     "0.2": {
+      "gain": -0.032786885245901676,
+      "boot_lo": -0.14345830055074746,
+      "boot_hi": 0.07354908210423748,
+      "p_better": 0.222
+     }
+    },
+    "weighted disagreement (olmoearth_large, same family)": {
+     "0.05": {
+      "gain": -0.03278688524590165,
+      "boot_lo": -0.109375,
+      "boot_hi": 0.018867924528301883,
+      "p_better": 0.0555
+     },
+     "0.1": {
+      "gain": -0.04918032786885246,
+      "boot_lo": -0.13636363636363635,
+      "boot_hi": 0.048406927551559925,
+      "p_better": 0.127
+     },
+     "0.2": {
+      "gain": 0.034047919293820894,
+      "boot_lo": -0.0870307881773399,
+      "boot_hi": 0.13382408334672696,
+      "p_better": 0.6305
+     }
+    },
+    "weighted disagreement (croma_base)": {
+     "0.05": {
+      "gain": 0.0,
+      "boot_lo": -0.078125,
+      "boot_hi": 0.051724137931034475,
+      "p_better": 0.2605
+     },
+     "0.1": {
+      "gain": -0.06557377049180327,
+      "boot_lo": -0.1538793103448276,
+      "boot_hi": 0.03508771929824561,
+      "p_better": 0.0935
+     },
+     "0.2": {
+      "gain": 0.0,
+      "boot_lo": -0.1379442970822281,
+      "boot_hi": 0.08196721311475408,
+      "p_better": 0.2525
+     }
+    },
+    "weighted disagreement (galileo_base)": {
+     "0.05": {
+      "gain": -0.016393442622950824,
+      "boot_lo": -0.08512158054711245,
+      "boot_hi": 0.054545454545454536,
+      "p_better": 0.2255
+     },
+     "0.1": {
+      "gain": -0.0819672131147541,
+      "boot_lo": -0.16001785714285718,
+      "boot_hi": 0.02130023640661926,
+      "p_better": 0.0595
+     },
+     "0.2": {
+      "gain": 0.016393442622950782,
+      "boot_lo": -0.11291083384053562,
+      "boot_hi": 0.10447800184032816,
+      "p_better": 0.401
+     }
+    },
+    "weighted disagreement (terramind_base)": {
+     "0.05": {
+      "gain": 0.0,
+      "boot_lo": -0.07017543859649122,
+      "boot_hi": 0.06454257006874654,
+      "p_better": 0.3645
+     },
+     "0.1": {
+      "gain": -0.03278688524590165,
+      "boot_lo": -0.123125,
+      "boot_hi": 0.06349206349206349,
+      "p_better": 0.2205
+     },
+     "0.2": {
+      "gain": 0.0,
+      "boot_lo": -0.13891666666666666,
+      "boot_hi": 0.08196721311475408,
+      "p_better": 0.246
+     }
+    },
+    "weighted disagreement (dino_v3_dinov3_vitl16_sat)": {
+     "0.05": {
+      "gain": -0.0819672131147541,
+      "boot_lo": -0.14545454545454545,
+      "boot_hi": -0.017849310776942393,
+      "p_better": 0.004
+     },
+     "0.1": {
+      "gain": -0.09836065573770492,
+      "boot_lo": -0.19999999999999998,
+      "boot_hi": -0.01586681547619051,
+      "p_better": 0.006
+     },
+     "0.2": {
+      "gain": -0.08196721311475413,
+      "boot_lo": -0.22413793103448276,
+      "boot_hi": 0.016666666666666663,
+      "p_better": 0.0325
+     }
+    },
+    "weighted disagreement (dino_v3_dinov3_vit7b16_sat)": {
+     "0.05": {
+      "gain": -0.016393442622950824,
+      "boot_lo": -0.10714285714285715,
+      "boot_hi": 0.0392156862745098,
+      "p_better": 0.129
+     },
+     "0.1": {
+      "gain": -0.0819672131147541,
+      "boot_lo": -0.18334183673469387,
+      "boot_hi": 0.017873677248677177,
+      "p_better": 0.039
+     },
+     "0.2": {
+      "gain": -0.08196721311475413,
+      "boot_lo": -0.22729266347687402,
+      "boot_hi": 0.018867924528301883,
+      "p_better": 0.0415
+     }
+    },
+    "weighted disagreement (anysat)": {
+     "0.05": {
+      "gain": -0.016393442622950824,
+      "boot_lo": -0.08928571428571427,
+      "boot_hi": 0.047619047619047616,
+      "p_better": 0.2005
+     },
+     "0.1": {
+      "gain": -0.06557377049180327,
+      "boot_lo": -0.16129032258064518,
+      "boot_hi": 0.0363804713804713,
+      "p_better": 0.088
+     },
+     "0.2": {
+      "gain": -0.0655737704918033,
+      "boot_lo": -0.19299660441426145,
+      "boot_hi": 0.052655075187969795,
+      "p_better": 0.105
+     }
+    },
+    "weighted disagreement (clay_large)": {
+     "0.05": {
+      "gain": 0.0,
+      "boot_lo": -0.08064516129032258,
+      "boot_hi": 0.05555555555555555,
+      "p_better": 0.285
+     },
+     "0.1": {
+      "gain": -0.06557377049180327,
+      "boot_lo": -0.15794736842105261,
+      "boot_hi": 0.037735849056603765,
+      "p_better": 0.0975
+     },
+     "0.2": {
+      "gain": -0.032786885245901676,
+      "boot_lo": -0.15104912166558232,
+      "boot_hi": 0.08771929824561403,
+      "p_better": 0.231
+     }
+    },
+    "weighted disagreement (copernicusfm)": {
+     "0.05": {
+      "gain": -0.016393442622950824,
+      "boot_lo": -0.10207600281491908,
+      "boot_hi": 0.03571428571428571,
+      "p_better": 0.122
+     },
+     "0.1": {
+      "gain": -0.09836065573770492,
+      "boot_lo": -0.1818181818181818,
+      "boot_hi": 0.0,
+      "p_better": 0.0115
+     },
+     "0.2": {
+      "gain": -0.09836065573770492,
+      "boot_lo": -0.20371315192743766,
+      "boot_hi": 0.015390624999999969,
+      "p_better": 0.0275
+     }
+    },
+    "weighted disagreement (satlas_base)": {
+     "0.05": {
+      "gain": -0.04918032786885246,
+      "boot_lo": -0.13333333333333333,
+      "boot_hi": 0.0,
+      "p_better": 0.0185
+     },
+     "0.1": {
+      "gain": -0.11475409836065573,
+      "boot_lo": -0.20408163265306123,
+      "boot_hi": -0.017543859649122806,
+      "p_better": 0.0065
+     },
+     "0.2": {
+      "gain": -0.09836065573770492,
+      "boot_lo": -0.24561403508771928,
+      "boot_hi": 0.0,
+      "p_better": 0.0185
+     }
+    },
+    "weighted disagreement (prithvi_v2_Prithvi-EO-2.0-300M)": {
+     "0.05": {
+      "gain": -0.06557377049180328,
+      "boot_lo": -0.14285714285714285,
+      "boot_hi": 0.0,
+      "p_better": 0.013
+     },
+     "0.1": {
+      "gain": -0.09836065573770492,
+      "boot_lo": -0.21055161943319836,
+      "boot_hi": 0.0,
+      "p_better": 0.0235
+     },
+     "0.2": {
+      "gain": -0.04918032786885246,
+      "boot_lo": -0.20689655172413793,
+      "boot_hi": 0.05357142857142855,
+      "p_better": 0.107
+     }
+    },
+    "combination conf+weighted disagreement (U+)": {
+     "0.05": {
+      "gain": 0.0,
+      "boot_lo": -0.07146103896103896,
+      "boot_hi": 0.05084745762711865,
+      "p_better": 0.32
+     },
+     "0.1": {
+      "gain": -0.04918032786885246,
+      "boot_lo": -0.12499999999999997,
+      "boot_hi": 0.033898305084745756,
+      "p_better": 0.098
+     },
+     "0.2": {
+      "gain": 0.016393442622950782,
+      "boot_lo": -0.09836065573770492,
+      "boot_hi": 0.09094405594405579,
+      "p_better": 0.409
+     }
+    }
+   },
+   "pooled_eaurc_gain_vs_confidence": {
+    "constant score": {
+     "gain": -0.16149425816573393,
+     "boot_lo": -0.19915165085926026,
+     "boot_hi": -0.12094745617271332
+    },
+    "disagreement (selected partner)": {
+     "gain": -0.12040379256733524,
+     "boot_lo": -0.15819966059608628,
+     "boot_hi": -0.08102879260226895
+    },
+    "weighted disagreement (selected partner)": {
+     "gain": -0.1188909647583753,
+     "boot_lo": -0.15678232256519206,
+     "boot_hi": -0.0793085282884164
+    },
+    "accuracy-weighted vote (all outside partners)": {
+     "gain": -0.024920866411720477,
+     "boot_lo": -0.06863388947575165,
+     "boot_hi": 0.016252571997317576
+    },
+    "weighted disagreement (olmoearth_nano, same family)": {
+     "gain": -0.13152647209609902,
+     "boot_lo": -0.17491909795761,
+     "boot_hi": -0.09019598287387727
+    },
+    "weighted disagreement (olmoearth_tiny, same family)": {
+     "gain": -0.1075188290512456,
+     "boot_lo": -0.14514203212533092,
+     "boot_hi": -0.06615928313030713
+    },
+    "weighted disagreement (olmoearth_large, same family)": {
+     "gain": -0.09501739860996325,
+     "boot_lo": -0.1327157341783829,
+     "boot_hi": -0.05749907904428589
+    },
+    "weighted disagreement (croma_base)": {
+     "gain": -0.10262439802002296,
+     "boot_lo": -0.14599785092504663,
+     "boot_hi": -0.05816088415635525
+    },
+    "weighted disagreement (galileo_base)": {
+     "gain": -0.09398925321848178,
+     "boot_lo": -0.13288648620757232,
+     "boot_hi": -0.05154006215393149
+    },
+    "weighted disagreement (terramind_base)": {
+     "gain": -0.09410921909313705,
+     "boot_lo": -0.1362355779198608,
+     "boot_hi": -0.053959098336790946
+    },
+    "weighted disagreement (dino_v3_dinov3_vitl16_sat)": {
+     "gain": -0.09568102871932685,
+     "boot_lo": -0.14633876159356343,
+     "boot_hi": -0.04798654355575879
+    },
+    "weighted disagreement (dino_v3_dinov3_vit7b16_sat)": {
+     "gain": -0.09069322735657392,
+     "boot_lo": -0.13614379943992674,
+     "boot_hi": -0.0435048805886062
+    },
+    "weighted disagreement (anysat)": {
+     "gain": -0.08760229034524639,
+     "boot_lo": -0.13479598279013016,
+     "boot_hi": -0.03877543377031206
+    },
+    "weighted disagreement (clay_large)": {
+     "gain": -0.07949790908402424,
+     "boot_lo": -0.12427187541445939,
+     "boot_hi": -0.03442326547061258
+    },
+    "weighted disagreement (copernicusfm)": {
+     "gain": -0.11105997787651228,
+     "boot_lo": -0.15191935344993496,
+     "boot_hi": -0.07271304286288328
+    },
+    "weighted disagreement (satlas_base)": {
+     "gain": -0.11756385618243742,
+     "boot_lo": -0.16799980168764933,
+     "boot_hi": -0.06678128826189646
+    },
+    "weighted disagreement (prithvi_v2_Prithvi-EO-2.0-300M)": {
+     "gain": -0.09682637672865146,
+     "boot_lo": -0.14337930465301674,
+     "boot_hi": -0.051913763823265104
+    },
+    "combination conf+weighted disagreement (U+)": {
+     "gain": -0.009207871246798005,
+     "boot_lo": -0.01953568277368351,
+     "boot_hi": 6.928505694012508e-05
+    }
+   },
+   "prereg": {
+    "capture_10_pooled": {
+     "gain": -0.06557377049180327,
+     "boot_lo": -0.15154083204930663,
+     "boot_hi": 0.044776119402985065,
+     "p_better": 0.0995
+    },
+    "one_sided_criterion": "5th percentile of the sample-bootstrap gain above zero",
+    "boot_p05": -0.1324019607843137,
+    "supported_vs_confidence": false
+   },
+   "runtime_s": 20.009342908859253
+  }
+ },
+ "failures": [
+  {
+   "part": "sen1floods11",
+   "unit": "croma_base",
+   "error": "ValueError('cannot reshape array of size 9973760 into shape (2435,15,4,15,4)')",
+   "traceback": "Traceback (most recent call last):\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 227, in run_task\n    d = load(m)\n        ^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 188, in load\n    return {\"valid\": flatten(ev, lv, kind), \"test\": flatten(et, lt, kind)}\n                     ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 125, in flatten\n    y, ok = window_labels(lab.numpy(), G)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 111, in window_labels\n    l = lab.reshape(N, G, PATCH, G, PATCH)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: cannot reshape array of size 9973760 into shape (2435,15,4,15,4)\n"
+  },
+  {
+   "part": "sen1floods11",
+   "unit": "terramind_base",
+   "error": "ValueError('cannot reshape array of size 9973760 into shape (2435,14,4,14,4)')",
+   "traceback": "Traceback (most recent call last):\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 227, in run_task\n    d = load(m)\n        ^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 188, in load\n    return {\"valid\": flatten(ev, lv, kind), \"test\": flatten(et, lt, kind)}\n                     ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 125, in flatten\n    y, ok = window_labels(lab.numpy(), G)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 111, in window_labels\n    l = lab.reshape(N, G, PATCH, G, PATCH)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: cannot reshape array of size 9973760 into shape (2435,14,4,14,4)\n"
+  },
+  {
+   "part": "sen1floods11",
+   "unit": "copernicusfm",
+   "error": "ValueError('cannot reshape array of size 9973760 into shape (2435,14,4,14,4)')",
+   "traceback": "Traceback (most recent call last):\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 227, in run_task\n    d = load(m)\n        ^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 188, in load\n    return {\"valid\": flatten(ev, lv, kind), \"test\": flatten(et, lt, kind)}\n                     ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 125, in flatten\n    y, ok = window_labels(lab.numpy(), G)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 111, in window_labels\n    l = lab.reshape(N, G, PATCH, G, PATCH)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: cannot reshape array of size 9973760 into shape (2435,14,4,14,4)\n"
+  },
+  {
+   "part": "sen1floods11",
+   "unit": "satlas_base",
+   "error": "ValueError('cannot reshape array of size 9973760 into shape (2435,2,4,2,4)')",
+   "traceback": "Traceback (most recent call last):\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 227, in run_task\n    d = load(m)\n        ^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 188, in load\n    return {\"valid\": flatten(ev, lv, kind), \"test\": flatten(et, lt, kind)}\n                     ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 125, in flatten\n    y, ok = window_labels(lab.numpy(), G)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/qi_zim_neu/olmoearth_inferenceX/exp/exp41_two_view_disagreement.py\", line 111, in window_labels\n    l = lab.reshape(N, G, PATCH, G, PATCH)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: cannot reshape array of size 9973760 into shape (2435,2,4,2,4)\n"
+  }
+ ],
+ "runtime_s": 416.24764800071716,
+ "n_failures": 4
+}

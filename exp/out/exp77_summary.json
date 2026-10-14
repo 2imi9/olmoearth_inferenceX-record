@@ -1,0 +1,312 @@
+{
+ "model": "olmoearth_base",
+ "tasks": [
+  {
+   "task": "mados",
+   "n_classes": 15,
+   "patch_px": 4,
+   "n_windows": 22598,
+   "accuracy_A": 0.9264094167625454,
+   "accuracy_A_seed1": 0.9264094167625454,
+   "seed_floor": 0.0,
+   "accuracy_B": 0.9261439065404018,
+   "gain": -0.00026551022214360565,
+   "lambda": 0.5,
+   "holdout_accuracy": {
+    "0.5": 0.958671344003508,
+    "1.0": 0.6629028721771542
+   },
+   "pixel_accuracy_A": 0.9212500311510953,
+   "pixel_accuracy_B": 0.921416170325882,
+   "pixel_miou_A": 0.6682806466417183,
+   "pixel_miou_B": 0.6619146883991835,
+   "error_rate_A": 0.07359058323745464,
+   "contamination": null,
+   "excess_aurc": {
+    "margin": 0.007793292678403246,
+    "scene_typicality": 0.09378727447718685,
+    "scene_atypicality": 0.0485580132979171,
+    "decontamination_flip": 0.06012262372017859
+   },
+   "same_valid_windows": true,
+   "seconds": 241.24563813209534
+  },
+  {
+   "task": "sen1floods11",
+   "n_classes": 2,
+   "patch_px": 4,
+   "n_windows": 592385,
+   "accuracy_A": 0.9154890822691324,
+   "accuracy_A_seed1": 0.9154198705233927,
+   "seed_floor": 6.921174573970568e-05,
+   "accuracy_B": 0.9145808891177191,
+   "gain": -0.0009081931514133279,
+   "lambda": 0.5,
+   "holdout_accuracy": {
+    "0.5": 0.9279833772895545,
+    "1.0": 0.8483903554404897
+   },
+   "pixel_accuracy_A": 0.9103459736109171,
+   "pixel_accuracy_B": 0.9093923230549588,
+   "pixel_miou_A": 0.7891552571271665,
+   "pixel_miou_B": 0.7874701660316052,
+   "error_rate_A": 0.0845109177308676,
+   "contamination": {
+    "gap": -0.012548446655273438,
+    "n_confident": 296193,
+    "n_confident_errors": 4459,
+    "share_of_errors_confident": 0.08906777460399896
+   },
+   "excess_aurc": {
+    "margin": 0.020200321684087766,
+    "scene_typicality": 0.11207406515271345,
+    "scene_atypicality": 0.05425699220890827,
+    "decontamination_flip": 0.07563835271449972
+   },
+   "same_valid_windows": true,
+   "seconds": 206.3713550567627
+  },
+  {
+   "task": "pastis_sentinel1",
+   "n_classes": 19,
+   "patch_px": 4,
+   "n_windows": 458638,
+   "accuracy_A": 0.7157104295762671,
+   "accuracy_A_seed1": 0.7156690025684744,
+   "seed_floor": 4.142700779263819e-05,
+   "accuracy_B": 0.7058726054099311,
+   "gain": -0.00983782416633594,
+   "lambda": 0.5,
+   "holdout_accuracy": {
+    "0.5": 0.7080605360903837,
+    "1.0": 0.6297162416869844
+   },
+   "pixel_accuracy_A": 0.7051600696441538,
+   "pixel_accuracy_B": 0.6952606662985661,
+   "pixel_miou_A": 0.29381899872312345,
+   "pixel_miou_B": 0.279374094460256,
+   "error_rate_A": 0.2842895704237329,
+   "contamination": {
+    "gap": 0.009049654006958008,
+    "n_confident": 229319,
+    "n_confident_errors": 23772,
+    "share_of_errors_confident": 0.18232018775021858
+   },
+   "excess_aurc": {
+    "margin": 0.07147237184171518,
+    "scene_typicality": 0.19638074642823725,
+    "scene_atypicality": 0.2613661835018738,
+    "decontamination_flip": 0.22118547002163458
+   },
+   "same_valid_windows": true,
+   "seconds": 367.1929428577423
+  },
+  {
+   "task": "pastis_sentinel2",
+   "n_classes": 19,
+   "patch_px": 4,
+   "n_windows": 458638,
+   "accuracy_A": 0.8099437900915318,
+   "accuracy_A_seed1": 0.8100310048447795,
+   "seed_floor": 8.721475324768857e-05,
+   "accuracy_B": 0.8068760111460455,
+   "gain": -0.003067778945486377,
+   "lambda": 0.5,
+   "holdout_accuracy": {
+    "0.5": 0.8173478759622442,
+    "1.0": 0.7545986699174877
+   },
+   "pixel_accuracy_A": 0.800746547413404,
+   "pixel_accuracy_B": 0.7978790886867151,
+   "pixel_miou_A": 0.49823216169149864,
+   "pixel_miou_B": 0.49395194426354455,
+   "error_rate_A": 0.1900562099084681,
+   "contamination": {
+    "gap": 0.003500699996948242,
+    "n_confident": 229319,
+    "n_confident_errors": 8985,
+    "share_of_errors_confident": 0.10307799970172198
+   },
+   "excess_aurc": {
+    "margin": 0.03863929343201067,
+    "scene_typicality": 0.16652675053341948,
+    "scene_atypicality": 0.1427385558497848,
+    "decontamination_flip": 0.15589730367867496
+   },
+   "same_valid_windows": true,
+   "seconds": 321.31328201293945
+  },
+  {
+   "task": "pastis_sentinel1_sentinel2",
+   "n_classes": 19,
+   "patch_px": 4,
+   "n_windows": 458638,
+   "accuracy_A": 0.8051600608758978,
+   "accuracy_A_seed1": 0.805162241244729,
+   "seed_floor": 2.180368831261603e-06,
+   "accuracy_B": 0.8010435245226082,
+   "gain": -0.004116536353289568,
+   "lambda": 0.5,
+   "holdout_accuracy": {
+    "0.5": 0.8115273817735171,
+    "1.0": 0.7435625998207376
+   },
+   "pixel_accuracy_A": 0.7946433010923437,
+   "pixel_accuracy_B": 0.7909541224410629,
+   "pixel_miou_A": 0.47582928391916574,
+   "pixel_miou_B": 0.46859865215626906,
+   "error_rate_A": 0.19483993912410225,
+   "contamination": {
+    "gap": 0.01553422212600708,
+    "n_confident": 229319,
+    "n_confident_errors": 9196,
+    "share_of_errors_confident": 0.102908427613836
+   },
+   "excess_aurc": {
+    "margin": 0.039448871852526664,
+    "scene_typicality": 0.1564779097597767,
+    "scene_atypicality": 0.1621133717458746,
+    "decontamination_flip": 0.1594057252162213
+   },
+   "same_valid_windows": true,
+   "seconds": 346.8230302333832
+  },
+  {
+   "task": "m_cashew_plant",
+   "n_classes": 7,
+   "patch_px": 4,
+   "n_windows": 204800,
+   "accuracy_A": 0.6526953125,
+   "accuracy_A_seed1": 0.65318359375,
+   "seed_floor": 0.00048828125,
+   "accuracy_B": 0.647919921875,
+   "gain": -0.004775390624999987,
+   "lambda": 0.5,
+   "holdout_accuracy": {
+    "0.5": 0.622804542824074,
+    "1.0": 0.6117594401041666
+   },
+   "pixel_accuracy_A": 0.6517938232421875,
+   "pixel_accuracy_B": 0.6481097412109375,
+   "pixel_miou_A": 0.26110044654861114,
+   "pixel_miou_B": 0.2636921647477565,
+   "error_rate_A": 0.3473046875,
+   "contamination": {
+    "gap": 0.011837959289550781,
+    "n_confident": 102400,
+    "n_confident_errors": 21113,
+    "share_of_errors_confident": 0.2968310651220335
+   },
+   "excess_aurc": {
+    "margin": 0.13075482013912232,
+    "scene_typicality": 0.23584718488172352,
+    "scene_atypicality": 0.3272858977376601,
+    "decontamination_flip": 0.26785575991066923
+   },
+   "same_valid_windows": true,
+   "seconds": 1207.2385051250458
+  },
+  {
+   "task": "m_sa_crop_type",
+   "n_classes": 10,
+   "patch_px": 4,
+   "n_windows": 4096000,
+   "accuracy_A": 0.65993408203125,
+   "accuracy_A_seed1": 0.66017041015625,
+   "seed_floor": 0.0002363281249999627,
+   "accuracy_B": 0.6510590820312501,
+   "gain": -0.008874999999999966,
+   "lambda": 0.5,
+   "holdout_accuracy": {
+    "0.5": 0.6196732584635416,
+    "1.0": 0.54275390625
+   },
+   "pixel_accuracy_A": 0.6565741882324219,
+   "pixel_accuracy_B": 0.6475809631347657,
+   "pixel_miou_A": 0.28769252214467683,
+   "pixel_miou_B": 0.2751950232919641,
+   "error_rate_A": 0.34006591796875,
+   "contamination": {
+    "gap": 0.0037161707878112793,
+    "n_confident": 2048000,
+    "n_confident_errors": 222891,
+    "share_of_errors_confident": 0.16001823520543323
+   },
+   "excess_aurc": {
+    "margin": 0.06719184346023872,
+    "scene_typicality": 0.24255148655212733,
+    "scene_atypicality": 0.28820334987615154,
+    "decontamination_flip": 0.2482289156927911
+   },
+   "same_valid_windows": true,
+   "seconds": 2849.7905378341675
+  }
+ ],
+ "n_tasks": 7,
+ "config": {
+  "lambdas": [
+   0.5,
+   1.0
+  ],
+  "holdout": 0.2,
+  "confident_share": 0.5,
+  "min_gain": 0.005,
+  "probe": "exp54/exp51 linear probe, Ai2's segmentation recipe, fp32",
+  "smoke": false
+ },
+ "prereg": {
+  "P1_confident_errors_are_more_scene_typical": {
+   "holds": true,
+   "n": 5,
+   "of": 7,
+   "threshold": "at least 5 of 7 tasks with a positive gap"
+  },
+  "P2_decontamination_improves_accuracy": {
+   "holds": false,
+   "n": 0,
+   "of": 7,
+   "threshold": "at least 4 of 7 tasks gaining >= 0.005 and more than that task's seed floor",
+   "tasks": []
+  },
+  "P3_the_diagnosis_predicts_where_it_helps": {
+   "holds": false,
+   "spearman": -0.48571428571428577,
+   "threshold": "positive rank correlation between the P1 gap and the P2 gain"
+  },
+  "P4_no_new_reading_beats_the_margin": {
+   "holds": true,
+   "n_tasks_beaten": 0,
+   "of": 7,
+   "tasks": [],
+   "threshold": "the margin keeps the lead on at least 5 of 7 tasks"
+  }
+ },
+ "prereg_as_run": {
+  "P1_confident_errors_are_more_scene_typical": {
+   "holds": true,
+   "n": 5,
+   "of": 7,
+   "threshold": "at least 5 of 7 tasks with a positive gap"
+  },
+  "P2_decontamination_improves_accuracy": {
+   "holds": false,
+   "n": 0,
+   "of": 7,
+   "threshold": "at least 4 of 7 tasks gaining >= 0.005 and more than that task's seed floor",
+   "tasks": []
+  },
+  "P3_the_diagnosis_predicts_where_it_helps": {
+   "holds": false,
+   "spearman": -0.48571428571428577,
+   "threshold": "positive rank correlation between the P1 gap and the P2 gain"
+  },
+  "P4_no_new_reading_beats_the_margin": {
+   "holds": true,
+   "n_tasks_beaten": 0,
+   "of": 7,
+   "tasks": [],
+   "threshold": "the margin keeps the lead on at least 5 of 7 tasks"
+  }
+ },
+ "regraded_by": "exp/exp77_scene_contamination.py verdicts(), tie-aware midranks"
+}

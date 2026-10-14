@@ -1,0 +1,49 @@
+{
+ "job": "1281898",
+ "year": "17",
+ "layer": "output_v12_smoke",
+ "windows": 313,
+ "windows_without_input": 42,
+ "windows_with_input": 271,
+ "windows_with_12_groups": 271,
+ "windows_with_output": 2,
+ "missing_output": 0,
+ "output_without_input": 0,
+ "bad_bandset": 0,
+ "bad_header": 0,
+ "area_complete": false,
+ "allow_incomplete": true,
+ "sampled": [
+  {
+   "window_index": 0,
+   "bands": 10,
+   "dtype": "float32",
+   "finite": true,
+   "min": 5.185730067580607e-09,
+   "max": 0.9999966621398926,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 4.097964847460389e-07,
+   "argmax_is_9_share": 0.0,
+   "max_p9": 0.0014732457930222154,
+   "mean_top1": 0.92038893699646,
+   "ok": true
+  },
+  {
+   "window_index": 1,
+   "bands": 10,
+   "dtype": "float32",
+   "finite": true,
+   "min": 7.264924661853911e-09,
+   "max": 0.9999972581863403,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.694713086588308e-07,
+   "argmax_is_9_share": 0.0,
+   "max_p9": 0.0016724205343052745,
+   "mean_top1": 0.8997846841812134,
+   "ok": true
+  }
+ ],
+ "smoke_windows_written": 2,
+ "other_windows_written": 0,
+ "ok": true
+}

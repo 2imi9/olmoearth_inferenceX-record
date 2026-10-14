@@ -1,0 +1,336 @@
+{
+ "experiment": "exp82 grain addendum: the boundary cue across window grains on OlmoEarth Base",
+ "grains": [
+  1,
+  2,
+  4
+ ],
+ "sources": {
+  "1": "exp/out/exp82_summary.json",
+  "2": "exp/out/exp82_cues/olmoearth_base_x2.json",
+  "4": "exp/out/exp82_cues/olmoearth_base_x4.json"
+ },
+ "cells": {
+  "mados@x1": {
+   "task": "mados",
+   "k": 1,
+   "n_units": 22598,
+   "prevalence": 0.10195592530312417,
+   "error_rate": 0.07359058323745464,
+   "enrichment": 8.1287002834808,
+   "boot_lo": 5.64864658621066,
+   "boot_hi": 12.87929461130672,
+   "risk_ratio": 10.490877982725808,
+   "ceiling": 32.659906396255856
+  },
+  "sen1floods11@x1": {
+   "task": "sen1floods11",
+   "k": 1,
+   "n_units": 592385,
+   "prevalence": 0.14329532314288848,
+   "error_rate": 0.0845109177308676,
+   "enrichment": 3.955763030957963,
+   "boot_lo": 3.7263116070646696,
+   "boot_hi": 4.209973793300555,
+   "risk_ratio": 4.962165954315334,
+   "ceiling": 15.573672572724925
+  },
+  "pastis_sentinel1@x1": {
+   "task": "pastis_sentinel1",
+   "k": 1,
+   "n_units": 458638,
+   "prevalence": 0.5324002808315055,
+   "error_rate": 0.2842895704237329,
+   "enrichment": 1.7834697645300637,
+   "boot_lo": 1.7415189920915966,
+   "boot_hi": 1.8294130101792456,
+   "risk_ratio": 3.0523860518824883,
+   "ceiling": 2.8846414102800693
+  },
+  "pastis_sentinel2@x1": {
+   "task": "pastis_sentinel2",
+   "k": 1,
+   "n_units": 458638,
+   "prevalence": 0.5302569782704443,
+   "error_rate": 0.1900562099084681,
+   "enrichment": 1.6742772186017674,
+   "boot_lo": 1.6361542214880964,
+   "boot_hi": 1.7143965052720407,
+   "risk_ratio": 3.272181961769776,
+   "ceiling": 2.380781777746444
+  },
+  "pastis_sentinel1_sentinel2@x1": {
+   "task": "pastis_sentinel1_sentinel2",
+   "k": 1,
+   "n_units": 458638,
+   "prevalence": 0.5280308216937977,
+   "error_rate": 0.19483993912410225,
+   "enrichment": 1.684751128185444,
+   "boot_lo": 1.6466879922552755,
+   "boot_hi": 1.7253533066821398,
+   "risk_ratio": 3.2612686560283124,
+   "ceiling": 2.416512884945097
+  },
+  "m_cashew_plant@x1": {
+   "task": "m_cashew_plant",
+   "k": 1,
+   "n_units": 204800,
+   "prevalence": 0.764638671875,
+   "error_rate": 0.3473046875,
+   "enrichment": 1.2375780591656187,
+   "boot_lo": 1.2261136685689578,
+   "boot_hi": 1.2486089770017315,
+   "risk_ratio": 2.1384177983822363,
+   "ceiling": 1.563963963963964
+  },
+  "m_sa_crop_type@x1": {
+   "task": "m_sa_crop_type",
+   "k": 1,
+   "n_units": 4096000,
+   "prevalence": 0.413140380859375,
+   "error_rate": 0.34006591796875,
+   "enrichment": 2.701652716349178,
+   "boot_lo": 2.5903309590459105,
+   "boot_hi": 2.8233095754237594,
+   "risk_ratio": 3.427997522043451,
+   "ceiling": 9.030980946367185
+  },
+  "mados@x2": {
+   "task": "mados",
+   "k": 2,
+   "n_units": 7604,
+   "prevalence": 0.10560231457127828,
+   "error_rate": 0.08850604944765912,
+   "enrichment": 7.296712086244507,
+   "boot_lo": 5.404980994694888,
+   "boot_hi": 10.095927911362102,
+   "risk_ratio": 8.295117573804117,
+   "ceiling": 53.31538461538459
+  },
+  "sen1floods11@x2": {
+   "task": "sen1floods11",
+   "k": 2,
+   "n_units": 149084,
+   "prevalence": 0.15685787877974833,
+   "error_rate": 0.07444796222263958,
+   "enrichment": 3.2556373804450955,
+   "boot_lo": 3.021753245509632,
+   "boot_hi": 3.533544941049796,
+   "risk_ratio": 4.176406469522576,
+   "ceiling": 11.23107602148787
+  },
+  "pastis_sentinel1@x2": {
+   "task": "pastis_sentinel1",
+   "k": 2,
+   "n_units": 119917,
+   "prevalence": 0.6026001317577991,
+   "error_rate": 0.26665943944561654,
+   "enrichment": 1.4747345477088123,
+   "boot_lo": 1.4399129870411413,
+   "boot_hi": 1.5120338900851857,
+   "risk_ratio": 2.4632909116034276,
+   "ceiling": 2.182946506143726
+  },
+  "pastis_sentinel2@x2": {
+   "task": "pastis_sentinel2",
+   "k": 2,
+   "n_units": 119917,
+   "prevalence": 0.6380413119074027,
+   "error_rate": 0.18661240691478273,
+   "enrichment": 1.3762463251470154,
+   "boot_lo": 1.3460302532371364,
+   "boot_hi": 1.407803532467991,
+   "risk_ratio": 2.5930130650559047,
+   "ceiling": 1.801806627997192
+  },
+  "pastis_sentinel1_sentinel2@x2": {
+   "task": "pastis_sentinel1_sentinel2",
+   "k": 2,
+   "n_units": 119917,
+   "prevalence": 0.6379745990977093,
+   "error_rate": 0.19070690560971337,
+   "enrichment": 1.3852171980053427,
+   "boot_lo": 1.354408150359066,
+   "boot_hi": 1.417495085171238,
+   "risk_ratio": 2.6431418364777284,
+   "ceiling": 1.8094154936142444
+  },
+  "m_cashew_plant@x2": {
+   "task": "m_cashew_plant",
+   "k": 2,
+   "n_units": 51200,
+   "prevalence": 0.8517578125,
+   "error_rate": 0.350703125,
+   "enrichment": 1.0826718236602977,
+   "boot_lo": 1.0764192017031098,
+   "boot_hi": 1.0891941077322804,
+   "risk_ratio": 1.5025184206874644,
+   "ceiling": 1.2958602946908864
+  },
+  "m_sa_crop_type@x2": {
+   "task": "m_sa_crop_type",
+   "k": 2,
+   "n_units": 1024000,
+   "prevalence": 0.4235771484375,
+   "error_rate": 0.3223046875,
+   "enrichment": 2.305988690207927,
+   "boot_lo": 2.209426142287219,
+   "boot_hi": 2.408006159933556,
+   "risk_ratio": 2.9926560327795135,
+   "ceiling": 6.691802551517316
+  },
+  "mados@x4": {
+   "task": "mados",
+   "k": 4,
+   "n_units": 3083,
+   "prevalence": 0.08368472267272138,
+   "error_rate": 0.09601037950048653,
+   "enrichment": 6.057131175761749,
+   "boot_lo": 4.740405845709966,
+   "boot_hi": 7.978438048792717,
+   "risk_ratio": 5.6713377062214265,
+   "ceiling": Infinity
+  },
+  "sen1floods11@x4": {
+   "task": "sen1floods11",
+   "k": 4,
+   "n_units": 37681,
+   "prevalence": 0.17361534991109578,
+   "error_rate": 0.07223799792999125,
+   "enrichment": 2.744950986873943,
+   "boot_lo": 2.4893353037610235,
+   "boot_hi": 3.028655012117528,
+   "risk_ratio": 3.492584709870762,
+   "ceiling": 9.151570680628273
+  },
+  "pastis_sentinel1@x4": {
+   "task": "pastis_sentinel1",
+   "k": 4,
+   "n_units": 31178,
+   "prevalence": 0.6495285136955545,
+   "error_rate": 0.2580345115145295,
+   "enrichment": 1.2732206767964682,
+   "boot_lo": 1.2402168221999672,
+   "boot_hi": 1.3095330044647933,
+   "risk_ratio": 1.8325022335805854,
+   "ceiling": 1.8952154678027202
+  },
+  "pastis_sentinel2@x4": {
+   "task": "pastis_sentinel2",
+   "k": 4,
+   "n_units": 31178,
+   "prevalence": 0.6957790749887741,
+   "error_rate": 0.17823465263968183,
+   "enrichment": 1.1932450745652994,
+   "boot_lo": 1.1631774390372218,
+   "boot_hi": 1.225525769580719,
+   "risk_ratio": 1.7776487431032388,
+   "ceiling": 1.5878160634605851
+  },
+  "pastis_sentinel1_sentinel2@x4": {
+   "task": "pastis_sentinel1_sentinel2",
+   "k": 4,
+   "n_units": 31178,
+   "prevalence": 0.6969658092244532,
+   "error_rate": 0.1821155943293348,
+   "enrichment": 1.2103210766059165,
+   "boot_lo": 1.1794417337769387,
+   "boot_hi": 1.2429855251713537,
+   "risk_ratio": 1.8832761440556207,
+   "ceiling": 1.5885870919511587
+  },
+  "m_cashew_plant@x4": {
+   "task": "m_cashew_plant",
+   "k": 4,
+   "n_units": 12800,
+   "prevalence": 0.89640625,
+   "error_rate": 0.334921875,
+   "enrichment": 1.037280107816755,
+   "boot_lo": 1.0284566117412663,
+   "boot_hi": 1.0471203971993972,
+   "risk_ratio": 1.2999482058816205,
+   "ceiling": 1.1844997912898287
+  },
+  "m_sa_crop_type@x4": {
+   "task": "m_sa_crop_type",
+   "k": 4,
+   "n_units": 256000,
+   "prevalence": 0.47376171875,
+   "error_rate": 0.32388671875,
+   "enrichment": 1.9347133374493488,
+   "boot_lo": 1.8558705002251827,
+   "boot_hi": 2.0174896238630713,
+   "risk_ratio": 2.636605409185213,
+   "ceiling": 4.51118119266055
+  }
+ },
+ "verdicts": {
+  "G1_saturation_is_the_grains": {
+   "holds": false,
+   "prevalence": 0.89640625,
+   "enrichment": 1.037280107816755,
+   "bars": [
+    0.9,
+    1.1
+   ]
+  },
+  "G2_ceiling_governs_across_grains": {
+   "holds": true,
+   "spearman": 0.9870129870129869,
+   "n_cells": 21,
+   "unbounded_ceiling_cells": [
+    "mados@x4"
+   ]
+  },
+  "G3_saturation_threshold": {
+   "holds": false,
+   "saturated_cells": {},
+   "unsaturated_at_or_below_1.3": {
+    "m_cashew_plant@x4": 1.2999482058816205
+   }
+  },
+  "descriptive_monotone": {
+   "n_tasks": 7,
+   "enrichment_falls_on": 7,
+   "risk_ratio_falls_on": 7,
+   "prevalence_rises_on": 6,
+   "per_task": {
+    "mados": {
+     "enrichment_falls": true,
+     "risk_ratio_falls": true,
+     "prevalence_rises": false
+    },
+    "sen1floods11": {
+     "enrichment_falls": true,
+     "risk_ratio_falls": true,
+     "prevalence_rises": true
+    },
+    "pastis_sentinel1": {
+     "enrichment_falls": true,
+     "risk_ratio_falls": true,
+     "prevalence_rises": true
+    },
+    "pastis_sentinel2": {
+     "enrichment_falls": true,
+     "risk_ratio_falls": true,
+     "prevalence_rises": true
+    },
+    "pastis_sentinel1_sentinel2": {
+     "enrichment_falls": true,
+     "risk_ratio_falls": true,
+     "prevalence_rises": true
+    },
+    "m_cashew_plant": {
+     "enrichment_falls": true,
+     "risk_ratio_falls": true,
+     "prevalence_rises": true
+    },
+    "m_sa_crop_type": {
+     "enrichment_falls": true,
+     "risk_ratio_falls": true,
+     "prevalence_rises": true
+    }
+   }
+  }
+ }
+}

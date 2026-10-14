@@ -1,0 +1,11 @@
+== 2026-10-11T10:38:13-04:00 job 1281901 on w0001: exp103 read23, commit b83a5b9d0d53ff83da4b43284a1db60daa433804 ==
+Using CPython 3.13.15
+Creating virtual environment at: .venv
+   Building olmoearth-inferencex @ file:///scratch/qi_zim_neu/olmoearth_inferenceX/e103_code/y2023
+      Built olmoearth-inferencex @ file:///scratch/qi_zim_neu/olmoearth_inferenceX/e103_code/y2023
+Installed 78 packages in 3.55s
+{"roots": [{"root_id": "root_0", "windows": 270, "parts": [{"windows": 56, "grid_gib": 2.41}, {"windows": 17, "grid_gib": 2.79}, {"windows": 56, "grid_gib": 2.41}, {"windows": 18, "grid_gib": 2.79}, {"windows": 14, "grid_gib": 2.84}, {"windows": 46, "grid_gib": 2.41}, {"windows": 17, "grid_gib": 2.41}, {"windows": 29, "grid_gib": 1.8}, {"windows": 15, "grid_gib": 1.2}, {"windows": 1, "grid_gib": 0.04}, {"windows": 1, "grid_gib": 0.04}]}], "view": {"windows": 270, "with_scl": 270, "missing_collected": 0, "metadata_differs": 0, "roots": [{"root_id": "root_0", "windows": 270}]}}
+11 of 11 parts read (411 s)
+{"job": "1281901", "year": "23", "layer": "output_v12", "plan": "grid", "conditions": true, "parts_read": 11, "windows_read": 270, "largest_sum_deviation": 4.6879912929398415e-07, "seconds": 411.0, "burned": {"copied_parts": 11, "files": 22}}
+== 2026-10-11T10:45:21-04:00 done: 11 part directories in e103_out/scores23, records/e103_read23.json ==
+e103_out on scratch: 21G	/scratch/qi_zim_neu/olmoearth_inferenceX/e103_out

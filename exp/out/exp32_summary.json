@@ -1,0 +1,62 @@
+{
+ "experiment": "exp32 latent-MIM target space",
+ "device": "cpu",
+ "config_read": {
+  "ema_decay": [
+   1.0,
+   1.0
+  ],
+  "reinit_targets": false,
+  "token_exit_cfg": "0 for every modality",
+  "loss": "patch_discrimination, tau 0.1, negatives = masked tokens of the same sample; + contrastive 0.1",
+  "masking": "encode 0.5 / decode 0.5; maps decode-only"
+ },
+ "target_encoder": {
+  "layernorm_weights_all_exactly_1": true,
+  "layernorm_weight_std": 0.0,
+  "layernorm_biases_all_exactly_0": true,
+  "matrix_weight_std": 0.02856866829097271,
+  "n_params": 88955904
+ },
+ "online_encoder": {
+  "layernorm_weights_all_exactly_1": false,
+  "layernorm_weight_std": 0.139438658952713,
+  "layernorm_biases_all_exactly_0": false,
+  "matrix_weight_std": 0.0395083986222744,
+  "n_params": 88955904
+ },
+ "s2_patch_projection": {
+  "sentinel2_l2a__0": {
+   "target_std": 0.036048565059900284,
+   "online_std": 0.04908771812915802,
+   "cosine_target_online": 0.47643351554870605
+  },
+  "sentinel2_l2a__1": {
+   "target_std": 0.02945076860487461,
+   "online_std": 0.03853476420044899,
+   "cosine_target_online": 0.4410223960876465
+  },
+  "sentinel2_l2a__2": {
+   "target_std": 0.05101308599114418,
+   "online_std": 0.04596886411309242,
+   "cosine_target_online": 0.5613404512405396
+  }
+ },
+ "medians": {
+  "target_pair_cos": 0.991006463766098,
+  "encoder_pair_cos": 0.5972838401794434,
+  "target_raw_top_share": 0.991794764995575,
+  "target_centred_top_share": 0.8473473787307739,
+  "target_centred_effective_rank": 2.00175803899765,
+  "encoder_raw_top_share": 0.6064864993095398,
+  "encoder_centred_top_share": 0.18970804661512375,
+  "encoder_centred_effective_rank": 53.864484786987305,
+  "target_norm_cv": 0.08669234812259674
+ },
+ "scenes": [
+  "barotse",
+  "okavango_80",
+  "shire_80",
+  "kazungula"
+ ]
+}

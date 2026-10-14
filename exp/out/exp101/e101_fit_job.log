@@ -1,0 +1,158 @@
+NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05, 97887 MiB
+/scratch/qi_zim_neu/olmoearth_inferenceX/e101_code/.venv/lib/python3.13/site-packages/olmoearth_pretrain/model_loader.py:37: UserWarning: olmo-core not installed. Running in inference-only mode. For training: pip install olmoearth-pretrain[training]
+  from olmoearth_pretrain.config import Config
+the pinned checkpoint (sha256 checked) and the encoder config are in the scratch HF cache
+== 2026-10-10T23:59:46-04:00 job 1275097 on a0019: exp101 mode fit, device cuda, commit a1b878e; 11 exp98 parts, 1 2023 root(s) ==
+torch 2.7.1+cu128 cuda True
+== smoke ==
+F: 40 of 40 units read, 8 clamped at a window edge
+E: 21 of 22 units read, 10 clamped at a window edge
+F: 40 of 40 units read, 8 clamped at a window edge
+  7980 views in 50 batches, 0 s
+  11730 views in 100 batches, 1 s
+F: 40 units with all 320 views; 12800 views, 11512.5 per second
+F: q = 0.8
+F: 40 of 40 units read, 8 clamped at a window edge
+  7980 views in 50 batches, 0 s
+  11730 views in 100 batches, 1 s
+F: 40 units with all 320 views; 12800 views, 12272.2 per second
+F: q = 0.8
+E: 21 of 22 units read, 10 clamped at a window edge
+  5982 views in 50 batches, 0 s
+E: 21 units with all 320 views; 6720 views, 12223.0 per second
+  13024 views in 50 batches, 1 s
+  15960 views in 100 batches, 1 s
+  19710 views in 150 batches, 1 s
+  23460 views in 200 batches, 2 s
+F: 80 units with all 320 views; 25600 views, 12213.7 per second
+  13839 views in 50 batches, 1 s
+  20992 views in 100 batches, 1 s
+  24015 views in 150 batches, 1 s
+  27765 views in 200 batches, 2 s
+  31515 views in 250 batches, 2 s
+  35265 views in 300 batches, 3 s
+E: 120 units with all 320 views; 38400 views, 12105.6 per second
+{
+ "files": {
+  "q": 0.8,
+  "prereg": {
+   "P1": {
+    "value": 0.0,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": -2.7755575615628914e-17,
+     "hi90": 2.9143354396409886e-17
+    },
+    "graded": true,
+    "holds": false
+   },
+   "P2": {
+    "value": NaN,
+    "interval": {
+     "n_resamples": 6,
+     "lo90": -1.6653345369377348e-16,
+     "hi90": 3.3306690738754696e-16
+    },
+    "graded": false,
+    "holds": null
+   }
+  }
+ },
+ "planted": {
+  "q": 0.6,
+  "prereg": {
+   "P1": {
+    "value": 0.3703703703703698,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": 0.14015450067174196,
+     "hi90": 0.5158225421079021
+    },
+    "graded": true,
+    "holds": true
+   },
+   "P2": {
+    "value": 0.3391021886149428,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": 0.041287998555235246,
+     "hi90": 0.621218035237477
+    },
+    "graded": true,
+    "holds": true
+   }
+  }
+ },
+ "null": {
+  "q": 0.6,
+  "prereg": {
+   "P1": {
+    "value": 0.15708812260536398,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": -0.09324045787478333,
+     "hi90": 0.30199174643205107
+    },
+    "graded": true,
+    "holds": false
+   },
+   "P2": {
+    "value": 0.015731092436975236,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": -0.23700600032874222,
+     "hi90": 0.2778898262151902
+    },
+    "graded": true,
+    "holds": false
+   }
+  }
+ }
+}
+== the fit (F only) ==
+/scratch/qi_zim_neu/olmoearth_inferenceX/e101_code/.venv/lib/python3.13/site-packages/olmoearth_pretrain/model_loader.py:37: UserWarning: olmo-core not installed. Running in inference-only mode. For training: pip install olmoearth-pretrain[training]
+  from olmoearth_pretrain.config import Config
+/home/qi_zim_neu/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/importlib/__init__.py:88: FutureWarning: The 'helios' package has been renamed to 'olmoearth_pretrain'. Please update your imports; this compatibility shim will be removed in a future release.
+  return _bootstrap._gcd_import(name[level:], package, level)
+replica loaded on cuda
+F: 259 of 259 units read, 18 clamped at a window edge
+  12227 views in 50 batches, 61 s
+  27377 views in 100 batches, 121 s
+  41608 views in 150 batches, 182 s
+  44408 views in 200 batches, 249 s
+  47208 views in 250 batches, 317 s
+  50103 views in 300 batches, 384 s
+  53853 views in 350 batches, 450 s
+  57603 views in 400 batches, 515 s
+  61353 views in 450 batches, 580 s
+  65103 views in 500 batches, 646 s
+  68853 views in 550 batches, 711 s
+  72603 views in 600 batches, 776 s
+  76353 views in 650 batches, 842 s
+  80103 views in 700 batches, 907 s
+F: 259 units with all 320 views; 82880 views, 86.7 per second
+F: q = 0.6
+{
+ "q": 0.6,
+ "per_q": {
+  "0.5": 15.900000000000002,
+  "0.6": 16.900000000000002,
+  "0.7": 16.0,
+  "0.8": 14.0
+ },
+ "units": {
+  "n_with_views": 259,
+  "n_errors": 33,
+  "n_correct": 226,
+  "v0_agreement_with_deployed": 0.915057915057915,
+  "clamped_errors": 2,
+  "clamped_correct": 16,
+  "mean_share_errors": 0.2634178778379405,
+  "mean_share_correct": 0.03463533719865731
+ }
+}
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu  21038 Oct 11 00:20 /scratch/qi_zim_neu/olmoearth_inferenceX/e101_out/exp101_fit.json
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu 326974 Oct 11 00:20 /scratch/qi_zim_neu/olmoearth_inferenceX/e101_out/exp101_units_fit.npz
+outputs: 461K	/scratch/qi_zim_neu/olmoearth_inferenceX/e101_out
+scratch: storage0001.nfs:/scratch  2.7P  296T  2.4P  11% /scratch
+== 2026-10-11T00:20:19-04:00 done ==

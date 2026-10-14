@@ -1,0 +1,13 @@
+== 2026-10-11T18:24:18-04:00 job 1286735 on b0031: exp104 smoke, commit 7fd49950736dddf763e479e447c00f6698f1d96a, page draft ==
+NVIDIA B200, 595.71.05, 183359 MiB
+rslearn 0.1.17
+NVIDIA B200 sm_100
+{"dataset.json": {"canonical": true, "reversed_is_ai2s": true, "is_ai2s_mpc_version": true}, "model.yaml": {"reversed_is_ai2s": true}, "ai2": {"repo": "allenai/olmoearth_projects", "commit": "f3c9b0c89c7670b3525647dda4c14b76245d682d", "dir": "olmoearth_run_data/forest_loss_driver"}, "ok": true}
+checkpoint: allenai/OlmoEarth-v1-FT-ForestLossDriver-Base @ 15502f8a, sha256 682c20b9... verified
+== 2026-10-11T18:24:22-04:00 rslearn model predict (smoke): layer output, --seed_everything 104, 8 workers ==
+predicted in 28 s; rslearn's own counts, masked:
+  format=<n>-10-11 18:24:47,363 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 2 examples in split predict
+{"predictions": 2, "classes": 10, "order": "Ai2's (checked)", "largest_sum_deviation": 7.680500857532024e-08, "ok": true}
+== 2026-10-11T18:24:51-04:00 smoke done: records/e104_smoke.json ==
+on scratch: 6.5M	/scratch/qi_zim_neu/olmoearth_inferenceX/e104_out
+on scratch: 2.3G	<private>

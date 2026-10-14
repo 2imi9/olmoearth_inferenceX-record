@@ -1,0 +1,1240 @@
+{
+ "experiment": "exp60 two periods, both sensors: the time-only, sensor-only and mixed differences on GEOID-Flood",
+ "smoke": false,
+ "device": "cuda",
+ "config": {
+  "pairs": {
+   "time_only": [
+    "A_s1pre",
+    "B_s1post"
+   ],
+   "sensor_only": [
+    "A_s2pre",
+    "A_s1pre"
+   ],
+   "mixed": [
+    "A_s2pre",
+    "B_s1post"
+   ]
+  },
+  "cap_per_aoi": 400,
+  "confident_margin": 0.25,
+  "min_event_windows": 20,
+  "shifts": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "s1_head": "one head fitted on the val chips' pre pass (permanent-water label) and post pass (water-after label), stacked",
+  "prereg": "P1 time-only flooded share >= 2x the mixed pair's pooled and higher on more events than not (p < 0.05); P2 sensor-only flooded share <= 0.5x the mixed pair's pooled and lower on more events than not (p < 0.05)",
+  "pre_s1_shards": {
+   "test": [
+    {
+     "shard": "geoid-flood/shards/test/s1grd/test-s1grd-00000-of-00019.tar",
+     "members_extracted": 151,
+     "seconds": 15.327942609786987
+    },
+    {
+     "shard": "geoid-flood/shards/test/s1grd/test-s1grd-00001-of-00019.tar",
+     "members_extracted": 151,
+     "seconds": 11.966410398483276
+    },
+    {
+     "shard": "geoid-flood/shards/test/s1grd/test-s1grd-00002-of-00019.tar",
+     "members_extracted": 146,
+     "seconds": 9.851204872131348
+    },
+    {
+     "shard": "geoid-flood/shards/test/s1grd/test-s1grd-00003-of-00019.tar",
+     "members_extracted": 149,
+     "seconds": 10.526074409484863
+    }
+   ],
+   "val": [
+    {
+     "shard": "geoid-flood/shards/val/s1grd/val-s1grd-00000-of-00009.tar",
+     "members_extracted": 146,
+     "seconds": 11.412901639938354
+    },
+    {
+     "shard": "geoid-flood/shards/val/s1grd/val-s1grd-00001-of-00009.tar",
+     "members_extracted": 147,
+     "seconds": 9.489191055297852
+    }
+   ]
+  },
+  "val_chips": {
+   "tiles": 292,
+   "selected": 1622,
+   "clear": 1460,
+   "events": 12
+  },
+  "test_chips": {
+   "tiles": 597,
+   "selected": 4519,
+   "clear": 4489,
+   "events": 55
+  },
+  "head_seconds": 77.72366452217102,
+  "encode_seconds": 120.93966627120972
+ },
+ "results": {
+  "pairs": {
+   "time_only": {
+    "sides": [
+     "A_s1pre",
+     "B_s1post"
+    ],
+    "n_windows": 869160,
+    "n_disagree": 29700,
+    "disagreement_rate": 0.0341709236504211,
+    "flooded_share": 0.2594949494949495,
+    "err_a_share": 0.5454208754208755,
+    "err_b_share": 0.1960942760942761,
+    "neither_share": 0.0,
+    "boundary_enrichment": 12.896125648371877,
+    "both_confident_share": 0.4828956228956229,
+    "both_confident_flooded": 0.4083112536605773,
+    "per_event": {
+     "EMSR162-1": {
+      "n_disagree": 2,
+      "n_windows": 322,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR162-2": {
+      "n_disagree": 0,
+      "n_windows": 476,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR162-3": {
+      "n_disagree": 0,
+      "n_windows": 392,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR162-4": {
+      "n_disagree": 0,
+      "n_windows": 700,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR187-1": {
+      "n_disagree": 1715,
+      "n_windows": 41708,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-1": {
+      "n_disagree": 213,
+      "n_windows": 10848,
+      "flooded_share": 0.004694835680751174,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-10": {
+      "n_disagree": 192,
+      "n_windows": 10220,
+      "flooded_share": 0.6302083333333334,
+      "both_confident_flooded": 0.7934782608695652
+     },
+     "EMSR192-11": {
+      "n_disagree": 294,
+      "n_windows": 9757,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-12": {
+      "n_disagree": 27,
+      "n_windows": 9422,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-13": {
+      "n_disagree": 836,
+      "n_windows": 9212,
+      "flooded_share": 0.034688995215311005,
+      "both_confident_flooded": 0.061855670103092786
+     },
+     "EMSR192-14": {
+      "n_disagree": 232,
+      "n_windows": 10216,
+      "flooded_share": 0.5301724137931034,
+      "both_confident_flooded": 0.9433962264150944
+     },
+     "EMSR192-15": {
+      "n_disagree": 405,
+      "n_windows": 10416,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-16": {
+      "n_disagree": 24,
+      "n_windows": 1091,
+      "flooded_share": 0.041666666666666664,
+      "both_confident_flooded": null
+     },
+     "EMSR192-19": {
+      "n_disagree": 6,
+      "n_windows": 392,
+      "flooded_share": 1.0,
+      "both_confident_flooded": null
+     },
+     "EMSR192-2": {
+      "n_disagree": 58,
+      "n_windows": 8232,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-20": {
+      "n_disagree": 0,
+      "n_windows": 392,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-21": {
+      "n_disagree": 0,
+      "n_windows": 364,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-22": {
+      "n_disagree": 0,
+      "n_windows": 686,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-24": {
+      "n_disagree": 0,
+      "n_windows": 392,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-29": {
+      "n_disagree": 1,
+      "n_windows": 2940,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-3": {
+      "n_disagree": 62,
+      "n_windows": 9324,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-30": {
+      "n_disagree": 35,
+      "n_windows": 3920,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-31": {
+      "n_disagree": 5,
+      "n_windows": 1694,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR192-32": {
+      "n_disagree": 0,
+      "n_windows": 1568,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-33": {
+      "n_disagree": 0,
+      "n_windows": 1549,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-4": {
+      "n_disagree": 152,
+      "n_windows": 10094,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-5": {
+      "n_disagree": 42,
+      "n_windows": 10976,
+      "flooded_share": 0.11904761904761904,
+      "both_confident_flooded": 0.5714285714285714
+     },
+     "EMSR192-6": {
+      "n_disagree": 67,
+      "n_windows": 6776,
+      "flooded_share": 0.1044776119402985,
+      "both_confident_flooded": 0.2727272727272727
+     },
+     "EMSR192-7": {
+      "n_disagree": 60,
+      "n_windows": 9953,
+      "flooded_share": 0.016666666666666666,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-8": {
+      "n_disagree": 9,
+      "n_windows": 5623,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR192-9": {
+      "n_disagree": 69,
+      "n_windows": 9408,
+      "flooded_share": 0.043478260869565216,
+      "both_confident_flooded": 0.10714285714285714
+     },
+     "EMSR199-9": {
+      "n_disagree": 214,
+      "n_windows": 3394,
+      "flooded_share": 0.09813084112149532,
+      "both_confident_flooded": 0.03418803418803419
+     },
+     "EMSR215-1": {
+      "n_disagree": 97,
+      "n_windows": 4424,
+      "flooded_share": 0.6804123711340206,
+      "both_confident_flooded": 0.975609756097561
+     },
+     "EMSR238-1": {
+      "n_disagree": 38,
+      "n_windows": 1985,
+      "flooded_share": 0.6052631578947368,
+      "both_confident_flooded": 1.0
+     },
+     "EMSR238-2": {
+      "n_disagree": 42,
+      "n_windows": 2336,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR238-3": {
+      "n_disagree": 11,
+      "n_windows": 2034,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR238-4": {
+      "n_disagree": 1,
+      "n_windows": 2352,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR258-14": {
+      "n_disagree": 5,
+      "n_windows": 5508,
+      "flooded_share": 1.0,
+      "both_confident_flooded": null
+     },
+     "EMSR261-1": {
+      "n_disagree": 2325,
+      "n_windows": 67620,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR261-2": {
+      "n_disagree": 368,
+      "n_windows": 59273,
+      "flooded_share": 0.005434782608695652,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR261-3": {
+      "n_disagree": 2563,
+      "n_windows": 48021,
+      "flooded_share": 0.060085836909871244,
+      "both_confident_flooded": 0.11792014856081709
+     },
+     "EMSR273-1": {
+      "n_disagree": 67,
+      "n_windows": 1764,
+      "flooded_share": 0.8059701492537313,
+      "both_confident_flooded": 1.0
+     },
+     "EMSR273-2": {
+      "n_disagree": 214,
+      "n_windows": 6764,
+      "flooded_share": 0.8925233644859814,
+      "both_confident_flooded": 1.0
+     },
+     "EMSR273-3": {
+      "n_disagree": 170,
+      "n_windows": 5740,
+      "flooded_share": 0.611764705882353,
+      "both_confident_flooded": 0.8604651162790697
+     },
+     "EMSR273-4": {
+      "n_disagree": 404,
+      "n_windows": 4738,
+      "flooded_share": 0.5,
+      "both_confident_flooded": 0.6197718631178707
+     },
+     "EMSR273-5": {
+      "n_disagree": 208,
+      "n_windows": 5011,
+      "flooded_share": 0.9326923076923077,
+      "both_confident_flooded": 0.9818181818181818
+     },
+     "EMSR275-1": {
+      "n_disagree": 3918,
+      "n_windows": 35084,
+      "flooded_share": 0.6237876467585503,
+      "both_confident_flooded": 0.779253112033195
+     },
+     "EMSR275-2": {
+      "n_disagree": 3476,
+      "n_windows": 35280,
+      "flooded_share": 0.6539125431530495,
+      "both_confident_flooded": 0.7852288173991844
+     },
+     "EMSR275-3": {
+      "n_disagree": 1517,
+      "n_windows": 29403,
+      "flooded_share": 0.5827290705339486,
+      "both_confident_flooded": 0.759167492566898
+     },
+     "EMSR279-1": {
+      "n_disagree": 355,
+      "n_windows": 78204,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-10": {
+      "n_disagree": 295,
+      "n_windows": 65681,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-11": {
+      "n_disagree": 1570,
+      "n_windows": 78028,
+      "flooded_share": 0.025477707006369428,
+      "both_confident_flooded": 0.16891891891891891
+     },
+     "EMSR279-2": {
+      "n_disagree": 473,
+      "n_windows": 36553,
+      "flooded_share": 0.006342494714587738,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-3": {
+      "n_disagree": 6108,
+      "n_windows": 67249,
+      "flooded_share": 0.008022265880812049,
+      "both_confident_flooded": 0.008385744234800839
+     },
+     "EMSR279-4": {
+      "n_disagree": 755,
+      "n_windows": 23651,
+      "flooded_share": 0.928476821192053,
+      "both_confident_flooded": 0.9981167608286252
+     }
+    }
+   },
+   "sensor_only": {
+    "sides": [
+     "A_s2pre",
+     "A_s1pre"
+    ],
+    "n_windows": 869160,
+    "n_disagree": 42696,
+    "disagreement_rate": 0.049123291453817476,
+    "flooded_share": 0.0040519018175004685,
+    "err_a_share": 0.5892589469739554,
+    "err_b_share": 0.4107410530260446,
+    "neither_share": 0.0,
+    "boundary_enrichment": 7.265824503263928,
+    "both_confident_share": 0.674020985572419,
+    "both_confident_flooded": 0.001563694488845646,
+    "per_event": {
+     "EMSR162-1": {
+      "n_disagree": 5,
+      "n_windows": 322,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR162-2": {
+      "n_disagree": 0,
+      "n_windows": 476,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR162-3": {
+      "n_disagree": 0,
+      "n_windows": 392,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR162-4": {
+      "n_disagree": 0,
+      "n_windows": 700,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR187-1": {
+      "n_disagree": 988,
+      "n_windows": 41708,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-1": {
+      "n_disagree": 268,
+      "n_windows": 10848,
+      "flooded_share": 0.0037313432835820895,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-10": {
+      "n_disagree": 178,
+      "n_windows": 10220,
+      "flooded_share": 0.1797752808988764,
+      "both_confident_flooded": 0.26666666666666666
+     },
+     "EMSR192-11": {
+      "n_disagree": 347,
+      "n_windows": 9757,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-12": {
+      "n_disagree": 56,
+      "n_windows": 9422,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-13": {
+      "n_disagree": 950,
+      "n_windows": 9212,
+      "flooded_share": 0.010526315789473684,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-14": {
+      "n_disagree": 108,
+      "n_windows": 10216,
+      "flooded_share": 0.009259259259259259,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-15": {
+      "n_disagree": 448,
+      "n_windows": 10416,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-16": {
+      "n_disagree": 22,
+      "n_windows": 1091,
+      "flooded_share": 0.13636363636363635,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-19": {
+      "n_disagree": 13,
+      "n_windows": 392,
+      "flooded_share": 0.6923076923076923,
+      "both_confident_flooded": 0.75
+     },
+     "EMSR192-2": {
+      "n_disagree": 94,
+      "n_windows": 8232,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-20": {
+      "n_disagree": 0,
+      "n_windows": 392,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-21": {
+      "n_disagree": 0,
+      "n_windows": 364,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-22": {
+      "n_disagree": 4,
+      "n_windows": 686,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-24": {
+      "n_disagree": 0,
+      "n_windows": 392,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-29": {
+      "n_disagree": 23,
+      "n_windows": 2940,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-3": {
+      "n_disagree": 43,
+      "n_windows": 9324,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-30": {
+      "n_disagree": 45,
+      "n_windows": 3920,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-31": {
+      "n_disagree": 18,
+      "n_windows": 1694,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-32": {
+      "n_disagree": 13,
+      "n_windows": 1568,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-33": {
+      "n_disagree": 20,
+      "n_windows": 1549,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-4": {
+      "n_disagree": 111,
+      "n_windows": 10094,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-5": {
+      "n_disagree": 157,
+      "n_windows": 10976,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-6": {
+      "n_disagree": 109,
+      "n_windows": 6776,
+      "flooded_share": 0.03669724770642202,
+      "both_confident_flooded": 0.02857142857142857
+     },
+     "EMSR192-7": {
+      "n_disagree": 190,
+      "n_windows": 9953,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-8": {
+      "n_disagree": 19,
+      "n_windows": 5623,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-9": {
+      "n_disagree": 121,
+      "n_windows": 9408,
+      "flooded_share": 0.03305785123966942,
+      "both_confident_flooded": 0.06382978723404255
+     },
+     "EMSR199-9": {
+      "n_disagree": 100,
+      "n_windows": 3394,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR215-1": {
+      "n_disagree": 53,
+      "n_windows": 4424,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR238-1": {
+      "n_disagree": 54,
+      "n_windows": 1985,
+      "flooded_share": 0.037037037037037035,
+      "both_confident_flooded": null
+     },
+     "EMSR238-2": {
+      "n_disagree": 44,
+      "n_windows": 2336,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR238-3": {
+      "n_disagree": 4,
+      "n_windows": 2034,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR238-4": {
+      "n_disagree": 0,
+      "n_windows": 2352,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR258-14": {
+      "n_disagree": 2,
+      "n_windows": 5508,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR261-1": {
+      "n_disagree": 2581,
+      "n_windows": 67620,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR261-2": {
+      "n_disagree": 269,
+      "n_windows": 59273,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR261-3": {
+      "n_disagree": 2413,
+      "n_windows": 48021,
+      "flooded_share": 0.0020721094073767096,
+      "both_confident_flooded": 0.003045685279187817
+     },
+     "EMSR273-1": {
+      "n_disagree": 29,
+      "n_windows": 1764,
+      "flooded_share": 0.3103448275862069,
+      "both_confident_flooded": 0.4
+     },
+     "EMSR273-2": {
+      "n_disagree": 25,
+      "n_windows": 6764,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR273-3": {
+      "n_disagree": 237,
+      "n_windows": 5740,
+      "flooded_share": 0.14767932489451477,
+      "both_confident_flooded": 0.0782608695652174
+     },
+     "EMSR273-4": {
+      "n_disagree": 230,
+      "n_windows": 4738,
+      "flooded_share": 0.004347826086956522,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR273-5": {
+      "n_disagree": 21,
+      "n_windows": 5011,
+      "flooded_share": 0.3333333333333333,
+      "both_confident_flooded": 1.0
+     },
+     "EMSR275-1": {
+      "n_disagree": 1126,
+      "n_windows": 35084,
+      "flooded_share": 0.008880994671403197,
+      "both_confident_flooded": 0.00392156862745098
+     },
+     "EMSR275-2": {
+      "n_disagree": 1174,
+      "n_windows": 35280,
+      "flooded_share": 0.011073253833049404,
+      "both_confident_flooded": 0.0018552875695732839
+     },
+     "EMSR275-3": {
+      "n_disagree": 173,
+      "n_windows": 29403,
+      "flooded_share": 0.07514450867052024,
+      "both_confident_flooded": 0.10714285714285714
+     },
+     "EMSR279-1": {
+      "n_disagree": 344,
+      "n_windows": 78204,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-10": {
+      "n_disagree": 331,
+      "n_windows": 65681,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-11": {
+      "n_disagree": 23185,
+      "n_windows": 78028,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-2": {
+      "n_disagree": 267,
+      "n_windows": 36553,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-3": {
+      "n_disagree": 5637,
+      "n_windows": 67249,
+      "flooded_share": 0.0012417952811779316,
+      "both_confident_flooded": 0.0003770739064856712
+     },
+     "EMSR279-4": {
+      "n_disagree": 47,
+      "n_windows": 23651,
+      "flooded_share": 0.14893617021276595,
+      "both_confident_flooded": 0.5714285714285714
+     }
+    }
+   },
+   "mixed": {
+    "sides": [
+     "A_s2pre",
+     "B_s1post"
+    ],
+    "n_windows": 869160,
+    "n_disagree": 39686,
+    "disagreement_rate": 0.04566017764278154,
+    "flooded_share": 0.19518218011389407,
+    "err_a_share": 0.6300206621982564,
+    "err_b_share": 0.17761931159602884,
+    "neither_share": 0.0,
+    "boundary_enrichment": 7.39347092107232,
+    "both_confident_share": 0.567857682810059,
+    "both_confident_flooded": 0.2618920837770678,
+    "per_event": {
+     "EMSR162-1": {
+      "n_disagree": 3,
+      "n_windows": 322,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR162-2": {
+      "n_disagree": 0,
+      "n_windows": 476,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR162-3": {
+      "n_disagree": 0,
+      "n_windows": 392,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR162-4": {
+      "n_disagree": 0,
+      "n_windows": 700,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR187-1": {
+      "n_disagree": 895,
+      "n_windows": 41708,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-1": {
+      "n_disagree": 121,
+      "n_windows": 10848,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-10": {
+      "n_disagree": 236,
+      "n_windows": 10220,
+      "flooded_share": 0.5720338983050848,
+      "both_confident_flooded": 0.8369565217391305
+     },
+     "EMSR192-11": {
+      "n_disagree": 129,
+      "n_windows": 9757,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-12": {
+      "n_disagree": 29,
+      "n_windows": 9422,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-13": {
+      "n_disagree": 244,
+      "n_windows": 9212,
+      "flooded_share": 0.12704918032786885,
+      "both_confident_flooded": 0.13333333333333333
+     },
+     "EMSR192-14": {
+      "n_disagree": 226,
+      "n_windows": 10216,
+      "flooded_share": 0.5398230088495575,
+      "both_confident_flooded": 0.9345794392523364
+     },
+     "EMSR192-15": {
+      "n_disagree": 63,
+      "n_windows": 10416,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-16": {
+      "n_disagree": 32,
+      "n_windows": 1091,
+      "flooded_share": 0.0625,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-19": {
+      "n_disagree": 11,
+      "n_windows": 392,
+      "flooded_share": 0.6363636363636364,
+      "both_confident_flooded": null
+     },
+     "EMSR192-2": {
+      "n_disagree": 46,
+      "n_windows": 8232,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-20": {
+      "n_disagree": 0,
+      "n_windows": 392,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-21": {
+      "n_disagree": 0,
+      "n_windows": 364,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-22": {
+      "n_disagree": 4,
+      "n_windows": 686,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-24": {
+      "n_disagree": 0,
+      "n_windows": 392,
+      "flooded_share": null,
+      "both_confident_flooded": null
+     },
+     "EMSR192-29": {
+      "n_disagree": 22,
+      "n_windows": 2940,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-3": {
+      "n_disagree": 73,
+      "n_windows": 9324,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-30": {
+      "n_disagree": 80,
+      "n_windows": 3920,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-31": {
+      "n_disagree": 15,
+      "n_windows": 1694,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-32": {
+      "n_disagree": 13,
+      "n_windows": 1568,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-33": {
+      "n_disagree": 20,
+      "n_windows": 1549,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-4": {
+      "n_disagree": 157,
+      "n_windows": 10094,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-5": {
+      "n_disagree": 147,
+      "n_windows": 10976,
+      "flooded_share": 0.034013605442176874,
+      "both_confident_flooded": 0.1111111111111111
+     },
+     "EMSR192-6": {
+      "n_disagree": 102,
+      "n_windows": 6776,
+      "flooded_share": 0.06862745098039216,
+      "both_confident_flooded": 0.13333333333333333
+     },
+     "EMSR192-7": {
+      "n_disagree": 152,
+      "n_windows": 9953,
+      "flooded_share": 0.006578947368421052,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-8": {
+      "n_disagree": 20,
+      "n_windows": 5623,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR192-9": {
+      "n_disagree": 116,
+      "n_windows": 9408,
+      "flooded_share": 0.008620689655172414,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR199-9": {
+      "n_disagree": 192,
+      "n_windows": 3394,
+      "flooded_share": 0.109375,
+      "both_confident_flooded": 0.03305785123966942
+     },
+     "EMSR215-1": {
+      "n_disagree": 124,
+      "n_windows": 4424,
+      "flooded_share": 0.532258064516129,
+      "both_confident_flooded": 0.7547169811320755
+     },
+     "EMSR238-1": {
+      "n_disagree": 70,
+      "n_windows": 1985,
+      "flooded_share": 0.3,
+      "both_confident_flooded": 0.85
+     },
+     "EMSR238-2": {
+      "n_disagree": 10,
+      "n_windows": 2336,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR238-3": {
+      "n_disagree": 7,
+      "n_windows": 2034,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR238-4": {
+      "n_disagree": 1,
+      "n_windows": 2352,
+      "flooded_share": 0.0,
+      "both_confident_flooded": null
+     },
+     "EMSR258-14": {
+      "n_disagree": 7,
+      "n_windows": 5508,
+      "flooded_share": 0.7142857142857143,
+      "both_confident_flooded": null
+     },
+     "EMSR261-1": {
+      "n_disagree": 540,
+      "n_windows": 67620,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR261-2": {
+      "n_disagree": 253,
+      "n_windows": 59273,
+      "flooded_share": 0.007905138339920948,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR261-3": {
+      "n_disagree": 608,
+      "n_windows": 48021,
+      "flooded_share": 0.26151315789473684,
+      "both_confident_flooded": 0.5173745173745173
+     },
+     "EMSR273-1": {
+      "n_disagree": 66,
+      "n_windows": 1764,
+      "flooded_share": 0.8939393939393939,
+      "both_confident_flooded": 0.8888888888888888
+     },
+     "EMSR273-2": {
+      "n_disagree": 215,
+      "n_windows": 6764,
+      "flooded_share": 0.8883720930232558,
+      "both_confident_flooded": 0.9869281045751634
+     },
+     "EMSR273-3": {
+      "n_disagree": 277,
+      "n_windows": 5740,
+      "flooded_share": 0.4223826714801444,
+      "both_confident_flooded": 0.43609022556390975
+     },
+     "EMSR273-4": {
+      "n_disagree": 466,
+      "n_windows": 4738,
+      "flooded_share": 0.4356223175965665,
+      "both_confident_flooded": 0.7028112449799196
+     },
+     "EMSR273-5": {
+      "n_disagree": 193,
+      "n_windows": 5011,
+      "flooded_share": 0.9792746113989638,
+      "both_confident_flooded": 1.0
+     },
+     "EMSR275-1": {
+      "n_disagree": 3128,
+      "n_windows": 35084,
+      "flooded_share": 0.7819693094629157,
+      "both_confident_flooded": 0.943911066195048
+     },
+     "EMSR275-2": {
+      "n_disagree": 2796,
+      "n_windows": 35280,
+      "flooded_share": 0.8140200286123033,
+      "both_confident_flooded": 0.9321486268174475
+     },
+     "EMSR275-3": {
+      "n_disagree": 1518,
+      "n_windows": 29403,
+      "flooded_share": 0.5843214756258235,
+      "both_confident_flooded": 0.7592954990215264
+     },
+     "EMSR279-1": {
+      "n_disagree": 387,
+      "n_windows": 78204,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-10": {
+      "n_disagree": 174,
+      "n_windows": 65681,
+      "flooded_share": 0.0,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-11": {
+      "n_disagree": 23747,
+      "n_windows": 78028,
+      "flooded_share": 0.0016844232955741778,
+      "both_confident_flooded": 0.001766909322213584
+     },
+     "EMSR279-2": {
+      "n_disagree": 306,
+      "n_windows": 36553,
+      "flooded_share": 0.00980392156862745,
+      "both_confident_flooded": 0.0
+     },
+     "EMSR279-3": {
+      "n_disagree": 881,
+      "n_windows": 67249,
+      "flooded_share": 0.05448354143019296,
+      "both_confident_flooded": 0.0633245382585752
+     },
+     "EMSR279-4": {
+      "n_disagree": 764,
+      "n_windows": 23651,
+      "flooded_share": 0.918848167539267,
+      "both_confident_flooded": 0.9925925925925926
+     }
+    }
+   }
+  },
+  "accuracy_own_task": {
+   "A_s2pre": 0.9677504717198214,
+   "A_s1pre": 0.9765198582539464,
+   "B_s1post": 0.9846322886465093
+  },
+  "tests": {
+   "P1_time_vs_mixed": {
+    "ratio_pooled": 1.3295012349156423,
+    "n_groups": 37,
+    "n_undefined": 0,
+    "median": 0.0,
+    "w": 13,
+    "l": 13,
+    "t": 11,
+    "share_flipped": 0.35135135135135137,
+    "sign_p": 0.577490508556366,
+    "flipped": [
+     "EMSR192-13",
+     "EMSR192-14",
+     "EMSR192-16",
+     "EMSR199-9",
+     "EMSR261-2",
+     "EMSR261-3",
+     "EMSR273-1",
+     "EMSR273-5",
+     "EMSR275-1",
+     "EMSR275-2",
+     "EMSR275-3",
+     "EMSR279-2",
+     "EMSR279-3"
+    ]
+   },
+   "P2_sensor_vs_mixed": {
+    "ratio_pooled": 0.020759588888371237,
+    "n_groups": 39,
+    "n_undefined": 0,
+    "median": 0.00980392156862745,
+    "w": 23,
+    "l": 3,
+    "t": 13,
+    "share_flipped": 0.07692307692307693,
+    "sign_p": 4.398822784423828e-05,
+    "flipped": [
+     "EMSR192-1",
+     "EMSR192-16",
+     "EMSR192-9"
+    ]
+   },
+   "prediction_sensor_fewer_differences": {
+    "n_groups": 39,
+    "n_undefined": 0,
+    "median": 16.0,
+    "w": 21,
+    "l": 17,
+    "t": 1,
+    "share_flipped": 0.4358974358974359,
+    "sign_p": 0.31355128507857444,
+    "flipped": [
+     "EMSR187-1",
+     "EMSR192-1",
+     "EMSR192-11",
+     "EMSR192-12",
+     "EMSR192-13",
+     "EMSR192-15",
+     "EMSR192-2",
+     "EMSR192-29",
+     "EMSR192-5",
+     "EMSR192-6",
+     "EMSR192-7",
+     "EMSR192-9",
+     "EMSR261-1",
+     "EMSR261-2",
+     "EMSR261-3",
+     "EMSR279-10",
+     "EMSR279-3"
+    ]
+   },
+   "prediction_both_confident_time_vs_mixed": {
+    "n_groups": 36,
+    "n_undefined": 0,
+    "median": 0.0,
+    "w": 12,
+    "l": 9,
+    "t": 15,
+    "share_flipped": 0.25,
+    "sign_p": 0.33181190490722656,
+    "flipped": [
+     "EMSR192-10",
+     "EMSR192-13",
+     "EMSR261-3",
+     "EMSR273-4",
+     "EMSR273-5",
+     "EMSR275-1",
+     "EMSR275-2",
+     "EMSR275-3",
+     "EMSR279-3"
+    ]
+   }
+  }
+ },
+ "failures": [],
+ "prereg": {
+  "P1": false,
+  "P2": true,
+  "p1_ratio": 2.0,
+  "p2_ratio": 0.5,
+  "min_event_windows": 20,
+  "complete": true
+ },
+ "n_failures": 0,
+ "seconds": 316.79037833213806
+}

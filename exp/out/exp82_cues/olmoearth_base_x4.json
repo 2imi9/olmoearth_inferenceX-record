@@ -1,0 +1,872 @@
+{
+ "experiment": "exp82 is the why verified where it is quoted",
+ "encoder": "olmoearth_base",
+ "units": "exp/out/exp79_units/olmoearth_base",
+ "config": {
+  "n_boot": 2000,
+  "low_confidence_quantile": 0.2,
+  "budgets": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "library_ratio": 3.504672897196262,
+  "seed": 0,
+  "seconds": 2
+ },
+ "tasks": {
+  "mados": {
+   "n_units": 3083,
+   "n_tiles": 1310,
+   "n_classes": 15,
+   "error_rate": 0.09601037950048653,
+   "coarsen": 4,
+   "boundary_prevalence": 0.08368472267272138,
+   "recorded_capture_20": null,
+   "cues": {
+    "boundary": {
+     "n": 3083,
+     "n_errors": 296,
+     "n_with_cue": 258,
+     "n_tiles": 1310,
+     "share_errors": 0.34121621621621623,
+     "share_correct": 0.0563329745245784,
+     "enrichment": 6.057131175761749,
+     "precision": 0.39147286821705424,
+     "boot_lo": 4.740405845709966,
+     "boot_hi": 7.978438048792717,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence": {
+     "n": 3083,
+     "n_errors": 296,
+     "n_with_cue": 617,
+     "n_tiles": 1310,
+     "share_errors": 0.6621621621621622,
+     "share_correct": 0.15105848582705417,
+     "enrichment": 4.383482056878732,
+     "precision": 0.31766612641815234,
+     "boot_lo": 3.5228728199613175,
+     "boot_hi": 5.496568966037725,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "boundary_and_low_confidence": {
+     "n": 3083,
+     "n_errors": 296,
+     "n_with_cue": 208,
+     "n_tiles": 1310,
+     "share_errors": 0.30743243243243246,
+     "share_correct": 0.04198062432723358,
+     "enrichment": 7.323198198198199,
+     "precision": 0.4375,
+     "boot_lo": 5.554333358686584,
+     "boot_hi": 10.122162129307048,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence_per_tile": {
+     "n": 3083,
+     "n_errors": 296,
+     "n_with_cue": 1095,
+     "n_tiles": 1310,
+     "share_errors": 0.4966216216216216,
+     "share_correct": 0.3401506996770721,
+     "enrichment": 1.4600047040711597,
+     "precision": 0.13424657534246576,
+     "boot_lo": 1.2593950840666448,
+     "boot_hi": 1.7182578923985667,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    }
+   },
+   "captures": {
+    "confidence": {
+     "0.05": 0.2635135135135135,
+     "0.1": 0.40878378378378377,
+     "0.2": 0.6621621621621622
+    },
+    "boundary_first": {
+     "0.05": 0.2195945945945946,
+     "0.1": 0.4222972972972973,
+     "0.2": 0.6621621621621622
+    }
+   },
+   "seconds": 0.3
+  },
+  "sen1floods11": {
+   "n_units": 37681,
+   "n_tiles": 2419,
+   "n_classes": 2,
+   "error_rate": 0.07223799792999125,
+   "coarsen": 4,
+   "boundary_prevalence": 0.17361534991109578,
+   "recorded_capture_20": null,
+   "cues": {
+    "boundary": {
+     "n": 37681,
+     "n_errors": 2722,
+     "n_with_cue": 6542,
+     "n_tiles": 2419,
+     "share_errors": 0.42321822189566494,
+     "share_correct": 0.15418061157355759,
+     "enrichment": 2.744950986873943,
+     "precision": 0.17609293793946806,
+     "boot_lo": 2.4893353037610235,
+     "boot_hi": 3.028655012117528,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence": {
+     "n": 37681,
+     "n_errors": 2722,
+     "n_with_cue": 7537,
+     "n_tiles": 2419,
+     "share_errors": 0.710139603232917,
+     "share_correct": 0.16030206813696043,
+     "enrichment": 4.430008991687999,
+     "precision": 0.2564680907522887,
+     "boot_lo": 4.133825549099642,
+     "boot_hi": 4.762483120898575,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "boundary_and_low_confidence": {
+     "n": 37681,
+     "n_errors": 2722,
+     "n_with_cue": 3570,
+     "n_tiles": 2419,
+     "share_errors": 0.36260102865540045,
+     "share_correct": 0.07388655281901656,
+     "enrichment": 4.90753749932797,
+     "precision": 0.27647058823529413,
+     "boot_lo": 4.423188722678982,
+     "boot_hi": 5.470441535039706,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence_per_tile": {
+     "n": 37681,
+     "n_errors": 2722,
+     "n_with_cue": 9376,
+     "n_tiles": 2419,
+     "share_errors": 0.449669360764144,
+     "share_correct": 0.2331874481535513,
+     "enrichment": 1.9283600567902,
+     "precision": 0.13054607508532423,
+     "boot_lo": 1.82820901329232,
+     "boot_hi": 2.03703472048498,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    }
+   },
+   "captures": {
+    "confidence": {
+     "0.05": 0.30639235855988245,
+     "0.1": 0.49595885378398236,
+     "0.2": 0.710139603232917
+    },
+    "boundary_first": {
+     "0.05": 0.2520205731080088,
+     "0.1": 0.3739897134459956,
+     "0.2": 0.582659808963997
+    }
+   },
+   "seconds": 0.3
+  },
+  "pastis_sentinel1": {
+   "n_units": 31178,
+   "n_tiles": 1984,
+   "n_classes": 19,
+   "error_rate": 0.2580345115145295,
+   "coarsen": 4,
+   "boundary_prevalence": 0.6495285136955545,
+   "recorded_capture_20": null,
+   "cues": {
+    "boundary": {
+     "n": 31178,
+     "n_errors": 8045,
+     "n_with_cue": 20251,
+     "n_tiles": 1984,
+     "share_errors": 0.7725295214418894,
+     "share_correct": 0.6067522586780789,
+     "enrichment": 1.2732206767964682,
+     "precision": 0.3068984247691472,
+     "boot_lo": 1.2402168221999672,
+     "boot_hi": 1.3095330044647933,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence": {
+     "n": 31178,
+     "n_errors": 8045,
+     "n_with_cue": 6236,
+     "n_tiles": 1984,
+     "share_errors": 0.4377874456183965,
+     "share_correct": 0.1173215752388363,
+     "enrichment": 3.731516941595566,
+     "precision": 0.5647851186658114,
+     "boot_lo": 3.511075372242444,
+     "boot_hi": 3.9611136680988115,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "boundary_and_low_confidence": {
+     "n": 31178,
+     "n_errors": 8045,
+     "n_with_cue": 5118,
+     "n_tiles": 1984,
+     "share_errors": 0.3627097576134245,
+     "share_correct": 0.0951022349025202,
+     "enrichment": 3.8138931013051587,
+     "precision": 0.5701445877295819,
+     "boot_lo": 3.576145077046746,
+     "boot_hi": 4.076559926525812,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence_per_tile": {
+     "n": 31178,
+     "n_errors": 8045,
+     "n_with_cue": 7648,
+     "n_tiles": 1984,
+     "share_errors": 0.42970789310130514,
+     "share_correct": 0.181169757489301,
+     "enrichment": 2.371852228850511,
+     "precision": 0.45201359832635984,
+     "boot_lo": 2.279430050322261,
+     "boot_hi": 2.468492725150096,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    }
+   },
+   "captures": {
+    "confidence": {
+     "0.05": 0.1302672467371038,
+     "0.1": 0.24139216904909883,
+     "0.2": 0.4377874456183965
+    },
+    "boundary_first": {
+     "0.05": 0.127408328154133,
+     "0.1": 0.2394033561218148,
+     "0.2": 0.4216283405842138
+    }
+   },
+   "seconds": 0.3
+  },
+  "pastis_sentinel2": {
+   "n_units": 31178,
+   "n_tiles": 1984,
+   "n_classes": 19,
+   "error_rate": 0.17823465263968183,
+   "coarsen": 4,
+   "boundary_prevalence": 0.6957790749887741,
+   "recorded_capture_20": null,
+   "cues": {
+    "boundary": {
+     "n": 31178,
+     "n_errors": 5557,
+     "n_with_cue": 21693,
+     "n_tiles": 1984,
+     "share_errors": 0.8025913262551737,
+     "share_correct": 0.6726123102142774,
+     "enrichment": 1.1932450745652994,
+     "precision": 0.2055962752961785,
+     "boot_lo": 1.1631774390372218,
+     "boot_hi": 1.225525769580719,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence": {
+     "n": 31178,
+     "n_errors": 5557,
+     "n_with_cue": 6236,
+     "n_tiles": 1984,
+     "share_errors": 0.5092675904264891,
+     "share_correct": 0.13293782444088834,
+     "enrichment": 3.830870503322688,
+     "precision": 0.4538165490699166,
+     "boot_lo": 3.6324105751864915,
+     "boot_hi": 4.051125852465274,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "boundary_and_low_confidence": {
+     "n": 31178,
+     "n_errors": 5557,
+     "n_with_cue": 5150,
+     "n_tiles": 1984,
+     "share_errors": 0.4288285045888069,
+     "share_correct": 0.10799734592716911,
+     "enrichment": 3.9707318814852988,
+     "precision": 0.4627184466019417,
+     "boot_lo": 3.7545999431609602,
+     "boot_hi": 4.218751549520026,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence_per_tile": {
+     "n": 31178,
+     "n_errors": 5557,
+     "n_with_cue": 7648,
+     "n_tiles": 1984,
+     "share_errors": 0.4786755443584668,
+     "share_correct": 0.19468404824167676,
+     "enrichment": 2.458730176826038,
+     "precision": 0.34780334728033474,
+     "boot_lo": 2.3680832378993437,
+     "boot_hi": 2.554353807643159,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    }
+   },
+   "captures": {
+    "confidence": {
+     "0.05": 0.16699658088896888,
+     "0.1": 0.29584308079899224,
+     "0.2": 0.5092675904264891
+    },
+    "boundary_first": {
+     "0.05": 0.16681662767680402,
+     "0.1": 0.2951232679503329,
+     "0.2": 0.4882130646032032
+    }
+   },
+   "seconds": 0.3
+  },
+  "pastis_sentinel1_sentinel2": {
+   "n_units": 31178,
+   "n_tiles": 1984,
+   "n_classes": 19,
+   "error_rate": 0.1821155943293348,
+   "coarsen": 4,
+   "boundary_prevalence": 0.6969658092244532,
+   "recorded_capture_20": null,
+   "cues": {
+    "boundary": {
+     "n": 31178,
+     "n_errors": 5678,
+     "n_with_cue": 21730,
+     "n_tiles": 1984,
+     "share_errors": 0.8124339556181754,
+     "share_correct": 0.6712549019607843,
+     "enrichment": 1.2103210766059165,
+     "precision": 0.21228716060745514,
+     "boot_lo": 1.1794417337769387,
+     "boot_hi": 1.2429855251713537,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence": {
+     "n": 31178,
+     "n_errors": 5678,
+     "n_with_cue": 6236,
+     "n_tiles": 1984,
+     "share_errors": 0.5079253258189503,
+     "share_correct": 0.13145098039215686,
+     "enrichment": 3.8639903962957143,
+     "precision": 0.46247594611930726,
+     "boot_lo": 3.6763946283767805,
+     "boot_hi": 4.0768791903772135,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "boundary_and_low_confidence": {
+     "n": 31178,
+     "n_errors": 5678,
+     "n_with_cue": 5221,
+     "n_tiles": 1984,
+     "share_errors": 0.43307502641775275,
+     "share_correct": 0.10831372549019608,
+     "enrichment": 3.998339309794604,
+     "precision": 0.4709825703888144,
+     "boot_lo": 3.7825024308103514,
+     "boot_hi": 4.23454282904862,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence_per_tile": {
+     "n": 31178,
+     "n_errors": 5678,
+     "n_with_cue": 7648,
+     "n_tiles": 1984,
+     "share_errors": 0.48555829517435717,
+     "share_correct": 0.19180392156862744,
+     "enrichment": 2.531534763227583,
+     "precision": 0.36048640167364016,
+     "boot_lo": 2.438495968208392,
+     "boot_hi": 2.633186153283479,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    }
+   },
+   "captures": {
+    "confidence": {
+     "0.05": 0.16625572384642479,
+     "0.1": 0.29852060584712925,
+     "0.2": 0.5079253258189503
+    },
+    "boundary_first": {
+     "0.05": 0.16872138076787602,
+     "0.1": 0.2960549489256781,
+     "0.2": 0.4952448045086298
+    }
+   },
+   "seconds": 0.3
+  },
+  "m_cashew_plant": {
+   "n_units": 12800,
+   "n_tiles": 50,
+   "n_classes": 7,
+   "error_rate": 0.334921875,
+   "coarsen": 4,
+   "boundary_prevalence": 0.89640625,
+   "recorded_capture_20": null,
+   "cues": {
+    "boundary": {
+     "n": 12800,
+     "n_errors": 4287,
+     "n_with_cue": 11474,
+     "n_tiles": 50,
+     "share_errors": 0.9183578259855377,
+     "share_correct": 0.8853518148713732,
+     "enrichment": 1.037280107816755,
+     "precision": 0.3431235837545756,
+     "boot_lo": 1.0284566117412663,
+     "boot_hi": 1.0471203971993972,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence": {
+     "n": 12800,
+     "n_errors": 4287,
+     "n_with_cue": 2560,
+     "n_tiles": 50,
+     "share_errors": 0.2906461394914859,
+     "share_correct": 0.1543521672735816,
+     "enrichment": 1.8830065338592232,
+     "precision": 0.48671875,
+     "boot_lo": 1.720183485662821,
+     "boot_hi": 2.0938870613882616,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "boundary_and_low_confidence": {
+     "n": 12800,
+     "n_errors": 4287,
+     "n_with_cue": 2391,
+     "n_tiles": 50,
+     "share_errors": 0.2773501282948449,
+     "share_correct": 0.14119581816046048,
+     "enrichment": 1.9642942114592468,
+     "precision": 0.4972814721873693,
+     "boot_lo": 1.797378088970344,
+     "boot_hi": 2.18450862353631,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence_per_tile": {
+     "n": 12800,
+     "n_errors": 4287,
+     "n_with_cue": 2600,
+     "n_tiles": 50,
+     "share_errors": 0.28574760905061813,
+     "share_correct": 0.16151767884412074,
+     "enrichment": 1.7691413787984818,
+     "precision": 0.47115384615384615,
+     "boot_lo": 1.6418659290614588,
+     "boot_hi": 1.9277849592608467,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    }
+   },
+   "captures": {
+    "confidence": {
+     "0.05": 0.07790996034522976,
+     "0.1": 0.15255423372988103,
+     "0.2": 0.2906461394914859
+    },
+    "boundary_first": {
+     "0.05": 0.07651038021926755,
+     "0.1": 0.15605318404478657,
+     "0.2": 0.29531140657802657
+    }
+   },
+   "seconds": 0.1
+  },
+  "m_sa_crop_type": {
+   "n_units": 256000,
+   "n_tiles": 1000,
+   "n_classes": 10,
+   "error_rate": 0.32388671875,
+   "coarsen": 4,
+   "boundary_prevalence": 0.47376171875,
+   "recorded_capture_20": null,
+   "cues": {
+    "boundary": {
+     "n": 256000,
+     "n_errors": 82915,
+     "n_with_cue": 121283,
+     "n_tiles": 1000,
+     "share_errors": 0.7035880118193331,
+     "share_correct": 0.3636652511771673,
+     "enrichment": 1.9347133374493488,
+     "precision": 0.4810072310216601,
+     "boot_lo": 1.8558705002251827,
+     "boot_hi": 2.0174896238630713,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence": {
+     "n": 256000,
+     "n_errors": 82915,
+     "n_with_cue": 51200,
+     "n_tiles": 1000,
+     "share_errors": 0.417548091418923,
+     "share_correct": 0.09578530779674727,
+     "enrichment": 4.359208118900072,
+     "precision": 0.67619140625,
+     "boot_lo": 4.109713411333687,
+     "boot_hi": 4.643728167486927,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "boundary_and_low_confidence": {
+     "n": 256000,
+     "n_errors": 82915,
+     "n_with_cue": 44424,
+     "n_tiles": 1000,
+     "share_errors": 0.3661701742748598,
+     "share_correct": 0.08124909726434988,
+     "enrichment": 4.506759910002426,
+     "precision": 0.683436880965244,
+     "boot_lo": 4.247562052190651,
+     "boot_hi": 4.810053046684168,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    },
+    "low_confidence_per_tile": {
+     "n": 256000,
+     "n_errors": 82915,
+     "n_with_cue": 52000,
+     "n_tiles": 1000,
+     "share_errors": 0.3667370198395948,
+     "share_correct": 0.12474795620648814,
+     "enrichment": 2.9398238736076445,
+     "precision": 0.5847692307692308,
+     "boot_lo": 2.818291160371065,
+     "boot_hi": 3.070068084818742,
+     "n_boot": 2000,
+     "boot_skipped": 0,
+     "clustered": true
+    }
+   },
+   "captures": {
+    "confidence": {
+     "0.05": 0.11409274558282578,
+     "0.1": 0.22067177229693058,
+     "0.2": 0.417548091418923
+    },
+    "boundary_first": {
+     "0.05": 0.11380329252849304,
+     "0.1": 0.22079237773623592,
+     "0.2": 0.41543749623108
+    }
+   },
+   "seconds": 0.5
+  }
+ },
+ "classification_confusion_pairs": {
+  "m_eurosat": {
+   "n_units": 1000,
+   "n_classes": 10,
+   "confusion": {
+    "n_errors": 21,
+    "n_pairs": 16,
+    "top_pairs": [
+     {
+      "predicted": 2,
+      "reference": 6,
+      "share": 0.09523809523809523
+     },
+     {
+      "predicted": 3,
+      "reference": 4,
+      "share": 0.09523809523809523
+     },
+     {
+      "predicted": 5,
+      "reference": 2,
+      "share": 0.09523809523809523
+     }
+    ],
+    "share_top": 0.2857142857142857
+   }
+  },
+  "m_forestnet": {
+   "n_units": 993,
+   "n_classes": 12,
+   "confusion": {
+    "n_errors": 486,
+    "n_pairs": 69,
+    "top_pairs": [
+     {
+      "predicted": 0,
+      "reference": 2,
+      "share": 0.07818930041152264
+     },
+     {
+      "predicted": 4,
+      "reference": 5,
+      "share": 0.053497942386831275
+     },
+     {
+      "predicted": 4,
+      "reference": 1,
+      "share": 0.04938271604938271
+     }
+    ],
+    "share_top": 0.18106995884773663
+   }
+  },
+  "m_so2sat": {
+   "n_units": 986,
+   "n_classes": 17,
+   "confusion": {
+    "n_errors": 334,
+    "n_pairs": 80,
+    "top_pairs": [
+     {
+      "predicted": 13,
+      "reference": 12,
+      "share": 0.09880239520958084
+     },
+     {
+      "predicted": 3,
+      "reference": 0,
+      "share": 0.04491017964071856
+     },
+     {
+      "predicted": 5,
+      "reference": 4,
+      "share": 0.041916167664670656
+     }
+    ],
+    "share_top": 0.18562874251497005
+   }
+  },
+  "awf_landsat": {
+   "n_units": 200,
+   "n_classes": 9,
+   "confusion": {
+    "n_errors": 43,
+    "n_pairs": 17,
+    "top_pairs": [
+     {
+      "predicted": 1,
+      "reference": 6,
+      "share": 0.16279069767441862
+     },
+     {
+      "predicted": 6,
+      "reference": 8,
+      "share": 0.16279069767441862
+     },
+     {
+      "predicted": 6,
+      "reference": 0,
+      "share": 0.09302325581395349
+     }
+    ],
+    "share_top": 0.4186046511627907
+   }
+  },
+  "awf_sentinel1": {
+   "n_units": 200,
+   "n_classes": 9,
+   "confusion": {
+    "n_errors": 56,
+    "n_pairs": 24,
+    "top_pairs": [
+     {
+      "predicted": 1,
+      "reference": 6,
+      "share": 0.16071428571428573
+     },
+     {
+      "predicted": 6,
+      "reference": 8,
+      "share": 0.16071428571428573
+     },
+     {
+      "predicted": 0,
+      "reference": 1,
+      "share": 0.08928571428571429
+     }
+    ],
+    "share_top": 0.4107142857142857
+   }
+  },
+  "awf_sentinel2": {
+   "n_units": 200,
+   "n_classes": 9,
+   "confusion": {
+    "n_errors": 34,
+    "n_pairs": 14,
+    "top_pairs": [
+     {
+      "predicted": 6,
+      "reference": 8,
+      "share": 0.23529411764705882
+     },
+     {
+      "predicted": 1,
+      "reference": 6,
+      "share": 0.11764705882352941
+     },
+     {
+      "predicted": 6,
+      "reference": 1,
+      "share": 0.11764705882352941
+     }
+    ],
+    "share_top": 0.47058823529411764
+   }
+  },
+  "nandi_landsat": {
+   "n_units": 825,
+   "n_classes": 6,
+   "confusion": {
+    "n_errors": 228,
+    "n_pairs": 25,
+    "top_pairs": [
+     {
+      "predicted": 3,
+      "reference": 0,
+      "share": 0.08771929824561403
+     },
+     {
+      "predicted": 4,
+      "reference": 3,
+      "share": 0.08333333333333333
+     },
+     {
+      "predicted": 5,
+      "reference": 3,
+      "share": 0.08333333333333333
+     }
+    ],
+    "share_top": 0.2543859649122807
+   }
+  },
+  "nandi_sentinel1": {
+   "n_units": 825,
+   "n_classes": 6,
+   "confusion": {
+    "n_errors": 550,
+    "n_pairs": 30,
+    "top_pairs": [
+     {
+      "predicted": 5,
+      "reference": 0,
+      "share": 0.0890909090909091
+     },
+     {
+      "predicted": 3,
+      "reference": 0,
+      "share": 0.056363636363636366
+     },
+     {
+      "predicted": 2,
+      "reference": 1,
+      "share": 0.05272727272727273
+     }
+    ],
+    "share_top": 0.19818181818181818
+   }
+  },
+  "nandi_sentinel2": {
+   "n_units": 825,
+   "n_classes": 6,
+   "confusion": {
+    "n_errors": 156,
+    "n_pairs": 22,
+    "top_pairs": [
+     {
+      "predicted": 4,
+      "reference": 3,
+      "share": 0.14102564102564102
+     },
+     {
+      "predicted": 5,
+      "reference": 1,
+      "share": 0.10256410256410256
+     },
+     {
+      "predicted": 1,
+      "reference": 0,
+      "share": 0.08974358974358974
+     }
+    ],
+    "share_top": 0.3333333333333333
+   }
+  },
+  "breizhcrops": {
+   "n_units": 122614,
+   "n_classes": 9,
+   "confusion": {
+    "n_errors": 36509,
+    "n_pairs": 41,
+    "top_pairs": [
+     {
+      "predicted": 8,
+      "reference": 7,
+      "share": 0.41995124489851815
+     },
+     {
+      "predicted": 7,
+      "reference": 8,
+      "share": 0.12076474294009697
+     },
+     {
+      "predicted": 1,
+      "reference": 8,
+      "share": 0.06702456928428607
+     }
+    ],
+    "share_top": 0.6077405571229012
+   }
+  }
+ },
+ "prereg": {
+  "note": "gate and P1-P3 are graded at the fine grain only (docs/plan/cue_verification.md, addendum)"
+ }
+}

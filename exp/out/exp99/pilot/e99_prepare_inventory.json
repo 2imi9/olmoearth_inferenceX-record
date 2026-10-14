@@ -1,0 +1,419 @@
+{
+ "pilot": true,
+ "experiment": "exp99",
+ "roots": [
+  {
+   "root_id": "root_0",
+   "layers": [
+    "label",
+    "output",
+    "sentinel2"
+   ],
+   "config_layers_equal_e98": {
+    "label": true,
+    "output": true,
+    "sentinel2": true
+   },
+   "windows": 4,
+   "with_sentinel2": 4,
+   "groups_completed": {
+    "12": 4
+   },
+   "items_per_group": {
+    "1": 37,
+    "2": 11
+   },
+   "sizes": {
+    "1024x1024": 4
+   },
+   "crs": {
+    "EPSG:32736": 1,
+    "EPSG:32737": 3
+   },
+   "windows_per_group": {
+    "group_0": 1,
+    "group_1": 1,
+    "group_2": 1,
+    "group_3": 1
+   },
+   "bytes": 1338571019
+  }
+ ],
+ "windows": 4,
+ "windows_with_12_groups": 4,
+ "windows_with_sentinel2": 4,
+ "distinct_window_cells": 4,
+ "projections": 2,
+ "request_share_outside_windows": 0.0,
+ "windows_on_crs_origin_lattice": 4,
+ "plots": {
+  "n": 4,
+  "in_no_window": 0,
+  "in_one_window": 4,
+  "in_two_or_more_windows": 0,
+  "in_a_window_with_12_groups": 4
+ },
+ "complete": true,
+ "allow_incomplete": false,
+ "scl_check": {
+  "windows": 4,
+  "mismatched_group_counts": 0,
+  "sampled": [
+   {
+    "window_index": 0,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.500580124140855
+   },
+   {
+    "window_index": 0,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.494011719527803
+   },
+   {
+    "window_index": 0,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.048180325278939
+   },
+   {
+    "window_index": 0,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.024182790933159
+   },
+   {
+    "window_index": 0,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.268025035417294
+   },
+   {
+    "window_index": 0,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.210294241417117
+   },
+   {
+    "window_index": 0,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.0571284673168595
+   },
+   {
+    "window_index": 0,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.651026036213152
+   },
+   {
+    "window_index": 0,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.433057381844021
+   },
+   {
+    "window_index": 0,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.1303287370906645
+   },
+   {
+    "window_index": 1,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.130292800715312
+   },
+   {
+    "window_index": 1,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.693885741916347
+   },
+   {
+    "window_index": 1,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 1,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 1,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.092291929334365
+   },
+   {
+    "window_index": 1,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.240563444590967
+   },
+   {
+    "window_index": 1,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.4648091650537545
+   },
+   {
+    "window_index": 1,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.804557688164053
+   },
+   {
+    "window_index": 1,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.451709051353305
+   },
+   {
+    "window_index": 1,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 1,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.846753684831082
+   },
+   {
+    "window_index": 1,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.157775893315617
+   },
+   {
+    "window_index": 2,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.5014793818887593
+   },
+   {
+    "window_index": 2,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.162468377978247
+   },
+   {
+    "window_index": 2,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.350101930606367
+   },
+   {
+    "window_index": 2,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.674154909201834
+   },
+   {
+    "window_index": 2,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.478914346812366
+   },
+   {
+    "window_index": 2,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.133039628415988
+   },
+   {
+    "window_index": 2,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.5882165379285285
+   },
+   {
+    "window_index": 2,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.046090880280156
+   },
+   {
+    "window_index": 2,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.196613682600801
+   },
+   {
+    "window_index": 2,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.127431667915162
+   },
+   {
+    "window_index": 2,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.251484172007584
+   },
+   {
+    "window_index": 2,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.280905850003073
+   },
+   {
+    "window_index": 3,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.5703095810456749
+   },
+   {
+    "window_index": 3,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.167641213014314
+   },
+   {
+    "window_index": 3,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.5596993821537257
+   },
+   {
+    "window_index": 3,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.1259652981573298
+   },
+   {
+    "window_index": 3,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.581043887868826
+   },
+   {
+    "window_index": 3,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.277179695425767
+   },
+   {
+    "window_index": 3,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 3,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.14382948848238
+   },
+   {
+    "window_index": 3,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 9.713110159649451
+   },
+   {
+    "window_index": 3,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.257966292027867
+   },
+   {
+    "window_index": 3,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.07179217662977
+   },
+   {
+    "window_index": 3,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.707796508096962
+   }
+  ],
+  "codes": {
+   "2": 1524250,
+   "3": 253059,
+   "4": 3414132,
+   "5": 33509622,
+   "6": 537684,
+   "7": 1661912,
+   "8": 1181282,
+   "9": 7812014,
+   "10": 399256,
+   "11": 38437
+  }
+ },
+ "config_sha256": {
+  "model.yaml": "1eccec3fa5728c9825bee68d69c7a9b7f89db98d6e76c7c933fd387badb0be88",
+  "dataset.json": "ad076afb56cf3ba2018a3148400d0684ddd449fce54cd208a12e2693249dd328",
+  "olmoearth_run.yaml": "1e1c8f709aadd86f84795723d35e07fc0aa79cef6e076c9a75d1ebec36d705ba",
+  "prediction_request_geometry.geojson": "3cf53d16a0e2b476bc0c4ee0b76f8d7d0f3de1ac568c2192a6a265f20683f6b1"
+ },
+ "job": "1247344"
+}

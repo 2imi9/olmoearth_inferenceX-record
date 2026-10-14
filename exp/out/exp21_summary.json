@@ -1,0 +1,337 @@
+{
+ "n_val": 344,
+ "device": "cuda",
+ "checkpoint": "allenai/OlmoEarth-v1-FT-AWF-Base",
+ "crops": {
+  "16": {
+   "accuracy": 0.8808139534883721,
+   "n_errors": 41,
+   "probe_accuracy_exp16": 0.8168604651162791,
+   "aurc": {
+    "confidence (neg logit margin)": 0.026245766217610895,
+    "boundary indicator": 0.07651147030374644,
+    "tiling instability (aligned)": 0.023461518454870354,
+    "probe disagreement": 0.08519418416394625,
+    "control (NDVI temporal std)": 0.09373753034752208
+   },
+   "aurc_oracle": 0.007576015280653175,
+   "aurc_random": 0.11918604651162791,
+   "bootstrap_vs_confidence (lo, hi, P(signal better))": {
+    "boundary indicator": [
+     0.02806602434223879,
+     0.07353211436444718,
+     0.0
+    ],
+    "tiling instability (aligned)": [
+     -0.006795517394464661,
+     0.001014718386662705,
+     0.929
+    ],
+    "probe disagreement": [
+     0.034238443294505955,
+     0.08977694907789467,
+     0.0
+    ],
+    "control (NDVI temporal std)": [
+     0.03597271747919906,
+     0.10892677662825917,
+     0.0
+    ]
+   },
+   "ece_10bins": 0.07962710514318105,
+   "reliability": [
+    [
+     0.30000000000000004,
+     0.4,
+     1,
+     0.3852371275424957,
+     0.0
+    ],
+    [
+     0.4,
+     0.5,
+     1,
+     0.456072598695755,
+     0.0
+    ],
+    [
+     0.5,
+     0.6000000000000001,
+     6,
+     0.5499324301878611,
+     0.5
+    ],
+    [
+     0.6000000000000001,
+     0.7000000000000001,
+     6,
+     0.6617335081100464,
+     0.6666666666666666
+    ],
+    [
+     0.7000000000000001,
+     0.8,
+     10,
+     0.7480060040950776,
+     0.7
+    ],
+    [
+     0.8,
+     0.9,
+     21,
+     0.8555856403850374,
+     0.5238095238095238
+    ],
+    [
+     0.9,
+     1.0,
+     299,
+     0.9925547238177679,
+     0.9297658862876255
+    ]
+   ],
+   "selective_accuracy_at_coverage": {
+    "0.5": 0.9883720930232558,
+    "0.8": 0.9454545454545454,
+    "0.9": 0.9193548387096774,
+    "1.0": 0.8808139534883721
+   },
+   "error_capture_at_budget": {
+    "0.05": {
+     "confidence (neg logit margin)": 0.21951219512195122,
+     "boundary indicator": 0.21951219512195122,
+     "tiling instability (aligned)": 0.17073170731707318,
+     "probe disagreement": 0.0975609756097561,
+     "control (NDVI temporal std)": 0.07317073170731707
+    },
+    "0.1": {
+     "confidence (neg logit margin)": 0.3902439024390244,
+     "boundary indicator": 0.2926829268292683,
+     "tiling instability (aligned)": 0.36585365853658536,
+     "probe disagreement": 0.21951219512195122,
+     "control (NDVI temporal std)": 0.12195121951219512
+    },
+    "0.2": {
+     "confidence (neg logit margin)": 0.6341463414634146,
+     "boundary indicator": 0.4146341463414634,
+     "tiling instability (aligned)": 0.7073170731707317,
+     "probe disagreement": 0.43902439024390244,
+     "control (NDVI temporal std)": 0.2926829268292683
+    }
+   },
+   "per_class_recall": {
+    "woodland forest": {
+     "n": 45,
+     "recall": 0.7333333333333333
+    },
+    "open water": {
+     "n": 11,
+     "recall": 0.9090909090909091
+    },
+    "shrubland/savanna": {
+     "n": 116,
+     "recall": 0.9568965517241379
+    },
+    "herbaceous wetland": {
+     "n": 6,
+     "recall": 0.5
+    },
+    "grassland/barren": {
+     "n": 72,
+     "recall": 0.8194444444444444
+    },
+    "agriculture/settlement": {
+     "n": 56,
+     "recall": 0.9107142857142857
+    },
+    "montane forest": {
+     "n": 10,
+     "recall": 0.8
+    },
+    "lava forest": {
+     "n": 1,
+     "recall": 1.0
+    },
+    "urban/dense dev.": {
+     "n": 27,
+     "recall": 1.0
+    }
+   },
+   "boundary_share_errors": 0.6341463414634146,
+   "boundary_share_correct": 0.3432343234323432,
+   "tile_flip_share_errors": 0.054878048780487805,
+   "tile_flip_share_correct": 0.013201320132013201,
+   "ft_vs_probe": {
+    "both_wrong": 28,
+    "ft_only_wrong": 13,
+    "probe_only_wrong": 35,
+    "disagreement_rate": 0.1511627906976744
+   }
+  },
+  "32": {
+   "accuracy": 0.877906976744186,
+   "n_errors": 42,
+   "probe_accuracy_exp16": 0.8168604651162791,
+   "aurc": {
+    "confidence (neg logit margin)": 0.02764128836475447,
+    "boundary indicator": 0.07999607625455893,
+    "tiling instability (aligned)": 0.02857288971204627,
+    "probe disagreement": 0.0857538422871701,
+    "control (NDVI temporal std)": 0.10272007772103138
+   },
+   "aurc_oracle": 0.007953959201363277,
+   "aurc_random": 0.12209302325581395,
+   "bootstrap_vs_confidence (lo, hi, P(signal better))": {
+    "boundary indicator": [
+     0.025130411996276344,
+     0.08357181980020306,
+     0.0
+    ],
+    "tiling instability (aligned)": [
+     -0.002209308363038378,
+     0.003537906270687776,
+     0.231
+    ],
+    "probe disagreement": [
+     0.035284293504790884,
+     0.08502369883364105,
+     0.0
+    ],
+    "control (NDVI temporal std)": [
+     0.03584935198213245,
+     0.1303936324947263,
+     0.0
+    ]
+   },
+   "ece_10bins": 0.07828651975060615,
+   "reliability": [
+    [
+     0.30000000000000004,
+     0.4,
+     1,
+     0.37803107500076294,
+     0.0
+    ],
+    [
+     0.4,
+     0.5,
+     2,
+     0.4519077241420746,
+     0.0
+    ],
+    [
+     0.5,
+     0.6000000000000001,
+     9,
+     0.5591618220011393,
+     0.4444444444444444
+    ],
+    [
+     0.6000000000000001,
+     0.7000000000000001,
+     8,
+     0.6598896607756615,
+     0.625
+    ],
+    [
+     0.7000000000000001,
+     0.8,
+     8,
+     0.7579691708087921,
+     0.5
+    ],
+    [
+     0.8,
+     0.9,
+     17,
+     0.8454403807135189,
+     0.7647058823529411
+    ],
+    [
+     0.9,
+     1.0,
+     299,
+     0.9929796078532037,
+     0.9230769230769231
+    ]
+   ],
+   "selective_accuracy_at_coverage": {
+    "0.5": 0.9767441860465116,
+    "0.8": 0.9527272727272728,
+    "0.9": 0.9225806451612903,
+    "1.0": 0.877906976744186
+   },
+   "error_capture_at_budget": {
+    "0.05": {
+     "confidence (neg logit margin)": 0.21428571428571427,
+     "boundary indicator": 0.14285714285714285,
+     "tiling instability (aligned)": 0.16666666666666666,
+     "probe disagreement": 0.16666666666666666,
+     "control (NDVI temporal std)": 0.023809523809523808
+    },
+    "0.1": {
+     "confidence (neg logit margin)": 0.42857142857142855,
+     "boundary indicator": 0.30952380952380953,
+     "tiling instability (aligned)": 0.30952380952380953,
+     "probe disagreement": 0.23809523809523808,
+     "control (NDVI temporal std)": 0.09523809523809523
+    },
+    "0.2": {
+     "confidence (neg logit margin)": 0.6904761904761905,
+     "boundary indicator": 0.38095238095238093,
+     "tiling instability (aligned)": 0.6428571428571429,
+     "probe disagreement": 0.4523809523809524,
+     "control (NDVI temporal std)": 0.2619047619047619
+    }
+   },
+   "per_class_recall": {
+    "woodland forest": {
+     "n": 45,
+     "recall": 0.7333333333333333
+    },
+    "open water": {
+     "n": 11,
+     "recall": 0.9090909090909091
+    },
+    "shrubland/savanna": {
+     "n": 116,
+     "recall": 0.9396551724137931
+    },
+    "herbaceous wetland": {
+     "n": 6,
+     "recall": 0.5
+    },
+    "grassland/barren": {
+     "n": 72,
+     "recall": 0.8194444444444444
+    },
+    "agriculture/settlement": {
+     "n": 56,
+     "recall": 0.9285714285714286
+    },
+    "montane forest": {
+     "n": 10,
+     "recall": 0.8
+    },
+    "lava forest": {
+     "n": 1,
+     "recall": 1.0
+    },
+    "urban/dense dev.": {
+     "n": 27,
+     "recall": 1.0
+    }
+   },
+   "boundary_share_errors": 0.6190476190476191,
+   "boundary_share_correct": 0.32450331125827814,
+   "tile_flip_share_errors": 0.047619047619047616,
+   "tile_flip_share_correct": 0.011589403973509934,
+   "ft_vs_probe": {
+    "both_wrong": 28,
+    "ft_only_wrong": 14,
+    "probe_only_wrong": 35,
+    "disagreement_rate": 0.15406976744186046
+   }
+  }
+ }
+}

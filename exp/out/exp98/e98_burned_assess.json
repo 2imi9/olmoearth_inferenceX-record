@@ -1,0 +1,19 @@
+{
+ "part": "r00_p09",
+ "grid": "32737",
+ "pixels": 1048576,
+ "assess_exit": 0,
+ "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+ "assess_windows_ranked": 65536,
+ "per_condition": {
+  "mcd64a1:no-burn-2023:sep-not-read": {
+   "n_windows": 65536,
+   "share_of_map": 1.0,
+   "share_of_review_set": {
+    "0.01": 1.0,
+    "0.05": 1.0,
+    "0.1": 1.0
+   }
+  }
+ }
+}

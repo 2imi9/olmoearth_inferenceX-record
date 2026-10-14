@@ -1,0 +1,97 @@
+{
+ "rule": "plots of kenya and tanzania with a 2017 label within D km of the request geometry (distance in EPSG:32737, 0 inside), D the smallest multiple of 10 km giving at least 300 plots",
+ "d_km": 100,
+ "counts_by_d_km": {
+  "0": 47,
+  "10": 59,
+  "20": 76,
+  "30": 97,
+  "40": 124,
+  "50": 153,
+  "60": 186,
+  "70": 218,
+  "80": 247,
+  "90": 282,
+  "100": 309
+ },
+ "n_selected": 309,
+ "by_country": {
+  "kenya": 219,
+  "tanzania": 90
+ },
+ "inside_request_geometry": {
+  "kenya": 33,
+  "tanzania": 14
+ },
+ "labels": {
+  "Dense Forest": 4,
+  "Open Forest": 2,
+  "Wooded Grassland": 138,
+  "Open Grassland": 112,
+  "Cropland": 44,
+  "Open Water": 1,
+  "Otherland": 8
+ },
+ "utm_zones": {
+  "36": 10,
+  "37": 299
+ },
+ "label_changes": {
+  "two_or_more_labels_2015_2017": 2,
+  "two_or_more_labels_any_year": 14
+ },
+ "timesync": {
+  "repository": "github.com/bullocke/eastafrica @ fc2014fcbc55cb75e0fbf801ffd9ca1ba4dc5c02, yearly_point_data.csv",
+  "sha256": "5309a982cdd45a4e7378008b9a6385b6accca7d071bdd652360ef7ef66fc429a",
+  "licence": "CC0-1.0"
+ },
+ "request_geometry_sha256": "fee3ce01008d26c6f3c239e68be70851035eb157d5da70bd72cb46dbc8623784",
+ "matches_preregistration": true,
+ "areas": {
+  "region_km2": 107679.0342156744,
+  "by_country_km2": {
+   "kenya": 60573.70167584882,
+   "tanzania": 47105.3325398302
+  },
+  "weights": {
+   "kenya": 0.5625394220616882,
+   "tanzania": 0.43746057793831183
+  },
+  "share_outside_both_countries": 0.0,
+  "country_km2": {
+   "kenya": 585702.3018181457,
+   "tanzania": 941505.5097186802
+  },
+  "source": "github.com/nvkelso/natural-earth-vector v5.1.2 (f1890d9f152c896d250a77557a5751a93d494776), geojson/ne_10m_admin_0_countries.geojson",
+  "area_crs": "EPSG:6933"
+ },
+ "plots_on_boundaries": {
+  "n": 309,
+  "inside_own_country": 309,
+  "outside_own_country": 0
+ },
+ "request_written": {
+  "prediction_request_geometry.geojson": {
+   "features": 1,
+   "squares": 309,
+   "sha256": "a9dd3841d8c39d37380acbf42d97f52bf3d97c957111138d296f2bb030a65dd3"
+  },
+  "prediction_request_geometry_pilot.geojson": {
+   "features": 1,
+   "squares": 4,
+   "sha256": "c76e13f6b65afb35a2b5cde8150bc8d8fe03fbb36257dc4e8c6e93eca33aeb24"
+  },
+  "period": {
+   "oe_start_time": "2017-01-01T00:00:00Z",
+   "oe_end_time": "2017-12-31T00:00:00Z"
+  },
+  "square_half_deg": 5e-05,
+  "pilot": {
+   "n": 4,
+   "seed": 99,
+   "rule": "numpy default_rng(seed).choice over the selected plots"
+  },
+  "structure_matches_ai2": true
+ },
+ "utc": "2026-10-09T13:44:53Z"
+}

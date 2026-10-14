@@ -1,0 +1,23 @@
+{
+ "windows_read": 4,
+ "parts": [
+  {
+   "part": "r00_p00",
+   "grid": "32737",
+   "windows": 4,
+   "bands": 10,
+   "summary_bands": 10,
+   "pixels": 4194304,
+   "covered_share": 1.0,
+   "max_abs_sum_minus_1": 4.4277607713638645e-07,
+   "condition_codes": {
+    "1": 2511652,
+    "2": 1682652
+   },
+   "assess_exit": 0,
+   "assess_windows_ranked": 262144,
+   "ok": true
+  }
+ ],
+ "ok": true
+}

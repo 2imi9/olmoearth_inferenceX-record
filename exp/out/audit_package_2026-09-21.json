@@ -1,0 +1,158 @@
+{
+ "audit": "adversarial audit of the released package oe_inferencex 1.1.2, 2026-09-21",
+ "fixed_in_1_1_3": "six findings; see CHANGELOG 1.1.3 and tests/test_audit_fixes.py",
+ "summary": "Adversarially audit the installed package for defects that would change a user-visible output, then verify each finding",
+ "agent_count": 9,
+ "result": {
+  "confirmed_findings": [
+   {
+    "title": "The CLI writes confidence into the raster it names `suspicion`, so ranking that file descending gives the exact inverse of the review set (cli.py:149)",
+    "severity": "critical",
+    "user_consequence": "An analyst who opens suspicion.tif in QGIS with a hot-is-bad ramp, or thresholds its top decile, reviews the windows the model is most confident about and skips every window the tool flagged \u2014 I reran it end to end and the top 13 of the raster overlapped the 13-window 5% review set in 0 of 13, and on the shipped tile 0 of 819.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "`assess --reference` pools the reference over the PREDICTION's class range, so any reference class the model cannot predict collapses to class 0 and every reference-scored number is wrong in the flattering direction (assess.py:215 via _pooled_argmax at assess.py:56-60)",
+    "severity": "critical",
+    "user_consequence": "A user grading a map against a standard product (WorldCover 10..95, or a 3-class water layer against a binary flood model) is told error_rate 0.0 \u2014 I reproduced exactly that for a map that shares no class with the reference, and 0.0078 against an honest 0.0547 on a realistic flood/permanent-water pair \u2014 with exit 0 and no warning; the same bug was diagnosed, measured at 44.9% and fixed for `compare --labels` at cli.py:204-215 and never carried across.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "fit_ranker scores the best-single baseline with the sign as given while the fusion is free to learn it, inflating the headline lead and manufacturing the sign test (calibrate.py:150)",
+    "severity": "critical",
+    "user_consequence": "A user who hands it the readings they actually have \u2014 confidence, top-1 probability, margin, all 'higher = safer', the orientation the docstring and Usage.md invite \u2014 is told the fitted fusion beats their best single reading by 0.389 E-AURC (honest: 0.00025) and wins 12 tiles to 0 at sign_p = 2.4e-04, a result that is entirely an artifact of the sign, while the report's own `weights` field two lines up says it learned that sign.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "_crossfit leaves unfittable folds at logit exactly 0.0 and both fit_ranker and fit_side report that fabricated vector as a held-out evaluation (calibrate.py:118-119)",
+    "severity": "critical",
+    "user_consequence": "With a low absolute error count \u2014 a good map, which is the regime the tool is for \u2014 the user reads 'held out, this ranker finds 0% of your errors at a 10% review budget' (reproduced in 39 of 60 runs with 5 errors, and in every run with errors on one tile) beside a better-than-random excess AURC computed from a vector in which every error is tied at zero, with nothing in the report saying a fold was dropped.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "A single group id collapses every fold, so fit_side reports 'always believe side a' as the fitted rule's held-out accuracy and reverses the verdict (same root cause, surfaced at calibrate.py:204-209)",
+    "severity": "high",
+    "user_consequence": "A user comparing two inferences of one scene \u2014 the framing compare.py uses throughout, and Usage.md's own example passes groups=z['event'] \u2014 is told the fitted rule scores 0.465 against the raw-margin baseline's 0.772 and abandons a fusion that actually scores 0.775 and wins; fit_ranker's version of the same collapse reports a working ranker as exactly random.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "Wholly no-data windows pool to class 0, fabricating prediction boundaries around every cloud hole and scene edge (assess.py:169 + 56-60)",
+    "severity": "high",
+    "user_consequence": "On a map I verified predicts one single class everywhere it has a prediction, the tool reports boundary_window_fraction 16.7%, fills the entire boundary_first review set with the valid column touching the no-data strip (boundary_share_in_set 1.0), and explanation.json attaches the measured '3.5x; Sen1Floods11 Bolivia hand labels' evidence to each of them \u2014 so a field team reviews the rim of the data instead of the model's disagreements, and boundary_window_fraction, aurc_boundary and boundary_share_among_errors are all inflated.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "NaN no-data with no explicit nodata_mask sends the whole review budget to windows that contain no prediction, and silently kills the low-confidence cue (assess.py:171/244 ranking, explain.py:76 np.quantile)",
+    "severity": "high",
+    "user_consequence": "Through the documented Python entry point (the CLI is protected), a scene whose left strip is NaN returns a 10% review set that is 100% empty pixels with no warning and healthy-looking confidence_quantiles; on the package's own shipped Dynamic World tile, four non-finite pixels of 16384 put the four corners at the head of the 1% set and report the low_confidence cue firing on 0.0 of the scene, when every flagged window is by construction among the least confident.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "A single-band (1, H, W) map is scored as a one-class map: the order is inverted in meaning, and the same bytes as (H, W) or as a 1-band GeoTIFF are handled correctly (assess.py:127-144, no C==1 guard; cli.py:34-39)",
+    "severity": "high",
+    "user_consequence": "The shape a binary segmentation head returns gives class_share {0: 1.0}, 'boundary windows 0.0%' and a review set ranked ascending in p \u2014 the most confidently negative windows presented as the least confident \u2014 with exit 0; the identical array with --logits instead dies with a bare `IndexError: index -2 is out of bounds for axis 0 with size 1`.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "compare_inferences counts groups with zero valid windows as defined ties, diluting the exception rate and moving the median net correction (compare.py:266 fed from _crosstab_counts at :196-201)",
+    "severity": "medium",
+    "user_consequence": "Padding a 5-tile comparison in which b breaks 4 tiles and corrects 1 with 9 fully cloud-masked tiles moves the headline from median -1.0, share_flipped 0.800 to median 0.0, share_flipped 0.286 \u2014 'b is clearly worse' becomes 'a wash' \u2014 while n_undefined stays 0, affirmatively stating that nothing was undefined; disagreement's per_group correctly returns NaN for the same tiles.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "class_share and error_rate are biased toward the lowest class index because pooled-argmax ties always break to class 0 (assess.py:60)",
+    "severity": "medium",
+    "user_consequence": "A genuinely balanced two-class map (true pixel share 0.502) is reported as class_share {0: 0.596, 1: 0.404} \u2014 20.8% of 4x4 windows tie 8/8 by construction and all go to class 0 \u2014 so a user sanity-checking flood or water prevalence sees the minority class understated by ten points, and because the reference ties the same way error_rate is understated too.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "expected_calibration_error drops units that fall in no bin but still divides by the whole population (metrics.py:154-159)",
+    "severity": "medium",
+    "user_consequence": "A user reporting ECE for a scene that is 30% no-data is told 0.00577 instead of 0.00824 \u2014 exactly 70% of the truth, the valid fraction \u2014 and confidences of exactly 0.0 fall out of the half-open first bin entirely, returning 0.0 (perfect calibration) for data whose ECE is 0.5, with nothing in the return value signalling that units were dropped.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "With form='top1' the reported confidence quantiles are mean log-probabilities under a label that says '1 - max probability' (assess.py:143)",
+    "severity": "medium",
+    "user_consequence": "A user who takes the tool's own advice \u2014 the warning 'pass form=top1' fires on every multi-class logit map \u2014 reads a median 'confidence' of -0.620 for a quantity that cannot leave [0, 1] (the same scene as probabilities gives 0.562 under a label differing only by '(from logits)'), so any operating threshold set from those quantiles is set on the wrong scale.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "review_sets[b] and against_reference.error_capture_at_budget[b] are keyed by the same budget but sized over different populations (assess.py:195 vs :228)",
+    "severity": "medium",
+    "user_consequence": "With a partial reference \u2014 a labelled AOI, a product with gaps, a validation transect \u2014 the user is handed 13 windows while the capture number under the same key 0.05 describes 6 entirely different ones; I reproduced a case where the two sets share no member and the output says nothing about the scoping.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "The reference_unstable cue prints an enrichment and a scene count that no artifact produces: 14.3x on 27 scenes against exp23's 24 scenes and 13.7x",
+    "severity": "medium",
+    "user_consequence": "Every explanation.json and library_table() dump carrying this cue advertises it as the strongest in the library by a figure produced by truncating 0.00790 to 0.007, attributed to a scene count 12.5% larger than the run; nothing tests it, because tests/test_explain.py only checks the five Bolivia cues.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "The low_confidence cue's sentence follows the caller's quantile but the enrichment beside it stays frozen at exp37's 20% cut (explain.py:55/156)",
+    "severity": "medium",
+    "user_consequence": "A caller who widens the documented low_confidence_quantile knob to 0.9 gets a cue firing on 90% of the scene still quoting '59% of error windows vs 16% of correct ones, 3.6x' \u2014 the enrichment the module calls its only validation \u2014 when the measured value at that cut on the package's own tile is 1.11x.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "ndwi / ndwi_level silently rescale reflectance input, so the ndwi_ambiguous cue can fire on unambiguous water (signals.py:149)",
+    "severity": "medium",
+    "user_consequence": "The same scene returns NDWI 0.5 in raw DN and 0.2 in reflectance because the denominator is clipped at 1; realistic L2A open water (green 0.10, NIR 0.02, true NDWI 0.667) computes to 0.08, inside the cue's |NDWI| < 0.1 band, so clear water is narrated as 'spectrally ambiguous between water and land' carrying a 7.2x enrichment.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "determinism_check returns passes=False when nothing was compared (compare.py:294)",
+    "severity": "low",
+    "user_consequence": "A fully masked scene yields {'n_windows': 0, 'disagreement_rate': nan, 'passes': False}, so a caller looping the readiness gate over a scene stack books every empty scene as an engine-determinism failure, although the function already uses None for 'no verdict'.",
+    "changes_a_number_a_user_sees": true
+   },
+   {
+    "title": "A wholly no-data scene, and a patch larger than the map, die with raw numpy errors from unrelated lines instead of named refusals (assess.py:203 and :57-58)",
+    "severity": "low",
+    "user_consequence": "A fully clouded Sentinel-2 scene \u2014 routine in a seasonal batch \u2014 sprays four RuntimeWarnings and then `IndexError: index -1 is out of bounds` from the tie-warning code, pointing the operator at tie-breaking when the cause is an empty scene; n_valid is computed two lines earlier and the guard is one line.",
+    "changes_a_number_a_user_sees": false
+   },
+   {
+    "title": "signals.confidence's docstring claims the logit margin was weakest of the three forms on all 16 multi-class tasks; exp76 says 14 of 16 by AUROC and 15 of 16 by excess AURC",
+    "severity": "low",
+    "user_consequence": "A user reading the API docs to choose a form is told the default is universally dominated when on awf_sentinel2 it ties for best and on nandi_sentinel1 it beats one_minus_top1; the runtime warning the user actually sees ('14 of 16') is accurate, so only the docstring overstates.",
+    "changes_a_number_a_user_sees": false
+   },
+   {
+    "title": "library_table() emits the raw `{quantile:.0%}` format placeholder in a sentence documented as ready for docs and JSON (explain.py:39/183)",
+    "severity": "low",
+    "user_consequence": "Any docs page or JSON dump built from the exported no-argument call ships a literal Python format spec, and the one number missing is exactly the cut the 3.6x was measured at.",
+    "changes_a_number_a_user_sees": false
+   },
+   {
+    "title": "The ragged right and bottom edge of a scene is silently dropped from the window grid and nothing in the output says so (assess.py:37)",
+    "severity": "low",
+    "user_consequence": "Raising the patch to get cheaper review units on a 100x100 map at patch 8 quietly excludes 7.8% of the pixels \u2014 the scene edge, where swath and edge artefacts live \u2014 from ever being a candidate, and no field in assessment.json states which pixels were scored.",
+    "changes_a_number_a_user_sees": false
+   }
+  ],
+  "what_held_under_attack": "The mathematics held, and it held under real pressure. I re-executed the core myself: review_order, review_mask and assess_prediction return bit-identical window sets at 0.05, 0.10 and 0.25 including under a 30% random nodata mask; the tie convention (stable ascending argsort, reversed) is the same in all three plus metrics.capture_at_budget; the budget guards fire with messages that name the offending value for 1.5, 0.0 and -0.1, and the extremes are exact (k=1 at b=1e-9, k=n_valid at b=1.0, single-window scenes fine). The tied_at_cutoff warning is honest wherever a real tie exists and correctly stays silent at b=1.0. _pool_valid does what its docstring claims \u2014 a partly observed window is scored on its observed pixels, not flattered by a fill value \u2014 and the -1 non-voting sentinel works correctly for partially invalid windows, which is precisely what makes the wholly-invalid case a bug against stated intent rather than a design choice. The metrics family (oracle_aurc, excess_aurc, augrc and augrc_from_auroc, attainable_ceiling's two conventions, the weighted forms) behaved as documented, consistent with today's separate perturbation tests. In compare.py the label bridge survived a 300-scene fuzz across 2-5 classes with random masks and group ids: which_side, the cross-tab identities and the per-group sums never disagreed; _phi_counts has no overflow bypass up to 1e9 per cell; cross-fitting genuinely holds out the group (no fold shares an id) and a null fit never scored below random in 40 seeds. The demo \u2014 the first thing a stranger runs \u2014 is internally consistent and not flattering: I ran it and 0.05 x 0.67 / 0.19 = 0.176 matches the printed 17% capture, the ceiling column is attainable_ceiling at the realised n, the random column is the budget itself, and its 'what it does not do' paragraph correctly disclaims saying how wrong a map is. Five of the library's cue shares reproduce from the committed per-window artifact to the digits they quote. The input guards on the scores side are real and they work: an out-of-range array, a class map passed as probabilities and a continuous compare without --threshold are all refused with messages that name the fix. Every defect below sits outside that core.",
+  "verdict": "Sound-with-caveats in the arithmetic, not trustworthy as currently shipped on four named paths \u2014 and the honest answer to \"is our quality worse\" is: the mathematics is not worse than believed, the periphery is. Nothing I attacked in the ranking core moved: the estimators, the tie rules, the budget arithmetic, the agreement of the three review-set code paths, the label bridge and the demo all held, and three independent lenses failed to break them too. What is worse than believed is everything that surrounds that core \u2014 the second input, the no-data path, the name on the output file, and the fitting layer's self-evaluation. Four defects are severe enough that a stranger who pip-installs 1.1.2 today can act on a wrong answer with no signal at all: the file named `suspicion` holds confidence, so the default spatial product inverts the product's whole purpose; `--reference` collapses unmatched class codes to class 0 and can report error_rate 0.0 for a map that agrees with the reference nowhere, silently and always in the flattering direction, on the one input that turns into a claim about correctness; fit_ranker grades a sign-free fusion against a sign-locked baseline and manufactures both a headline lead and a p = 2.4e-04; and _crossfit reports fabricated zero logits as a held-out evaluation, which on a good map \u2014 the regime the tool is for \u2014 prints \"0% of your errors at a 10% budget\". Each is one branch of a rule the package already applies correctly elsewhere: compare fixed the class-range bug and assess did not; read_raster decided a 1-band map is binary and the .npy branch did not; assess uses nanquantile and derive_cues does not; the report holds the flipped single and never reads it. That is a coverage gap in the guards, not rot in the method \u2014 which is repairable, but it is not a state in which to tell anyone else to install it.",
+  "fix_first": [
+   "cli.py:149 \u2014 write -conf into suspicion.tif (or rename the file to confidence.tif) and add a test asserting the review set sits at the TOP of that raster; tests/test_cli.py:50 checks shape, transform and NaN placement but never the sign, which is why this shipped.",
+   "_pooled_argmax (assess.py:56-60) \u2014 return a no-class sentinel when a window has no votes in range, and exclude it from boundary_indicator; then either refuse or warn at assess.py:215 when max(reference) >= n_classes, carrying over the fix already written and quantified for compare --labels at cli.py:204-215. One change closes the reference collapse and the phantom-boundary contamination of boundary_first, boundary_window_fraction, aurc_boundary and explanation.json.",
+   "calibrate.py:118-119 \u2014 never let a skipped fold reach a field named held_out: leave those rows NaN, exclude them from the held-out metrics, and report how many were unscored; return NaN with a stated reason when n_groups < 2 in both fit_ranker and fit_side.",
+   "calibrate.py:150 \u2014 set best_single from min(as_given, flipped), or state in the report that the baseline is scored as given while the fusion learns the sign. The flipped value is already computed and sits unused one field away.",
+   "assess_prediction \u2014 treat non-finite scores as no-data when nodata_mask is None (or refuse them, as _check_probabilities refuses out-of-range input), add the one-line n_valid == 0 refusal, add a C == 1 guard that squeezes or refuses, and use nanquantile at explain.py:76.",
+   "Fix the two printed evidence errors: reference_unstable's quote (13.7x on 24 scenes, not 14.3x on 27) and signals.confidence's docstring (14 of 16, not all 16); give library_table a default quantile; and either recompute or refuse the low_confidence enrichment when the caller moves the quantile off 0.2. Extend tests/test_explain.py past the five Bolivia cues so an unchecked quote cannot ship again.",
+   "metrics.expected_calibration_error \u2014 normalise by the units actually binned (or include 0.0 in the first bin) and refuse non-finite confidences; compare.py:196-201/266 \u2014 return NaN for an empty group so it lands in n_undefined; compare.py:294 \u2014 passes=None when the rate is undefined.",
+   "Disclosure and lower-severity repairs: state the ragged-edge truncation and the two populations behind review_sets[b] vs error_capture_at_budget[b]; a named refusal for patch > map; a range check on ndwi's input; and a documented, index-free tie rule for pooled argmax (or report class_share as a pixel share).",
+   "Once 1 through 4 are in, consider yanking or superseding 1.1.2 on PyPI rather than leaving it installable, because all four produce a plausible wrong answer with exit 0."
+  ],
+  "not_covered": [
+   "torch was not installed, so no real model head was ever exercised: no float16 or bfloat16 logits straight from a network, no GPU dtype path, no (1, H, W) or (C, H, W) tensor produced by an actual segmentation model rather than by numpy.",
+   "rasterio was present in my environment but the GeoTIFF path was only lightly exercised \u2014 CRS and transform correctness, nodata-tag handling, BigTIFF and multi-band reads, and the written .tif itself were not audited; my CLI runs took .npy input, so write_raster produced .npy and the GeoTIFF writer was never validated end to end.",
+   "No real map was used except the shipped Dynamic World tile. No real WorldCover, CORINE or Dynamic World reference raster, no real Sentinel-2 reflectance stack, no real flood map; every other input was synthetic, so the magnitudes quoted for the no-data and reference defects are mechanism demonstrations, not field measurements.",
+   "Four in-scope modules were never attacked by any lens: stats.py (the sign tests, permutation test and block/cluster bootstraps), reliability.py (the SHRUG-FM k-means, NCDD and entropy decomposition), taskcard.py and lcc.py \u2014 about a third of the package, including everything that reads the published LCC rasters and everything that produces a p-value.",
+   "evidence.py, awf.py, data.py and figstyle.py were likewise not examined.",
+   "Out of scope by instruction and therefore unexamined here: the exp/ scripts, the documentation and the claim ledger (two real errors were found in the record separately today).",
+   "No scale, concurrency or memory testing: no continent-sized raster, no long batch, no repeated-run reproducibility, and no platform other than macOS with numpy 2.5.2 on Python 3.13."
+  ]
+ }
+}

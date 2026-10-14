@@ -1,0 +1,316 @@
+{
+ "experiment": "exp104: Ai2's Forest Loss Driver model graded at 2026 MapBiomas Alerta alerts (Amazon)",
+ "prereg_page": "docs/plan/forest_loss_2026.md",
+ "prereg_status": "frozen",
+ "utc": "2026-10-12T02:53:00Z",
+ "commit": "deace9dd7f49f8026d02509e91bc973c8d400b80",
+ "dirty": false,
+ "model": {
+  "repo": "allenai/OlmoEarth-v1-FT-ForestLossDriver-Base",
+  "revision": "15502f8acb4caed6e3a7d777b0fb569c1f7eb791",
+  "file": "model.ckpt",
+  "sha256": "682c20b99f44a81769ad7d3ce1b64d933fae3810bcf5978f9999cfebf1c11855",
+  "bytes": 381184175
+ },
+ "ai2_config": {
+  "repo": "allenai/olmoearth_projects",
+  "commit": "f3c9b0c89c7670b3525647dda4c14b76245d682d",
+  "dir": "olmoearth_run_data/forest_loss_driver"
+ },
+ "crosswalk": {
+  "agriculture": "agriculture",
+  "garimpo": "mining",
+  "mining": "mining",
+  "roads": "road"
+ },
+ "frame_sha256_prefix": "12bf6fd243b27a9a",
+ "thresholds": {
+  "P1": 0.7,
+  "P2": 0.25
+ },
+ "floors": {
+  "min_with_prediction": 500,
+  "min_errors": 20,
+  "min_correct": 20
+ },
+ "bootstrap": {
+  "n": 2000,
+  "seed": 104,
+  "level": 0.9
+ },
+ "cannot_show": [
+  "Burned, logging, landslide, hurricane, river, airstrip and none: MapBiomas Alerta does not record them, so the frame tests agriculture against mining (and roads, report-only).",
+  "Whether an error is the model's or the reference's: MapBiomas's driver is an analyst's call on high-resolution imagery and is taken as right.",
+  "Alerts outside the Amazon biome, or before 2026.",
+  "Alerts without a polygon, a window or four scenes in each period are treated as missing at random within their stratum; their number is reported."
+ ],
+ "units": {
+  "agriculture": {
+   "sampled": 300,
+   "with_prediction": 300,
+   "without_prediction": 0,
+   "N": 3565,
+   "weight_with_prediction": 11.883333333333333,
+   "graded": true
+  },
+  "mining": {
+   "sampled": 389,
+   "with_prediction": 389,
+   "without_prediction": 0,
+   "N": 389,
+   "weight_with_prediction": 1.0,
+   "graded": true
+  },
+  "roads": {
+   "sampled": 7,
+   "with_prediction": 7,
+   "without_prediction": 0,
+   "N": 7,
+   "weight_with_prediction": 1.0,
+   "graded": false
+  }
+ },
+ "weights_rule": "N_h / n_h, n_h the stratum's alerts with a prediction (interpretation c)",
+ "p3_error_rate": {
+  "estimate": 0.10878856853818918,
+  "low": 0.08017197774405666,
+  "high": 0.1441578148710167,
+  "strata_in_interval": 1,
+  "nominal_coverage": 0.95,
+  "weights": {
+   "agriculture": 0.9016186140617096,
+   "mining": 0.09838138593829034
+  },
+  "by_stratum": {
+   "agriculture": {
+    "N": 3565,
+    "n": 300,
+    "errors": 33,
+    "rate": 0.11,
+    "low": 0.0782608695652174,
+    "high": 0.14922861150070127
+   },
+   "mining": {
+    "N": 389,
+    "n": 389,
+    "errors": 38,
+    "rate": 0.09768637532133675,
+    "low": 0.09768637532133675,
+    "high": 0.09768637532133675
+   }
+  },
+  "method": "oe_inferencex.estimate._union_interval over the graded strata (exact, union bound)",
+  "unweighted": 0.10304789550072568,
+  "accuracy": 0.8912114314618108
+ },
+ "ai2": {
+  "accuracy": 0.761,
+  "error_rate": 0.239,
+  "on": "Ai2's 109 validation windows (Brazil 75, Colombia 34; ten classes; the windows its checkpoint was chosen on)"
+ },
+ "confusion": {
+  "agriculture": {
+   "agriculture -> agriculture": 267,
+   "agriculture -> mining": 11,
+   "agriculture -> road": 8,
+   "agriculture -> hurricane": 6,
+   "agriculture -> none": 6,
+   "agriculture -> burned": 2
+  },
+  "mining": {
+   "mining -> mining": 351,
+   "mining -> road": 27,
+   "mining -> agriculture": 7,
+   "mining -> none": 3,
+   "mining -> airstrip": 1
+  },
+  "roads": {
+   "road -> road": 4,
+   "road -> agriculture": 2,
+   "road -> burned": 1
+  }
+ },
+ "ranking": {
+  "n": 689,
+  "n_errors": 71,
+  "weighted": {
+   "auroc": 0.7704242309684904,
+   "error_rate": 0.10878856853818919,
+   "capture": {
+    "0.05": 0.33980394436049344,
+    "0.1": 0.4746018830640457,
+    "0.2": 0.6403967608198655
+   },
+   "random": {
+    "0.05": 0.05,
+    "0.1": 0.1,
+    "0.2": 0.2
+   },
+   "ceiling": {
+    "0.05": 0.45960711379751246,
+    "0.1": 0.9192142275950249,
+    "0.2": 1.0
+   },
+   "gap_closed": {
+    "0.05": 0.7075168731169957,
+    "0.1": 0.4572697475772217,
+    "0.2": 0.5504959510248318
+   },
+   "aurc": 0.05030251518973156,
+   "excess_aurc": 0.04400654665027709
+  },
+  "unweighted": {
+   "auroc": 0.8541182369296686,
+   "error_rate": 0.10304789550072568,
+   "capture": {
+    "0.05": 0.35845070422535213,
+    "0.1": 0.5760563380281691,
+    "0.2": 0.7464788732394366
+   },
+   "random": {
+    "0.05": 0.05,
+    "0.1": 0.1,
+    "0.2": 0.2
+   },
+   "ceiling": {
+    "0.05": 0.4852112676056339,
+    "0.1": 0.9704225352112678,
+    "0.2": 1.0
+   },
+   "gap_closed": {
+    "0.05": 0.7087378640776698,
+    "0.1": 0.5469255663430421,
+    "0.2": 0.6830985915492956
+   },
+   "aurc": 0.03148239174466798,
+   "excess_aurc": 0.02590581872381684
+  },
+  "auroc_weighted_bootstrap": {
+   "n_resamples": 2000,
+   "skipped": 0,
+   "resampling": "alerts within each stratum",
+   "seed": 104,
+   "lo90": 0.682326070767462,
+   "hi90": 0.8552042387215198
+  },
+  "gap_closed_0.1_weighted_bootstrap": {
+   "n_resamples": 2000,
+   "skipped": 0,
+   "resampling": "alerts within each stratum",
+   "seed": 104,
+   "lo90": 0.3390489958709012,
+   "hi90": 0.6437600620809664
+  }
+ },
+ "predicted_classes": {
+  "agriculture": {
+   "agriculture": 267,
+   "mining": 11,
+   "road": 8,
+   "burned": 2,
+   "hurricane": 6,
+   "none": 6
+  },
+  "mining": {
+   "agriculture": 7,
+   "mining": 351,
+   "airstrip": 1,
+   "road": 27,
+   "none": 3
+  },
+  "roads": {
+   "agriculture": 2,
+   "road": 4,
+   "burned": 1
+  }
+ },
+ "confidence": {
+  "top1_quantiles": {
+   "agriculture": {
+    "0": 0.3008503019809723,
+    "0.1": 0.7078818500041962,
+    "0.5": 0.9939094483852386,
+    "0.9": 0.9998353600502015,
+    "1": 0.9999880790710449
+   },
+   "mining": {
+    "0": 0.3016524016857147,
+    "0.1": 0.7066204786300659,
+    "0.5": 0.9957464337348938,
+    "0.9": 0.9996788978576661,
+    "1": 0.999946117401123
+   },
+   "roads": {
+    "0": 0.3879508972167969,
+    "0.1": 0.42333515286445617,
+    "0.5": 0.7590221166610718,
+    "0.9": 0.9307900309562683,
+    "1": 0.9859825968742371
+   }
+  },
+  "weighted_mean_top1": 0.9207629701023089,
+  "weighted_accuracy": 0.8912114314618108,
+  "reading": "report-only: the mean confidence beside the accuracy on the graded strata"
+ },
+ "centroid_inside_polygon": {
+  "reading": "report-only: the window is centred on the polygon's centroid, as Ai2's deployment centres it; where the centroid lies outside the polygon the window's centre shows something else",
+  "inside": {
+   "n": 473,
+   "errors": 42,
+   "weighted_error_rate": 0.09475418692598599
+  },
+  "outside": {
+   "n": 216,
+   "errors": 29,
+   "weighted_error_rate": 0.1586114307633295
+  }
+ },
+ "roads_reported": {
+  "n": 7,
+  "errors": 3,
+  "confusion": {
+   "road -> road": 4,
+   "road -> agriculture": 2,
+   "road -> burned": 1
+  },
+  "top1": [
+   0.3879508972167969,
+   0.4469246566295624,
+   0.6077458262443542,
+   0.7590221166610718,
+   0.8522679209709167,
+   0.8939949870109558,
+   0.9859825968742371
+  ],
+  "note": "report-only: fewer than the floors"
+ },
+ "prereg": {
+  "P1": {
+   "rule": "design-weighted AUROC of the suspicion (minus log top-1) for the errors >= 0.7",
+   "threshold": 0.7,
+   "value": 0.7704242309684904,
+   "graded": true,
+   "holds": true
+  },
+  "P2": {
+   "rule": "share of the gap from random to the ceiling closed by the least confident 10% of the design weight >= 0.25",
+   "threshold": 0.25,
+   "value": 0.4572697475772217,
+   "graded": true,
+   "holds": true
+  },
+  "P3": {
+   "rule": "descriptive: the design-weighted error rate with the stratified exact interval, each stratum's exact interval, Ai2's 76.1% beside them, the confusion counts",
+   "graded": false
+  },
+  "floors": {
+   "min_with_prediction": 500,
+   "min_errors": 20,
+   "min_correct": 20,
+   "n_with_prediction": 689,
+   "n_errors": 71,
+   "n_correct": 618
+  },
+  "reading": "P1 and P2 hold: the confidence ranks the errors on a second task"
+ }
+}

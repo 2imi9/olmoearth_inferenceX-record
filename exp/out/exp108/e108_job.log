@@ -1,0 +1,59 @@
+== 2026-10-12T10:39:45-04:00 job 1298650 on w0004: exp108, commit 1daa6bb531431edf4852beeed1c924a24fef2443 ==
+== smoke ==
+Using CPython 3.13.15
+Creating virtual environment at: .venv
+   Building olmoearth-inferencex @ file:///scratch/qi_zim_neu/olmoearth_inferenceX/e108_code
+      Built olmoearth-inferencex @ file:///scratch/qi_zim_neu/olmoearth_inferenceX/e108_code
+Installed 21 packages in 2.54s
+[exp108] synthetic                                    B   300 certify cov 0.26 P>a 0.040 crc_joint cov 0.69 P>a 1.000 bh_select cov 0.49 P>a 0.510
+== the run ==
+[exp108] suite:mados                                  B   300 certify cov 0.75 P>a 0.023 crc_joint cov 0.89 P>a 0.608 bh_select cov 0.87 P>a 0.387
+[exp108] suite:mados                                  B  1000 certify cov 0.82 P>a 0.026 crc_joint cov 0.90 P>a 0.716 bh_select cov 0.88 P>a 0.436
+[exp108] suite:sen1floods11                           B   300 certify cov 0.20 P>a 0.007 crc_joint cov 0.87 P>a 0.603 bh_select cov 0.84 P>a 0.469
+[exp108] suite:sen1floods11                           B  1000 certify cov 0.35 P>a 0.002 crc_joint cov 0.88 P>a 0.805 bh_select cov 0.85 P>a 0.430
+[exp108] suite:pastis_sentinel1                       B   300 certify cov 0.43 P>a 0.040 crc_joint cov 0.74 P>a 0.999 bh_select cov 0.61 P>a 0.458
+[exp108] suite:pastis_sentinel1                       B  1000 certify cov 0.53 P>a 0.019 crc_joint cov 0.75 P>a 1.000 bh_select cov 0.62 P>a 0.471
+[exp108] suite:pastis_sentinel2                       B   300 certify cov 0.51 P>a 0.070 crc_joint cov 0.81 P>a 0.915 bh_select cov 0.74 P>a 0.465
+[exp108] suite:pastis_sentinel2                       B  1000 certify cov 0.67 P>a 0.087 crc_joint cov 0.81 P>a 0.996 bh_select cov 0.75 P>a 0.512
+[exp108] suite:pastis_sentinel1_sentinel2             B   300 certify cov 0.52 P>a 0.067 crc_joint cov 0.81 P>a 0.929 bh_select cov 0.74 P>a 0.455
+[exp108] suite:pastis_sentinel1_sentinel2             B  1000 certify cov 0.67 P>a 0.077 crc_joint cov 0.81 P>a 0.998 bh_select cov 0.74 P>a 0.487
+[exp108] suite:m_cashew_plant                         B   300 certify cov 0.07 P>a 0.030 crc_joint cov 0.67 P>a 1.000 bh_select cov 0.39 P>a 0.503
+[exp108] suite:m_cashew_plant                         B  1000 certify cov 0.25 P>a 0.065 crc_joint cov 0.67 P>a 1.000 bh_select cov 0.39 P>a 0.483
+[exp108] suite:m_sa_crop_type                         B   300 certify cov 0.34 P>a 0.042 crc_joint cov 0.75 P>a 1.000 bh_select cov 0.62 P>a 0.465
+[exp108] suite:m_sa_crop_type                         B  1000 certify cov 0.56 P>a 0.018 crc_joint cov 0.75 P>a 1.000 bh_select cov 0.63 P>a 0.479
+[exp108] suite:m_eurosat                              B   300 certify cov 0.23 P>a 0.002 crc_joint cov 0.87 P>a 0.198 bh_select cov 0.76 P>a 0.198
+[exp108] suite:m_brick_kiln                           B   300 certify cov 0.65 P>a 0.038 crc_joint cov 0.92 P>a 0.392 bh_select cov 0.91 P>a 0.392
+[exp108] suite:m_forestnet                            B   300 certify cov 0.03 P>a 0.021 crc_joint cov 0.64 P>a 1.000 bh_select cov 0.18 P>a 0.529
+[exp108] suite:m_so2sat                               B   300 certify cov 0.29 P>a 0.048 crc_joint cov 0.69 P>a 1.000 bh_select cov 0.48 P>a 0.416
+[exp108] suite:nandi_landsat                          B   300 certify cov 0.45 P>a 0.056 crc_joint cov 0.71 P>a 1.000 bh_select cov 0.57 P>a 0.447
+[exp108] suite:nandi_sentinel1                        B   300 certify cov 0.00 P>a 0.003 crc_joint cov 0.55 P>a 1.000 bh_select cov 0.02 P>a 0.364
+[exp108] suite:nandi_sentinel2                        B   300 certify cov 0.66 P>a 0.029 crc_joint cov 0.82 P>a 0.944 bh_select cov 0.77 P>a 0.432
+[exp108] suite:cropharvest_Peoples_Republic_of_China_6 B   300 certify cov 0.12 P>a 0.029 crc_joint cov 0.70 P>a 1.000 bh_select cov 0.44 P>a 0.466
+[exp108] suite:cropharvest_Peoples_Republic_of_China_6 B  1000 certify cov 0.29 P>a 0.054 crc_joint cov 0.70 P>a 1.000 bh_select cov 0.46 P>a 0.468
+[exp108] suite:cropharvest_Peoples_Republic_of_China_6_sentinel1 B   300 certify cov 0.22 P>a 0.014 crc_joint cov 0.69 P>a 1.000 bh_select cov 0.57 P>a 0.449
+[exp108] suite:cropharvest_Peoples_Republic_of_China_6_sentinel1 B  1000 certify cov 0.52 P>a 0.002 crc_joint cov 0.69 P>a 1.000 bh_select cov 0.57 P>a 0.459
+[exp108] suite:cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2 B   300 certify cov 0.13 P>a 0.046 crc_joint cov 0.69 P>a 1.000 bh_select cov 0.54 P>a 0.434
+[exp108] suite:cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2 B  1000 certify cov 0.33 P>a 0.065 crc_joint cov 0.69 P>a 1.000 bh_select cov 0.55 P>a 0.470
+[exp108] suite:breizhcrops                            B   300 certify cov 0.22 P>a 0.015 crc_joint cov 0.71 P>a 1.000 bh_select cov 0.55 P>a 0.461
+[exp108] suite:breizhcrops                            B  1000 certify cov 0.49 P>a 0.008 crc_joint cov 0.72 P>a 1.000 bh_select cov 0.56 P>a 0.482
+[exp108] product:lcmap_2018_lcpconf                   B   300 certify cov 0.04 P>a 0.013 crc_joint cov 0.78 P>a 0.960 bh_select cov 0.61 P>a 0.468
+[exp108] product:lcmap_2018_lcpconf                   B  1000 certify cov 0.14 P>a 0.025 crc_joint cov 0.79 P>a 1.000 bh_select cov 0.66 P>a 0.465
+[exp108] product:nlcd_A2001_lcpconf                   B   300 certify cov 0.01 P>a 0.004 crc_joint cov 0.77 P>a 0.990 bh_select cov 0.53 P>a 0.487
+[exp108] product:nlcd_A2001_lcpconf                   B  1000 certify cov 0.01 P>a 0.007 crc_joint cov 0.78 P>a 1.000 bh_select cov 0.58 P>a 0.473
+[exp108] product:nlcd_A2006_lcpconf                   B   300 certify cov 0.02 P>a 0.007 crc_joint cov 0.76 P>a 0.998 bh_select cov 0.52 P>a 0.494
+[exp108] product:nlcd_A2006_lcpconf                   B  1000 certify cov 0.03 P>a 0.006 crc_joint cov 0.77 P>a 1.000 bh_select cov 0.56 P>a 0.482
+[exp108] product:nlcd_A2011_lcpconf                   B   300 certify cov 0.01 P>a 0.004 crc_joint cov 0.76 P>a 1.000 bh_select cov 0.48 P>a 0.480
+[exp108] product:nlcd_A2011_lcpconf                   B  1000 certify cov 0.02 P>a 0.004 crc_joint cov 0.77 P>a 1.000 bh_select cov 0.53 P>a 0.515
+[exp108] product:nlcd_B2011_lcpconf                   B   300 certify cov 0.02 P>a 0.007 crc_joint cov 0.75 P>a 1.000 bh_select cov 0.44 P>a 0.495
+[exp108] product:nlcd_B2011_lcpconf                   B  1000 certify cov 0.04 P>a 0.007 crc_joint cov 0.75 P>a 1.000 bh_select cov 0.47 P>a 0.494
+[exp108] product:nlcd_B2016_lcpconf                   B   300 certify cov 0.02 P>a 0.011 crc_joint cov 0.74 P>a 1.000 bh_select cov 0.45 P>a 0.490
+[exp108] product:nlcd_B2016_lcpconf                   B  1000 certify cov 0.05 P>a 0.013 crc_joint cov 0.75 P>a 1.000 bh_select cov 0.48 P>a 0.459
+[exp108] product:eastafrica_2015_cgls_proba           B   300 certify cov 0.05 P>a 0.028 crc_joint cov 0.66 P>a 1.000 bh_select cov 0.37 P>a 0.510
+[exp108] product:eastafrica_2015_cgls_proba           B  1000 certify cov 0.19 P>a 0.044 crc_joint cov 0.66 P>a 1.000 bh_select cov 0.38 P>a 0.513
+[exp108] product:eastafrica_2016_cgls_proba           B   300 certify cov 0.05 P>a 0.018 crc_joint cov 0.66 P>a 1.000 bh_select cov 0.37 P>a 0.510
+[exp108] product:eastafrica_2016_cgls_proba           B  1000 certify cov 0.19 P>a 0.046 crc_joint cov 0.66 P>a 1.000 bh_select cov 0.38 P>a 0.517
+[exp108] product:eastafrica_2017_cgls_proba           B   300 certify cov 0.04 P>a 0.015 crc_joint cov 0.66 P>a 1.000 bh_select cov 0.37 P>a 0.518
+[exp108] product:eastafrica_2017_cgls_proba           B  1000 certify cov 0.15 P>a 0.022 crc_joint cov 0.66 P>a 1.000 bh_select cov 0.37 P>a 0.508
+[exp108] product:europe_2017_odse_prob                B   300 certify cov 0.12 P>a 0.014 crc_joint cov 0.81 P>a 0.786 bh_select cov 0.71 P>a 0.437
+[exp108] product:europe_2017_odse_prob                B  1000 certify cov 0.10 P>a 0.004 crc_joint cov 0.83 P>a 0.982 bh_select cov 0.75 P>a 0.453
+== 2026-10-12T10:40:54-04:00 done: /scratch/qi_zim_neu/olmoearth_inferenceX/e108_out/exp108_summary.json ==

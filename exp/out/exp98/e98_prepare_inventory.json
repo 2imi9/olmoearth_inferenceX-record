@@ -1,0 +1,749 @@
+{
+ "pilot": false,
+ "roots": [
+  {
+   "root_id": "root_0",
+   "layers": [
+    "label",
+    "output",
+    "sentinel2"
+   ],
+   "config_layers_equal_e98": {
+    "label": true,
+    "output": true,
+    "sentinel2": true
+   },
+   "windows": 270,
+   "with_sentinel2": 270,
+   "groups_completed": {
+    "12": 270
+   },
+   "items_per_group": {
+    "1": 2568,
+    "2": 593,
+    "3": 56,
+    "4": 23
+   },
+   "sizes": {
+    "1024x1024": 270
+   },
+   "crs": {
+    "EPSG:32737": 270
+   },
+   "windows_per_group": {
+    "group_0": 35,
+    "group_1": 40,
+    "group_2": 77,
+    "group_3": 88,
+    "group_4": 14,
+    "group_5": 16
+   },
+   "bytes": 86955064516
+  }
+ ],
+ "windows": 270,
+ "windows_with_12_groups": 270,
+ "windows_with_sentinel2": 270,
+ "distinct_window_cells": 224,
+ "projections": 1,
+ "expected_cells_on_main_grid": 224,
+ "request_share_outside_windows": 0.0,
+ "complete": true,
+ "allow_incomplete": false,
+ "scl_check": {
+  "windows": 270,
+  "mismatched_group_counts": 0,
+  "sampled": [
+   {
+    "window_index": 0,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.5113176015337904
+   },
+   {
+    "window_index": 0,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.554702461093087
+   },
+   {
+    "window_index": 0,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.810019108007753
+   },
+   {
+    "window_index": 0,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.47419478182467
+   },
+   {
+    "window_index": 0,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.152804014522228
+   },
+   {
+    "window_index": 0,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 38,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 38,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.736163197201777
+   },
+   {
+    "window_index": 38,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.82569407091379
+   },
+   {
+    "window_index": 38,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.2712916305932613
+   },
+   {
+    "window_index": 38,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 38,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.452283365958602
+   },
+   {
+    "window_index": 38,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 38,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.109311424270644
+   },
+   {
+    "window_index": 38,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.8723701910429775
+   },
+   {
+    "window_index": 38,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 38,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 38,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 77,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 77,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.823434254588102
+   },
+   {
+    "window_index": 77,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.757726391516707
+   },
+   {
+    "window_index": 77,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 77,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.93433056503761
+   },
+   {
+    "window_index": 77,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.8485533892893935
+   },
+   {
+    "window_index": 77,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.99082650366141
+   },
+   {
+    "window_index": 77,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 12.020574434131174
+   },
+   {
+    "window_index": 77,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.614776421975069
+   },
+   {
+    "window_index": 77,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 77,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 77,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 115,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.633841127255556
+   },
+   {
+    "window_index": 115,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 115,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.609958388163772
+   },
+   {
+    "window_index": 115,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 115,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 115,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 115,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 115,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.436234236526891
+   },
+   {
+    "window_index": 115,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.08959942110815
+   },
+   {
+    "window_index": 115,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 115,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 115,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 154,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.514875710810179
+   },
+   {
+    "window_index": 154,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.413869923725432
+   },
+   {
+    "window_index": 154,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.9934603173387857
+   },
+   {
+    "window_index": 154,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.982542658975776
+   },
+   {
+    "window_index": 154,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 154,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.9222765427662205
+   },
+   {
+    "window_index": 154,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 154,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.8461248599042754
+   },
+   {
+    "window_index": 154,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.394634920865544
+   },
+   {
+    "window_index": 154,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 154,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 154,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 192,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.329516645987255
+   },
+   {
+    "window_index": 192,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.7095460540322565
+   },
+   {
+    "window_index": 192,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.132090498582546
+   },
+   {
+    "window_index": 192,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 192,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 192,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.979295299760652
+   },
+   {
+    "window_index": 192,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 192,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 192,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.343156407680322
+   },
+   {
+    "window_index": 192,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.8194960210674034
+   },
+   {
+    "window_index": 192,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.751360916751158
+   },
+   {
+    "window_index": 192,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 231,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.266220766928304
+   },
+   {
+    "window_index": 231,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.494342395981827
+   },
+   {
+    "window_index": 231,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.791111132159408
+   },
+   {
+    "window_index": 231,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 10.035971795878948
+   },
+   {
+    "window_index": 231,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 14.808936070465368
+   },
+   {
+    "window_index": 231,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.3795664303796444
+   },
+   {
+    "window_index": 231,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 9.121735902701015
+   },
+   {
+    "window_index": 231,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.889725944164045
+   },
+   {
+    "window_index": 231,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.257616143042666
+   },
+   {
+    "window_index": 231,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.711962004023373
+   },
+   {
+    "window_index": 231,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 231,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 269,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.82431232056671
+   },
+   {
+    "window_index": 269,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.7729610697974465
+   },
+   {
+    "window_index": 269,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.705879696291902
+   },
+   {
+    "window_index": 269,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 269,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 269,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 269,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 269,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.6730620559212834
+   },
+   {
+    "window_index": 269,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.1349395314073325
+   },
+   {
+    "window_index": 269,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.8143230841641085
+   },
+   {
+    "window_index": 269,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.268993863775623
+   },
+   {
+    "window_index": 269,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   }
+  ],
+  "codes": {
+   "2": 181204,
+   "3": 2134284,
+   "4": 20206668,
+   "5": 56671072,
+   "6": 1308,
+   "7": 5963212,
+   "8": 5973436,
+   "9": 9408764,
+   "10": 123348
+  }
+ },
+ "config_sha256": {
+  "model.yaml": "1eccec3fa5728c9825bee68d69c7a9b7f89db98d6e76c7c933fd387badb0be88",
+  "dataset.json": "ad076afb56cf3ba2018a3148400d0684ddd449fce54cd208a12e2693249dd328",
+  "olmoearth_run.yaml": "1e1c8f709aadd86f84795723d35e07fc0aa79cef6e076c9a75d1ebec36d705ba",
+  "prediction_request_geometry.geojson": "fee3ce01008d26c6f3c239e68be70851035eb157d5da70bd72cb46dbc8623784"
+ },
+ "job": "1245573"
+}

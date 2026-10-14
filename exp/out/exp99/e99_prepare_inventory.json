@@ -1,0 +1,685 @@
+{
+ "pilot": false,
+ "experiment": "exp99",
+ "roots": [
+  {
+   "root_id": "root_0",
+   "layers": [
+    "label",
+    "output",
+    "sentinel2"
+   ],
+   "config_layers_equal_e98": {
+    "label": true,
+    "output": true,
+    "sentinel2": true
+   },
+   "windows": 313,
+   "with_sentinel2": 271,
+   "groups_completed": {
+    "0": 42,
+    "12": 271
+   },
+   "items_per_group": {
+    "1": 2591,
+    "2": 606,
+    "3": 41,
+    "4": 14
+   },
+   "sizes": {
+    "1024x1024": 313
+   },
+   "crs": {
+    "EPSG:32736": 10,
+    "EPSG:32737": 303
+   },
+   "windows_per_group": {
+    "group_0": 4,
+    "group_1": 30,
+    "group_2": 25,
+    "group_3": 9,
+    "group_4": 45,
+    "group_5": 41,
+    "group_6": 16,
+    "group_7": 6,
+    "group_8": 10,
+    "group_9": 27,
+    "group_10": 33,
+    "group_11": 33,
+    "group_12": 11,
+    "group_13": 23
+   },
+   "bytes": 89730746068
+  }
+ ],
+ "windows": 313,
+ "windows_with_12_groups": 271,
+ "windows_with_sentinel2": 271,
+ "distinct_window_cells": 264,
+ "projections": 2,
+ "request_share_outside_windows": 0.0,
+ "windows_on_crs_origin_lattice": 313,
+ "plots": {
+  "n": 309,
+  "in_no_window": 0,
+  "in_one_window": 258,
+  "in_two_or_more_windows": 51,
+  "in_a_window_with_12_groups": 271
+ },
+ "complete": false,
+ "allow_incomplete": true,
+ "scl_check": {
+  "windows": 313,
+  "mismatched_group_counts": 0,
+  "sampled": [
+   {
+    "window_index": 0,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.5703095810456749
+   },
+   {
+    "window_index": 0,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.167641213014314
+   },
+   {
+    "window_index": 0,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.5596993821537257
+   },
+   {
+    "window_index": 0,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.1259652981573298
+   },
+   {
+    "window_index": 0,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.581043887868826
+   },
+   {
+    "window_index": 0,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.277179695425767
+   },
+   {
+    "window_index": 0,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.14382948848238
+   },
+   {
+    "window_index": 0,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 9.713110159649451
+   },
+   {
+    "window_index": 0,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.257966292027867
+   },
+   {
+    "window_index": 0,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.07179217662977
+   },
+   {
+    "window_index": 0,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.707796508096962
+   },
+   {
+    "window_index": 45,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.1462678484449835
+   },
+   {
+    "window_index": 45,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.941683854244855
+   },
+   {
+    "window_index": 45,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.364365070559253
+   },
+   {
+    "window_index": 45,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.725240884015806
+   },
+   {
+    "window_index": 45,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.338696750798822
+   },
+   {
+    "window_index": 45,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.011660108921984
+   },
+   {
+    "window_index": 45,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.3530280565485047
+   },
+   {
+    "window_index": 45,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.759329844771975
+   },
+   {
+    "window_index": 45,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 9.432560103371667
+   },
+   {
+    "window_index": 45,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 45,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.106708971460781
+   },
+   {
+    "window_index": 45,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 12.58823465627917
+   },
+   {
+    "window_index": 89,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 89,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.231338980166971
+   },
+   {
+    "window_index": 89,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 89,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.737349907931418
+   },
+   {
+    "window_index": 89,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.20154909610006
+   },
+   {
+    "window_index": 89,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.602158759362657
+   },
+   {
+    "window_index": 89,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.239326574416449
+   },
+   {
+    "window_index": 89,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.257760275800747
+   },
+   {
+    "window_index": 89,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.310464957471409
+   },
+   {
+    "window_index": 89,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.403568307066301
+   },
+   {
+    "window_index": 89,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.260027350847276
+   },
+   {
+    "window_index": 89,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.6649339420379965
+   },
+   {
+    "window_index": 134,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.819349679452679
+   },
+   {
+    "window_index": 134,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.765762967602192
+   },
+   {
+    "window_index": 134,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 0.7184978941535018
+   },
+   {
+    "window_index": 134,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 134,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.224039937768607
+   },
+   {
+    "window_index": 134,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 134,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.413148960844728
+   },
+   {
+    "window_index": 134,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 134,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.337389930350603
+   },
+   {
+    "window_index": 134,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.13361104539976
+   },
+   {
+    "window_index": 134,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.0769176800106175
+   },
+   {
+    "window_index": 134,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 178,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.682626848127305
+   },
+   {
+    "window_index": 178,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.119862679600552
+   },
+   {
+    "window_index": 178,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 178,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.1589978543287405
+   },
+   {
+    "window_index": 178,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 178,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 178,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.760392561967424
+   },
+   {
+    "window_index": 178,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.563354647072202
+   },
+   {
+    "window_index": 178,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.274908912245339
+   },
+   {
+    "window_index": 178,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.798116849978781
+   },
+   {
+    "window_index": 178,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 10.3265197260312
+   },
+   {
+    "window_index": 178,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 0.470703125,
+    "b02_cloud_over_clear": 5.503263987845731
+   },
+   {
+    "window_index": 223,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.7382428638118674
+   },
+   {
+    "window_index": 223,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.0976828636255265
+   },
+   {
+    "window_index": 223,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 223,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 223,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.958247008144474
+   },
+   {
+    "window_index": 223,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.454265991186886
+   },
+   {
+    "window_index": 223,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.444829642033854
+   },
+   {
+    "window_index": 223,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.4982146850122104
+   },
+   {
+    "window_index": 223,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.9949910938778475
+   },
+   {
+    "window_index": 223,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.0086212984035396
+   },
+   {
+    "window_index": 223,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.1960328817110355
+   },
+   {
+    "window_index": 223,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.336559610054689
+   },
+   {
+    "window_index": 267,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.6566091262637044
+   },
+   {
+    "window_index": 267,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.565075662417882
+   },
+   {
+    "window_index": 267,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.95592613234485
+   },
+   {
+    "window_index": 267,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.221907464167999
+   },
+   {
+    "window_index": 267,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.3741338478110325
+   },
+   {
+    "window_index": 267,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.1089941613354
+   },
+   {
+    "window_index": 267,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.42422016983552
+   },
+   {
+    "window_index": 267,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.390466555070851
+   },
+   {
+    "window_index": 267,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.524760429457365
+   },
+   {
+    "window_index": 267,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.269539686842616
+   },
+   {
+    "window_index": 267,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 9.359086256280312
+   },
+   {
+    "window_index": 267,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.937404887229974
+   }
+  ],
+  "codes": {
+   "0": 555008,
+   "2": 2465434,
+   "3": 486017,
+   "4": 8552460,
+   "5": 57376198,
+   "6": 542413,
+   "7": 2448745,
+   "8": 2231187,
+   "9": 12822898,
+   "10": 480342,
+   "11": 119682
+  }
+ },
+ "config_sha256": {
+  "model.yaml": "1eccec3fa5728c9825bee68d69c7a9b7f89db98d6e76c7c933fd387badb0be88",
+  "dataset.json": "ad076afb56cf3ba2018a3148400d0684ddd449fce54cd208a12e2693249dd328",
+  "olmoearth_run.yaml": "1e1c8f709aadd86f84795723d35e07fc0aa79cef6e076c9a75d1ebec36d705ba",
+  "prediction_request_geometry.geojson": "a9dd3841d8c39d37380acbf42d97f52bf3d97c957111138d296f2bb030a65dd3"
+ },
+ "job": "1252876"
+}

@@ -1,0 +1,67 @@
+{
+ "by_stratum": {
+  "agriculture": {
+   "windows": 300,
+   "all_eight": 300,
+   "pre_four": 300,
+   "post_four": 300,
+   "none": 0,
+   "with_output": 0,
+   "output_without_all_eight": 0,
+   "prepared_groups": {
+    "pre_sentinel2": {
+     "4": 300
+    },
+    "post_sentinel2": {
+     "4": 300
+    }
+   }
+  },
+  "mining": {
+   "windows": 389,
+   "all_eight": 389,
+   "pre_four": 389,
+   "post_four": 389,
+   "none": 0,
+   "with_output": 0,
+   "output_without_all_eight": 0,
+   "prepared_groups": {
+    "pre_sentinel2": {
+     "4": 389
+    },
+    "post_sentinel2": {
+     "4": 389
+    }
+   }
+  },
+  "roads": {
+   "windows": 7,
+   "all_eight": 7,
+   "pre_four": 7,
+   "post_four": 7,
+   "none": 0,
+   "with_output": 0,
+   "output_without_all_eight": 0,
+   "prepared_groups": {
+    "pre_sentinel2": {
+     "4": 7
+    },
+    "post_sentinel2": {
+     "4": 7
+    }
+   }
+  }
+ },
+ "total": {
+  "windows": 696,
+  "all_eight": 696,
+  "pre_four": 696,
+  "post_four": 696,
+  "none": 0,
+  "with_output": 0,
+  "output_without_all_eight": 0
+ },
+ "counted_utc": "2026-10-11T22:04:48Z",
+ "graded_with_all_eight": 689,
+ "floor": 500
+}

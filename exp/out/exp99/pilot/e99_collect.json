@@ -1,0 +1,18 @@
+{
+ "job": "1247346",
+ "experiment": "exp99",
+ "pilot": true,
+ "roots": [
+  {
+   "root_id": "root_0",
+   "windows_copied": 4
+  }
+ ],
+ "area_complete": true,
+ "allow_incomplete": false,
+ "files": 121,
+ "bytes": 211293642,
+ "manifest_sha256": "e6501e3f5ec985cbb152c0f662871283d8b180e2bbac37c02e9ea2c7cf8d59dd",
+ "dest": "/home/qi_zim_neu/olmoearth_inferenceX/data/exp99/pilot/awf2017_run",
+ "manifest_verified": true
+}

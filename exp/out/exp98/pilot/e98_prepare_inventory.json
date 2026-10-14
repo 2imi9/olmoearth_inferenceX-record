@@ -1,0 +1,406 @@
+{
+ "pilot": true,
+ "roots": [
+  {
+   "root_id": "root_0",
+   "layers": [
+    "label",
+    "output",
+    "sentinel2"
+   ],
+   "config_layers_equal_e98": {
+    "label": true,
+    "output": true,
+    "sentinel2": true
+   },
+   "windows": 4,
+   "with_sentinel2": 4,
+   "groups_completed": {
+    "12": 4
+   },
+   "items_per_group": {
+    "1": 34,
+    "2": 14
+   },
+   "sizes": {
+    "1024x1024": 4
+   },
+   "crs": {
+    "EPSG:32737": 4
+   },
+   "windows_per_group": {
+    "group_0": 4
+   },
+   "bytes": 1282201648
+  }
+ ],
+ "windows": 4,
+ "windows_with_12_groups": 4,
+ "windows_with_sentinel2": 4,
+ "distinct_window_cells": 4,
+ "projections": 1,
+ "expected_cells_on_main_grid": 4,
+ "request_share_outside_windows": 0.0,
+ "complete": true,
+ "allow_incomplete": false,
+ "scl_check": {
+  "windows": 4,
+  "mismatched_group_counts": 0,
+  "sampled": [
+   {
+    "window_index": 0,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.91098141363402
+   },
+   {
+    "window_index": 0,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 12.817361809628911
+   },
+   {
+    "window_index": 0,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 10.16451538569853
+   },
+   {
+    "window_index": 0,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 10.217338601337598
+   },
+   {
+    "window_index": 0,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.022033480960253
+   },
+   {
+    "window_index": 0,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 10.954507780245109
+   },
+   {
+    "window_index": 0,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.54853111364609
+   },
+   {
+    "window_index": 0,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.708069635309804
+   },
+   {
+    "window_index": 0,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 0,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 1,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 1.5847236826891373
+   },
+   {
+    "window_index": 1,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 2.799106262911089
+   },
+   {
+    "window_index": 1,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.703206688290583
+   },
+   {
+    "window_index": 1,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.4621596578338525
+   },
+   {
+    "window_index": 1,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 11.520324255862006
+   },
+   {
+    "window_index": 1,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 11.981342105589249
+   },
+   {
+    "window_index": 1,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 10.513459364046055
+   },
+   {
+    "window_index": 1,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.836412264609303
+   },
+   {
+    "window_index": 1,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.847590198308632
+   },
+   {
+    "window_index": 1,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.417631423723536
+   },
+   {
+    "window_index": 1,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 1,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 2,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.654897781515321
+   },
+   {
+    "window_index": 2,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.06617778289002
+   },
+   {
+    "window_index": 2,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.935651258600818
+   },
+   {
+    "window_index": 2,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.714820201819273
+   },
+   {
+    "window_index": 2,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.878902208104049
+   },
+   {
+    "window_index": 2,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.843536321236256
+   },
+   {
+    "window_index": 2,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.022293859261262
+   },
+   {
+    "window_index": 2,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.2661269413351794
+   },
+   {
+    "window_index": 2,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.163459293951413
+   },
+   {
+    "window_index": 2,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 2,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 2,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 3,
+    "group": 0,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 3.419673408050142
+   },
+   {
+    "window_index": 3,
+    "group": 1,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 7.316824867262147
+   },
+   {
+    "window_index": 3,
+    "group": 2,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 4.821646906920068
+   },
+   {
+    "window_index": 3,
+    "group": 3,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 8.173463458220393
+   },
+   {
+    "window_index": 3,
+    "group": 4,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.765604194453408
+   },
+   {
+    "window_index": 3,
+    "group": 5,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 3,
+    "group": 6,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 9.759136110591614
+   },
+   {
+    "window_index": 3,
+    "group": 7,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 6.483530227122304
+   },
+   {
+    "window_index": 3,
+    "group": 8,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 12.703282641650262
+   },
+   {
+    "window_index": 3,
+    "group": 9,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": 5.992889697637094
+   },
+   {
+    "window_index": 3,
+    "group": 10,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   },
+   {
+    "window_index": 3,
+    "group": 11,
+    "coverage_agreement": 1.0,
+    "scl_covered": 1.0,
+    "b02_cloud_over_clear": null
+   }
+  ],
+  "codes": {
+   "2": 360912,
+   "3": 497560,
+   "4": 12908968,
+   "5": 13373628,
+   "6": 1800,
+   "7": 1938356,
+   "8": 4025476,
+   "9": 17209064,
+   "10": 15884
+  }
+ },
+ "config_sha256": {
+  "model.yaml": "1eccec3fa5728c9825bee68d69c7a9b7f89db98d6e76c7c933fd387badb0be88",
+  "dataset.json": "ad076afb56cf3ba2018a3148400d0684ddd449fce54cd208a12e2693249dd328",
+  "olmoearth_run.yaml": "1e1c8f709aadd86f84795723d35e07fc0aa79cef6e076c9a75d1ebec36d705ba",
+  "prediction_request_geometry.geojson": "23ff11e0960d9a85c4b352648bbf72b9fa26a4b3256f89b8c2c0a6d2be673edb"
+ },
+ "job": "1244172"
+}

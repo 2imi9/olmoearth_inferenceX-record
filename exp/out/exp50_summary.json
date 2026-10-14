@@ -1,0 +1,465 @@
+{
+ "experiment": "exp50 fusion anatomy, bag replication, shift-label entropy, tile-fitted fusion",
+ "smoke": false,
+ "config": {
+  "fusion_inputs": [
+   "averaged confidence",
+   "tile-phase",
+   "control NDWI level",
+   "ensemble mutual information",
+   "ensemble average entropy",
+   "ensemble predictive entropy",
+   "embedding normalized distance",
+   "embedding NCDD",
+   "input extremity max",
+   "input extremity mean"
+  ],
+  "bag_members": 16,
+  "bag_seed": 50,
+  "min_lead": 0.001,
+  "n_boot": 2000,
+  "prereg": "P1 v1/bolivia: bag16 predictive entropy beats averaged confidence (pooled lead <= -0.001, one-sided per-tile sign test); P2 v1_2/bolivia: tile-fitted fusion beats confidence's ROI-averaged score on tile AURC with a 95% tile-bootstrap interval excluding zero"
+ },
+ "results": {
+  "v1": {
+   "train_seconds": 268.42789697647095,
+   "train_windows": 111321,
+   "train_errors": 3595,
+   "train_tiles": 598,
+   "train_tile_failures": 111,
+   "fusion_weights": {
+    "averaged confidence": 0.3785924017429352,
+    "tile-phase": -0.24509447813034058,
+    "control NDWI level": 0.8665358424186707,
+    "ensemble mutual information": 0.21582694351673126,
+    "ensemble average entropy": 0.6379913687705994,
+    "ensemble predictive entropy": 0.620631217956543,
+    "embedding normalized distance": 0.35535094141960144,
+    "embedding NCDD": -0.23673605918884277,
+    "input extremity max": 0.32897502183914185,
+    "input extremity mean": -0.33060339093208313
+   },
+   "fusion_bias": -2.4527645111083984,
+   "tile_fusion_weights": {
+    "averaged confidence": 2.22617769241333,
+    "tile-phase": -0.6771600246429443,
+    "control NDWI level": -1.0208815336227417,
+    "ensemble mutual information": 0.5081967115402222,
+    "ensemble average entropy": -0.24718669056892395,
+    "ensemble predictive entropy": -0.20389506220817566,
+    "embedding normalized distance": 0.2136656492948532,
+    "embedding NCDD": -0.16626577079296112,
+    "input extremity max": 0.3915047347545624,
+    "input extremity mean": -0.8451855182647705
+   },
+   "bolivia": {
+    "n_windows": 71373,
+    "n_errors": 5895,
+    "pooled_eaurc": {
+     "averaged confidence": 0.009405838605203925,
+     "tile-phase": 0.011276117153987672,
+     "ensemble predictive entropy": 0.007571191663356776,
+     "ensemble mutual information": 0.012012990267552003,
+     "bag16 predictive entropy": 0.010009667891112316,
+     "bag16 mutual information": 0.01444799969184572,
+     "shift-label entropy": 0.016095901964587215,
+     "fusion linear (labelled)": 0.006676488875615053
+    },
+    "drop_one_pooled_eaurc": {
+     "averaged confidence": 0.006483068728593469,
+     "tile-phase": 0.006658086671487966,
+     "control NDWI level": 0.0076376497907118595,
+     "ensemble mutual information": 0.006702584745530722,
+     "ensemble average entropy": 0.006717436126878269,
+     "ensemble predictive entropy": 0.006711175443302574,
+     "embedding normalized distance": 0.006682175202274015,
+     "embedding NCDD": 0.006749043568900826,
+     "input extremity max": 0.006564875136516406,
+     "input extremity mean": 0.006505018321808018
+    },
+    "tests": {
+     "bag16 predictive entropy": {
+      "w": 140,
+      "l": 166,
+      "t": 13,
+      "sign_p": 0.938714117312926,
+      "median_gain": -2.5859095438890444e-05,
+      "n_tiles": 319,
+      "pooled_lead": 0.0006038292859083909
+     },
+     "bag16 mutual information": {
+      "w": 77,
+      "l": 240,
+      "t": 2,
+      "sign_p": 1.210571768741628e-20,
+      "median_gain": -0.003221867170794334,
+      "n_tiles": 319,
+      "pooled_lead": 0.005042161086641794
+     },
+     "shift-label entropy": {
+      "w": 133,
+      "l": 185,
+      "t": 1,
+      "sign_p": 0.004165251580452653,
+      "median_gain": -0.00029723562869841415,
+      "n_tiles": 319,
+      "pooled_lead": 0.004819784810599543
+     },
+     "fusion linear (labelled)": {
+      "w": 223,
+      "l": 94,
+      "t": 2,
+      "sign_p": 3.073518864683864e-13,
+      "median_gain": 0.0007031232378842188,
+      "n_tiles": 319,
+      "pooled_lead": -0.002729349729588872
+     }
+    },
+    "tile_level": {
+     "n_tiles": 438,
+     "failure_rate": 0.3310502283105023,
+     "averaged confidence": {
+      "aurc": 0.16704497346269234,
+      "risk_at_0.5": 0.1095890410958904,
+      "risk_at_0.75": 0.16768292682926833,
+      "aurc_diff_vs_confidence": 0.0,
+      "diff_ci95": [
+       0.0,
+       0.0
+      ],
+      "n_boot_valid": 2000
+     },
+     "tile-fitted fusion (labelled)": {
+      "aurc": 0.13437356247386523,
+      "risk_at_0.5": 0.0821917808219178,
+      "risk_at_0.75": 0.22560975609756095,
+      "aurc_diff_vs_confidence": -0.032671410988827115,
+      "diff_ci95": [
+       -0.07775984616842808,
+       0.008491481856346503
+      ],
+      "n_boot_valid": 2000
+     }
+    },
+    "P1": false,
+    "P2": false
+   },
+   "test": {
+    "n_windows": 149684,
+    "n_errors": 6680,
+    "pooled_eaurc": {
+     "averaged confidence": 0.010889805917348215,
+     "tile-phase": 0.013116827257409432,
+     "ensemble predictive entropy": 0.010696482189475186,
+     "ensemble mutual information": 0.010679378581520866,
+     "bag16 predictive entropy": 0.011148244090426801,
+     "bag16 mutual information": 0.012007388444507265,
+     "shift-label entropy": 0.012983771594188684,
+     "fusion linear (labelled)": 0.006779501292365173
+    },
+    "drop_one_pooled_eaurc": {
+     "averaged confidence": 0.006807595374176898,
+     "tile-phase": 0.006785364358121347,
+     "control NDWI level": 0.0071441430447328385,
+     "ensemble mutual information": 0.00657864555114725,
+     "ensemble average entropy": 0.00679198861845676,
+     "ensemble predictive entropy": 0.006789189268608796,
+     "embedding normalized distance": 0.006687443871611959,
+     "embedding NCDD": 0.0065228146606502455,
+     "input extremity max": 0.0068725182153907055,
+     "input extremity mean": 0.005778441794798688
+    },
+    "tests": {
+     "bag16 predictive entropy": {
+      "w": 219,
+      "l": 193,
+      "t": 14,
+      "sign_p": 0.10901380490744192,
+      "median_gain": 2.593956082328169e-05,
+      "n_tiles": 426,
+      "pooled_lead": 0.0002584381730785859
+     },
+     "bag16 mutual information": {
+      "w": 90,
+      "l": 335,
+      "t": 1,
+      "sign_p": 2.926698929722548e-34,
+      "median_gain": -0.0016504475294971115,
+      "n_tiles": 426,
+      "pooled_lead": 0.0011175825271590497
+     },
+     "shift-label entropy": {
+      "w": 191,
+      "l": 233,
+      "t": 2,
+      "sign_p": 0.04633823608916244,
+      "median_gain": -5.6145926599312346e-05,
+      "n_tiles": 426,
+      "pooled_lead": -0.0001330556632207474
+     },
+     "fusion linear (labelled)": {
+      "w": 265,
+      "l": 155,
+      "t": 6,
+      "sign_p": 8.884419026010925e-08,
+      "median_gain": 0.00013417109634381166,
+      "n_tiles": 426,
+      "pooled_lead": -0.004110304624983042
+     }
+    },
+    "tile_level": {
+     "n_tiles": 800,
+     "failure_rate": 0.22,
+     "averaged confidence": {
+      "aurc": 0.11978388960967852,
+      "risk_at_0.5": 0.10499999999999998,
+      "risk_at_0.75": 0.10666666666666669,
+      "aurc_diff_vs_confidence": 0.0,
+      "diff_ci95": [
+       0.0,
+       0.0
+      ],
+      "n_boot_valid": 2000
+     },
+     "tile-fitted fusion (labelled)": {
+      "aurc": 0.07816603823515363,
+      "risk_at_0.5": 0.057499999999999996,
+      "risk_at_0.75": 0.11166666666666669,
+      "aurc_diff_vs_confidence": -0.041617851374524895,
+      "diff_ci95": [
+       -0.06622957957905241,
+       -0.01941072132232113
+      ],
+      "n_boot_valid": 2000
+     }
+    },
+    "P1": false,
+    "P2": false
+   }
+  },
+  "v1_2": {
+   "train_seconds": 254.3313205242157,
+   "train_windows": 111321,
+   "train_errors": 3606,
+   "train_tiles": 598,
+   "train_tile_failures": 113,
+   "fusion_weights": {
+    "averaged confidence": 0.3143620193004608,
+    "tile-phase": -0.24374452233314514,
+    "control NDWI level": 0.868377149105072,
+    "ensemble mutual information": 0.24171346426010132,
+    "ensemble average entropy": 0.6786592602729797,
+    "ensemble predictive entropy": 0.6594575643539429,
+    "embedding normalized distance": 0.3523891270160675,
+    "embedding NCDD": -0.2680375277996063,
+    "input extremity max": 0.3470536470413208,
+    "input extremity mean": -0.3245694637298584
+   },
+   "fusion_bias": -2.489861011505127,
+   "tile_fusion_weights": {
+    "averaged confidence": 2.165559768676758,
+    "tile-phase": -0.5732255578041077,
+    "control NDWI level": -1.0328338146209717,
+    "ensemble mutual information": 0.5522037148475647,
+    "ensemble average entropy": -0.22024546563625336,
+    "ensemble predictive entropy": -0.16605891287326813,
+    "embedding normalized distance": 0.1478683352470398,
+    "embedding NCDD": -0.12992501258850098,
+    "input extremity max": 0.5016191005706787,
+    "input extremity mean": -0.8318787217140198
+   },
+   "bolivia": {
+    "n_windows": 71373,
+    "n_errors": 6199,
+    "pooled_eaurc": {
+     "averaged confidence": 0.01162524136632951,
+     "tile-phase": 0.013299754742021153,
+     "ensemble predictive entropy": 0.011529900590191124,
+     "ensemble mutual information": 0.01758603524181561,
+     "bag16 predictive entropy": 0.013763485114384778,
+     "bag16 mutual information": 0.020500558537137226,
+     "shift-label entropy": 0.015019181179220794,
+     "fusion linear (labelled)": 0.00887160872354786
+    },
+    "drop_one_pooled_eaurc": {
+     "averaged confidence": 0.00894682676729791,
+     "tile-phase": 0.008700514375052832,
+     "control NDWI level": 0.01159308347227395,
+     "ensemble mutual information": 0.00881283587238546,
+     "ensemble average entropy": 0.008783161791809633,
+     "ensemble predictive entropy": 0.008797243557208432,
+     "embedding normalized distance": 0.00884416435004879,
+     "embedding NCDD": 0.008829499849659545,
+     "input extremity max": 0.00862755704815649,
+     "input extremity mean": 0.008564806010383105
+    },
+    "tests": {
+     "bag16 predictive entropy": {
+      "w": 114,
+      "l": 208,
+      "t": 2,
+      "sign_p": 0.9999999515366359,
+      "median_gain": -0.00025144324161540613,
+      "n_tiles": 324,
+      "pooled_lead": 0.0021382437480552685
+     },
+     "bag16 mutual information": {
+      "w": 54,
+      "l": 270,
+      "t": 0,
+      "sign_p": 1.0863017894686096e-35,
+      "median_gain": -0.00693211976975475,
+      "n_tiles": 324,
+      "pooled_lead": 0.008875317170807716
+     },
+     "shift-label entropy": {
+      "w": 151,
+      "l": 172,
+      "t": 1,
+      "sign_p": 0.2657525940524825,
+      "median_gain": -0.00011503756537954712,
+      "n_tiles": 324,
+      "pooled_lead": 0.0017194264371996407
+     },
+     "fusion linear (labelled)": {
+      "w": 223,
+      "l": 97,
+      "t": 4,
+      "sign_p": 1.4421066335962656e-12,
+      "median_gain": 0.0005953144169078784,
+      "n_tiles": 324,
+      "pooled_lead": -0.0027536326427816497
+     }
+    },
+    "tile_level": {
+     "n_tiles": 438,
+     "failure_rate": 0.3310502283105023,
+     "averaged confidence": {
+      "aurc": 0.14008640872291733,
+      "risk_at_0.5": 0.08675799086757996,
+      "risk_at_0.75": 0.17682926829268297,
+      "aurc_diff_vs_confidence": 0.0,
+      "diff_ci95": [
+       0.0,
+       0.0
+      ],
+      "n_boot_valid": 2000
+     },
+     "tile-fitted fusion (labelled)": {
+      "aurc": 0.1378180816177252,
+      "risk_at_0.5": 0.09589041095890416,
+      "risk_at_0.75": 0.23170731707317072,
+      "aurc_diff_vs_confidence": -0.0022683271051921194,
+      "diff_ci95": [
+       -0.037058086706602794,
+       0.029546783183890656
+      ],
+      "n_boot_valid": 2000
+     }
+    },
+    "P1": false,
+    "P2": false
+   },
+   "test": {
+    "n_windows": 149684,
+    "n_errors": 6525,
+    "pooled_eaurc": {
+     "averaged confidence": 0.006378234184421032,
+     "tile-phase": 0.008072824096565316,
+     "ensemble predictive entropy": 0.006582478039104165,
+     "ensemble mutual information": 0.008569669934142798,
+     "bag16 predictive entropy": 0.005940270578205106,
+     "bag16 mutual information": 0.007220467484768532,
+     "shift-label entropy": 0.01211751377290184,
+     "fusion linear (labelled)": 0.005956618047382026
+    },
+    "drop_one_pooled_eaurc": {
+     "averaged confidence": 0.005985577706744421,
+     "tile-phase": 0.006025457813884002,
+     "control NDWI level": 0.0050413277234535045,
+     "ensemble mutual information": 0.005730037245435128,
+     "ensemble average entropy": 0.005993602661505337,
+     "ensemble predictive entropy": 0.005986293272277005,
+     "embedding normalized distance": 0.006401183363454304,
+     "embedding NCDD": 0.005971166739866892,
+     "input extremity max": 0.005939317474976534,
+     "input extremity mean": 0.004997566742205845
+    },
+    "tests": {
+     "bag16 predictive entropy": {
+      "w": 248,
+      "l": 160,
+      "t": 20,
+      "sign_p": 7.701607625239423e-06,
+      "median_gain": 5.2270324746543065e-05,
+      "n_tiles": 428,
+      "pooled_lead": -0.00043796360621592596
+     },
+     "bag16 mutual information": {
+      "w": 74,
+      "l": 354,
+      "t": 0,
+      "sign_p": 7.175768507877136e-45,
+      "median_gain": -0.001946177401775311,
+      "n_tiles": 428,
+      "pooled_lead": 0.0008422333003474999
+     },
+     "shift-label entropy": {
+      "w": 194,
+      "l": 232,
+      "t": 2,
+      "sign_p": 0.0729036547749809,
+      "median_gain": -7.146248131152953e-05,
+      "n_tiles": 428,
+      "pooled_lead": 0.004044689676336524
+     },
+     "fusion linear (labelled)": {
+      "w": 267,
+      "l": 154,
+      "t": 7,
+      "sign_p": 4.0083357773584616e-08,
+      "median_gain": 0.00016057628796510402,
+      "n_tiles": 428,
+      "pooled_lead": -0.00042161613703900654
+     }
+    },
+    "tile_level": {
+     "n_tiles": 800,
+     "failure_rate": 0.2425,
+     "averaged confidence": {
+      "aurc": 0.13429217703554258,
+      "risk_at_0.5": 0.13,
+      "risk_at_0.75": 0.1166666666666667,
+      "aurc_diff_vs_confidence": 0.0,
+      "diff_ci95": [
+       0.0,
+       0.0
+      ],
+      "n_boot_valid": 2000
+     },
+     "tile-fitted fusion (labelled)": {
+      "aurc": 0.0863157136983026,
+      "risk_at_0.5": 0.0675,
+      "risk_at_0.75": 0.1333333333333333,
+      "aurc_diff_vs_confidence": -0.04797646333723998,
+      "diff_ci95": [
+       -0.07278418305714508,
+       -0.025423575042158034
+      ],
+      "n_boot_valid": 2000
+     }
+    },
+    "P1": false,
+    "P2": false
+   }
+  }
+ },
+ "failures": [],
+ "prereg": {
+  "P1": false,
+  "P2": false,
+  "supported": false,
+  "complete": true
+ },
+ "n_failures": 0
+}

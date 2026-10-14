@@ -1,0 +1,111 @@
+{
+ "experiment": "exp91",
+ "preregistered": true,
+ "population": {
+  "windows": 81984,
+  "error_rate": 0.08840749414519906
+ },
+ "S": {
+  "n": 150,
+  "judged": 104,
+  "unjudged_share": 0.30666666666666664,
+  "class_agreement": 0.8557692307692307
+ },
+ "C": {
+  "n0_judged": 22,
+  "false_alarms": 0,
+  "E0": 0.0,
+  "U0": 0.1273054316548387,
+  "n1_judged": 19,
+  "misses": 14,
+  "E1": 0.7368421052631579,
+  "U1": 0.8900936299948188
+ },
+ "intervals": {
+  "hand_labels": {
+   "estimate": 0.09333333333333334,
+   "estimate_range": null,
+   "low": 0.052010148321623734,
+   "high": 0.15157835675253709,
+   "width": 0.09956820843091335,
+   "holds_truth": true
+  },
+  "vlm_labels": {
+   "estimate": null,
+   "estimate_range": [
+    0.08,
+    0.38666666666666666
+   ],
+   "low": 0.042056986729117875,
+   "high": 0.4694696526151444,
+   "width": 0.4274126658860265,
+   "holds_truth": true
+  },
+  "vlm_widened": {
+   "estimate": null,
+   "estimate_range": [
+    0.0,
+    1.0
+   ],
+   "low": 0.0,
+   "high": 1.0,
+   "width": 1.0,
+   "holds_truth": true
+  }
+ },
+ "descriptive_added_after_the_result": {
+  "S_map_agreement_on_vlm_judged": 0.9519230769230769,
+  "S_vlm_agrees_with_map_on_judged": 0.8846153846153846,
+  "S_true_errors": 14,
+  "S_true_errors_judged": 5,
+  "S_true_errors_flagged": 1,
+  "S_false_flags": 11,
+  "C_unjudged_share_wrong": 0.36666666666666664,
+  "C_unjudged_share_correct": 0.26666666666666666,
+  "S_unjudged_share_wrong": 0.6428571428571429,
+  "S_unjudged_share_correct": 0.27205882352941174,
+  "pooled_unjudged_wrong": [
+   20,
+   44
+  ],
+  "pooled_unjudged_correct": [
+   45,
+   166
+  ],
+  "S_map_agreement_all": 0.9066666666666666,
+  "S_reviewer_right_counting_unjudged_right": 135,
+  "S_judged_discordant_reviewer_wrong_map_right": 11,
+  "S_judged_discordant_reviewer_right_map_wrong": 1,
+  "S_reviewer_errors_water_where_hand_land": 13,
+  "S_reviewer_errors": 15,
+  "reviewer": {
+   "reviewer_model": "claude-opus-5-5 (the session's model, inherited by the workflow agents)",
+   "agents": 10,
+   "windows_per_agent": 21,
+   "tokens": 1056970,
+   "tool_calls": 531,
+   "minutes": 9.2,
+   "reads_of_views": 435,
+   "extra_views_requested": 232,
+   "blinding_audit": "every Read was of exp/out/exp91_views; every command was the view command (audited from the agents' transcripts)",
+   "workflow_run": "wf_3e45c11e-707",
+   "prompt": "exp/out/exp91_prompt.md"
+  }
+ },
+ "prereg": {
+  "P1": {
+   "holds": false
+  },
+  "P2": {
+   "holds": true
+  },
+  "P3": {
+   "holds": true
+  }
+ },
+ "inputs_sha256": {
+  "exp91_labels.json": "4ec0aa2d539832cf6827ee6dda6f51f2241bed2e82d8f0bf6fbaec226143b22c",
+  "exp91_key.csv": "83b420262c6a4746f51b382cd4e1ec2450fef8a86ca2e4df7599b2a2e1827ea1",
+  "exp91_run.json": "de240d9dbb206742c63fc00c2a5083786125059936f8405594073b83a5c7e757"
+ }
+}

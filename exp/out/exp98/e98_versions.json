@@ -1,0 +1,65 @@
+{
+ "written": "2026-10-09T00:43:38+00:00",
+ "job": "1244171",
+ "host": "w0002",
+ "python": "3.11.16",
+ "platform": "Linux-5.14.0-570.60.1+21.1.el9_6_ciq.x86_64-x86_64-with-glibc2.34",
+ "uv": "uv 0.12.10 (x86_64-unknown-linux-gnu)",
+ "packages": {
+  "olmoearth-runner": "0.1.14",
+  "rslearn": "0.0.27",
+  "olmoearth-pretrain": "0.0.2",
+  "olmoearth_projects": "0.0.1",
+  "torch": "2.7.1+cu128",
+  "torchvision": "0.22.1+cu128",
+  "lightning": "2.5.1.post0",
+  "jsonargparse": "4.35.0",
+  "numpy": "1.26.4",
+  "rasterio": "1.4.4",
+  "huggingface-hub": "0.36.0",
+  "planetary-computer": "1.0.0",
+  "pystac-client": "0.9.0",
+  "pydantic": "2.12.5"
+ },
+ "git": {
+  "olmoearth_projects": "f3c9b0c89c7670b3525647dda4c14b76245d682d",
+  "olmoearth_inferenceX": "d4843e7ee816fbf93d95377b6d098c5079620e26"
+ },
+ "overrides": [
+  "torch==2.7.1+cu128",
+  "torchvision==0.22.1+cu128",
+  "nvidia-cublas-cu12==12.8.3.14",
+  "nvidia-cuda-cupti-cu12==12.8.57",
+  "nvidia-cuda-nvrtc-cu12==12.8.61",
+  "nvidia-cuda-runtime-cu12==12.8.57",
+  "nvidia-cudnn-cu12==9.7.1.26",
+  "nvidia-cufft-cu12==11.3.3.41",
+  "nvidia-cufile-cu12==1.13.0.11",
+  "nvidia-curand-cu12==10.3.9.55",
+  "nvidia-cusolver-cu12==11.7.2.55",
+  "nvidia-cusparse-cu12==12.5.7.53",
+  "nvidia-cusparselt-cu12==0.6.3",
+  "nvidia-nccl-cu12==2.26.2",
+  "nvidia-nvjitlink-cu12==12.8.61",
+  "nvidia-nvtx-cu12==12.8.55"
+ ],
+ "checkpoint": {
+  "repo": "allenai/OlmoEarth-v1-FT-AWF-Base",
+  "revision": "a347b1546ab881c92aa125400ed5acc8126394ca",
+  "file": "model.ckpt",
+  "path": "/scratch/qi_zim_neu/olmoearth_inferenceX/hf/hub/models--allenai--OlmoEarth-v1-FT-AWF-Base/snapshots/a347b1546ab881c92aa125400ed5acc8126394ca/model.ckpt",
+  "bytes": 1041443421,
+  "sha256": "1036b76bf7dfde819479dfa02507634f59a5637f14d4071bc3bf18f4d3d4bab2"
+ },
+ "e98_config_sha256": {
+  "dataset.json": "ad076afb56cf3ba2018a3148400d0684ddd449fce54cd208a12e2693249dd328",
+  "model.yaml": "1eccec3fa5728c9825bee68d69c7a9b7f89db98d6e76c7c933fd387badb0be88",
+  "scl_dataset.json": "e3d8de8b0d9dad5facef07098389075854b20da42381a9dd3926f09704387a01"
+ },
+ "stage_values": [
+  "BUILD_DATASET",
+  "RUN_INFERENCE",
+  "POSTPROCESS",
+  "COMBINE"
+ ]
+}

@@ -1,0 +1,56 @@
+% Shared style for the diagrams: layered slanted rasters with shadows, geometric model parts, few words.
+\usepackage{graphicx}
+\pagecolor{white}   % an explicit page background: transparent pages export as black in some rasterisers
+\usetikzlibrary{positioning,arrows.meta,shadows,shapes.geometric,calc,fit,backgrounds}
+\definecolor{ink}{HTML}{1F2937}
+\definecolor{muted}{HTML}{6B7280}
+\definecolor{oeteal}{HTML}{0F766E}
+\definecolor{oeamber}{HTML}{D97706}
+\definecolor{oeviolet}{HTML}{6D28D9}
+\definecolor{oeblue}{HTML}{2563EB}
+\definecolor{oered}{HTML}{DC2626}
+\newlength{\rw}\setlength{\rw}{2.3cm}   % raster width on the page (before the slant)
+\tikzset{
+  >=Stealth, font=\small,
+  plane/.style={inner sep=0pt, outer sep=0pt, transform shape, yscale=0.55, yslant=0.35, draw=ink!60, line width=0.4pt,
+                drop shadow={shadow xshift=0.7mm, shadow yshift=-0.7mm, opacity=0.25}},
+  flat/.style={inner sep=0pt, outer sep=0pt, draw=ink!60, line width=0.4pt, drop shadow={shadow xshift=0.7mm, shadow yshift=-0.7mm, opacity=0.25}},
+  lab/.style={font=\scriptsize, text=ink, inner sep=1pt, align=center},
+  sub/.style={font=\scriptsize, text=muted, inner sep=1pt, align=center},
+  part/.style={draw=ink, line width=0.6pt, drop shadow={shadow xshift=0.8mm, shadow yshift=-0.8mm, opacity=0.3}},
+  card/.style={draw=ink!70, fill=white, rounded corners=2pt, line width=0.5pt, inner sep=4pt, drop shadow={shadow xshift=0.8mm, shadow yshift=-0.8mm, opacity=0.25}},
+  flow/.style={->, line width=0.9pt, draw=ink},
+  cell/.style={draw=oeamber, line width=0.9pt, fill=none},
+  errcell/.style={draw=oered, line width=0.6pt, fill=none},
+}
+% \raster{name}{x}{y}{file}: one slanted raster plane centred at (x, y)
+\newcommand{\raster}[4]{\node[plane] (#1) at (#2,#3) {\includegraphics[width=\rw]{rasters/#4}};}
+% \flatraster{name}{x}{y}{file}{width}: an unslanted raster
+\newcommand{\flatraster}[5]{\node[flat] (#1) at (#2,#3) {\includegraphics[width=#5]{rasters/#4}};}
+% \cells{plane node}{grid size}{style}{list macro}: outline windows r/c of a G x G grid on a slanted plane
+\newcommand{\cells}[4]{%
+  \begin{scope}[shift={(#1.center)}, yscale=0.55, yslant=0.35]
+    \pgfmathsetlengthmacro{\cw}{\rw/#2}
+    \foreach \r/\c in #4 {
+      \draw[#3] ({(\c-#2/2)*\cw}, {(#2/2-\r-1)*\cw}) rectangle ++(\cw, \cw);
+    }
+  \end{scope}}
+% same on a flat raster of width #5
+\newcommand{\flatcells}[5]{%
+  \begin{scope}[shift={(#1.center)}]
+    \pgfmathsetlengthmacro{\cw}{#5/#2}
+    \foreach \r/\c in #4 {
+      \draw[#3] ({(\c-#2/2)*\cw}, {(#2/2-\r-1)*\cw}) rectangle ++(\cw, \cw);
+    }
+  \end{scope}}
+% three-plane stack: \stack{prefix}{x}{y}{back}{mid}{front}
+\newcommand{\stack}[6]{\raster{#1back}{#2}{#3}{#4}\raster{#1mid}{#2+0.15}{#3+0.75}{#5}\raster{#1}{#2+0.3}{#3+1.5}{#6}}
+% Encoder and decoder are trapezoids in opposite directions (rule from the user, 2026-09-08):
+% \encoderShape{name}{x}{y}{width}{height}{fill}: wide at the left, narrow at the right (in -> compressed)
+% \decoderShape{name}{x}{y}{width}{height}{fill}: narrow at the left, wide at the right (compressed -> out)
+\newcommand{\encoderShape}[6]{%
+  \draw[part, fill=#6] (#2,#3-#5/2) -- (#2,#3+#5/2) -- (#2+#4,#3+#5/4) -- (#2+#4,#3-#5/4) -- cycle;
+  \coordinate (#1) at (#2+#4/2,#3); \coordinate (#1in) at (#2,#3); \coordinate (#1out) at (#2+#4,#3);}
+\newcommand{\decoderShape}[6]{%
+  \draw[part, fill=#6] (#2,#3-#5/4) -- (#2,#3+#5/4) -- (#2+#4,#3+#5/2) -- (#2+#4,#3-#5/2) -- cycle;
+  \coordinate (#1) at (#2+#4/2,#3); \coordinate (#1in) at (#2,#3); \coordinate (#1out) at (#2+#4,#3);}

@@ -1,0 +1,25 @@
+{
+ "year": "23",
+ "rslearn": "0.1.17",
+ "filesystem": {
+  "windows": 270,
+  "with_input": 270,
+  "with_12_groups": 270,
+  "with_partial_groups": 0
+ },
+ "roots": [
+  {
+   "root_id": "root_0",
+   "config_layers": [
+    "label",
+    "output",
+    "sentinel2"
+   ],
+   "windows_loaded": 270,
+   "windows_rslearn_predicts": 270
+  }
+ ],
+ "windows_rslearn_predicts": 270,
+ "same_windows_as_filesystem_rule": true,
+ "ok": true
+}

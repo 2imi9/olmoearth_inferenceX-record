@@ -1,0 +1,15 @@
+== 2026-10-11T21:12:27-04:00 job 1289592 on b0006: exp104 predict, commit 4c2f6c27d01f923a0e886e372030ce64783b1c21, page frozen ==
+NVIDIA B200, 595.71.05, 183359 MiB
+rslearn 0.1.17
+NVIDIA B200 sm_100
+{"dataset.json": {"canonical": true, "reversed_is_ai2s": true, "is_ai2s_mpc_version": true}, "model.yaml": {"reversed_is_ai2s": true}, "ai2": {"repo": "allenai/olmoearth_projects", "commit": "f3c9b0c89c7670b3525647dda4c14b76245d682d", "dir": "olmoearth_run_data/forest_loss_driver"}, "ok": true}
+checkpoint: allenai/OlmoEarth-v1-FT-ForestLossDriver-Base @ 15502f8a, sha256 682c20b9... verified
+== 2026-10-11T21:12:41-04:00 rslearn model predict (predict): layer output, --seed_everything 104, 8 workers ==
+predicted in 58 s; rslearn's own counts, masked:
+  format=<n>-10-11 21:13:24,743 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 696 examples in split predict
+{"windows": 696, "all_eight": 696, "pre_four": 696, "post_four": 696, "none": 0, "with_output": 696, "output_without_all_eight": 0} {"agriculture": 300, "mining": 389, "roads": 7}
+{"windows": 696, "all_eight": 696, "pre_four": 696, "post_four": 696, "none": 0, "with_output": 696, "output_without_all_eight": 0}
+every window with all eight item groups has an output, and no other
+== 2026-10-11T21:13:40-04:00 done: records/e104_predict_counts.json ==
+on scratch: 6.5M	/scratch/qi_zim_neu/olmoearth_inferenceX/e104_out
+on scratch: 2.3G	<private>

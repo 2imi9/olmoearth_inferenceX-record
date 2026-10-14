@@ -1,0 +1,749 @@
+{
+ "experiment": "exp62 the fourth cell: WorldFloods v2 post-event Sentinel-2 completes the two-period, two-sensor square on GEOID-Flood",
+ "smoke": false,
+ "device": "cuda",
+ "config": {
+  "worldfloods": "isp-uv-es/WorldFloodsv2",
+  "band_idx": [
+   1,
+   2,
+   3,
+   7,
+   4,
+   5,
+   6,
+   8,
+   11,
+   12,
+   0,
+   9
+  ],
+  "fit_stride": 128,
+  "fit_clear": 0.9,
+  "fit_chips": 2000,
+  "fit_scenes": 40,
+  "chip_clear": 0.9,
+  "pairs": {
+   "time_only_s2": [
+    "A_s2pre",
+    "B_s2post"
+   ],
+   "time_only_s1": [
+    "A_s1pre",
+    "B_s1post"
+   ],
+   "sensor_only_pre": [
+    "A_s2pre",
+    "A_s1pre"
+   ],
+   "sensor_only_post": [
+    "B_s2post",
+    "B_s1post"
+   ],
+   "mixed": [
+    "A_s2pre",
+    "B_s1post"
+   ],
+   "mixed_mirror": [
+    "A_s1pre",
+    "B_s2post"
+   ]
+  },
+  "min_event_windows": 20,
+  "confident_margin": 0.25,
+  "prereg": "P1 optical time-only flooded share >= radar time-only pooled and higher on more events than not (p < 0.05); P2 sensor-only-after flooded share < optical time-only pooled and lower on more events than not (p < 0.05)",
+  "pre_s1_shards": {
+   "test": [
+    {
+     "shard": "geoid-flood/shards/test/s1grd/test-s1grd-00000-of-00019.tar",
+     "cached": true
+    },
+    {
+     "shard": "geoid-flood/shards/test/s1grd/test-s1grd-00001-of-00019.tar",
+     "cached": true
+    },
+    {
+     "shard": "geoid-flood/shards/test/s1grd/test-s1grd-00002-of-00019.tar",
+     "cached": true
+    },
+    {
+     "shard": "geoid-flood/shards/test/s1grd/test-s1grd-00003-of-00019.tar",
+     "cached": true
+    }
+   ],
+   "val": [
+    {
+     "shard": "geoid-flood/shards/val/s1grd/val-s1grd-00000-of-00009.tar",
+     "cached": true
+    },
+    {
+     "shard": "geoid-flood/shards/val/s1grd/val-s1grd-00001-of-00009.tar",
+     "cached": true
+    }
+   ]
+  },
+  "fit": {
+   "scenes": [
+    {
+     "event id": "EMSR480_AOI04_GRA_PRODUCT",
+     "ems_code": "EMSR480",
+     "chips": 14,
+     "water_share": 0.07712227159848385
+    },
+    {
+     "event id": "ST20180507_WaterExtent_Moibalo_Somali",
+     "ems_code": "UNOSATST20180507",
+     "chips": 50,
+     "water_share": 0.05911708605538526
+    },
+    {
+     "event id": "01042016_Pea_River_near_Samson_AL",
+     "ems_code": "GLOFIMR01042016",
+     "chips": 50,
+     "water_share": 0.021754663362603743
+    },
+    {
+     "event id": "EMSR504_AOI01_GRA_PRODUCT",
+     "ems_code": "EMSR504",
+     "chips": 50,
+     "water_share": 0.4116737056339188
+    },
+    {
+     "event id": "EMSR294_01MANDRAMAGOULA_GRA_v1",
+     "ems_code": "EMSR294",
+     "chips": 15,
+     "water_share": 0.019683538270898866
+    },
+    {
+     "event id": "10132016_Cooper_River_at_Monks_Corner_SC",
+     "ems_code": "GLOFIMR10132016",
+     "chips": 50,
+     "water_share": 0.15554392275258927
+    },
+    {
+     "event id": "EMSR312_08CANDON_DEL_v1",
+     "ems_code": "EMSR312",
+     "chips": 50,
+     "water_share": 0.2408227755526016
+    },
+    {
+     "event id": "EMSR283_07KONGSVINGER_DEL_MONIT01_v1",
+     "ems_code": "EMSR283",
+     "chips": 50,
+     "water_share": 0.08360203039984801
+    },
+    {
+     "event id": "EMSR441_AOI06_DEL_PRODUCT",
+     "ems_code": "EMSR441",
+     "chips": 50,
+     "water_share": 0.1649167094213039
+    },
+    {
+     "event id": "EMSR485_AOI02_GRA_PRODUCT",
+     "ems_code": "EMSR485",
+     "chips": 12,
+     "water_share": 0.0703121961086346
+    },
+    {
+     "event id": "EMSR441_AOI07_DEL_PRODUCT",
+     "ems_code": "EMSR441",
+     "chips": 50,
+     "water_share": 0.1983445140674045
+    },
+    {
+     "event id": "EMSR280_04ENVIKEN_DEL_MONIT04_v1",
+     "ems_code": "EMSR280",
+     "chips": 50,
+     "water_share": 0.07532354587931958
+    },
+    {
+     "event id": "EMSR504_AOI01_DEL_PRODUCT",
+     "ems_code": "EMSR504",
+     "chips": 50,
+     "water_share": 0.3483367253704771
+    },
+    {
+     "event id": "EMSR352_AOI05_GRA_PRODUCT",
+     "ems_code": "EMSR352",
+     "chips": 14,
+     "water_share": 0.15615354150033633
+    },
+    {
+     "event id": "EMSR322_17MARIANNA_DEL_v1",
+     "ems_code": "EMSR322",
+     "chips": 50,
+     "water_share": 0.043800722161685395
+    },
+    {
+     "event id": "EMSR352_AOI03_GRA_PRODUCT",
+     "ems_code": "EMSR352",
+     "chips": 36,
+     "water_share": 0.06747062674430623
+    },
+    {
+     "event id": "EMSR324_03MOUSSAN_DEL_MONIT03_v1",
+     "ems_code": "EMSR324",
+     "chips": 50,
+     "water_share": 0.020115811178731582
+    },
+    {
+     "event id": "EMSR271_05THESSALYOVERVIEW_DEL_MONIT02_v2",
+     "ems_code": "EMSR271",
+     "chips": 50,
+     "water_share": 0.020861644507737944
+    },
+    {
+     "event id": "EMSR324_06TREBES_GRA_v1",
+     "ems_code": "EMSR324",
+     "chips": 27,
+     "water_share": 0.05113637786912554
+    },
+    {
+     "event id": "EMSR283_08SKARNES_DEL_MONIT01_v1",
+     "ems_code": "EMSR283",
+     "chips": 50,
+     "water_share": 0.07443250118214084
+    },
+    {
+     "event id": "EMSR504_AOI01_DEL_MONIT02",
+     "ems_code": "EMSR504",
+     "chips": 50,
+     "water_share": 0.3777837252802842
+    },
+    {
+     "event id": "EMSR260_02VIADANA_MANUAL_LABEL",
+     "ems_code": "EMSR260",
+     "chips": 46,
+     "water_share": 0.05837769925036363
+    },
+    {
+     "event id": "01042016_Choctawhatchee_River_near_Bellwood_AL",
+     "ems_code": "GLOFIMR01042016",
+     "chips": 50,
+     "water_share": 0.07010724326286234
+    },
+    {
+     "event id": "EMSR504_AOI04_DEL_PRODUCT",
+     "ems_code": "EMSR504",
+     "chips": 50,
+     "water_share": 0.05472211804781643
+    },
+    {
+     "event id": "EMSR349_09CHIMANIMANI_GRA_v2",
+     "ems_code": "EMSR349",
+     "chips": 50,
+     "water_share": 0.01859600858551758
+    },
+    {
+     "event id": "EMSR251_03KRAGERO_DEL_MONIT01_v1",
+     "ems_code": "EMSR251",
+     "chips": 50,
+     "water_share": 0.1853819814480815
+    },
+    {
+     "event id": "EMSR349_07RUSITUVALLEYSE_GRA_v1",
+     "ems_code": "EMSR349",
+     "chips": 50,
+     "water_share": 0.028068440079603397
+    },
+    {
+     "event id": "EMSR312_07VIGAN_DEL_MONIT01_v1",
+     "ems_code": "EMSR312",
+     "chips": 50,
+     "water_share": 0.23098537331026744
+    },
+    {
+     "event id": "EMSR504_AOI04_GRA_PRODUCT",
+     "ems_code": "EMSR504",
+     "chips": 50,
+     "water_share": 0.0638916633512581
+    },
+    {
+     "event id": "EMSR350_02PORTHEDLAND_DEL_v2",
+     "ems_code": "EMSR350",
+     "chips": 50,
+     "water_share": 0.33105808022701866
+    },
+    {
+     "event id": "EMSR324_03MOUSSAN_DEL_MONIT02_v1",
+     "ems_code": "EMSR324",
+     "chips": 50,
+     "water_share": 0.02292325632607303
+    },
+    {
+     "event id": "EMSR395_AOI02_GRA_PRODUCT",
+     "ems_code": "EMSR395",
+     "chips": 5,
+     "water_share": 0.600705081276254
+    },
+    {
+     "event id": "EMSR319_03KORBA_DEL_v1",
+     "ems_code": "EMSR319",
+     "chips": 50,
+     "water_share": 0.21843423945554977
+    },
+    {
+     "event id": "EMSR319_05SOMAA_DEL_v2",
+     "ems_code": "EMSR319",
+     "chips": 50,
+     "water_share": 0.4125080535042673
+    },
+    {
+     "event id": "EMSR475_AOI09_DEL_PRODUCT",
+     "ems_code": "EMSR475",
+     "chips": 50,
+     "water_share": 0.16882564253930538
+    },
+    {
+     "event id": "EMSR280_04ENVIKEN_DEL_MONIT05_v2",
+     "ems_code": "EMSR280",
+     "chips": 50,
+     "water_share": 0.07694291747340626
+    },
+    {
+     "event id": "EMSR265_09VOULX_DEL_MONIT04_v2",
+     "ems_code": "EMSR265",
+     "chips": 50,
+     "water_share": 0.06097449785543208
+    },
+    {
+     "event id": "EMSR324_03MOUSSAN_DEL_MONIT01_v1",
+     "ems_code": "EMSR324",
+     "chips": 50,
+     "water_share": 0.040052950832799486
+    },
+    {
+     "event id": "EMSR441_AOI07_DEL_MONIT01",
+     "ems_code": "EMSR441",
+     "chips": 50,
+     "water_share": 0.20138011643327564
+    },
+    {
+     "event id": "EMSR260_01CICOGNARA_DEL_v2",
+     "ems_code": "EMSR260",
+     "chips": 47,
+     "water_share": 0.08808398839405829
+    }
+   ],
+   "chips": 1766,
+   "water_share": 0.13260517860003604,
+   "seconds": 733.7054343223572
+  },
+  "scenes": [
+   {
+    "event id": "EMSR279_05ZARAGOZA_DEL_v2",
+    "s2_date": "2018-04-14"
+   },
+   {
+    "event id": "EMSR279_11TORTOSA_DEL_v1",
+    "s2_date": "2018-04-21"
+   },
+   {
+    "event id": "EMSR273_01GRILE_DEL_MONIT04_v2",
+    "s2_date": "2018-03-28"
+   },
+   {
+    "event id": "EMSR258_01DIVJAKE_DEL_v2",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR258_03KOLONJE_DEL_v2",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR258_05PATOS_DEL_v3",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR258_06VLORE_DEL_v2",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR258_07ARMEN_DEL_v2",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR258_08BELSH_DEL_MONIT01_v3",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR258_09GRAMSCH_DEL_v3",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR258_10URAVAJGURORE_DEL_v3",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR258_12SEVASTER_DEL_v2",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR258_13TEPELENE_DEL_v3",
+    "s2_date": "2017-12-08"
+   },
+   {
+    "event id": "EMSR275_01LIJEVIDOBROVCAK_DEL_MONIT01_v1",
+    "s2_date": "2018-03-24"
+   },
+   {
+    "event id": "EMSR275_01LIJEVIDOBROVCAK_DEL_v1",
+    "s2_date": "2018-03-24"
+   },
+   {
+    "event id": "EMSR275_02KUTINA_DEL_MONIT01_v1",
+    "s2_date": "2018-03-24"
+   },
+   {
+    "event id": "EMSR279_04TUDELA_DEL_MONIT01_v2",
+    "s2_date": "2018-04-19"
+   },
+   {
+    "event id": "EMSR279_04TUDELA_DEL_MONIT02_v1",
+    "s2_date": "2018-04-19"
+   },
+   {
+    "event id": "EMSR279_04TUDELA_DEL_v1",
+    "s2_date": "2018-04-14"
+   },
+   {
+    "event id": "EMSR279_05ZARAGOZA_DEL_MONIT01_v2",
+    "s2_date": "2018-04-16"
+   },
+   {
+    "event id": "EMSR279_05ZARAGOZA_DEL_MONIT02_v1",
+    "s2_date": "2018-04-16"
+   },
+   {
+    "event id": "EMSR279_06CASPE_DEL_MONIT01_v2",
+    "s2_date": "2018-04-21"
+   },
+   {
+    "event id": "EMSR279_06CASPE_DEL_MONIT02_v2",
+    "s2_date": "2018-04-21"
+   },
+   {
+    "event id": "EMSR279_06CASPE_DEL_v2",
+    "s2_date": "2018-04-21"
+   },
+   {
+    "event id": "EMSR279_07ALFARO_GRA_v1",
+    "s2_date": "2018-04-19"
+   },
+   {
+    "event id": "EMSR279_08ALCALADEEBRO_GRA_v1",
+    "s2_date": "2018-04-19"
+   }
+  ],
+  "fourth_cell": {
+   "chips_with_clear_post_optical": 544,
+   "of": 4489,
+   "events": [
+    "EMSR273-1",
+    "EMSR275-1",
+    "EMSR275-2",
+    "EMSR279-11",
+    "EMSR279-3",
+    "EMSR279-4"
+   ],
+   "cut_seconds": 92.284015417099
+  },
+  "encode_seconds": 7.575268030166626
+ },
+ "results": {
+  "fourth_cell": {
+   "accuracy_water_after_label": 0.9707521152655573,
+   "agreement_with_worldfloods_water": 0.9713194372753465,
+   "worldfloods_vs_geoid_water_after": 0.9838577984664909,
+   "accuracy_own_task_others": {
+    "A_s2pre": 0.7811943042605481,
+    "A_s1pre": 0.9904789599084479,
+    "B_s1post": 0.9745605313021781
+   }
+  },
+  "pairs": {
+   "time_only_s2": {
+    "sides": [
+     "A_s2pre",
+     "B_s2post"
+    ],
+    "n_windows": 106606,
+    "n_disagree": 25960,
+    "disagreement_rate": 0.24351349830215935,
+    "flooded_share": 0.03794298921417565,
+    "err_a_share": 0.8848613251155624,
+    "err_b_share": 0.07742681047765794,
+    "both_confident_share": 0.8834360554699537,
+    "both_confident_flooded": 0.03597279148861952,
+    "per_event": {
+     "EMSR273-1": {
+      "n_disagree": 117,
+      "flooded_share": 0.8290598290598291
+     },
+     "EMSR275-1": {
+      "n_disagree": 423,
+      "flooded_share": 0.2293144208037825
+     },
+     "EMSR275-2": {
+      "n_disagree": 936,
+      "flooded_share": 0.391025641025641
+     },
+     "EMSR279-11": {
+      "n_disagree": 23753,
+      "flooded_share": 0.0016839978108028459
+     },
+     "EMSR279-3": {
+      "n_disagree": 151,
+      "flooded_share": 0.5364238410596026
+     },
+     "EMSR279-4": {
+      "n_disagree": 580,
+      "flooded_share": 0.5241379310344828
+     }
+    }
+   },
+   "time_only_s1": {
+    "sides": [
+     "A_s1pre",
+     "B_s1post"
+    ],
+    "n_windows": 106606,
+    "n_disagree": 2779,
+    "disagreement_rate": 0.02606795114721498,
+    "flooded_share": 0.4112990284274919,
+    "err_a_share": 0.09787693414897446,
+    "err_b_share": 0.49226340410219505,
+    "both_confident_share": 0.35228499460237495,
+    "both_confident_flooded": 0.8672114402451481,
+    "per_event": {
+     "EMSR273-1": {
+      "n_disagree": 67,
+      "flooded_share": 0.8059701492537313
+     },
+     "EMSR275-1": {
+      "n_disagree": 111,
+      "flooded_share": 0.8828828828828829
+     },
+     "EMSR275-2": {
+      "n_disagree": 235,
+      "flooded_share": 0.9702127659574468
+     },
+     "EMSR279-11": {
+      "n_disagree": 1570,
+      "flooded_share": 0.025477707006369428
+     },
+     "EMSR279-3": {
+      "n_disagree": 41,
+      "flooded_share": 0.5365853658536586
+     },
+     "EMSR279-4": {
+      "n_disagree": 755,
+      "flooded_share": 0.928476821192053
+     }
+    }
+   },
+   "sensor_only_pre": {
+    "sides": [
+     "A_s2pre",
+     "A_s1pre"
+    ],
+    "n_windows": 106606,
+    "n_disagree": 23301,
+    "disagreement_rate": 0.2185711873628126,
+    "flooded_share": 0.000772499034376207,
+    "err_a_share": 0.9787562765546544,
+    "err_b_share": 0.021243723445345693,
+    "both_confident_share": 0.8923651345435818,
+    "both_confident_flooded": 0.00028855864954552014,
+    "per_event": {
+     "EMSR273-1": {
+      "n_disagree": 29,
+      "flooded_share": 0.3103448275862069
+     },
+     "EMSR275-1": {
+      "n_disagree": 7,
+      "flooded_share": 0.14285714285714285
+     },
+     "EMSR275-2": {
+      "n_disagree": 21,
+      "flooded_share": 0.0
+     },
+     "EMSR279-11": {
+      "n_disagree": 23185,
+      "flooded_share": 0.0
+     },
+     "EMSR279-3": {
+      "n_disagree": 12,
+      "flooded_share": 0.08333333333333333
+     },
+     "EMSR279-4": {
+      "n_disagree": 47,
+      "flooded_share": 0.14893617021276595
+     }
+    }
+   },
+   "sensor_only_post": {
+    "sides": [
+     "B_s2post",
+     "B_s1post"
+    ],
+    "n_windows": 106606,
+    "n_disagree": 4066,
+    "disagreement_rate": 0.03814044237660169,
+    "flooded_share": 0.18002951303492376,
+    "err_a_share": 0.5499262174126907,
+    "err_b_share": 0.4500737825873094,
+    "both_confident_share": 0.4254795868175111,
+    "both_confident_flooded": 0.21791907514450867,
+    "per_event": {
+     "EMSR273-1": {
+      "n_disagree": 61,
+      "flooded_share": 0.7213114754098361
+     },
+     "EMSR275-1": {
+      "n_disagree": 329,
+      "flooded_share": 0.0121580547112462
+     },
+     "EMSR275-2": {
+      "n_disagree": 722,
+      "flooded_share": 0.19113573407202217
+     },
+     "EMSR279-11": {
+      "n_disagree": 2046,
+      "flooded_share": 0.0
+     },
+     "EMSR279-3": {
+      "n_disagree": 156,
+      "flooded_share": 0.5384615384615384
+     },
+     "EMSR279-4": {
+      "n_disagree": 752,
+      "flooded_share": 0.6143617021276596
+     }
+    }
+   },
+   "mixed": {
+    "sides": [
+     "A_s2pre",
+     "B_s1post"
+    ],
+    "n_windows": 106606,
+    "n_disagree": 24972,
+    "disagreement_rate": 0.23424572725737763,
+    "flooded_share": 0.04593144321640237,
+    "err_a_share": 0.9019702066314272,
+    "err_b_share": 0.052578888354957554,
+    "both_confident_share": 0.600512574082973,
+    "both_confident_flooded": 0.05708188850360096,
+    "per_event": {
+     "EMSR273-1": {
+      "n_disagree": 66,
+      "flooded_share": 0.8939393939393939
+     },
+     "EMSR275-1": {
+      "n_disagree": 110,
+      "flooded_share": 0.8818181818181818
+     },
+     "EMSR275-2": {
+      "n_disagree": 256,
+      "flooded_share": 0.890625
+     },
+     "EMSR279-11": {
+      "n_disagree": 23747,
+      "flooded_share": 0.0016844232955741778
+     },
+     "EMSR279-3": {
+      "n_disagree": 29,
+      "flooded_share": 0.7241379310344828
+     },
+     "EMSR279-4": {
+      "n_disagree": 764,
+      "flooded_share": 0.918848167539267
+     }
+    }
+   },
+   "mixed_mirror": {
+    "sides": [
+     "A_s1pre",
+     "B_s2post"
+    ],
+    "n_windows": 106606,
+    "n_disagree": 3611,
+    "disagreement_rate": 0.033872389921768005,
+    "flooded_share": 0.27277762392689003,
+    "err_a_share": 0.17751315425090003,
+    "err_b_share": 0.5502630850180006,
+    "both_confident_share": 0.6449736914981999,
+    "both_confident_flooded": 0.34778875053671104,
+    "per_event": {
+     "EMSR273-1": {
+      "n_disagree": 126,
+      "flooded_share": 0.7619047619047619
+     },
+     "EMSR275-1": {
+      "n_disagree": 430,
+      "flooded_share": 0.22790697674418606
+     },
+     "EMSR275-2": {
+      "n_disagree": 957,
+      "flooded_share": 0.3824451410658307
+     },
+     "EMSR279-11": {
+      "n_disagree": 1332,
+      "flooded_share": 0.03003003003003003
+     },
+     "EMSR279-3": {
+      "n_disagree": 161,
+      "flooded_share": 0.5093167701863354
+     },
+     "EMSR279-4": {
+      "n_disagree": 605,
+      "flooded_share": 0.5008264462809917
+     }
+    }
+   }
+  },
+  "tests": {
+   "P1_optical_vs_radar_time_only": {
+    "n_groups": 6,
+    "n_undefined": 0,
+    "median": -0.21406629967656837,
+    "w": 1,
+    "l": 5,
+    "t": 0,
+    "share_flipped": 0.8333333333333334,
+    "sign_p": 0.984375,
+    "flipped": [
+     "EMSR275-1",
+     "EMSR275-2",
+     "EMSR279-11",
+     "EMSR279-3",
+     "EMSR279-4"
+    ]
+   },
+   "P2_sensor_post_vs_time_only_s2": {
+    "n_groups": 6,
+    "n_undefined": 0,
+    "median": 0.054716175730397935,
+    "w": 4,
+    "l": 2,
+    "t": 0,
+    "share_flipped": 0.3333333333333333,
+    "sign_p": 0.34375,
+    "flipped": [
+     "EMSR279-3",
+     "EMSR279-4"
+    ]
+   }
+  }
+ },
+ "failures": [],
+ "prereg": {
+  "P1": false,
+  "P2": false,
+  "min_event_windows": 20,
+  "complete": true
+ },
+ "n_failures": 0,
+ "seconds": 842.7968988418579
+}

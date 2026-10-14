@@ -1,0 +1,353 @@
+# exp98: Ai2's AWF model.yaml (allenai/olmoearth_projects @ f3c9b0c8, olmoearth_run_data/awf/model.yaml,
+# sha256 08e0432044c5c67c683372c85c632eb31085b6ce8b4dae49b740475e5b37a7ea) with two additions and nothing else
+# changed; exp/jobs/e98_prepare.sh checks that by comparing the parsed YAML with the pinned original. Sources are rslearn
+# v0.0.27, the version olmoearth-runner 0.1.14 pins (its requires_dist on PyPI: rslearn==0.0.27).
+#
+#  1. data.init_args.task.init_args.tasks.segment.init_args.output_probs: true
+#     SegmentationTask writes one band of argmax class ids unless output_probs is set; with it, process_output returns
+#     the softmax over all num_classes channels, (10, H, W) here (rslearn/train/tasks/segmentation.py:44, 79-80, 107,
+#     179-188). The softmax is SegmentationHead's (segmentation.py:343). prob_scales stays unset, so the probabilities
+#     are not rescaled (segmentation.py:171-177). Channel 9 is AWF's nodata class, untrained, and is written like the
+#     others. rslearn 0.0.23 (Ai2's uv.lock at f3c9b0c8, via olmoearth-runner 0.1.12) has no output_probs, which is
+#     why the deployment environment uses olmoearth-runner 0.1.14.
+#  2. trainer.callbacks[RslearnWriter].init_args.layer_config: one raster band set p0..p9, FLOAT32
+#     Without it the writer takes the output layer's config from the dataset's config.json
+#     (rslearn/train/prediction_writer.py:195, 209-211, 292-305); with it, from here (225-229). The merged array takes
+#     band_sets[0].dtype (prediction_writer.py:130-137), so Ai2's float32 is kept: an integer dtype would truncate every
+#     probability to 0 or 1. The band-set directory is the band names joined by "_" (prediction_writer.py:424-426,
+#     rslearn/utils/raster_format.py:25-40), hence names without "_": layers/output/p0_p1_p2_p3_p4_p5_p6_p7_p8_p9/.
+#     jsonargparse reads LayerType and DType by enum NAME here (RASTER, FLOAT32), unlike config.json, which takes the
+#     values; Ai2's own rslearn_projects configs pass layer_config this way (data/landslide/model.yaml:119-124 @
+#     199cfcef). e98_env.sh parses this callback with the deployment's jsonargparse and writes one synthetic window
+#     with it before any real run. dataset.json's output layer is changed to the same band set (see CHANGES.md), so the
+#     writer gets the same layer config whichever source olmoearth_run makes it read.
+#
+# Unchanged on purpose: the input (data.init_args.inputs.sentinel2_l2a reads the 12 named bands of layer "sentinel2",
+# Ai2's model.yaml:36-43; rslearn/train/dataset.py:243-270 reads only the band sets holding a named band), the predict_config
+# (16 px crops, 25% overlap, OlmoEarthNormalize), the merger (padding 2), batch size 4 and every other key.
+model:
+  class_path: rslearn.train.lightning_module.RslearnLightningModule
+  init_args:
+    model:
+      class_path: rslearn.models.multitask.MultiTaskModel
+      init_args:
+        encoder:
+          - class_path: rslearn.models.olmoearth_pretrain.model.OlmoEarth
+            init_args:
+              model_id: OLMOEARTH_V1_BASE
+              patch_size: 4
+        decoders:
+          segment:
+            - class_path: rslearn.models.upsample.Upsample
+              init_args:
+                scale_factor: 4
+            - class_path: rslearn.models.conv.Conv
+              init_args:
+                in_channels: 768
+                out_channels: 10
+                kernel_size: 1
+                activation:
+                  class_path: torch.nn.Identity
+            - class_path: rslearn.train.tasks.segmentation.SegmentationHead
+    lr: 0.0001
+    plateau: true
+    plateau_factor: 0.2
+    plateau_patience: 2
+    plateau_min_lr: 0
+    plateau_cooldown: 10
+data:
+  class_path: rslearn.train.data_module.RslearnDataModule
+  init_args:
+    path: ${DATASET_PATH}
+    inputs:
+      sentinel2_l2a:
+        data_type: "raster"
+        layers: ["sentinel2"]
+        bands: ["B02", "B03", "B04", "B08", "B05", "B06", "B07", "B8A", "B11", "B12", "B01", "B09"]
+        passthrough: true
+        dtype: FLOAT32
+        load_all_item_groups: true
+        load_all_layers: true
+      label:
+        data_type: "raster"
+        layers: ["label"]
+        bands: ["category"]
+        is_target: true
+        dtype: INT32
+    task:
+      class_path: rslearn.train.tasks.multi_task.MultiTask
+      init_args:
+        tasks:
+          segment:
+            class_path: rslearn.train.tasks.segmentation.SegmentationTask
+            init_args:
+              num_classes: 10
+              zero_is_invalid: false
+              nodata_value: 9
+              # exp98 change 1 (header): write the softmax over the 10 channels, not the argmax id
+              output_probs: true
+              metric_kwargs:
+                average: "micro"
+              other_metrics:
+                woodland_forest_precision:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassPrecision
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 0
+                woodland_forest_recall:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassRecall
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 0
+                open_water_precision:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassPrecision
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 1
+                open_water_recall:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassRecall
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 1
+                shrubland_savanna_precision:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassPrecision
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 2
+                shrubland_savanna_recall:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassRecall
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 2
+                herbaceous_wetland_precision:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassPrecision
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 3
+                herbaceous_wetland_recall:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassRecall
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 3
+                grassland_barren_precision:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassPrecision
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 4
+                grassland_barren_recall:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassRecall
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 4
+                agriculture_settlement_precision:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassPrecision
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 5
+                agriculture_settlement_recall:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassRecall
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 5
+                montane_forest_precision:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassPrecision
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 6
+                montane_forest_recall:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassRecall
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 6
+                lava_forest_precision:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassPrecision
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 7
+                lava_forest_recall:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassRecall
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 7
+                urban_dense_development_precision:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassPrecision
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 8
+                urban_dense_development_recall:
+                  class_path: rslearn.train.tasks.segmentation.SegmentationMetric
+                  init_args:
+                    metric:
+                      class_path: torchmetrics.classification.MulticlassRecall
+                      init_args:
+                        num_classes: 10
+                        average: null
+                    class_idx: 8
+        input_mapping:
+          segment:
+            label: "targets"
+    batch_size: 4
+    num_workers: ${NUM_WORKERS}
+    default_config:
+      transforms:
+        - class_path: rslearn.train.transforms.pad.Pad
+          init_args:
+            size: 31
+            mode: "center"
+            image_selectors: ["sentinel2_l2a", "target/segment/classes", "target/segment/valid"]
+        - class_path: rslearn.train.transforms.crop.Crop
+          init_args:
+            crop_size: 16
+            image_selectors: ["sentinel2_l2a", "target/segment/classes", "target/segment/valid"]
+        - class_path: rslearn.models.olmoearth_pretrain.norm.OlmoEarthNormalize
+          init_args:
+            band_names:
+              sentinel2_l2a: ["B02", "B03", "B04", "B08", "B05", "B06", "B07", "B8A", "B11", "B12", "B01", "B09"]
+    train_config:
+      transforms:
+        - class_path: rslearn.train.transforms.pad.Pad
+          init_args:
+            size: 31
+            mode: "center"
+            image_selectors: ["sentinel2_l2a", "target/segment/classes", "target/segment/valid"]
+        - class_path: rslearn.train.transforms.crop.Crop
+          init_args:
+            crop_size: 16
+            image_selectors: ["sentinel2_l2a", "target/segment/classes", "target/segment/valid"]
+        - class_path: rslearn.train.transforms.flip.Flip
+          init_args:
+            image_selectors: ["sentinel2_l2a", "target/segment/classes", "target/segment/valid"]
+        - class_path: rslearn.models.olmoearth_pretrain.norm.OlmoEarthNormalize
+          init_args:
+            band_names:
+              sentinel2_l2a: ["B02", "B03", "B04", "B08", "B05", "B06", "B07", "B8A", "B11", "B12", "B01", "B09"]
+      groups: ["spatial_split"]
+      tags:
+        split: "train"
+    val_config:
+      groups: ["spatial_split"]
+      tags:
+        split: "val"
+    test_config:
+      groups: ["spatial_split"]
+      tags:
+        split: "val"
+    predict_config:
+      load_all_patches: true
+      patch_size: 16
+      overlap_ratio: 0.25  # 4 / 16
+      skip_targets: true
+      transforms:
+        - class_path: rslearn.models.olmoearth_pretrain.norm.OlmoEarthNormalize
+          init_args:
+            band_names:
+              sentinel2_l2a: ["B02", "B03", "B04", "B08", "B05", "B06", "B07", "B8A", "B11", "B12", "B01", "B09"]
+trainer:
+  max_epochs: 100
+  logger:
+    class_path: lightning.pytorch.loggers.WandbLogger
+    init_args:
+      project: ${WANDB_PROJECT}
+      name: ${WANDB_NAME}
+      entity: ${WANDB_ENTITY}
+  callbacks:
+    - class_path: lightning.pytorch.callbacks.LearningRateMonitor
+      init_args:
+        logging_interval: "epoch"
+    - class_path: lightning.pytorch.callbacks.ModelCheckpoint
+      init_args:
+        dirpath: ${TRAINER_DATA_PATH}
+        save_top_k: 1
+        save_last: true
+        monitor: val_segment/accuracy
+        mode: max
+    - class_path: rslearn.train.callbacks.freeze_unfreeze.FreezeUnfreeze
+      init_args:
+        module_selector: ["model", "encoder", 0]
+        unfreeze_at_epoch: 20
+        unfreeze_lr_factor: 10
+    - class_path: rslearn.train.prediction_writer.RslearnWriter
+      init_args:
+        path: ${DATASET_PATH}
+        output_layer: ${PREDICTION_OUTPUT_LAYER}
+        selector: ["segment"]
+        merger:
+          class_path: rslearn.train.prediction_writer.RasterMerger
+          init_args:
+            padding: 2
+        # exp98 change 2 (header): ten float32 probability bands, p0 (woodland_forest) ... p8
+        # (urban_dense_development), p9 the untrained nodata class
+        layer_config:
+          type: RASTER
+          band_sets:
+            - bands: ["p0", "p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9"]
+              dtype: FLOAT32
+# unused: ${EXTRA_FILES_PATH}

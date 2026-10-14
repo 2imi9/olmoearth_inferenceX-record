@@ -1,0 +1,15 @@
+{
+ "job": "1281899",
+ "commit": "b83a5b9d0d53ff83da4b43284a1db60daa433804",
+ "versions": {
+  "rslearn": "0.1.17",
+  "olmoearth-pretrain-minimal": "0.1.2",
+  "torch": "2.14.1",
+  "lightning": "2.6.6",
+  "jsonargparse": "4.52.0"
+ },
+ "gpu": "NVIDIA B200",
+ "arch": "sm_100",
+ "checkpoint_sha256": "5ce8882718f8b3c5f772fd310fb49affe0aadffaf88cec6474af1442b7324816",
+ "hf_hub_offline": "1"
+}

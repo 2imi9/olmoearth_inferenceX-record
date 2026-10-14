@@ -1,0 +1,85 @@
+% The two-period, two-sensor square on one scene (oe_inferencex.compare; exp60, exp62), real rasters only: GEOID-Flood
+% event EMSR273-1 (Gruemirë on Lake Shkodër), a chip with all four cells: the lake, permanent water, and its flooded shore. Left: the four pieces of evidence, rows by date and
+% columns by sensor, with their dates. Middle: the four decisions on identical windows. Right: the four differences
+% that each isolate one axis, same date across sensors (two rows) and same sensor across dates (two columns), drawn on
+% the scene; then the label bridge, boxed apart because it needs labels. The elaboration lives under the figure.
+% Numbers: rasters/cmp_numbers.tex, written by make_compare_rasters.py from the committed artifacts.
+% Build: pdflatex compare_inferences.tex; export: osascript -l JavaScript pdf2png.js compare_inferences.pdf ../compare.png 3600
+\documentclass[tikz,border=3mm]{standalone}
+\input{style.tex}
+\usepackage{amssymb}
+\input{rasters/cmp_numbers.tex}
+\input{rasters/cmp_sensa.tex}
+\input{rasters/cmp_sensb.tex}
+\input{rasters/cmp_timess.tex}
+\input{rasters/cmp_timeso.tex}
+\input{rasters/cmp_time_flooded.tex}
+\input{rasters/cmp_time_error.tex}
+\tikzset{lab/.style={font=\small, text=ink, inner sep=1pt, align=center},
+         sub/.style={font=\footnotesize, text=muted, inner sep=1pt, align=center},
+         tag/.style={font=\footnotesize, text=ink, fill=white, fill opacity=0.85, text opacity=1, inner sep=1.5pt, rounded corners=1pt},
+         dcell/.style={draw=oeamber, line width=0.6pt, fill=none},
+         fcell/.style={draw=oeviolet, line width=0.5pt, fill=oeviolet, fill opacity=0.55},
+         ecell/.style={draw=oeteal, line width=0.5pt, fill=oeteal, fill opacity=0.6},
+         labelled/.style={card, draw=oeviolet!80, dashed},
+         tflow/.style={->, line width=0.9pt, draw=muted}}
+\begin{document}
+\begin{tikzpicture}
+  % ================= evidence: rows by date, columns by sensor
+  \node[lab] at (2.75,8.7) {evidence: two periods, two sensors};
+  \node[sub] at (1.4,7.85) {Sentinel-2\\ optical};
+  \node[sub] at (4.1,7.85) {Sentinel-1\\ radar (VH)};
+  \flatraster{e11}{1.4}{6.4}{cmp_s2_t1.png}{2.2cm}
+  \flatraster{e12}{4.1}{6.4}{cmp_s1_t1.png}{2.2cm}
+  \flatraster{e21}{1.4}{3.5}{cmp_s2_t2.png}{2.2cm}
+  \flatraster{e22}{4.1}{3.5}{cmp_s1_t2.png}{2.2cm}
+  \node[tag, anchor=north west] at ($(e11.north west)+(0.06,-0.06)$) {before, \cmpDateSTwoPre};
+  \node[tag, anchor=north west] at ($(e12.north west)+(0.06,-0.06)$) {before, \cmpDateSOnePre};
+  \node[tag, anchor=north west] at ($(e21.north west)+(0.06,-0.06)$) {after, \cmpDateSTwoPost};
+  \node[tag, anchor=north west] at ($(e22.north west)+(0.06,-0.06)$) {after, \cmpDateSOnePost};
+  \node[sub, align=center, text width=5.4cm] at (2.75,1.75) {Lake Shkod\"er, Albania (event EMSR273): the lake at left is permanent water, its shore plain at right the flood of March 2018};
+  \node[tag, anchor=south east] at ($(e21.south east)+(-0.06,0.06)$) {open water};
+  \draw[tflow] (-0.45,5.2) -- (-0.45,4.6);
+  \node[sub, rotate=90] at (-0.7,4.95) {a year};
+  % ================= inferences, same arrangement
+  \node[lab] at (8.65,8.7) {four inferences};
+  \node[sub] at (7.3,7.85) {permanent\\ water};
+  \node[sub] at (10.0,7.85) {permanent\\ water};
+  \flatraster{i11}{7.3}{6.4}{cmp_A_s2pre.png}{2.0cm}
+  \flatraster{i12}{10.0}{6.4}{cmp_A_s1pre.png}{2.0cm}
+  \flatraster{i21}{7.3}{3.5}{cmp_B_s2post.png}{2.0cm}
+  \flatraster{i22}{10.0}{3.5}{cmp_B_s1post.png}{2.0cm}
+  \node[sub] at (7.3,2.1) {water after\\ the event};
+  \node[sub] at (10.0,2.1) {water after\\ the event};
+  \draw[flow] (5.25,6.4) -- (6.2,6.4);
+  \draw[flow] (5.25,3.5) -- (6.2,3.5);
+  % ================= the four differences, each isolating one axis
+  \node[lab] at (14.9,8.7) {where two inferences differ};
+  \node[sub] at (13.55,7.85) {same period\\ two sensors};
+  \node[sub] at (16.25,7.85) {same sensor\\ two dates};
+  \flatraster{d11}{13.55}{6.4}{cmp_s2_t1.png}{2.2cm}
+  \flatcells{d11}{16}{dcell}{\cmpCellsSensA}{2.2cm}
+  \node[tag, anchor=south east] at ($(d11.south east)+(-0.06,0.06)$) {before: \cmpNSensA{} of \cmpWindows};
+  \flatraster{d21}{13.55}{3.5}{cmp_s2_t2.png}{2.2cm}
+  \flatcells{d21}{16}{dcell}{\cmpCellsSensB}{2.2cm}
+  \node[tag, anchor=south east] at ($(d21.south east)+(-0.06,0.06)$) {after: \cmpNSensB{} of \cmpWindows};
+  \flatraster{d12}{16.25}{6.4}{cmp_s2_t1.png}{2.2cm}
+  \flatcells{d12}{16}{dcell}{\cmpCellsTimeSS}{2.2cm}
+  \node[tag, anchor=south east] at ($(d12.south east)+(-0.06,0.06)$) {S2: \cmpNTimeSS{} of \cmpWindows};
+  \flatraster{d22}{16.25}{3.5}{cmp_s2_t1.png}{2.2cm}
+  \flatcells{d22}{16}{dcell}{\cmpCellsTimeSO}{2.2cm}
+  \node[tag, anchor=south east] at ($(d22.south east)+(-0.06,0.06)$) {S1: \cmpNTimeSO{} of \cmpWindows};
+  \draw[flow] (11.15,5.0) -- (12.35,5.0);
+  % ================= with labels
+  \node[lab, text=oeviolet] at (9.0,1.05) {with labels: what the date differences are};
+  \node[labelled] (lb) at (9.0,-0.9) {%
+    \begin{tikzpicture}
+      \flatraster{lt}{0}{0}{cmp_label.png}{2.6cm}
+      \flatcells{lt}{16}{fcell}{\cmpCellsTimeFlooded}{2.6cm}
+      \flatcells{lt}{16}{ecell}{\cmpCellsTimeError}{2.6cm}
+      \node[sub, anchor=west] at (1.5,0.35) {\textcolor{oeviolet}{$\blacksquare$} flooded by the label: \cmpFlTimeSO\%};
+      \node[sub, anchor=west] at (1.5,-0.35) {\textcolor{oeteal}{$\blacksquare$} a head off its label};
+    \end{tikzpicture}};
+  \draw[flow] (15.1,2.35) -- (12.6,-0.4);
+\end{tikzpicture}
+\end{document}

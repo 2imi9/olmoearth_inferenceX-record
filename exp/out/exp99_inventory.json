@@ -1,0 +1,222 @@
+{
+ "experiment": "exp99: the transfer test, Ai2's FT-AWF deployment configuration on 2017 imagery over the windows holding East Africa TimeSync plots within 100 km of the AWF request geometry, graded at those plots",
+ "prereg_page": "docs/plan/awf_transfer.md",
+ "utc": "2026-10-10T16:43:34Z",
+ "commit": "52489b12d86900c5a3e3dcd177d43aa58b025b29",
+ "dirty": false,
+ "selection": {
+  "rule": "plots of kenya and tanzania with a 2017 label within D km of the request geometry (distance in EPSG:32737, 0 inside), D the smallest multiple of 10 km giving at least 300 plots",
+  "d_km": 100,
+  "counts_by_d_km": {
+   "0": 47,
+   "10": 59,
+   "20": 76,
+   "30": 97,
+   "40": 124,
+   "50": 153,
+   "60": 186,
+   "70": 218,
+   "80": 247,
+   "90": 282,
+   "100": 309
+  },
+  "n_selected": 309,
+  "by_country": {
+   "kenya": 219,
+   "tanzania": 90
+  },
+  "inside_request_geometry": {
+   "kenya": 33,
+   "tanzania": 14
+  },
+  "labels": {
+   "Dense Forest": 4,
+   "Open Forest": 2,
+   "Wooded Grassland": 138,
+   "Open Grassland": 112,
+   "Cropland": 44,
+   "Open Water": 1,
+   "Otherland": 8
+  },
+  "utm_zones": {
+   "36": 10,
+   "37": 299
+  },
+  "label_changes": {
+   "two_or_more_labels_2015_2017": 2,
+   "two_or_more_labels_any_year": 14
+  },
+  "timesync": {
+   "repository": "github.com/bullocke/eastafrica @ fc2014fcbc55cb75e0fbf801ffd9ca1ba4dc5c02, yearly_point_data.csv",
+   "sha256": "5309a982cdd45a4e7378008b9a6385b6accca7d071bdd652360ef7ef66fc429a",
+   "licence": "CC0-1.0"
+  },
+  "request_geometry_sha256": "fee3ce01008d26c6f3c239e68be70851035eb157d5da70bd72cb46dbc8623784",
+  "matches_preregistration": true,
+  "areas": {
+   "region_km2": 107679.0342156744,
+   "by_country_km2": {
+    "kenya": 60573.70167584882,
+    "tanzania": 47105.3325398302
+   },
+   "weights": {
+    "kenya": 0.5625394220616882,
+    "tanzania": 0.43746057793831183
+   },
+   "share_outside_both_countries": 0.0,
+   "country_km2": {
+    "kenya": 585702.3018181457,
+    "tanzania": 941505.5097186802
+   },
+   "source": "github.com/nvkelso/natural-earth-vector v5.1.2 (f1890d9f152c896d250a77557a5751a93d494776), geojson/ne_10m_admin_0_countries.geojson",
+   "area_crs": "EPSG:6933"
+  },
+  "plots_on_boundaries": {
+   "n": 309,
+   "inside_own_country": 309,
+   "outside_own_country": 0
+  }
+ },
+ "crosswalk": {
+  "strict": {
+   "Dense Forest": "woodland_forest",
+   "Open Forest": "shrubland_savanna",
+   "Wooded Grassland": "shrubland_savanna",
+   "Open Grassland": "grassland_barren",
+   "Cropland": "agriculture_settlement",
+   "Settlements": "urban_dense_development",
+   "Open Water": "open_water",
+   "Vegetated Wetland": "herbaceous_wetland",
+   "Otherland": "grassland_barren"
+  },
+  "lenient": {
+   "Dense Forest": [
+    "woodland_forest",
+    "montane_forest",
+    "lava_forest"
+   ],
+   "Open Forest": [
+    "shrubland_savanna",
+    "woodland_forest",
+    "montane_forest",
+    "lava_forest"
+   ],
+   "Wooded Grassland": [
+    "shrubland_savanna",
+    "grassland_barren"
+   ],
+   "Open Grassland": [
+    "grassland_barren",
+    "shrubland_savanna"
+   ],
+   "Cropland": [
+    "agriculture_settlement"
+   ],
+   "Settlements": [
+    "urban_dense_development",
+    "agriculture_settlement"
+   ],
+   "Open Water": [
+    "open_water",
+    "herbaceous_wetland"
+   ],
+   "Vegetated Wetland": [
+    "herbaceous_wetland",
+    "open_water"
+   ],
+   "Otherland": [
+    "grassland_barren",
+    "open_water"
+   ]
+  },
+  "awf_classes": {
+   "0": "woodland_forest",
+   "1": "open_water",
+   "2": "shrubland_savanna",
+   "3": "herbaceous_wetland",
+   "4": "grassland_barren",
+   "5": "agriculture_settlement",
+   "6": "montane_forest",
+   "7": "lava_forest",
+   "8": "urban_dense_development"
+  },
+  "untrained_channel": 9,
+  "sha256": "4c8b452896a880189fc51922037acbdb4abc21e05c496e0acc67000a860d1846",
+  "why": {
+   "Dense Forest": "Both legends set this class at a canopy over 40% (TimeSync's Dense Forest, AWF's woodland forest). AWF also has montane and lava forest, forests named by setting rather than canopy, which a TimeSync forest on a mountain slope or a lava flow can be; LENIENT accepts both.",
+   "Open Forest": "A canopy of 15-40% is below AWF's woodland forest (over 40%), and AWF has no class for it; its class of woody cover below that is shrubland/savanna. LENIENT adds the three forest classes: two interpreters read a canopy near 40% differently, and montane and lava forest carry no published canopy threshold.",
+   "Wooded Grassland": "Natural land with shrubs or very sparse trees below both forest thresholds is a savanna or shrubland. LENIENT adds grassland/barren, since AWF publishes no woody-cover threshold between its shrubland/savanna and grassland classes and a sparse-shrub grassland meets both. Woodland forest is not accepted even by LENIENT: this class is below 15% canopy and AWF's woodland forest above 40%, so the definitions are disjoint.",
+   "Open Grassland": "Grass, grass-like plants and forbs without substantial woody vegetation is AWF's grassland/barren. LENIENT adds shrubland/savanna for the same unpublished boundary between the two AWF classes.",
+   "Cropland": "Land used primarily for agriculture is AWF's agriculture/settlement, the only AWF class that names agriculture; LENIENT accepts nothing else.",
+   "Settlements": "Land primarily built (buildings, roads) is AWF's urban/dense development. LENIENT adds agriculture/settlement, where AWF puts homesteads among fields.",
+   "Open Water": "Open water. LENIENT adds herbaceous wetland: the region's lakes and swamps are seasonal, and a water body vegetated for part of the year meets both definitions.",
+   "Vegetated Wetland": "A mix of vegetation and open water for part of the year is AWF's herbaceous wetland; by the same mix LENIENT adds open water.",
+   "Otherland": "Barren land, rock outcrops and salt crusts: AWF merges barren land with grassland. LENIENT adds open water for the salt crusts of seasonal lake beds, which are water part of the year."
+  },
+  "awf_only": {
+   "montane_forest": "no TimeSync counterpart (TimeSync splits forest by canopy, AWF by setting): under STRICT a prediction of it is always an error; LENIENT accepts it for Dense and Open Forest",
+   "lava_forest": "as montane_forest",
+   "channel 9": "AWF's untrained no-data channel: never accepted, an error under both rules"
+  },
+  "timesync_only": {
+   "Open Forest": "no AWF class of 15-40% canopy: STRICT takes shrubland_savanna",
+   "Otherland": "no AWF class of its own: AWF merges barren land with grassland (grassland_barren)"
+  }
+ },
+ "inputs": {
+  "n_grids": 271,
+  "crs": [
+   "EPSG:32736",
+   "EPSG:32737"
+  ],
+  "from_olmoearth": {
+   "parts": 271,
+   "windows_read": 271
+  },
+  "condition_names": {
+   "1": "sentinel2_scl:all:some-cloud",
+   "2": "sentinel2_scl:all:cloudy",
+   "0": "sentinel2_scl:all:clear",
+   "3": "sentinel2_scl:most:clear",
+   "4": "sentinel2_scl:most:some-cloud",
+   "5": "sentinel2_scl:most:cloudy"
+  },
+  "request_period": {
+   "oe_start_time": "2017-01-01T00:00:00Z",
+   "oe_end_time": "2017-12-31T00:00:00Z"
+  }
+ },
+ "plots": {
+  "kenya": {
+   "selected": 219,
+   "in_a_grid": 192,
+   "covered": 192
+  },
+  "tanzania": {
+   "selected": 90,
+   "in_a_grid": 79,
+   "covered": 79
+  },
+  "total": {
+   "selected": 309,
+   "in_a_grid": 271,
+   "covered": 271
+  }
+ },
+ "overlapping_grids": {
+  "in_two_or_more_grids": 36,
+  "covered_in_two_or_more": 36,
+  "covered_in_two_differing": 1,
+  "covered_only_in_a_later_grid": 0,
+  "rule": "a plot in two grids takes the first whose pixel is covered"
+ },
+ "cannot_show": [
+  "A certified zone needs the whole region's confidence ranking: certify's zones are the most confident shares of every window of the map, and a run over the windows that hold a plot does not give the region's ranking. plan's labels for certify are reported instead.",
+  "The windows are a cluster sample of the region chosen through the plots: only the plots are a probability sample, and the windows' other pixels are described, never graded.",
+  "2017 imagery read by a model fine-tuned on 2023 imagery, in places beyond its training area, against labels from another legend through a crosswalk: a gap between the error rate here and Ai2's 89.5% has all of these as causes, and this experiment does not separate them. Part F compares the 2017 and 2023 maps at the 47 plots inside Ai2's geometry; that difference mixes the imagery's year, satellite availability and processing, and land change after 2017 (which counts against the 2023 map), so it is descriptive and apportions no gap.",
+  "The sample's design makes the plots of a country inside the region a simple random sample of its part of the region given their number; plots without input (a window with no 2017 imagery) are treated as missing at random within their country, and their labels are reported."
+ ],
+ "mode": "inventory: counts only; no class or probability at a plot is read out",
+ "seconds": 5.3,
+ "prereg_status": "frozen"
+}

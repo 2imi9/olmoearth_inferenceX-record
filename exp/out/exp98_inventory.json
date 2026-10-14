@@ -1,0 +1,706 @@
+{
+ "experiment": "exp98: the record's re-run of Ai2's FT-AWF deployment configuration (2023, 10 m, probabilities written), graded at Ai2's own AWF labels",
+ "prereg_page": "docs/plan/awf_deployment.md",
+ "utc": "2026-10-09T06:30:15Z",
+ "commit": "7417425d9501568c2a38b5a9ae39dd0013842b62",
+ "dirty": false,
+ "inputs": {
+  "grids": [
+   {
+    "label": "0:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     4096
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 56,
+    "n_train_covered": 189
+   },
+   {
+    "label": "1:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     13312,
+     5120
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 6,
+    "n_train_covered": 18
+   },
+   {
+    "label": "2:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     4096
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 23,
+    "n_train_covered": 116
+   },
+   {
+    "label": "3:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     13312,
+     5120
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 11,
+    "n_train_covered": 51
+   },
+   {
+    "label": "4:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     11264,
+     6144
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 48,
+    "n_train_covered": 124
+   },
+   {
+    "label": "5:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     4096
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 91,
+    "n_train_covered": 215
+   },
+   {
+    "label": "6:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     4096
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 5,
+    "n_train_covered": 28
+   },
+   {
+    "label": "7:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     3072
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 19,
+    "n_train_covered": 42
+   },
+   {
+    "label": "8:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     2048
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 0,
+    "n_train_covered": 0
+   },
+   {
+    "label": "9:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     1024,
+     1024
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 0,
+    "n_train_covered": 0
+   },
+   {
+    "label": "10:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     1024,
+     1024
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 0,
+    "n_train_covered": 0
+   }
+  ],
+  "from_olmoearth": [
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 56,
+    "largest_sum_deviation": 4.3704955032808357e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 17,
+    "largest_sum_deviation": 4.3447524689099737e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 56,
+    "largest_sum_deviation": 4.594548954628408e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 18,
+    "largest_sum_deviation": 4.342819011071697e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 14,
+    "largest_sum_deviation": 4.694520612247288e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 46,
+    "largest_sum_deviation": 4.814687599719036e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 17,
+    "largest_sum_deviation": 4.2799169364116096e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 29,
+    "largest_sum_deviation": 4.6966956546157235e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 15,
+    "largest_sum_deviation": 4.6461297742439456e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 1,
+    "largest_sum_deviation": 4.148355081667887e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 1,
+    "largest_sum_deviation": 4.148355081667887e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   }
+  ],
+  "condition_names": {
+   "0": "sentinel2_scl:all:clear",
+   "1": "sentinel2_scl:all:some-cloud",
+   "2": "sentinel2_scl:all:cloudy",
+   "3": "sentinel2_scl:most:clear",
+   "4": "sentinel2_scl:most:some-cloud"
+  },
+  "request_period": "2023-01-01/2023-12-31"
+ },
+ "labels": {
+  "group": "spatial_split",
+  "n_windows_kept": 1459,
+  "by_split": {
+   "train": 1115,
+   "val": 344
+  },
+  "dropped": {},
+  "crs": {
+   "EPSG:32737": 1459
+  },
+  "time_ranges": {
+   "2023-01-01/2023-12-31": 1459
+  },
+  "time_range_matches_request": {
+   "request": "2023-01-01/2023-12-31",
+   "n_matching": 1459
+  },
+  "exp89_manifest": "checked",
+  "awf_reader_check": {
+   "run": true,
+   "n_awf": 1459,
+   "n_here": 1459,
+   "agree": true,
+   "only_awf": 0,
+   "only_here": 0
+  }
+ },
+ "mapping": {
+  "rule": "the score pixel that contains the centre of the labelled pixel; reprojected where the CRSs differ",
+  "same_crs": 1042,
+  "reprojected": 0,
+  "largest_offset_from_pixel_middle_px": 0.0,
+  "overlapping_grids": {
+   "in_two_or_more_grids": 1040,
+   "covered_in_two_or_more": 88,
+   "covered_in_two_differing": 0,
+   "covered_only_in_a_later_grid": 0,
+   "rule": "a point in two grids takes the first whose pixel is covered"
+  },
+  "by_split": {
+   "train": {
+    "n": 1115,
+    "outside_every_grid": 332,
+    "in_grid_uncovered": 0,
+    "covered": 783
+   },
+   "val": {
+    "n": 344,
+    "outside_every_grid": 85,
+    "in_grid_uncovered": 0,
+    "covered": 259
+   }
+  }
+ },
+ "mode": "inventory: counts only; no class, probability or condition at a label pixel is read out",
+ "inputs_reported": {
+  "config": {
+   "label_dataset": true,
+   "deployment_dataset": true,
+   "n_deployment_roots": 1,
+   "deployment_roots_share_one_config": true,
+   "differences": [
+    {
+     "key": "band_sets",
+     "label_dataset": [
+      {
+       "bands": [
+        "B02",
+        "B03",
+        "B04",
+        "B08"
+       ],
+       "dtype": "uint16"
+      },
+      {
+       "bands": [
+        "B05",
+        "B06",
+        "B07",
+        "B8A",
+        "B11",
+        "B12"
+       ],
+       "dtype": "uint16",
+       "zoom_offset": -1
+      },
+      {
+       "bands": [
+        "B01",
+        "B09"
+       ],
+       "dtype": "uint16",
+       "zoom_offset": -2
+      }
+     ],
+     "deployment_dataset": [
+      {
+       "bands": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B8A",
+        "B09",
+        "B11",
+        "B12"
+       ],
+       "dtype": "uint16"
+      }
+     ]
+    },
+    {
+     "key": "data_source.cache_dir",
+     "label_dataset": "cache/planetary_computer",
+     "deployment_dataset": null
+    },
+    {
+     "key": "data_source.class_path",
+     "label_dataset": null,
+     "deployment_dataset": "rslearn.data_sources.planetary_computer.Sentinel2"
+    },
+    {
+     "key": "data_source.harmonize",
+     "label_dataset": true,
+     "deployment_dataset": null
+    },
+    {
+     "key": "data_source.init_args",
+     "label_dataset": null,
+     "deployment_dataset": {
+      "cache_dir": "cache/planetary_computer",
+      "harmonize": true,
+      "sort_by": "eo:cloud_cover"
+     }
+    },
+    {
+     "key": "data_source.name",
+     "label_dataset": "rslearn.data_sources.planetary_computer.Sentinel2",
+     "deployment_dataset": null
+    },
+    {
+     "key": "data_source.query_config.min_matches",
+     "label_dataset": null,
+     "deployment_dataset": 12
+    },
+    {
+     "key": "data_source.sort_by",
+     "label_dataset": "eo:cloud_cover",
+     "deployment_dataset": null
+    }
+   ]
+  },
+  "deployment_windows": 270,
+  "deployment_time_ranges": {
+   "2023-01-01/2023-12-31": 270
+  },
+  "n_points_in_two_deployed_windows": 88,
+  "n_points_without_deployed_window": 0,
+  "n_points_without_label_imagery": 0,
+  "n_points_without_deployed_imagery_read": 0,
+  "n_points_incomplete": 0,
+  "n_compared": 1042,
+  "bands": [
+   "B02",
+   "B03",
+   "B04",
+   "B08"
+  ],
+  "n_identical_all_groups": 1035,
+  "n_identical_reversed_order": 0,
+  "n_identical_any_order": 1035,
+  "share_identical_by_group": [
+   0.9952015355086372,
+   1.0,
+   1.0,
+   0.9961612284069098,
+   1.0,
+   0.9942418426103646,
+   1.0,
+   0.9961612284069098,
+   0.9961612284069098,
+   0.9942418426103646,
+   1.0,
+   1.0
+  ],
+  "median_abs_difference_where_not_identical": [
+   1.0,
+   1.0,
+   2.0,
+   2.0
+  ]
+ },
+ "timesync_inventory": {
+  "status": "report-only: no threshold and no verdict (docs/plan/awf_deployment.md, Part I)",
+  "year": 2017,
+  "note": "2017 labels against a 2023 map: a plot whose land cover changed between the two years counts as a disagreement. The labels were interpreted from Landsat (30 m) and Google Earth by RCMRD's analysts for TimeSync's legend, the map is 10 m in AWF's legend, and the two meet through the crosswalk (exp/timesync_awf_crosswalk.py), STRICT and LENIENT. Within each country the plots are a simple random sample, so those inside the request geometry are a simple random sample of its part in that country; the countries are strata weighted by their share of the geometry's area.",
+  "source": {
+   "repository": "github.com/bullocke/eastafrica @ fc2014fcbc55cb75e0fbf801ffd9ca1ba4dc5c02, yearly_point_data.csv",
+   "sha256": "5309a982cdd45a4e7378008b9a6385b6accca7d071bdd652360ef7ef66fc429a",
+   "licence": "CC0-1.0",
+   "citation": "Bullock, E.L., Healey, S.P., Yang, Z., et al. (2021) Three decades of land cover change in East Africa. Land 10(2), 150. doi:10.3390/land10020150"
+  },
+  "crosswalk": {
+   "strict": {
+    "Dense Forest": "woodland_forest",
+    "Open Forest": "shrubland_savanna",
+    "Wooded Grassland": "shrubland_savanna",
+    "Open Grassland": "grassland_barren",
+    "Cropland": "agriculture_settlement",
+    "Settlements": "urban_dense_development",
+    "Open Water": "open_water",
+    "Vegetated Wetland": "herbaceous_wetland",
+    "Otherland": "grassland_barren"
+   },
+   "lenient": {
+    "Dense Forest": [
+     "woodland_forest",
+     "montane_forest",
+     "lava_forest"
+    ],
+    "Open Forest": [
+     "shrubland_savanna",
+     "woodland_forest",
+     "montane_forest",
+     "lava_forest"
+    ],
+    "Wooded Grassland": [
+     "shrubland_savanna",
+     "grassland_barren"
+    ],
+    "Open Grassland": [
+     "grassland_barren",
+     "shrubland_savanna"
+    ],
+    "Cropland": [
+     "agriculture_settlement"
+    ],
+    "Settlements": [
+     "urban_dense_development",
+     "agriculture_settlement"
+    ],
+    "Open Water": [
+     "open_water",
+     "herbaceous_wetland"
+    ],
+    "Vegetated Wetland": [
+     "herbaceous_wetland",
+     "open_water"
+    ],
+    "Otherland": [
+     "grassland_barren",
+     "open_water"
+    ]
+   },
+   "awf_classes": {
+    "0": "woodland_forest",
+    "1": "open_water",
+    "2": "shrubland_savanna",
+    "3": "herbaceous_wetland",
+    "4": "grassland_barren",
+    "5": "agriculture_settlement",
+    "6": "montane_forest",
+    "7": "lava_forest",
+    "8": "urban_dense_development"
+   },
+   "untrained_channel": 9,
+   "sha256": "4c8b452896a880189fc51922037acbdb4abc21e05c496e0acc67000a860d1846",
+   "why": {
+    "Dense Forest": "Both legends set this class at a canopy over 40% (TimeSync's Dense Forest, AWF's woodland forest). AWF also has montane and lava forest, forests named by setting rather than canopy, which a TimeSync forest on a mountain slope or a lava flow can be; LENIENT accepts both.",
+    "Open Forest": "A canopy of 15-40% is below AWF's woodland forest (over 40%), and AWF has no class for it; its class of woody cover below that is shrubland/savanna. LENIENT adds the three forest classes: two interpreters read a canopy near 40% differently, and montane and lava forest carry no published canopy threshold.",
+    "Wooded Grassland": "Natural land with shrubs or very sparse trees below both forest thresholds is a savanna or shrubland. LENIENT adds grassland/barren, since AWF publishes no woody-cover threshold between its shrubland/savanna and grassland classes and a sparse-shrub grassland meets both. Woodland forest is not accepted even by LENIENT: this class is below 15% canopy and AWF's woodland forest above 40%, so the definitions are disjoint.",
+    "Open Grassland": "Grass, grass-like plants and forbs without substantial woody vegetation is AWF's grassland/barren. LENIENT adds shrubland/savanna for the same unpublished boundary between the two AWF classes.",
+    "Cropland": "Land used primarily for agriculture is AWF's agriculture/settlement, the only AWF class that names agriculture; LENIENT accepts nothing else.",
+    "Settlements": "Land primarily built (buildings, roads) is AWF's urban/dense development. LENIENT adds agriculture/settlement, where AWF puts homesteads among fields.",
+    "Open Water": "Open water. LENIENT adds herbaceous wetland: the region's lakes and swamps are seasonal, and a water body vegetated for part of the year meets both definitions.",
+    "Vegetated Wetland": "A mix of vegetation and open water for part of the year is AWF's herbaceous wetland; by the same mix LENIENT adds open water.",
+    "Otherland": "Barren land, rock outcrops and salt crusts: AWF merges barren land with grassland. LENIENT adds open water for the salt crusts of seasonal lake beds, which are water part of the year."
+   },
+   "awf_only": {
+    "montane_forest": "no TimeSync counterpart (TimeSync splits forest by canopy, AWF by setting): under STRICT a prediction of it is always an error; LENIENT accepts it for Dense and Open Forest",
+    "lava_forest": "as montane_forest",
+    "channel 9": "AWF's untrained no-data channel: never accepted, an error under both rules"
+   },
+   "timesync_only": {
+    "Open Forest": "no AWF class of 15-40% canopy: STRICT takes shrubland_savanna",
+    "Otherland": "no AWF class of its own: AWF merges barren land with grassland (grassland_barren)"
+   }
+  },
+  "plots": {
+   "kenya": {
+    "inside_geometry": 33,
+    "in_a_grid": 33,
+    "covered": 33
+   },
+   "tanzania": {
+    "inside_geometry": 14,
+    "in_a_grid": 14,
+    "covered": 14
+   }
+  },
+  "expected_inside_geometry": {
+   "kenya": 33,
+   "tanzania": 14
+  },
+  "overlapping_grids": {
+   "in_two_or_more_grids": 45,
+   "covered_in_two_or_more": 12,
+   "covered_in_two_differing": 0,
+   "covered_only_in_a_later_grid": 0
+  },
+  "labels_inside": {
+   "Dense Forest": 2,
+   "Open Forest": 1,
+   "Wooded Grassland": 11,
+   "Open Grassland": 26,
+   "Cropland": 6,
+   "Otherland": 1
+  },
+  "label_changes": {
+   "plots_with_two_or_more_labels_2015_2017": 0,
+   "plots_with_two_or_more_labels_any_year": 1
+  },
+  "areas": {
+   "geometry_km2": 19837.606706776438,
+   "by_country_km2": {
+    "kenya": 10946.426355000673,
+    "tanzania": 8891.180351775774
+   },
+   "share_by_country": {
+    "kenya": 0.5518017630252453,
+    "tanzania": 0.4481982369747548
+   },
+   "share_outside_both_countries": 0.0,
+   "source": "github.com/nvkelso/natural-earth-vector v5.1.2 (f1890d9f152c896d250a77557a5751a93d494776), geojson/ne_10m_admin_0_countries.geojson"
+  },
+  "mode": "inventory: counts only; no class or probability at a plot is read out"
+ },
+ "seconds": 569.7,
+ "prereg_status": "frozen"
+}

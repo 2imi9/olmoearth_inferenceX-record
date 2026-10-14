@@ -1,0 +1,162 @@
+{
+ "experiment": "exp101: filter, then shake. A two-step error ranking (set aside the most confident share q, rank the rest by the replica's instability over 320 perturbed views) fitted on exp98's graded validation points and tested on exp99's plots",
+ "prereg_page": "docs/plan/two_step.md",
+ "mode": "gpu smoke: F's first units (allowed before freezing)",
+ "utc": "2026-10-11T03:34:35Z",
+ "commit": "2a07349dcb346d8ba7d8bb22b093443e0b92e6c7",
+ "dirty": false,
+ "prereg_status": "draft",
+ "design": {
+  "views": {
+   "orientation": [
+    "0 quarter turn(s)",
+    "1 quarter turn(s)",
+    "2 quarter turn(s)",
+    "3 quarter turn(s)",
+    "0 quarter turn(s), flipped",
+    "1 quarter turn(s), flipped",
+    "2 quarter turn(s), flipped",
+    "3 quarter turn(s), flipped"
+   ],
+   "time": [
+    "all twelve months",
+    "without January to March",
+    "without April to June",
+    "without July to September",
+    "without October to December"
+   ],
+   "context_px": [
+    16,
+    32
+   ],
+   "phase_px": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "n_views": 320,
+   "index": "((orientation x 5 + time) x 2 + context) x 4 + phase",
+   "v0": "view 0: identity, all twelve months, 16 px, phase 0, the unit at (8, 8)"
+  },
+  "instability": "the share of the other 319 views whose class (argmax over ten channels) differs from V0's; ties broken by the mean total-variation distance of the ten-channel softmax to V0's",
+  "rule": "R(q): the most confident share q of the units (in design weight) set aside; the others by instability, most unstable first, ties by confidence, least confident first; then the units set aside, least confident first",
+  "q_grid": [
+   0.5,
+   0.6,
+   0.7,
+   0.8
+  ],
+  "budget": 0.1,
+  "budgets_reported": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "p1_margin": 0.05,
+  "level": 0.9,
+  "kinds": {
+   "orientation": 7,
+   "time": 4,
+   "context": 1,
+   "phase": 3
+  },
+  "dose_k": [
+   4,
+   8,
+   16,
+   32,
+   64,
+   128,
+   319
+  ],
+  "dose_draws": 20,
+  "seed": 101
+ },
+ "cannot_show": [
+  "Whether the gain holds for a model or legend other than FT-AWF's, or for a whole map: the units are points.",
+  "Why a view changes the class: a season removed may hide the season that separates grass from shrub, or show the model a series shorter than it was trained on.",
+  "With 271 plots and a 10% review of about 27, a difference of a few errors is within noise; P1's bar is set so that only a large gain passes."
+ ],
+ "inputs_F": {
+  "n_units": 259,
+  "source": "the deployed run's rslearn dataset",
+  "n_roots": 1,
+  "n_windows": 270,
+  "n_windows_with_12_groups": 270,
+  "in_no_window": 0,
+  "in_two_or_more_windows": 32,
+  "only_in_windows_without_12_groups": 0,
+  "failed_reads": {},
+  "took_a_later_window_to_avoid_clamping": 241,
+  "read": 259,
+  "clamped_at_a_window_edge": 18
+ },
+ "model": {
+  "arm": "awf",
+  "device": "cuda",
+  "checkpoint_sha256": "1036b76bf7dfde819479dfa02507634f59a5637f14d4071bc3bf18f4d3d4bab2",
+  "encoder_config": {
+   "model_id": "OLMOEARTH_V1_BASE",
+   "revision": "4bd1392a4539404d2c74276c39f3cb4cfff466cc"
+  },
+  "load": "weights_only",
+  "top_level": [
+   "callbacks",
+   "epoch",
+   "global_step",
+   "loops",
+   "lr_schedulers",
+   "optimizer_states",
+   "pytorch-lightning_version",
+   "state_dict"
+  ],
+  "encoder_prefix": "model.encoder.0.model.",
+  "n_encoder_keys": 231,
+  "n_checkpoint_keys": 233,
+  "head_shape": [
+   10,
+   768
+  ],
+  "dtype": "float32",
+  "tf32": false,
+  "patch": 4,
+  "head": null,
+  "unused_checkpoint_keys": null,
+  "model": "exp89 arm A replica (exp21's forward pass)",
+  "moved_tensor_attributes": [],
+  "gpu": "NVIDIA B200",
+  "torch": "2.7.1+cu128"
+ },
+ "units": 32,
+ "v0": {
+  "views_checked": [
+   0,
+   8,
+   4,
+   230
+  ],
+  "max_abs_logit_difference_gpu_cpu": 2.0742416381835938e-05,
+  "same_class": 128,
+  "compared": 128,
+  "tolerance": 0.001,
+  "cpu_seconds": 45.74,
+  "gpu_seconds": 1.84
+ },
+ "replica_check": {
+  "max_abs_logit_difference_this_builder_vs_exp21_logits_grid_cpu": 0.0,
+  "tolerance": 0.0001
+ },
+ "v0_agreement_with_deployed": 0.9375,
+ "moved_tensor_attributes": [],
+ "throughput": {
+  "views": 10240,
+  "seconds": 52.28,
+  "views_per_second": 195.9,
+  "batch_tokens": 131072,
+  "estimated_minutes_fit": 7.1,
+  "estimated_minutes_test": 14.4
+ },
+ "passed": true,
+ "seconds": 363.4
+}

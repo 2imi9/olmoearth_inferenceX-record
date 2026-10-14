@@ -1,0 +1,53 @@
+{
+ "arm": "awf",
+ "ai2_accuracy": 0.895,
+ "metric": "accuracy per window (one label pixel)",
+ "tolerance_points": 2.0,
+ "imagery_route": "tar",
+ "attempts": [
+  {
+   "accuracy": 0.16666666666666663,
+   "accuracy_by_flip": null,
+   "accuracy_pixel": null,
+   "aligned": false,
+   "attempt": 1,
+   "checkpoint_sha256": "6ce476123a199946767e08faffe0976ba191aaffb58d1c82a922ad2aea674789",
+   "commit": "b6d82f38c102117e7f91595af28528cc66575e78",
+   "dirty": false,
+   "gap_points": -72.83333333333334,
+   "n_errors": 5,
+   "n_pixel_errors": null,
+   "n_pixels": null,
+   "n_windows": 6,
+   "n_windows_dropped": 0,
+   "n_windows_no_imagery": 0,
+   "prereg_status": "draft",
+   "utc": "2026-10-01T22:26:26Z"
+  },
+  {
+   "attempt": 2,
+   "utc": "2026-10-01T22:41:46Z",
+   "commit": "a89c3cedb53215e21fbdad0bc40de2842d57998d",
+   "dirty": false,
+   "prereg_status": "frozen",
+   "checkpoint_sha256": "1036b76bf7dfde819479dfa02507634f59a5637f14d4071bc3bf18f4d3d4bab2",
+   "n_windows": 344,
+   "n_errors": 41,
+   "accuracy": 0.8808139534883721,
+   "n_windows_dropped": 0,
+   "n_windows_no_imagery": 0,
+   "n_pixels": null,
+   "n_pixel_errors": null,
+   "accuracy_pixel": null,
+   "accuracy_by_flip": null,
+   "gap_points": -1.4186046511627914,
+   "aligned": true
+  }
+ ],
+ "aligned": true,
+ "closed": false,
+ "max_attempts": 3,
+ "prereg_status": "frozen",
+ "report_only": true,
+ "alignment": "aligned"
+}

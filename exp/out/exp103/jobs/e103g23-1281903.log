@@ -1,0 +1,108 @@
+== 2026-10-11T10:45:33-04:00 job 1281903 on w0001: exp103 grade23, commit b83a5b9d0d53ff83da4b43284a1db60daa433804 ==
+== the TimeSync sample, Natural Earth's countries and Ai2's geometry, checked against their pins (no fetch) ==
+eastafrica_yearly_point_data.csv: verified, sha256 5309a982cdd45a4e7378008b9a6385b6accca7d071bdd652360ef7ef66fc429a, git blob 1713496168b9a4d1c2c1bedbd62dc7f6b72d7b61
+ne_10m_admin_0_countries.geojson: verified, sha256 239eec57ac17f100a11e2536cffc56752c318b50ae765b0918ff7aab4ce8f255, git blob 5ebc66e25fc1af01edaebe9375c546655e04cf1e
+Ai2's request geometry: verified
+== smoke ==
+Installed 26 packages in 20.95s
+54 labelled windows kept ({'val': 44, 'train': 10}); 2 score grid(s)
+54 labelled windows kept ({'val': 44, 'train': 10}); 2 score grid(s)
+{
+ "P1": {
+  "rule": "the 90% task-cluster bootstrap interval of deployed accuracy - replica accuracy on the same validation points lies within +-0.050 (value: its larger end in absolute value)",
+  "threshold": 0.05,
+  "value": 0.0975609756097561,
+  "point_difference_reported": -0.04999999999999993,
+  "graded": true,
+  "holds": false
+ },
+ "P2": {
+  "rule": "share of validation points where the deployed class equals the replica's >= 0.90",
+  "threshold": 0.9,
+  "value": 0.9,
+  "graded": true,
+  "holds": true
+ },
+ "P3": {
+  "rule": "AUROC of the deployed confidence for the deployed map's errors >= 0.75",
+  "threshold": 0.75,
+  "value": 0.875,
+  "graded": true,
+  "holds": true
+ },
+ "P4": {
+  "rule": "share of the errors among the least confident 10% of points >= 0.25",
+  "threshold": 0.25,
+  "value": 0.5,
+  "graded": true,
+  "holds": true
+ },
+ "P5": {
+  "rule": "mean share of the map's pixels less confident than a validation point >= 0.55, and its one-sided 95% task-cluster bootstrap lower bound > 0.5",
+  "threshold": 0.55,
+  "value": 0.5748125,
+  "lower_one_sided_95": 0.54984265625,
+  "graded": true,
+  "holds": true
+ },
+ "floors": {
+  "min_validation_points": 20,
+  "min_errors": 5,
+  "n_validation_points": 40,
+  "n_errors": 8
+ }
+}
+== exp98's grading of the v1.2 2023 map ==
+1459 labelled windows kept ({'train': 1115, 'val': 344}); 11 score grid(s)
+{
+ "P1": {
+  "rule": "the 90% task-cluster bootstrap interval of deployed accuracy - replica accuracy on the same validation points lies within +-0.050 (value: its larger end in absolute value)",
+  "threshold": 0.05,
+  "value": 0.05405968468468469,
+  "point_difference_reported": -0.019305019305019266,
+  "graded": true,
+  "holds": false
+ },
+ "P2": {
+  "rule": "share of validation points where the deployed class equals the replica's >= 0.90",
+  "threshold": 0.9,
+  "value": 0.8841698841698842,
+  "graded": true,
+  "holds": false
+ },
+ "P3": {
+  "rule": "AUROC of the deployed confidence for the deployed map's errors >= 0.75",
+  "threshold": 0.75,
+  "value": 0.8141519823788547,
+  "graded": true,
+  "holds": true
+ },
+ "P4": {
+  "rule": "share of the errors among the least confident 10% of points >= 0.25",
+  "threshold": 0.25,
+  "value": 0.375,
+  "graded": true,
+  "holds": true
+ },
+ "P5": {
+  "rule": "mean share of the map's pixels less confident than a validation point >= 0.55, and its one-sided 95% task-cluster bootstrap lower bound > 0.5",
+  "threshold": 0.55,
+  "value": 0.6531772742042575,
+  "lower_one_sided_95": 0.6171062693775649,
+  "graded": true,
+  "holds": true
+ },
+ "floors": {
+  "min_validation_points": 200,
+  "min_errors": 15,
+  "n_validation_points": 259,
+  "n_errors": 32
+ }
+}
+total 74
+drwxr-xr-x 2 qi_zim_neu qi_zim_neu  4096 Oct 11 10:59 .
+drwxr-xr-x 2 qi_zim_neu qi_zim_neu  4096 Oct 11 10:59 ..
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu 47737 Oct 11 10:59 exp98_summary.json
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu 27099 Oct 11 10:59 exp98_units.npz
+== 2026-10-11T10:59:26-04:00 done: e103_out/awf2023/ (copy to exp/out/exp103/ when recording) ==
+e103_out on scratch: 21G	/scratch/qi_zim_neu/olmoearth_inferenceX/e103_out

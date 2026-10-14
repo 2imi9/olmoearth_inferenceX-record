@@ -1,0 +1,92 @@
+== 2026-10-11T10:45:33-04:00 job 1281904 on w0004: exp103 grade17, commit b83a5b9d0d53ff83da4b43284a1db60daa433804 ==
+== the TimeSync sample, Natural Earth's countries and Ai2's geometry, checked against their pins (no fetch) ==
+eastafrica_yearly_point_data.csv: verified, sha256 5309a982cdd45a4e7378008b9a6385b6accca7d071bdd652360ef7ef66fc429a, git blob 1713496168b9a4d1c2c1bedbd62dc7f6b72d7b61
+ne_10m_admin_0_countries.geojson: verified, sha256 239eec57ac17f100a11e2536cffc56752c318b50ae765b0918ff7aab4ce8f255, git blob 5ebc66e25fc1af01edaebe9375c546655e04cf1e
+Ai2's request geometry: verified
+== smoke ==
+24 plots selected, 23 in a grid, 22 covered; 24 grid(s)
+24 plots selected, 23 in a grid, 22 covered; 24 grid(s)
+{
+ "P1": {
+  "rule": "design-weighted AUROC of the deployed confidence for the STRICT errors at the plots >= 0.7",
+  "threshold": 0.7,
+  "value": 0.8541748061530057,
+  "graded": true,
+  "holds": true,
+  "lenient_check": {
+   "value": 0.9731643550372806,
+   "meets_threshold": true
+  }
+ },
+ "P2": {
+  "rule": "design-weighted share of the gap from random to the ceiling closed by the least confident 10% of the plots (STRICT errors) >= 0.25",
+  "threshold": 0.25,
+  "value": 1.0,
+  "graded": true,
+  "holds": true,
+  "lenient_check": {
+   "value": 1.0,
+   "meets_threshold": true
+  }
+ },
+ "P3": {
+  "rule": "descriptive: the exact 95% interval of the error rate under each rule beside Ai2's 89.5%, and the transfer-gap call fixed in advance",
+  "graded": false,
+  "call": "not determined"
+ },
+ "floors": {
+  "min_with_input": 20,
+  "min_errors": 3,
+  "min_correct": 3,
+  "n_with_input": 22,
+  "n_errors": 9,
+  "n_correct": 13
+ }
+}
+== exp99's grading of the v1.2 2017 map (Part F on the v1.2 2023 map) ==
+309 plots selected, 271 in a grid, 271 covered; 271 grid(s)
+{
+ "P1": {
+  "rule": "design-weighted AUROC of the deployed confidence for the STRICT errors at the plots >= 0.7",
+  "threshold": 0.7,
+  "value": 0.6417968327283455,
+  "graded": true,
+  "holds": false,
+  "lenient_check": {
+   "value": 0.729718220972904,
+   "meets_threshold": true
+  },
+  "reading": "only STRICT fails: transfer or the crosswalk's grass/shrub boundary, not determined"
+ },
+ "P2": {
+  "rule": "design-weighted share of the gap from random to the ceiling closed by the least confident 10% of the plots (STRICT errors) >= 0.25",
+  "threshold": 0.25,
+  "value": 0.26659187975456483,
+  "graded": true,
+  "holds": true,
+  "lenient_check": {
+   "value": 0.14479883048949996,
+   "meets_threshold": false
+  }
+ },
+ "P3": {
+  "rule": "descriptive: the exact 95% interval of the error rate under each rule beside Ai2's 89.5%, and the transfer-gap call fixed in advance",
+  "graded": false,
+  "call": "not determined"
+ },
+ "floors": {
+  "min_with_input": 250,
+  "min_errors": 20,
+  "min_correct": 20,
+  "n_with_input": 271,
+  "n_errors": 95,
+  "n_correct": 176
+ }
+}
+total 34
+drwxr-xr-x 2 qi_zim_neu qi_zim_neu  4096 Oct 11 10:48 .
+drwxr-xr-x 2 qi_zim_neu qi_zim_neu  4096 Oct 11 10:48 ..
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu 25837 Oct 11 10:48 exp99_summary.json
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu  8557 Oct 11 10:48 exp99_units.npz
+== 2026-10-11T10:48:42-04:00 done: e103_out/transfer2017/ (copy to exp/out/exp103/ when recording) ==
+e103_out on scratch: 21G	/scratch/qi_zim_neu/olmoearth_inferenceX/e103_out

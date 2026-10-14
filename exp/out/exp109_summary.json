@@ -1,0 +1,338 @@
+{
+ "experiment": "exp109, report-only: why the AWF fine-tunes' confidence misses the ranking bar under transfer",
+ "preregistered": false,
+ "reading": "exploratory, on plots and labels already examined (exp99, exp101, exp103); descriptive",
+ "inputs": {
+  "exp/out/exp99_units.npz": "b1371eb6f59c35371302e2f81e6321bb6373ed4b4e1cbf2c2d72e23cf2b07417",
+  "exp/out/exp103/transfer2017/exp99_units.npz": "a668f2b9da1c4a1b21660d3484112823faca813de6f9b8d3a97bbc35c2e43e5e",
+  "exp/out/exp98_units.npz": "16ce011c497395288b35adcab2b3cc32ffc5f0afa05175104f602d5cf124bc09",
+  "exp/out/exp103/awf2023/exp98_units.npz": "19e339cbc1b1b9099b15c2770472d5d1dedc39ccc092e255b5fa2b733c90df21"
+ },
+ "config": {
+  "bootstrap": {
+   "R": 2000,
+   "seed": 0,
+   "level": 0.9,
+   "resampling": "plots within each country"
+  },
+  "weights": "exp99's frozen design weights at the TimeSync plots; Ai2's points unweighted",
+  "suspicion": "-log p1 (the units files' suspicion)",
+  "crosswalk_sha256": "4c8b452896a880189fc51922037acbdb4abc21e05c496e0acc67000a860d1846"
+ },
+ "models": {
+  "v1": {
+   "transfer_2017": {
+    "n": 271,
+    "strict_errors": 91,
+    "lenient_errors": 37,
+    "strict_only": 54,
+    "strict_only_pairs": [
+     {
+      "pair": "shrubland_savanna -> Open Grassland",
+      "n": 39
+     },
+     {
+      "pair": "grassland_barren -> Wooded Grassland",
+      "n": 9
+     },
+     {
+      "pair": "montane_forest -> Dense Forest",
+      "n": 3
+     },
+     {
+      "pair": "open_water -> Otherland",
+      "n": 2
+     },
+     {
+      "pair": "herbaceous_wetland -> Open Water",
+      "n": 1
+     }
+    ],
+    "grass_shrub_direction": {
+     "shrubland_savanna_on_open_grassland": 39,
+     "grassland_barren_on_wooded_grassland": 9
+    },
+    "confident_third": {
+     "definition": "p1 at or above the 2/3 quantile of p1 over the plots with input (unweighted count)",
+     "cut_p1": 0.9987569597755416,
+     "plots": 91,
+     "weighted_error_rate": {
+      "strict": 0.2511664032699618,
+      "lenient": 0.07097827399491732
+     },
+     "strict_errors": 20,
+     "lenient_errors": 6,
+     "strict_only": 14,
+     "share_of_confident_strict_errors_strict_only": 0.7,
+     "shrubland_savanna_on_open_grassland": 11,
+     "grassland_barren_on_wooded_grassland": 1,
+     "pairs_strict_errors": [
+      {
+       "pair": "shrubland_savanna -> Open Grassland",
+       "n": 11
+      },
+      {
+       "pair": "woodland_forest -> Wooded Grassland",
+       "n": 3
+      },
+      {
+       "pair": "shrubland_savanna -> Cropland",
+       "n": 2
+      },
+      {
+       "pair": "open_water -> Otherland",
+       "n": 1
+      },
+      {
+       "pair": "montane_forest -> Dense Forest",
+       "n": 1
+      },
+      {
+       "pair": "grassland_barren -> Wooded Grassland",
+       "n": 1
+      }
+     ]
+    },
+    "strict_only_by_cut": {
+     "top_0.50": {
+      "plots": 136,
+      "strict_errors": 32,
+      "strict_only": 22
+     },
+     "top_0.40": {
+      "plots": 109,
+      "strict_errors": 23,
+      "strict_only": 15
+     },
+     "top_0.33": {
+      "plots": 91,
+      "strict_errors": 20,
+      "strict_only": 14
+     },
+     "top_0.25": {
+      "plots": 68,
+      "strict_errors": 15,
+      "strict_only": 12
+     },
+     "top_0.20": {
+      "plots": 55,
+      "strict_errors": 11,
+      "strict_only": 10
+     },
+     "top_0.10": {
+      "plots": 28,
+      "strict_errors": 2,
+      "strict_only": 2
+     }
+    },
+    "auroc_weighted": {
+     "strict": 0.6378135514190493,
+     "lenient": 0.6775400400527327,
+     "lenient_errors_vs_strict_correct": 0.6979247600348157,
+     "strict_only_errors_vs_strict_correct": 0.6012012035209181,
+     "lenient_minus_strict_only": 0.09672355651389763
+    },
+    "bootstrap": {
+     "lenient_errors_vs_strict_correct": [
+      0.6180070693711407,
+      0.7751779411487629
+     ],
+     "strict_only_errors_vs_strict_correct": [
+      0.5258962504857788,
+      0.6745883799677621
+     ],
+     "strict": [
+      0.5773911875581923,
+      0.6971515684250066
+     ],
+     "lenient": [
+      0.5972192023540318,
+      0.7526626772750393
+     ],
+     "lenient_minus_strict_only": [
+      -0.0028504970116230537,
+      0.18947375884931153
+     ],
+     "resamples": 2000
+    }
+   },
+   "ai2_validation_points": {
+    "n": 259,
+    "errors": 33,
+    "auroc_unweighted": 0.8490211853043711,
+    "confident_third": {
+     "cut_p1": 0.9998718295599458,
+     "points": 87,
+     "errors": 1
+    },
+    "grass_shrub": {
+     "points": 146,
+     "errors": 8,
+     "auroc_unweighted": 0.8985507246376812,
+     "shrubland_savanna_where_ai2_labels_grassland_barren": 3,
+     "grassland_barren_where_ai2_labels_shrubland_savanna": 5,
+     "median_p1_errors": 0.8038835494489518,
+     "median_p1_correct": 0.9996487783311685,
+     "errors_at_or_above_the_transfer_confident_cut": 0
+    }
+   },
+   "losses": {
+    "transfer_and_point_placement": 0.15109642526955536,
+    "legend": 0.060111208615766465
+   }
+  },
+  "v1.2": {
+   "transfer_2017": {
+    "n": 271,
+    "strict_errors": 95,
+    "lenient_errors": 45,
+    "strict_only": 50,
+    "strict_only_pairs": [
+     {
+      "pair": "shrubland_savanna -> Open Grassland",
+      "n": 41
+     },
+     {
+      "pair": "grassland_barren -> Wooded Grassland",
+      "n": 4
+     },
+     {
+      "pair": "open_water -> Otherland",
+      "n": 2
+     },
+     {
+      "pair": "montane_forest -> Dense Forest",
+      "n": 2
+     },
+     {
+      "pair": "herbaceous_wetland -> Open Water",
+      "n": 1
+     }
+    ],
+    "grass_shrub_direction": {
+     "shrubland_savanna_on_open_grassland": 41,
+     "grassland_barren_on_wooded_grassland": 4
+    },
+    "confident_third": {
+     "definition": "p1 at or above the 2/3 quantile of p1 over the plots with input (unweighted count)",
+     "cut_p1": 0.9988811819870135,
+     "plots": 91,
+     "weighted_error_rate": {
+      "strict": 0.2493145655919721,
+      "lenient": 0.02400929182579897
+     },
+     "strict_errors": 22,
+     "lenient_errors": 2,
+     "strict_only": 20,
+     "share_of_confident_strict_errors_strict_only": 0.9090909090909091,
+     "shrubland_savanna_on_open_grassland": 19,
+     "grassland_barren_on_wooded_grassland": 0,
+     "pairs_strict_errors": [
+      {
+       "pair": "shrubland_savanna -> Open Grassland",
+       "n": 19
+      },
+      {
+       "pair": "shrubland_savanna -> Cropland",
+       "n": 1
+      },
+      {
+       "pair": "montane_forest -> Dense Forest",
+       "n": 1
+      },
+      {
+       "pair": "agriculture_settlement -> Wooded Grassland",
+       "n": 1
+      }
+     ]
+    },
+    "strict_only_by_cut": {
+     "top_0.50": {
+      "plots": 136,
+      "strict_errors": 32,
+      "strict_only": 24
+     },
+     "top_0.40": {
+      "plots": 109,
+      "strict_errors": 24,
+      "strict_only": 20
+     },
+     "top_0.33": {
+      "plots": 91,
+      "strict_errors": 22,
+      "strict_only": 20
+     },
+     "top_0.25": {
+      "plots": 68,
+      "strict_errors": 15,
+      "strict_only": 14
+     },
+     "top_0.20": {
+      "plots": 55,
+      "strict_errors": 12,
+      "strict_only": 12
+     },
+     "top_0.10": {
+      "plots": 28,
+      "strict_errors": 2,
+      "strict_only": 2
+     }
+    },
+    "auroc_weighted": {
+     "strict": 0.6417968327283455,
+     "lenient": 0.729718220972904,
+     "lenient_errors_vs_strict_correct": 0.741084609173573,
+     "strict_only_errors_vs_strict_correct": 0.5610737353188457,
+     "lenient_minus_strict_only": 0.18001087385472725
+    },
+    "bootstrap": {
+     "lenient_errors_vs_strict_correct": [
+      0.6781211407902301,
+      0.8007613769135381
+     ],
+     "strict_only_errors_vs_strict_correct": [
+      0.4795981625745738,
+      0.6397690427384841
+     ],
+     "strict": [
+      0.580849062644884,
+      0.7013032715398629
+     ],
+     "lenient": [
+      0.6691204570247241,
+      0.788332123960234
+     ],
+     "lenient_minus_strict_only": [
+      0.09714254346830377,
+      0.2644266653749793
+     ],
+     "resamples": 2000
+    }
+   },
+   "ai2_validation_points": {
+    "n": 259,
+    "errors": 32,
+    "auroc_unweighted": 0.8141519823788547,
+    "confident_third": {
+     "cut_p1": 0.9998426642333414,
+     "points": 87,
+     "errors": 2
+    },
+    "grass_shrub": {
+     "points": 142,
+     "errors": 8,
+     "auroc_unweighted": 0.8889925373134329,
+     "shrubland_savanna_where_ai2_labels_grassland_barren": 2,
+     "grassland_barren_where_ai2_labels_shrubland_savanna": 6,
+     "median_p1_errors": 0.8503361332828201,
+     "median_p1_correct": 0.9996926705903966,
+     "errors_at_or_above_the_transfer_confident_cut": 1
+    }
+   },
+   "losses": {
+    "transfer_and_point_placement": 0.07306737320528167,
+    "legend": 0.09928777644522746
+   }
+  }
+ }
+}

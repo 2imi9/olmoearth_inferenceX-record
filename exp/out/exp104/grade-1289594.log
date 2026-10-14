@@ -1,0 +1,39 @@
+== 2026-10-11T21:14:27-04:00 job 1289594 on w0005: exp104 grade, commit 4c2f6c27d01f923a0e886e372030ce64783b1c21, page frozen ==
+{"P1": 0.7704242309684904, "P2": 0.4572697475772217}
+{
+ "P1": {
+  "rule": "design-weighted AUROC of the suspicion (minus log top-1) for the errors >= 0.7",
+  "threshold": 0.7,
+  "value": 0.7704242309684904,
+  "graded": true,
+  "holds": true
+ },
+ "P2": {
+  "rule": "share of the gap from random to the ceiling closed by the least confident 10% of the design weight >= 0.25",
+  "threshold": 0.25,
+  "value": 0.4572697475772217,
+  "graded": true,
+  "holds": true
+ },
+ "P3": {
+  "rule": "descriptive: the design-weighted error rate with the stratified exact interval, each stratum's exact interval, Ai2's 76.1% beside them, the confusion counts",
+  "graded": false
+ },
+ "floors": {
+  "min_with_prediction": 500,
+  "min_errors": 20,
+  "min_correct": 20,
+  "n_with_prediction": 689,
+  "n_errors": 71,
+  "n_correct": 618
+ },
+ "reading": "P1 and P2 hold: the confidence ranks the errors on a second task"
+}
+total 45
+drwx------ 2 qi_zim_neu qi_zim_neu  4096 Oct 11 21:14 .
+drwx------ 2 qi_zim_neu qi_zim_neu  4096 Oct 11 21:14 ..
+-rw------- 1 qi_zim_neu qi_zim_neu  7939 Oct 11 21:14 exp104_summary.json
+-rw------- 1 qi_zim_neu qi_zim_neu 37406 Oct 11 21:14 exp104_units.npz
+== 2026-10-11T21:14:28-04:00 done: e104_out/grade/ (copy to exp/out/ when recording) ==
+on scratch: 6.6M	/scratch/qi_zim_neu/olmoearth_inferenceX/e104_out
+on scratch: 2.3G	<private>

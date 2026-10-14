@@ -1,0 +1,37 @@
+{
+ "reading": "post hoc, report-only (not preregistered); asked for by the audit of exp104's grade",
+ "source": "exp/out/exp104_units.npz",
+ "groups": {
+  "all": {
+   "n": 71,
+   "weighted_auroc_against_correct": 0.7704242309684904,
+   "median_top1": 0.6545513868331909
+  },
+  "to_a_class_mapbiomas_does_not_record": {
+   "n": 53,
+   "weighted_auroc_against_correct": 0.9447816709835141,
+   "median_top1": 0.581733763217926
+  },
+  "between_agriculture_and_mining": {
+   "n": 18,
+   "weighted_auroc_against_correct": 0.4001863461199367,
+   "median_top1": 0.9950358271598816
+  }
+ },
+ "correct": {
+  "n": 618,
+  "median_top1": 0.9962814748287201
+ },
+ "by_stratum": {
+  "agriculture": {
+   "n": 300,
+   "errors": 33,
+   "auroc": 0.754057428214731
+  },
+  "mining": {
+   "n": 389,
+   "errors": 38,
+   "auroc": 0.9425701004648374
+  }
+ }
+}

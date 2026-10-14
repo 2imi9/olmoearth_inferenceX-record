@@ -1,0 +1,144 @@
+NVIDIA B200, 595.71.05, 183359 MiB
+rslearn 0.1.17
+olmoearth-pretrain-minimal 0.1.2
+olmoearth-pretrain not installed
+torch 2.14.1
+lightning 2.6.6
+ModelID: ['OLMOEARTH_V1_NANO', 'OLMOEARTH_V1_TINY', 'OLMOEARTH_V1_BASE', 'OLMOEARTH_V1_LARGE', 'OLMOEARTH_V1_1_NANO', 'OLMOEARTH_V1_1_TINY', 'OLMOEARTH_V1_1_BASE', 'OLMOEARTH_V1_2_NANO', 'OLMOEARTH_V1_2_TINY', 'OLMOEARTH_V1_2_SMALL', 'OLMOEARTH_V1_2_BASE', 'OLMOEARTH_V1_3_BASE']
+knows OLMOEARTH_V1_2_BASE: True
+== 2026-10-11T03:04:54-04:00 job 1277383 on b0004: exp102 train, commit 3847ae7 ==
+format=2026-10-11 03:04:57,687 loglevel=INFO   logger=rslearn.main main() L1112 Using multiprocessing context: <multiprocessing.context.ForkServerContext object at 0x7f675540d6d0>
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/cli.py:553: LightningCLI's args parameter is intended to run from within Python like if it were from the command line. To prevent mistakes it is not recommended to provide both args and command line arguments, got: sys.argv[1:]=['model', 'fit', '--config', '/scratch/qi_zim_neu/olmoearth_inferenceX/e102_code/exp/jobs/e102_config/model.yaml', '--seed_everything', '0'], args=['fit', '--config', '/scratch/qi_zim_neu/olmoearth_inferenceX/e102_code/exp/jobs/e102_config/model.yaml', '--seed_everything', '0'].
+[rank: 0] Seed set to 0
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/data_module.py:135: FutureWarning: patch_size is deprecated, use crop_size instead
+  "predict": SplitConfig.merge_and_validate([default_config, predict_config]),
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/data_module.py:135: FutureWarning: overlap_ratio is deprecated, use overlap_pixels instead
+  "predict": SplitConfig.merge_and_validate([default_config, predict_config]),
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/data_module.py:135: FutureWarning: load_all_patches is deprecated, use load_all_crops instead
+  "predict": SplitConfig.merge_and_validate([default_config, predict_config]),
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/models/olmoearth_pretrain/model.py:170: FutureWarning: For new projects, don't use legacy timesteps. Support will be removed after 2026-04-01.
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+format=2026-10-11 03:05:26,810 loglevel=INFO   logger=rslearn.models.multitask _init_loss_weights() L115  loss_weights: {'segment': 1.0}
+format=2026-10-11 03:05:26,810 loglevel=WARNING logger=rslearn.train.lightning_module __init__() L146  The plateau argument to RslearnLightningModule is deprecated and will be removed in a future version
+format=2026-10-11 03:05:26,810 loglevel=WARNING logger=rslearn.train.lightning_module __init__() L159  Defaulting the optimizer to AdamW since an OptimizerFactory was not provided. In a future version, the optimizer will be a required argument.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/jsonargparse/_instantiation.py:179: FutureWarning: padding is deprecated, use overlap_pixels instead. Note: overlap_pixels = padding * 2
+  return class_type(*args, **kwargs)
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/fabric/plugins/environments/slurm.py:204: The `srun` command is available on your system but is not used. HINT: If your intention is to run Lightning on SLURM, prepend your python command with `srun` like so: srun python /scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/b ...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+You are using a CUDA device ('NVIDIA B200') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/config/dataset.py:544: FutureWarning: `Data source configuration {'name': ...}` is deprecated; use `{'class_path': '...', 'init_args': {...}, ...}` instead. Support will be removed after 2026-03-01.
+  warnings.warn(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/config/dataset.py:426: FutureWarning: SpaceMode.PER_PERIOD_MOSAIC is deprecated and will be removed after 2026-05-01. Use SpaceMode.MOSAIC with period_duration instead.
+  warnings.warn(
+Loading windows:   0%|          | 0/1459 [00:00<?, ?it/s]Loading windows:  18%|█▊        | 265/1459 [00:00<00:00, 2645.60it/s]Loading windows:  44%|████▍     | 648/1459 [00:00<00:00, 3336.11it/s]Loading windows:  77%|███████▋  | 1129/1459 [00:00<00:00, 3998.16it/s]Loading windows: 100%|██████████| 1459/1459 [00:00<00:00, 3798.64it/s]
+format=2026-10-11 03:05:40,940 loglevel=INFO   logger=rslearn.train.dataset _get_initial_windows() L1062 Started with 1459 windows, ended with 1115 windows for /scratch/qi_zim_neu/olmoearth_inferenceX/data/exp89/awf/dataset
+format=2026-10-11 03:05:40,940 loglevel=INFO   logger=rslearn.train.dataset _get_initial_windows() L1066 Removed 344 windows due to tag split
+Checking available layers in windows:   0%|          | 0/1115 [00:00<?, ?it/s]Checking available layers in windows:  18%|█▊        | 205/1115 [00:00<00:00, 2048.84it/s]Checking available layers in windows:  40%|███▉      | 444/1115 [00:00<00:00, 2238.09it/s]Checking available layers in windows:  62%|██████▏   | 686/1115 [00:00<00:00, 2308.50it/s]Checking available layers in windows:  83%|████████▎ | 921/1115 [00:00<00:00, 2319.11it/s]Checking available layers in windows: 100%|██████████| 1115/1115 [00:00<00:00, 2319.06it/s]
+format=2026-10-11 03:05:41,474 loglevel=INFO   logger=rslearn.train.dataset __init__() L1014 Writing 1115 dataset examples to /tmp/rslearn_dataset_examples/3640477_fdc04bdc-0c56-48d4-af3f-2fa108ec19c6.json
+format=2026-10-11 03:05:41,500 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 1115 examples in split train
+Loading windows:   0%|          | 0/1459 [00:00<?, ?it/s]Loading windows:  34%|███▎      | 490/1459 [00:00<00:00, 4883.74it/s]Loading windows:  67%|██████▋   | 979/1459 [00:00<00:00, 4495.81it/s]Loading windows: 100%|█████████▉| 1455/1459 [00:00<00:00, 4598.81it/s]Loading windows: 100%|██████████| 1459/1459 [00:00<00:00, 4577.06it/s]
+format=2026-10-11 03:05:41,891 loglevel=INFO   logger=rslearn.train.dataset _get_initial_windows() L1062 Started with 1459 windows, ended with 344 windows for /scratch/qi_zim_neu/olmoearth_inferenceX/data/exp89/awf/dataset
+format=2026-10-11 03:05:41,891 loglevel=INFO   logger=rslearn.train.dataset _get_initial_windows() L1066 Removed 1115 windows due to tag split
+Checking available layers in windows:   0%|          | 0/344 [00:00<?, ?it/s]Checking available layers in windows:  62%|██████▏   | 212/344 [00:00<00:00, 2119.82it/s]Checking available layers in windows: 100%|██████████| 344/344 [00:00<00:00, 2225.92it/s]
+format=2026-10-11 03:05:42,094 loglevel=INFO   logger=rslearn.train.dataset __init__() L1014 Writing 344 dataset examples to /tmp/rslearn_dataset_examples/3640477_cfa4edce-1c4b-43fb-ab2b-8142b9def14b.json
+format=2026-10-11 03:05:42,103 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 344 examples in split val
+format=2026-10-11 03:05:42,103 loglevel=INFO   logger=rslearn.train.callbacks.freeze_unfreeze freeze_before_training() L61   freezing model at ['model', 'encoder', 0]
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/callbacks/model_checkpoint.py:881: Checkpoint directory /scratch/qi_zim_neu/olmoearth_inferenceX/e102/runs/v1_2_s0 exists and is not empty.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+format=2026-10-11 03:05:42,506 loglevel=INFO   logger=rslearn.train.scheduler build() L30   Using scheduler PlateauScheduler with kwargs {'factor': 0.2, 'patience': 2, 'cooldown': 10, 'min_lr': 0.0}
+┏━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┓
+┃   ┃ Name         ┃ Type             ┃ Params ┃ Mode  ┃ FLOPs ┃
+┡━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━┩
+│ 0 │ model        │ MultiTaskModel   │  113 M │ train │     0 │
+│ 1 │ val_metrics  │ MetricCollection │      0 │ train │     0 │
+│ 2 │ test_metrics │ MetricCollection │      0 │ train │     0 │
+└───┴──────────────┴──────────────────┴────────┴───────┴───────┘
+Trainable params: 7.7 K                                                         
+Non-trainable params: 113 M                                                     
+Total params: 113 M                                                             
+Total estimated model params size (MB): 455.982                                 
+Modules in train mode: 453                                                      
+Modules in eval mode: 0                                                         
+Total FLOPs: 0                                                                  
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/utilities/_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/accuracy', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/agriculture_settlement_precision', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/agriculture_settlement_recall', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/grassland_barren_precision', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/grassland_barren_recall', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/herbaceous_wetland_precision', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/herbaceous_wetland_recall', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/lava_forest_precision', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/lava_forest_recall', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/montane_forest_precision', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/montane_forest_recall', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/open_water_precision', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/open_water_recall', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/shrubland_savanna_precision', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/shrubland_savanna_recall', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/urban_dense_development_precision', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/urban_dense_development_recall', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/woodland_forest_precision', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/lightning/pytorch/trainer/connectors/logger_connector/result.py:433: It is recommended to use `self.log('val_segment/woodland_forest_recall', ..., sync_dist=True)` when logging on epoch level in distributed setting to accumulate the metric across devices.
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/rslearn/train/dataset.py:1300: FutureWarning: Falling back to item-level time range for single-timestep RasterImage is deprecated and will be removed after 2026-05-01. Ensure timestamps are stored with the raster data.
+  raw_inputs[name] = read_data_input(
+[rank0]:[W1011 03:05:46.368283124 reducer.cpp:1529] Warning: find_unused_parameters=True was specified in DDP constructor, but did not find any unused parameters in the forward pass. This flag results in an extra traversal of the autograd graph every iteration,  which can adversely affect performance. If your model indeed never has any unused parameters in the forward pass, consider turning this flag off. Note that this warning may be a false positive if your model has flow control causing later iterations to have unused parameters. (function operator())
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python3.12/site-packages/torch/autograd/graph.py:1072: UserWarning: The AccumulateGrad node's stream does not match the stream of the node that produced the incoming gradient. This may incur unnecessary synchronization and break CUDA graph capture if the AccumulateGrad node's stream is the default stream. This mismatch is caused by an AccumulateGrad node created prior to the current iteration being kept alive. This can happen if the autograd graph is still being kept alive by tensors such as the loss, or if you are using DDP, which will stash a reference to the node. To resolve the mismatch, delete all references to the autograd graph or ensure that DDP initialization is performed under the same stream as subsequent forwards. If the mismatch is intentional, you can use torch.autograd.graph.set_warn_on_accumulate_grad_stream_mismatch(False) to suppress this warning. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/input_buffer.cpp:310.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+format=2026-10-11 03:10:48,288 loglevel=INFO   logger=rslearn.train.callbacks.freeze_unfreeze finetune_function() L77   unfreezing model at ['model', 'encoder', 0] since we are on epoch 20
+format=2026-10-11 03:10:48,289 loglevel=INFO   logger=rslearn.train.callbacks.freeze_unfreeze finetune_function() L89   appending to ReduceLROnPlateau scheduler min_lrs for unfreeze
+`Trainer.fit` stopped: `max_epochs=100` reached.
+Epoch 99/99 ━━━━━━━━━━━━━━━━ 279/279 0:00:10 •       27.77it/s v_num: 0.000     
+                                     0:00:00                   val_loss: 0.533  
+                                                               train_segment_cl…
+                                                               0.012            
+total 2269771
+drwxr-xr-x 2 qi_zim_neu qi_zim_neu       4096 Oct 11 03:20 .
+drwxr-xr-x 2 qi_zim_neu qi_zim_neu       4096 Oct 11 03:04 ..
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu         41 Oct 11 03:04 commit.txt
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu 1162122041 Oct 11 03:20 epoch=60-step=17019.ckpt
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu 1162122041 Oct 11 03:20 last.ckpt
+drwxr-xr-x 2 qi_zim_neu qi_zim_neu       4096 Oct 11 03:05 log
+99,,,,27899,,,0.5327067971229553,0.8895348906517029,0.8474576473236084,0.8928571343421936,0.8970588445663452,0.8472222089767456,0.5,0.6666666865348816,1.0,1.0,1.0,0.800000011920929,1.0,1.0,0.8780487775802612,0.931034505367279,1.0,1.0,0.9230769276618958,0.800000011920929,0.5327067971229553
+99,,,,27899,0.012039372697472572,0.012039372697472572,,,,,,,,,,,,,,,,,,,,,
+e102 on scratch: 10G	/scratch/qi_zim_neu/olmoearth_inferenceX/e102
+== 2026-10-11T03:30:31-04:00 done ==

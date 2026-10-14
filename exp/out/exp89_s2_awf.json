@@ -1,0 +1,52 @@
+{
+ "experiment": "exp89 S2: the real checkpoint on training windows (in-sample, never graded)",
+ "arm": "awf",
+ "utc": "2026-10-01T22:29:38Z",
+ "commit": "b6d82f38c102117e7f91595af28528cc66575e78",
+ "replica": {
+  "arm": "awf",
+  "device": "cpu",
+  "checkpoint_sha256": "1036b76bf7dfde819479dfa02507634f59a5637f14d4071bc3bf18f4d3d4bab2",
+  "encoder_config": {
+   "model_id": "OLMOEARTH_V1_BASE",
+   "revision": "4bd1392a4539404d2c74276c39f3cb4cfff466cc"
+  },
+  "load": "weights_only",
+  "top_level": [
+   "callbacks",
+   "epoch",
+   "global_step",
+   "loops",
+   "lr_schedulers",
+   "optimizer_states",
+   "pytorch-lightning_version",
+   "state_dict"
+  ],
+  "encoder_prefix": "model.encoder.0.model.",
+  "n_encoder_keys": 231,
+  "n_checkpoint_keys": 233,
+  "head_shape": [
+   10,
+   768
+  ],
+  "dtype": "float32",
+  "tf32": false,
+  "patch": 4,
+  "head": null,
+  "unused_checkpoint_keys": null
+ },
+ "n_windows": 512,
+ "one_batch_output_shape": [
+  2,
+  10
+ ],
+ "expected_columns": 10,
+ "accuracy_in_sample": 0.98046875,
+ "accuracy_bar": null,
+ "accuracy_ok": null,
+ "n_pred_untrained": 0,
+ "n_groups": {
+  "12": 512
+ },
+ "ok": true
+}

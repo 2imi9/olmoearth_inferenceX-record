@@ -1,0 +1,1167 @@
+{
+ "experiment": "exp94",
+ "preregistered": true,
+ "Q1": {
+  "nlcd_A2001:nlcd_vs_lcmap": {
+   "N": 8000,
+   "D": 1467,
+   "K_A": 452,
+   "K_B": 782,
+   "acc_a": 0.7365,
+   "acc_b": 0.77775,
+   "delta": -0.04125,
+   "cells": {
+    "disagree_50": {
+     "labels": 50,
+     "coverage": 0.9905,
+     "decides": 0.205,
+     "decides_right": 0.205,
+     "decides_wrong": 0.0,
+     "median_width_points": 11.2875
+    },
+    "random_50": {
+     "labels": 50,
+     "coverage": 0.994,
+     "decides": 0.019,
+     "decides_right": 0.0185,
+     "decides_wrong": 0.0005,
+     "median_width_points": 23.974999999999998
+    },
+    "disagree_100": {
+     "labels": 100,
+     "coverage": 0.988,
+     "decides": 0.5025,
+     "decides_right": 0.5025,
+     "decides_wrong": 0.0,
+     "median_width_points": 7.825000000000001
+    },
+    "random_100": {
+     "labels": 100,
+     "coverage": 0.9915,
+     "decides": 0.0555,
+     "decides_right": 0.0555,
+     "decides_wrong": 0.0,
+     "median_width_points": 18.087500000000002
+    },
+    "disagree_200": {
+     "labels": 200,
+     "coverage": 0.9855,
+     "decides": 0.892,
+     "decides_right": 0.892,
+     "decides_wrong": 0.0,
+     "median_width_points": 5.312500000000001
+    },
+    "random_200": {
+     "labels": 200,
+     "coverage": 0.9885,
+     "decides": 0.129,
+     "decides_right": 0.129,
+     "decides_wrong": 0.0,
+     "median_width_points": 13.175000000000004
+    }
+   }
+  },
+  "nlcd_A2006:nlcd_vs_lcmap": {
+   "N": 8000,
+   "D": 1812,
+   "K_A": 598,
+   "K_B": 976,
+   "acc_a": 0.715875,
+   "acc_b": 0.763125,
+   "delta": -0.04725,
+   "cells": {
+    "disagree_50": {
+     "labels": 50,
+     "coverage": 0.9925,
+     "decides": 0.1655,
+     "decides_right": 0.1655,
+     "decides_wrong": 0.0,
+     "median_width_points": 14.124999999999998
+    },
+    "random_50": {
+     "labels": 50,
+     "coverage": 0.9955,
+     "decides": 0.027,
+     "decides_right": 0.027,
+     "decides_wrong": 0.0,
+     "median_width_points": 27.849999999999998
+    },
+    "disagree_100": {
+     "labels": 100,
+     "coverage": 0.9855,
+     "decides": 0.4295,
+     "decides_right": 0.4295,
+     "decides_wrong": 0.0,
+     "median_width_points": 9.837499999999999
+    },
+    "random_100": {
+     "labels": 100,
+     "coverage": 0.991,
+     "decides": 0.0535,
+     "decides_right": 0.0535,
+     "decides_wrong": 0.0,
+     "median_width_points": 20.7875
+    },
+    "disagree_200": {
+     "labels": 200,
+     "coverage": 0.988,
+     "decides": 0.8295,
+     "decides_right": 0.8295,
+     "decides_wrong": 0.0,
+     "median_width_points": 6.712499999999999
+    },
+    "random_200": {
+     "labels": 200,
+     "coverage": 0.9885,
+     "decides": 0.1565,
+     "decides_right": 0.1565,
+     "decides_wrong": 0.0,
+     "median_width_points": 14.762500000000001
+    }
+   }
+  },
+  "nlcd_A2011:nlcd_vs_lcmap": {
+   "N": 8000,
+   "D": 1733,
+   "K_A": 727,
+   "K_B": 817,
+   "acc_a": 0.756625,
+   "acc_b": 0.767875,
+   "delta": -0.01125,
+   "cells": {
+    "disagree_50": {
+     "labels": 50,
+     "coverage": 0.989,
+     "decides": 0.0135,
+     "decides_right": 0.013,
+     "decides_wrong": 0.0005,
+     "median_width_points": 13.750000000000002
+    },
+    "random_50": {
+     "labels": 50,
+     "coverage": 0.99,
+     "decides": 0.009,
+     "decides_right": 0.007,
+     "decides_wrong": 0.002,
+     "median_width_points": 27.237500000000004
+    },
+    "disagree_100": {
+     "labels": 100,
+     "coverage": 0.988,
+     "decides": 0.0295,
+     "decides_right": 0.0295,
+     "decides_wrong": 0.0,
+     "median_width_points": 9.5875
+    },
+    "random_100": {
+     "labels": 100,
+     "coverage": 0.9905,
+     "decides": 0.01,
+     "decides_right": 0.0075,
+     "decides_wrong": 0.0025,
+     "median_width_points": 20.5
+    },
+    "disagree_200": {
+     "labels": 200,
+     "coverage": 0.984,
+     "decides": 0.0515,
+     "decides_right": 0.051,
+     "decides_wrong": 0.0005,
+     "median_width_points": 6.537500000000001
+    },
+    "random_200": {
+     "labels": 200,
+     "coverage": 0.986,
+     "decides": 0.0225,
+     "decides_right": 0.0185,
+     "decides_wrong": 0.004,
+     "median_width_points": 14.75
+    }
+   }
+  },
+  "nlcd_B2011:nlcd_vs_lcmap": {
+   "N": 4629,
+   "D": 982,
+   "K_A": 454,
+   "K_B": 417,
+   "acc_a": 0.7662562108446749,
+   "acc_b": 0.7582631237848347,
+   "delta": 0.007993087059840137,
+   "cells": {
+    "disagree_50": {
+     "labels": 50,
+     "coverage": 0.99,
+     "decides": 0.0135,
+     "decides_right": 0.012,
+     "decides_wrong": 0.0015,
+     "median_width_points": 13.307409807733855
+    },
+    "random_50": {
+     "labels": 50,
+     "coverage": 0.9925,
+     "decides": 0.0095,
+     "decides_right": 0.0065,
+     "decides_wrong": 0.003,
+     "median_width_points": 26.91726074746165
+    },
+    "disagree_100": {
+     "labels": 100,
+     "coverage": 0.9885,
+     "decides": 0.024,
+     "decides_right": 0.0215,
+     "decides_wrong": 0.0025,
+     "median_width_points": 9.159645711816808
+    },
+    "random_100": {
+     "labels": 100,
+     "coverage": 0.9875,
+     "decides": 0.0155,
+     "decides_right": 0.012,
+     "decides_wrong": 0.0035,
+     "median_width_points": 20.177144091596453
+    },
+    "disagree_200": {
+     "labels": 200,
+     "coverage": 0.9915,
+     "decides": 0.035,
+     "decides_right": 0.0335,
+     "decides_wrong": 0.0015,
+     "median_width_points": 6.070425577878592
+    },
+    "random_200": {
+     "labels": 200,
+     "coverage": 0.9865,
+     "decides": 0.018,
+     "decides_right": 0.0135,
+     "decides_wrong": 0.0045,
+     "median_width_points": 14.409159645711817
+    }
+   }
+  },
+  "nlcd_B2016:nlcd_vs_lcmap": {
+   "N": 4629,
+   "D": 1115,
+   "K_A": 636,
+   "K_B": 364,
+   "acc_a": 0.8172391445236552,
+   "acc_b": 0.7584791531648304,
+   "delta": 0.0587599913588248,
+   "cells": {
+    "disagree_50": {
+     "labels": 50,
+     "coverage": 0.9855,
+     "decides": 0.24,
+     "decides_right": 0.24,
+     "decides_wrong": 0.0,
+     "median_width_points": 14.841218405703177
+    },
+    "random_50": {
+     "labels": 50,
+     "coverage": 0.9915,
+     "decides": 0.0365,
+     "decides_right": 0.0365,
+     "decides_wrong": 0.0,
+     "median_width_points": 28.775113415424496
+    },
+    "disagree_100": {
+     "labels": 100,
+     "coverage": 0.9835,
+     "decides": 0.59,
+     "decides_right": 0.59,
+     "decides_wrong": 0.0,
+     "median_width_points": 10.218189673795635
+    },
+    "random_100": {
+     "labels": 100,
+     "coverage": 0.99,
+     "decides": 0.1045,
+     "decides_right": 0.1045,
+     "decides_wrong": 0.0,
+     "median_width_points": 21.19248217757615
+    },
+    "disagree_200": {
+     "labels": 200,
+     "coverage": 0.9865,
+     "decides": 0.951,
+     "decides_right": 0.951,
+     "decides_wrong": 0.0,
+     "median_width_points": 6.8049254698639015
+    },
+    "random_200": {
+     "labels": 200,
+     "coverage": 0.987,
+     "decides": 0.2455,
+     "decides_right": 0.2455,
+     "decides_wrong": 0.0,
+     "median_width_points": 14.99243897170015
+    }
+   }
+  },
+  "gfc2020:gfc_vs_worldcover": {
+   "N": 21612,
+   "D": 1770,
+   "K_A": 962,
+   "K_B": 808,
+   "acc_a": 0.9119933370349805,
+   "acc_b": 0.9048676661114196,
+   "delta": 0.007125670923560984,
+   "cells": {
+    "disagree_50": {
+     "labels": 50,
+     "coverage": 0.987,
+     "decides": 0.0305,
+     "decides_right": 0.029,
+     "decides_wrong": 0.0015,
+     "median_width_points": 5.228576716638904
+    },
+    "random_50": {
+     "labels": 50,
+     "coverage": 0.999,
+     "decides": 0.0015,
+     "decides_right": 0.0015,
+     "decides_wrong": 0.0,
+     "median_width_points": 13.881177123820104
+    },
+    "disagree_100": {
+     "labels": 100,
+     "coverage": 0.9805,
+     "decides": 0.0715,
+     "decides_right": 0.071,
+     "decides_wrong": 0.0005,
+     "median_width_points": 3.6461225245234123
+    },
+    "random_100": {
+     "labels": 100,
+     "coverage": 0.989,
+     "decides": 0.0175,
+     "decides_right": 0.014,
+     "decides_wrong": 0.0035,
+     "median_width_points": 11.567647603183417
+    },
+    "disagree_200": {
+     "labels": 200,
+     "coverage": 0.9835,
+     "decides": 0.1485,
+     "decides_right": 0.1485,
+     "decides_wrong": 0.0,
+     "median_width_points": 2.4893577642050713
+    },
+    "random_200": {
+     "labels": 200,
+     "coverage": 0.987,
+     "decides": 0.017,
+     "decides_right": 0.013,
+     "decides_wrong": 0.004,
+     "median_width_points": 8.883953359244865
+    }
+   }
+  },
+  "eastafrica_2017:cgls_vs_esri": {
+   "N": 13975,
+   "D": 5479,
+   "K_A": 2388,
+   "K_B": 2297,
+   "acc_a": 0.6082289803220036,
+   "acc_b": 0.6017173524150269,
+   "delta": 0.0065116279069767444,
+   "cells": {
+    "disagree_50": {
+     "labels": 50,
+     "coverage": 0.9875,
+     "decides": 0.013,
+     "decides_right": 0.0095,
+     "decides_wrong": 0.0035,
+     "median_width_points": 25.08050089445438
+    },
+    "random_50": {
+     "labels": 50,
+     "coverage": 0.9865,
+     "decides": 0.0125,
+     "decides_right": 0.0075,
+     "decides_wrong": 0.005,
+     "median_width_points": 38.61180679785331
+    },
+    "disagree_100": {
+     "labels": 100,
+     "coverage": 0.989,
+     "decides": 0.013,
+     "decides_right": 0.0105,
+     "decides_wrong": 0.0025,
+     "median_width_points": 17.667262969588553
+    },
+    "random_100": {
+     "labels": 100,
+     "coverage": 0.988,
+     "decides": 0.012,
+     "decides_right": 0.0065,
+     "decides_wrong": 0.0055,
+     "median_width_points": 28.064400715563504
+    },
+    "disagree_200": {
+     "labels": 200,
+     "coverage": 0.99,
+     "decides": 0.015,
+     "decides_right": 0.0125,
+     "decides_wrong": 0.0025,
+     "median_width_points": 12.329159212880144
+    },
+    "random_200": {
+     "labels": 200,
+     "coverage": 0.9865,
+     "decides": 0.013,
+     "decides_right": 0.008,
+     "decides_wrong": 0.005,
+     "median_width_points": 19.97853309481216
+    }
+   }
+  },
+  "europe_2017:odse_vs_esri": {
+   "N": 49897,
+   "D": 9274,
+   "K_A": 5553,
+   "K_B": 3181,
+   "acc_a": 0.8934204461190052,
+   "acc_b": 0.8458825179870534,
+   "delta": 0.04753792813195182,
+   "cells": {
+    "disagree_50": {
+     "labels": 50,
+     "coverage": 0.988,
+     "decides": 0.3015,
+     "decides_right": 0.3015,
+     "decides_wrong": 0.0,
+     "median_width_points": 11.69008156803014
+    },
+    "random_50": {
+     "labels": 50,
+     "coverage": 0.9965,
+     "decides": 0.0275,
+     "decides_right": 0.027,
+     "decides_wrong": 0.0005,
+     "median_width_points": 24.38022325991543
+    },
+    "disagree_100": {
+     "labels": 100,
+     "coverage": 0.985,
+     "decides": 0.5835,
+     "decides_right": 0.5835,
+     "decides_wrong": 0.0,
+     "median_width_points": 8.23496402589334
+    },
+    "random_100": {
+     "labels": 100,
+     "coverage": 0.986,
+     "decides": 0.078,
+     "decides_right": 0.0775,
+     "decides_wrong": 0.0005,
+     "median_width_points": 18.431969857907287
+    },
+    "disagree_200": {
+     "labels": 200,
+     "coverage": 0.983,
+     "decides": 0.9135,
+     "decides_right": 0.9135,
+     "decides_wrong": 0.0,
+     "median_width_points": 5.757861194059763
+    },
+    "random_200": {
+     "labels": 200,
+     "coverage": 0.986,
+     "decides": 0.2025,
+     "decides_right": 0.2025,
+     "decides_wrong": 0.0,
+     "median_width_points": 13.395594925546625
+    }
+   }
+  }
+ },
+ "Q2": {
+  "nlcd_A2001:nlcd_level2": {
+   "N": 8000,
+   "errors": 3482,
+   "labels": 300,
+   "error_rate": 0.43525,
+   "coverage": 0.955,
+   "median_width_points": 11.2875
+  },
+  "nlcd_A2001:lcmap": {
+   "N": 8000,
+   "errors": 1778,
+   "labels": 300,
+   "error_rate": 0.22225,
+   "coverage": 0.9605,
+   "median_width_points": 9.4875
+  },
+  "nlcd_A2006:nlcd_level2": {
+   "N": 8000,
+   "errors": 3683,
+   "labels": 300,
+   "error_rate": 0.460375,
+   "coverage": 0.9505,
+   "median_width_points": 11.337500000000006
+  },
+  "nlcd_A2006:lcmap": {
+   "N": 8000,
+   "errors": 1895,
+   "labels": 300,
+   "error_rate": 0.236875,
+   "coverage": 0.9535,
+   "median_width_points": 9.725
+  },
+  "nlcd_A2011:nlcd_level2": {
+   "N": 8000,
+   "errors": 3609,
+   "labels": 300,
+   "error_rate": 0.451125,
+   "coverage": 0.9605,
+   "median_width_points": 11.325000000000001
+  },
+  "nlcd_A2011:lcmap": {
+   "N": 8000,
+   "errors": 1857,
+   "labels": 300,
+   "error_rate": 0.232125,
+   "coverage": 0.961,
+   "median_width_points": 9.625
+  },
+  "nlcd_B2011:nlcd_level2": {
+   "N": 4629,
+   "errors": 1830,
+   "labels": 300,
+   "error_rate": 0.3953337653920933,
+   "coverage": 0.957,
+   "median_width_points": 10.952689565780949
+  },
+  "nlcd_B2011:lcmap": {
+   "N": 4629,
+   "errors": 1119,
+   "labels": 300,
+   "error_rate": 0.24173687621516526,
+   "coverage": 0.96,
+   "median_width_points": 9.678116223806441
+  },
+  "nlcd_B2016:nlcd_level2": {
+   "N": 4629,
+   "errors": 1755,
+   "labels": 300,
+   "error_rate": 0.37913156189241737,
+   "coverage": 0.9585,
+   "median_width_points": 10.887880751782241
+  },
+  "nlcd_B2016:lcmap": {
+   "N": 4629,
+   "errors": 1118,
+   "labels": 300,
+   "error_rate": 0.24152084683516958,
+   "coverage": 0.9535,
+   "median_width_points": 9.678116223806441
+  },
+  "gfc2020:gfc_v2": {
+   "N": 21612,
+   "errors": 1902,
+   "labels": 300,
+   "error_rate": 0.08800666296501944,
+   "coverage": 0.9595,
+   "median_width_points": 6.653710901351101
+  },
+  "gfc2020:worldcover": {
+   "N": 21612,
+   "errors": 2056,
+   "labels": 300,
+   "error_rate": 0.09513233388858042,
+   "coverage": 0.956,
+   "median_width_points": 6.866555617249675
+  },
+  "eastafrica_2015:cgls": {
+   "N": 14000,
+   "errors": 5472,
+   "labels": 300,
+   "error_rate": 0.39085714285714285,
+   "coverage": 0.9625,
+   "median_width_points": 11.2
+  },
+  "eastafrica_2016:cgls": {
+   "N": 14000,
+   "errors": 5474,
+   "labels": 300,
+   "error_rate": 0.391,
+   "coverage": 0.9595,
+   "median_width_points": 11.2
+  },
+  "eastafrica_2017:cgls": {
+   "N": 14000,
+   "errors": 5486,
+   "labels": 300,
+   "error_rate": 0.39185714285714285,
+   "coverage": 0.9615,
+   "median_width_points": 11.221428571428572
+  },
+  "eastafrica_2017:esri": {
+   "N": 13975,
+   "errors": 5566,
+   "labels": 300,
+   "error_rate": 0.39828264758497317,
+   "coverage": 0.957,
+   "median_width_points": 11.227191413237925
+  },
+  "europe_2017:odse": {
+   "N": 49897,
+   "errors": 5318,
+   "labels": 300,
+   "error_rate": 0.10657955388099485,
+   "coverage": 0.96,
+   "median_width_points": 7.289015371665632
+  },
+  "europe_2017:esri": {
+   "N": 51496,
+   "errors": 7698,
+   "labels": 300,
+   "error_rate": 0.1494873388224328,
+   "coverage": 0.9575,
+   "median_width_points": 8.369582103464346
+  }
+ },
+ "Q3": {
+  "nlcd_A2001:lcmap_lcpconf": {
+   "n": 7337,
+   "errors": 1558,
+   "error_rate": 0.212348371268911,
+   "auroc": 0.7421136152964976,
+   "auroc_ci95": [
+    0.7290829933563586,
+    0.7559620085832546
+   ],
+   "capture_10pct": 0.260167153743206,
+   "ceiling_10pct": 0.4711168164313222,
+   "excess_aurc": 0.0901728935266706
+  },
+  "nlcd_A2006:lcmap_lcpconf": {
+   "n": 7193,
+   "errors": 1595,
+   "error_rate": 0.22174336160155708,
+   "auroc": 0.7388893368769186,
+   "auroc_ci95": [
+    0.7250511924654637,
+    0.7529099711352455
+   ],
+   "capture_10pct": 0.2501567398119122,
+   "ceiling_10pct": 0.4507836990595611,
+   "excess_aurc": 0.09441471923012264
+  },
+  "nlcd_A2011:lcmap_lcpconf": {
+   "n": 7201,
+   "errors": 1594,
+   "error_rate": 0.2213581447021247,
+   "auroc": 0.735800092150451,
+   "auroc_ci95": [
+    0.7216455526494653,
+    0.750112033513008
+   ],
+   "capture_10pct": 0.25613909302742427,
+   "ceiling_10pct": 0.451693851944793,
+   "excess_aurc": 0.09556225441742158
+  },
+  "nlcd_B2011:lcmap_lcpconf": {
+   "n": 4217,
+   "errors": 965,
+   "error_rate": 0.2288356651648091,
+   "auroc": 0.7241867897953591,
+   "auroc_ci95": [
+    0.7053389656787534,
+    0.7427740049245837
+   ],
+   "capture_10pct": 0.24658277818899582,
+   "ceiling_10pct": 0.43730569948186526,
+   "excess_aurc": 0.1043250647908814
+  },
+  "nlcd_B2016:lcmap_lcpconf": {
+   "n": 4240,
+   "errors": 993,
+   "error_rate": 0.23419811320754716,
+   "auroc": 0.7227224386535747,
+   "auroc_ci95": [
+    0.7040881582146152,
+    0.7409046248066731
+   ],
+   "capture_10pct": 0.2360873943692806,
+   "ceiling_10pct": 0.4269889224572004,
+   "excess_aurc": 0.1054545852156682
+  },
+  "eastafrica_2015:cgls_proba": {
+   "n": 12593,
+   "errors": 5263,
+   "error_rate": 0.41793059636305885,
+   "auroc": 0.7231361620248334,
+   "auroc_ci95": [
+    0.7141348136924137,
+    0.7318039155240175
+   ],
+   "capture_10pct": 0.1640419154771175,
+   "ceiling_10pct": 0.23921717651529545,
+   "excess_aurc": 0.1485286629698677
+  },
+  "eastafrica_2016:cgls_proba": {
+   "n": 12592,
+   "errors": 5264,
+   "error_rate": 0.41804320203303685,
+   "auroc": 0.7228349816376541,
+   "auroc_ci95": [
+    0.7140612612857441,
+    0.7322167182044093
+   ],
+   "capture_10pct": 0.16420326638227797,
+   "ceiling_10pct": 0.23917173252279636,
+   "excess_aurc": 0.14877913811817817
+  },
+  "eastafrica_2017:cgls_proba": {
+   "n": 12598,
+   "errors": 5277,
+   "error_rate": 0.4188760120654072,
+   "auroc": 0.7204108610281745,
+   "auroc_ci95": [
+    0.7116637999695933,
+    0.729910870001453
+   ],
+   "capture_10pct": 0.164013644115975,
+   "ceiling_10pct": 0.23877202956225127,
+   "excess_aurc": 0.15121517332648599
+  },
+  "europe_2017:odse_prob": {
+   "n": 4807,
+   "errors": 504,
+   "error_rate": 0.10484709798210942,
+   "auroc": 0.7868688880773473,
+   "auroc_ci95": [
+    0.766008317387671,
+    0.8071003929595992
+   ],
+   "capture_10pct": 0.33651837928153716,
+   "ceiling_10pct": 0.9543650793650794,
+   "excess_aurc": 0.0344111921002061
+  }
+ },
+ "Q4": {
+  "nlcd_A2001:lcmap_lcpconf": {
+   "alpha": 0.1061741856344555,
+   "labels": 300,
+   "oracle_coverage": 0.6,
+   "prefix": {
+    "violation_rate": 0.0045,
+    "no_zone_rate": 0.948,
+    "median_coverage": 0.2
+   },
+   "bonferroni": {
+    "violation_rate": 0.0025,
+    "no_zone_rate": 0.965,
+    "median_coverage": 0.45
+   },
+   "plugin": {
+    "violation_rate": 0.4305,
+    "no_zone_rate": 0.1035,
+    "median_coverage": 0.6
+   }
+  },
+  "nlcd_A2006:lcmap_lcpconf": {
+   "alpha": 0.11087168080077854,
+   "labels": 300,
+   "oracle_coverage": 0.55,
+   "prefix": {
+    "violation_rate": 0.0075,
+    "no_zone_rate": 0.929,
+    "median_coverage": 0.15
+   },
+   "bonferroni": {
+    "violation_rate": 0.003,
+    "no_zone_rate": 0.97,
+    "median_coverage": 0.45
+   },
+   "plugin": {
+    "violation_rate": 0.504,
+    "no_zone_rate": 0.13,
+    "median_coverage": 0.6
+   }
+  },
+  "nlcd_A2011:lcmap_lcpconf": {
+   "alpha": 0.11067907235106235,
+   "labels": 300,
+   "oracle_coverage": 0.55,
+   "prefix": {
+    "violation_rate": 0.0065,
+    "no_zone_rate": 0.9345,
+    "median_coverage": 0.15
+   },
+   "bonferroni": {
+    "violation_rate": 0.001,
+    "no_zone_rate": 0.972,
+    "median_coverage": 0.4
+   },
+   "plugin": {
+    "violation_rate": 0.465,
+    "no_zone_rate": 0.128,
+    "median_coverage": 0.6
+   }
+  },
+  "nlcd_B2011:lcmap_lcpconf": {
+   "alpha": 0.11441783258240455,
+   "labels": 300,
+   "oracle_coverage": 0.5,
+   "prefix": {
+    "violation_rate": 0.024,
+    "no_zone_rate": 0.9715,
+    "median_coverage": 0.1
+   },
+   "bonferroni": {
+    "violation_rate": 0.0025,
+    "no_zone_rate": 0.99,
+    "median_coverage": 0.5
+   },
+   "plugin": {
+    "violation_rate": 0.531,
+    "no_zone_rate": 0.203,
+    "median_coverage": 0.55
+   }
+  },
+  "nlcd_B2016:lcmap_lcpconf": {
+   "alpha": 0.11709905660377358,
+   "labels": 300,
+   "oracle_coverage": 0.5,
+   "prefix": {
+    "violation_rate": 0.0075,
+    "no_zone_rate": 0.932,
+    "median_coverage": 0.15
+   },
+   "bonferroni": {
+    "violation_rate": 0.001,
+    "no_zone_rate": 0.975,
+    "median_coverage": 0.4
+   },
+   "plugin": {
+    "violation_rate": 0.4455,
+    "no_zone_rate": 0.126,
+    "median_coverage": 0.55
+   }
+  },
+  "eastafrica_2015:cgls_proba": {
+   "alpha": 0.20896529818152942,
+   "labels": 300,
+   "oracle_coverage": 0.35,
+   "prefix": {
+    "violation_rate": 0.028,
+    "no_zone_rate": 0.7495,
+    "median_coverage": 0.2
+   },
+   "bonferroni": {
+    "violation_rate": 0.003,
+    "no_zone_rate": 0.853,
+    "median_coverage": 0.2
+   },
+   "plugin": {
+    "violation_rate": 0.47,
+    "no_zone_rate": 0.016,
+    "median_coverage": 0.35
+   }
+  },
+  "eastafrica_2016:cgls_proba": {
+   "alpha": 0.20902160101651843,
+   "labels": 300,
+   "oracle_coverage": 0.35,
+   "prefix": {
+    "violation_rate": 0.025,
+    "no_zone_rate": 0.742,
+    "median_coverage": 0.2
+   },
+   "bonferroni": {
+    "violation_rate": 0.002,
+    "no_zone_rate": 0.8795,
+    "median_coverage": 0.2
+   },
+   "plugin": {
+    "violation_rate": 0.4435,
+    "no_zone_rate": 0.0105,
+    "median_coverage": 0.35
+   }
+  },
+  "eastafrica_2017:cgls_proba": {
+   "alpha": 0.2094380060327036,
+   "labels": 300,
+   "oracle_coverage": 0.35,
+   "prefix": {
+    "violation_rate": 0.0175,
+    "no_zone_rate": 0.8095,
+    "median_coverage": 0.2
+   },
+   "bonferroni": {
+    "violation_rate": 0.001,
+    "no_zone_rate": 0.8955,
+    "median_coverage": 0.2
+   },
+   "plugin": {
+    "violation_rate": 0.4095,
+    "no_zone_rate": 0.021,
+    "median_coverage": 0.35
+   }
+  },
+  "europe_2017:odse_prob": {
+   "alpha": 0.05242354899105471,
+   "labels": 300,
+   "oracle_coverage": 0.75,
+   "prefix": {
+    "violation_rate": 0.0175,
+    "no_zone_rate": 0.7345,
+    "median_coverage": 0.5
+   },
+   "bonferroni": {
+    "violation_rate": 0.004,
+    "no_zone_rate": 0.821,
+    "median_coverage": 0.5
+   },
+   "plugin": {
+    "violation_rate": 0.3895,
+    "no_zone_rate": 0.0035,
+    "median_coverage": 0.75
+   }
+  }
+ },
+ "descriptive": {
+  "nlcd_A2001": {
+   "points": 8000,
+   "lcmap_missing": 0,
+   "lcpconf_codes": 663,
+   "weighted_accuracy_nlcd_level2": 0.6700873128294044,
+   "weighted_accuracy_lcmap": 0.8450370507809398
+  },
+  "nlcd_A2006": {
+   "points": 8000,
+   "lcmap_missing": 0,
+   "lcpconf_codes": 807,
+   "weighted_accuracy_nlcd_level2": 0.6651425295342533,
+   "weighted_accuracy_lcmap": 0.8390037826525283
+  },
+  "nlcd_A2011": {
+   "points": 8000,
+   "lcmap_missing": 0,
+   "lcpconf_codes": 799,
+   "weighted_accuracy_nlcd_level2": 0.6589665462717528,
+   "weighted_accuracy_lcmap": 0.8382616838583204
+  },
+  "nlcd_B2011": {
+   "points": 4629,
+   "lcmap_missing": 0,
+   "lcpconf_codes": 412,
+   "weighted_accuracy_nlcd_level2": 0.7209565114307871,
+   "weighted_accuracy_lcmap": 0.8302476785236196
+  },
+  "nlcd_B2016": {
+   "points": 4629,
+   "lcmap_missing": 0,
+   "lcpconf_codes": 389,
+   "weighted_accuracy_nlcd_level2": 0.7211334217077566,
+   "weighted_accuracy_lcmap": 0.8301390591172262
+  },
+  "gfc2020": {
+   "points": 21612,
+   "worldcover_missing": 0,
+   "weighted_accuracy_gfc_v2": 0.9150627376612707,
+   "weighted_accuracy_worldcover": 0.9141266602966824,
+   "both_wrong": 1094,
+   "only_gfc_wrong": 808,
+   "only_worldcover_wrong": 962,
+   "error_correlation_phi": 0.5082686580406653
+  },
+  "eastafrica_2015": {
+   "points": 14000,
+   "cgls_missing": 0,
+   "proba_missing": 1407
+  },
+  "eastafrica_2016": {
+   "points": 14000,
+   "cgls_missing": 0,
+   "proba_missing": 1408
+  },
+  "eastafrica_2017": {
+   "points": 14000,
+   "cgls_missing": 0,
+   "proba_missing": 1402,
+   "esri_missing": 25
+  },
+  "europe_2017": {
+   "points": 52024,
+   "odse_missing": 2127,
+   "esri_missing": 528,
+   "subset_graded": 4807,
+   "subset_no_probability_layer": 1
+  }
+ },
+ "found_after_result": {
+  "nlcd_A2001": {
+   "weighted_accuracy_nlcd_8class": 0.8302582334995232,
+   "weighted_accuracy_nlcd_level2_primary_or_alternate": 0.831709526081768
+  },
+  "nlcd_A2006": {
+   "weighted_accuracy_nlcd_8class": 0.8252376716946416,
+   "weighted_accuracy_nlcd_level2_primary_or_alternate": 0.8278928679179033
+  },
+  "nlcd_A2011": {
+   "weighted_accuracy_nlcd_8class": 0.8205702603127327,
+   "weighted_accuracy_nlcd_level2_primary_or_alternate": 0.8206023873685229
+  },
+  "nlcd_B2011": {
+   "weighted_accuracy_nlcd_8class": 0.847064106622485,
+   "weighted_accuracy_nlcd_level2_primary_or_alternate": 0.8650733895162801
+  },
+  "nlcd_B2016": {
+   "weighted_accuracy_nlcd_8class": 0.8488599664099353,
+   "weighted_accuracy_nlcd_level2_primary_or_alternate": 0.8638724418296603
+  },
+  "eastafrica_2015": {
+   "proba_missing_by_cgls_class": {
+    "Forest": [
+     0,
+     4847
+    ],
+    "Grass and shrub": [
+     0,
+     4429
+    ],
+    "Cropland": [
+     317,
+     3246
+    ],
+    "Built": [
+     119,
+     119
+    ],
+    "Water": [
+     971,
+     971
+    ],
+    "Wetland": [
+     0,
+     149
+    ],
+    "Other": [
+     0,
+     239
+    ]
+   }
+  },
+  "eastafrica_2016": {
+   "proba_missing_by_cgls_class": {
+    "Forest": [
+     0,
+     4839
+    ],
+    "Grass and shrub": [
+     0,
+     4408
+    ],
+    "Cropland": [
+     317,
+     3246
+    ],
+    "Built": [
+     119,
+     119
+    ],
+    "Water": [
+     972,
+     972
+    ],
+    "Wetland": [
+     0,
+     176
+    ],
+    "Other": [
+     0,
+     240
+    ]
+   }
+  },
+  "eastafrica_2017": {
+   "proba_missing_by_cgls_class": {
+    "Forest": [
+     0,
+     4832
+    ],
+    "Grass and shrub": [
+     0,
+     4386
+    ],
+    "Cropland": [
+     317,
+     3247
+    ],
+    "Built": [
+     120,
+     120
+    ],
+    "Water": [
+     965,
+     965
+    ],
+    "Wetland": [
+     0,
+     216
+    ],
+    "Other": [
+     0,
+     234
+    ]
+   }
+  },
+  "europe_2017": {
+   "subset_no_odse_class": 192,
+   "odse_no_class_by_reference_class": {
+    "Artificial": [
+     3,
+     1829
+    ],
+    "Cropland": [
+     0,
+     13970
+    ],
+    "Grass and shrub": [
+     4,
+     9665
+    ],
+    "Tree": [
+     5,
+     19575
+    ],
+    "Bare": [
+     8,
+     2118
+    ],
+    "Snow": [
+     0,
+     85
+    ],
+    "Wetland": [
+     0,
+     1069
+    ],
+    "Water": [
+     2107,
+     3713
+    ]
+   }
+  }
+ },
+ "prereg": {
+  "P1": {
+   "holds": true
+  },
+  "P2": {
+   "holds": true
+  },
+  "P3": {
+   "holds": true
+  },
+  "P4": {
+   "holds": true
+  },
+  "P5": {
+   "holds": true
+  }
+ }
+}

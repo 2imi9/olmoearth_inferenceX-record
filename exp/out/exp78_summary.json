@@ -1,0 +1,503 @@
+{
+ "experiment": "exp78",
+ "config": {
+  "R": 2000,
+  "headline_budget": 300,
+  "strata": 5,
+  "m_per_tile": 16,
+  "piloted": [
+   "mados",
+   "sen1floods11",
+   "pastis_sentinel1",
+   "pastis_sentinel2",
+   "pastis_sentinel1_sentinel2"
+  ]
+ },
+ "tasks": {
+  "mados": {
+   "n_units": 22598,
+   "error_rate": 0.07359058323745464,
+   "budgets": {
+    "300": {
+     "D1/E1": {
+      "coverage": 0.933,
+      "half_width": 0.029430171889612826,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.07332999999999981,
+      "bias_ratio": 0.9964590138304245
+     },
+     "D2p/E1": {
+      "coverage": 0.93,
+      "half_width": 0.026347820029331975,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.07351851837678915,
+      "bias_ratio": 0.9990207325788822
+     },
+     "D2c/E1": {
+      "coverage": 0.941,
+      "half_width": 0.018576558014705015,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.07374905699187591,
+      "bias_ratio": 1.0021534515348236
+     },
+     "D2star/E1": {
+      "coverage": 0.947,
+      "half_width": 0.01797275306870951,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.07382978047298637,
+      "bias_ratio": 1.0032503783094082
+     },
+     "D1+E3ps": {
+      "coverage": 0.943,
+      "half_width": 0.026646874381421826,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.07331193947660677,
+      "bias_ratio": 0.9962135948841611
+     },
+     "D4/E2_naive": {
+      "coverage": 0.5065,
+      "half_width": 0.04921542679616602,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.1062842419306974,
+      "bias_ratio": 1.4442641606433553
+     },
+     "D4/E1_cluster": {
+      "coverage": 0.598,
+      "half_width": 0.08030497128091135,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.07597011884886015,
+      "bias_ratio": 1.0323347839726649
+     }
+    }
+   },
+   "design_effect": 9.774605372492182,
+   "exp70_accuracy": 0.9264094167625454,
+   "accuracy_minus_exp70": 0.0
+  },
+  "sen1floods11": {
+   "n_units": 592385,
+   "error_rate": 0.0845109177308676,
+   "budgets": {
+    "300": {
+     "D1/E1": {
+      "coverage": 0.9485,
+      "half_width": 0.031452041876016884,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.08399000000000005,
+      "bias_ratio": 0.9938360895271964
+     },
+     "D2p/E1": {
+      "coverage": 0.9495,
+      "half_width": 0.028934412917546483,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.08419687941758525,
+      "bias_ratio": 0.9962840503722556
+     },
+     "D2c/E1": {
+      "coverage": 0.934,
+      "half_width": 0.024968684680831126,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.08429271504635955,
+      "bias_ratio": 0.9974180533075865
+     },
+     "D2star/E1": {
+      "coverage": 0.933,
+      "half_width": 0.02493602624081688,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.08458834144550363,
+      "bias_ratio": 1.0009161386092458
+     },
+     "D1+E3ps": {
+      "coverage": 0.9345,
+      "half_width": 0.029147924647134896,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.08447856444039901,
+      "bias_ratio": 0.9996171702859551
+     },
+     "D4/E2_naive": {
+      "coverage": 0.5785,
+      "half_width": 0.03163823160095178,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.08561057585320017,
+      "bias_ratio": 1.0130120243852343
+     },
+     "D4/E1_cluster": {
+      "coverage": 0.824,
+      "half_width": 0.067409626392444,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.08339494211838046,
+      "bias_ratio": 0.9867948941692829
+     }
+    }
+   },
+   "design_effect": 5.5619821292849565,
+   "exp70_accuracy": 0.9154823299036944,
+   "accuracy_minus_exp70": 6.7523654380119424e-06
+  },
+  "pastis_sentinel1": {
+   "n_units": 458638,
+   "error_rate": 0.2842895704237329,
+   "budgets": {
+    "300": {
+     "D1/E1": {
+      "coverage": 0.9555,
+      "half_width": 0.050660626322988074,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.28400833333333214,
+      "bias_ratio": 0.9990107372212721
+     },
+     "D2p/E1": {
+      "coverage": 0.946,
+      "half_width": 0.04541719934262139,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.28408306609430817,
+      "bias_ratio": 0.9992736127142585
+     },
+     "D2c/E1": {
+      "coverage": 0.942,
+      "half_width": 0.04333073711182968,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.28425159877788664,
+      "bias_ratio": 0.9998664332082614
+     },
+     "D2star/E1": {
+      "coverage": 0.949,
+      "half_width": 0.04324950597407179,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.2845726459381955,
+      "bias_ratio": 1.0009957295093193
+     },
+     "D1+E3ps": {
+      "coverage": 0.944,
+      "half_width": 0.045791622299525915,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.2839654394478108,
+      "bias_ratio": 0.9988598562534707
+     },
+     "D4/E2_naive": {
+      "coverage": 0.741,
+      "half_width": 0.0517280768157825,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.2887706077015644,
+      "bias_ratio": 1.015762228882166
+     },
+     "D4/E1_cluster": {
+      "coverage": 0.9185,
+      "half_width": 0.08705054554851425,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.28428255574865857,
+      "bias_ratio": 0.9999753255982489
+     }
+    }
+   },
+   "design_effect": 2.940788541561151,
+   "exp70_accuracy": 0.7156537399866562,
+   "accuracy_minus_exp70": 5.6689589610914304e-05
+  },
+  "pastis_sentinel2": {
+   "n_units": 458638,
+   "error_rate": 0.1900562099084681,
+   "budgets": {
+    "300": {
+     "D1/E1": {
+      "coverage": 0.95,
+      "half_width": 0.04410508257580218,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.18944000000000039,
+      "bias_ratio": 0.9967577491481889
+     },
+     "D2p/E1": {
+      "coverage": 0.955,
+      "half_width": 0.039249779885457886,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.19076093115676332,
+      "bias_ratio": 1.003707962231987
+     },
+     "D2c/E1": {
+      "coverage": 0.951,
+      "half_width": 0.03535758193091555,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.1902844617695472,
+      "bias_ratio": 1.001200970287627
+     },
+     "D2star/E1": {
+      "coverage": 0.947,
+      "half_width": 0.0352369794641968,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.1905226081444359,
+      "bias_ratio": 1.002454001561919
+     },
+     "D1+E3ps": {
+      "coverage": 0.9475,
+      "half_width": 0.03953769508480252,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.19002452259150432,
+      "bias_ratio": 0.9998332739720578
+     },
+     "D4/E2_naive": {
+      "coverage": 0.7595,
+      "half_width": 0.04529153200976589,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.1951774468511829,
+      "bias_ratio": 1.0269459069250155
+     },
+     "D4/E1_cluster": {
+      "coverage": 0.917,
+      "half_width": 0.07211661238598191,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.18959492318717014,
+      "bias_ratio": 0.9975728931902823
+     }
+    }
+   },
+   "design_effect": 2.7039119446055624,
+   "exp70_accuracy": 0.8099437900915318,
+   "accuracy_minus_exp70": 0.0
+  },
+  "pastis_sentinel1_sentinel2": {
+   "n_units": 458638,
+   "error_rate": 0.19483993912410225,
+   "budgets": {
+    "300": {
+     "D1/E1": {
+      "coverage": 0.945,
+      "half_width": 0.04453368576064958,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.1943183333333338,
+      "bias_ratio": 0.9973229010791457
+     },
+     "D2p/E1": {
+      "coverage": 0.9475,
+      "half_width": 0.03945447644685682,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.19500654421278732,
+      "bias_ratio": 1.000855086946927
+     },
+     "D2c/E1": {
+      "coverage": 0.95,
+      "half_width": 0.03561640325169898,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.19455315855470606,
+      "bias_ratio": 0.9985281222592997
+     },
+     "D2star/E1": {
+      "coverage": 0.9485,
+      "half_width": 0.03561092568102645,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.19528851246238524,
+      "bias_ratio": 1.0023022658511367
+     },
+     "D1+E3ps": {
+      "coverage": 0.9545,
+      "half_width": 0.039735325571603954,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.19407744680764522,
+      "bias_ratio": 0.9960865707519475
+     },
+     "D4/E2_naive": {
+      "coverage": 0.777,
+      "half_width": 0.04569231436754081,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.19961340503409558,
+      "bias_ratio": 1.024499422097196
+     },
+     "D4/E1_cluster": {
+      "coverage": 0.913,
+      "half_width": 0.07343035203832692,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.19512339262227305,
+      "bias_ratio": 1.0014548018206384
+     }
+    }
+   },
+   "design_effect": 2.703288932045452,
+   "exp70_accuracy": 0.8051600608758978,
+   "accuracy_minus_exp70": 0.0
+  },
+  "m_cashew_plant": {
+   "n_units": 204800,
+   "error_rate": 0.3473046875,
+   "budgets": {
+    "300": {
+     "D1/E1": {
+      "coverage": 0.9475,
+      "half_width": 0.0534602908036263,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.3481600000000034,
+      "bias_ratio": 1.0024627151051724
+     },
+     "D2p/E1": {
+      "coverage": 0.9495,
+      "half_width": 0.05060374444035749,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.34825166666667057,
+      "bias_ratio": 1.0027266524200615
+     },
+     "D2c/E1": {
+      "coverage": 0.947,
+      "half_width": 0.05004503552260158,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.3474164554813114,
+      "bias_ratio": 1.00032181535503
+     },
+     "D2star/E1": {
+      "coverage": 0.948,
+      "half_width": 0.05002170493212055,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.34793043917851896,
+      "bias_ratio": 1.0018017369216157
+     },
+     "D1+E3ps": {
+      "coverage": 0.9495,
+      "half_width": 0.050899297742018824,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.34649175670360666,
+      "bias_ratio": 0.9976593152190227
+     },
+     "D4/E2_naive": {
+      "coverage": 0.9385,
+      "half_width": 0.054501949857245525,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.34705902777777803,
+      "bias_ratio": 0.9992926679913529
+     },
+     "D4/E1_cluster": {
+      "coverage": 0.936,
+      "half_width": 0.05830183775442981,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.3466215277777781,
+      "bias_ratio": 0.998032967170298
+     }
+    }
+   },
+   "design_effect": 1.1652538882233285,
+   "exp70_accuracy": 0.6527880859374999,
+   "accuracy_minus_exp70": -9.277343749991562e-05
+  },
+  "m_sa_crop_type": {
+   "n_units": 4096000,
+   "error_rate": 0.34006591796875,
+   "budgets": {
+    "300": {
+     "D1/E1": {
+      "coverage": 0.9605,
+      "half_width": 0.05319777014065095,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.3398633333333366,
+      "bias_ratio": 0.9994042783333789
+     },
+     "D2p/E1": {
+      "coverage": 0.948,
+      "half_width": 0.045384241469396375,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.34033166666667103,
+      "bias_ratio": 1.000781462310332
+     },
+     "D2c/E1": {
+      "coverage": 0.945,
+      "half_width": 0.0430470274123677,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.3406081463012885,
+      "bias_ratio": 1.0015944800813243
+     },
+     "D2star/E1": {
+      "coverage": 0.9555,
+      "half_width": 0.0428987123107544,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.34040103689991313,
+      "bias_ratio": 1.000985452859154
+     },
+     "D1+E3ps": {
+      "coverage": 0.948,
+      "half_width": 0.045788676132152914,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.33964758017973595,
+      "bias_ratio": 0.9987698332384708
+     },
+     "D4/E2_naive": {
+      "coverage": 0.706,
+      "half_width": 0.05399840355503956,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.33896701388888956,
+      "bias_ratio": 0.9967685556776041
+     },
+     "D4/E1_cluster": {
+      "coverage": 0.932,
+      "half_width": 0.09962141548438863,
+      "starved_strata_rate": 0.0,
+      "mean_estimate": 0.34023611111111135,
+      "bias_ratio": 1.0005004710362564
+     }
+    }
+   },
+   "design_effect": 3.4367148667837815,
+   "exp70_accuracy": 0.65996728515625,
+   "accuracy_minus_exp70": -3.3203124999992006e-05
+  }
+ },
+ "prereg": {
+  "P1_the_interval_is_honest": {
+   "holds": true,
+   "n": 7,
+   "of": 7,
+   "tasks_failing": [],
+   "threshold": "coverage >= 0.93 on every task at B = 300"
+  },
+  "P2_the_naive_interval_is_badly_wrong": {
+   "holds": true,
+   "n": 6,
+   "of": 7,
+   "n_out_of_sample": 1,
+   "out_of_sample_tasks": [
+    "m_sa_crop_type"
+   ],
+   "median_design_effect": 2.940788541561151,
+   "threshold": "naive coverage < 0.85 on at least 5 of 7 and median design effect >= 2.5; piloted tasks are not confirmation"
+  },
+  "P3_confidence_helps_most_where_the_map_is_good": {
+   "holds": false,
+   "median_width_ratio": 0.8016668344322325,
+   "per_task_ratio": {
+    "mados": 0.6312079346455153,
+    "sen1floods11": 0.79386530067768,
+    "pastis_sentinel1": 0.8553138849009385,
+    "pastis_sentinel2": 0.8016668344322325,
+    "pastis_sentinel1_sentinel2": 0.7997632049393494,
+    "m_cashew_plant": 0.936116036226405,
+    "m_sa_crop_type": 0.8091885674635338
+   },
+   "low_error_tasks": [
+    "mados",
+    "sen1floods11"
+   ],
+   "high_error_tasks": [
+    "m_cashew_plant",
+    "m_sa_crop_type"
+   ],
+   "coverage_kept": {
+    "mados": true,
+    "sen1floods11": true,
+    "pastis_sentinel1": true,
+    "pastis_sentinel2": true,
+    "pastis_sentinel1_sentinel2": true,
+    "m_cashew_plant": true,
+    "m_sa_crop_type": true
+   },
+   "threshold": "median ratio <= 0.92, <= 0.88 on tasks under 10% error, > 0.94 on one over 30%"
+  },
+  "P4_no_order_of_magnitude": {
+   "holds": false,
+   "max_budget_saving": 2.509892384683909,
+   "half_widths": {
+    "mados": 0.029430171889612826,
+    "sen1floods11": 0.031452041876016884,
+    "pastis_sentinel1": 0.050660626322988074,
+    "pastis_sentinel2": 0.04410508257580218,
+    "pastis_sentinel1_sentinel2": 0.04453368576064958,
+    "m_cashew_plant": 0.0534602908036263,
+    "m_sa_crop_type": 0.05319777014065095
+   },
+   "threshold": "no saving above 1.8x and no half-width below 0.04 where error rate > 0.20"
+  }
+ }
+}

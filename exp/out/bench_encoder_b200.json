@@ -1,0 +1,86 @@
+{
+ "scene 128x128 T=1, B=1 | fp32 (repo default)": {
+  "ms_per_window": 18.789653398562223,
+  "windows_per_s": 53.2207794783761,
+  "max_abs_diff": 0.0,
+  "rel_mean_diff": 0.0,
+  "head_score_spearman": 0.9999998807907104
+ },
+ "scene 128x128 T=1, B=1 | tf32": {
+  "ms_per_window": 10.098446300253272,
+  "windows_per_s": 99.02513419068433,
+  "max_abs_diff": 0.001222848892211914,
+  "rel_mean_diff": 0.0002200776943936944,
+  "head_score_spearman": 0.9999995231628418
+ },
+ "scene 128x128 T=1, B=1 | bf16 autocast": {
+  "ms_per_window": 2.7387403533793986,
+  "windows_per_s": 365.131363681875,
+  "max_abs_diff": 0.04713547229766846,
+  "rel_mean_diff": 0.005568834487348795,
+  "head_score_spearman": 0.999927282333374
+ },
+ "scene 128x128 T=1, B=1 | bf16 + torch.compile": {
+  "ms_per_window": 2.4263815954327583,
+  "windows_per_s": 412.1363275596577,
+  "max_abs_diff": 0.013452604413032532,
+  "rel_mean_diff": 0.002627341775223613,
+  "head_score_spearman": 0.9999822974205017
+ },
+ "scene 128x128 T=1, B=16 | fp32 (repo default)": {
+  "ms_per_window": 16.876211297130794,
+  "windows_per_s": 59.25500590111803,
+  "max_abs_diff": 0.0,
+  "rel_mean_diff": 0.0,
+  "head_score_spearman": 1.0000001192092896
+ },
+ "scene 128x128 T=1, B=16 | tf32": {
+  "ms_per_window": 8.004050336239743,
+  "windows_per_s": 124.93674552149234,
+  "max_abs_diff": 0.0013070106506347656,
+  "rel_mean_diff": 0.00022017676383256912,
+  "head_score_spearman": 1.0
+ },
+ "scene 128x128 T=1, B=16 | bf16 autocast": {
+  "ms_per_window": 2.125297844031593,
+  "windows_per_s": 470.52228599782785,
+  "max_abs_diff": 0.0746157169342041,
+  "rel_mean_diff": 0.005562643054872751,
+  "head_score_spearman": 0.9998984336853027
+ },
+ "scene 128x128 T=1, B=16 | bf16 + torch.compile": {
+  "ms_per_window": 1.7692240708129248,
+  "windows_per_s": 565.2195312606837,
+  "max_abs_diff": 0.021629512310028076,
+  "rel_mean_diff": 0.002623609732836485,
+  "head_score_spearman": 0.9999871850013733
+ },
+ "AWF 32x32 T=12, B=32 | fp32 (repo default)": {
+  "ms_per_window": 11.31102693034336,
+  "windows_per_s": 88.40930237000539,
+  "max_abs_diff": 0.0,
+  "rel_mean_diff": 0.0,
+  "head_score_spearman": 1.0
+ },
+ "AWF 32x32 T=12, B=32 | tf32": {
+  "ms_per_window": 4.711251866865496,
+  "windows_per_s": 212.2578092317792,
+  "max_abs_diff": 0.0003374814987182617,
+  "rel_mean_diff": 0.00016975542530417442,
+  "head_score_spearman": 0.9999998211860657
+ },
+ "AWF 32x32 T=12, B=32 | bf16 autocast": {
+  "ms_per_window": 1.3875651638954878,
+  "windows_per_s": 720.6868736835199,
+  "max_abs_diff": 0.007739812135696411,
+  "rel_mean_diff": 0.002005555434152484,
+  "head_score_spearman": 0.9999629855155945
+ },
+ "AWF 32x32 T=12, B=32 | bf16 + torch.compile": {
+  "ms_per_window": 1.1146751248816145,
+  "windows_per_s": 897.1223791382322,
+  "max_abs_diff": 0.0032894909381866455,
+  "rel_mean_diff": 0.00154460861813277,
+  "head_score_spearman": 0.9999908804893494
+ }
+}

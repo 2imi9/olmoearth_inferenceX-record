@@ -1,0 +1,136 @@
+{
+ "regions": {
+  "at": {
+   "join": {
+    "2020": {
+     "join_rate": 0.9958712929603537,
+     "n_parcels": 2614620,
+     "n_mapped": 2603812
+    },
+    "2021": {
+     "join_rate": 0.9958225865333674,
+     "n_parcels": 2610467,
+     "n_mapped": 2599515
+    }
+   },
+   "vocab": [
+    "pasture_meadow_grassland_grass",
+    "winter_common_soft_wheat",
+    "grain_maize_corn_popcorn",
+    "winter_barley",
+    "green_silo_maize",
+    "soy_soybeans",
+    "clover",
+    "fallow_land_not_crop",
+    "winter_triticale",
+    "vineyards_wine_vine_rebland_grapes",
+    "other_crop"
+   ],
+   "area_share": {
+    "pasture_meadow_grassland_grass": 0.5790699558958703,
+    "winter_common_soft_wheat": 0.07625562373830544,
+    "grain_maize_corn_popcorn": 0.06700478761364605,
+    "winter_barley": 0.03237191090774608,
+    "green_silo_maize": 0.027168881664673076,
+    "soy_soybeans": 0.021428471427458268,
+    "clover": 0.01974796645372643,
+    "fallow_land_not_crop": 0.017450262131844033,
+    "winter_triticale": 0.017411337418114643,
+    "vineyards_wine_vine_rebland_grapes": 0.01442389817084942
+   },
+   "years": [
+    2020,
+    2021
+   ],
+   "n_chips": 900
+  },
+  "dk": {
+   "join": {
+    "2018": {
+     "join_rate": 0.9990594530020948,
+     "n_parcels": 594335,
+     "n_mapped": 593761
+    },
+    "2019": {
+     "join_rate": 0.9991195054243235,
+     "n_parcels": 587170,
+     "n_mapped": 586653
+    }
+   },
+   "vocab": [
+    "spring_barley",
+    "winter_common_soft_wheat",
+    "pasture_meadow_grassland_grass",
+    "plants_harvested_green",
+    "green_silo_maize",
+    "winter_rapeseed_rape",
+    "winter_rye",
+    "spring_oats",
+    "winter_barley",
+    "potatoes",
+    "other_crop"
+   ],
+   "area_share": {
+    "spring_barley": 0.279068118537611,
+    "winter_common_soft_wheat": 0.14800599032355355,
+    "pasture_meadow_grassland_grass": 0.09166117507626018,
+    "plants_harvested_green": 0.0744213140785873,
+    "green_silo_maize": 0.06745229201706221,
+    "winter_rapeseed_rape": 0.05327134948378362,
+    "winter_rye": 0.03509423499712581,
+    "spring_oats": 0.031702866054154615,
+    "winter_barley": 0.031305693891541746,
+    "potatoes": 0.019474996965066323
+   },
+   "years": [
+    2018,
+    2019
+   ],
+   "n_chips": 900
+  },
+  "si": {
+   "join": {
+    "2020": {
+     "join_rate": 0.8533818762132162,
+     "n_parcels": 819619,
+     "n_mapped": 699445
+    },
+    "2021": {
+     "join_rate": 0.8502260297483532,
+     "n_parcels": 824449,
+     "n_mapped": 700965
+    }
+   },
+   "vocab": [
+    "pasture_meadow_grassland_grass",
+    "winter_common_soft_wheat",
+    "winter_barley",
+    "temporary_grass",
+    "vineyards_wine_vine_rebland_grapes",
+    "orchards_fruits",
+    "clover",
+    "winter_triticale",
+    "alfalfa_lucerne",
+    "winter_rapeseed_rape",
+    "other_crop"
+   ],
+   "area_share": {
+    "pasture_meadow_grassland_grass": 0.6982112962479636,
+    "winter_common_soft_wheat": 0.06589667464851816,
+    "winter_barley": 0.05390099730532814,
+    "temporary_grass": 0.04575464900643786,
+    "vineyards_wine_vine_rebland_grapes": 0.03292428463747338,
+    "orchards_fruits": 0.018441307660544953,
+    "clover": 0.014950578306720174,
+    "winter_triticale": 0.012916643549747442,
+    "alfalfa_lucerne": 0.009096661810573203,
+    "winter_rapeseed_rape": 0.008520208519608134
+   },
+   "years": [
+    2020,
+    2021
+   ],
+   "n_chips": 900
+  }
+ }
+}

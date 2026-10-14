@@ -1,0 +1,399 @@
+{
+ "experiment": "exp51 Ai2's Sen1Floods11 probe under the window protocol",
+ "smoke": false,
+ "config": {
+  "probe": "LinearProbe classes x 4 x 4 per token, no batchnorm, AdamW lr 0.1, warmup 10% + half-cycle cosine to 1e-5, CE ignore -1, 50 epochs, fp32",
+  "hub": "allenai/olmoearth-paper-embeddings",
+  "theirs": "olmoearth_base",
+  "others": [
+   "galileo_base",
+   "croma_base",
+   "terramind_base",
+   "clay_large",
+   "satlas_base",
+   "anysat",
+   "panopticon"
+  ],
+  "min_lead": 0.001,
+  "prereg": "P1 arm B test split: probe confidence beats the S1-level control (lead >= 0.001, one-sided per-tile sign test); P2 arm C vs B on Bolivia: v1.2's probe confidence has higher pooled excess AURC than v1's by >= 0.001 with a one-sided per-tile sign test (v1 better)"
+ },
+ "results": {
+  "B_v1": {
+   "encode_and_train_seconds": 37.351738691329956,
+   "train_tiles": 6837,
+   "bolivia": {
+    "n_tiles_scored": 330,
+    "n_windows": 81984,
+    "n_errors": 9828,
+    "accuracy": 0.8801229508196722,
+    "pooled_eaurc": {
+     "probe confidence": 0.02137249200592064,
+     "control S1 level": 0.1221216463546934,
+     "control NDWI level": 0.027212287185454723
+    },
+    "tests": {
+     "control S1 level": {
+      "w": 293,
+      "l": 37,
+      "t": 0,
+      "sign_p": 7.141832785944361e-51,
+      "one_sided": true,
+      "median_gain": 0.04401356027246664,
+      "pooled_lead": 0.10074915434877277
+     },
+     "control NDWI level": {
+      "w": 181,
+      "l": 148,
+      "t": 1,
+      "sign_p": 0.07753639446526339,
+      "one_sided": false,
+      "median_gain": 0.0007091267140525246,
+      "pooled_lead": 0.005839795179534084
+     }
+    },
+    "pixel_accuracy": 0.8759803520824913,
+    "pixel_miou": 0.7385888607613273
+   },
+   "test": {
+    "n_tiles_scored": 1518,
+    "n_windows": 527941,
+    "n_errors": 47677,
+    "accuracy": 0.9096925603429171,
+    "pooled_eaurc": {
+     "probe confidence": 0.022069408703906702,
+     "control S1 level": 0.09048525104158375,
+     "control NDWI level": 0.014374459216754627
+    },
+    "tests": {
+     "control S1 level": {
+      "w": 1327,
+      "l": 191,
+      "t": 0,
+      "sign_p": 1.0881615709820946e-209,
+      "one_sided": true,
+      "median_gain": 0.03639904683916424,
+      "pooled_lead": 0.06841584233767706
+     },
+     "control NDWI level": {
+      "w": 700,
+      "l": 813,
+      "t": 5,
+      "sign_p": 0.003970000218791083,
+      "one_sided": false,
+      "median_gain": -0.0001666579135471501,
+      "pooled_lead": -0.007694949487152075
+     }
+    },
+    "pixel_accuracy": 0.9046622703651956,
+    "pixel_miou": 0.7791464120569789
+   }
+  },
+  "C_v1_2": {
+   "encode_and_train_seconds": 30.30488395690918,
+   "train_tiles": 6837,
+   "bolivia": {
+    "n_tiles_scored": 338,
+    "n_windows": 81984,
+    "n_errors": 11322,
+    "accuracy": 0.8618998829039812,
+    "pooled_eaurc": {
+     "probe confidence": 0.024075564637537104,
+     "control S1 level": 0.15646045342435266,
+     "control NDWI level": 0.036265887765326965
+    },
+    "tests": {
+     "control S1 level": {
+      "w": 300,
+      "l": 38,
+      "t": 0,
+      "sign_p": 5.6474050607231335e-52,
+      "one_sided": true,
+      "median_gain": 0.04853031778389244,
+      "pooled_lead": 0.13238488878681556
+     },
+     "control NDWI level": {
+      "w": 181,
+      "l": 157,
+      "t": 0,
+      "sign_p": 0.21085840536816705,
+      "one_sided": false,
+      "median_gain": 0.000269778048611693,
+      "pooled_lead": 0.012190323127789861
+     }
+    },
+    "pixel_accuracy": 0.8577619435821463,
+    "pixel_miou": 0.7003477903341706
+   },
+   "test": {
+    "n_tiles_scored": 1514,
+    "n_windows": 527941,
+    "n_errors": 44200,
+    "accuracy": 0.9162785235471388,
+    "pooled_eaurc": {
+     "probe confidence": 0.019474945904080956,
+     "control S1 level": 0.07669947129406073,
+     "control NDWI level": 0.014059831796665019
+    },
+    "tests": {
+     "control S1 level": {
+      "w": 1325,
+      "l": 189,
+      "t": 0,
+      "sign_p": 2.0989006973703972e-210,
+      "one_sided": true,
+      "median_gain": 0.035483449379012016,
+      "pooled_lead": 0.05722452538997977
+     },
+     "control NDWI level": {
+      "w": 685,
+      "l": 826,
+      "t": 3,
+      "sign_p": 0.0003133715172630291,
+      "one_sided": false,
+      "median_gain": -0.00022132421530384757,
+      "pooled_lead": -0.005415114107415938
+     }
+    },
+    "pixel_accuracy": 0.9116076148117751,
+    "pixel_miou": 0.795304320364731
+   }
+  },
+  "A_olmoearth_base": {
+   "seconds": 27.057580947875977,
+   "train_tiles": 6790,
+   "test_tiles": 2419,
+   "token_grid": [
+    16,
+    16
+   ],
+   "pixels_per_token_side": 4,
+   "pixel_miou": 0.7891593566860378,
+   "pixel_accuracy": 0.9103476627960047,
+   "matched_tiles": 2419,
+   "matched": {
+    "n_tiles_scored": 1570,
+    "n_windows": 592385,
+    "n_errors": 50067,
+    "accuracy": 0.9154823299036944,
+    "pooled_eaurc": {
+     "probe confidence": 0.020199028424633555,
+     "control S1 level": 0.07654876408154304,
+     "control NDWI level": 0.014334757244042843
+    },
+    "tests": {
+     "control S1 level": {
+      "w": 1391,
+      "l": 179,
+      "t": 0,
+      "sign_p": 7.532070522006965e-233,
+      "one_sided": true,
+      "median_gain": 0.03503163597635835,
+      "pooled_lead": 0.05634973565690948
+     },
+     "control NDWI level": {
+      "w": 732,
+      "l": 833,
+      "t": 5,
+      "sign_p": 0.9950475715421081,
+      "one_sided": true,
+      "median_gain": -9.470302537035777e-05,
+      "pooled_lead": -0.0058642711805907115
+     }
+    },
+    "phi_vs_arm_B_v1": 0.9373290238377484,
+    "acc_arm_A_on_shared": 0.9151350033311637,
+    "acc_arm_B_on_shared": 0.9164137094188415
+   },
+   "window_accuracy": 0.9154823299036944,
+   "pooled_eaurc": {
+    "probe confidence": 0.020199028424633555
+   },
+   "n_windows": 592385,
+   "n_errors": 50067
+  },
+  "D_galileo_base": {
+   "seconds": 25.642441987991333,
+   "train_tiles": 6790,
+   "test_tiles": 2419,
+   "token_grid": [
+    16,
+    16
+   ],
+   "pixels_per_token_side": 4,
+   "pixel_miou": 0.7916417816732537,
+   "pixel_accuracy": 0.911441410140157,
+   "window_accuracy": 0.9167686555196367,
+   "pooled_eaurc": {
+    "probe confidence": 0.02017490875405495
+   },
+   "n_windows": 592385,
+   "n_errors": 49305
+  },
+  "D_croma_base": {
+   "seconds": 17.562102794647217,
+   "train_tiles": 6790,
+   "test_tiles": 2419,
+   "token_grid": [
+    15,
+    15
+   ],
+   "pixels_per_token_side": 4,
+   "pixel_miou": 0.7871443420191907,
+   "pixel_accuracy": 0.9092299501384234,
+   "window_accuracy": 0.9151886020071406,
+   "pooled_eaurc": {
+    "probe confidence": 0.02297996077075027
+   },
+   "n_windows": 592385,
+   "n_errors": 50241
+  },
+  "D_terramind_base": {
+   "seconds": 18.84440565109253,
+   "train_tiles": 6790,
+   "test_tiles": 2419,
+   "token_grid": [
+    14,
+    14
+   ],
+   "pixels_per_token_side": 4,
+   "pixel_miou": 0.7822163138905163,
+   "pixel_accuracy": 0.9076370486009167,
+   "window_accuracy": 0.9134515559982106,
+   "pooled_eaurc": {
+    "probe confidence": 0.022749822439812283
+   },
+   "n_windows": 592385,
+   "n_errors": 51270
+  },
+  "D_clay_large": {
+   "seconds": 28.45097851753235,
+   "train_tiles": 6790,
+   "test_tiles": 2419,
+   "token_grid": [
+    16,
+    16
+   ],
+   "pixels_per_token_side": 4,
+   "pixel_miou": 0.7836061055362558,
+   "pixel_accuracy": 0.9081327188500281,
+   "window_accuracy": 0.9134853178254008,
+   "pooled_eaurc": {
+    "probe confidence": 0.02488994153254207
+   },
+   "n_windows": 592385,
+   "n_errors": 51250
+  },
+  "D_satlas_base": {
+   "seconds": 3.39605975151062,
+   "train_tiles": 6790,
+   "test_tiles": 2419,
+   "token_grid": [
+    2,
+    2
+   ],
+   "pixels_per_token_side": 32,
+   "pixel_miou": 0.7265049910286989,
+   "pixel_accuracy": 0.8799747424599792,
+   "window_accuracy": 0.8871207069726613,
+   "pooled_eaurc": {
+    "probe confidence": 0.03935699046957718
+   },
+   "n_windows": 592385,
+   "n_errors": 66868
+  },
+  "D_anysat": {
+   "seconds": 63.19645309448242,
+   "train_tiles": 6790,
+   "test_tiles": 2419,
+   "token_grid": [
+    16,
+    16
+   ],
+   "pixels_per_token_side": 1,
+   "pixel_miou": 0.7765392415710308,
+   "pixel_accuracy": 0.905422421377144,
+   "window_accuracy": 0.9120757615402145,
+   "pooled_eaurc": {
+    "probe confidence": 0.01989339080346869
+   },
+   "n_windows": 592385,
+   "n_errors": 52085
+  },
+  "D_panopticon": {
+   "seconds": 24.068781852722168,
+   "train_tiles": 6790,
+   "test_tiles": 2419,
+   "token_grid": [
+    16,
+    16
+   ],
+   "pixels_per_token_side": 4,
+   "pixel_miou": 0.777060834461518,
+   "pixel_accuracy": 0.9053243430680015,
+   "window_accuracy": 0.9113076799716401,
+   "pooled_eaurc": {
+    "probe confidence": 0.02291798560647034
+   },
+   "n_windows": 592385,
+   "n_errors": 52540
+  }
+ },
+ "failures": [],
+ "P1": true,
+ "P2_test": {
+  "pooled_eaurc_v1": 0.02137249200592064,
+  "pooled_eaurc_v1_2": 0.024075564637537104,
+  "lead_v1_2_minus_v1": 0.002703072631616465,
+  "w_v1_better": 173,
+  "l": 152,
+  "t": 0,
+  "sign_p": 0.13361481523415655,
+  "n_tiles": 325,
+  "phi_errors_v1_vs_v1_2": 0.65412736975588
+ },
+ "P2": false,
+ "phi_vs_olmoearth_base": {
+  "galileo_base": {
+   "phi": 0.8050389186125176,
+   "aligned_tiles": 2419,
+   "p_base_wrong_given_model_wrong": 0.819795152621438
+  },
+  "croma_base": {
+   "phi": 0.8026168998024111,
+   "aligned_tiles": 2419,
+   "p_base_wrong_given_model_wrong": 0.8100754363965685
+  },
+  "terramind_base": {
+   "phi": 0.8175175291847543,
+   "aligned_tiles": 2419,
+   "p_base_wrong_given_model_wrong": 0.8154086210259411
+  },
+  "clay_large": {
+   "phi": 0.8007803077370171,
+   "aligned_tiles": 2419,
+   "p_base_wrong_given_model_wrong": 0.8005658536585366
+  },
+  "satlas_base": {
+   "phi": 0.620302923677323,
+   "aligned_tiles": 2419,
+   "p_base_wrong_given_model_wrong": 0.5625261709636896
+  },
+  "anysat": {
+   "phi": 0.7785381163070897,
+   "aligned_tiles": 2419,
+   "p_base_wrong_given_model_wrong": 0.7744840165114716
+  },
+  "panopticon": {
+   "phi": 0.7840608242440408,
+   "aligned_tiles": 2419,
+   "p_base_wrong_given_model_wrong": 0.7760753711457937
+  }
+ },
+ "prereg": {
+  "P1": true,
+  "P2": false,
+  "supported": false,
+  "complete": true
+ },
+ "n_failures": 0
+}

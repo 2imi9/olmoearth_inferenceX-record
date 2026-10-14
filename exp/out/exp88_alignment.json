@@ -1,0 +1,1300 @@
+{
+ "experiment": "exp88 alignment check",
+ "prereg_status": "draft",
+ "reads": "keys, the embeddings' shapes and dtypes, labels and any other per-unit key, split sizes; no probe, prediction, error or margin is computed, no embedding value is read",
+ "cache": "/scratch/qi_zim_neu/olmoearth_inferenceX/hf/paper_embeddings",
+ "upstream": {
+  "repo": "allenai/olmoearth-paper-embeddings",
+  "revision": "6ea2c7973d2d6b79cd2221370bea6319f0eada68",
+  "recorded_revision": "6ea2c7973d2d6b79cd2221370bea6319f0eada68",
+  "same_as_the_record": true
+ },
+ "encoders": {
+  "olmoearth_base": {
+   "families": {
+    "pastis": {
+     "inputs": {
+      "full": {
+       "task": "pastis_sentinel1_sentinel2",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 5820,
+        "embeddings": {
+         "shape": [
+          5820,
+          16,
+          16,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          5820,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "1c1f04449cb821f1d655c8397996d3c38feb61b6",
+         "unique_label_tiles": 5755
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1984,
+        "embeddings": {
+         "shape": [
+          1984,
+          16,
+          16,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1984,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "975038d88aed4a7c38747adde3fcf4d139a3b4d0",
+         "unique_label_tiles": 1966
+        }
+       }
+      },
+      "optical_missing": {
+       "task": "pastis_sentinel1",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 5820,
+        "embeddings": {
+         "shape": [
+          5820,
+          16,
+          16,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          5820,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "1c1f04449cb821f1d655c8397996d3c38feb61b6",
+         "unique_label_tiles": 5755
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1984,
+        "embeddings": {
+         "shape": [
+          1984,
+          16,
+          16,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1984,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "975038d88aed4a7c38747adde3fcf4d139a3b4d0",
+         "unique_label_tiles": 1966
+        }
+       }
+      },
+      "radar_missing": {
+       "task": "pastis_sentinel2",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 5820,
+        "embeddings": {
+         "shape": [
+          5820,
+          16,
+          16,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          5820,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "1c1f04449cb821f1d655c8397996d3c38feb61b6",
+         "unique_label_tiles": 5755
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1984,
+        "embeddings": {
+         "shape": [
+          1984,
+          16,
+          16,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1984,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "975038d88aed4a7c38747adde3fcf4d139a3b4d0",
+         "unique_label_tiles": 1966
+        }
+       }
+      }
+     },
+     "splits": {
+      "train": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      },
+      "test": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      }
+     },
+     "aligned_all_splits": true,
+     "aligned_for_the_design": true
+    },
+    "china6": {
+     "inputs": {
+      "full": {
+       "task": "cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 3313,
+        "embeddings": {
+         "shape": [
+          3313,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          3313
+         ],
+         "dtype": "torch.int64",
+         "sha1": "426667d2f98fa19802c954f8b0ad2711c5166fdc"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 4397,
+        "embeddings": {
+         "shape": [
+          4397,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          4397
+         ],
+         "dtype": "torch.int64",
+         "sha1": "28ffe17ffc6cb1ae0db8ee541fb929c81b15bbff"
+        }
+       }
+      },
+      "optical_missing": {
+       "task": "cropharvest_Peoples_Republic_of_China_6_sentinel1",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 3313,
+        "embeddings": {
+         "shape": [
+          3313,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          3313
+         ],
+         "dtype": "torch.int64",
+         "sha1": "426667d2f98fa19802c954f8b0ad2711c5166fdc"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 4397,
+        "embeddings": {
+         "shape": [
+          4397,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          4397
+         ],
+         "dtype": "torch.int64",
+         "sha1": "28ffe17ffc6cb1ae0db8ee541fb929c81b15bbff"
+        }
+       }
+      },
+      "radar_missing": {
+       "task": "cropharvest_Peoples_Republic_of_China_6",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 3313,
+        "embeddings": {
+         "shape": [
+          3313,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          3313
+         ],
+         "dtype": "torch.int64",
+         "sha1": "426667d2f98fa19802c954f8b0ad2711c5166fdc"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 4397,
+        "embeddings": {
+         "shape": [
+          4397,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          4397
+         ],
+         "dtype": "torch.int64",
+         "sha1": "28ffe17ffc6cb1ae0db8ee541fb929c81b15bbff"
+        }
+       }
+      }
+     },
+     "splits": {
+      "train": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      },
+      "test": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      }
+     },
+     "aligned_all_splits": true,
+     "aligned_for_the_design": true
+    },
+    "togo12": {
+     "inputs": {
+      "full": {
+       "task": "cropharvest_Togo_12_sentinel2_sentinel1",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1032,
+        "embeddings": {
+         "shape": [
+          1032,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1032
+         ],
+         "dtype": "torch.int64",
+         "sha1": "09db9b93889e7ad3f081ef1f499579f3cc62f10d"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 306,
+        "embeddings": {
+         "shape": [
+          306,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          306
+         ],
+         "dtype": "torch.int64",
+         "sha1": "81d1830e2870e92884c0a252e4f71ab49a52131a"
+        }
+       }
+      },
+      "optical_missing": {
+       "task": "cropharvest_Togo_12_sentinel1",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1032,
+        "embeddings": {
+         "shape": [
+          1032,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1032
+         ],
+         "dtype": "torch.int64",
+         "sha1": "09db9b93889e7ad3f081ef1f499579f3cc62f10d"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 306,
+        "embeddings": {
+         "shape": [
+          306,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          306
+         ],
+         "dtype": "torch.int64",
+         "sha1": "81d1830e2870e92884c0a252e4f71ab49a52131a"
+        }
+       }
+      },
+      "radar_missing": {
+       "task": "cropharvest_Togo_12_sentinel2",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1032,
+        "embeddings": {
+         "shape": [
+          1032,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1032
+         ],
+         "dtype": "torch.int64",
+         "sha1": "09db9b93889e7ad3f081ef1f499579f3cc62f10d"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 306,
+        "embeddings": {
+         "shape": [
+          306,
+          768
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          306
+         ],
+         "dtype": "torch.int64",
+         "sha1": "81d1830e2870e92884c0a252e4f71ab49a52131a"
+        }
+       }
+      }
+     },
+     "splits": {
+      "train": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      },
+      "test": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      }
+     },
+     "aligned_all_splits": true,
+     "aligned_for_the_design": true
+    }
+   },
+   "cached_for_all_three_inputs": true,
+   "cached_for_the_design": true,
+   "aligned_for_the_design": true
+  },
+  "olmoearth_large": {
+   "families": {
+    "pastis": {
+     "inputs": {
+      "full": {
+       "task": "pastis_sentinel1_sentinel2",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 5820,
+        "embeddings": {
+         "shape": [
+          5820,
+          16,
+          16,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          5820,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "1c1f04449cb821f1d655c8397996d3c38feb61b6",
+         "unique_label_tiles": 5755
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1984,
+        "embeddings": {
+         "shape": [
+          1984,
+          16,
+          16,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1984,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "975038d88aed4a7c38747adde3fcf4d139a3b4d0",
+         "unique_label_tiles": 1966
+        }
+       }
+      },
+      "optical_missing": {
+       "task": "pastis_sentinel1",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 5820,
+        "embeddings": {
+         "shape": [
+          5820,
+          16,
+          16,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          5820,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "1c1f04449cb821f1d655c8397996d3c38feb61b6",
+         "unique_label_tiles": 5755
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1984,
+        "embeddings": {
+         "shape": [
+          1984,
+          16,
+          16,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1984,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "975038d88aed4a7c38747adde3fcf4d139a3b4d0",
+         "unique_label_tiles": 1966
+        }
+       }
+      },
+      "radar_missing": {
+       "task": "pastis_sentinel2",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 5820,
+        "embeddings": {
+         "shape": [
+          5820,
+          16,
+          16,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          5820,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "1c1f04449cb821f1d655c8397996d3c38feb61b6",
+         "unique_label_tiles": 5755
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1984,
+        "embeddings": {
+         "shape": [
+          1984,
+          16,
+          16,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1984,
+          64,
+          64
+         ],
+         "dtype": "torch.int64",
+         "sha1": "975038d88aed4a7c38747adde3fcf4d139a3b4d0",
+         "unique_label_tiles": 1966
+        }
+       }
+      }
+     },
+     "splits": {
+      "train": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      },
+      "test": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      }
+     },
+     "aligned_all_splits": true,
+     "aligned_for_the_design": true
+    },
+    "china6": {
+     "inputs": {
+      "full": {
+       "task": "cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 3313,
+        "embeddings": {
+         "shape": [
+          3313,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          3313
+         ],
+         "dtype": "torch.int64",
+         "sha1": "426667d2f98fa19802c954f8b0ad2711c5166fdc"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 4397,
+        "embeddings": {
+         "shape": [
+          4397,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          4397
+         ],
+         "dtype": "torch.int64",
+         "sha1": "28ffe17ffc6cb1ae0db8ee541fb929c81b15bbff"
+        }
+       }
+      },
+      "optical_missing": {
+       "task": "cropharvest_Peoples_Republic_of_China_6_sentinel1",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 3313,
+        "embeddings": {
+         "shape": [
+          3313,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          3313
+         ],
+         "dtype": "torch.int64",
+         "sha1": "426667d2f98fa19802c954f8b0ad2711c5166fdc"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 4397,
+        "embeddings": {
+         "shape": [
+          4397,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          4397
+         ],
+         "dtype": "torch.int64",
+         "sha1": "28ffe17ffc6cb1ae0db8ee541fb929c81b15bbff"
+        }
+       }
+      },
+      "radar_missing": {
+       "task": "cropharvest_Peoples_Republic_of_China_6",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 3313,
+        "embeddings": {
+         "shape": [
+          3313,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          3313
+         ],
+         "dtype": "torch.int64",
+         "sha1": "426667d2f98fa19802c954f8b0ad2711c5166fdc"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 4397,
+        "embeddings": {
+         "shape": [
+          4397,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          4397
+         ],
+         "dtype": "torch.int64",
+         "sha1": "28ffe17ffc6cb1ae0db8ee541fb929c81b15bbff"
+        }
+       }
+      }
+     },
+     "splits": {
+      "train": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      },
+      "test": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      }
+     },
+     "aligned_all_splits": true,
+     "aligned_for_the_design": true
+    },
+    "togo12": {
+     "inputs": {
+      "full": {
+       "task": "cropharvest_Togo_12_sentinel2_sentinel1",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1032,
+        "embeddings": {
+         "shape": [
+          1032,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1032
+         ],
+         "dtype": "torch.int64",
+         "sha1": "09db9b93889e7ad3f081ef1f499579f3cc62f10d"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 306,
+        "embeddings": {
+         "shape": [
+          306,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          306
+         ],
+         "dtype": "torch.int64",
+         "sha1": "81d1830e2870e92884c0a252e4f71ab49a52131a"
+        }
+       }
+      },
+      "optical_missing": {
+       "task": "cropharvest_Togo_12_sentinel1",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1032,
+        "embeddings": {
+         "shape": [
+          1032,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1032
+         ],
+         "dtype": "torch.int64",
+         "sha1": "09db9b93889e7ad3f081ef1f499579f3cc62f10d"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 306,
+        "embeddings": {
+         "shape": [
+          306,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          306
+         ],
+         "dtype": "torch.int64",
+         "sha1": "81d1830e2870e92884c0a252e4f71ab49a52131a"
+        }
+       }
+      },
+      "radar_missing": {
+       "task": "cropharvest_Togo_12_sentinel2",
+       "train": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 1032,
+        "embeddings": {
+         "shape": [
+          1032,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          1032
+         ],
+         "dtype": "torch.int64",
+         "sha1": "09db9b93889e7ad3f081ef1f499579f3cc62f10d"
+        }
+       },
+       "test": {
+        "cached": true,
+        "memory_mapped": true,
+        "keys": [
+         "embeddings",
+         "labels"
+        ],
+        "n_units": 306,
+        "embeddings": {
+         "shape": [
+          306,
+          1024
+         ],
+         "dtype": "torch.bfloat16"
+        },
+        "labels": {
+         "shape": [
+          306
+         ],
+         "dtype": "torch.int64",
+         "sha1": "81d1830e2870e92884c0a252e4f71ab49a52131a"
+        }
+       }
+      }
+     },
+     "splits": {
+      "train": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      },
+      "test": {
+       "aligned": true,
+       "against_full": {
+        "optical_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        },
+        "radar_missing": {
+         "n_units_equal": true,
+         "labels_equal_in_order": true,
+         "embedding_shape_equal": true,
+         "other_keys_equal": {},
+         "aligned": true
+        }
+       },
+       "identifiers": [
+        "labels"
+       ],
+       "note": "the files carry no identifier but the labels: equal labels in the same order rule out any reordering across classes (or across label tiles), not a permutation among units with identical labels"
+      }
+     },
+     "aligned_all_splits": true,
+     "aligned_for_the_design": true
+    }
+   },
+   "cached_for_all_three_inputs": true,
+   "cached_for_the_design": true,
+   "aligned_for_the_design": true
+  }
+ },
+ "verdict": {
+  "base_aligned_for_the_design": true,
+  "large_runs_as_replication": true,
+  "large_cached_for_all_three_inputs": true
+ },
+ "seconds": 6.573981761932373
+}

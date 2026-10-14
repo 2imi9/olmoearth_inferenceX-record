@@ -1,0 +1,127 @@
+{
+ "experiment": "exp81 seventh amendment: the rare-error warning",
+ "rare_errors": 5,
+ "cells": {
+  "m_eurosat/random/300/0/producer_accuracy": {
+   "truth": 0.98,
+   "n_graded": 1060,
+   "n_warned": 600,
+   "coverage": 0.8933962264150943,
+   "coverage_warned": 0.8116666666666666,
+   "coverage_unwarned": 1.0,
+   "misses": 113.0,
+   "misses_warned": 113.0,
+   "share_of_misses_warned": 1.0
+  },
+  "m_eurosat/random/300/3/reference_share": {
+   "truth": 0.1,
+   "n_graded": 2000,
+   "n_warned": 1727,
+   "coverage": 0.927,
+   "coverage_warned": 0.9177764910248987,
+   "coverage_unwarned": 0.9853479853479854,
+   "misses": 146.0,
+   "misses_warned": 142.0,
+   "share_of_misses_warned": 0.9726027397260274
+  },
+  "m_eurosat/random/300/6/producer_accuracy": {
+   "truth": 0.98,
+   "n_graded": 1054,
+   "n_warned": 614,
+   "coverage": 0.9240986717267552,
+   "coverage_warned": 0.8697068403908795,
+   "coverage_unwarned": 1.0,
+   "misses": 80.0,
+   "misses_warned": 80.0,
+   "share_of_misses_warned": 1.0
+  },
+  "m_eurosat/random/300/6/reference_share": {
+   "truth": 0.1,
+   "n_graded": 2000,
+   "n_warned": 1749,
+   "coverage": 0.9075,
+   "coverage_warned": 0.8942252715837622,
+   "coverage_unwarned": 1.0,
+   "misses": 185.0,
+   "misses_warned": 185.0,
+   "share_of_misses_warned": 1.0
+  },
+  "m_eurosat/confidence/300/6/producer_accuracy": {
+   "truth": 0.98,
+   "n_graded": 1042,
+   "n_warned": 535,
+   "coverage": 0.9280230326295585,
+   "coverage_warned": 0.8598130841121495,
+   "coverage_unwarned": 1.0,
+   "misses": 75.0,
+   "misses_warned": 75.0,
+   "share_of_misses_warned": 1.0
+  },
+  "mados/confidence/1000/7/producer_accuracy": {
+   "truth": 0.9998290598290598,
+   "n_graded": 2000,
+   "n_warned": 201,
+   "coverage": 0.8995,
+   "coverage_warned": 0.0,
+   "coverage_unwarned": 1.0,
+   "misses": 201.0,
+   "misses_warned": 201.0,
+   "share_of_misses_warned": 1.0
+  },
+  "m_brick_kiln/confidence/300/0/producer_accuracy": {
+   "truth": 0.9773755656108597,
+   "n_graded": 2000,
+   "n_warned": 125,
+   "coverage": 0.906,
+   "coverage_warned": 0.28,
+   "coverage_unwarned": 0.9477333333333333,
+   "misses": 188.0,
+   "misses_warned": 90.0,
+   "share_of_misses_warned": 0.4787234042553192
+  },
+  "m_brick_kiln/confidence/300/1/user_accuracy": {
+   "truth": 0.9545454545454546,
+   "n_graded": 2000,
+   "n_warned": 125,
+   "coverage": 0.902,
+   "coverage_warned": 0.288,
+   "coverage_unwarned": 0.9429333333333333,
+   "misses": 196.0,
+   "misses_warned": 89.0,
+   "share_of_misses_warned": 0.45408163265306123
+  },
+  "nandi_landsat/confidence/300/1/user_accuracy": {
+   "truth": 0.9015151515151515,
+   "n_graded": 1980,
+   "n_warned": 202,
+   "coverage": 0.9156565656565656,
+   "coverage_warned": 0.4752475247524752,
+   "coverage_unwarned": 0.9656917885264342,
+   "misses": 167.0,
+   "misses_warned": 106.0,
+   "share_of_misses_warned": 0.6347305389221557
+  }
+ },
+ "verdicts": {
+  "a_warning_marks_the_misses": {
+   "holds": true,
+   "misses": 1351.0,
+   "misses_warned": 1081.0,
+   "share": 0.8001480384900074,
+   "bar": 0.8
+  },
+  "b_unwarned_draws_cover": {
+   "holds": true,
+   "min_coverage_unwarned": 0.9429333333333333,
+   "bar": 0.93
+  },
+  "c_warning_is_not_everywhere": {
+   "holds": true,
+   "n_graded": 85281,
+   "n_warned": 9476,
+   "share_warned": 0.11111501975821109,
+   "bar": 0.2
+  }
+ },
+ "seconds": 56
+}

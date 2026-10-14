@@ -1,0 +1,1764 @@
+{
+ "experiment": "exp98: the record's re-run of Ai2's FT-AWF deployment configuration (2023, 10 m, probabilities written), graded at Ai2's own AWF labels",
+ "prereg_page": "docs/plan/awf_deployment.md",
+ "utc": "2026-10-09T06:38:10Z",
+ "commit": "7417425d9501568c2a38b5a9ae39dd0013842b62",
+ "dirty": false,
+ "inputs": {
+  "grids": [
+   {
+    "label": "0:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     4096
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 56,
+    "n_train_covered": 189
+   },
+   {
+    "label": "1:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     13312,
+     5120
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 6,
+    "n_train_covered": 18
+   },
+   {
+    "label": "2:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     4096
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 23,
+    "n_train_covered": 116
+   },
+   {
+    "label": "3:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     13312,
+     5120
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 11,
+    "n_train_covered": 51
+   },
+   {
+    "label": "4:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     11264,
+     6144
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 48,
+    "n_train_covered": 124
+   },
+   {
+    "label": "5:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     4096
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 91,
+    "n_train_covered": 215
+   },
+   {
+    "label": "6:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     4096
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 5,
+    "n_train_covered": 28
+   },
+   {
+    "label": "7:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     3072
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 19,
+    "n_train_covered": 42
+   },
+   {
+    "label": "8:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     14336,
+     2048
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 0,
+    "n_train_covered": 0
+   },
+   {
+    "label": "9:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     1024,
+     1024
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 0,
+    "n_train_covered": 0
+   },
+   {
+    "label": "10:32737",
+    "crs": "EPSG:32737",
+    "shape": [
+     1024,
+     1024
+    ],
+    "scores_file": "scores_32737.tif",
+    "condition_file": "condition_32737.tif",
+    "n_val_covered": 0,
+    "n_train_covered": 0
+   }
+  ],
+  "from_olmoearth": [
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 56,
+    "largest_sum_deviation": 4.3704955032808357e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 17,
+    "largest_sum_deviation": 4.3447524689099737e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 56,
+    "largest_sum_deviation": 4.594548954628408e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 18,
+    "largest_sum_deviation": 4.342819011071697e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 14,
+    "largest_sum_deviation": 4.694520612247288e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 46,
+    "largest_sum_deviation": 4.814687599719036e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 17,
+    "largest_sum_deviation": 4.2799169364116096e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 29,
+    "largest_sum_deviation": 4.6966956546157235e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 15,
+    "largest_sum_deviation": 4.6461297742439456e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 1,
+    "largest_sum_deviation": 4.148355081667887e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   },
+   {
+    "kind": "softmax over C bands",
+    "bands": 10,
+    "windows_read": 1,
+    "largest_sum_deviation": 4.148355081667887e-07,
+    "uncovered_pixels": 0,
+    "source": "rslearn @ 5780896a, olmoearth_projects @ f3c9b0c8",
+    "windows_skipped": 0,
+    "burned_conditions": {
+     "codes": {
+      "0": "mcd64a1:no-burn-2023:sep-not-read",
+      "1": "mcd64a1:burned-2023"
+     },
+     "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+     "months_missing": [
+      "2023-09"
+     ]
+    }
+   }
+  ],
+  "condition_names": {
+   "0": "sentinel2_scl:all:clear",
+   "1": "sentinel2_scl:all:some-cloud",
+   "2": "sentinel2_scl:all:cloudy",
+   "3": "sentinel2_scl:most:clear",
+   "4": "sentinel2_scl:most:some-cloud"
+  },
+  "request_period": "2023-01-01/2023-12-31"
+ },
+ "labels": {
+  "group": "spatial_split",
+  "n_windows_kept": 1459,
+  "by_split": {
+   "train": 1115,
+   "val": 344
+  },
+  "dropped": {},
+  "crs": {
+   "EPSG:32737": 1459
+  },
+  "time_ranges": {
+   "2023-01-01/2023-12-31": 1459
+  },
+  "time_range_matches_request": {
+   "request": "2023-01-01/2023-12-31",
+   "n_matching": 1459
+  },
+  "exp89_manifest": "checked",
+  "awf_reader_check": {
+   "run": true,
+   "n_awf": 1459,
+   "n_here": 1459,
+   "agree": true,
+   "only_awf": 0,
+   "only_here": 0
+  }
+ },
+ "mapping": {
+  "rule": "the score pixel that contains the centre of the labelled pixel; reprojected where the CRSs differ",
+  "same_crs": 1042,
+  "reprojected": 0,
+  "largest_offset_from_pixel_middle_px": 0.0,
+  "overlapping_grids": {
+   "in_two_or_more_grids": 1040,
+   "covered_in_two_or_more": 88,
+   "covered_in_two_differing": 0,
+   "covered_only_in_a_later_grid": 0,
+   "rule": "a point in two grids takes the first whose pixel is covered"
+  },
+  "by_split": {
+   "train": {
+    "n": 1115,
+    "outside_every_grid": 332,
+    "in_grid_uncovered": 0,
+    "covered": 783
+   },
+   "val": {
+    "n": 344,
+    "outside_every_grid": 85,
+    "in_grid_uncovered": 0,
+    "covered": 259
+   }
+  }
+ },
+ "graded_validation": {
+  "n": 259,
+  "n_clusters": 20,
+  "readings": {
+   "sum_dev": 2.4739654236327624e-07,
+   "n_pred_untrained": 0,
+   "n_saturated_float32": 0,
+   "n_p1_rounds_to_one": 0
+  },
+  "accuracy": {
+   "n_units": 259,
+   "n_errors": 33,
+   "accuracy_window": 0.8725868725868726,
+   "error_rate": 0.1274131274131274,
+   "n_clusters": 20,
+   "n_clusters_with_an_error": 14,
+   "per_class_recall": {
+    "woodland_forest": {
+     "class": 0,
+     "n": 27,
+     "recall": 0.6296296296296297
+    },
+    "open_water": {
+     "class": 1,
+     "n": 3,
+     "recall": 0.6666666666666666
+    },
+    "shrubland_savanna": {
+     "class": 2,
+     "n": 94,
+     "recall": 0.9148936170212766
+    },
+    "herbaceous_wetland": {
+     "class": 3,
+     "n": 6,
+     "recall": 0.5
+    },
+    "grassland_barren": {
+     "class": 4,
+     "n": 55,
+     "recall": 0.9454545454545454
+    },
+    "agriculture_settlement": {
+     "class": 5,
+     "n": 44,
+     "recall": 0.8863636363636364
+    },
+    "montane_forest": {
+     "class": 6,
+     "n": 9,
+     "recall": 0.7777777777777778
+    },
+    "lava_forest": {
+     "class": 7,
+     "n": 1,
+     "recall": 1.0
+    },
+    "urban_dense_development": {
+     "class": 8,
+     "n": 20,
+     "recall": 0.95
+    }
+   },
+   "confusion": {
+    "0": [
+     17,
+     0,
+     8,
+     0,
+     0,
+     0,
+     2,
+     0,
+     0,
+     0
+    ],
+    "1": [
+     1,
+     2,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "2": [
+     3,
+     0,
+     86,
+     0,
+     5,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "3": [
+     0,
+     0,
+     0,
+     3,
+     3,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "4": [
+     0,
+     0,
+     3,
+     0,
+     52,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "5": [
+     0,
+     0,
+     1,
+     1,
+     3,
+     39,
+     0,
+     0,
+     0,
+     0
+    ],
+    "6": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2,
+     7,
+     0,
+     0,
+     0
+    ],
+    "7": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0
+    ],
+    "8": [
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     19,
+     0
+    ]
+   },
+   "selective_accuracy": {
+    "0.5": 0.9846153846153847,
+    "0.8": 0.9323671497584541,
+    "0.9": 0.9184549356223176,
+    "1.0": 0.8725868725868726
+   },
+   "ece_10_bins": 0.09009123231897093,
+   "reliability": [
+    [
+     0.30000000000000004,
+     0.4,
+     1,
+     0.3337653425044872,
+     0.0
+    ],
+    [
+     0.4,
+     0.5,
+     1,
+     0.49583337173277975,
+     0.0
+    ],
+    [
+     0.5,
+     0.6000000000000001,
+     7,
+     0.5591307234587981,
+     0.5714285714285714
+    ],
+    [
+     0.6000000000000001,
+     0.7000000000000001,
+     4,
+     0.6391265053468008,
+     0.5
+    ],
+    [
+     0.7000000000000001,
+     0.8,
+     6,
+     0.7483705227066197,
+     0.5
+    ],
+    [
+     0.8,
+     0.9,
+     5,
+     0.8538197876320639,
+     0.2
+    ],
+    [
+     0.9,
+     1.0,
+     235,
+     0.9919239039353215,
+     0.9191489361702128
+    ]
+   ]
+  },
+  "ai2": {
+   "accuracy": 0.895,
+   "difference": -0.0224131274131274,
+   "within_2_points": false,
+   "matched": false,
+   "note": "Ai2's figure is over all 344 validation points, each read at a random position in a 16-px crop; it is matched only when all 344 are graded here"
+  },
+  "ranking": {
+   "auroc": 0.8490211853043711,
+   "aurc": 0.03147343362463862,
+   "excess_aurc": 0.022742211698018464,
+   "gap_closed": 0.8083767562983392,
+   "capture": {
+    "0.05": 0.21212121212121213,
+    "0.1": 0.42424242424242425,
+    "0.2": 0.5757575757575758
+   },
+   "capture_random": {
+    "0.05": 0.05019305019305019,
+    "0.1": 0.10038610038610038,
+    "0.2": 0.20077220077220076
+   },
+   "ceiling": {
+    "0.05": 0.3939393939393939,
+    "0.1": 0.7878787878787878,
+    "0.2": 1.0
+   },
+   "auroc_minus_chance_bootstrap": {
+    "n": 2000,
+    "difference_lo": 0.30067974486049925,
+    "difference_hi": 0.3999500905186184,
+    "difference_mean": 0.34959541719873394,
+    "p_difference_gt_0": 1.0,
+    "a_mean": 0.8495954171987339,
+    "b_mean": 0.5
+   },
+   "capture_0.1_minus_random_bootstrap": {
+    "n_resamples": 2000,
+    "lower_one_sided_95": 0.17716157391601228,
+    "lo95": 0.15925886650170848,
+    "hi95": 0.41904049922558995,
+    "p_a_better": 1.0
+   },
+   "n": 259,
+   "n_errors": 33
+  },
+  "boundary_reported": {
+   "share_on_boundary_errors": 0.30303030303030304,
+   "share_on_boundary_correct": 0.05752212389380531,
+   "exp21": "0.63 among errors, 0.34 among correct (the replica, 16-px crops)"
+  },
+  "assess_package_path": {
+   "n_windows_scored": 259,
+   "error_rate": 0.1274131274131274,
+   "aurc_confidence": 0.03147343362463862,
+   "error_capture_at_budget": {
+    "0.05": 0.21212121212121213,
+    "0.1": 0.42424242424242425,
+    "0.2": 0.5757575757575758
+   },
+   "confusion_pairs": {
+    "n_errors": 33,
+    "n_pairs": 12,
+    "pairs": [
+     {
+      "predicted": 2,
+      "reference": 0,
+      "n": 8,
+      "share": 0.24242424242424243
+     },
+     {
+      "predicted": 4,
+      "reference": 2,
+      "n": 5,
+      "share": 0.15151515151515152
+     },
+     {
+      "predicted": 0,
+      "reference": 2,
+      "n": 3,
+      "share": 0.09090909090909091
+     }
+    ],
+    "share_of_errors_in_top": 0.48484848484848486
+   },
+   "same_order_as_ranking": true,
+   "n_p1_rounds_to_one": 0,
+   "note": "assess predicts the argmax over the trained channels; exp98 (as exp89 and rslearn) over all ten. Its confidence is the probability, which ties where it rounds to 1.0; the ranking here reads its logarithm, so the two orders can differ only among those points"
+  },
+  "by_condition": {
+   "sentinel2_scl:all:clear": {
+    "code": 0,
+    "n_points": 20,
+    "n_errors": 2,
+    "error_rate": 0.1,
+    "share_of_points": 0.07722007722007722,
+    "share_of_map": 0.06892821618488856
+   },
+   "sentinel2_scl:all:some-cloud": {
+    "code": 1,
+    "n_points": 239,
+    "n_errors": 31,
+    "error_rate": 0.1297071129707113,
+    "share_of_points": 0.9227799227799228,
+    "share_of_map": 0.8595656411988395
+   },
+   "sentinel2_scl:all:cloudy": {
+    "code": 2,
+    "n_points": 0,
+    "n_errors": 0,
+    "error_rate": null,
+    "share_of_points": 0.0,
+    "share_of_map": 0.07139440945216588
+   },
+   "sentinel2_scl:most:clear": {
+    "code": 3,
+    "n_points": 0,
+    "n_errors": 0,
+    "error_rate": null,
+    "share_of_points": 0.0,
+    "share_of_map": 6.765978676932198e-05
+   },
+   "sentinel2_scl:most:some-cloud": {
+    "code": 4,
+    "n_points": 0,
+    "n_errors": 0,
+    "error_rate": null,
+    "share_of_points": 0.0,
+    "share_of_map": 4.4073377336774555e-05
+   }
+  },
+  "replica": {
+   "n_matched": 259,
+   "n_missing": 0,
+   "label_mismatches": 0,
+   "cluster_mismatches": 0,
+   "accuracy_deployed": 0.8725868725868726,
+   "accuracy_replica": 0.8957528957528957,
+   "difference": -0.02316602316602312,
+   "n_errors_deployed": 33,
+   "n_errors_replica": 27,
+   "agreement": 0.918918918918919,
+   "n_same_class": 238,
+   "discordant": {
+    "deployed_right_replica_wrong": 7,
+    "replica_right_deployed_wrong": 13,
+    "both_wrong_different_class": 1,
+    "sign_test_two_sided_p": 0.26317596435546875
+   },
+   "difference_bootstrap": {
+    "n": 2000,
+    "difference_lo": -0.05534145805884937,
+    "difference_hi": 0.014851945231697902,
+    "difference_mean": -0.022402869984377665,
+    "p_difference_gt_0": 0.091,
+    "a_mean": 0.873052836944914,
+    "b_mean": 0.8954557069292917
+   },
+   "suspicion_spearman": 0.8151774058750805,
+   "p1_equivalence_interval": {
+    "level": 0.9,
+    "n_resamples": 2000,
+    "lo": -0.05147216611966675,
+    "hi": 0.008198407879646489,
+    "max_abs_end": 0.05147216611966675,
+    "n_clusters": 20
+   },
+   "within_2_points_reported": false,
+   "auroc_deployed": 0.8490211853043711,
+   "auroc_replica": 0.8874521072796935,
+   "auroc_difference_bootstrap": {
+    "n": 2000,
+    "difference_lo": -0.08994956874466102,
+    "difference_hi": 0.025532026888707402,
+    "difference_mean": -0.03690572737379715,
+    "p_difference_gt_0": 0.104,
+    "a_mean": 0.8495954171987339,
+    "b_mean": 0.886501144572531
+   },
+   "file": "exp/out/exp89_units_awf.npz",
+   "sha256": "37520ef4f6cc4f7333b7aae517d5e217c845fb8cc932207864d4681997474a56"
+  }
+ },
+ "train_in_sample": {
+  "n": 783,
+  "note": "in-sample: the model was fitted to these points; never graded, never pooled",
+  "accuracy": 0.979565772669221,
+  "n_errors": 16,
+  "exp89_s2_in_sample_accuracy": 0.98046875
+ },
+ "where_the_points_sit": {
+  "grids": [
+   {
+    "label": "0:32737",
+    "n_covered": 58720256,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 228079,
+    "largest_sum_deviation": 4.3704955032808357e-07,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 0
+   },
+   {
+    "label": "1:32737",
+    "n_covered": 13631488,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 53087,
+    "largest_sum_deviation": 4.3447524689099737e-07,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 4194304
+   },
+   {
+    "label": "2:32737",
+    "n_covered": 45088768,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 174869,
+    "largest_sum_deviation": 4.594548954628408e-07,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 13631488
+   },
+   {
+    "label": "3:32737",
+    "n_covered": 13631488,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 52784,
+    "largest_sum_deviation": 4.342819011071697e-07,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 5242880
+   },
+   {
+    "label": "4:32737",
+    "n_covered": 12582912,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 49105,
+    "largest_sum_deviation": 4.694520612247288e-07,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 2097152
+   },
+   {
+    "label": "5:32737",
+    "n_covered": 47185920,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 183273,
+    "largest_sum_deviation": 4.814687599719036e-07,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 1048576
+   },
+   {
+    "label": "6:32737",
+    "n_covered": 14680064,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 56927,
+    "largest_sum_deviation": 4.276952836335113e-07,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 3145728
+   },
+   {
+    "label": "7:32737",
+    "n_covered": 29360128,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 113809,
+    "largest_sum_deviation": 4.6966956546157235e-07,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 1048576
+   },
+   {
+    "label": "8:32737",
+    "n_covered": 0,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 0,
+    "largest_sum_deviation": 0.0,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 15728640
+   },
+   {
+    "label": "9:32737",
+    "n_covered": 0,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 0,
+    "largest_sum_deviation": 0.0,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 1048576
+   },
+   {
+    "label": "10:32737",
+    "n_covered": 0,
+    "sample_probability": 0.0038767248634400406,
+    "n_sampled": 0,
+    "largest_sum_deviation": 0.0,
+    "n_saturated_float32": 0,
+    "n_counted_in_an_earlier_grid": 1048576
+   }
+  ],
+  "n_map_pixels": 234881024,
+  "n_pixels_counted_once_of_overlaps": 48234496,
+  "n_grid_overlaps_not_deduplicated": 0,
+  "map_class_share": {
+   "woodland_forest": 0.0708508448941367,
+   "open_water": 0.004929623433521816,
+   "shrubland_savanna": 0.37980899640492033,
+   "herbaceous_wetland": 0.011782995292118617,
+   "grassland_barren": 0.2477251376424517,
+   "agriculture_settlement": 0.14526629873684474,
+   "montane_forest": 0.08788539256368365,
+   "lava_forest": 0.03152817913464138,
+   "urban_dense_development": 0.0202225318976811,
+   "channel 9": 0.0
+  },
+  "points_mean_percentile": 0.6473660153020369,
+  "points_median_percentile": 0.6801804518533708,
+  "points_mean_percentile_bootstrap": {
+   "n_resamples": 2000,
+   "lower_one_sided_95": 0.6140077703132968,
+   "hi_one_sided_95": 0.6827973835985167,
+   "n_clusters": 20
+  },
+  "reading": "the share of the map's pixels less confident than a validation point, averaged over the points; 0.5 when the points' confidence is distributed as the map's",
+  "map_confidence_quantiles": {
+   "0.05": 0.571521106650111,
+   "0.25": 0.9119025909086137,
+   "0.5": 0.9942465750927765,
+   "0.75": 0.9996548037740196,
+   "0.95": 0.9999771057533394
+  },
+  "points_confidence_quantiles": {
+   "0.05": 0.7047388580475592,
+   "0.25": 0.9858520275361391,
+   "0.5": 0.9992574724369617,
+   "0.75": 0.9999469748778137,
+   "0.95": 0.9999947684716846
+  },
+  "points_class_share_deployed": {
+   "woodland_forest": 0.08108108108108109,
+   "open_water": 0.007722007722007722,
+   "shrubland_savanna": 0.3783783783783784,
+   "herbaceous_wetland": 0.015444015444015444,
+   "grassland_barren": 0.2471042471042471,
+   "agriculture_settlement": 0.1583011583011583,
+   "montane_forest": 0.03474903474903475,
+   "lava_forest": 0.003861003861003861,
+   "urban_dense_development": 0.07335907335907337,
+   "channel 9": 0.0
+  },
+  "points_class_share_label": {
+   "woodland_forest": 0.10424710424710425,
+   "open_water": 0.011583011583011582,
+   "shrubland_savanna": 0.36293436293436293,
+   "herbaceous_wetland": 0.023166023166023165,
+   "grassland_barren": 0.21235521235521235,
+   "agriculture_settlement": 0.16988416988416988,
+   "montane_forest": 0.03474903474903475,
+   "lava_forest": 0.003861003861003861,
+   "urban_dense_development": 0.07722007722007722
+  },
+  "reweighted_reported": {
+   "strata": "quintiles of the map's confidence, stratum 0 the most confident",
+   "map_share": [
+    0.20000043862871505,
+    0.19999934205692743,
+    0.20000043862871505,
+    0.19999934205692743,
+    0.20000043862871505
+   ],
+   "points_per_stratum": [
+    96,
+    62,
+    44,
+    35,
+    22
+   ],
+   "points_error_rate_per_stratum": [
+    0.010416666666666666,
+    0.03225806451612903,
+    0.22727272727272727,
+    0.22857142857142856,
+    0.5454545454545454
+   ],
+   "assumption": "the points are as accurate as the map's other pixels of the same confidence; their design (expert placement) does not give this, so this is a model-based reading, not an estimate",
+   "estimate": 0.20879485868581188,
+   "accuracy": 0.7912051413141881,
+   "variance_if_random_within_strata": 0.0008678767857527453,
+   "starved": 0
+  }
+ },
+ "plan_reported": {
+  "n_windows": 234881024,
+  "patch_px": 1,
+  "width": 0.1,
+  "alpha": 0.1,
+  "note": "Planned before any label. Each probability is over the reviewer's random draw, for a map with the stated error rate or difference; the map's own error rate is what the labels will measure, so a plan made at a guessed rate holds for that rate only. Labels are assumed right.",
+  "error_rate": {
+   "points": {
+    "error_rate": 0.1274131274131274,
+    "labels": 223,
+    "probability_at_labels": 0.9194513873994251,
+    "refusal": null
+   },
+   "exp89_replica": {
+    "error_rate": 0.11918604651162791,
+    "labels": 214,
+    "probability_at_labels": 0.9263060933947782,
+    "refusal": null
+   },
+   "default_0.5": {
+    "error_rate": 0.5,
+    "labels": 402,
+    "probability_at_labels": 0.9999999999988091,
+    "refusal": null
+   }
+  },
+  "zone": {
+   "0.5": {
+    "coverage": 0.5,
+    "zone_error": 0.01538461538461533,
+    "labels_to_test": 44,
+    "min_labels_inside": 22,
+    "refusal": null,
+    "unplanned": null,
+    "bonferroni": {
+     "labels": 229,
+     "probability_at_labels": 0.9001709946084255
+    },
+    "prefix_even": {
+     "labels": 1099,
+     "probability_at_labels": 0.917
+    },
+    "zone_error_source": "the error rate among the most confident share of the graded validation points (a guess: they are not a sample of the map)"
+   },
+   "0.8": {
+    "coverage": 0.8,
+    "zone_error": 0.06763285024154586,
+    "labels_to_test": 28,
+    "min_labels_inside": 22,
+    "refusal": null,
+    "unplanned": null,
+    "bonferroni": {
+     "labels": 1416,
+     "probability_at_labels": 0.9002511883502444
+    },
+    "prefix_even": {
+     "labels": null,
+     "probability_at_labels": null
+    },
+    "zone_error_source": "the error rate among the most confident share of the graded validation points (a guess: they are not a sample of the map)"
+   },
+   "1": {
+    "coverage": 1.0,
+    "zone_error": 0.12741312741312738,
+    "labels_to_test": 22,
+    "min_labels_inside": 22,
+    "refusal": "a zone wrong 0.127413 of the time is wrong more than alpha 0.1; no budget certifies it, and a rule that did would be wrong",
+    "unplanned": null,
+    "zone_error_source": "the error rate among the most confident share of the graded validation points (a guess: they are not a sample of the map)"
+   }
+  },
+  "certify_min_labels": 22,
+  "sequential": {
+   "min_labels": 34,
+   "anchor_at_first_budget_300": 0.15,
+   "command": "oe-inferencex sample scores_<EPSG>.tif --design sequential --alpha 0.1 --patch 1 --seed 98 --budget <B> --out <labelling sheet outside the repository>",
+   "note": "a random order of the map's pixels, labelled from the top; certify then holds at every look, and estimate reads any labelled prefix as a random sample. The sheet lists window positions and stays with the labellers, never in the repository"
+  }
+ },
+ "inputs_reported": {
+  "config": {
+   "label_dataset": true,
+   "deployment_dataset": true,
+   "n_deployment_roots": 1,
+   "deployment_roots_share_one_config": true,
+   "differences": [
+    {
+     "key": "band_sets",
+     "label_dataset": [
+      {
+       "bands": [
+        "B02",
+        "B03",
+        "B04",
+        "B08"
+       ],
+       "dtype": "uint16"
+      },
+      {
+       "bands": [
+        "B05",
+        "B06",
+        "B07",
+        "B8A",
+        "B11",
+        "B12"
+       ],
+       "dtype": "uint16",
+       "zoom_offset": -1
+      },
+      {
+       "bands": [
+        "B01",
+        "B09"
+       ],
+       "dtype": "uint16",
+       "zoom_offset": -2
+      }
+     ],
+     "deployment_dataset": [
+      {
+       "bands": [
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B8A",
+        "B09",
+        "B11",
+        "B12"
+       ],
+       "dtype": "uint16"
+      }
+     ]
+    },
+    {
+     "key": "data_source.cache_dir",
+     "label_dataset": "cache/planetary_computer",
+     "deployment_dataset": null
+    },
+    {
+     "key": "data_source.class_path",
+     "label_dataset": null,
+     "deployment_dataset": "rslearn.data_sources.planetary_computer.Sentinel2"
+    },
+    {
+     "key": "data_source.harmonize",
+     "label_dataset": true,
+     "deployment_dataset": null
+    },
+    {
+     "key": "data_source.init_args",
+     "label_dataset": null,
+     "deployment_dataset": {
+      "cache_dir": "cache/planetary_computer",
+      "harmonize": true,
+      "sort_by": "eo:cloud_cover"
+     }
+    },
+    {
+     "key": "data_source.name",
+     "label_dataset": "rslearn.data_sources.planetary_computer.Sentinel2",
+     "deployment_dataset": null
+    },
+    {
+     "key": "data_source.query_config.min_matches",
+     "label_dataset": null,
+     "deployment_dataset": 12
+    },
+    {
+     "key": "data_source.sort_by",
+     "label_dataset": "eo:cloud_cover",
+     "deployment_dataset": null
+    }
+   ]
+  },
+  "deployment_windows": 270,
+  "deployment_time_ranges": {
+   "2023-01-01/2023-12-31": 270
+  },
+  "n_points_in_two_deployed_windows": 88,
+  "n_points_without_deployed_window": 0,
+  "n_points_without_label_imagery": 0,
+  "n_points_without_deployed_imagery_read": 0,
+  "n_points_incomplete": 0,
+  "n_compared": 1042,
+  "bands": [
+   "B02",
+   "B03",
+   "B04",
+   "B08"
+  ],
+  "n_identical_all_groups": 1035,
+  "n_identical_reversed_order": 0,
+  "n_identical_any_order": 1035,
+  "share_identical_by_group": [
+   0.9952015355086372,
+   1.0,
+   1.0,
+   0.9961612284069098,
+   1.0,
+   0.9942418426103646,
+   1.0,
+   0.9961612284069098,
+   0.9961612284069098,
+   0.9942418426103646,
+   1.0,
+   1.0
+  ],
+  "median_abs_difference_where_not_identical": [
+   1.0,
+   1.0,
+   2.0,
+   2.0
+  ],
+  "validation_points_by_input": {
+   "identical": {
+    "n_val": 258,
+    "error_rate": 0.12790697674418605,
+    "agreement_with_replica": 0.9186046511627907
+   },
+   "not_identical": {
+    "n_val": 1,
+    "error_rate": 0.0,
+    "agreement_with_replica": 1.0
+   }
+  }
+ },
+ "burned_area_reported": {
+  "status": "report-only: no threshold and no verdict (docs/plan/awf_deployment.md, Part H)",
+  "source": "exp/exp98_burned.py: MODIS MCD64A1 v061 from Planetary Computer, 2023, nearest neighbour onto each part's grid",
+  "patch_px": 4,
+  "window_code_rule": "A window takes the condition held by most of its pixels that have a prediction and a recorded condition. A tie, or no such pixel, makes it 'unrecorded'.",
+  "cannot_show": [
+   "A MODIS cell is about 463 m on a side, about 2,150 pixels and 134 windows of 40 m: a code says whether the cell around a window burned, not whether the window did; a scar's edge mixes both codes.",
+   "MCD64A1 misses small and short-lived burns (global omission 72.6% against Landsat 8 pairs, MCD64 C6.1 user guide section 7) and burns under persistent cloud; code 0 is 'no burn detected', not 'unburned'.",
+   "A month the stage could not read is a month whose burns read as code 0; its name and months_missing say which (September 2023 was absent from Planetary Computer on 2026-10-08).",
+   "A burn date is a day; the model reads 12 mosaics of 30-day periods. A burned code does not say whether a scar was fresh in the scenes the model read, or had greened again by the later periods.",
+   "Ai2's validation points were placed by experts; few may fall in burned cells, so their error rate per code is descriptive, with its count, and carries no verdict."
+  ],
+  "names": {
+   "0": "mcd64a1:no-burn-2023:sep-not-read",
+   "1": "mcd64a1:burned-2023"
+  },
+  "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+  "months_missing": [
+   "2023-09"
+  ],
+  "windows": {
+   "n_windows": 14680064,
+   "budget": 0.1,
+   "n_least_confident": 1468006,
+   "n_tied_at_cutoff": 1,
+   "n_tied_taken": 1,
+   "per_code": {
+    "unrecorded": {
+     "code": -1,
+     "n_windows": 929239,
+     "share_of_windows": 0.06329938343593053,
+     "confidence_quartiles": {
+      "0.25": 0.9080789028001902,
+      "0.5": 0.9980876443943975,
+      "0.75": 0.9997504901920674
+     },
+     "share_of_least_confident": 0.08230347832365807,
+     "least_confident_over_all_windows": 1.3002255923545107
+    },
+    "mcd64a1:no-burn-2023:sep-not-read": {
+     "code": 0,
+     "n_windows": 13746425,
+     "share_of_windows": 0.9364008903503418,
+     "confidence_quartiles": {
+      "0.25": 0.8573107430199718,
+      "0.5": 0.985402718894071,
+      "0.75": 0.9993182154333066
+     },
+     "share_of_least_confident": 0.9166495232308315,
+     "least_confident_over_all_windows": 0.9789071461560437
+    },
+    "mcd64a1:burned-2023": {
+     "code": 1,
+     "n_windows": 4400,
+     "share_of_windows": 0.00029972621372767856,
+     "confidence_quartiles": {
+      "0.25": 0.6764489435505326,
+      "0.5": 0.8194257525741737,
+      "0.75": 0.9451591177987704
+     },
+     "share_of_least_confident": 0.0010469984455104408,
+     "least_confident_over_all_windows": 3.493182769998587
+    }
+   },
+   "n_windows_dropped_overlapping_an_earlier_grid": 3014656
+  },
+  "pixels": {
+   "unrecorded": {
+    "code": -1,
+    "n": 15038423,
+    "share_of_covered": 0.0640257043497903
+   },
+   "mcd64a1:no-burn-2023:sep-not-read": {
+    "code": 0,
+    "n": 219771871,
+    "share_of_covered": 0.9356731644698552
+   },
+   "mcd64a1:burned-2023": {
+    "code": 1,
+    "n": 70730,
+    "share_of_covered": 0.00030113118035452705
+   }
+  },
+  "validation_points": {
+   "unrecorded": {
+    "code": -1,
+    "n_points": 0,
+    "n_errors": 0,
+    "error_rate": null,
+    "share_of_points": 0.0,
+    "share_of_map": 0.0640257043497903,
+    "n_tasks": 0
+   },
+   "mcd64a1:no-burn-2023:sep-not-read": {
+    "code": 0,
+    "n_points": 259,
+    "n_errors": 33,
+    "error_rate": 0.1274131274131274,
+    "share_of_points": 1.0,
+    "share_of_map": 0.9356731644698552,
+    "n_tasks": 20
+   },
+   "mcd64a1:burned-2023": {
+    "code": 1,
+    "n_points": 0,
+    "n_errors": 0,
+    "error_rate": null,
+    "share_of_points": 0.0,
+    "share_of_map": 0.00030113118035452705,
+    "n_tasks": 0
+   }
+  }
+ },
+ "timesync_reported": {
+  "status": "report-only: no threshold and no verdict (docs/plan/awf_deployment.md, Part I)",
+  "year": 2017,
+  "note": "2017 labels against a 2023 map: a plot whose land cover changed between the two years counts as a disagreement. The labels were interpreted from Landsat (30 m) and Google Earth by RCMRD's analysts for TimeSync's legend, the map is 10 m in AWF's legend, and the two meet through the crosswalk (exp/timesync_awf_crosswalk.py), STRICT and LENIENT. Within each country the plots are a simple random sample, so those inside the request geometry are a simple random sample of its part in that country; the countries are strata weighted by their share of the geometry's area.",
+  "source": {
+   "repository": "github.com/bullocke/eastafrica @ fc2014fcbc55cb75e0fbf801ffd9ca1ba4dc5c02, yearly_point_data.csv",
+   "sha256": "5309a982cdd45a4e7378008b9a6385b6accca7d071bdd652360ef7ef66fc429a",
+   "licence": "CC0-1.0",
+   "citation": "Bullock, E.L., Healey, S.P., Yang, Z., et al. (2021) Three decades of land cover change in East Africa. Land 10(2), 150. doi:10.3390/land10020150"
+  },
+  "crosswalk": {
+   "strict": {
+    "Dense Forest": "woodland_forest",
+    "Open Forest": "shrubland_savanna",
+    "Wooded Grassland": "shrubland_savanna",
+    "Open Grassland": "grassland_barren",
+    "Cropland": "agriculture_settlement",
+    "Settlements": "urban_dense_development",
+    "Open Water": "open_water",
+    "Vegetated Wetland": "herbaceous_wetland",
+    "Otherland": "grassland_barren"
+   },
+   "lenient": {
+    "Dense Forest": [
+     "woodland_forest",
+     "montane_forest",
+     "lava_forest"
+    ],
+    "Open Forest": [
+     "shrubland_savanna",
+     "woodland_forest",
+     "montane_forest",
+     "lava_forest"
+    ],
+    "Wooded Grassland": [
+     "shrubland_savanna",
+     "grassland_barren"
+    ],
+    "Open Grassland": [
+     "grassland_barren",
+     "shrubland_savanna"
+    ],
+    "Cropland": [
+     "agriculture_settlement"
+    ],
+    "Settlements": [
+     "urban_dense_development",
+     "agriculture_settlement"
+    ],
+    "Open Water": [
+     "open_water",
+     "herbaceous_wetland"
+    ],
+    "Vegetated Wetland": [
+     "herbaceous_wetland",
+     "open_water"
+    ],
+    "Otherland": [
+     "grassland_barren",
+     "open_water"
+    ]
+   },
+   "awf_classes": {
+    "0": "woodland_forest",
+    "1": "open_water",
+    "2": "shrubland_savanna",
+    "3": "herbaceous_wetland",
+    "4": "grassland_barren",
+    "5": "agriculture_settlement",
+    "6": "montane_forest",
+    "7": "lava_forest",
+    "8": "urban_dense_development"
+   },
+   "untrained_channel": 9,
+   "sha256": "4c8b452896a880189fc51922037acbdb4abc21e05c496e0acc67000a860d1846",
+   "why": {
+    "Dense Forest": "Both legends set this class at a canopy over 40% (TimeSync's Dense Forest, AWF's woodland forest). AWF also has montane and lava forest, forests named by setting rather than canopy, which a TimeSync forest on a mountain slope or a lava flow can be; LENIENT accepts both.",
+    "Open Forest": "A canopy of 15-40% is below AWF's woodland forest (over 40%), and AWF has no class for it; its class of woody cover below that is shrubland/savanna. LENIENT adds the three forest classes: two interpreters read a canopy near 40% differently, and montane and lava forest carry no published canopy threshold.",
+    "Wooded Grassland": "Natural land with shrubs or very sparse trees below both forest thresholds is a savanna or shrubland. LENIENT adds grassland/barren, since AWF publishes no woody-cover threshold between its shrubland/savanna and grassland classes and a sparse-shrub grassland meets both. Woodland forest is not accepted even by LENIENT: this class is below 15% canopy and AWF's woodland forest above 40%, so the definitions are disjoint.",
+    "Open Grassland": "Grass, grass-like plants and forbs without substantial woody vegetation is AWF's grassland/barren. LENIENT adds shrubland/savanna for the same unpublished boundary between the two AWF classes.",
+    "Cropland": "Land used primarily for agriculture is AWF's agriculture/settlement, the only AWF class that names agriculture; LENIENT accepts nothing else.",
+    "Settlements": "Land primarily built (buildings, roads) is AWF's urban/dense development. LENIENT adds agriculture/settlement, where AWF puts homesteads among fields.",
+    "Open Water": "Open water. LENIENT adds herbaceous wetland: the region's lakes and swamps are seasonal, and a water body vegetated for part of the year meets both definitions.",
+    "Vegetated Wetland": "A mix of vegetation and open water for part of the year is AWF's herbaceous wetland; by the same mix LENIENT adds open water.",
+    "Otherland": "Barren land, rock outcrops and salt crusts: AWF merges barren land with grassland. LENIENT adds open water for the salt crusts of seasonal lake beds, which are water part of the year."
+   },
+   "awf_only": {
+    "montane_forest": "no TimeSync counterpart (TimeSync splits forest by canopy, AWF by setting): under STRICT a prediction of it is always an error; LENIENT accepts it for Dense and Open Forest",
+    "lava_forest": "as montane_forest",
+    "channel 9": "AWF's untrained no-data channel: never accepted, an error under both rules"
+   },
+   "timesync_only": {
+    "Open Forest": "no AWF class of 15-40% canopy: STRICT takes shrubland_savanna",
+    "Otherland": "no AWF class of its own: AWF merges barren land with grassland (grassland_barren)"
+   }
+  },
+  "plots": {
+   "kenya": {
+    "inside_geometry": 33,
+    "in_a_grid": 33,
+    "covered": 33
+   },
+   "tanzania": {
+    "inside_geometry": 14,
+    "in_a_grid": 14,
+    "covered": 14
+   }
+  },
+  "expected_inside_geometry": {
+   "kenya": 33,
+   "tanzania": 14
+  },
+  "overlapping_grids": {
+   "in_two_or_more_grids": 45,
+   "covered_in_two_or_more": 12,
+   "covered_in_two_differing": 0,
+   "covered_only_in_a_later_grid": 0
+  },
+  "labels_inside": {
+   "Dense Forest": 2,
+   "Open Forest": 1,
+   "Wooded Grassland": 11,
+   "Open Grassland": 26,
+   "Cropland": 6,
+   "Otherland": 1
+  },
+  "label_changes": {
+   "plots_with_two_or_more_labels_2015_2017": 0,
+   "plots_with_two_or_more_labels_any_year": 1
+  },
+  "areas": {
+   "geometry_km2": 19837.606706776438,
+   "by_country_km2": {
+    "kenya": 10946.426355000673,
+    "tanzania": 8891.180351775774
+   },
+   "share_by_country": {
+    "kenya": 0.5518017630252453,
+    "tanzania": 0.4481982369747548
+   },
+   "share_outside_both_countries": 0.0,
+   "source": "github.com/nvkelso/natural-earth-vector v5.1.2 (f1890d9f152c896d250a77557a5751a93d494776), geojson/ne_10m_admin_0_countries.geojson"
+  },
+  "readings": {
+   "sum_dev": 2.2114044284649026e-07,
+   "n_pred_untrained": 0,
+   "n_saturated_float32": 0,
+   "n_p1_rounds_to_one": 0
+  },
+  "rules": {
+   "strict": {
+    "n": 47,
+    "disagreements": 25,
+    "unweighted_rate": 0.5319148936170213,
+    "by_country": {
+     "kenya": {
+      "n": 33,
+      "disagreements": 19
+     },
+     "tanzania": {
+      "n": 14,
+      "disagreements": 6
+     }
+    },
+    "by_class": {
+     "Dense Forest": {
+      "n": 2,
+      "disagreements": 2
+     },
+     "Open Forest": {
+      "n": 1,
+      "disagreements": 1
+     },
+     "Wooded Grassland": {
+      "n": 11,
+      "disagreements": 2
+     },
+     "Open Grassland": {
+      "n": 26,
+      "disagreements": 19
+     },
+     "Cropland": {
+      "n": 6,
+      "disagreements": 1
+     },
+     "Otherland": {
+      "n": 1,
+      "disagreements": 0
+     }
+    },
+    "three_by_three_majority_disagreements": 25,
+    "stratified": {
+     "estimate": 0.5097890040338441,
+     "low": 0.27196787164871117,
+     "high": 0.7547731816118061,
+     "strata_in_interval": 2,
+     "nominal_coverage": 0.95,
+     "weights": {
+      "kenya": 0.5518017627005289,
+      "tanzania": 0.448198237299471
+     },
+     "method": "the condition design's interval of oe_inferencex.estimate: each country's exact hypergeometric interval at 1 - 0.05/L, weighted by its share of the area (union bound)",
+     "by_country": {
+      "kenya": {
+       "n": 33,
+       "errors": 19,
+       "rate": 0.5757575757575758,
+       "low": 0.39215305005841905,
+       "high": 0.7452381537046647,
+       "pixels": 109464264
+      },
+      "tanzania": {
+       "n": 14,
+       "errors": 6,
+       "rate": 0.42857142857142855,
+       "low": 0.1766111055400473,
+       "high": 0.711390570817796,
+       "pixels": 88911804
+      }
+     }
+    },
+    "ratio_estimate_reported": {
+     "estimate": 0.516080044757781,
+     "standard_error": 0.07497833787418684,
+     "low_normal": 0.3691252029036993,
+     "high_normal": 0.6630348866118627,
+     "region_km2_estimated_from_plots": {
+      "kenya": 9664.087979999404,
+      "tanzania": 6590.538568030762
+     },
+     "method": "Stehman (2014) ratio estimator over the countries' samples of 2,000 (as Bullock et al. 2021 for ecoregions); normal-theory interval, reported, not exact"
+    },
+    "auroc_unweighted": 0.4527272727272727,
+    "auroc_weighted": 0.44260877680674143
+   },
+   "lenient": {
+    "n": 47,
+    "disagreements": 3,
+    "unweighted_rate": 0.06382978723404255,
+    "by_country": {
+     "kenya": {
+      "n": 33,
+      "disagreements": 2
+     },
+     "tanzania": {
+      "n": 14,
+      "disagreements": 1
+     }
+    },
+    "by_class": {
+     "Dense Forest": {
+      "n": 2,
+      "disagreements": 0
+     },
+     "Open Forest": {
+      "n": 1,
+      "disagreements": 0
+     },
+     "Wooded Grassland": {
+      "n": 11,
+      "disagreements": 1
+     },
+     "Open Grassland": {
+      "n": 26,
+      "disagreements": 1
+     },
+     "Cropland": {
+      "n": 6,
+      "disagreements": 1
+     },
+     "Otherland": {
+      "n": 1,
+      "disagreements": 0
+     }
+    },
+    "three_by_three_majority_disagreements": 3,
+    "stratified": {
+     "estimate": 0.0654566908798644,
+     "low": 0.0032328042715313826,
+     "high": 0.2929053569102902,
+     "strata_in_interval": 2,
+     "nominal_coverage": 0.95,
+     "weights": {
+      "kenya": 0.5518017627005289,
+      "tanzania": 0.448198237299471
+     },
+     "method": "the condition design's interval of oe_inferencex.estimate: each country's exact hypergeometric interval at 1 - 0.05/L, weighted by its share of the area (union bound)",
+     "by_country": {
+      "kenya": {
+       "n": 33,
+       "errors": 2,
+       "rate": 0.06060606060606061,
+       "low": 0.007425848128846872,
+       "high": 0.20226428416857578,
+       "pixels": 109464264
+      },
+      "tanzania": {
+       "n": 14,
+       "errors": 1,
+       "rate": 0.07142857142857142,
+       "low": 0.0018067904684511856,
+       "high": 0.33868446758767823,
+       "pixels": 88911804
+      }
+     }
+    },
+    "ratio_estimate_reported": {
+     "estimate": 0.0649941143560455,
+     "standard_error": 0.037283520973465,
+     "low_normal": 0.0,
+     "high_normal": 0.13806847268088063,
+     "region_km2_estimated_from_plots": {
+      "kenya": 9664.087979999404,
+      "tanzania": 6590.538568030762
+     },
+     "method": "Stehman (2014) ratio estimator over the countries' samples of 2,000 (as Bullock et al. 2021 for ecoregions); normal-theory interval, reported, not exact"
+    },
+    "auroc_unweighted": 0.6060606060606061,
+    "auroc_weighted": 0.576709492468327
+   }
+  },
+  "confusion_counts": {
+   "Open Grassland -> shrubland_savanna": 18,
+   "Wooded Grassland -> shrubland_savanna": 9,
+   "Open Grassland -> grassland_barren": 7,
+   "Cropland -> agriculture_settlement": 5,
+   "Dense Forest -> montane_forest": 2,
+   "Cropland -> shrubland_savanna": 1,
+   "Open Forest -> lava_forest": 1,
+   "Open Grassland -> agriculture_settlement": 1,
+   "Otherland -> grassland_barren": 1,
+   "Wooded Grassland -> agriculture_settlement": 1,
+   "Wooded Grassland -> grassland_barren": 1
+  },
+  "confidence_quartiles": {
+   "0.25": 0.9254421314947894,
+   "0.5": 0.9949163146874753,
+   "0.75": 0.9993915443437282
+  }
+ },
+ "prereg": {
+  "P1": {
+   "rule": "the 90% task-cluster bootstrap interval of deployed accuracy - replica accuracy on the same validation points lies within +-0.050 (value: its larger end in absolute value)",
+   "threshold": 0.05,
+   "value": 0.05147216611966675,
+   "point_difference_reported": -0.02316602316602312,
+   "graded": true,
+   "holds": false
+  },
+  "P2": {
+   "rule": "share of validation points where the deployed class equals the replica's >= 0.90",
+   "threshold": 0.9,
+   "value": 0.918918918918919,
+   "graded": true,
+   "holds": true
+  },
+  "P3": {
+   "rule": "AUROC of the deployed confidence for the deployed map's errors >= 0.75",
+   "threshold": 0.75,
+   "value": 0.8490211853043711,
+   "graded": true,
+   "holds": true
+  },
+  "P4": {
+   "rule": "share of the errors among the least confident 10% of points >= 0.25",
+   "threshold": 0.25,
+   "value": 0.42424242424242425,
+   "graded": true,
+   "holds": true
+  },
+  "P5": {
+   "rule": "mean share of the map's pixels less confident than a validation point >= 0.55, and its one-sided 95% task-cluster bootstrap lower bound > 0.5",
+   "threshold": 0.55,
+   "value": 0.6473660153020369,
+   "lower_one_sided_95": 0.6140077703132968,
+   "graded": true,
+   "holds": true
+  },
+  "floors": {
+   "min_validation_points": 200,
+   "min_errors": 15,
+   "n_validation_points": 259,
+   "n_errors": 33
+  }
+ },
+ "seconds": 816.3,
+ "prereg_status": "frozen"
+}

@@ -1,0 +1,51 @@
+% The explanation layer on one Sen1Floods11 Bolivia tile (tile 218, hand labels): the review set and the true errors on
+% the tile, one flagged window traced through the four cue layers, and the measured evidence per cue (exp37).
+% Build: pdflatex explanation_layer.tex
+\documentclass[tikz,border=3mm]{standalone}
+\input{style.tex}
+\input{rasters/bolivia_review.tex}
+\input{rasters/bolivia_errors.tex}
+\input{rasters/bolivia_zoom.tex}
+\begin{document}
+\begin{tikzpicture}
+  % ---- the tile with the review set and the errors
+  \flatraster{tile}{0}{0}{bolivia_rgb.png}{3.6cm}
+  \flatcells{tile}{16}{errcell}{\boliviaErrors}{3.6cm}
+  \flatcells{tile}{16}{cell}{\boliviaReview}{3.6cm}
+  \flatcells{tile}{16}{draw=oeamber, line width=1.6pt}{\boliviaZoom}{3.6cm}
+  \node[lab] at (0,-2.35) {one flood tile, hand labels\\ \textcolor{oeamber}{review set (5\%)} \quad \textcolor{oered}{errors}};
+  % ---- the four cue layers, the same window marked on each
+  \raster{l1}{6.4}{-1.6}{bolivia_ndwi.png}
+  \raster{l2}{6.55}{-0.65}{bolivia_tilephase.png}
+  \raster{l3}{6.7}{0.3}{bolivia_conf.png}
+  \raster{l4}{6.85}{1.25}{bolivia_boundary.png}
+  \foreach \n in {l1,l2,l3,l4} { \cells{\n}{16}{draw=oeamber, line width=1.2pt}{\boliviaZoom} }
+  \node[sub, anchor=west] at ($(l4.east)+(0.12,0)$) {on a boundary};
+  \node[sub, anchor=west] at ($(l3.east)+(0.12,0)$) {least confident 20\%};
+  \node[sub, anchor=west] at ($(l2.east)+(0.12,0)$) {unstable under a shift};
+  \node[sub, anchor=west] at ($(l1.east)+(0.12,0)$) {NDWI $\approx 0$};
+  \node[lab] at (6.7,-2.6) {label-free cue layers};
+  % zoom lines from the marked window to the layer stack
+  \pgfmathsetlengthmacro{\cw}{3.6cm/16}
+  \foreach \r/\c in \boliviaZoom {
+    \coordinate (z) at ($(tile.center)+({(\c-8)*\cw},{(8-\r-1)*\cw})$);
+    \draw[oeamber, line width=0.5pt, dashed] ($(z)+(\cw,\cw)$) -- (5.0,1.9);
+    \draw[oeamber, line width=0.5pt, dashed] ($(z)+(\cw,0)$) -- (5.0,-2.15);
+  }
+  % ---- evidence card: share among errors vs correct windows, as bars
+  \node[card] (ev) at (15.9,-0.2) {%
+    \begin{tikzpicture}[font=\scriptsize, x=0.42cm]
+      \foreach \name/\y/\e/\k in {boundary/0/3.5/scene_boundary.png, low conf./-0.75/3.6/scene_conf.png, unstable/-1.5/3.6/scene_tilephase.png, NDWI $\approx 0$/-2.25/7.2/scene_ndwi.png} {
+        \node[flat] at (0,\y) {\includegraphics[width=0.5cm]{rasters/\k}};
+        \node[sub, anchor=west] at (0.9,\y) {\name};
+        \fill[oeteal!70] (5.4,\y-0.16) rectangle ({5.4+\e},\y+0.16);
+        \node[lab, anchor=west] at ({5.4+\e+0.15},\y) {\e$\times$};
+      }
+      \draw[muted, line width=0.4pt] (5.4,0.45) -- (5.4,-2.65);
+      \node[sub, anchor=west] at (0,0.75) {share among error windows / share among correct windows};
+    \end{tikzpicture}};
+  \node[lab] at (15.9,2.05) {why a window is flagged: measured enrichment};
+  \draw[flow] (10.9,-0.2) -- (ev.west);
+  \node[sub] at (15.9,-2.55) {95\% of the error windows carry at least one cue};
+\end{tikzpicture}
+\end{document}

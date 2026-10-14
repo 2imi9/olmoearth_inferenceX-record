@@ -1,0 +1,287 @@
+{
+ "experiment": "exp43 segment majority of W1 over a content-derived partition",
+ "smoke": false,
+ "testbeds": {
+  "bolivia": {
+   "tiles": 441,
+   "crop": 60,
+   "grid": 15,
+   "head": "exp18 head retrained from the valid split (seed 0)"
+  },
+  "test": {
+   "tiles": 800,
+   "crop": 60,
+   "grid": 15,
+   "head": "exp18 head retrained from the valid split (seed 0)"
+  }
+ },
+ "results": {
+  "bolivia": {
+   "tiles": 441,
+   "tiles_analysed": 440,
+   "tiles_excluded_no_labelled_pixel_in_common_region": [
+    47
+   ],
+   "primary_k8_hard": {
+    "w": 168,
+    "l": 209,
+    "t": 63,
+    "sign_p": 0.9848014065471089,
+    "one_sided": true,
+    "mean_gain": -0.0028797757977753868,
+    "median_gain": 0.0,
+    "n_tiles": 440,
+    "C_total": 15093,
+    "B_total": 16273,
+    "N_total": 1180805,
+    "acc_w1_mean": 0.9070736899739421,
+    "acc_candidate_mean": 0.9041939141761666,
+    "purity_mean": 0.8551640831573968,
+    "majority_correct_given_pure_mean": 0.8854111062246821,
+    "segments_per_tile": 156.775,
+    "pooled_gain": -0.0009993182616943525
+   },
+   "secondary_k8_soft": {
+    "w": 161,
+    "l": 212,
+    "t": 67,
+    "sign_p": 0.009535859883683166,
+    "one_sided": false,
+    "mean_gain": -0.003064644047341353,
+    "median_gain": 0.0,
+    "n_tiles": 440,
+    "C_total": 15032,
+    "B_total": 16675,
+    "N_total": 1180805,
+    "acc_w1_mean": 0.9070736899739421,
+    "acc_candidate_mean": 0.9040090459266007,
+    "purity_mean": 0.8551640831573968,
+    "majority_correct_given_pure_mean": 0.8854111062246821,
+    "segments_per_tile": null,
+    "pooled_gain": -0.0013914236474269672
+   },
+   "secondary_k16_hard": {
+    "w": 192,
+    "l": 179,
+    "t": 69,
+    "sign_p": 0.5333352651527727,
+    "one_sided": false,
+    "mean_gain": -0.00046116471573176413,
+    "median_gain": 0.0,
+    "n_tiles": 440,
+    "C_total": 12004,
+    "B_total": 11730,
+    "N_total": 1180805,
+    "acc_w1_mean": 0.9070736899739421,
+    "acc_candidate_mean": 0.9066125252582103,
+    "purity_mean": 0.9073334552971664,
+    "majority_correct_given_pure_mean": 0.9028248328484998,
+    "segments_per_tile": null,
+    "pooled_gain": 0.00023204508788495984
+   },
+   "secondary_k8_hard_twelve_bands_only": {
+    "w": 165,
+    "l": 210,
+    "t": 65,
+    "sign_p": 0.022950272985224392,
+    "one_sided": false,
+    "mean_gain": -0.0035370404407943936,
+    "median_gain": 0.0,
+    "n_tiles": 440,
+    "C_total": 14709,
+    "B_total": 16559,
+    "N_total": 1180805,
+    "acc_w1_mean": 0.9070736899739421,
+    "acc_candidate_mean": 0.9035366495331477,
+    "purity_mean": 0.8528683267869461,
+    "majority_correct_given_pure_mean": 0.8868921891264258,
+    "segments_per_tile": 155.45454545454547,
+    "pooled_gain": -0.0015667277831648747
+   },
+   "mechanism_primary": {
+    "pure_correct": {
+     "segments": 30699,
+     "pixels": 897358,
+     "C": 8957,
+     "B": 0
+    },
+    "pure_wrong": {
+     "segments": 2570,
+     "pixels": 31337,
+     "C": 0,
+     "B": 4418
+    },
+    "mixed": {
+     "segments": 4743,
+     "pixels": 237768,
+     "C": 6133,
+     "B": 11848
+    },
+    "definitions": {
+     "purity_fraction_of_segments": "share of segments (>= 2 labelled pixels) whose labelled pixels are one class",
+     "pixel_weighted_purity": "share of those segments' labelled pixels that lie in pure segments",
+     "mean_dominant_label_fraction": "mean over segments of the larger class share"
+    },
+    "purity_fraction_of_segments": 0.8752236135957067,
+    "pixel_weighted_purity": 0.7961632730742424,
+    "mean_dominant_label_fraction": 0.9686050945976941
+   },
+   "block_constant_oracle_limit": {
+    "pixels_any_block_constant_decision_must_get_wrong": 35838,
+    "evaluated_pixels": 1180805,
+    "rate": 0.030350481239493396
+   },
+   "prereg": {
+    "sign_p": 0.9848014065471089,
+    "mean_gain": -0.0028797757977753868,
+    "min_effect": 0.002,
+    "passes": false
+   },
+   "w1_errors_by_grid_window_purity": {
+    "share_of_w1_errors_on_impure_windows": 0.4262291732641407,
+    "w1_error_rate_impure": 0.34529159115171676,
+    "w1_error_rate_pure": 0.05298933552711025,
+    "share_of_pixels_in_impure_windows": 0.10233442439691566
+   }
+  },
+  "test": {
+   "tiles": 800,
+   "tiles_analysed": 800,
+   "tiles_excluded_no_labelled_pixel_in_common_region": [],
+   "primary_k8_hard": {
+    "w": 244,
+    "l": 387,
+    "t": 169,
+    "sign_p": 0.999999995722384,
+    "one_sided": true,
+    "mean_gain": -0.0024987893671752403,
+    "median_gain": 0.0,
+    "n_tiles": 800,
+    "C_total": 24525,
+    "B_total": 30951,
+    "N_total": 2479909,
+    "acc_w1_mean": 0.9502769988454557,
+    "acc_candidate_mean": 0.9477782094782805,
+    "purity_mean": 0.8914943238453122,
+    "majority_correct_given_pure_mean": 0.9497804386567352,
+    "segments_per_tile": 158.95875,
+    "pooled_gain": -0.0025912241134654537
+   },
+   "secondary_k8_soft": {
+    "w": 249,
+    "l": 380,
+    "t": 171,
+    "sign_p": 1.9770350121000932e-07,
+    "one_sided": false,
+    "mean_gain": -0.0022586320831778587,
+    "median_gain": 0.0,
+    "n_tiles": 800,
+    "C_total": 25053,
+    "B_total": 30902,
+    "N_total": 2479909,
+    "acc_w1_mean": 0.9502769988454557,
+    "acc_candidate_mean": 0.9480183667622778,
+    "purity_mean": 0.8914943238453122,
+    "majority_correct_given_pure_mean": 0.9497804386567352,
+    "segments_per_tile": null,
+    "pooled_gain": -0.0023585542856612886
+   },
+   "secondary_k16_hard": {
+    "w": 299,
+    "l": 320,
+    "t": 181,
+    "sign_p": 0.4214955464659377,
+    "one_sided": false,
+    "mean_gain": 3.098161440133818e-05,
+    "median_gain": 0.0,
+    "n_tiles": 800,
+    "C_total": 21126,
+    "B_total": 21648,
+    "N_total": 2479909,
+    "acc_w1_mean": 0.9502769988454557,
+    "acc_candidate_mean": 0.9503079804598571,
+    "purity_mean": 0.9280788005672262,
+    "majority_correct_given_pure_mean": 0.9514096851236559,
+    "segments_per_tile": null,
+    "pooled_gain": -0.00021049159465125536
+   },
+   "secondary_k8_hard_twelve_bands_only": {
+    "w": 238,
+    "l": 382,
+    "t": 180,
+    "sign_p": 8.012601395806483e-09,
+    "one_sided": false,
+    "mean_gain": -0.0022942428702266565,
+    "median_gain": 0.0,
+    "n_tiles": 800,
+    "C_total": 24405,
+    "B_total": 30296,
+    "N_total": 2479909,
+    "acc_w1_mean": 0.9502769988454557,
+    "acc_candidate_mean": 0.9479827559752289,
+    "purity_mean": 0.8905779227152669,
+    "majority_correct_given_pure_mean": 0.9500243360564815,
+    "segments_per_tile": 159.96,
+    "pooled_gain": -0.002375490390978056
+   },
+   "mechanism_primary": {
+    "pure_correct": {
+     "segments": 65665,
+     "pixels": 2001090,
+     "C": 8162,
+     "B": 0
+    },
+    "pure_wrong": {
+     "segments": 2434,
+     "pixels": 28695,
+     "C": 0,
+     "B": 3359
+    },
+    "mixed": {
+     "segments": 8047,
+     "pixels": 424883,
+     "C": 16363,
+     "B": 27590
+    },
+    "definitions": {
+     "purity_fraction_of_segments": "share of segments (>= 2 labelled pixels) whose labelled pixels are one class",
+     "pixel_weighted_purity": "share of those segments' labelled pixels that lie in pure segments",
+     "mean_dominant_label_fraction": "mean over segments of the larger class share"
+    },
+    "purity_fraction_of_segments": 0.8943214351377616,
+    "pixel_weighted_purity": 0.8269081602888864,
+    "mean_dominant_label_fraction": 0.9742443722028823
+   },
+   "block_constant_oracle_limit": {
+    "pixels_any_block_constant_decision_must_get_wrong": 71878,
+    "evaluated_pixels": 2479909,
+    "rate": 0.02898412804663397
+   },
+   "prereg": {
+    "sign_p": 0.999999995722384,
+    "mean_gain": -0.0024987893671752403,
+    "min_effect": 0.002,
+    "passes": false
+   },
+   "w1_errors_by_grid_window_purity": {
+    "share_of_w1_errors_on_impure_windows": 0.5646660961038313,
+    "w1_error_rate_impure": 0.27828647245268184,
+    "w1_error_rate_pure": 0.023434155845724246,
+    "share_of_pixels_in_impure_windows": 0.09847054871771505
+   }
+  }
+ },
+ "failures": [],
+ "config": {
+  "partition": "log1p bands standardised per tile + 2*NDWI, k-means K=8, quantile init on PC1, 20 iterations, 4-connected components",
+  "decision": "strict majority of W1 hard pixel predictions per segment inside the common region, ties -> land",
+  "min_effect": 0.002,
+  "prereg": "K=8 hard majority vs W1, pixel accuracy per tile, one-sided sign test on both testbeds, mean gain >= 0.002 on both",
+  "secondary": "soft majority; K=16; twelve bands only (no NDWI)"
+ },
+ "prereg": {
+  "supported": false,
+  "complete": true,
+  "note": "a run with processing failures is incomplete and cannot be supported"
+ }
+}

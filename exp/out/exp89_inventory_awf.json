@@ -1,0 +1,1037 @@
+{
+ "experiment": "exp89 inventory: files, checkpoint keys, windows and labels per split; no model is run",
+ "arm": "awf",
+ "utc": "2026-10-01T22:09:01Z",
+ "prereg_status": "draft",
+ "commit": "2a236ffb1f25ebfc01e5ba891984b72a50886b81",
+ "config_revision": "589bce143f17fb3e522a8b09ba6dfa8d36aa36ae",
+ "report_only": true,
+ "nandi": {
+  "status": "not run",
+  "reason": "allenai/OlmoEarth-v1-FT-Nandi-Base and allenai/olmoearth_projects_nandi returned 401 on the Hub on 1 October 2026; arm N runs only if Ai2 publishes both and their revisions are pinned",
+  "checked_utc": "2026-10-01T22:09:02Z",
+  "hub": {
+   "model": {
+    "repo": "allenai/OlmoEarth-v1-FT-Nandi-Base",
+    "readable": false,
+    "error": "RepositoryNotFoundError: 401 Client Error. (Request ID: Root=1-6abed9fe-2db0d5aa20244cb5385a4799;81e8633b-e495-4e25-a5aa-25e5edab4e42)\n\nRepositor"
+   },
+   "dataset": {
+    "repo": "allenai/olmoearth_projects_nandi",
+    "readable": false,
+    "error": "RepositoryNotFoundError: 401 Client Error. (Request ID: Root=1-6abed9fe-15129b9f4a119f3c6aae657c;51a9b5ec-f994-4335-8ecb-de453c034fc4)\n\nRepositor"
+   },
+   "pinned": false
+  }
+ },
+ "files": {
+  "dataset.tar": {
+   "path": "/scratch/qi_zim_neu/olmoearth_inferenceX/hf/hub/datasets--allenai--olmoearth_projects_awf/snapshots/da8eb6aab65b518cb8223912ba9091cbaa5dad2f/dataset.tar",
+   "bytes": 1869219840,
+   "sha256": "d0837f14235f9ef3207af6d84c428bb9dcb81bd18ee6a96d03ce4b5fff992090",
+   "sha256_pinned": "d0837f14235f9ef3207af6d84c428bb9dcb81bd18ee6a96d03ce4b5fff992090",
+   "matches": true
+  },
+  "model.ckpt": {
+   "path": "/scratch/qi_zim_neu/olmoearth_inferenceX/hf/hub/models--allenai--OlmoEarth-v1-FT-AWF-Base/snapshots/a347b1546ab881c92aa125400ed5acc8126394ca/model.ckpt",
+   "bytes": 1041443421,
+   "sha256": "1036b76bf7dfde819479dfa02507634f59a5637f14d4071bc3bf18f4d3d4bab2",
+   "sha256_pinned": "1036b76bf7dfde819479dfa02507634f59a5637f14d4071bc3bf18f4d3d4bab2",
+   "matches": true
+  }
+ },
+ "extracted": {
+  "tar": "/scratch/qi_zim_neu/olmoearth_inferenceX/hf/hub/datasets--allenai--olmoearth_projects_awf/snapshots/da8eb6aab65b518cb8223912ba9091cbaa5dad2f/dataset.tar",
+  "sha256": "d0837f14235f9ef3207af6d84c428bb9dcb81bd18ee6a96d03ce4b5fff992090",
+  "n_members": 225062,
+  "n_files": 113134,
+  "extracted_utc": "2026-10-01T22:20:02Z"
+ },
+ "windows_root": "/scratch/qi_zim_neu/olmoearth_inferenceX/data/exp89/awf/dataset/windows",
+ "tar": {
+  "n_members": 225062,
+  "top_level": {
+   "dataset": 225062
+  },
+  "first_members": [
+   "dataset",
+   "dataset/windows",
+   "dataset/windows/spatial_split",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel1.5",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel1.5/completed",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel1.5/vv_vh",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel1.5/vv_vh/geotiff.tif",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel2.9",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel2.9/B02_B03_B04_B08",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel2.9/B02_B03_B04_B08/geotiff.tif",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel2.9/completed",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel2.9/B01_B09",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel2.9/B01_B09/geotiff.tif",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel2.9/B05_B06_B07_B8A_B11_B12",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel2.9/B05_B06_B07_B8A_B11_B12/geotiff.tif",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel1.3",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel1.3/completed",
+   "dataset/windows/spatial_split/task_443f9bea-5883-4fb7-9573-0a9d51cb24d5_point_2/layers/sentinel1.3/vv_vh"
+  ]
+ },
+ "checkpoint": {
+  "load": "weights_only",
+  "top_level": [
+   "callbacks",
+   "epoch",
+   "global_step",
+   "loops",
+   "lr_schedulers",
+   "optimizer_states",
+   "pytorch-lightning_version",
+   "state_dict"
+  ],
+  "n_tensors": 233,
+  "n_parameters": 88963594,
+  "keys": {
+   "model.encoder.0.model.blocks.0.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.0.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.0.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.0.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.0.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.0.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.0.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.0.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.0.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.0.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.0.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.0.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.0.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.0.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.0.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.0.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.1.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.1.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.1.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.1.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.1.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.1.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.1.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.1.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.1.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.1.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.1.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.1.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.1.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.1.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.1.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.1.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.2.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.2.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.2.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.2.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.2.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.2.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.2.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.2.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.2.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.2.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.2.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.2.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.2.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.2.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.2.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.2.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.3.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.3.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.3.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.3.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.3.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.3.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.3.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.3.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.3.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.3.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.3.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.3.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.3.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.3.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.3.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.3.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.4.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.4.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.4.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.4.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.4.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.4.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.4.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.4.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.4.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.4.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.4.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.4.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.4.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.4.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.4.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.4.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.5.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.5.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.5.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.5.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.5.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.5.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.5.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.5.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.5.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.5.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.5.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.5.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.5.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.5.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.5.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.5.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.6.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.6.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.6.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.6.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.6.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.6.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.6.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.6.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.6.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.6.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.6.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.6.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.6.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.6.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.6.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.6.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.7.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.7.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.7.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.7.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.7.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.7.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.7.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.7.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.7.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.7.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.7.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.7.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.7.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.7.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.7.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.7.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.8.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.8.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.8.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.8.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.8.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.8.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.8.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.8.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.8.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.8.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.8.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.8.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.8.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.8.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.8.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.8.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.9.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.9.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.9.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.9.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.9.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.9.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.9.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.9.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.9.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.9.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.9.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.9.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.9.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.9.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.9.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.9.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.10.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.10.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.10.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.10.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.10.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.10.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.10.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.10.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.10.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.10.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.10.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.10.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.10.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.10.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.10.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.10.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.11.norm1.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.11.norm1.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.11.attn.q.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.11.attn.q.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.11.attn.k.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.11.attn.k.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.11.attn.v.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.11.attn.v.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.11.attn.proj.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.blocks.11.attn.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.11.norm2.weight": [
+    768
+   ],
+   "model.encoder.0.model.blocks.11.norm2.bias": [
+    768
+   ],
+   "model.encoder.0.model.blocks.11.mlp.fc1.weight": [
+    3072,
+    768
+   ],
+   "model.encoder.0.model.blocks.11.mlp.fc1.bias": [
+    3072
+   ],
+   "model.encoder.0.model.blocks.11.mlp.fc2.weight": [
+    768,
+    3072
+   ],
+   "model.encoder.0.model.blocks.11.mlp.fc2.bias": [
+    768
+   ],
+   "model.encoder.0.model.composite_encodings.pos_embed": [
+    12,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.month_embed.weight": [
+    12,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.per_modality_channel_embeddings.sentinel2_l2a": [
+    3,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.per_modality_channel_embeddings.sentinel1": [
+    1,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.per_modality_channel_embeddings.landsat": [
+    2,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.per_modality_channel_embeddings.worldcover": [
+    1,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.per_modality_channel_embeddings.srtm": [
+    1,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.per_modality_channel_embeddings.openstreetmap_raster": [
+    1,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.per_modality_channel_embeddings.wri_canopy_height_map": [
+    1,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.per_modality_channel_embeddings.cdl": [
+    1,
+    192
+   ],
+   "model.encoder.0.model.composite_encodings.per_modality_channel_embeddings.worldcereal": [
+    1,
+    192
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.sentinel2_l2a.sentinel2_l2a__0.proj.weight": [
+    768,
+    4,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.sentinel2_l2a.sentinel2_l2a__0.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.sentinel2_l2a.sentinel2_l2a__1.proj.weight": [
+    768,
+    6,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.sentinel2_l2a.sentinel2_l2a__1.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.sentinel2_l2a.sentinel2_l2a__2.proj.weight": [
+    768,
+    2,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.sentinel2_l2a.sentinel2_l2a__2.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.sentinel1.sentinel1__0.proj.weight": [
+    768,
+    2,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.sentinel1.sentinel1__0.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.landsat.landsat__0.proj.weight": [
+    768,
+    1,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.landsat.landsat__0.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.landsat.landsat__1.proj.weight": [
+    768,
+    10,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.landsat.landsat__1.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.worldcover.worldcover__0.proj.weight": [
+    768,
+    1,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.worldcover.worldcover__0.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.srtm.srtm__0.proj.weight": [
+    768,
+    1,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.srtm.srtm__0.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.openstreetmap_raster.openstreetmap_raster__0.proj.weight": [
+    768,
+    30,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.openstreetmap_raster.openstreetmap_raster__0.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.wri_canopy_height_map.wri_canopy_height_map__0.proj.weight": [
+    768,
+    1,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.wri_canopy_height_map.wri_canopy_height_map__0.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.cdl.cdl__0.proj.weight": [
+    768,
+    1,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.cdl.cdl__0.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.worldcereal.worldcereal__0.proj.weight": [
+    768,
+    8,
+    8,
+    8
+   ],
+   "model.encoder.0.model.patch_embeddings.per_modality_embeddings.worldcereal.worldcereal__0.proj.bias": [
+    768
+   ],
+   "model.encoder.0.model.project_and_aggregate.projection.0.weight": [
+    768,
+    768
+   ],
+   "model.encoder.0.model.project_and_aggregate.projection.0.bias": [
+    768
+   ],
+   "model.encoder.0.model.norm.weight": [
+    768
+   ],
+   "model.encoder.0.model.norm.bias": [
+    768
+   ],
+   "model.decoders.segment.1.layer.weight": [
+    10,
+    768,
+    1,
+    1
+   ],
+   "model.decoders.segment.1.layer.bias": [
+    10
+   ]
+  },
+  "key_groups": {
+   "model.encoder.0.model": 231,
+   "model.decoders.segment.1": 2
+  },
+  "encoder_prefix_counts": {
+   "model.encoder.0.model.": 231,
+   "model.encoder.0.model.encoder.": 0,
+   "model.encoder.0.encoder.model.": 0,
+   "model.encoder.0.encoder.model.encoder.": 0,
+   "model.encoder.0.": 231
+  },
+  "head_expected": {
+   "model.decoders.segment.1.layer.weight": [
+    10,
+    768,
+    1,
+    1
+   ],
+   "model.decoders.segment.1.layer.bias": [
+    10
+   ]
+  },
+  "decoder_keys": {
+   "model.decoders.segment.1.layer.weight": [
+    10,
+    768,
+    1,
+    1
+   ],
+   "model.decoders.segment.1.layer.bias": [
+    10
+   ]
+  }
+ },
+ "dataset": {
+  "groups": {
+   "spatial_split": {
+    "n_windows": 1459,
+    "splits": {
+     "train": 1115,
+     "val": 344
+    }
+   }
+  },
+  "group": "spatial_split",
+  "windows_per_split": {
+   "train": 1115,
+   "val": 344
+  },
+  "units_per_split": {
+   "train": 1115,
+   "val": 344
+  },
+  "dropped_per_split": {},
+  "unit_classes_per_split": {
+   "train": {
+    "8": 63,
+    "5": 232,
+    "2": 296,
+    "4": 248,
+    "0": 123,
+    "1": 44,
+    "6": 49,
+    "3": 43,
+    "7": 17
+   },
+   "val": {
+    "2": 116,
+    "0": 45,
+    "5": 56,
+    "4": 72,
+    "8": 27,
+    "6": 10,
+    "1": 11,
+    "3": 6,
+    "7": 1
+   }
+  },
+  "pixel_classes_per_split": {},
+  "window_px": {
+   "63x63": 1459
+  },
+  "crs": {
+   "EPSG:32737": 1459
+  },
+  "time_range": {
+   "min_start": "2023-01-01T00:00:00+00:00",
+   "max_end": "2023-12-31T00:00:00+00:00",
+   "durations_days": {
+    "364": 1459
+   }
+  },
+  "layers": {
+   "label": {
+    "dirs": 1459,
+    "completed": 1459
+   },
+   "sentinel1": {
+    "dirs": 17298,
+    "completed": 17298
+   },
+   "sentinel2": {
+    "dirs": 17508,
+    "completed": 17508
+   }
+  },
+  "item_groups_per_window": {
+   "12": 1459
+  },
+  "items_json": 1459,
+  "band_sets": {
+   "B01_B09": 1459,
+   "B02_B03_B04_B08": 1459,
+   "B05_B06_B07_B8A_B11_B12": 1459
+  },
+  "option_keys": {
+   "split": 1459,
+   "source_task_id": 1459
+  }
+ }
+}

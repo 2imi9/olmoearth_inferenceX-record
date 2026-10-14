@@ -1,0 +1,43 @@
+[project]
+name = "olmoearth-inferencex-record"
+version = "2026.10.14"
+description = "The research record behind olmoearth-inferencex: experiments, committed artifacts, claim ledger and technical report."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "Apache-2.0"
+# The released package under test, from PyPI. The geo extra carries rasterio, geopandas (and pyproj), shapely,
+# matplotlib and scipy, which the record's tests and experiment scripts import.
+dependencies = ["olmoearth-inferencex[geo]==1.12.1"]
+
+[project.optional-dependencies]
+# The experiment environment: the encoder stack. torch is declared directly so the index pin below applies to it
+# (uv only honours source overrides for direct dependencies).
+encoder = ["olmoearth-inferencex[encoder,geo]==1.12.1", "torch>=2.7,<2.8"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+# A project, not a package: nothing here is built or installed, so `import oe_inferencex` can only find the release.
+[tool.uv]
+package = false
+
+# Torch index pinning, as in the package: Linux gets the cu128 build (the GPU experiments), every other platform the
+# CPU build.
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu128", marker = "sys_platform == 'linux'" },
+    { index = "pytorch-cpu", marker = "sys_platform != 'linux'" },
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

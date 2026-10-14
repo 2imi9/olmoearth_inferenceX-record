@@ -1,0 +1,13 @@
+{
+ "reviewer_model": "claude-opus-5-5 (the session's model, inherited by the workflow agents)",
+ "agents": 10,
+ "windows_per_agent": 21,
+ "tokens": 1056970,
+ "tool_calls": 531,
+ "minutes": 9.2,
+ "reads_of_views": 435,
+ "extra_views_requested": 232,
+ "blinding_audit": "every Read was of exp/out/exp91_views; every command was the view command (audited from the agents' transcripts)",
+ "workflow_run": "wf_3e45c11e-707",
+ "prompt": "exp/out/exp91_prompt.md"
+}

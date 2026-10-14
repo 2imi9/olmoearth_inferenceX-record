@@ -1,0 +1,1491 @@
+{
+ "experiment": "exp70 the ranking protocol across Ai2's published task suite, on tasks we did not choose",
+ "config": {
+  "hub": "allenai/olmoearth-paper-embeddings",
+  "model": "olmoearth_base",
+  "budgets": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "n_classification": 17,
+  "n_segmentation": 7,
+  "geobench_tasks": [
+   "m_brick_kiln",
+   "m_cashew_plant",
+   "m_eurosat",
+   "m_forestnet",
+   "m_sa_crop_type",
+   "m_so2sat"
+  ],
+  "excluded": {
+   "m_bigearthnet": "multi-label (43 binary tags per sample); a top-1 minus top-2 margin is undefined without a convention this project has never tested"
+  },
+  "controls": [
+   "ctl_embedding_distance",
+   "ctl_class_rarity"
+  ],
+  "caveats": [
+   "the embeddings are Ai2's, extracted with their settings, so this inherits their extraction and is not an independent implementation of their models",
+   "several tasks share a source, so the 24 are not 24 independent datasets and the count by distinct source is reported beside the count by task",
+   "the suite measures accuracy and no public benchmark measures label-free error ranking, so this is a task set and not a leaderboard result"
+  ]
+ },
+ "results": {
+  "tasks": {
+   "m_eurosat": {
+    "family": "classification",
+    "n_units": 1000,
+    "n_classes": 10,
+    "test_accuracy": 0.979,
+    "train_accuracy": 1.0,
+    "error_rate": 0.021,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.0022874810367915282,
+      "capture": {
+       "0.05": 0.7142857142857143,
+       "0.1": 0.7619047619047619,
+       "0.2": 0.8571428571428571
+      },
+      "auroc": 0.9157060168296124
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.0022786862889265223,
+      "capture": {
+       "0.05": 0.7142857142857143,
+       "0.1": 0.7619047619047619,
+       "0.2": 0.8571428571428571
+      },
+      "auroc": 0.9160951408142419
+     },
+     "entropy": {
+      "excess_aurc": 0.0022544100038775173,
+      "capture": {
+       "0.05": 0.7142857142857143,
+       "0.1": 0.7619047619047619,
+       "0.2": 0.8571428571428571
+      },
+      "auroc": 0.9168247482854225
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.027228174288498726,
+      "capture": {
+       "0.05": 0.0,
+       "0.1": 0.047619047619047616,
+       "0.2": 0.14285714285714285
+      },
+      "auroc": 0.36601974804221993
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.021855738393952946,
+      "capture": {
+       "0.05": 0.06478781988986071,
+       "0.1": 0.12957563977972142,
+       "0.2": 0.25915127955944284
+      },
+      "auroc": 0.5013132934481249
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.019568257357161417,
+    "generalisation_gap": 0.02100000000000002,
+    "geobench": true,
+    "source": "m_eurosat",
+    "seconds": 12.0
+   },
+   "m_brick_kiln": {
+    "family": "classification",
+    "n_units": 999,
+    "n_classes": 2,
+    "test_accuracy": 0.964964964964965,
+    "train_accuracy": 0.9692624311226183,
+    "error_rate": 0.035035035035035036,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.0036536021327991837,
+      "capture": {
+       "0.05": 0.42857142857142855,
+       "0.1": 0.6857142857142857,
+       "0.2": 0.8
+      },
+      "auroc": 0.9099288678126852
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.0036536021327991837,
+      "capture": {
+       "0.05": 0.42857142857142855,
+       "0.1": 0.6857142857142857,
+       "0.2": 0.8
+      },
+      "auroc": 0.9099288678126852
+     },
+     "entropy": {
+      "excess_aurc": 0.0036536021327991837,
+      "capture": {
+       "0.05": 0.42857142857142855,
+       "0.1": 0.6857142857142857,
+       "0.2": 0.8
+      },
+      "auroc": 0.9099288678126852
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.04681248471881277,
+      "capture": {
+       "0.05": 0.0,
+       "0.1": 0.0,
+       "0.2": 0.05714285714285714
+      },
+      "auroc": 0.3495257854179016
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.0302607961809188,
+      "capture": {
+       "0.05": 0.06473888649115235,
+       "0.1": 0.1294777729823047,
+       "0.2": 0.2589555459646094
+      },
+      "auroc": 0.550385299347955
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.026607194048119617,
+    "generalisation_gap": 0.004297466157653362,
+    "geobench": true,
+    "source": "m_brick_kiln",
+    "seconds": 3.8
+   },
+   "m_forestnet": {
+    "family": "classification",
+    "n_units": 993,
+    "n_classes": 12,
+    "test_accuracy": 0.5105740181268882,
+    "train_accuracy": 0.7363861386138614,
+    "error_rate": 0.48942598187311176,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.19778879892945564,
+      "capture": {
+       "0.05": 0.09465020576131687,
+       "0.1": 0.16049382716049382,
+       "0.2": 0.294238683127572
+      },
+      "auroc": 0.6876202303552731
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.19431427673253646,
+      "capture": {
+       "0.05": 0.0823045267489712,
+       "0.1": 0.15843621399176955,
+       "0.2": 0.29218106995884774
+      },
+      "auroc": 0.694901015413836
+     },
+     "entropy": {
+      "excess_aurc": 0.19607110727573993,
+      "capture": {
+       "0.05": 0.07613168724279835,
+       "0.1": 0.1522633744855967,
+       "0.2": 0.28600823045267487
+      },
+      "auroc": 0.6889838556505223
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.3705593877513659,
+      "capture": {
+       "0.05": 0.053497942386831275,
+       "0.1": 0.08847736625514403,
+       "0.2": 0.1748971193415638
+      },
+      "auroc": 0.4608728825253042
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.31007014716641323,
+      "capture": {
+       "0.05": 0.061152263374485594,
+       "0.1": 0.13367626886145406,
+       "0.2": 0.25599813650128117
+      },
+      "auroc": 0.5715071306239398
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.1122813482369576,
+    "generalisation_gap": 0.2258121204869732,
+    "geobench": true,
+    "source": "m_forestnet",
+    "seconds": 3.0
+   },
+   "m_so2sat": {
+    "family": "classification",
+    "n_units": 986,
+    "n_classes": 17,
+    "test_accuracy": 0.6612576064908722,
+    "train_accuracy": 0.9253701480592237,
+    "error_rate": 0.33874239350912777,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.10630600578350664,
+      "capture": {
+       "0.05": 0.11377245508982035,
+       "0.1": 0.2125748502994012,
+       "0.2": 0.3532934131736527
+      },
+      "auroc": 0.7484616656258036
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.10450986391418964,
+      "capture": {
+       "0.05": 0.11676646706586827,
+       "0.1": 0.2215568862275449,
+       "0.2": 0.36227544910179643
+      },
+      "auroc": 0.753191469821094
+     },
+     "entropy": {
+      "excess_aurc": 0.10349596535206627,
+      "capture": {
+       "0.05": 0.09880239520958084,
+       "0.1": 0.20359281437125748,
+       "0.2": 0.3592814371257485
+      },
+      "auroc": 0.755354322030785
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.3474480663169407,
+      "capture": {
+       "0.05": 0.0,
+       "0.1": 0.0748502994011976,
+       "0.2": 0.16467065868263472
+      },
+      "auroc": 0.40626722016090516
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.3341302440232587,
+      "capture": {
+       "0.05": 0.040645980765741246,
+       "0.1": 0.09372717978676792,
+       "0.2": 0.18225251624410754
+      },
+      "auroc": 0.4150196539436464
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.22782423823975206,
+    "generalisation_gap": 0.2641125415683515,
+    "geobench": true,
+    "source": "m_so2sat",
+    "seconds": 8.2
+   },
+   "awf_landsat": {
+    "family": "classification",
+    "n_units": 200,
+    "n_classes": 9,
+    "test_accuracy": 0.785,
+    "train_accuracy": 0.9849906191369606,
+    "error_rate": 0.215,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.043191046403613376,
+      "capture": {
+       "0.05": 0.16279069767441862,
+       "0.1": 0.23255813953488372,
+       "0.2": 0.46511627906976744
+      },
+      "auroc": 0.8244704488223967
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.04286342435823948,
+      "capture": {
+       "0.05": 0.18604651162790697,
+       "0.1": 0.2558139534883721,
+       "0.2": 0.46511627906976744
+      },
+      "auroc": 0.8259517108576507
+     },
+     "entropy": {
+      "excess_aurc": 0.042895241413707416,
+      "capture": {
+       "0.05": 0.11627906976744186,
+       "0.1": 0.3023255813953488,
+       "0.2": 0.4418604651162791
+      },
+      "auroc": 0.8253592060435491
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.21682915070583234,
+      "capture": {
+       "0.05": 0.023255813953488372,
+       "0.1": 0.06976744186046512,
+       "0.2": 0.16279069767441862
+      },
+      "auroc": 0.4645237742556658
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.21042833380591158,
+      "capture": {
+       "0.05": 0.10299003322259137,
+       "0.1": 0.11627906976744186,
+       "0.2": 0.16279069767441862
+      },
+      "auroc": 0.46148718708339503
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.1672372874022982,
+    "generalisation_gap": 0.1999906191369606,
+    "geobench": false,
+    "source": "awf",
+    "seconds": 1.6
+   },
+   "awf_sentinel1": {
+    "family": "classification",
+    "n_units": 200,
+    "n_classes": 9,
+    "test_accuracy": 0.72,
+    "train_accuracy": 0.9230769230769231,
+    "error_rate": 0.28,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.0943461034499014,
+      "capture": {
+       "0.05": 0.08928571428571429,
+       "0.1": 0.19642857142857142,
+       "0.2": 0.35714285714285715
+      },
+      "auroc": 0.7224702380952381
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.09242864451067613,
+      "capture": {
+       "0.05": 0.125,
+       "0.1": 0.21428571428571427,
+       "0.2": 0.35714285714285715
+      },
+      "auroc": 0.7295386904761905
+     },
+     "entropy": {
+      "excess_aurc": 0.09116894289449644,
+      "capture": {
+       "0.05": 0.14285714285714285,
+       "0.1": 0.23214285714285715,
+       "0.2": 0.35714285714285715
+      },
+      "auroc": 0.7341269841269841
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.2862669622767098,
+      "capture": {
+       "0.05": 0.0,
+       "0.1": 0.03571428571428571,
+       "0.2": 0.14285714285714285
+      },
+      "auroc": 0.4157986111111111
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.26308622744061017,
+      "capture": {
+       "0.05": 0.03571428571428571,
+       "0.1": 0.10267857142857142,
+       "0.2": 0.15714285714285717
+      },
+      "auroc": 0.451140873015873
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.16874012399070876,
+    "generalisation_gap": 0.20307692307692315,
+    "geobench": false,
+    "source": "awf",
+    "seconds": 1.2
+   },
+   "awf_sentinel2": {
+    "family": "classification",
+    "n_units": 200,
+    "n_classes": 9,
+    "test_accuracy": 0.83,
+    "train_accuracy": 0.9793621013133208,
+    "error_rate": 0.17,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.03816053771465171,
+      "capture": {
+       "0.05": 0.11764705882352941,
+       "0.1": 0.2647058823529412,
+       "0.2": 0.5
+      },
+      "auroc": 0.8152019844082211
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.038238239641126125,
+      "capture": {
+       "0.05": 0.14705882352941177,
+       "0.1": 0.23529411764705882,
+       "0.2": 0.5
+      },
+      "auroc": 0.8144932671863926
+     },
+     "entropy": {
+      "excess_aurc": 0.038853517227781464,
+      "capture": {
+       "0.05": 0.08823529411764706,
+       "0.1": 0.23529411764705882,
+       "0.2": 0.5294117647058824
+      },
+      "auroc": 0.8097094259390503
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.16067903435779154,
+      "capture": {
+       "0.05": 0.0,
+       "0.1": 0.0,
+       "0.2": 0.20588235294117646
+      },
+      "auroc": 0.508681785967399
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.19230920689734424,
+      "capture": {
+       "0.05": 0.07563025210084033,
+       "0.1": 0.08823529411764706,
+       "0.2": 0.12745098039215685
+      },
+      "auroc": 0.4108788093550673
+     }
+    },
+    "best_control": "ctl_embedding_distance",
+    "margin_lead": 0.12251849664313984,
+    "generalisation_gap": 0.14936210131332084,
+    "geobench": false,
+    "source": "awf",
+    "seconds": 0.4
+   },
+   "nandi_landsat": {
+    "family": "classification",
+    "n_units": 825,
+    "n_classes": 6,
+    "test_accuracy": 0.7236363636363636,
+    "train_accuracy": 0.9807524059492564,
+    "error_rate": 0.27636363636363637,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.07874386270614489,
+      "capture": {
+       "0.05": 0.11842105263157894,
+       "0.1": 0.2149122807017544,
+       "0.2": 0.37719298245614036
+      },
+      "auroc": 0.7662655382174028
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.0771969253797621,
+      "capture": {
+       "0.05": 0.11842105263157894,
+       "0.1": 0.2149122807017544,
+       "0.2": 0.39035087719298245
+      },
+      "auroc": 0.7702474360104616
+     },
+     "entropy": {
+      "excess_aurc": 0.07660308213229358,
+      "capture": {
+       "0.05": 0.10526315789473684,
+       "0.1": 0.20175438596491227,
+       "0.2": 0.3815789473684211
+      },
+      "auroc": 0.7711951570719092
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.2245617078692858,
+      "capture": {
+       "0.05": 0.039473684210526314,
+       "0.1": 0.07894736842105263,
+       "0.2": 0.17105263157894737
+      },
+      "auroc": 0.4993387992594552
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.1725660712026183,
+      "capture": {
+       "0.05": 0.06570512820512821,
+       "0.1": 0.13141025641025642,
+       "0.2": 0.29441283388651807
+      },
+      "auroc": 0.6156036028093684
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.09382220849647341,
+    "generalisation_gap": 0.25711604231289276,
+    "geobench": false,
+    "source": "nandi",
+    "seconds": 3.2
+   },
+   "nandi_sentinel1": {
+    "family": "classification",
+    "n_units": 825,
+    "n_classes": 6,
+    "test_accuracy": 0.3333333333333333,
+    "train_accuracy": 0.5997375328083989,
+    "error_rate": 0.6666666666666666,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.29084605128873997,
+      "capture": {
+       "0.05": 0.05090909090909091,
+       "0.1": 0.11454545454545455,
+       "0.2": 0.22727272727272727
+      },
+      "auroc": 0.6079603305785124
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.2942636021621554,
+      "capture": {
+       "0.05": 0.05818181818181818,
+       "0.1": 0.11636363636363636,
+       "0.2": 0.22545454545454546
+      },
+      "auroc": 0.60339173553719
+     },
+     "entropy": {
+      "excess_aurc": 0.3065355483952892,
+      "capture": {
+       "0.05": 0.056363636363636366,
+       "0.1": 0.11636363636363636,
+       "0.2": 0.23454545454545456
+      },
+      "auroc": 0.585295867768595
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.3833073514406017,
+      "capture": {
+       "0.05": 0.04181818181818182,
+       "0.1": 0.09272727272727273,
+       "0.2": 0.18545454545454546
+      },
+      "auroc": 0.47679338842975205
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.3076924108744067,
+      "capture": {
+       "0.05": 0.06099173553719008,
+       "0.1": 0.12198347107438016,
+       "0.2": 0.2432727272727273
+      },
+      "auroc": 0.5954545454545455
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.016846359585666715,
+    "generalisation_gap": 0.2664041994750656,
+    "geobench": false,
+    "source": "nandi",
+    "seconds": 2.2
+   },
+   "nandi_sentinel2": {
+    "family": "classification",
+    "n_units": 825,
+    "n_classes": 6,
+    "test_accuracy": 0.8109090909090909,
+    "train_accuracy": 0.9794400699912511,
+    "error_rate": 0.1890909090909091,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.03702512070347863,
+      "capture": {
+       "0.05": 0.1794871794871795,
+       "0.1": 0.2948717948717949,
+       "0.2": 0.5576923076923077
+      },
+      "auroc": 0.8440554214096815
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.03633486922208279,
+      "capture": {
+       "0.05": 0.17307692307692307,
+       "0.1": 0.32051282051282054,
+       "0.2": 0.5769230769230769
+      },
+      "auroc": 0.8478785788202828
+     },
+     "entropy": {
+      "excess_aurc": 0.035610246783915625,
+      "capture": {
+       "0.05": 0.1794871794871795,
+       "0.1": 0.32051282051282054,
+       "0.2": 0.6025641025641025
+      },
+      "auroc": 0.8514526081790655
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.22433254690553314,
+      "capture": {
+       "0.05": 0.01282051282051282,
+       "0.1": 0.02564102564102564,
+       "0.2": 0.08333333333333333
+      },
+      "auroc": 0.37633666781648845
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.13961598637558495,
+      "capture": {
+       "0.05": 0.07250221043324491,
+       "0.1": 0.14500442086648982,
+       "0.2": 0.26549663928304706
+      },
+      "auroc": 0.5873816641753862
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.10259086567210632,
+    "generalisation_gap": 0.1685309790821602,
+    "geobench": false,
+    "source": "nandi",
+    "seconds": 1.3
+   },
+   "cropharvest_Togo_12_sentinel1": {
+    "family": "classification",
+    "n_units": 306,
+    "n_classes": 2,
+    "test_accuracy": 0.7222222222222222,
+    "train_accuracy": 0.8604651162790697,
+    "error_rate": 0.2777777777777778,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.12289333350163818,
+      "capture": {
+       "0.05": 0.07058823529411765,
+       "0.1": 0.1411764705882353,
+       "0.2": 0.29411764705882354
+      },
+      "auroc": 0.6764439712536598
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.12289333350163818,
+      "capture": {
+       "0.05": 0.07058823529411765,
+       "0.1": 0.1411764705882353,
+       "0.2": 0.29411764705882354
+      },
+      "auroc": 0.6764439712536598
+     },
+     "entropy": {
+      "excess_aurc": 0.12289333350163818,
+      "capture": {
+       "0.05": 0.07058823529411765,
+       "0.1": 0.1411764705882353,
+       "0.2": 0.29411764705882354
+      },
+      "auroc": 0.6764439712536598
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.313214940453203,
+      "capture": {
+       "0.05": 0.011764705882352941,
+       "0.1": 0.023529411764705882,
+       "0.2": 0.07058823529411765
+      },
+      "auroc": 0.3548575991482566
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.13859001630048823,
+      "capture": {
+       "0.05": 0.07545638945233266,
+       "0.1": 0.15594320486815416,
+       "0.2": 0.3068559837728195
+      },
+      "auroc": 0.676923076923077
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.015696682798850045,
+    "generalisation_gap": 0.13824289405684753,
+    "geobench": false,
+    "source": "cropharvest_togo",
+    "seconds": 1.3
+   },
+   "cropharvest_Togo_12_sentinel2": {
+    "family": "classification",
+    "n_units": 306,
+    "n_classes": 2,
+    "test_accuracy": 0.8300653594771242,
+    "train_accuracy": 0.9428294573643411,
+    "error_rate": 0.16993464052287582,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.0529807751477505,
+      "capture": {
+       "0.05": 0.15384615384615385,
+       "0.1": 0.28846153846153844,
+       "0.2": 0.5
+      },
+      "auroc": 0.7864930345245306
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.0529807751477505,
+      "capture": {
+       "0.05": 0.15384615384615385,
+       "0.1": 0.28846153846153844,
+       "0.2": 0.5
+      },
+      "auroc": 0.7864930345245306
+     },
+     "entropy": {
+      "excess_aurc": 0.0529807751477505,
+      "capture": {
+       "0.05": 0.15384615384615385,
+       "0.1": 0.28846153846153844,
+       "0.2": 0.5
+      },
+      "auroc": 0.7864930345245306
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.16696912282949528,
+      "capture": {
+       "0.05": 0.0,
+       "0.1": 0.038461538461538464,
+       "0.2": 0.09615384615384616
+      },
+      "auroc": 0.4380678376741369
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.1051026029035811,
+      "capture": {
+       "0.05": 0.07822685788787484,
+       "0.1": 0.16166883963494133,
+       "0.2": 0.31812255541069095
+      },
+      "auroc": 0.6384009691096305
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.0521218277558306,
+    "generalisation_gap": 0.11276409788721686,
+    "geobench": false,
+    "source": "cropharvest_togo",
+    "seconds": 1.3
+   },
+   "cropharvest_Togo_12_sentinel2_sentinel1": {
+    "family": "classification",
+    "n_units": 306,
+    "n_classes": 2,
+    "test_accuracy": 0.7810457516339869,
+    "train_accuracy": 0.9292635658914729,
+    "error_rate": 0.21895424836601307,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.07663323399517323,
+      "capture": {
+       "0.05": 0.08955223880597014,
+       "0.1": 0.208955223880597,
+       "0.2": 0.44776119402985076
+      },
+      "auroc": 0.7797414600636983
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.07663323399517323,
+      "capture": {
+       "0.05": 0.08955223880597014,
+       "0.1": 0.208955223880597,
+       "0.2": 0.44776119402985076
+      },
+      "auroc": 0.7797414600636983
+     },
+     "entropy": {
+      "excess_aurc": 0.07663323399517323,
+      "capture": {
+       "0.05": 0.08955223880597014,
+       "0.1": 0.208955223880597,
+       "0.2": 0.44776119402985076
+      },
+      "auroc": 0.7797414600636983
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.18848234763686195,
+      "capture": {
+       "0.05": 0.0,
+       "0.1": 0.029850746268656716,
+       "0.2": 0.1044776119402985
+      },
+      "auroc": 0.4641229001436333
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.11334061551431611,
+      "capture": {
+       "0.05": 0.07960199004975124,
+       "0.1": 0.16451077943615258,
+       "0.2": 0.3237147595356551
+      },
+      "auroc": 0.6762005870230438
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.03670738151914288,
+    "generalisation_gap": 0.14821781425748592,
+    "geobench": false,
+    "source": "cropharvest_togo",
+    "seconds": 1.3
+   },
+   "cropharvest_Peoples_Republic_of_China_6": {
+    "family": "classification",
+    "n_units": 4397,
+    "n_classes": 2,
+    "test_accuracy": 0.7350466226972936,
+    "train_accuracy": 0.8502867491699366,
+    "error_rate": 0.2649533773027064,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.10481956091144913,
+      "capture": {
+       "0.05": 0.10042918454935622,
+       "0.1": 0.1905579399141631,
+       "0.2": 0.3562231759656652
+      },
+      "auroc": 0.7119648472357966
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.10481948075668811,
+      "capture": {
+       "0.05": 0.10042918454935622,
+       "0.1": 0.1905579399141631,
+       "0.2": 0.3562231759656652
+      },
+      "auroc": 0.7119648472357966
+     },
+     "entropy": {
+      "excess_aurc": 0.10481956091144913,
+      "capture": {
+       "0.05": 0.10042918454935622,
+       "0.1": 0.1905579399141631,
+       "0.2": 0.3562231759656652
+      },
+      "auroc": 0.7119648472357966
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.25957717177621636,
+      "capture": {
+       "0.05": 0.07896995708154507,
+       "0.1": 0.1296137339055794,
+       "0.2": 0.2094420600858369
+      },
+      "auroc": 0.46956428207198403
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.2785492437135045,
+      "capture": {
+       "0.05": 0.011565575607149629,
+       "0.1": 0.023131151214299258,
+       "0.2": 0.0462097316303842
+      },
+      "auroc": 0.38153298028300686
+     }
+    },
+    "best_control": "ctl_embedding_distance",
+    "margin_lead": 0.15475761086476725,
+    "generalisation_gap": 0.11524012647264303,
+    "geobench": false,
+    "source": "cropharvest_china",
+    "seconds": 1.9
+   },
+   "cropharvest_Peoples_Republic_of_China_6_sentinel1": {
+    "family": "classification",
+    "n_units": 4397,
+    "n_classes": 2,
+    "test_accuracy": 0.6436206504434842,
+    "train_accuracy": 0.6812556595230909,
+    "error_rate": 0.3563793495565158,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.09297936414731788,
+      "capture": {
+       "0.05": 0.06955966815571155,
+       "0.1": 0.14358647096362476,
+       "0.2": 0.30185067007019784
+      },
+      "auroc": 0.7745243662915116
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.09297936414731788,
+      "capture": {
+       "0.05": 0.06955966815571155,
+       "0.1": 0.14358647096362476,
+       "0.2": 0.30185067007019784
+      },
+      "auroc": 0.7745243662915116
+     },
+     "entropy": {
+      "excess_aurc": 0.09297936414731788,
+      "capture": {
+       "0.05": 0.06955966815571155,
+       "0.1": 0.14358647096362476,
+       "0.2": 0.30185067007019784
+      },
+      "auroc": 0.7745243662915116
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.48195210334060556,
+      "capture": {
+       "0.05": 0.04339502233567326,
+       "0.1": 0.053605615826419914,
+       "0.2": 0.07338864071474155
+      },
+      "auroc": 0.23629755491463736
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.31724554599119514,
+      "capture": {
+       "0.05": 0.022592405137571606,
+       "0.1": 0.04518481027514321,
+       "0.2": 0.11738613220835639
+      },
+      "auroc": 0.432556865203479
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.22426618184387725,
+    "generalisation_gap": 0.03763500907960671,
+    "geobench": false,
+    "source": "cropharvest_china",
+    "seconds": 2.3
+   },
+   "cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2": {
+    "family": "classification",
+    "n_units": 4397,
+    "n_classes": 2,
+    "test_accuracy": 0.7737093472822378,
+    "train_accuracy": 0.8173860549351042,
+    "error_rate": 0.2262906527177621,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.08495967739262789,
+      "capture": {
+       "0.05": 0.10954773869346733,
+       "0.1": 0.1708542713567839,
+       "0.2": 0.33668341708542715
+      },
+      "auroc": 0.7195477682356521
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.08495975387805904,
+      "capture": {
+       "0.05": 0.10954773869346733,
+       "0.1": 0.1708542713567839,
+       "0.2": 0.33668341708542715
+      },
+      "auroc": 0.7195482113684235
+     },
+     "entropy": {
+      "excess_aurc": 0.08495967739262789,
+      "capture": {
+       "0.05": 0.10954773869346733,
+       "0.1": 0.1708542713567839,
+       "0.2": 0.33668341708542715
+      },
+      "auroc": 0.7195477682356521
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.2756949654357793,
+      "capture": {
+       "0.05": 0.02613065326633166,
+       "0.1": 0.053266331658291456,
+       "0.2": 0.09748743718592964
+      },
+      "auroc": 0.3560695895704271
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.25805653635622294,
+      "capture": {
+       "0.05": 0.0028875721893047326,
+       "0.1": 0.005775144378609465,
+       "0.2": 0.011537163429085727
+      },
+      "auroc": 0.35153840927151925
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.17309685896359506,
+    "generalisation_gap": 0.04367670765286635,
+    "geobench": false,
+    "source": "cropharvest_china",
+    "seconds": 1.8
+   },
+   "breizhcrops": {
+    "family": "classification",
+    "n_units": 122614,
+    "n_classes": 9,
+    "test_accuracy": 0.7022444419071232,
+    "train_accuracy": 0.7613121675885961,
+    "error_rate": 0.29775555809287685,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.07747942028992791,
+      "capture": {
+       "0.05": 0.09937275740228436,
+       "0.1": 0.19304828946287217,
+       "0.2": 0.3687857788490509
+      },
+      "auroc": 0.7728359749128918
+     },
+     "one_minus_top1": {
+      "excess_aurc": 0.07489181729048133,
+      "capture": {
+       "0.05": 0.10904160617929826,
+       "0.1": 0.2081130680106275,
+       "0.2": 0.3822892985291298
+      },
+      "auroc": 0.7812870095808034
+     },
+     "entropy": {
+      "excess_aurc": 0.0777981578569345,
+      "capture": {
+       "0.05": 0.10589169793749487,
+       "0.1": 0.2024432331753814,
+       "0.2": 0.3753047193842614
+      },
+      "auroc": 0.772675276572263
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.24960921434310915,
+      "capture": {
+       "0.05": 0.049165959078583364,
+       "0.1": 0.10090662576351037,
+       "0.2": 0.20636007559779782
+      },
+      "auroc": 0.5077281018463805
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.27841480338404645,
+      "capture": {
+       "0.05": 0.05405337814261403,
+       "0.1": 0.13751880086709828,
+       "0.2": 0.26964756884758473
+      },
+      "auroc": 0.48983081791880667
+     }
+    },
+    "best_control": "ctl_embedding_distance",
+    "margin_lead": 0.17212979405318124,
+    "generalisation_gap": 0.059067725681472893,
+    "geobench": false,
+    "source": "breizhcrops",
+    "seconds": 86.6
+   },
+   "mados": {
+    "family": "segmentation",
+    "n_units": 22598,
+    "n_classes": 15,
+    "patch_px": 4,
+    "test_accuracy": 0.9264094167625454,
+    "train_accuracy": 0.9867799811142587,
+    "pixel_accuracy": 0.9212500311510953,
+    "pixel_miou": 0.6682806466417183,
+    "error_rate": 0.07359058323745464,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.007793297491292222,
+      "capture": {
+       "0.05": 0.291040288634997,
+       "0.1": 0.4954900781719784,
+       "0.2": 0.782922429344558
+      },
+      "auroc": 0.902927797734907
+     },
+     "entropy": {
+      "excess_aurc": 0.007905534230931564,
+      "capture": {
+       "0.05": 0.2627781118460613,
+       "0.1": 0.4858689116055322,
+       "0.2": 0.7811184606133493
+      },
+      "auroc": 0.9012353616935046
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.07836361213557018,
+      "capture": {
+       "0.05": 0.08478653036680697,
+       "0.1": 0.12206855081178593,
+       "0.2": 0.17378232110643416
+      },
+      "auroc": 0.47255923863644034
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.024318290465639474,
+      "capture": {
+       "0.05": 0.11516609267661582,
+       "0.1": 0.3798525617706747,
+       "0.2": 0.4896829476461118
+      },
+      "auroc": 0.7836513843711479
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.01652499297434725,
+    "generalisation_gap": 0.060370564351713285,
+    "geobench": false,
+    "source": "mados",
+    "seconds": 21.5
+   },
+   "sen1floods11": {
+    "family": "segmentation",
+    "n_units": 592385,
+    "n_classes": 2,
+    "patch_px": 4,
+    "test_accuracy": 0.9154823299036944,
+    "train_accuracy": 0.931782574413443,
+    "pixel_accuracy": 0.9103476627960047,
+    "pixel_miou": 0.7891593566860378,
+    "error_rate": 0.0845176700963056,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.020199028952898546,
+      "capture": {
+       "0.05": 0.2619889348273314,
+       "0.1": 0.45946431781412905,
+       "0.2": 0.6954680727824715
+      },
+      "auroc": 0.8426348676509956
+     },
+     "entropy": {
+      "excess_aurc": 0.020199030346809758,
+      "capture": {
+       "0.05": 0.2619889348273314,
+       "0.1": 0.45946431781412905,
+       "0.2": 0.6954680727824715
+      },
+      "auroc": 0.8426348672274577
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.061954126599932546,
+      "capture": {
+       "0.05": 0.06391435476461542,
+       "0.1": 0.13977270457586832,
+       "0.2": 0.2885733117622386
+      },
+      "auroc": 0.5882071721907461
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.07196004794964198,
+      "capture": {
+       "0.05": 0.0706025205015113,
+       "0.1": 0.1412050410030226,
+       "0.2": 0.282412465696261
+      },
+      "auroc": 0.5506558464708085
+     }
+    },
+    "best_control": "ctl_embedding_distance",
+    "margin_lead": 0.041755097647034,
+    "generalisation_gap": 0.01630024450974865,
+    "geobench": false,
+    "source": "sen1floods11",
+    "seconds": 38.6
+   },
+   "pastis_sentinel1": {
+    "family": "segmentation",
+    "n_units": 458638,
+    "n_classes": 19,
+    "patch_px": 4,
+    "test_accuracy": 0.7156537399866562,
+    "train_accuracy": 0.7263861198226651,
+    "pixel_accuracy": 0.7051504813136451,
+    "pixel_miou": 0.2937349080561129,
+    "error_rate": 0.28434626001334384,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.07145930285829868,
+      "capture": {
+       "0.05": 0.11516578228997332,
+       "0.1": 0.22451154801705364,
+       "0.2": 0.4189798484802012
+      },
+      "auroc": 0.7929745257265837
+     },
+     "entropy": {
+      "excess_aurc": 0.07402995647236596,
+      "capture": {
+       "0.05": 0.1276032880409778,
+       "0.1": 0.23618225316688649,
+       "0.2": 0.41968530503327917
+      },
+      "auroc": 0.7875333320016138
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.29059293078763254,
+      "capture": {
+       "0.05": 0.023180382173419625,
+       "0.1": 0.0576250651780511,
+       "0.2": 0.13642916296046376
+      },
+      "auroc": 0.41553729736112816
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.19869268948608196,
+      "capture": {
+       "0.05": 0.09283061399062993,
+       "0.1": 0.1446726074610825,
+       "0.2": 0.25025077877550034
+      },
+      "auroc": 0.57925850449009
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.12723338662778327,
+    "generalisation_gap": 0.010732379836008943,
+    "geobench": false,
+    "source": "pastis",
+    "seconds": 42.9
+   },
+   "pastis_sentinel2": {
+    "family": "segmentation",
+    "n_units": 458638,
+    "n_classes": 19,
+    "patch_px": 4,
+    "test_accuracy": 0.8099437900915318,
+    "train_accuracy": 0.8315731285309433,
+    "pixel_accuracy": 0.8007464104372539,
+    "pixel_miou": 0.4982313812393665,
+    "error_rate": 0.1900562099084681,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.03863929176338316,
+      "capture": {
+       "0.05": 0.1565500705542235,
+       "0.1": 0.2975667397065403,
+       "0.2": 0.5306595385868506
+      },
+      "auroc": 0.8314277187498259
+     },
+     "entropy": {
+      "excess_aurc": 0.04249154410675572,
+      "capture": {
+       "0.05": 0.17078710980072734,
+       "0.1": 0.29847304599217594,
+       "0.2": 0.48981839457592896
+      },
+      "auroc": 0.8157115674502375
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.19833775208940366,
+      "capture": {
+       "0.05": 0.025548659469753463,
+       "0.1": 0.06087166014661512,
+       "0.2": 0.14247364254821204
+      },
+      "auroc": 0.4376114804864574
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.15605563682726328,
+      "capture": {
+       "0.05": 0.0775648978112567,
+       "0.1": 0.17150250193144867,
+       "0.2": 0.2669732322033465
+      },
+      "auroc": 0.5427196620073267
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.11741634506388013,
+    "generalisation_gap": 0.021629338439411505,
+    "geobench": false,
+    "source": "pastis",
+    "seconds": 28.8
+   },
+   "pastis_sentinel1_sentinel2": {
+    "family": "segmentation",
+    "n_units": 458638,
+    "n_classes": 19,
+    "patch_px": 4,
+    "test_accuracy": 0.8051600608758978,
+    "train_accuracy": 0.8246639960788794,
+    "pixel_accuracy": 0.7946433010923437,
+    "pixel_miou": 0.47582928391916574,
+    "error_rate": 0.19483993912410225,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.03944887168860667,
+      "capture": {
+       "0.05": 0.1546312149595461,
+       "0.1": 0.2946923154396213,
+       "0.2": 0.5286758205481138
+      },
+      "auroc": 0.8322026566925532
+     },
+     "entropy": {
+      "excess_aurc": 0.043662059502448884,
+      "capture": {
+       "0.05": 0.17039871979946508,
+       "0.1": 0.30070164837009433,
+       "0.2": 0.4919931513747608
+      },
+      "auroc": 0.8158232331807125
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.20688675704744144,
+      "capture": {
+       "0.05": 0.021922315103904386,
+       "0.1": 0.05491209811886617,
+       "0.2": 0.12834457985027026
+      },
+      "auroc": 0.42473036658771846
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.1584555932538684,
+      "capture": {
+       "0.05": 0.08007808736978163,
+       "0.1": 0.17407770091542427,
+       "0.2": 0.2672235368152499
+      },
+      "auroc": 0.545738533643489
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.11900672156526174,
+    "generalisation_gap": 0.01950393520298166,
+    "geobench": false,
+    "source": "pastis",
+    "seconds": 30.1
+   },
+   "m_cashew_plant": {
+    "family": "segmentation",
+    "n_units": 204800,
+    "n_classes": 7,
+    "patch_px": 4,
+    "test_accuracy": 0.6527880859374999,
+    "train_accuracy": 0.6285787398726852,
+    "pixel_accuracy": 0.651824951171875,
+    "pixel_miou": 0.2611742713871542,
+    "error_rate": 0.3472119140625,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.13078398724443888,
+      "capture": {
+       "0.05": 0.08854012853506589,
+       "0.1": 0.17342389852198736,
+       "0.2": 0.32985979271259613
+      },
+      "auroc": 0.7108995319607951
+     },
+     "entropy": {
+      "excess_aurc": 0.13349947196102116,
+      "capture": {
+       "0.05": 0.08755572431056546,
+       "0.1": 0.16937377828404282,
+       "0.2": 0.32322209565596477
+      },
+      "auroc": 0.7055480405554916
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.303015530241331,
+      "capture": {
+       "0.05": 0.04598574020166224,
+       "0.1": 0.09372934508993236,
+       "0.2": 0.18671335555274296
+      },
+      "auroc": 0.4690232405502123
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.2569793475779172,
+      "capture": {
+       "0.05": 0.09444617793196283,
+       "0.1": 0.16224356817083763,
+       "0.2": 0.2577586114056673
+      },
+      "auroc": 0.5471556551575459
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.1261953603334783,
+    "generalisation_gap": -0.02420934606481473,
+    "geobench": true,
+    "source": "m_cashew_plant",
+    "seconds": 119.6
+   },
+   "m_sa_crop_type": {
+    "family": "segmentation",
+    "n_units": 4096000,
+    "n_classes": 10,
+    "patch_px": 4,
+    "test_accuracy": 0.65996728515625,
+    "train_accuracy": 0.6498366699218749,
+    "pixel_accuracy": 0.6566286926269531,
+    "pixel_miou": 0.2878136666867046,
+    "error_rate": 0.34003271484375,
+    "signals": {
+     "margin": {
+      "excess_aurc": 0.06718643256650826,
+      "capture": {
+       "0.05": 0.1069268955336616,
+       "0.1": 0.2104842565987016,
+       "0.2": 0.40522367591583414
+      },
+      "auroc": 0.8251312965323572
+     },
+     "entropy": {
+      "excess_aurc": 0.07068304035501431,
+      "capture": {
+       "0.05": 0.10993958818875137,
+       "0.1": 0.211079471615639,
+       "0.2": 0.39584239797698695
+      },
+      "auroc": 0.8163336242361715
+     },
+     "ctl_embedding_distance": {
+      "excess_aurc": 0.3074642924241013,
+      "capture": {
+       "0.05": 0.03343184177763227,
+       "0.1": 0.07118742882908498,
+       "0.2": 0.1545440968886553
+      },
+      "auroc": 0.4455284229191779
+     },
+     "ctl_class_rarity": {
+      "excess_aurc": 0.18128755721425643,
+      "capture": {
+       "0.05": 0.08555953873875778,
+       "0.1": 0.16585842476123447,
+       "0.2": 0.344739518504328
+      },
+      "auroc": 0.6703594511216509
+     }
+    },
+    "best_control": "ctl_class_rarity",
+    "margin_lead": 0.11410112464774817,
+    "generalisation_gap": -0.010130615234375084,
+    "geobench": true,
+    "source": "m_sa_crop_type",
+    "seconds": 317.4
+   }
+  },
+  "failures": {}
+ },
+ "verdicts": {
+  "P1": {
+   "holds": true,
+   "wins": 24,
+   "of": 24,
+   "p": 5.960464477539063e-08,
+   "distinct_sources": 14,
+   "source_wins": 14,
+   "note": "the count by source is beside the count by task because several tasks share a source"
+  },
+  "P2": {
+   "holds": true,
+   "classification": "17/17",
+   "segmentation": "7/7"
+  },
+  "P3": {
+   "holds": true,
+   "median_gap": 0.08656733111946507,
+   "margin_over_entropy_wide_gap": -0.00014790249495297975,
+   "margin_over_entropy_tight_gap": 0.00021548715332296792,
+   "n_wide": 12,
+   "n_tight": 12,
+   "pairs_wide_below_tight": 109,
+   "pairs_wide_above_tight": 23,
+   "rank_sum_p": 0.0054353373104214404,
+   "rank_sum_method": "exact",
+   "note": "exp68 found the ordering of the model signals inverts when the probe memorises its fit set; this asks whether that is a property of probes or of that one task",
+   "correction": "2026-09-22: this block was regenerated from the committed per-task results. It used to carry pairwise_p = 6.9e-15, a sign test over 144 task pairs treated as independent; the rank-sum test over the 24 tasks gives the p above. holds is unchanged."
+  }
+ }
+}

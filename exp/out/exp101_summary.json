@@ -1,0 +1,1467 @@
+{
+ "experiment": "exp101: filter, then shake. A two-step error ranking (set aside the most confident share q, rank the rest by the replica's instability over 320 perturbed views) fitted on exp98's graded validation points and tested on exp99's plots",
+ "prereg_page": "docs/plan/two_step.md",
+ "mode": "the test (E), with F recomputed for q",
+ "utc": "2026-10-11T04:30:10Z",
+ "commit": "a1b878ebb2fae4aeaf00bb0a695cb837293277e8",
+ "dirty": false,
+ "prereg_status": "frozen",
+ "design": {
+  "views": {
+   "orientation": [
+    "0 quarter turn(s)",
+    "1 quarter turn(s)",
+    "2 quarter turn(s)",
+    "3 quarter turn(s)",
+    "0 quarter turn(s), flipped",
+    "1 quarter turn(s), flipped",
+    "2 quarter turn(s), flipped",
+    "3 quarter turn(s), flipped"
+   ],
+   "time": [
+    "all twelve months",
+    "without January to March",
+    "without April to June",
+    "without July to September",
+    "without October to December"
+   ],
+   "context_px": [
+    16,
+    32
+   ],
+   "phase_px": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "n_views": 320,
+   "index": "((orientation x 5 + time) x 2 + context) x 4 + phase",
+   "v0": "view 0: identity, all twelve months, 16 px, phase 0, the unit at (8, 8)"
+  },
+  "instability": "the share of the other 319 views whose class (argmax over ten channels) differs from V0's; ties broken by the mean total-variation distance of the ten-channel softmax to V0's",
+  "rule": "R(q): the most confident share q of the units (in design weight) set aside; the others by instability, most unstable first, ties by confidence, least confident first; then the units set aside, least confident first",
+  "q_grid": [
+   0.5,
+   0.6,
+   0.7,
+   0.8
+  ],
+  "budget": 0.1,
+  "budgets_reported": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "p1_margin": 0.05,
+  "level": 0.9,
+  "kinds": {
+   "orientation": 7,
+   "time": 4,
+   "context": 1,
+   "phase": 3
+  },
+  "dose_k": [
+   4,
+   8,
+   16,
+   32,
+   64,
+   128,
+   319
+  ],
+  "dose_draws": 20,
+  "seed": 101
+ },
+ "cannot_show": [
+  "Whether the gain holds for a model or legend other than FT-AWF's, or for a whole map: the units are points.",
+  "Why a view changes the class: a season removed may hide the season that separates grass from shrub, or show the model a series shorter than it was trained on.",
+  "With 271 plots and a 10% review of about 27, a difference of a few errors is within noise; P1's bar is set so that only a large gain passes."
+ ],
+ "inputs_F": {
+  "n_units": 259,
+  "source": "the deployed run's rslearn dataset",
+  "n_roots": 1,
+  "n_windows": 270,
+  "n_windows_with_12_groups": 270,
+  "in_no_window": 0,
+  "in_two_or_more_windows": 32,
+  "only_in_windows_without_12_groups": 0,
+  "failed_reads": {},
+  "took_a_later_window_to_avoid_clamping": 0,
+  "read": 259,
+  "clamped_at_a_window_edge": 18,
+  "reproduces_record": true
+ },
+ "compute_F": {
+  "views": 82880,
+  "batches": 738,
+  "seconds": 423.34,
+  "views_per_second": 195.8
+ },
+ "model": {
+  "arm": "awf",
+  "device": "cuda",
+  "checkpoint_sha256": "1036b76bf7dfde819479dfa02507634f59a5637f14d4071bc3bf18f4d3d4bab2",
+  "encoder_config": {
+   "model_id": "OLMOEARTH_V1_BASE",
+   "revision": "4bd1392a4539404d2c74276c39f3cb4cfff466cc"
+  },
+  "load": "weights_only",
+  "top_level": [
+   "callbacks",
+   "epoch",
+   "global_step",
+   "loops",
+   "lr_schedulers",
+   "optimizer_states",
+   "pytorch-lightning_version",
+   "state_dict"
+  ],
+  "encoder_prefix": "model.encoder.0.model.",
+  "n_encoder_keys": 231,
+  "n_checkpoint_keys": 233,
+  "head_shape": [
+   10,
+   768
+  ],
+  "dtype": "float32",
+  "tf32": false,
+  "patch": 4,
+  "head": null,
+  "unused_checkpoint_keys": null,
+  "model": "exp89 arm A replica (exp21's forward pass)",
+  "moved_tensor_attributes": [],
+  "gpu": "NVIDIA B200",
+  "torch": "2.7.1+cu128"
+ },
+ "fit": {
+  "units": {
+   "n_with_views": 259,
+   "n_errors": 33,
+   "n_correct": 226,
+   "v0_agreement_with_deployed": 0.915057915057915,
+   "clamped_errors": 2,
+   "clamped_correct": 16,
+   "mean_share_errors": 0.2634178778379405,
+   "mean_share_correct": 0.03463533719865731
+  },
+  "q": 0.6,
+  "q_rule": "the q of [0.5, 0.6, 0.7, 0.8] whose 10% review by R(q) holds the most of F's errors (the record's tie-aware capture times the errors), ties to the larger q",
+  "per_q": {
+   "0.5": {
+    "q": 0.5,
+    "capture": 0.48181818181818187,
+    "errors_held": 15.900000000000002,
+    "n_set_aside": 129,
+    "statistics": {
+     "n": 259,
+     "n_errors": 33,
+     "error_rate_weighted": 0.1274131274131274,
+     "q": 0.5,
+     "set_aside": {
+      "n": 129,
+      "weight_share": 0.4980694980694981,
+      "n_errors": 2
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.24090909090909093,
+       "confidence": 0.21060606060606063,
+       "difference": 0.030303030303030304,
+       "errors_in_review_two_step": 7.950000000000001,
+       "errors_in_review_confidence": 6.950000000000001,
+       "units_in_review": 12.950000000000001
+      },
+      "0.1": {
+       "two_step": 0.48181818181818187,
+       "confidence": 0.42424242424242425,
+       "difference": 0.05757575757575761,
+       "errors_in_review_two_step": 15.900000000000002,
+       "errors_in_review_confidence": 14.0,
+       "units_in_review": 25.900000000000002
+      },
+      "0.2": {
+       "two_step": 0.7575757575757576,
+       "confidence": 0.5696969696969698,
+       "difference": 0.18787878787878776,
+       "errors_in_review_two_step": 25.0,
+       "errors_in_review_confidence": 18.800000000000004,
+       "units_in_review": 51.800000000000004
+      }
+     },
+     "not_set_aside": {
+      "n": 130,
+      "n_errors": 31,
+      "auroc_instability": 0.8204626914304334,
+      "auroc_confidence": 0.7204301075268817,
+      "difference": 0.10003258390355163
+     }
+    }
+   },
+   "0.6": {
+    "q": 0.6,
+    "capture": 0.5121212121212122,
+    "errors_held": 16.900000000000002,
+    "n_set_aside": 155,
+    "statistics": {
+     "n": 259,
+     "n_errors": 33,
+     "error_rate_weighted": 0.1274131274131274,
+     "q": 0.6,
+     "set_aside": {
+      "n": 155,
+      "weight_share": 0.5984555984555985,
+      "n_errors": 3
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.24090909090909093,
+       "confidence": 0.21060606060606063,
+       "difference": 0.030303030303030304,
+       "errors_in_review_two_step": 7.950000000000001,
+       "errors_in_review_confidence": 6.950000000000001,
+       "units_in_review": 12.950000000000001
+      },
+      "0.1": {
+       "two_step": 0.5121212121212122,
+       "confidence": 0.42424242424242425,
+       "difference": 0.08787878787878795,
+       "errors_in_review_two_step": 16.900000000000002,
+       "errors_in_review_confidence": 14.0,
+       "units_in_review": 25.900000000000002
+      },
+      "0.2": {
+       "two_step": 0.7575757575757576,
+       "confidence": 0.5696969696969698,
+       "difference": 0.18787878787878776,
+       "errors_in_review_two_step": 25.0,
+       "errors_in_review_confidence": 18.800000000000004,
+       "units_in_review": 51.800000000000004
+      }
+     },
+     "not_set_aside": {
+      "n": 104,
+      "n_errors": 30,
+      "auroc_instability": 0.786036036036036,
+      "auroc_confidence": 0.6513513513513514,
+      "difference": 0.13468468468468464
+     }
+    }
+   },
+   "0.7": {
+    "q": 0.7,
+    "capture": 0.48484848484848486,
+    "errors_held": 16.0,
+    "n_set_aside": 181,
+    "statistics": {
+     "n": 259,
+     "n_errors": 33,
+     "error_rate_weighted": 0.1274131274131274,
+     "q": 0.7,
+     "set_aside": {
+      "n": 181,
+      "weight_share": 0.6988416988416989,
+      "n_errors": 7
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.24090909090909093,
+       "confidence": 0.21060606060606063,
+       "difference": 0.030303030303030304,
+       "errors_in_review_two_step": 7.950000000000001,
+       "errors_in_review_confidence": 6.950000000000001,
+       "units_in_review": 12.950000000000001
+      },
+      "0.1": {
+       "two_step": 0.48484848484848486,
+       "confidence": 0.42424242424242425,
+       "difference": 0.06060606060606061,
+       "errors_in_review_two_step": 16.0,
+       "errors_in_review_confidence": 14.0,
+       "units_in_review": 25.900000000000002
+      },
+      "0.2": {
+       "two_step": 0.7575757575757576,
+       "confidence": 0.5696969696969698,
+       "difference": 0.18787878787878776,
+       "errors_in_review_two_step": 25.0,
+       "errors_in_review_confidence": 18.800000000000004,
+       "units_in_review": 51.800000000000004
+      }
+     },
+     "not_set_aside": {
+      "n": 78,
+      "n_errors": 26,
+      "auroc_instability": 0.7988165680473372,
+      "auroc_confidence": 0.6205621301775148,
+      "difference": 0.17825443786982242
+     }
+    }
+   },
+   "0.8": {
+    "q": 0.8,
+    "capture": 0.42424242424242425,
+    "errors_held": 14.0,
+    "n_set_aside": 207,
+    "statistics": {
+     "n": 259,
+     "n_errors": 33,
+     "error_rate_weighted": 0.1274131274131274,
+     "q": 0.8,
+     "set_aside": {
+      "n": 207,
+      "weight_share": 0.7992277992277992,
+      "n_errors": 14
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.27121212121212124,
+       "confidence": 0.21060606060606063,
+       "difference": 0.06060606060606061,
+       "errors_in_review_two_step": 8.950000000000001,
+       "errors_in_review_confidence": 6.950000000000001,
+       "units_in_review": 12.950000000000001
+      },
+      "0.1": {
+       "two_step": 0.42424242424242425,
+       "confidence": 0.42424242424242425,
+       "difference": 0.0,
+       "errors_in_review_two_step": 14.0,
+       "errors_in_review_confidence": 14.0,
+       "units_in_review": 25.900000000000002
+      },
+      "0.2": {
+       "two_step": 0.5696969696969698,
+       "confidence": 0.5696969696969698,
+       "difference": 0.0,
+       "errors_in_review_two_step": 18.800000000000004,
+       "errors_in_review_confidence": 18.800000000000004,
+       "units_in_review": 51.800000000000004
+      }
+     },
+     "not_set_aside": {
+      "n": 52,
+      "n_errors": 19,
+      "auroc_instability": 0.7639553429027113,
+      "auroc_confidence": 0.6507177033492823,
+      "difference": 0.11323763955342903
+     }
+    }
+   }
+  },
+  "at_q": {
+   "n": 259,
+   "n_errors": 33,
+   "error_rate_weighted": 0.1274131274131274,
+   "q": 0.6,
+   "set_aside": {
+    "n": 155,
+    "weight_share": 0.5984555984555985,
+    "n_errors": 3
+   },
+   "review": {
+    "0.05": {
+     "two_step": 0.24090909090909093,
+     "confidence": 0.21060606060606063,
+     "difference": 0.030303030303030304,
+     "errors_in_review_two_step": 7.950000000000001,
+     "errors_in_review_confidence": 6.950000000000001,
+     "units_in_review": 12.950000000000001
+    },
+    "0.1": {
+     "two_step": 0.5121212121212122,
+     "confidence": 0.42424242424242425,
+     "difference": 0.08787878787878795,
+     "errors_in_review_two_step": 16.900000000000002,
+     "errors_in_review_confidence": 14.0,
+     "units_in_review": 25.900000000000002
+    },
+    "0.2": {
+     "two_step": 0.7575757575757576,
+     "confidence": 0.5696969696969698,
+     "difference": 0.18787878787878776,
+     "errors_in_review_two_step": 25.0,
+     "errors_in_review_confidence": 18.800000000000004,
+     "units_in_review": 51.800000000000004
+    }
+   },
+   "not_set_aside": {
+    "n": 104,
+    "n_errors": 30,
+    "auroc_instability": 0.786036036036036,
+    "auroc_confidence": 0.6513513513513514,
+    "difference": 0.13468468468468464
+   }
+  },
+  "kinds_reported": {
+   "orientation": {
+    "n_views": 7,
+    "mean_share_errors": 0.051948051948051945,
+    "mean_share_correct": 0.014538558786346396,
+    "ranking": {
+     "n": 259,
+     "n_errors": 33,
+     "error_rate_weighted": 0.1274131274131274,
+     "q": 0.6,
+     "set_aside": {
+      "n": 155,
+      "weight_share": 0.5984555984555985,
+      "n_errors": 3
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.15151515151515152,
+       "confidence": 0.21060606060606063,
+       "difference": -0.05909090909090911,
+       "errors_in_review_two_step": 5.0,
+       "errors_in_review_confidence": 6.950000000000001,
+       "units_in_review": 12.950000000000001
+      },
+      "0.1": {
+       "two_step": 0.45454545454545453,
+       "confidence": 0.42424242424242425,
+       "difference": 0.030303030303030276,
+       "errors_in_review_two_step": 15.0,
+       "errors_in_review_confidence": 14.0,
+       "units_in_review": 25.900000000000002
+      },
+      "0.2": {
+       "two_step": 0.6666666666666666,
+       "confidence": 0.5696969696969698,
+       "difference": 0.09696969696969682,
+       "errors_in_review_two_step": 22.0,
+       "errors_in_review_confidence": 18.800000000000004,
+       "units_in_review": 51.800000000000004
+      }
+     },
+     "not_set_aside": {
+      "n": 104,
+      "n_errors": 30,
+      "auroc_instability": 0.7211711711711711,
+      "auroc_confidence": 0.6513513513513514,
+      "difference": 0.06981981981981977
+     }
+    }
+   },
+   "time": {
+    "n_views": 4,
+    "mean_share_errors": 0.19696969696969696,
+    "mean_share_correct": 0.029867256637168143,
+    "ranking": {
+     "n": 259,
+     "n_errors": 33,
+     "error_rate_weighted": 0.1274131274131274,
+     "q": 0.6,
+     "set_aside": {
+      "n": 155,
+      "weight_share": 0.5984555984555985,
+      "n_errors": 3
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.21212121212121213,
+       "confidence": 0.21060606060606063,
+       "difference": 0.0015151515151514972,
+       "errors_in_review_two_step": 7.0,
+       "errors_in_review_confidence": 6.950000000000001,
+       "units_in_review": 12.950000000000001
+      },
+      "0.1": {
+       "two_step": 0.45454545454545453,
+       "confidence": 0.42424242424242425,
+       "difference": 0.030303030303030276,
+       "errors_in_review_two_step": 15.0,
+       "errors_in_review_confidence": 14.0,
+       "units_in_review": 25.900000000000002
+      },
+      "0.2": {
+       "two_step": 0.696969696969697,
+       "confidence": 0.5696969696969698,
+       "difference": 0.1272727272727272,
+       "errors_in_review_two_step": 23.0,
+       "errors_in_review_confidence": 18.800000000000004,
+       "units_in_review": 51.800000000000004
+      }
+     },
+     "not_set_aside": {
+      "n": 104,
+      "n_errors": 30,
+      "auroc_instability": 0.7531531531531531,
+      "auroc_confidence": 0.6513513513513514,
+      "difference": 0.10180180180180176
+     }
+    }
+   },
+   "context": {
+    "n_views": 1,
+    "mean_share_errors": 0.21212121212121213,
+    "mean_share_correct": 0.035398230088495575,
+    "ranking": {
+     "n": 259,
+     "n_errors": 33,
+     "error_rate_weighted": 0.1274131274131274,
+     "q": 0.6,
+     "set_aside": {
+      "n": 155,
+      "weight_share": 0.5984555984555985,
+      "n_errors": 3
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.18181818181818182,
+       "confidence": 0.21060606060606063,
+       "difference": -0.028787878787878807,
+       "errors_in_review_two_step": 6.0,
+       "errors_in_review_confidence": 6.950000000000001,
+       "units_in_review": 12.950000000000001
+      },
+      "0.1": {
+       "two_step": 0.4515151515151516,
+       "confidence": 0.42424242424242425,
+       "difference": 0.027272727272727337,
+       "errors_in_review_two_step": 14.900000000000002,
+       "errors_in_review_confidence": 14.0,
+       "units_in_review": 25.900000000000002
+      },
+      "0.2": {
+       "two_step": 0.6060606060606061,
+       "confidence": 0.5696969696969698,
+       "difference": 0.036363636363636265,
+       "errors_in_review_two_step": 20.0,
+       "errors_in_review_confidence": 18.800000000000004,
+       "units_in_review": 51.800000000000004
+      }
+     },
+     "not_set_aside": {
+      "n": 104,
+      "n_errors": 30,
+      "auroc_instability": 0.7054054054054054,
+      "auroc_confidence": 0.6513513513513514,
+      "difference": 0.05405405405405406
+     }
+    }
+   },
+   "phase": {
+    "n_views": 3,
+    "mean_share_errors": 0.1313131313131313,
+    "mean_share_correct": 0.01327433628318584,
+    "ranking": {
+     "n": 259,
+     "n_errors": 33,
+     "error_rate_weighted": 0.1274131274131274,
+     "q": 0.6,
+     "set_aside": {
+      "n": 155,
+      "weight_share": 0.5984555984555985,
+      "n_errors": 3
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.24090909090909093,
+       "confidence": 0.21060606060606063,
+       "difference": 0.030303030303030304,
+       "errors_in_review_two_step": 7.950000000000001,
+       "errors_in_review_confidence": 6.950000000000001,
+       "units_in_review": 12.950000000000001
+      },
+      "0.1": {
+       "two_step": 0.5151515151515151,
+       "confidence": 0.42424242424242425,
+       "difference": 0.09090909090909088,
+       "errors_in_review_two_step": 17.0,
+       "errors_in_review_confidence": 14.0,
+       "units_in_review": 25.900000000000002
+      },
+      "0.2": {
+       "two_step": 0.7575757575757576,
+       "confidence": 0.5696969696969698,
+       "difference": 0.18787878787878776,
+       "errors_in_review_two_step": 25.0,
+       "errors_in_review_confidence": 18.800000000000004,
+       "units_in_review": 51.800000000000004
+      }
+     },
+     "not_set_aside": {
+      "n": 104,
+      "n_errors": 30,
+      "auroc_instability": 0.7959459459459459,
+      "auroc_confidence": 0.6513513513513514,
+      "difference": 0.14459459459459456
+     }
+    }
+   }
+  },
+  "dose_reported": {
+   "4": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": 0.038030303030303046,
+     "median": 0.043939393939393945,
+     "min": -0.06060606060606061,
+     "max": 0.12121212121212116
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.4622727272727273,
+     "median": 0.4681818181818182,
+     "min": 0.36363636363636365,
+     "max": 0.5454545454545454
+    },
+    "auroc_difference": {
+     "mean": 0.11069819819819819,
+     "median": 0.10788288288288289,
+     "min": 0.0671171171171171,
+     "max": 0.14864864864864868
+    }
+   },
+   "8": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": 0.05424242424242427,
+     "median": 0.05757575757575761,
+     "min": 0.0,
+     "max": 0.11818181818181822
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.4784848484848486,
+     "median": 0.48181818181818187,
+     "min": 0.42424242424242425,
+     "max": 0.5424242424242425
+    },
+    "auroc_difference": {
+     "mean": 0.12488738738738739,
+     "median": 0.125,
+     "min": 0.06441441441441442,
+     "max": 0.1684684684684684
+    }
+   },
+   "16": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": 0.04196969696969699,
+     "median": 0.030303030303030276,
+     "min": -0.0030303030303029943,
+     "max": 0.09090909090909088
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.4662121212121212,
+     "median": 0.45454545454545453,
+     "min": 0.42121212121212126,
+     "max": 0.5151515151515151
+    },
+    "auroc_difference": {
+     "mean": 0.12286036036036037,
+     "median": 0.1263513513513514,
+     "min": 0.08783783783783783,
+     "max": 0.15315315315315314
+    }
+   },
+   "32": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": 0.06181818181818184,
+     "median": 0.05909090909090911,
+     "min": 0.027272727272727337,
+     "max": 0.09090909090909088
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.48606060606060614,
+     "median": 0.4833333333333334,
+     "min": 0.4515151515151516,
+     "max": 0.5151515151515151
+    },
+    "auroc_difference": {
+     "mean": 0.13094594594594597,
+     "median": 0.12995495495495496,
+     "min": 0.11351351351351346,
+     "max": 0.1567567567567567
+    }
+   },
+   "64": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": 0.06454545454545457,
+     "median": 0.05909090909090911,
+     "min": 0.027272727272727337,
+     "max": 0.09090909090909088
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.4887878787878789,
+     "median": 0.4833333333333334,
+     "min": 0.4515151515151516,
+     "max": 0.5151515151515151
+    },
+    "auroc_difference": {
+     "mean": 0.13027027027027022,
+     "median": 0.1304054054054054,
+     "min": 0.1166666666666667,
+     "max": 0.14369369369369367
+    }
+   },
+   "128": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": 0.0675757575757576,
+     "median": 0.06060606060606061,
+     "min": 0.05757575757575761,
+     "max": 0.08787878787878795
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.4918181818181818,
+     "median": 0.48484848484848486,
+     "min": 0.48181818181818187,
+     "max": 0.5121212121212122
+    },
+    "auroc_difference": {
+     "mean": 0.13337837837837835,
+     "median": 0.13198198198198197,
+     "min": 0.12657657657657662,
+     "max": 0.14369369369369367
+    }
+   },
+   "319": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": 0.08787878787878793,
+     "median": 0.08787878787878795,
+     "min": 0.08787878787878795,
+     "max": 0.08787878787878795
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.5121212121212121,
+     "median": 0.5121212121212122,
+     "min": 0.5121212121212122,
+     "max": 0.5121212121212122
+    },
+    "auroc_difference": {
+     "mean": 0.1346846846846846,
+     "median": 0.13468468468468464,
+     "min": 0.13468468468468464,
+     "max": 0.13468468468468464
+    }
+   }
+  }
+ },
+ "seconds": 1128.0,
+ "fit_record_check": {
+  "q_matches": true,
+  "fit_record_commit": "a1b878ebb2fae4aeaf00bb0a695cb837293277e8"
+ },
+ "inputs_E": {
+  "n_units": 271,
+  "source": "the deployed run's rslearn dataset",
+  "n_roots": 1,
+  "n_windows": 313,
+  "n_windows_with_12_groups": 271,
+  "in_no_window": 0,
+  "in_two_or_more_windows": 36,
+  "only_in_windows_without_12_groups": 0,
+  "failed_reads": {},
+  "took_a_later_window_to_avoid_clamping": 0,
+  "read": 271,
+  "clamped_at_a_window_edge": 22,
+  "reproduces_record": true
+ },
+ "compute_E": {
+  "views": 86720,
+  "batches": 772,
+  "seconds": 442.75,
+  "views_per_second": 195.9
+ },
+ "test": {
+  "units": {
+   "n_with_views": 271,
+   "n_errors": 91,
+   "n_correct": 180,
+   "v0_agreement_with_deployed": 0.8892988929889298,
+   "clamped_errors": 8,
+   "clamped_correct": 14,
+   "mean_share_errors": 0.1739984153777257,
+   "mean_share_correct": 0.09684778822709858,
+   "by_country": {
+    "kenya": 192,
+    "tanzania": 79
+   },
+   "lenient_errors": 37
+  },
+  "weights": {
+   "by_country": {
+    "kenya": 0.5625394220616882,
+    "tanzania": 0.43746057793831183
+   },
+   "per_plot": {
+    "kenya": 0.002929892823237959,
+    "tanzania": 0.005537475670105213
+   },
+   "rule": "W_c, the country's share of the region's area, over n_c, its plots with all views"
+  },
+  "confidence_alone": {
+   "capture_0.1_strict_all_with_input": 0.17870709922096475,
+   "capture_0.1_strict_with_views": 0.17870709922096475,
+   "recorded_exp99": 0.17870709922096475
+  },
+  "q": 0.6,
+  "strict": {
+   "n": 271,
+   "n_errors": 91,
+   "error_rate_weighted": 0.3552780637081408,
+   "q": 0.6,
+   "set_aside": {
+    "n": 159,
+    "weight_share": 0.5988396840850654,
+    "n_errors": 38
+   },
+   "review": {
+    "0.05": {
+     "two_step": 0.06597407771609227,
+     "confidence": 0.09714670690861243,
+     "difference": -0.03117262919252016,
+     "errors_in_review_two_step": 8.0,
+     "errors_in_review_confidence": 10.0,
+     "units_in_review": 17.03464069485493
+    },
+    "0.1": {
+     "two_step": 0.13484240663339478,
+     "confidence": 0.17870709922096475,
+     "difference": -0.043864692587569976,
+     "errors_in_review_two_step": 16.350956169623466,
+     "errors_in_review_confidence": 19.0,
+     "units_in_review": 32.350956169623466
+    },
+    "0.2": {
+     "two_step": 0.29968688044034875,
+     "confidence": 0.2614380535522777,
+     "difference": 0.03824882688807102,
+     "errors_in_review_two_step": 31.0,
+     "errors_in_review_confidence": 26.6624097378807,
+     "units_in_review": 58.471964341388585
+    }
+   },
+   "not_set_aside": {
+    "n": 112,
+    "n_errors": 53,
+    "auroc_instability": 0.5412109857605989,
+    "auroc_confidence": 0.5279737830972536,
+    "difference": 0.013237202663345271
+   },
+   "bootstrap": {
+    "n_boot": 2000,
+    "skipped_no_error_or_no_correct": 0,
+    "seed": 101,
+    "level": 0.9,
+    "resampling": "units with replacement within each stratum (country on E, one stratum on F), the rule applied anew in each resample at the fixed q",
+    "review_difference": {
+     "0.05": {
+      "n_resamples": 2000,
+      "lo90": -0.0716601043361777,
+      "hi90": 0.0008062292293796694
+     },
+     "0.1": {
+      "n_resamples": 2000,
+      "lo90": -0.08103755867439337,
+      "hi90": 0.042796073074429467
+     },
+     "0.2": {
+      "n_resamples": 2000,
+      "lo90": -0.013986746230826413,
+      "hi90": 0.10356445958107396
+     }
+    },
+    "auroc_difference": {
+     "n_resamples": 2000,
+     "lo90": -0.08997312421805323,
+     "hi90": 0.1310415172620647
+    }
+   }
+  },
+  "lenient_reported": {
+   "n": 271,
+   "n_errors": 37,
+   "error_rate_weighted": 0.134481862928477,
+   "q": 0.6,
+   "set_aside": {
+    "n": 159,
+    "weight_share": 0.5988396840850654,
+    "n_errors": 10
+   },
+   "review": {
+    "0.05": {
+     "two_step": 0.15250569345230872,
+     "confidence": 0.19368206883498965,
+     "difference": -0.04117637538268093,
+     "errors_in_review_two_step": 7.0,
+     "errors_in_review_confidence": 8.0,
+     "units_in_review": 17.03464069485493
+    },
+    "0.1": {
+     "two_step": 0.2614383316325292,
+     "confidence": 0.2372551241070778,
+     "difference": 0.024183207525451417,
+     "errors_in_review_two_step": 12.0,
+     "errors_in_review_confidence": 10.0,
+     "units_in_review": 32.350956169623466
+    },
+    "0.2": {
+     "two_step": 0.4939000959607925,
+     "confidence": 0.28082817937916604,
+     "difference": 0.21307191658162644,
+     "errors_in_review_two_step": 20.0,
+     "errors_in_review_confidence": 12.0,
+     "units_in_review": 58.471964341388585
+    }
+   },
+   "not_set_aside": {
+    "n": 112,
+    "n_errors": 27,
+    "auroc_instability": 0.6759570925462012,
+    "auroc_confidence": 0.5175023097287702,
+    "difference": 0.15845478281743097
+   },
+   "bootstrap": {
+    "n_boot": 2000,
+    "skipped_no_error_or_no_correct": 0,
+    "seed": 101,
+    "level": 0.9,
+    "resampling": "units with replacement within each stratum (country on E, one stratum on F), the rule applied anew in each resample at the fixed q",
+    "review_difference": {
+     "0.05": {
+      "n_resamples": 2000,
+      "lo90": -0.1491573713993902,
+      "hi90": 0.06441359872608411
+     },
+     "0.1": {
+      "n_resamples": 2000,
+      "lo90": -0.12144644536058959,
+      "hi90": 0.1688381611967504
+     },
+     "0.2": {
+      "n_resamples": 2000,
+      "lo90": 0.046442390585586336,
+      "hi90": 0.3356062979489393
+     }
+    },
+    "auroc_difference": {
+     "n_resamples": 2000,
+     "lo90": 0.00398542370058188,
+     "hi90": 0.2836989715667387
+    }
+   }
+  },
+  "kinds_reported": {
+   "orientation": {
+    "n_views": 7,
+    "mean_share_errors": 0.06436420722135008,
+    "mean_share_correct": 0.04047619047619048,
+    "ranking": {
+     "n": 271,
+     "n_errors": 91,
+     "error_rate_weighted": 0.3552780637081408,
+     "q": 0.6,
+     "set_aside": {
+      "n": 159,
+      "weight_share": 0.5988396840850654,
+      "n_errors": 38
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.06415966805056628,
+       "confidence": 0.09714670690861243,
+       "difference": -0.03298703885804616,
+       "errors_in_review_two_step": 6.0,
+       "errors_in_review_confidence": 10.0,
+       "units_in_review": 13.505500371443873
+      },
+      "0.1": {
+       "two_step": 0.121886986052147,
+       "confidence": 0.17870709922096475,
+       "difference": -0.05682011316881776,
+       "errors_in_review_two_step": 13.0,
+       "errors_in_review_confidence": 19.0,
+       "units_in_review": 28.790985885133
+      },
+      "0.2": {
+       "two_step": 0.2749466012968141,
+       "confidence": 0.2614380535522777,
+       "difference": 0.013508547744536359,
+       "errors_in_review_two_step": 28.0,
+       "errors_in_review_confidence": 26.6624097378807,
+       "units_in_review": 55.80198662802074
+      }
+     },
+     "not_set_aside": {
+      "n": 112,
+      "n_errors": 53,
+      "auroc_instability": 0.47400080126322747,
+      "auroc_confidence": 0.5279737830972536,
+      "difference": -0.05397298183402616
+     },
+     "bootstrap": {
+      "n_boot": 2000,
+      "skipped_no_error_or_no_correct": 0,
+      "seed": 101,
+      "level": 0.9,
+      "resampling": "units with replacement within each stratum (country on E, one stratum on F), the rule applied anew in each resample at the fixed q",
+      "review_difference": {
+       "0.05": {
+        "n_resamples": 2000,
+        "lo90": -0.07642891150252168,
+        "hi90": 0.005908803267472833
+       },
+       "0.1": {
+        "n_resamples": 2000,
+        "lo90": -0.1014387998562931,
+        "hi90": 0.015227077820720596
+       },
+       "0.2": {
+        "n_resamples": 2000,
+        "lo90": -0.045620119894849216,
+        "hi90": 0.06883385946541944
+       }
+      },
+      "auroc_difference": {
+       "n_resamples": 2000,
+       "lo90": -0.14605885256503748,
+       "hi90": 0.0662578168191069
+      }
+     }
+    }
+   },
+   "time": {
+    "n_views": 4,
+    "mean_share_errors": 0.13736263736263737,
+    "mean_share_correct": 0.06805555555555555,
+    "ranking": {
+     "n": 271,
+     "n_errors": 91,
+     "error_rate_weighted": 0.3552780637081408,
+     "q": 0.6,
+     "set_aside": {
+      "n": 159,
+      "weight_share": 0.5988396840850654,
+      "n_errors": 38
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.05772731800158074,
+       "confidence": 0.09714670690861243,
+       "difference": -0.03941938890703169,
+       "errors_in_review_two_step": 7.0,
+       "errors_in_review_confidence": 10.0,
+       "units_in_review": 15.285485513689105
+      },
+      "0.1": {
+       "two_step": 0.1631207846247047,
+       "confidence": 0.17870709922096475,
+       "difference": -0.015586314596260059,
+       "errors_in_review_two_step": 18.0,
+       "errors_in_review_confidence": 19.0,
+       "units_in_review": 29.68097845625562
+      },
+      "0.2": {
+       "two_step": 0.2831933610113257,
+       "confidence": 0.2614380535522777,
+       "difference": 0.021755307459047968,
+       "errors_in_review_two_step": 29.0,
+       "errors_in_review_confidence": 26.6624097378807,
+       "units_in_review": 57.581971770265966
+      }
+     },
+     "not_set_aside": {
+      "n": 112,
+      "n_errors": 53,
+      "auroc_instability": 0.5072363970777027,
+      "auroc_confidence": 0.5279737830972536,
+      "difference": -0.020737386019550885
+     },
+     "bootstrap": {
+      "n_boot": 2000,
+      "skipped_no_error_or_no_correct": 0,
+      "seed": 101,
+      "level": 0.9,
+      "resampling": "units with replacement within each stratum (country on E, one stratum on F), the rule applied anew in each resample at the fixed q",
+      "review_difference": {
+       "0.05": {
+        "n_resamples": 2000,
+        "lo90": -0.08069517556296514,
+        "hi90": 0.002338297837232148
+       },
+       "0.1": {
+        "n_resamples": 2000,
+        "lo90": -0.06987208233059654,
+        "hi90": 0.04225821307909834
+       },
+       "0.2": {
+        "n_resamples": 2000,
+        "lo90": -0.0368422030840309,
+        "hi90": 0.0828789480312252
+       }
+      },
+      "auroc_difference": {
+       "n_resamples": 2000,
+       "lo90": -0.1305438018632359,
+       "hi90": 0.09341781084184897
+      }
+     }
+    }
+   },
+   "context": {
+    "n_views": 1,
+    "mean_share_errors": 0.08791208791208792,
+    "mean_share_correct": 0.07222222222222222,
+    "ranking": {
+     "n": 271,
+     "n_errors": 91,
+     "error_rate_weighted": 0.3552780637081408,
+     "q": 0.6,
+     "set_aside": {
+      "n": 159,
+      "weight_share": 0.5988396840850654,
+      "n_errors": 38
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.05772731800158074,
+       "confidence": 0.09714670690861243,
+       "difference": -0.03941938890703169,
+       "errors_in_review_two_step": 7.0,
+       "errors_in_review_confidence": 10.0,
+       "units_in_review": 15.2854855136891
+      },
+      "0.1": {
+       "two_step": 0.11282374198814915,
+       "confidence": 0.17870709922096475,
+       "difference": -0.0658833572328156,
+       "errors_in_review_two_step": 13.360307477743746,
+       "errors_in_review_confidence": 19.0,
+       "units_in_review": 29.360307477743746
+      },
+      "0.2": {
+       "two_step": 0.2841005658440887,
+       "confidence": 0.2614380535522777,
+       "difference": 0.022662512291810988,
+       "errors_in_review_two_step": 30.0,
+       "errors_in_review_confidence": 26.6624097378807,
+       "units_in_review": 57.58197177026595
+      }
+     },
+     "not_set_aside": {
+      "n": 112,
+      "n_errors": 53,
+      "auroc_instability": 0.5100144377687569,
+      "auroc_confidence": 0.5279737830972536,
+      "difference": -0.017959345328496745
+     },
+     "bootstrap": {
+      "n_boot": 2000,
+      "skipped_no_error_or_no_correct": 0,
+      "seed": 101,
+      "level": 0.9,
+      "resampling": "units with replacement within each stratum (country on E, one stratum on F), the rule applied anew in each resample at the fixed q",
+      "review_difference": {
+       "0.05": {
+        "n_resamples": 2000,
+        "lo90": -0.07857958904376236,
+        "hi90": -0.0004530333644678992
+       },
+       "0.1": {
+        "n_resamples": 2000,
+        "lo90": -0.11574876741727397,
+        "hi90": 0.0073527706141449664
+       },
+       "0.2": {
+        "n_resamples": 2000,
+        "lo90": -0.02683104740599234,
+        "hi90": 0.09047252586490724
+       }
+      },
+      "auroc_difference": {
+       "n_resamples": 2000,
+       "lo90": -0.12607155695229094,
+       "hi90": 0.10057069740140535
+      }
+     }
+    }
+   },
+   "phase": {
+    "n_views": 3,
+    "mean_share_errors": 0.0989010989010989,
+    "mean_share_correct": 0.06666666666666665,
+    "ranking": {
+     "n": 271,
+     "n_errors": 91,
+     "error_rate_weighted": 0.3552780637081408,
+     "q": 0.6,
+     "set_aside": {
+      "n": 159,
+      "weight_share": 0.5988396840850654,
+      "n_errors": 38
+     },
+     "review": {
+      "0.05": {
+       "two_step": 0.05917444360218576,
+       "confidence": 0.09714670690861243,
+       "difference": -0.037972263306426675,
+       "errors_in_review_two_step": 7.092845912461704,
+       "errors_in_review_confidence": 10.0,
+       "units_in_review": 16.092845912461705
+      },
+      "0.1": {
+       "two_step": 0.1439963711806693,
+       "confidence": 0.17870709922096475,
+       "difference": -0.03471072804029546,
+       "errors_in_review_two_step": 15.831204868940361,
+       "errors_in_review_confidence": 19.0,
+       "units_in_review": 29.83120486894036
+      },
+      "0.2": {
+       "two_step": 0.25682011316881825,
+       "confidence": 0.2614380535522777,
+       "difference": -0.0046179403834594734,
+       "errors_in_review_two_step": 27.58197177026597,
+       "errors_in_review_confidence": 26.6624097378807,
+       "units_in_review": 57.581971770265966
+      }
+     },
+     "not_set_aside": {
+      "n": 112,
+      "n_errors": 53,
+      "auroc_instability": 0.5247573910808513,
+      "auroc_confidence": 0.5279737830972536,
+      "difference": -0.0032163920164023363
+     },
+     "bootstrap": {
+      "n_boot": 2000,
+      "skipped_no_error_or_no_correct": 0,
+      "seed": 101,
+      "level": 0.9,
+      "resampling": "units with replacement within each stratum (country on E, one stratum on F), the rule applied anew in each resample at the fixed q",
+      "review_difference": {
+       "0.05": {
+        "n_resamples": 2000,
+        "lo90": -0.07821388882936903,
+        "hi90": 6.9388939039009175e-19
+       },
+       "0.1": {
+        "n_resamples": 2000,
+        "lo90": -0.092702429563828,
+        "hi90": 0.034144372749917294
+       },
+       "0.2": {
+        "n_resamples": 2000,
+        "lo90": -0.060160090299855716,
+        "hi90": 0.06378462737121657
+       }
+      },
+      "auroc_difference": {
+       "n_resamples": 2000,
+       "lo90": -0.11140509854477736,
+       "hi90": 0.11147313444974308
+      }
+     }
+    }
+   }
+  },
+  "dose_reported": {
+   "4": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": -0.03412060468581808,
+     "median": -0.03751866089004506,
+     "min": -0.05120424746931851,
+     "max": 0.0038014560339732217
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.14458649453514666,
+     "median": 0.1411884383309197,
+     "min": 0.12750285175164625,
+     "max": 0.18250855525493798
+    },
+    "auroc_difference": {
+     "mean": 0.0028475965143281157,
+     "median": 0.0007129814340990914,
+     "min": -0.03933953296890347,
+     "max": 0.059234161784881056
+    }
+   },
+   "8": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": -0.03731088420487266,
+     "median": -0.032488076200026306,
+     "min": -0.07503732178009014,
+     "max": -0.020031618276798363
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.14139621501609212,
+     "median": 0.14621902302093845,
+     "min": 0.10366977744087462,
+     "max": 0.1586754809441664
+    },
+    "auroc_difference": {
+     "mean": 0.0010881074226873095,
+     "median": -0.002366020150191106,
+     "min": -0.03824828411053971,
+     "max": 0.0479570917695169
+    }
+   },
+   "16": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": -0.028652226717817163,
+     "median": -0.028278377991309916,
+     "min": -0.05500570350329173,
+     "max": -0.011784858562286837
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.15005487250314758,
+     "median": 0.15042872122965484,
+     "min": 0.12370139571767302,
+     "max": 0.16692224065867792
+    },
+    "auroc_difference": {
+     "mean": 0.0130328871103351,
+     "median": 0.014697448143150382,
+     "min": -0.0061352565180669005,
+     "max": 0.036810749652603
+    }
+   },
+   "32": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": -0.03209973897466451,
+     "median": -0.03561793287305842,
+     "min": -0.05120424746931851,
+     "max": -0.011784858562286865
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.14660736024630022,
+     "median": 0.14308916634790633,
+     "min": 0.12750285175164625,
+     "max": 0.1669222406586779
+    },
+    "auroc_difference": {
+     "mean": 0.0162965770166071,
+     "median": 0.01743018787614853,
+     "min": -0.003794265990982759,
+     "max": 0.030178696233968072
+    }
+   },
+   "64": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": -0.037658837425941734,
+     "median": -0.03851218407426868,
+     "min": -0.046758943788780205,
+     "max": -0.022925869478008593
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.141048261795023,
+     "median": 0.14019491514669608,
+     "min": 0.13194815543218455,
+     "max": 0.15578122974295616
+    },
+    "auroc_difference": {
+     "mean": 0.013735048394736415,
+     "median": 0.009644245058360423,
+     "min": -0.0061050637996051815,
+     "max": 0.04465979719530344
+    }
+   },
+   "128": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": -0.03750095700657132,
+     "median": -0.03706505847366355,
+     "min": -0.05500570350329173,
+     "max": -0.027371173158546896
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.14120614221439345,
+     "median": 0.1416420407473012,
+     "min": 0.12370139571767302,
+     "max": 0.15133592606241786
+    },
+    "auroc_difference": {
+     "mean": 0.01446396755600809,
+     "median": 0.013950503447606677,
+     "min": 0.005168915948151054,
+     "max": 0.023966754070874563
+    }
+   },
+   "319": {
+    "draws": 20,
+    "review_difference_0.1": {
+     "mean": -0.043864692587569976,
+     "median": -0.043864692587569976,
+     "min": -0.043864692587569976,
+     "max": -0.043864692587569976
+    },
+    "two_step_capture_0.1": {
+     "mean": 0.1348424066333948,
+     "median": 0.13484240663339478,
+     "min": 0.13484240663339478,
+     "max": 0.13484240663339478
+    },
+    "auroc_difference": {
+     "mean": 0.013237202663345271,
+     "median": 0.013237202663345271,
+     "min": 0.013237202663345271,
+     "max": 0.013237202663345271
+    }
+   }
+  },
+  "grass_shrub_reported": {
+   "n": 54,
+   "weight_share": 0.2207962007796638,
+   "mean_share_parting": 0.09816556368280507,
+   "mean_share_others": 0.1288733513427618,
+   "in_review_two_step": 4.3509561696234655,
+   "in_review_confidence": 9.0,
+   "budget": 0.1
+  }
+ },
+ "prereg": {
+  "P1": {
+   "rule": "the 10% review by R(q) holds a share of the STRICT errors at least 0.05 above confidence alone's, design-weighted, and the 90% within-country bootstrap interval of the paired difference lies above 0",
+   "value": -0.043864692587569976,
+   "two_step": 0.13484240663339478,
+   "confidence": 0.17870709922096475,
+   "interval": {
+    "n_resamples": 2000,
+    "lo90": -0.08103755867439337,
+    "hi90": 0.042796073074429467
+   },
+   "threshold": 0.05,
+   "graded": true,
+   "holds": false
+  },
+  "P2": {
+   "rule": "among the units R(q) does not set aside, the design-weighted AUROC of s for the STRICT errors exceeds confidence's, with the 90% bootstrap interval of the difference above 0",
+   "value": 0.013237202663345271,
+   "auroc_instability": 0.5412109857605989,
+   "auroc_confidence": 0.5279737830972536,
+   "interval": {
+    "n_resamples": 2000,
+    "lo90": -0.08997312421805323,
+    "hi90": 0.1310415172620647
+   },
+   "threshold": 0.0,
+   "graded": true,
+   "holds": false
+  },
+  "floors": {
+   "min_with_views": 250,
+   "min_errors": 20,
+   "min_correct": 20,
+   "n_with_views": 271,
+   "n_errors": 91,
+   "n_correct": 180
+  }
+ },
+ "reading": "Neither holds: under transfer, as at Ai2's points and on the earlier testbeds, the views add nothing confidence does not carry",
+ "replica_vs_deployed": {
+  "F": 0.915057915057915,
+  "E": 0.8892988929889298,
+  "exp98": "exp98 found the replica's class equal to the deployed map's at 91.9% of F; a much lower share means the views describe the replica, not the deployed map (reported with the verdicts)"
+ }
+}

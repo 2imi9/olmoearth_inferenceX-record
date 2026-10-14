@@ -1,0 +1,480 @@
+{
+ "experiment": "exp83 can raters from different families estimate a map's accuracy without labels",
+ "artifacts_read": [
+  "exp/out/exp63_masks.npz",
+  "exp/out/exp57_masks.npz"
+ ],
+ "config": {
+  "ds_iters_cap": 2000,
+  "ds_tol": 1e-06,
+  "seconds": 138
+ },
+ "tasks": {
+  "mados": {
+   "n_windows": 22598,
+   "n_classes": 15,
+   "raters": [
+    "olmoearth_base",
+    "galileo_base",
+    "croma_base",
+    "terramind_base",
+    "clay_large",
+    "anysat"
+   ],
+   "true_accuracy": [
+    0.9264094167625454,
+    0.9291087706876715,
+    0.9161872732100186,
+    0.9385786352774582,
+    0.8555181874502168,
+    0.8228161784228692
+   ],
+   "ds_estimate": [
+    0.947341608148299,
+    0.9318088057878499,
+    0.9426419352104765,
+    0.9457278959896567,
+    0.8560014881200291,
+    0.8545601576663688
+   ],
+   "hidden_share": [
+    0.28444116712884004,
+    0.038087011981167596,
+    0.31564015411105967,
+    0.1163969694339055,
+    0.0033450623388722586,
+    0.179158452283867
+   ],
+   "majority_shared_share": [
+    0.48286229705351774,
+    0.4225967540574282,
+    0.4514255543822598,
+    0.5670028818443804,
+    0.155895865237366,
+    0.20104895104895104
+   ],
+   "mean_pairwise_disagreement": [
+    0.09826533321532878,
+    0.10458447650234534,
+    0.0999026462518807,
+    0.097309496415612,
+    0.15999645986370475,
+    0.16758120187627223
+   ],
+   "agreement_with_majority": [
+    0.9377378529073369,
+    0.9305248252057704,
+    0.9364545535003098,
+    0.9449508806089034,
+    0.8602531197451102,
+    0.8430392070094699
+   ],
+   "disagreement_understates_error": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    true
+   ],
+   "understatement_factor": [
+    0.7488966945870482,
+    0.6778370144706776,
+    0.8389440113394756,
+    0.631195998180991,
+    0.9030313087730946,
+    1.0573012939001851
+   ],
+   "spearman_ds_vs_true": 0.7142857142857143,
+   "spearman_disagreement_vs_error": 0.8285714285714285,
+   "best_true": "terramind_base",
+   "best_estimated": "olmoearth_base",
+   "ds_argmax_label_accuracy": 0.9213204708381273,
+   "em": {
+    "iterations": 224,
+    "converged": true,
+    "last_change": 9.8719546692827e-07
+   },
+   "seconds": 4.2,
+   "within_family": {
+    "raters": "olmoearth_base draws 0-2",
+    "true_accuracy": [
+     0.9264094167625454,
+     0.9264094167625454,
+     0.9297282945393398
+    ],
+    "ds_estimate": [
+     0.9984971644733607,
+     0.9982303931263236,
+     0.9960623850577071
+    ],
+    "hidden_share": [
+     0.9795784261990406,
+     0.9759533516949247,
+     0.9439658548703174
+    ],
+    "pairwise_disagreement": [
+     0.003053367554650854,
+     0.005265952739180458,
+     0.005531462961324011
+    ],
+    "em": {
+     "iterations": 6,
+     "converged": true,
+     "last_change": 1.205053788977395e-07
+    }
+   }
+  },
+  "pastis_sentinel2": {
+   "n_windows": 458638,
+   "n_classes": 19,
+   "raters": [
+    "olmoearth_base",
+    "galileo_base",
+    "croma_base",
+    "terramind_base",
+    "clay_large",
+    "anysat"
+   ],
+   "true_accuracy": [
+    0.8099437900915318,
+    0.7656953850313319,
+    0.7820895782730607,
+    0.7724414461950384,
+    0.6732390251134882,
+    0.7792856239561484
+   ],
+   "ds_estimate": [
+    0.8656951171264576,
+    0.8562639606962228,
+    0.8609984018090855,
+    0.8603925577334312,
+    0.7382612746159183,
+    0.8514871237963436
+   ],
+   "hidden_share": [
+    0.29334125447295756,
+    0.3865420050603867,
+    0.3621158772979863,
+    0.3864988156576828,
+    0.1989902543442133,
+    0.327126402612987
+   ],
+   "majority_shared_share": [
+    0.6592058921380798,
+    0.619136244777175,
+    0.638940585539613,
+    0.6349804056837889,
+    0.3982584325893304,
+    0.6192259058758446
+   ],
+   "mean_pairwise_disagreement": [
+    0.16004474116841605,
+    0.1508287581927359,
+    0.1541991723319917,
+    0.14940192482960418,
+    0.23137855999720913,
+    0.1587404445335973
+   ],
+   "agreement_with_majority": [
+    0.8722500098116598,
+    0.8846279636663338,
+    0.8803326370688865,
+    0.8872662099520755,
+    0.7778247768392501,
+    0.8731962898843968
+   ],
+   "disagreement_understates_error": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "understatement_factor": [
+    1.1875192431875714,
+    1.553447882062802,
+    1.4131750412886583,
+    1.5231300002626913,
+    1.4122353207248466,
+    1.3904104696968864
+   ],
+   "spearman_ds_vs_true": 0.8285714285714284,
+   "spearman_disagreement_vs_error": -0.028571428571428643,
+   "best_true": "olmoearth_base",
+   "best_estimated": "olmoearth_base",
+   "ds_argmax_label_accuracy": 0.7667048958001735,
+   "em": {
+    "iterations": 261,
+    "converged": true,
+    "last_change": 9.353428337410818e-07
+   },
+   "seconds": 125.6,
+   "within_family": {
+    "raters": "olmoearth_base draws 0-2",
+    "true_accuracy": [
+     0.8099437900915318,
+     0.8100767925902346,
+     0.8101552858681574
+    ],
+    "ds_estimate": [
+     0.9991222053551162,
+     0.9991308467845041,
+     0.9990919134531585
+    ],
+    "hidden_share": [
+     0.9953813945605537,
+     0.995423659765704,
+     0.9952166877492788
+    ],
+    "pairwise_disagreement": [
+     0.0017312128519660385,
+     0.0017704594909274853,
+     0.0017617380156027193
+    ],
+    "em": {
+     "iterations": 5,
+     "converged": true,
+     "last_change": 1.8072990715101156e-07
+    }
+   }
+  },
+  "sen1floods11": {
+   "n_windows": 563969,
+   "n_classes": 2,
+   "raters": [
+    "olmoearth_base",
+    "galileo_base",
+    "croma_base",
+    "terramind_base",
+    "clay_large",
+    "satlas_base",
+    "anysat",
+    "panopticon"
+   ],
+   "true_accuracy": [
+    0.9128817364074976,
+    0.914364087387782,
+    0.9126122180474459,
+    0.9107823302344632,
+    0.9108302052063145,
+    0.883275499185239,
+    0.9094790671118448,
+    0.9087219332977522
+   ],
+   "ds_estimate": [
+    0.9808839537208671,
+    0.9804798721016192,
+    0.980058614783837,
+    0.9832260786266996,
+    0.9808806771806728,
+    0.9354779620639775,
+    0.9752012617649116,
+    0.9752548187985567
+   ],
+   "hidden_share": [
+    0.780573607750625,
+    0.7720567539605371,
+    0.7718057974398547,
+    0.8119887975399709,
+    0.785585210063968,
+    0.4472279813951192,
+    0.7260441596892411,
+    0.7289033160379815
+   ],
+   "majority_shared_share": [
+    0.8596841162582431,
+    0.8611686268013914,
+    0.8520615209804399,
+    0.8693258605612528,
+    0.8568076517727535,
+    0.5920642877759043,
+    0.8291512409159468,
+    0.8187186759392362
+   ],
+   "mean_pairwise_disagreement": [
+    0.03675911264626247,
+    0.03727079223959372,
+    0.03754183044002165,
+    0.03434611274226572,
+    0.035773749469005765,
+    0.06867322747982854,
+    0.038144700455926786,
+    0.039516103088746264
+   ],
+   "agreement_with_majority": [
+    0.9761458519883185,
+    0.974968482310198,
+    0.974918834191241,
+    0.9797843498490165,
+    0.9773143559309111,
+    0.935368788000759,
+    0.9735517377728209,
+    0.9719470396422498
+   ],
+   "disagreement_understates_error": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "understatement_factor": [
+    2.369977328638271,
+    2.297668159606353,
+    2.3277443035754053,
+    2.5976060357988375,
+    2.492604105447259,
+    1.6997089709966908,
+    2.373093294905935,
+    2.309895449388145
+   ],
+   "spearman_ds_vs_true": 0.6190476190476192,
+   "spearman_disagreement_vs_error": 0.5952380952380955,
+   "best_true": "galileo_base",
+   "best_estimated": "terramind_base",
+   "ds_argmax_label_accuracy": 0.9140325088790341,
+   "em": {
+    "iterations": 26,
+    "converged": true,
+    "last_change": 7.148418083025021e-07
+   },
+   "seconds": 6.2
+  }
+ },
+ "prereg": {
+  "P1_hidden_share_is_the_majority_shared_share": {
+   "holds": false,
+   "max_abs_difference": 0.45060591241047493,
+   "failing": [
+    [
+     "mados",
+     "olmoearth_base",
+     0.284,
+     0.483
+    ],
+    [
+     "mados",
+     "galileo_base",
+     0.038,
+     0.423
+    ],
+    [
+     "mados",
+     "croma_base",
+     0.316,
+     0.451
+    ],
+    [
+     "mados",
+     "terramind_base",
+     0.116,
+     0.567
+    ],
+    [
+     "mados",
+     "clay_large",
+     0.003,
+     0.156
+    ],
+    [
+     "pastis_sentinel2",
+     "olmoearth_base",
+     0.293,
+     0.659
+    ],
+    [
+     "pastis_sentinel2",
+     "galileo_base",
+     0.387,
+     0.619
+    ],
+    [
+     "pastis_sentinel2",
+     "croma_base",
+     0.362,
+     0.639
+    ],
+    [
+     "pastis_sentinel2",
+     "terramind_base",
+     0.386,
+     0.635
+    ],
+    [
+     "pastis_sentinel2",
+     "clay_large",
+     0.199,
+     0.398
+    ],
+    [
+     "pastis_sentinel2",
+     "anysat",
+     0.327,
+     0.619
+    ],
+    [
+     "sen1floods11",
+     "satlas_base",
+     0.447,
+     0.592
+    ],
+    [
+     "sen1floods11",
+     "anysat",
+     0.726,
+     0.829
+    ]
+   ],
+   "per_task_max": {
+    "mados": 0.45060591241047493,
+    "pastis_sentinel2": 0.3658646376651222,
+    "sen1floods11": 0.14483630638078504
+   }
+  },
+  "P2_order_survives_where_the_panel_is_diverse": {
+   "holds": false,
+   "diverse_hold": false,
+   "unanimous_below": true,
+   "spearman": {
+    "mados": 0.7142857142857143,
+    "pastis_sentinel2": 0.8285714285714284,
+    "sen1floods11": 0.6190476190476192
+   },
+   "best": {
+    "mados": [
+     "terramind_base",
+     "olmoearth_base"
+    ],
+    "pastis_sentinel2": [
+     "olmoearth_base",
+     "olmoearth_base"
+    ],
+    "sen1floods11": [
+     "galileo_base",
+     "terramind_base"
+    ]
+   }
+  },
+  "P3_disagreement_reads_error_with_the_same_blind_spot": {
+   "holds": false,
+   "diverse_rho_hold": false,
+   "understates_everywhere": false,
+   "median_understatement_factor": {
+    "mados": 0.7939203529632619,
+    "pastis_sentinel2": 1.4127051810067526,
+    "sen1floods11": 2.3488608161068383
+   },
+   "largest_on": "sen1floods11",
+   "spearman": {
+    "mados": 0.8285714285714285,
+    "pastis_sentinel2": -0.028571428571428643,
+    "sen1floods11": 0.5952380952380955
+   }
+  }
+ }
+}

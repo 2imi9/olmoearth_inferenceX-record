@@ -1,0 +1,277 @@
+{
+ "p3_by_seed": {
+  "96": {
+   "big": 170,
+   "halved": 131,
+   "share": 0.7705882352941177,
+   "losing": 22,
+   "of": 332,
+   "holds": true,
+   "max_violation": 0.1225,
+   "file": "exp96_summary.json"
+  },
+  "1": {
+   "big": 172,
+   "halved": 128,
+   "share": 0.7441860465116279,
+   "losing": 18,
+   "of": 332,
+   "holds": false,
+   "max_violation": 0.115,
+   "sha256": "b217ab1bad9a777a0beebc40146747ef76debad63e1c319bf60a928d7d94f2ce"
+  },
+  "2": {
+   "big": 170,
+   "halved": 127,
+   "share": 0.7470588235294118,
+   "losing": 20,
+   "of": 332,
+   "holds": false,
+   "max_violation": 0.1225,
+   "sha256": "8030fde48d323e1d5abfe8a2724eb8ba69113810d72c539567b784b1b5c3ee76"
+  },
+  "3": {
+   "big": 172,
+   "halved": 129,
+   "share": 0.75,
+   "losing": 21,
+   "of": 332,
+   "holds": true,
+   "max_violation": 0.1125,
+   "sha256": "e578889595ae9f6586ca842aec49f728f0ddc422c04f4729d1e01d6fc0c473c2"
+  },
+  "4": {
+   "big": 170,
+   "halved": 127,
+   "share": 0.7470588235294118,
+   "losing": 19,
+   "of": 332,
+   "holds": false,
+   "max_violation": 0.1275,
+   "sha256": "68b7dd71e463cb7210d20667992e773cdf0aa2091ee987c8075e66f7006cc27e"
+  },
+  "5": {
+   "big": 170,
+   "halved": 132,
+   "share": 0.7764705882352941,
+   "losing": 20,
+   "of": 332,
+   "holds": true,
+   "max_violation": 0.1325,
+   "sha256": "860abc8c1dc30bc8b0e7eb45bde3833179d138c52b9de6ef8ce899ba92aae5aa"
+  },
+  "6": {
+   "big": 169,
+   "halved": 131,
+   "share": 0.7751479289940828,
+   "losing": 18,
+   "of": 332,
+   "holds": true,
+   "max_violation": 0.11,
+   "sha256": "a6cd22da119d87ec92fcb11c2490ae9e76826ca6b93710ff93e88d25e5633ee8"
+  },
+  "7": {
+   "big": 173,
+   "halved": 130,
+   "share": 0.7514450867052023,
+   "losing": 20,
+   "of": 332,
+   "holds": true,
+   "max_violation": 0.12,
+   "sha256": "65400632889a1569537e65b8372061550b4d4b647b80f60106f6bce33a0a042b"
+  },
+  "8": {
+   "big": 173,
+   "halved": 129,
+   "share": 0.7456647398843931,
+   "losing": 19,
+   "of": 332,
+   "holds": false,
+   "max_violation": 0.115,
+   "sha256": "60df4ff779f976ad1ae2620317007d87a87d14ae1c750e78d8e838a8335f33d4"
+  }
+ },
+ "p3_holds_on": "5 of 9 seeds",
+ "pathwise": {
+  "galileo_nano/cropharvest_Peoples_Republic_of_China_6": {
+   "k1": {
+    "per_budget_max": 0.1225,
+    "some_doubling_budget": 0.2125,
+    "some_budget": 0.36,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2141
+    ]
+   },
+   "ramp": {
+    "per_budget_max": 0.1225,
+    "some_doubling_budget": 0.25,
+    "some_budget": 0.42,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2141
+    ]
+   }
+  },
+  "galileo_tiny/pastis_sentinel1": {
+   "k1": {
+    "per_budget_max": 0.1225,
+    "some_doubling_budget": 0.295,
+    "some_budget": 0.415,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2869
+    ]
+   },
+   "ramp": {
+    "per_budget_max": 0.1225,
+    "some_doubling_budget": 0.3175,
+    "some_budget": 0.4425,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2869
+    ]
+   }
+  },
+  "satlas_base/pastis_sentinel2": {
+   "k1": {
+    "per_budget_max": 0.1175,
+    "some_doubling_budget": 0.24,
+    "some_budget": 0.36,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2869
+    ]
+   },
+   "ramp": {
+    "per_budget_max": 0.1175,
+    "some_doubling_budget": 0.27,
+    "some_budget": 0.3975,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2869
+    ]
+   }
+  },
+  "olmoearth_tiny/cropharvest_Peoples_Republic_of_China_6_sentinel1": {
+   "k1": {
+    "per_budget_max": 0.09,
+    "some_doubling_budget": 0.2075,
+    "some_budget": 0.355,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2141
+    ]
+   },
+   "ramp": {
+    "per_budget_max": 0.1125,
+    "some_doubling_budget": 0.2425,
+    "some_budget": 0.39,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2141
+    ]
+   }
+  },
+  "panopticon/pastis_sentinel2": {
+   "k1": {
+    "per_budget_max": 0.1125,
+    "some_doubling_budget": 0.2525,
+    "some_budget": 0.395,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2869
+    ]
+   },
+   "ramp": {
+    "per_budget_max": 0.1125,
+    "some_doubling_budget": 0.27,
+    "some_budget": 0.415,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2869
+    ]
+   }
+  },
+  "galileo_base/pastis_sentinel1": {
+   "k1": {
+    "per_budget_max": 0.11,
+    "some_doubling_budget": 0.245,
+    "some_budget": 0.395,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2869
+    ]
+   },
+   "ramp": {
+    "per_budget_max": 0.11,
+    "some_doubling_budget": 0.2625,
+    "some_budget": 0.41,
+    "doubling_budgets": [
+     50,
+     99,
+     196,
+     407,
+     807,
+     1597,
+     2869
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,584 @@
+{
+ "experiment": "exp88 matched-head follow-up: each input read by the head trained on it, beside exp88's head",
+ "probe_seed": 0,
+ "rows": [
+  "s1s2_head_on_s1s2",
+  "s1s2_head_on_s1",
+  "s1_head_on_s1",
+  "s1s2_head_on_s2",
+  "s2_head_on_s2"
+ ],
+ "threshold_rule": "the median margin of the windows the S1+S2 head gets right on S1+S2 (exp88's)",
+ "review_budget": 0.05,
+ "encoders": {
+  "olmoearth_base": {
+   "families": {
+    "pastis": {
+     "n_units": 458638,
+     "threshold_confident": 0.8205859661102295,
+     "threshold_recorded_by_exp88": 0.8205859437584877,
+     "label_share_of_top_decision": {
+      "s1s2_head_on_s1s2": 0.4369153886071368,
+      "s1s2_head_on_s1": 0.2065245356904574,
+      "s1_head_on_s1": 0.4369153886071368,
+      "s1s2_head_on_s2": 0.4369153886071368,
+      "s2_head_on_s2": 0.4369153886071368
+     },
+     "rows": {
+      "s1s2_head_on_s1s2": {
+       "n_units": 458638,
+       "n_errors": 89361,
+       "error_rate": 0.19483993912410225,
+       "n_confident_errors": 5351,
+       "confident_share": 0.059880708586519844,
+       "margin_auroc": 0.8322026557834337,
+       "margin_excess_aurc": 0.039448871852526664,
+       "top_decision": 0,
+       "top_decision_share": 0.46887959567240395,
+       "source": "exp/out/exp88_units.npz olmoearth_base/pastis/seed0/full",
+       "probe_lr": 0.01
+      },
+      "s1s2_head_on_s1": {
+       "n_units": 458638,
+       "n_errors": 337738,
+       "error_rate": 0.7363934083089495,
+       "n_confident_errors": 202110,
+       "confident_share": 0.5984224458011832,
+       "margin_auroc": 0.5917211781754115,
+       "margin_excess_aurc": 0.28827352286056834,
+       "top_decision": 1,
+       "top_decision_share": 0.8258888273540352,
+       "source": "exp/out/exp88_units.npz olmoearth_base/pastis/seed0/optical_missing",
+       "probe_lr": 0.01
+      },
+      "s1_head_on_s1": {
+       "n_units": 458638,
+       "n_errors": 130386,
+       "error_rate": 0.2842895704237329,
+       "n_confident_errors": 5043,
+       "confident_share": 0.03867746537204915,
+       "margin_auroc": 0.7928906642719422,
+       "margin_excess_aurc": 0.07147237184171518,
+       "top_decision": 0,
+       "top_decision_share": 0.49524243521034017,
+       "source": {
+        "path": "exp/out/exp78_units/pastis_sentinel1.npz",
+        "sha256": "5e4cde691a3b4805d4f073add3d1645059a8115dea56a1015fb9aa2c1b65e979",
+        "committed": true
+       },
+       "probe_lr": 0.1
+      },
+      "s1s2_head_on_s2": {
+       "n_units": 458638,
+       "n_errors": 127095,
+       "error_rate": 0.2771139766002817,
+       "n_confident_errors": 14721,
+       "confident_share": 0.11582674377434203,
+       "margin_auroc": 0.7805741181857306,
+       "margin_excess_aurc": 0.07962454873396566,
+       "top_decision": 0,
+       "top_decision_share": 0.35576642144785214,
+       "source": "exp/out/exp88_units.npz olmoearth_base/pastis/seed0/radar_missing",
+       "probe_lr": 0.01
+      },
+      "s2_head_on_s2": {
+       "n_units": 458638,
+       "n_errors": 87167,
+       "error_rate": 0.1900562099084681,
+       "n_confident_errors": 5720,
+       "confident_share": 0.06562116397260431,
+       "margin_auroc": 0.831427709701034,
+       "margin_excess_aurc": 0.03863929343201067,
+       "top_decision": 0,
+       "top_decision_share": 0.4662391690178311,
+       "source": {
+        "path": "exp/out/exp78_units/pastis_sentinel2.npz",
+        "sha256": "a9cb4eff89ba4678ccc9a9438518ffbc1381a388c1848e24ecd629be5d338106",
+        "committed": true
+       },
+       "probe_lr": 0.01
+      }
+     },
+     "alignment": {
+      "pastis_sentinel1": {
+       "decision_equals_exp88_label_exactly_where_correct": true,
+       "tiles_equal_exp88": true
+      },
+      "pastis_sentinel2": {
+       "decision_equals_exp88_label_exactly_where_correct": true,
+       "tiles_equal_exp88": true
+      },
+      "pastis_sentinel1_sentinel2": {
+       "units_whose_error_differs_from_exp88_full": 0,
+       "max_abs_margin_difference": 0.0,
+       "source": {
+        "path": "exp/out/exp78_units/pastis_sentinel1_sentinel2.npz",
+        "sha256": "45e05b7eae8ce829d713fc2203e5a3eebac7aaad1860c4220f6cf154b680ef5f",
+        "committed": true
+       }
+      }
+     },
+     "max_abs_difference_from_exp88_summary": {
+      "error_rate": 0.0,
+      "confident_share": 0.0,
+      "margin_auroc": 7.1511621069220155e-09,
+      "margin_excess_aurc": 2.7656745016368944e-07
+     }
+    },
+    "china6": {
+     "n_units": 4397,
+     "threshold_confident": 0.9857273399829865,
+     "threshold_recorded_by_exp88": 0.9857273483648896,
+     "label_share_of_top_decision": {
+      "s1s2_head_on_s1s2": 0.5362747327723448,
+      "s1s2_head_on_s1": 0.5362747327723448,
+      "s1_head_on_s1": 0.5362747327723448,
+      "s1s2_head_on_s2": 0.5362747327723448,
+      "s2_head_on_s2": 0.5362747327723448
+     },
+     "rows": {
+      "s1s2_head_on_s1s2": {
+       "n_units": 4397,
+       "n_errors": 995,
+       "error_rate": 0.2262906527177621,
+       "n_confident_errors": 132,
+       "confident_share": 0.13266331658291458,
+       "margin_auroc": 0.7195482113684235,
+       "margin_excess_aurc": 0.08495979699750916,
+       "top_decision": 1,
+       "top_decision_share": 0.7561974073231749,
+       "source": "exp/out/exp88_units.npz olmoearth_base/china6/seed0/full",
+       "probe_lr": 0.1
+      },
+      "s1s2_head_on_s1": {
+       "n_units": 4397,
+       "n_errors": 1272,
+       "error_rate": 0.2892881510120537,
+       "n_confident_errors": 83,
+       "confident_share": 0.06525157232704402,
+       "margin_auroc": 0.6250274213836478,
+       "margin_excess_aurc": 0.17635364143768312,
+       "top_decision": 1,
+       "top_decision_share": 0.5776665908574028,
+       "source": "exp/out/exp88_units.npz olmoearth_base/china6/seed0/optical_missing",
+       "probe_lr": 0.1
+      },
+      "s1_head_on_s1": {
+       "n_units": 4397,
+       "n_errors": 1565,
+       "error_rate": 0.3559244939731635,
+       "n_confident_errors": 3,
+       "confident_share": 0.0019169329073482429,
+       "margin_auroc": 0.7741569421129583,
+       "margin_excess_aurc": 0.09305968947321884,
+       "top_decision": 1,
+       "top_decision_share": 0.8421651125767569,
+       "source": {
+        "path": "exp/out/exp78_units/cropharvest_Peoples_Republic_of_China_6_sentinel1.npz",
+        "sha256": "563aeb9f7f32bb7abcf29a78eb68dd6533e1195f3c148d9b73b6c2a387e5595a",
+        "committed": true
+       },
+       "probe_lr": 0.1
+      },
+      "s1s2_head_on_s2": {
+       "n_units": 4397,
+       "n_errors": 1939,
+       "error_rate": 0.4409824880600409,
+       "n_confident_errors": 1375,
+       "confident_share": 0.7091284167096441,
+       "margin_auroc": 0.7837380210328779,
+       "margin_excess_aurc": 0.12513569831460272,
+       "top_decision": 1,
+       "top_decision_share": 0.9768023652490334,
+       "source": "exp/out/exp88_units.npz olmoearth_base/china6/seed0/radar_missing",
+       "probe_lr": 0.1
+      },
+      "s2_head_on_s2": {
+       "n_units": 4397,
+       "n_errors": 1169,
+       "error_rate": 0.265863088469411,
+       "n_confident_errors": 109,
+       "confident_share": 0.0932420872540633,
+       "margin_auroc": 0.7129604307052385,
+       "margin_excess_aurc": 0.10464515050838796,
+       "top_decision": 1,
+       "top_decision_share": 0.7753013418239709,
+       "source": {
+        "path": "exp/out/exp78_units/cropharvest_Peoples_Republic_of_China_6.npz",
+        "sha256": "f4ee3e93b5adbd086f24dafefe67e252c681692f66b024c92a280a1cc0fa7b37",
+        "committed": true
+       },
+       "probe_lr": 0.1
+      }
+     },
+     "alignment": {
+      "cropharvest_Peoples_Republic_of_China_6_sentinel1": {
+       "decision_equals_exp88_label_exactly_where_correct": true
+      },
+      "cropharvest_Peoples_Republic_of_China_6": {
+       "decision_equals_exp88_label_exactly_where_correct": true
+      },
+      "cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2": {
+       "units_whose_error_differs_from_exp88_full": 0,
+       "max_abs_margin_difference": 0.0,
+       "source": {
+        "path": "exp/out/exp78_units/cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2.npz",
+        "sha256": "e597ad2236a947f324ef6924e487fe3650a9e92b84c31cd991afd379e83cfb2f",
+        "committed": true
+       }
+      }
+     },
+     "max_abs_difference_from_exp88_summary": {
+      "error_rate": 0.0,
+      "confident_share": 0.0,
+      "margin_auroc": 2.5178019086302683e-06,
+      "margin_excess_aurc": 0.0004816895552621492
+     }
+    }
+   },
+   "mixed_map": {
+    "n_cloudy_tiles": 992,
+    "mix_seed": 88,
+    "mismatched": {
+     "cloudy_part": "s1s2_head_on_s1",
+     "clear_part": "s1s2_head_on_s1s2",
+     "n_windows": 458638,
+     "n_cloudy_windows": 228665,
+     "n_errors": {
+      "cloudy": 169357,
+      "clear": 45416,
+      "whole": 214773
+     },
+     "error_rate": {
+      "cloudy": 0.7406336780880327,
+      "clear": 0.19748405247572542,
+      "whole": 0.4682843549814887
+     },
+     "review_set": {
+      "budget": 0.05,
+      "review_windows": 22932,
+      "cloudy_errors_in_review_share": 0.04342896957315021,
+      "clear_errors_in_review_share": 0.18264488286066585,
+      "all_errors_in_review_share": 0.07286763233739808,
+      "cloudy_share_of_all_errors": 0.7885395277804939,
+      "cloudy_share_of_review_errors": 0.469968051118211
+     }
+    },
+    "matched": {
+     "cloudy_part": "s1_head_on_s1",
+     "clear_part": "s1s2_head_on_s1s2",
+     "n_windows": 458638,
+     "n_cloudy_windows": 228665,
+     "n_errors": {
+      "cloudy": 64645,
+      "clear": 45416,
+      "whole": 110061
+     },
+     "error_rate": {
+      "cloudy": 0.2827061421730479,
+      "clear": 0.19748405247572542,
+      "whole": 0.23997357392976595
+     },
+     "review_set": {
+      "budget": 0.05,
+      "review_windows": 22932,
+      "cloudy_errors_in_review_share": 0.1339469409853817,
+      "clear_errors_in_review_share": 0.12929364100757443,
+      "all_errors_in_review_share": 0.1320267851464188,
+      "cloudy_share_of_all_errors": 0.5873561025249634,
+      "cloudy_share_of_review_errors": 0.5958984240589086
+     }
+    },
+    "mismatched_agrees_with_exp88_summary": true
+   }
+  },
+  "olmoearth_large": {
+   "families": {
+    "pastis": {
+     "n_units": 458638,
+     "threshold_confident": 0.8462362289428711,
+     "threshold_recorded_by_exp88": 0.8462362214922905,
+     "label_share_of_top_decision": {
+      "s1s2_head_on_s1s2": 0.4369153886071368,
+      "s1s2_head_on_s1": 0.4369153886071368,
+      "s1_head_on_s1": 0.4369153886071368,
+      "s1s2_head_on_s2": 0.4369153886071368,
+      "s2_head_on_s2": 0.4369153886071368
+     },
+     "rows": {
+      "s1s2_head_on_s1s2": {
+       "n_units": 458638,
+       "n_errors": 85529,
+       "error_rate": 0.18648476576297646,
+       "n_confident_errors": 4854,
+       "confident_share": 0.05675268037741585,
+       "margin_auroc": 0.8336398521387152,
+       "margin_excess_aurc": 0.037336047419537916,
+       "top_decision": 0,
+       "top_decision_share": 0.46357257793728385,
+       "source": "exp/out/exp88_units.npz olmoearth_large/pastis/seed0/full",
+       "probe_lr": 0.1
+      },
+      "s1s2_head_on_s1": {
+       "n_units": 458638,
+       "n_errors": 228889,
+       "error_rate": 0.49906244140258765,
+       "n_confident_errors": 29328,
+       "confident_share": 0.12813197663496279,
+       "margin_auroc": 0.7182252463261573,
+       "margin_excess_aurc": 0.17404790804997503,
+       "top_decision": 0,
+       "top_decision_share": 0.6038400655854944,
+       "source": "exp/out/exp88_units.npz olmoearth_large/pastis/seed0/optical_missing",
+       "probe_lr": 0.1
+      },
+      "s1_head_on_s1": {
+       "n_units": 458638,
+       "n_errors": 127833,
+       "error_rate": 0.278723088797701,
+       "n_confident_errors": 3667,
+       "confident_share": 0.02868586358764951,
+       "margin_auroc": 0.7954841817728127,
+       "margin_excess_aurc": 0.06888192820944966,
+       "top_decision": 0,
+       "top_decision_share": 0.4907901220570472,
+       "source": {
+        "path": "exp/out/exp79_units/olmoearth_large/pastis_sentinel1.npz",
+        "sha256": "49f5ada9c31d99f6b877326229f54deb434efd2c28c26dddf1bdbcb8e936e6ea",
+        "committed": false,
+        "sha256_matches": "exp/out/exp79_seeds/olmoearth_large.json"
+       },
+       "probe_lr": 0.005
+      },
+      "s1s2_head_on_s2": {
+       "n_units": 458638,
+       "n_errors": 108046,
+       "error_rate": 0.23558013073491513,
+       "n_confident_errors": 9803,
+       "confident_share": 0.0907298743127927,
+       "margin_auroc": 0.7922878509650108,
+       "margin_excess_aurc": 0.0636194959118348,
+       "top_decision": 0,
+       "top_decision_share": 0.4187463751368181,
+       "source": "exp/out/exp88_units.npz olmoearth_large/pastis/seed0/radar_missing",
+       "probe_lr": 0.1
+      },
+      "s2_head_on_s2": {
+       "n_units": 458638,
+       "n_errors": 84215,
+       "error_rate": 0.18361976111879086,
+       "n_confident_errors": 5233,
+       "confident_share": 0.06213857388826219,
+       "margin_auroc": 0.8312023441436881,
+       "margin_excess_aurc": 0.037670657645965513,
+       "top_decision": 0,
+       "top_decision_share": 0.4625652475372734,
+       "source": {
+        "path": "exp/out/exp79_units/olmoearth_large/pastis_sentinel2.npz",
+        "sha256": "38a2c94c14a7b7d23f46ec8719097894f5450c5751f8b6117cf59cd509482ea0",
+        "committed": false,
+        "sha256_matches": "exp/out/exp79_seeds/olmoearth_large.json"
+       },
+       "probe_lr": 0.05
+      }
+     },
+     "alignment": {
+      "pastis_sentinel1": {
+       "decision_equals_exp88_label_exactly_where_correct": true,
+       "tiles_equal_exp88": true
+      },
+      "pastis_sentinel2": {
+       "decision_equals_exp88_label_exactly_where_correct": true,
+       "tiles_equal_exp88": true
+      },
+      "pastis_sentinel1_sentinel2": {
+       "units_whose_error_differs_from_exp88_full": 104,
+       "max_abs_margin_difference": 0.011328577995300293,
+       "source": {
+        "path": "exp/out/exp79_units/olmoearth_large/pastis_sentinel1_sentinel2.npz",
+        "sha256": "c1e4fa70fdc6f6c70009d0083be89710d9bb919eee093dd7bc882645a43bda7e",
+        "committed": false,
+        "sha256_matches": "exp/out/exp79_seeds/olmoearth_large.json"
+       }
+      }
+     },
+     "max_abs_difference_from_exp88_summary": {
+      "error_rate": 0.0,
+      "confident_share": 0.0,
+      "margin_auroc": 5.640575784227053e-10,
+      "margin_excess_aurc": 8.530237938231267e-08
+     }
+    },
+    "china6": {
+     "n_units": 4397,
+     "threshold_confident": 0.9845667481422424,
+     "threshold_recorded_by_exp88": 0.9845667388290167,
+     "label_share_of_top_decision": {
+      "s1s2_head_on_s1s2": 0.5362747327723448,
+      "s1s2_head_on_s1": 0.5362747327723448,
+      "s1_head_on_s1": 0.5362747327723448,
+      "s1s2_head_on_s2": 0.4637252672276552,
+      "s2_head_on_s2": 0.5362747327723448
+     },
+     "rows": {
+      "s1s2_head_on_s1s2": {
+       "n_units": 4397,
+       "n_errors": 1184,
+       "error_rate": 0.2692745053445531,
+       "n_confident_errors": 146,
+       "confident_share": 0.12331081081081081,
+       "margin_auroc": 0.7476432577535519,
+       "margin_excess_aurc": 0.0898408855990942,
+       "top_decision": 1,
+       "top_decision_share": 0.7991812599499659,
+       "source": "exp/out/exp88_units.npz olmoearth_large/china6/seed0/full",
+       "probe_lr": 0.1
+      },
+      "s1s2_head_on_s1": {
+       "n_units": 4397,
+       "n_errors": 623,
+       "error_rate": 0.14168751421423698,
+       "n_confident_errors": 66,
+       "confident_share": 0.10593900481540931,
+       "margin_auroc": 0.7367025461870141,
+       "margin_excess_aurc": 0.05404069556715081,
+       "top_decision": 1,
+       "top_decision_share": 0.5392312940641346,
+       "source": "exp/out/exp88_units.npz olmoearth_large/china6/seed0/optical_missing",
+       "probe_lr": 0.1
+      },
+      "s1_head_on_s1": {
+       "n_units": 4397,
+       "n_errors": 1612,
+       "error_rate": 0.3666136001819422,
+       "n_confident_errors": 2,
+       "confident_share": 0.0012406947890818859,
+       "margin_auroc": 0.7799941863314191,
+       "margin_excess_aurc": 0.09061287513880148,
+       "top_decision": 1,
+       "top_decision_share": 0.8433022515351376,
+       "source": {
+        "path": "exp/out/exp79_units/olmoearth_large/cropharvest_Peoples_Republic_of_China_6_sentinel1.npz",
+        "sha256": "b898ad87ae4fefafa1b4344a6128db030e94663e866afa69bc3d211fca89933d",
+        "committed": false,
+        "sha256_matches": "exp/out/exp79_seeds/olmoearth_large.json"
+       },
+       "probe_lr": 0.1
+      },
+      "s1s2_head_on_s2": {
+       "n_units": 4397,
+       "n_errors": 961,
+       "error_rate": 0.21855810780077325,
+       "n_confident_errors": 102,
+       "confident_share": 0.10613943808532779,
+       "margin_auroc": 0.6982007246526041,
+       "margin_excess_aurc": 0.09570569439932258,
+       "top_decision": 0,
+       "top_decision_share": 0.515806231521492,
+       "source": "exp/out/exp88_units.npz olmoearth_large/china6/seed0/radar_missing",
+       "probe_lr": 0.1
+      },
+      "s2_head_on_s2": {
+       "n_units": 4397,
+       "n_errors": 1206,
+       "error_rate": 0.27427791676142826,
+       "n_confident_errors": 198,
+       "confident_share": 0.16417910447761194,
+       "margin_auroc": 0.7202934715329651,
+       "margin_excess_aurc": 0.10266871069908237,
+       "top_decision": 1,
+       "top_decision_share": 0.7932681373663861,
+       "source": {
+        "path": "exp/out/exp79_units/olmoearth_large/cropharvest_Peoples_Republic_of_China_6.npz",
+        "sha256": "888714d6df1995bbed7d7b51414f88b6ca6a8d190d48443e1c8d5e961c327a82",
+        "committed": false,
+        "sha256_matches": "exp/out/exp79_seeds/olmoearth_large.json"
+       },
+       "probe_lr": 0.1
+      }
+     },
+     "alignment": {
+      "cropharvest_Peoples_Republic_of_China_6_sentinel1": {
+       "decision_equals_exp88_label_exactly_where_correct": true
+      },
+      "cropharvest_Peoples_Republic_of_China_6": {
+       "decision_equals_exp88_label_exactly_where_correct": true
+      },
+      "cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2": {
+       "units_whose_error_differs_from_exp88_full": 9,
+       "max_abs_margin_difference": 0.05423039197921753,
+       "source": {
+        "path": "exp/out/exp79_units/olmoearth_large/cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2.npz",
+        "sha256": "ed942b1cbbb5331e8284d8b9c253ffd9551ab9ae99ef3bdd45e1f565fb667934",
+        "committed": false,
+        "sha256_matches": "exp/out/exp79_seeds/olmoearth_large.json"
+       }
+      }
+     },
+     "max_abs_difference_from_exp88_summary": {
+      "error_rate": 0.0,
+      "confident_share": 0.0,
+      "margin_auroc": 1.3143395494186194e-07,
+      "margin_excess_aurc": 5.547019309160017e-07
+     }
+    }
+   },
+   "mixed_map": {
+    "n_cloudy_tiles": 992,
+    "mix_seed": 88,
+    "mismatched": {
+     "cloudy_part": "s1s2_head_on_s1",
+     "clear_part": "s1s2_head_on_s1s2",
+     "n_windows": 458638,
+     "n_cloudy_windows": 228665,
+     "n_errors": {
+      "cloudy": 114808,
+      "clear": 43813,
+      "whole": 158621
+     },
+     "error_rate": {
+      "cloudy": 0.5020794612205628,
+      "clear": 0.19051366899592562,
+      "whole": 0.34585228437242443
+     },
+     "review_set": {
+      "budget": 0.05,
+      "review_windows": 22932,
+      "cloudy_errors_in_review_share": 0.09382621420110097,
+      "clear_errors_in_review_share": 0.11893730171410312,
+      "all_errors_in_review_share": 0.10076219416092447,
+      "cloudy_share_of_all_errors": 0.723788149110143,
+      "cloudy_share_of_review_errors": 0.6739660889695301
+     }
+    },
+    "matched": {
+     "cloudy_part": "s1_head_on_s1",
+     "clear_part": "s1s2_head_on_s1s2",
+     "n_windows": 458638,
+     "n_cloudy_windows": 228665,
+     "n_errors": {
+      "cloudy": 63153,
+      "clear": 43813,
+      "whole": 106966
+     },
+     "error_rate": {
+      "cloudy": 0.2761813132748781,
+      "clear": 0.19051366899592562,
+      "whole": 0.2332253323972283
+     },
+     "review_set": {
+      "budget": 0.05,
+      "review_windows": 22932,
+      "cloudy_errors_in_review_share": 0.1396608237138378,
+      "clear_errors_in_review_share": 0.12589870586355648,
+      "all_errors_in_review_share": 0.13402389544341192,
+      "cloudy_share_of_all_errors": 0.5904025578221117,
+      "cloudy_share_of_review_errors": 0.615234375
+     }
+    },
+    "mismatched_agrees_with_exp88_summary": true
+   }
+  }
+ },
+ "not_run": {}
+}

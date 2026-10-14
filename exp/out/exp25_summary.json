@@ -1,0 +1,368 @@
+{
+ "years": {
+  "2024": {
+   "n_scenes": 27,
+   "n_scenes_nonseasonal": 24,
+   "n_scenes_seasonal_only": 18,
+   "T1_enrichment": {
+    "median_share_errors": 0.391304347826087,
+    "median_share_correct": 0.08012170385395538,
+    "pooled_share_errors": 0.38482384823848237,
+    "wins_losses_ties": [
+     21,
+     3,
+     3
+    ],
+    "sign_p": 0.0002771615982055664,
+    "median_error_rate_seasonal": 0.18767401610354428,
+    "median_error_rate_nonseasonal": 0.024312896405919663
+   },
+   "T2_exclusion": {
+    "E_case": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       9,
+       15,
+       0
+      ],
+      "sign_p": 0.30745625495910645,
+      "median_gain": -0.0033068823275735626,
+      "n": 24
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       12,
+       12,
+       0
+      ],
+      "sign_p": 1.0,
+      "median_gain": -2.1188361808876914e-05,
+      "n": 24
+     }
+    },
+    "tile-phase (aligned)": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       23,
+       1,
+       0
+      ],
+      "sign_p": 2.9802322387695312e-06,
+      "median_gain": 0.007558864438908661,
+      "n": 24
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       22,
+       2,
+       0
+      ],
+      "sign_p": 3.5881996154785156e-05,
+      "median_gain": 0.006057397534166644,
+      "n": 24
+     }
+    },
+    "boundary": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       18,
+       6,
+       0
+      ],
+      "sign_p": 0.022655844688415527,
+      "median_gain": 0.005972577454123304,
+      "n": 24
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       19,
+       5,
+       0
+      ],
+      "sign_p": 0.006610751152038574,
+      "median_gain": 0.0034008905461382606,
+      "n": 24
+     }
+    },
+    "E_dist": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       12,
+       12,
+       0
+      ],
+      "sign_p": 1.0,
+      "median_gain": 0.003018244495480247,
+      "n": 24
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       13,
+       11,
+       0
+      ],
+      "sign_p": 0.8388197422027588,
+      "median_gain": 0.005874516518849294,
+      "n": 24
+     }
+    },
+    "control": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       13,
+       11,
+       0
+      ],
+      "sign_p": 0.8388197422027588,
+      "median_gain": 0.006774588793963317,
+      "n": 24
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       14,
+       10,
+       0
+      ],
+      "sign_p": 0.5412561893463135,
+      "median_gain": 0.003572497240449655,
+      "n": 24
+     }
+    }
+   },
+   "T3_seasonal_only": {
+    "E_case": {
+     "wlt": [
+      5,
+      13,
+      0
+     ],
+     "sign_p": 0.09625244140625,
+     "median_gain": -0.01019824388148007,
+     "n": 18
+    },
+    "tile-phase (aligned)": {
+     "wlt": [
+      12,
+      6,
+      0
+     ],
+     "sign_p": 0.237884521484375,
+     "median_gain": 0.0065402425285850645,
+     "n": 18
+    },
+    "boundary": {
+     "wlt": [
+      11,
+      7,
+      0
+     ],
+     "sign_p": 0.480682373046875,
+     "median_gain": 0.004980067492846227,
+     "n": 18
+    },
+    "E_dist": {
+     "wlt": [
+      7,
+      11,
+      0
+     ],
+     "sign_p": 0.480682373046875,
+     "median_gain": -0.009268760389277594,
+     "n": 18
+    },
+    "control": {
+     "wlt": [
+      10,
+      8,
+      0
+     ],
+     "sign_p": 0.8145294189453125,
+     "median_gain": 0.003309927104266471,
+     "n": 18
+    }
+   }
+  },
+  "2021": {
+   "n_scenes": 26,
+   "n_scenes_nonseasonal": 23,
+   "n_scenes_seasonal_only": 21,
+   "T1_enrichment": {
+    "median_share_errors": 0.41485774499473127,
+    "median_share_correct": 0.09136798602463686,
+    "pooled_share_errors": 0.2993138936535163,
+    "wins_losses_ties": [
+     22,
+     3,
+     1
+    ],
+    "sign_p": 0.00015652179718017578,
+    "median_error_rate_seasonal": 0.2116788321167883,
+    "median_error_rate_nonseasonal": 0.04223669655384463
+   },
+   "T2_exclusion": {
+    "E_case": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       9,
+       14,
+       0
+      ],
+      "sign_p": 0.4048728942871094,
+      "median_gain": -0.001872842922351483,
+      "n": 23
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       12,
+       11,
+       0
+      ],
+      "sign_p": 1.0,
+      "median_gain": 0.00013692850356596066,
+      "n": 23
+     }
+    },
+    "tile-phase (aligned)": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       20,
+       3,
+       0
+      ],
+      "sign_p": 0.00048828125,
+      "median_gain": 0.01860911543749563,
+      "n": 23
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       22,
+       1,
+       0
+      ],
+      "sign_p": 5.7220458984375e-06,
+      "median_gain": 0.013771231160556605,
+      "n": 23
+     }
+    },
+    "boundary": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       18,
+       5,
+       0
+      ],
+      "sign_p": 0.010622024536132812,
+      "median_gain": 0.01583381934881094,
+      "n": 23
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       20,
+       3,
+       0
+      ],
+      "sign_p": 0.00048828125,
+      "median_gain": 0.010673475265940948,
+      "n": 23
+     }
+    },
+    "E_dist": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       12,
+       11,
+       0
+      ],
+      "sign_p": 1.0,
+      "median_gain": 0.0107046790133297,
+      "n": 23
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       13,
+       10,
+       0
+      ],
+      "sign_p": 0.6776394844055176,
+      "median_gain": 0.004369838752601281,
+      "n": 23
+     }
+    },
+    "control": {
+     "all_patches_same_scenes": {
+      "wlt": [
+       12,
+       11,
+       0
+      ],
+      "sign_p": 1.0,
+      "median_gain": 9.791101601132335e-05,
+      "n": 23
+     },
+     "nonseasonal_patches": {
+      "wlt": [
+       7,
+       16,
+       0
+      ],
+      "sign_p": 0.0931396484375,
+      "median_gain": -0.0032309059946517577,
+      "n": 23
+     }
+    }
+   },
+   "T3_seasonal_only": {
+    "E_case": {
+     "wlt": [
+      11,
+      10,
+      0
+     ],
+     "sign_p": 1.0,
+     "median_gain": 0.0021348953013892447,
+     "n": 21
+    },
+    "tile-phase (aligned)": {
+     "wlt": [
+      13,
+      8,
+      0
+     ],
+     "sign_p": 0.38331031799316406,
+     "median_gain": 0.006724002421054434,
+     "n": 21
+    },
+    "boundary": {
+     "wlt": [
+      12,
+      9,
+      0
+     ],
+     "sign_p": 0.6636238098144531,
+     "median_gain": 0.0016456619309622843,
+     "n": 21
+    },
+    "E_dist": {
+     "wlt": [
+      4,
+      17,
+      0
+     ],
+     "sign_p": 0.007197380065917969,
+     "median_gain": -0.018121963869153573,
+     "n": 21
+    },
+    "control": {
+     "wlt": [
+      10,
+      11,
+      0
+     ],
+     "sign_p": 1.0,
+     "median_gain": -0.005654891191040547,
+     "n": 21
+    }
+   }
+  }
+ }
+}

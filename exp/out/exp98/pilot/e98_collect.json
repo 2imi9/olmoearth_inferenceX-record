@@ -1,0 +1,32 @@
+{
+ "job": "1244174",
+ "pilot": true,
+ "roots": [
+  {
+   "root_id": "root_0",
+   "windows_copied": 4,
+   "reader_grids": [
+    {
+     "crs": "EPSG:32737",
+     "resolutions": 1,
+     "px": [
+      2048,
+      2048
+     ],
+     "scores_gib": 0.17,
+     "conditions_gib": 0.05,
+     "reader_fits": true
+    }
+   ],
+   "reader_reads_whole_root": true
+  }
+ ],
+ "keep_imagery": false,
+ "area_complete": true,
+ "allow_incomplete": false,
+ "files": 122,
+ "bytes": 207520521,
+ "manifest_sha256": "3f0c22ab41bc291b430d35ebfe168f8631cdbe36499be8231cc626c9f49315eb",
+ "dest": "/home/qi_zim_neu/olmoearth_inferenceX/data/exp98/pilot/awf_run",
+ "manifest_verified": true
+}

@@ -1,0 +1,253 @@
+{
+ "experiment": "exp46 what makes the errors shared: readout, modality or window",
+ "smoke": false,
+ "config": {
+  "arms": [
+   "A0 no encoder",
+   "A1 S2 linear",
+   "A2 S1 linear",
+   "A3 S2 MLP",
+   "A4 S2 3x3 linear"
+  ],
+  "backbone_swap_phi_reference": {
+   "bolivia": 0.6968365816742046,
+   "test": 0.7046557397695807
+  },
+  "prereg": "P1 phi(A1,A3) and phi(A1,A4) below the backbone-swap phi on both testbeds; P2 phi(A1,A2) likewise; falsification if the readout arms are at or above it at comparable accuracy"
+ },
+ "results": {
+  "bolivia": {
+   "n_windows": 81984,
+   "accuracy": {
+    "A0 no encoder": 0.9198502146760343,
+    "A1 S2 linear": 0.9115925058548009,
+    "A2 S1 linear": 0.8727556596409055,
+    "A3 S2 MLP": 0.9201185597189696,
+    "A4 S2 3x3 linear": 0.928986143637783
+   },
+   "pairwise": {
+    "A0 no encoder vs A1 S2 linear": {
+     "phi": 0.7144653162201634,
+     "p_b_wrong_given_a_wrong": 0.7755288388373155,
+     "p_b_wrong_given_a_right": 0.02853619402490287,
+     "p_a_wrong_given_b_wrong": 0.7030905077262694
+    },
+    "A0 no encoder vs A2 S1 linear": {
+     "phi": 0.44833415387068637,
+     "p_b_wrong_given_a_wrong": 0.6333891340739614,
+     "p_b_wrong_given_a_right": 0.08314216381790938,
+     "p_a_wrong_given_b_wrong": 0.3989647239263804
+    },
+    "A0 no encoder vs A3 S2 MLP": {
+     "phi": 0.5859232627097988,
+     "p_b_wrong_given_a_wrong": 0.6180185664282454,
+     "p_b_wrong_given_a_right": 0.032991659262991795,
+     "p_a_wrong_given_b_wrong": 0.6200946709421286
+    },
+    "A0 no encoder vs A4 S2 3x3 linear": {
+     "phi": 0.5361269057011842,
+     "p_b_wrong_given_a_wrong": 0.5375133160858316,
+     "p_b_wrong_given_a_right": 0.03036611724768939,
+     "p_a_wrong_given_b_wrong": 0.6066643765029199
+    },
+    "A1 S2 linear vs A2 S1 linear": {
+     "phi": 0.3885663475712719,
+     "p_b_wrong_given_a_wrong": 0.543046357615894,
+     "p_b_wrong_given_a_right": 0.08691928923142796,
+     "p_a_wrong_given_b_wrong": 0.3773006134969325
+    },
+    "A1 S2 linear vs A3 S2 MLP": {
+     "phi": 0.6792587918431279,
+     "p_b_wrong_given_a_wrong": 0.6712196467991169,
+     "p_b_wrong_given_a_right": 0.022532648255191606,
+     "p_a_wrong_given_b_wrong": 0.7428615055733699
+    },
+    "A1 S2 linear vs A4 S2 3x3 linear": {
+     "phi": 0.6268552995709136,
+     "p_b_wrong_given_a_wrong": 0.5880242825607064,
+     "p_b_wrong_given_a_right": 0.020873474630700065,
+     "p_a_wrong_given_b_wrong": 0.7320508416351769
+    },
+    "A2 S1 linear vs A3 S2 MLP": {
+     "phi": 0.342742452462529,
+     "p_b_wrong_given_a_wrong": 0.3232361963190184,
+     "p_b_wrong_given_a_right": 0.04440127459749553,
+     "p_a_wrong_given_b_wrong": 0.5148877691250573
+    },
+    "A2 S1 linear vs A4 S2 3x3 linear": {
+     "phi": 0.3001410179419016,
+     "p_b_wrong_given_a_wrong": 0.2729102760736196,
+     "p_b_wrong_given_a_right": 0.04157815295169946,
+     "p_a_wrong_given_b_wrong": 0.4890072140158021
+    },
+    "A3 S2 MLP vs A4 S2 3x3 linear": {
+     "phi": 0.6524812499602615,
+     "p_b_wrong_given_a_wrong": 0.6397923347075889,
+     "p_b_wrong_given_a_right": 0.021634519785245575,
+     "p_a_wrong_given_b_wrong": 0.7196839574029543
+    }
+   },
+   "purity_strata": {
+    "A1 S2 linear vs A2 S1 linear": {
+     "pure": 0.3087882625351403,
+     "mixed": 0.33295043389316303
+    },
+    "A1 S2 linear vs A3 S2 MLP": {
+     "pure": 0.6256551327997886,
+     "mixed": 0.6654569105246051
+    },
+    "A1 S2 linear vs A4 S2 3x3 linear": {
+     "pure": 0.5762248844861582,
+     "mixed": 0.5900569639598909
+    }
+   },
+   "per_chip": {
+    "A1 S2 linear vs A2 S1 linear": {
+     "median_within_chip_phi": 0.3907235083558874,
+     "n_chips": 363
+    },
+    "A1 S2 linear vs A3 S2 MLP": {
+     "median_within_chip_phi": 0.6973531170526261,
+     "n_chips": 379
+    },
+    "A1 S2 linear vs A4 S2 3x3 linear": {
+     "median_within_chip_phi": 0.6302690188241356,
+     "n_chips": 377
+    }
+   },
+   "prereg": {
+    "backbone_swap_phi": 0.6968365816742046,
+    "P1_readout": {
+     "phi_A1_A3": 0.6792587918431279,
+     "phi_A1_A4": 0.6268552995709136,
+     "passes": true
+    },
+    "P2_modality": {
+     "phi_A1_A2": 0.3885663475712719,
+     "passes": true
+    }
+   },
+   "impure_share": 0.12687841530054644
+  },
+  "test": {
+   "n_windows": 171861,
+   "accuracy": {
+    "A0 no encoder": 0.9425058622956924,
+    "A1 S2 linear": 0.9527583337697325,
+    "A2 S1 linear": 0.8931171120847662,
+    "A3 S2 MLP": 0.9566801077615049,
+    "A4 S2 3x3 linear": 0.9540966245977854
+   },
+   "pairwise": {
+    "A0 no encoder vs A1 S2 linear": {
+     "phi": 0.552712506702267,
+     "p_b_wrong_given_a_wrong": 0.5220119421111223,
+     "p_b_wrong_given_a_right": 0.018280034572169403,
+     "p_a_wrong_given_b_wrong": 0.6352999137824855
+    },
+    "A0 no encoder vs A2 S1 linear": {
+     "phi": 0.4839483282111357,
+     "p_b_wrong_given_a_wrong": 0.7122760854164558,
+     "p_b_wrong_given_a_right": 0.06995308062723793,
+     "p_a_wrong_given_b_wrong": 0.3831455169034787
+    },
+    "A0 no encoder vs A3 S2 MLP": {
+     "phi": 0.4761509890168607,
+     "p_b_wrong_given_a_wrong": 0.43578585163444994,
+     "p_b_wrong_given_a_right": 0.0193789356710705,
+     "p_a_wrong_given_b_wrong": 0.578374748153123
+    },
+    "A0 no encoder vs A4 S2 3x3 linear": {
+     "phi": 0.43146905374988687,
+     "p_b_wrong_given_a_wrong": 0.4114968120635563,
+     "p_b_wrong_given_a_right": 0.023601679219656748,
+     "p_a_wrong_given_b_wrong": 0.5154011915325136
+    },
+    "A1 S2 linear vs A2 S1 linear": {
+     "phi": 0.38110383013284554,
+     "p_b_wrong_given_a_wrong": 0.635669417415938,
+     "p_b_wrong_given_a_right": 0.08066348279610606,
+     "p_a_wrong_given_b_wrong": 0.28096249115357397
+    },
+    "A1 S2 linear vs A3 S2 MLP": {
+     "phi": 0.697768732416087,
+     "p_b_wrong_given_a_wrong": 0.6812415322084,
+     "p_b_wrong_given_a_right": 0.011689120689865764,
+     "p_a_wrong_given_b_wrong": 0.7429147078576226
+    },
+    "A1 S2 linear vs A4 S2 3x3 linear": {
+     "phi": 0.6787692209138535,
+     "p_b_wrong_given_a_wrong": 0.6838280576425668,
+     "p_b_wrong_given_a_right": 0.014272453005337665,
+     "p_a_wrong_given_b_wrong": 0.7037647357079477
+    },
+    "A2 S1 linear vs A3 S2 MLP": {
+     "phi": 0.37857349483670605,
+     "p_b_wrong_given_a_wrong": 0.26610049539985847,
+     "p_b_wrong_given_a_right": 0.016658848669637506,
+     "p_a_wrong_given_b_wrong": 0.6565480188045668
+    },
+    "A2 S1 linear vs A4 S2 3x3 linear": {
+     "phi": 0.3600334224628747,
+     "p_b_wrong_given_a_wrong": 0.26370515542490064,
+     "p_b_wrong_given_a_right": 0.019838167461496366,
+     "p_a_wrong_given_b_wrong": 0.614019520851819
+    },
+    "A3 S2 MLP vs A4 S2 3x3 linear": {
+     "phi": 0.7027219957368867,
+     "p_b_wrong_given_a_wrong": 0.7370047011417058,
+     "p_b_wrong_given_a_right": 0.014609283768003115,
+     "p_a_wrong_given_b_wrong": 0.6955254151349981
+    }
+   },
+   "purity_strata": {
+    "A1 S2 linear vs A2 S1 linear": {
+     "pure": 0.3348354458442416,
+     "mixed": 0.30529724111655526
+    },
+    "A1 S2 linear vs A3 S2 MLP": {
+     "pure": 0.7604145841533406,
+     "mixed": 0.5822326998514102
+    },
+    "A1 S2 linear vs A4 S2 3x3 linear": {
+     "pure": 0.7341424306642482,
+     "mixed": 0.5607569898057839
+    }
+   },
+   "per_chip": {
+    "A1 S2 linear vs A2 S1 linear": {
+     "median_within_chip_phi": 0.3087194741650846,
+     "n_chips": 587
+    },
+    "A1 S2 linear vs A3 S2 MLP": {
+     "median_within_chip_phi": 0.6502205166879399,
+     "n_chips": 575
+    },
+    "A1 S2 linear vs A4 S2 3x3 linear": {
+     "median_within_chip_phi": 0.6176720475785896,
+     "n_chips": 580
+    }
+   },
+   "prereg": {
+    "backbone_swap_phi": 0.7046557397695807,
+    "P1_readout": {
+     "phi_A1_A3": 0.697768732416087,
+     "phi_A1_A4": 0.6787692209138535,
+     "passes": true
+    },
+    "P2_modality": {
+     "phi_A1_A2": 0.38110383013284554,
+     "passes": true
+    }
+   },
+   "impure_share": 0.12048108645940615
+  }
+ },
+ "failures": [],
+ "prereg": {
+  "P1_readout": true,
+  "P2_modality": true,
+  "complete": true
+ },
+ "n_failures": 0
+}

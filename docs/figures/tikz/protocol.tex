@@ -1,0 +1,35 @@
+% The test every claim passed: a candidate signal is scored against the model's confidence and a no-model control,
+% on two references at once (WorldCover map, hand labels); expert labels grade and never train.
+% Rasters: okavango_80 scene (WorldCover) and Bolivia tile 218 (hand labels). Build: pdflatex protocol.tex
+\documentclass[tikz,border=3mm]{standalone}
+\input{style.tex}
+\begin{document}
+\begin{tikzpicture}
+  % ---- candidate and the two baselines
+  \raster{cand}{0}{3.2}{scene_tilephase.png}
+  \node[lab] at (0,4.35) {candidate signal};
+  \raster{conf}{4.0}{3.2}{scene_conf.png}
+  \node[lab] at (4.0,4.35) {the model's confidence};
+  \raster{ctrl}{8.0}{3.2}{scene_ndwigrad.png}
+  \node[lab] at (8.0,4.35) {no-model pixel control};
+  \node[sub] at (4.0,2.15) {every candidate is scored next to both baselines, on both references, on identical windows};
+  % ---- the two references
+  \stack{wc}{1.2}{-2.6}{scene_rgb.png}{scene_rgb.png}{scene_label.png}
+  \node[lab] at (1.4,-4.0) {ESA WorldCover\\ a weak map, 27 scenes};
+  \stack{hl}{7.0}{-2.6}{bolivia_rgb.png}{bolivia_rgb.png}{bolivia_label.png}
+  \node[lab] at (7.2,-4.0) {Sen1Floods11 hand labels\\ expert truth, 351 tiles};
+  \draw[flow] (4.0,1.9) -- (2.6,-0.35);
+  \draw[flow] (4.0,1.9) -- (5.6,-0.35);
+  % ---- verdict
+  \node[part, diamond, aspect=1.8, fill=oeviolet!12, inner sep=1pt, font=\scriptsize, align=center] (v) at (12.6,2.6) {supported\\ only if it beats\\ both baselines\\ on expert labels};
+  \draw[flow] (9.3,3.2) -- (v.west);
+  \draw[flow] (8.9,-1.0) -- (v.south west);
+  \node[sub] at (12.6,0.55) {a win against the weak map alone\\ is not support};
+  % ---- the rule: labels grade, never train
+  \decoderShape{head}{13.3}{-2.45}{0.7}{1.5}{oeamber!30}   % the head is a decoder: narrow in, wide out
+  \node[sub] at (13.65,-1.5) {head};
+  \draw[oered, line width=0.9pt, ->] (8.9,-2.45) -- (13.25,-2.45);
+  \draw[oered, line width=1.3pt] (10.9,-2.2) -- (11.4,-2.7) (10.9,-2.7) -- (11.4,-2.2);
+  \node[sub, text=oered] at (11.15,-3.25) {labels grade,\\ never train};
+\end{tikzpicture}
+\end{document}

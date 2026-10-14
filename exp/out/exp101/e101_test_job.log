@@ -1,0 +1,200 @@
+NVIDIA B200, 595.71.05, 183359 MiB
+the timesync file against its pin: ok
+the boundaries file against its pin: ok
+/scratch/qi_zim_neu/olmoearth_inferenceX/e101_code/.venv/lib/python3.13/site-packages/olmoearth_pretrain/model_loader.py:37: UserWarning: olmo-core not installed. Running in inference-only mode. For training: pip install olmoearth-pretrain[training]
+  from olmoearth_pretrain.config import Config
+the pinned checkpoint (sha256 checked) and the encoder config are in the scratch HF cache
+== 2026-10-11T00:20:32-04:00 job 1275098 on b0030: exp101 mode test, device cuda, commit a1b878e; 11 exp98 parts, 1 2023 root(s) ==
+torch 2.7.1+cu128 cuda True
+== smoke ==
+F: 40 of 40 units read, 8 clamped at a window edge
+E: 21 of 22 units read, 10 clamped at a window edge
+F: 40 of 40 units read, 8 clamped at a window edge
+  7980 views in 50 batches, 1 s
+  11730 views in 100 batches, 1 s
+F: 40 units with all 320 views; 12800 views, 10759.9 per second
+F: q = 0.8
+F: 40 of 40 units read, 8 clamped at a window edge
+  7980 views in 50 batches, 0 s
+  11730 views in 100 batches, 1 s
+F: 40 units with all 320 views; 12800 views, 11344.7 per second
+F: q = 0.8
+E: 21 of 22 units read, 10 clamped at a window edge
+  5982 views in 50 batches, 0 s
+E: 21 units with all 320 views; 6720 views, 11304.6 per second
+  13024 views in 50 batches, 1 s
+  15960 views in 100 batches, 1 s
+  19710 views in 150 batches, 1 s
+  23460 views in 200 batches, 2 s
+F: 80 units with all 320 views; 25600 views, 11295.7 per second
+  13839 views in 50 batches, 1 s
+  20992 views in 100 batches, 1 s
+  24015 views in 150 batches, 1 s
+  27765 views in 200 batches, 2 s
+  31515 views in 250 batches, 2 s
+  35265 views in 300 batches, 3 s
+E: 120 units with all 320 views; 38400 views, 11279.9 per second
+{
+ "files": {
+  "q": 0.8,
+  "prereg": {
+   "P1": {
+    "value": 0.0,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": -2.7755575615628914e-17,
+     "hi90": 2.9143354396409886e-17
+    },
+    "graded": true,
+    "holds": false
+   },
+   "P2": {
+    "value": NaN,
+    "interval": {
+     "n_resamples": 6,
+     "lo90": -1.6653345369377348e-16,
+     "hi90": 3.3306690738754696e-16
+    },
+    "graded": false,
+    "holds": null
+   }
+  }
+ },
+ "planted": {
+  "q": 0.6,
+  "prereg": {
+   "P1": {
+    "value": 0.3703703703703698,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": 0.14015450067174196,
+     "hi90": 0.5158225421079021
+    },
+    "graded": true,
+    "holds": true
+   },
+   "P2": {
+    "value": 0.3391021886149428,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": 0.041287998555235246,
+     "hi90": 0.621218035237477
+    },
+    "graded": true,
+    "holds": true
+   }
+  }
+ },
+ "null": {
+  "q": 0.6,
+  "prereg": {
+   "P1": {
+    "value": 0.15708812260536398,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": -0.09324045787478333,
+     "hi90": 0.30199174643205107
+    },
+    "graded": true,
+    "holds": false
+   },
+   "P2": {
+    "value": 0.015731092436975236,
+    "interval": {
+     "n_resamples": 200,
+     "lo90": -0.23700600032874222,
+     "hi90": 0.2778898262151902
+    },
+    "graded": true,
+    "holds": false
+   }
+  }
+ }
+}
+== the test (refused unless the page is frozen) ==
+/scratch/qi_zim_neu/olmoearth_inferenceX/e101_code/.venv/lib/python3.13/site-packages/olmoearth_pretrain/model_loader.py:37: UserWarning: olmo-core not installed. Running in inference-only mode. For training: pip install olmoearth-pretrain[training]
+  from olmoearth_pretrain.config import Config
+/home/qi_zim_neu/.local/share/uv/python/cpython-3.13.15-linux-x86_64-gnu/lib/python3.13/importlib/__init__.py:88: FutureWarning: The 'helios' package has been renamed to 'olmoearth_pretrain'. Please update your imports; this compatibility shim will be removed in a future release.
+  return _bootstrap._gcd_import(name[level:], package, level)
+replica loaded on cuda
+F: 259 of 259 units read, 18 clamped at a window edge
+  12227 views in 50 batches, 24 s
+  27377 views in 100 batches, 48 s
+  41608 views in 150 batches, 72 s
+  44408 views in 200 batches, 104 s
+  47208 views in 250 batches, 135 s
+  50103 views in 300 batches, 167 s
+  53853 views in 350 batches, 196 s
+  57603 views in 400 batches, 226 s
+  61353 views in 450 batches, 255 s
+  65103 views in 500 batches, 284 s
+  68853 views in 550 batches, 314 s
+  72603 views in 600 batches, 343 s
+  76353 views in 650 batches, 372 s
+  80103 views in 700 batches, 402 s
+F: 259 units with all 320 views; 82880 views, 195.8 per second
+F: q = 0.6
+E: 271 of 271 units read, 22 clamped at a window edge
+  12005 views in 50 batches, 24 s
+  27155 views in 100 batches, 47 s
+  42305 views in 150 batches, 71 s
+  45936 views in 200 batches, 102 s
+  48736 views in 250 batches, 134 s
+  51536 views in 300 batches, 166 s
+  55107 views in 350 batches, 195 s
+  58857 views in 400 batches, 225 s
+  62607 views in 450 batches, 254 s
+  66357 views in 500 batches, 283 s
+  70107 views in 550 batches, 313 s
+  73857 views in 600 batches, 342 s
+  77607 views in 650 batches, 371 s
+  81357 views in 700 batches, 401 s
+  85107 views in 750 batches, 430 s
+E: 271 units with all 320 views; 86720 views, 195.9 per second
+{
+ "q": 0.6,
+ "prereg": {
+  "P1": {
+   "rule": "the 10% review by R(q) holds a share of the STRICT errors at least 0.05 above confidence alone's, design-weighted, and the 90% within-country bootstrap interval of the paired difference lies above 0",
+   "value": -0.043864692587569976,
+   "two_step": 0.13484240663339478,
+   "confidence": 0.17870709922096475,
+   "interval": {
+    "n_resamples": 2000,
+    "lo90": -0.08103755867439337,
+    "hi90": 0.042796073074429467
+   },
+   "threshold": 0.05,
+   "graded": true,
+   "holds": false
+  },
+  "P2": {
+   "rule": "among the units R(q) does not set aside, the design-weighted AUROC of s for the STRICT errors exceeds confidence's, with the 90% bootstrap interval of the difference above 0",
+   "value": 0.013237202663345271,
+   "auroc_instability": 0.5412109857605989,
+   "auroc_confidence": 0.5279737830972536,
+   "interval": {
+    "n_resamples": 2000,
+    "lo90": -0.08997312421805323,
+    "hi90": 0.1310415172620647
+   },
+   "threshold": 0.0,
+   "graded": true,
+   "holds": false
+  },
+  "floors": {
+   "min_with_views": 250,
+   "min_errors": 20,
+   "min_correct": 20,
+   "n_with_views": 271,
+   "n_errors": 91,
+   "n_correct": 180
+  }
+ },
+ "reading": "Neither holds: under transfer, as at Ai2's points and on the earlier testbeds, the views add nothing confidence does not carry"
+}
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu  41514 Oct 11 00:39 /scratch/qi_zim_neu/olmoearth_inferenceX/e101_out/exp101_summary.json
+-rw-r--r-- 1 qi_zim_neu qi_zim_neu 663181 Oct 11 00:39 /scratch/qi_zim_neu/olmoearth_inferenceX/e101_out/exp101_units.npz
+outputs: 1.2M	/scratch/qi_zim_neu/olmoearth_inferenceX/e101_out
+scratch: storage0001.nfs:/scratch  2.7P  296T  2.4P  11% /scratch
+== 2026-10-11T00:39:45-04:00 done ==

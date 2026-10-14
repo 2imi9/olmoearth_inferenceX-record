@@ -1,0 +1,821 @@
+{
+ "experiment": "exp38 NDWI-ambiguous first, then boundary, then confidence, at fixed budgets",
+ "config": {
+  "orders": [
+   "confidence",
+   "boundary, then confidence",
+   "NDWI-ambiguous, then boundary, then confidence",
+   "NDWI-ambiguous, then confidence"
+  ],
+  "ndwi_tol": 0.1,
+  "budgets": [
+   0.05,
+   0.1,
+   0.2
+  ],
+  "n_boot": 2000,
+  "seed": 1,
+  "primary": {
+   "order": "NDWI-ambiguous, then boundary, then confidence",
+   "against": "boundary, then confidence",
+   "budgets": [
+    0.05,
+    0.1
+   ]
+  },
+  "unit_rule": "units with 3 <= errors <= n - 3 (exp18)",
+  "inputs": [
+   "exp37_patches_bolivia.npz",
+   "exp37_patches_scenes.npz"
+  ]
+ },
+ "part_b": {
+  "exp36_consistency": {
+   "0.05": {
+    "recomputed": [
+     85,
+     31,
+     235
+    ],
+    "exp36": [
+     85,
+     31,
+     235
+    ],
+    "match": true
+   },
+   "0.1": {
+    "recomputed": [
+     112,
+     48,
+     191
+    ],
+    "exp36": [
+     112,
+     48,
+     191
+    ],
+    "match": true
+   }
+  },
+  "n_windows": 81984,
+  "n_tiles_with_valid_windows": 440,
+  "n_tiles_scored": 351,
+  "n_errors": 7248,
+  "tests": {
+   "NDWI-ambiguous, then boundary, then confidence vs boundary, then confidence": {
+    "per_tile": {
+     "0.05": {
+      "w": 151,
+      "l": 100,
+      "t": 100,
+      "sign_p": 0.000774094300059786,
+      "one_sided": true,
+      "median_gain": 0.0,
+      "mean_gain": 0.00615122261142682,
+      "n_units": 351
+     },
+     "0.1": {
+      "w": 146,
+      "l": 86,
+      "t": 119,
+      "sign_p": 4.940522149626327e-05,
+      "one_sided": true,
+      "median_gain": 0.0,
+      "mean_gain": 0.02654170751115671,
+      "n_units": 351
+     },
+     "0.2": {
+      "w": 119,
+      "l": 54,
+      "t": 178,
+      "sign_p": 8.574841261650031e-07,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.021152153916159107,
+      "n_units": 351
+     }
+    },
+    "pooled": {
+     "0.05": {
+      "pooled": 0.29194260485651213,
+      "pooled_against": 0.2735927152317881,
+      "gain": 0.01834988962472406,
+      "boot_lo": -0.0022489217719538625,
+      "boot_hi": 0.036962019866968385,
+      "p_better": 0.9575,
+      "n_boot": 2000
+     },
+     "0.1": {
+      "pooled": 0.48123620309050774,
+      "pooled_against": 0.4935154525386313,
+      "gain": -0.012279249448123586,
+      "boot_lo": -0.052728832202030944,
+      "boot_hi": 0.03337657550551299,
+      "p_better": 0.34,
+      "n_boot": 2000
+     },
+     "0.2": {
+      "pooled": 0.8312637969094923,
+      "pooled_against": 0.7319260485651214,
+      "gain": 0.09933774834437081,
+      "boot_lo": 0.07059563929823168,
+      "boot_hi": 0.13008610988397445,
+      "p_better": 1.0,
+      "n_boot": 2000
+     }
+    }
+   },
+   "NDWI-ambiguous, then boundary, then confidence vs confidence": {
+    "per_tile": {
+     "0.05": {
+      "w": 166,
+      "l": 81,
+      "t": 104,
+      "sign_p": 6.787405649959908e-08,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.031615626458001735,
+      "n_units": 351
+     },
+     "0.1": {
+      "w": 169,
+      "l": 74,
+      "t": 108,
+      "sign_p": 1.0119661966615582e-09,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.049667849299858145,
+      "n_units": 351
+     },
+     "0.2": {
+      "w": 155,
+      "l": 66,
+      "t": 130,
+      "sign_p": 1.9702382735808694e-09,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.0427916610193314,
+      "n_units": 351
+     }
+    },
+    "pooled": {
+     "0.05": {
+      "pooled": 0.29194260485651213,
+      "pooled_against": 0.2588300220750552,
+      "gain": 0.033112582781456956,
+      "boot_lo": 0.013617045591492615,
+      "boot_hi": 0.051649073954151,
+      "p_better": 0.9995,
+      "n_boot": 2000
+     },
+     "0.1": {
+      "pooled": 0.48123620309050774,
+      "pooled_against": 0.46495584988962474,
+      "gain": 0.016280353200883002,
+      "boot_lo": -0.021109708805004648,
+      "boot_hi": 0.05652832834087134,
+      "p_better": 0.8155,
+      "n_boot": 2000
+     },
+     "0.2": {
+      "pooled": 0.8312637969094923,
+      "pooled_against": 0.7493101545253863,
+      "gain": 0.08195364238410596,
+      "boot_lo": 0.05450863754753568,
+      "boot_hi": 0.10702461266212958,
+      "p_better": 1.0,
+      "n_boot": 2000
+     }
+    }
+   },
+   "NDWI-ambiguous, then confidence vs confidence": {
+    "per_tile": {
+     "0.05": {
+      "w": 156,
+      "l": 83,
+      "t": 112,
+      "sign_p": 2.7048495157129905e-06,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.02237911634251934,
+      "n_units": 351
+     },
+     "0.1": {
+      "w": 153,
+      "l": 76,
+      "t": 122,
+      "sign_p": 4.0126199654121903e-07,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.034028297458614944,
+      "n_units": 351
+     },
+     "0.2": {
+      "w": 129,
+      "l": 49,
+      "t": 173,
+      "sign_p": 1.7099316874665255e-09,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.03286291561998204,
+      "n_units": 351
+     }
+    },
+    "pooled": {
+     "0.05": {
+      "pooled": 0.29194260485651213,
+      "pooled_against": 0.2588300220750552,
+      "gain": 0.033112582781456956,
+      "boot_lo": 0.013617045591492615,
+      "boot_hi": 0.051649073954151,
+      "p_better": 0.9995,
+      "n_boot": 2000
+     },
+     "0.1": {
+      "pooled": 0.48123620309050774,
+      "pooled_against": 0.46495584988962474,
+      "gain": 0.016280353200883002,
+      "boot_lo": -0.021169691624551724,
+      "boot_hi": 0.05611282823967456,
+      "p_better": 0.811,
+      "n_boot": 2000
+     },
+     "0.2": {
+      "pooled": 0.8283664459161147,
+      "pooled_against": 0.7493101545253863,
+      "gain": 0.07905629139072845,
+      "boot_lo": 0.05642303978694217,
+      "boot_hi": 0.10227712877321014,
+      "p_better": 1.0,
+      "n_boot": 2000
+     }
+    }
+   },
+   "NDWI-ambiguous, then confidence vs boundary, then confidence": {
+    "per_tile": {
+     "0.05": {
+      "w": 151,
+      "l": 113,
+      "t": 87,
+      "sign_p": 0.022594616417307804,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": -0.0030852875040555724,
+      "n_units": 351
+     },
+     "0.1": {
+      "w": 141,
+      "l": 107,
+      "t": 103,
+      "sign_p": 0.03591374601642224,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.010902155669913493,
+      "n_units": 351
+     },
+     "0.2": {
+      "w": 132,
+      "l": 90,
+      "t": 129,
+      "sign_p": 0.0058047689292105775,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.011223408516809752,
+      "n_units": 351
+     }
+    },
+    "pooled": {
+     "0.05": {
+      "pooled": 0.29194260485651213,
+      "pooled_against": 0.2735927152317881,
+      "gain": 0.01834988962472406,
+      "boot_lo": -0.0022489217719538625,
+      "boot_hi": 0.036962019866968385,
+      "p_better": 0.9575,
+      "n_boot": 2000
+     },
+     "0.1": {
+      "pooled": 0.48123620309050774,
+      "pooled_against": 0.4935154525386313,
+      "gain": -0.012279249448123586,
+      "boot_lo": -0.05320698486391018,
+      "boot_hi": 0.033307475248917834,
+      "p_better": 0.336,
+      "n_boot": 2000
+     },
+     "0.2": {
+      "pooled": 0.8283664459161147,
+      "pooled_against": 0.7319260485651214,
+      "gain": 0.0964403973509933,
+      "boot_lo": 0.060473938913308774,
+      "boot_hi": 0.13458969499294773,
+      "p_better": 1.0,
+      "n_boot": 2000
+     }
+    }
+   },
+   "boundary, then confidence vs confidence": {
+    "per_tile": {
+     "0.05": {
+      "w": 85,
+      "l": 31,
+      "t": 235,
+      "sign_p": 5.444609183150127e-07,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.025464403846574914,
+      "n_units": 351
+     },
+     "0.1": {
+      "w": 112,
+      "l": 48,
+      "t": 191,
+      "sign_p": 4.5091152205446016e-07,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.023126141788701447,
+      "n_units": 351
+     },
+     "0.2": {
+      "w": 121,
+      "l": 77,
+      "t": 153,
+      "sign_p": 0.00216374338612457,
+      "one_sided": false,
+      "median_gain": 0.0,
+      "mean_gain": 0.021639507103172285,
+      "n_units": 351
+     }
+    },
+    "pooled": {
+     "0.05": {
+      "pooled": 0.2735927152317881,
+      "pooled_against": 0.2588300220750552,
+      "gain": 0.014762693156732898,
+      "boot_lo": 0.009078398050857561,
+      "boot_hi": 0.02077115244050438,
+      "p_better": 1.0,
+      "n_boot": 2000
+     },
+     "0.1": {
+      "pooled": 0.4935154525386313,
+      "pooled_against": 0.46495584988962474,
+      "gain": 0.028559602649006588,
+      "boot_lo": 0.014942736053322726,
+      "boot_hi": 0.03978078762816019,
+      "p_better": 1.0,
+      "n_boot": 2000
+     },
+     "0.2": {
+      "pooled": 0.7319260485651214,
+      "pooled_against": 0.7493101545253863,
+      "gain": -0.01738410596026485,
+      "boot_lo": -0.05329279867319068,
+      "boot_hi": 0.014674782310845541,
+      "p_better": 0.142,
+      "n_boot": 2000
+     }
+    }
+   }
+  },
+  "prereg": {
+   "0.05": {
+    "per_tile": {
+     "w": 151,
+     "l": 100,
+     "t": 100,
+     "sign_p": 0.000774094300059786,
+     "one_sided": true,
+     "median_gain": 0.0,
+     "mean_gain": 0.00615122261142682,
+     "n_units": 351
+    },
+    "pooled": {
+     "pooled": 0.29194260485651213,
+     "pooled_against": 0.2735927152317881,
+     "gain": 0.01834988962472406,
+     "boot_lo": -0.0022489217719538625,
+     "boot_hi": 0.036962019866968385,
+     "p_better": 0.9575,
+     "n_boot": 2000
+    }
+   },
+   "0.1": {
+    "per_tile": {
+     "w": 146,
+     "l": 86,
+     "t": 119,
+     "sign_p": 4.940522149626327e-05,
+     "one_sided": true,
+     "median_gain": 0.0,
+     "mean_gain": 0.02654170751115671,
+     "n_units": 351
+    },
+    "pooled": {
+     "pooled": 0.48123620309050774,
+     "pooled_against": 0.4935154525386313,
+     "gain": -0.012279249448123586,
+     "boot_lo": -0.052728832202030944,
+     "boot_hi": 0.03337657550551299,
+     "p_better": 0.34,
+     "n_boot": 2000
+    }
+   }
+  },
+  "median_capture": {
+   "confidence": {
+    "0.05": 0.26666666666666666,
+    "0.1": 0.5,
+    "0.2": 0.7777777777777778
+   },
+   "boundary, then confidence": {
+    "0.05": 0.2857142857142857,
+    "0.1": 0.5333333333333333,
+    "0.2": 0.8333333333333334
+   },
+   "NDWI-ambiguous, then boundary, then confidence": {
+    "0.05": 0.2857142857142857,
+    "0.1": 0.5555555555555556,
+    "0.2": 0.8888888888888888
+   },
+   "NDWI-ambiguous, then confidence": {
+    "0.05": 0.2857142857142857,
+    "0.1": 0.5555555555555556,
+    "0.2": 0.8571428571428571
+   }
+  }
+ },
+ "part_a": {
+  "n_windows": 27648,
+  "n_scenes_scored": 27,
+  "n_errors": 1844,
+  "river_votes": {
+   "NDWI-ambiguous, then boundary, then confidence vs boundary, then confidence": {
+    "0.05": {
+     "w": 2,
+     "l": 6,
+     "t": 0,
+     "one_sided_p": 0.96484375,
+     "per_river": {
+      "Zambezi": -0.2260971275279493,
+      "Cuando": -0.014567302330768398,
+      "Kafue": -0.13998538011695907,
+      "Luangwa": -0.38461538461538464,
+      "Okavango": -0.026133040935672525,
+      "Rovuma": -0.22287672287672286,
+      "Save": 0.11049580472921428,
+      "Shire": 0.13636288516031891
+     },
+     "n_rivers": 8
+    },
+    "0.1": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "one_sided_p": 0.85546875,
+     "per_river": {
+      "Zambezi": -0.24907754563237447,
+      "Cuando": 0.05332050853128134,
+      "Kafue": -0.17034975258659468,
+      "Luangwa": -0.5961538461538461,
+      "Okavango": 0.06889619883040936,
+      "Rovuma": -0.31847231847231844,
+      "Save": -0.004385964912280697,
+      "Shire": 0.148382019547802
+     },
+     "n_rivers": 8
+    },
+    "0.2": {
+     "w": 3,
+     "l": 4,
+     "t": 1,
+     "one_sided_p": 0.7734375,
+     "per_river": {
+      "Zambezi": -0.15155347853427084,
+      "Cuando": 0.0282982045277127,
+      "Kafue": -0.051506972559604125,
+      "Luangwa": -0.09615384615384615,
+      "Okavango": 0.04897660818713451,
+      "Rovuma": -0.00046200046200043737,
+      "Save": 0.0,
+      "Shire": 0.21836192059381826
+     },
+     "n_rivers": 8
+    }
+   },
+   "NDWI-ambiguous, then boundary, then confidence vs confidence": {
+    "0.05": {
+     "w": 4,
+     "l": 4,
+     "t": 0,
+     "one_sided_p": 0.63671875,
+     "per_river": {
+      "Zambezi": -0.13532273039181086,
+      "Cuando": 0.005840860934537728,
+      "Kafue": -0.06955690508322086,
+      "Luangwa": -0.3269230769230769,
+      "Okavango": 0.10877755285650025,
+      "Rovuma": -0.21575421575421574,
+      "Save": 0.33078565980167807,
+      "Shire": 0.20750661800167886
+     },
+     "n_rivers": 8
+    },
+    "0.1": {
+     "w": 4,
+     "l": 4,
+     "t": 0,
+     "one_sided_p": 0.63671875,
+     "per_river": {
+      "Zambezi": -0.13970445286034616,
+      "Cuando": 0.11632467194528084,
+      "Kafue": -0.02690620782726048,
+      "Luangwa": -0.46153846153846156,
+      "Okavango": 0.14972728295096713,
+      "Rovuma": -0.2686147686147686,
+      "Save": 0.40952707856598014,
+      "Shire": 0.2143801903822733
+     },
+     "n_rivers": 8
+    },
+    "0.2": {
+     "w": 6,
+     "l": 1,
+     "t": 1,
+     "one_sided_p": 0.0625,
+     "per_river": {
+      "Zambezi": -0.014006757368775689,
+      "Cuando": 0.07708356566670378,
+      "Kafue": 0.1895242914979757,
+      "Luangwa": 0.0,
+      "Okavango": 0.20193713450292397,
+      "Rovuma": 0.02471702471702471,
+      "Save": 0.2728909229595728,
+      "Shire": 0.27783369290625826
+     },
+     "n_rivers": 8
+    }
+   },
+   "NDWI-ambiguous, then confidence vs confidence": {
+    "0.05": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "one_sided_p": 0.85546875,
+     "per_river": {
+      "Zambezi": -0.189660721745988,
+      "Cuando": -0.013229062116649945,
+      "Kafue": -0.11816801619433198,
+      "Luangwa": -0.3269230769230769,
+      "Okavango": 0.006213450292397671,
+      "Rovuma": -0.21575421575421574,
+      "Save": 0.15488176964149505,
+      "Shire": 0.14868308858991416
+     },
+     "n_rivers": 8
+    },
+    "0.1": {
+     "w": 4,
+     "l": 4,
+     "t": 0,
+     "one_sided_p": 0.63671875,
+     "per_river": {
+      "Zambezi": -0.22002697071561744,
+      "Cuando": 0.06955596446228762,
+      "Kafue": -0.08940620782726048,
+      "Luangwa": -0.46153846153846156,
+      "Okavango": 0.12061403508771928,
+      "Rovuma": -0.2686147686147686,
+      "Save": 0.15372234935163995,
+      "Shire": 0.17277330372517144
+     },
+     "n_rivers": 8
+    },
+    "0.2": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "one_sided_p": 0.14453125,
+     "per_river": {
+      "Zambezi": -0.1144514071568606,
+      "Cuando": 0.06291123006579676,
+      "Kafue": 0.012736167341430535,
+      "Luangwa": -0.038461538461538436,
+      "Okavango": 0.1257309941520468,
+      "Rovuma": 0.023061523061523093,
+      "Save": 0.14575896262395113,
+      "Shire": 0.2418743409205511
+     },
+     "n_rivers": 8
+    }
+   },
+   "boundary, then confidence vs confidence": {
+    "0.05": {
+     "w": 8,
+     "l": 0,
+     "t": 0,
+     "one_sided_p": 0.00390625,
+     "per_river": {
+      "Zambezi": 0.09077439713613845,
+      "Cuando": 0.020408163265306128,
+      "Kafue": 0.07042847503373821,
+      "Luangwa": 0.05769230769230771,
+      "Okavango": 0.13491059379217277,
+      "Rovuma": 0.007122507122507116,
+      "Save": 0.2202898550724638,
+      "Shire": 0.07114373284135994
+     },
+     "n_rivers": 8
+    },
+    "0.1": {
+     "w": 8,
+     "l": 0,
+     "t": 0,
+     "one_sided_p": 0.00390625,
+     "per_river": {
+      "Zambezi": 0.1093730927720283,
+      "Cuando": 0.0630041634139995,
+      "Kafue": 0.1434435447593342,
+      "Luangwa": 0.13461538461538458,
+      "Okavango": 0.08083108412055778,
+      "Rovuma": 0.049857549857549865,
+      "Save": 0.4139130434782608,
+      "Shire": 0.06599817083447132
+     },
+     "n_rivers": 8
+    },
+    "0.2": {
+     "w": 8,
+     "l": 0,
+     "t": 0,
+     "one_sided_p": 0.00390625,
+     "per_river": {
+      "Zambezi": 0.13754672116549516,
+      "Cuando": 0.04878536113899109,
+      "Kafue": 0.24103126405757982,
+      "Luangwa": 0.09615384615384615,
+      "Okavango": 0.15296052631578946,
+      "Rovuma": 0.02517902517902515,
+      "Save": 0.2728909229595728,
+      "Shire": 0.05947177231244
+     },
+     "n_rivers": 8
+    }
+   }
+  },
+  "per_scene": {
+   "NDWI-ambiguous, then boundary, then confidence vs boundary, then confidence": {
+    "0.05": {
+     "w": 9,
+     "l": 16,
+     "t": 2,
+     "sign_p": 0.2295229434967041,
+     "one_sided": false,
+     "median_gain": -0.048780487804878064,
+     "mean_gain": -0.08522383930601778,
+     "n_units": 27
+    },
+    "0.1": {
+     "w": 10,
+     "l": 12,
+     "t": 5,
+     "sign_p": 0.8318119049072266,
+     "one_sided": false,
+     "median_gain": 0.0,
+     "mean_gain": -0.10589416937843588,
+     "n_units": 27
+    },
+    "0.2": {
+     "w": 9,
+     "l": 7,
+     "t": 11,
+     "sign_p": 0.803619384765625,
+     "one_sided": false,
+     "median_gain": 0.0,
+     "mean_gain": -0.007691222016249672,
+     "n_units": 27
+    }
+   },
+   "NDWI-ambiguous, then boundary, then confidence vs confidence": {
+    "0.05": {
+     "w": 13,
+     "l": 14,
+     "t": 0,
+     "sign_p": 1.0,
+     "one_sided": false,
+     "median_gain": -0.008130081300813025,
+     "mean_gain": 0.0013378940965481727,
+     "n_units": 27
+    },
+    "0.1": {
+     "w": 15,
+     "l": 12,
+     "t": 0,
+     "sign_p": 0.7011080384254456,
+     "one_sided": false,
+     "median_gain": 0.06122448979591838,
+     "mean_gain": 0.020675011149215022,
+     "n_units": 27
+    },
+    "0.2": {
+     "w": 16,
+     "l": 7,
+     "t": 4,
+     "sign_p": 0.0931396484375,
+     "one_sided": false,
+     "median_gain": 0.11224489795918369,
+     "mean_gain": 0.12265726992874838,
+     "n_units": 27
+    }
+   },
+   "NDWI-ambiguous, then confidence vs confidence": {
+    "0.05": {
+     "w": 11,
+     "l": 15,
+     "t": 1,
+     "sign_p": 0.557197093963623,
+     "one_sided": false,
+     "median_gain": -0.010204081632653073,
+     "mean_gain": -0.05992533322886114,
+     "n_units": 27
+    },
+    "0.1": {
+     "w": 12,
+     "l": 14,
+     "t": 1,
+     "sign_p": 0.8450189828872681,
+     "one_sided": false,
+     "median_gain": -0.010204081632653073,
+     "mean_gain": -0.050111849046972017,
+     "n_units": 27
+    },
+    "0.2": {
+     "w": 16,
+     "l": 9,
+     "t": 2,
+     "sign_p": 0.2295229434967041,
+     "one_sided": false,
+     "median_gain": 0.02564102564102566,
+     "mean_gain": 0.04586935580951432,
+     "n_units": 27
+    }
+   },
+   "boundary, then confidence vs confidence": {
+    "0.05": {
+     "w": 22,
+     "l": 1,
+     "t": 4,
+     "sign_p": 5.7220458984375e-06,
+     "one_sided": false,
+     "median_gain": 0.05263157894736842,
+     "mean_gain": 0.08656173340256595,
+     "n_units": 27
+    },
+    "0.1": {
+     "w": 21,
+     "l": 3,
+     "t": 3,
+     "sign_p": 0.0002771615982055664,
+     "one_sided": false,
+     "median_gain": 0.0641025641025641,
+     "mean_gain": 0.12656918052765093,
+     "n_units": 27
+    },
+    "0.2": {
+     "w": 19,
+     "l": 4,
+     "t": 4,
+     "sign_p": 0.002599477767944336,
+     "one_sided": false,
+     "median_gain": 0.06557377049180324,
+     "mean_gain": 0.13034849194499804,
+     "n_units": 27
+    }
+   }
+  },
+  "median_capture": {
+   "confidence": {
+    "0.05": 0.32432432432432434,
+    "0.1": 0.47058823529411764,
+    "0.2": 0.717948717948718
+   },
+   "boundary, then confidence": {
+    "0.05": 0.47368421052631576,
+    "0.1": 0.6885245901639344,
+    "0.2": 0.8888888888888888
+   },
+   "NDWI-ambiguous, then boundary, then confidence": {
+    "0.05": 0.24489795918367346,
+    "0.1": 0.4375,
+    "0.2": 0.8888888888888888
+   },
+   "NDWI-ambiguous, then confidence": {
+    "0.05": 0.23404255319148937,
+    "0.1": 0.4270833333333333,
+    "0.2": 0.7391304347826086
+   }
+  }
+ },
+ "runtime_s": 340.41495990753174
+}

@@ -1,0 +1,17 @@
+{
+ "roots": [
+  {
+   "root_id": "root_0",
+   "windows": 4,
+   "parts": [
+    {
+     "windows": 4,
+     "grid_gib": 0.17
+    }
+   ]
+  }
+ ],
+ "part_limit_gib": 3.0,
+ "parts_read": 1,
+ "pilot": true
+}

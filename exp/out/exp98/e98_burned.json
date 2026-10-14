@@ -1,0 +1,978 @@
+{
+ "stage": "exp98 burned area (exp/exp98_burned.py, exp/jobs/e98_burned.sh)",
+ "pilot": false,
+ "commit": "7417425d9501568c2a38b5a9ae39dd0013842b62",
+ "utc": "2026-10-09T06:18:52Z",
+ "rule": "Per 500 m MODIS cell, over the months of MCD64A1 v061 read for the year: 1 = a burn date (1-366) in any month read; 0 = unburned land (0) in every month read; -1 = no burn date and, in at least one month read, water (-2), unmapped for lack of data (-1), or no tile over the cell. Each 10 m pixel takes the code of the MODIS cell that holds its centre (nearest neighbour, every pixel transformed exactly). A MODIS cell is about 463 m on a side, about 2,150 pixels of 10 m and 134 windows of 40 m, so the code says whether the cell around a pixel burned, not whether the pixel did.",
+ "code_2": "No code 2 (burned before a Sentinel-2 timestep the model read): each of the model's 12 timesteps is a mosaic of a 30-day period built per pixel from several scenes ordered by cloud cover, so the scene date at a pixel is not in the item groups' time ranges; and every burn before the last period is followed by later periods, so the code would hold nearly every burned pixel.",
+ "parts": [
+  {
+   "part": "r00_p00",
+   "grid": "32737",
+   "pixels": 58720256,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 361504,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 32864,
+     "2023-02": 32864,
+     "2023-03": 32864,
+     "2023-04": 32864,
+     "2023-05": 32864,
+     "2023-06": 32864,
+     "2023-07": 32864,
+     "2023-08": 32864,
+     "2023-10": 32864,
+     "2023-11": 32864,
+     "2023-12": 32864
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 58720256,
+   "pixels_covered_by_code": {
+    "-1": 1347424,
+    "0": 57372832,
+    "1": 0
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.02294649396623884,
+    "0": 0.9770535060337612,
+    "1": 0.0
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 0,
+    "unmapped_in_a_month_read": 1347424,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.295666806198446,
+   "shortened_mapping_period_share": 0.032968384878976006,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p01",
+   "grid": "32737",
+   "pixels": 68157440,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 404250,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 36750,
+     "2023-02": 36750,
+     "2023-03": 36750,
+     "2023-04": 36750,
+     "2023-05": 36750,
+     "2023-06": 36750,
+     "2023-07": 36750,
+     "2023-08": 36750,
+     "2023-10": 36750,
+     "2023-11": 36750,
+     "2023-12": 36750
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 17825792,
+   "pixels_covered_by_code": {
+    "-1": 27707,
+    "0": 17792082,
+    "1": 6003
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.0015543208402745863,
+    "0": 0.9981089199290556,
+    "1": 0.000336759230669807
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 0,
+    "unmapped_in_a_month_read": 27707,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.34707393996947633,
+   "shortened_mapping_period_share": 0.026972321903004366,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.000336759230669807,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p02",
+   "grid": "32737",
+   "pixels": 58720256,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 362648,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 32968,
+     "2023-02": 32968,
+     "2023-03": 32968,
+     "2023-04": 32968,
+     "2023-05": 32968,
+     "2023-06": 32968,
+     "2023-07": 32968,
+     "2023-08": 32968,
+     "2023-10": 32968,
+     "2023-11": 32968,
+     "2023-12": 32968
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 58720256,
+   "pixels_covered_by_code": {
+    "-1": 10151271,
+    "0": 48498255,
+    "1": 70730
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.17287511484963552,
+    "0": 0.8259203604289463,
+    "1": 0.0012045247214181082
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 0,
+    "unmapped_in_a_month_read": 10151271,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.43216649753687014,
+   "shortened_mapping_period_share": 0.14847488062722342,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0011681829180036271,
+    "2023-02": 0.0,
+    "2023-03": 3.6341803414481024e-05,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p03",
+   "grid": "32737",
+   "pixels": 68157440,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 407484,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 37044,
+     "2023-02": 37044,
+     "2023-03": 37044,
+     "2023-04": 37044,
+     "2023-05": 37044,
+     "2023-06": 37044,
+     "2023-07": 37044,
+     "2023-08": 37044,
+     "2023-10": 37044,
+     "2023-11": 37044,
+     "2023-12": 37044
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 18874368,
+   "pixels_covered_by_code": {
+    "-1": 5316496,
+    "0": 13557872,
+    "1": 0
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.28167809380425346,
+    "0": 0.7183219061957465,
+    "1": 0.0
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 0,
+    "unmapped_in_a_month_read": 5316496,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.4418343822688398,
+   "shortened_mapping_period_share": 0.24731339348687065,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p04",
+   "grid": "32737",
+   "pixels": 69206016,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 401500,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 36500,
+     "2023-02": 36500,
+     "2023-03": 36500,
+     "2023-04": 36500,
+     "2023-05": 36500,
+     "2023-06": 36500,
+     "2023-07": 36500,
+     "2023-08": 36500,
+     "2023-10": 36500,
+     "2023-11": 36500,
+     "2023-12": 36500
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 14680064,
+   "pixels_covered_by_code": {
+    "-1": 1029697,
+    "0": 13650367,
+    "1": 0
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.0701425416128976,
+    "0": 0.9298574583871024,
+    "1": 0.0
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 0,
+    "unmapped_in_a_month_read": 1029697,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.3656876771152014,
+   "shortened_mapping_period_share": 0.18331616265433176,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p05",
+   "grid": "32737",
+   "pixels": 58720256,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 362648,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 32968,
+     "2023-02": 32968,
+     "2023-03": 32968,
+     "2023-04": 32968,
+     "2023-05": 32968,
+     "2023-06": 32968,
+     "2023-07": 32968,
+     "2023-08": 32968,
+     "2023-10": 32968,
+     "2023-11": 32968,
+     "2023-12": 32968
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 48234496,
+   "pixels_covered_by_code": {
+    "-1": 159782,
+    "0": 48074714,
+    "1": 0
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.0033126084700874662,
+    "0": 0.9966873915299125,
+    "1": 0.0
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 9926,
+    "unmapped_in_a_month_read": 149856,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.16161874618744482,
+   "shortened_mapping_period_share": 0.02060415433800739,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p06",
+   "grid": "32737",
+   "pixels": 58720256,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 362648,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 32968,
+     "2023-02": 32968,
+     "2023-03": 32968,
+     "2023-04": 32968,
+     "2023-05": 32968,
+     "2023-06": 32968,
+     "2023-07": 32968,
+     "2023-08": 32968,
+     "2023-10": 32968,
+     "2023-11": 32968,
+     "2023-12": 32968
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 17825792,
+   "pixels_covered_by_code": {
+    "-1": 0,
+    "0": 17825792,
+    "1": 0
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.0,
+    "0": 1.0,
+    "1": 0.0
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 0,
+    "unmapped_in_a_month_read": 0,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.16991705052992878,
+   "shortened_mapping_period_share": 0.0035413293277516086,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p07",
+   "grid": "32737",
+   "pixels": 44040192,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 285032,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 25912,
+     "2023-02": 25912,
+     "2023-03": 25912,
+     "2023-04": 25912,
+     "2023-05": 25912,
+     "2023-06": 25912,
+     "2023-07": 25912,
+     "2023-08": 25912,
+     "2023-10": 25912,
+     "2023-11": 25912,
+     "2023-12": 25912
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 30408704,
+   "pixels_covered_by_code": {
+    "-1": 2128,
+    "0": 30406576,
+    "1": 0
+   },
+   "share_of_covered_by_code": {
+    "-1": 6.997996363146552e-05,
+    "0": 0.9999300200363685,
+    "1": 0.0
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 2128,
+    "unmapped_in_a_month_read": 0,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.16974403826330198,
+   "shortened_mapping_period_share": 0.00018846577611462823,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p08",
+   "grid": "32737",
+   "pixels": 29360128,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 208560,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 18960,
+     "2023-02": 18960,
+     "2023-03": 18960,
+     "2023-04": 18960,
+     "2023-05": 18960,
+     "2023-06": 18960,
+     "2023-07": 18960,
+     "2023-08": 18960,
+     "2023-10": 18960,
+     "2023-11": 18960,
+     "2023-12": 18960
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 15728640,
+   "pixels_covered_by_code": {
+    "-1": 2128,
+    "0": 15726512,
+    "1": 0
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.00013529459635416667,
+    "0": 0.9998647054036458,
+    "1": 0.0
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 2128,
+    "unmapped_in_a_month_read": 0,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.143175358909846,
+   "shortened_mapping_period_share": 0.0003643671671549479,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p09",
+   "grid": "32737",
+   "pixels": 1048576,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 8316,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 756,
+     "2023-02": 756,
+     "2023-03": 756,
+     "2023-04": 756,
+     "2023-05": 756,
+     "2023-06": 756,
+     "2023-07": 756,
+     "2023-08": 756,
+     "2023-10": 756,
+     "2023-11": 756,
+     "2023-12": 756
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 1048576,
+   "pixels_covered_by_code": {
+    "-1": 0,
+    "0": 1048576,
+    "1": 0
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.0,
+    "0": 1.0,
+    "1": 0.0
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 0,
+    "unmapped_in_a_month_read": 0,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.02595996856689453,
+   "shortened_mapping_period_share": 0.0,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  },
+  {
+   "part": "r00_p10",
+   "grid": "32737",
+   "pixels": 1048576,
+   "months_read": [
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-10",
+    "2023-11",
+    "2023-12"
+   ],
+   "months_missing": [
+    "2023-09"
+   ],
+   "months_from_files": [],
+   "stac_items": {
+    "items_seen": 11,
+    "items_kept": 11,
+    "duplicates_dropped": 0,
+    "skipped": {}
+   },
+   "qa_check": {
+    "cells_read": 8316,
+    "water_qa_disagree": 0,
+    "unmapped_qa_disagree": 0,
+    "mapped_without_valid_bit": 0,
+    "burn_dates_outside_month": 0,
+    "cells_per_month": {
+     "2023-01": 756,
+     "2023-02": 756,
+     "2023-03": 756,
+     "2023-04": 756,
+     "2023-05": 756,
+     "2023-06": 756,
+     "2023-07": 756,
+     "2023-08": 756,
+     "2023-10": 756,
+     "2023-11": 756,
+     "2023-12": 756
+    },
+    "qa_agrees": true,
+    "tiles_read": 1
+   },
+   "pixels_covered": 1048576,
+   "pixels_covered_by_code": {
+    "-1": 0,
+    "0": 1048576,
+    "1": 0
+   },
+   "share_of_covered_by_code": {
+    "-1": 0.0,
+    "0": 1.0,
+    "1": 0.0
+   },
+   "unrecorded_why": {
+    "no_tile_in_a_month_read": 0,
+    "water_in_a_month_read": 0,
+    "unmapped_in_a_month_read": 0,
+    "note": "pixels of code -1 with each reason; a pixel can have more than one"
+   },
+   "not_burned_with_special_condition_share": 0.02595996856689453,
+   "shortened_mapping_period_share": 0.0,
+   "burn_date_outside_its_month_pixels": 0,
+   "burned_share_by_month": {
+    "2023-01": 0.0,
+    "2023-02": 0.0,
+    "2023-03": 0.0,
+    "2023-04": 0.0,
+    "2023-05": 0.0,
+    "2023-06": 0.0,
+    "2023-07": 0.0,
+    "2023-08": 0.0,
+    "2023-09": null,
+    "2023-10": 0.0,
+    "2023-11": 0.0,
+    "2023-12": 0.0
+   },
+   "burned_in_two_or_more_months_share": 0.0
+  }
+ ],
+ "names": {
+  "0": "mcd64a1:no-burn-2023:sep-not-read",
+  "1": "mcd64a1:burned-2023"
+ },
+ "condition_names": "--condition-names 0=mcd64a1:no-burn-2023:sep-not-read 1=mcd64a1:burned-2023",
+ "source": {
+  "collection": "modis-64A1-061",
+  "stac_api": "https://planetarycomputer.microsoft.com/api/stac/v1",
+  "assets": [
+   "Burn_Date",
+   "QA"
+  ],
+  "product": "MCD64A1 v061",
+  "year": 2023,
+  "months_missing": [
+   "2023-09"
+  ],
+  "months_from_files": [],
+  "planetary_computer_gap": "on 2026-10-08 Planetary Computer held no September 2023 item of this collection anywhere (268 items in August and October 2023); NASA's CMR lists the September granules",
+  "citation": "Giglio, L., Justice, C., Boschetti, L., Roy, D. (2021). MODIS/Terra+Aqua Burned Area Monthly L3 Global 500m SIN Grid V061. NASA EOSDIS Land Processes DAAC. doi:10.5067/MODIS/MCD64A1.061",
+  "licence": "NASA Earthdata data use guidance (the target of the collection's licence link): data from a NASA-led mission are CC0 unless marked otherwise; a citation is requested; no implied NASA endorsement",
+  "accuracy": "MCD64 C6.1 user guide section 7: global omission 72.6%, commission 40.2% against Landsat 8 pairs, the omission mostly small burns; cropland burns low confidence"
+ },
+ "totals": {
+  "pixels_covered": 283115520,
+  "share_of_covered_by_code": {
+   "-1": 0.06370768017239041,
+   "0": 0.936021289119014,
+   "1": 0.00027103070859555844
+  },
+  "note": "pixel-weighted over the parts; a pixel covered in two overlapping parts counts in each"
+ },
+ "seconds": 466.6
+}

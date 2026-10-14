@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use the recorded results, please cite the technical report."
+title: "olmoearth_inferenceX research record"
+type: software
+authors:
+  - family-names: Qi
+    given-names: Ziming
+date-released: 2026-10-14
+license: Apache-2.0
+repository-code: "https://github.com/2imi9/olmoearth_inferenceX-record"
+abstract: >-
+  The experiments, committed artifacts, claim ledger and technical report behind olmoearth-inferencex 1.12.1. The
+  methods are evaluated on the 24 tasks of Ai2's published embedding suite across 16 encoders; each recorded result is
+  linked to a committed artifact and re-checked against it by the test suite.
+preferred-citation:
+  type: report
+  title: "olmoearth_inferenceX: confidence-based review, comparison and accuracy estimation for Earth-observation classification maps"
+  authors:
+    - family-names: Qi
+      given-names: Ziming
+  url: "https://github.com/2imi9/olmoearth_inferenceX-record/blob/main/report/main.pdf"
+references:
+  - type: software
+    title: "olmoearth_inferenceX"
+    authors:
+      - family-names: Qi
+        given-names: Ziming
+    version: 1.12.1
+    repository-code: "https://github.com/2imi9/olmoearth_inferenceX"
+    url: "https://olmoearth-inferencex.readthedocs.io"

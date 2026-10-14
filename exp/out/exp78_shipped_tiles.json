@@ -1,0 +1,247 @@
+{
+ "experiment": "exp78 follow-up: the shipped tiles design graded on exp78's per-unit files",
+ "config": {
+  "budget": 300,
+  "per_tile": 16,
+  "draws": 4000,
+  "seeds": "0 to 3999",
+  "design": "sample_for_estimation(design='tiles'), tiles in a random order until the budget is met",
+  "interval": "estimate_error_rate: ratio estimator over tiles, ultimate-cluster variance, t quantile",
+  "package_version": "1.3.1",
+  "estimate_py_sha256": "e140c30eedc5b5418a1cfab8175e4d02cd0d0910bae7a6fe1ea603f40454e388",
+  "units": "exp/out/exp78_units (OlmoEarth Base, exp70's probes, seed 0)"
+ },
+ "tasks": {
+  "mados": {
+   "n_units": 22598,
+   "error_rate": 0.07359058323745464,
+   "tiles": {
+    "n": 841,
+    "valid_windows_min": 1,
+    "valid_windows_median": 6.0,
+    "valid_windows_max": 400,
+    "share_under_per_tile": 0.7300832342449465,
+    "share_with_no_error": 0.7598097502972652,
+    "share_of_errors_in_top_tenth_of_tiles": 0.9067949488875526
+   },
+   "shipped": {
+    "coverage": 0.68475,
+    "covered": 2739,
+    "draws": 4000,
+    "mc_standard_error": 0.007346213948354621,
+    "mean_half_width": 0.08175574857922094,
+    "mean_estimate_over_truth": 1.0355568701889442,
+    "tiles_used_median": 39.0,
+    "tiles_used_min": 27,
+    "tiles_used_max": 60,
+    "labels_min": 300,
+    "labels_max": 300
+   },
+   "seconds": 3.6,
+   "exp78_recorded": {
+    "D4/E1_cluster": 0.598,
+    "D4/E2_naive": 0.5065,
+    "tiles": 18,
+    "draws": 2000
+   }
+  },
+  "sen1floods11": {
+   "n_units": 592385,
+   "error_rate": 0.0845109177308676,
+   "tiles": {
+    "n": 2419,
+    "valid_windows_min": 1,
+    "valid_windows_median": 256.0,
+    "valid_windows_max": 256,
+    "share_under_per_tile": 0.00413393964448119,
+    "share_with_no_error": 0.20463001240181894,
+    "share_of_errors_in_top_tenth_of_tiles": 0.5558596168827278
+   },
+   "shipped": {
+    "coverage": 0.843,
+    "covered": 3372,
+    "draws": 4000,
+    "mc_standard_error": 0.00575219523312622,
+    "mean_half_width": 0.07106429288169751,
+    "mean_estimate_over_truth": 0.9943011715437001,
+    "tiles_used_median": 19.0,
+    "tiles_used_min": 19,
+    "tiles_used_max": 21,
+    "labels_min": 300,
+    "labels_max": 300
+   },
+   "seconds": 21.9,
+   "exp78_recorded": {
+    "D4/E1_cluster": 0.824,
+    "D4/E2_naive": 0.5785,
+    "tiles": 18,
+    "draws": 2000
+   }
+  },
+  "pastis_sentinel1": {
+   "n_units": 458638,
+   "error_rate": 0.2842895704237329,
+   "tiles": {
+    "n": 1984,
+    "valid_windows_min": 5,
+    "valid_windows_median": 241.0,
+    "valid_windows_max": 256,
+    "share_under_per_tile": 0.0005040322580645161,
+    "share_with_no_error": 0.015625,
+    "share_of_errors_in_top_tenth_of_tiles": 0.2106821284493734
+   },
+   "shipped": {
+    "coverage": 0.94875,
+    "covered": 3795,
+    "draws": 4000,
+    "mc_standard_error": 0.0034865254014562986,
+    "mean_half_width": 0.09238936727352749,
+    "mean_estimate_over_truth": 1.0020815632558664,
+    "tiles_used_median": 19.0,
+    "tiles_used_min": 19,
+    "tiles_used_max": 20,
+    "labels_min": 300,
+    "labels_max": 300
+   },
+   "seconds": 17.5,
+   "exp78_recorded": {
+    "D4/E1_cluster": 0.9185,
+    "D4/E2_naive": 0.741,
+    "tiles": 18,
+    "draws": 2000
+   }
+  },
+  "pastis_sentinel2": {
+   "n_units": 458638,
+   "error_rate": 0.1900562099084681,
+   "tiles": {
+    "n": 1984,
+    "valid_windows_min": 5,
+    "valid_windows_median": 241.0,
+    "valid_windows_max": 256,
+    "share_under_per_tile": 0.0005040322580645161,
+    "share_with_no_error": 0.015625,
+    "share_of_errors_in_top_tenth_of_tiles": 0.25079445202886413
+   },
+   "shipped": {
+    "coverage": 0.94525,
+    "covered": 3781,
+    "draws": 4000,
+    "mc_standard_error": 0.0035969583504677936,
+    "mean_half_width": 0.0764759811216908,
+    "mean_estimate_over_truth": 1.0031634258710456,
+    "tiles_used_median": 19.0,
+    "tiles_used_min": 19,
+    "tiles_used_max": 20,
+    "labels_min": 300,
+    "labels_max": 300
+   },
+   "seconds": 17.5,
+   "exp78_recorded": {
+    "D4/E1_cluster": 0.917,
+    "D4/E2_naive": 0.7595,
+    "tiles": 18,
+    "draws": 2000
+   }
+  },
+  "pastis_sentinel1_sentinel2": {
+   "n_units": 458638,
+   "error_rate": 0.19483993912410225,
+   "tiles": {
+    "n": 1984,
+    "valid_windows_min": 5,
+    "valid_windows_median": 241.0,
+    "valid_windows_max": 256,
+    "share_under_per_tile": 0.0005040322580645161,
+    "share_with_no_error": 0.01663306451612903,
+    "share_of_errors_in_top_tenth_of_tiles": 0.24765837445865646
+   },
+   "shipped": {
+    "coverage": 0.946,
+    "covered": 3784,
+    "draws": 4000,
+    "mc_standard_error": 0.0035736535926135893,
+    "mean_half_width": 0.07731663653155559,
+    "mean_estimate_over_truth": 1.0029101787526304,
+    "tiles_used_median": 19.0,
+    "tiles_used_min": 19,
+    "tiles_used_max": 20,
+    "labels_min": 300,
+    "labels_max": 300
+   },
+   "seconds": 17.6,
+   "exp78_recorded": {
+    "D4/E1_cluster": 0.913,
+    "D4/E2_naive": 0.777,
+    "tiles": 18,
+    "draws": 2000
+   }
+  },
+  "m_cashew_plant": {
+   "n_units": 204800,
+   "error_rate": 0.3473046875,
+   "tiles": {
+    "n": 50,
+    "valid_windows_min": 4096,
+    "valid_windows_median": 4096.0,
+    "valid_windows_max": 4096,
+    "share_under_per_tile": 0.0,
+    "share_with_no_error": 0.0,
+    "share_of_errors_in_top_tenth_of_tiles": 0.1289225059048476
+   },
+   "shipped": {
+    "coverage": 0.95425,
+    "covered": 3817,
+    "draws": 4000,
+    "mc_standard_error": 0.003303669834441691,
+    "mean_half_width": 0.06111814480031966,
+    "mean_estimate_over_truth": 0.9977098860073363,
+    "tiles_used_median": 19.0,
+    "tiles_used_min": 19,
+    "tiles_used_max": 19,
+    "labels_min": 300,
+    "labels_max": 300
+   },
+   "seconds": 6.2,
+   "exp78_recorded": {
+    "D4/E1_cluster": 0.936,
+    "D4/E2_naive": 0.9385,
+    "tiles": 18,
+    "draws": 2000
+   }
+  },
+  "m_sa_crop_type": {
+   "n_units": 4096000,
+   "error_rate": 0.34006591796875,
+   "tiles": {
+    "n": 1000,
+    "valid_windows_min": 4096,
+    "valid_windows_median": 4096.0,
+    "valid_windows_max": 4096,
+    "share_under_per_tile": 0.0,
+    "share_with_no_error": 0.0,
+    "share_of_errors_in_top_tenth_of_tiles": 0.20224494044841376
+   },
+   "shipped": {
+    "coverage": 0.95025,
+    "covered": 3801,
+    "draws": 4000,
+    "mc_standard_error": 0.003437838619685338,
+    "mean_half_width": 0.1053423146289052,
+    "mean_estimate_over_truth": 1.0029547380739074,
+    "tiles_used_median": 19.0,
+    "tiles_used_min": 19,
+    "tiles_used_max": 19,
+    "labels_min": 300,
+    "labels_max": 300
+   },
+   "seconds": 110.5,
+   "exp78_recorded": {
+    "D4/E1_cluster": 0.932,
+    "D4/E2_naive": 0.706,
+    "tiles": 18,
+    "draws": 2000
+   }
+  }
+ }
+}

@@ -1,0 +1,5 @@
+== 2026-10-11T21:13:57-04:00 job 1289593 on w0005: exp104 read, commit 4c2f6c27d01f923a0e886e372030ce64783b1c21, page frozen ==
+{"kind": "per-window probabilities", "class_property": "new_label", "bands": 10, "windows_read": 696, "features": 696, "largest_sum_deviation": 1.9004213314133267e-07, "windows_skipped": 0}
+== 2026-10-11T21:14:01-04:00 done: records/e104_read.json ==
+on scratch: 6.5M	/scratch/qi_zim_neu/olmoearth_inferenceX/e104_out
+on scratch: 2.3G	<private>

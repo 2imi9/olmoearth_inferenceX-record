@@ -1,0 +1,958 @@
+{
+ "experiment": "exp69 EuroCrops: a dense crop map from declarations, and a temporal difference labelled on both sides",
+ "config": {
+  "regions": {
+   "at": {
+    "years": [
+     2020,
+     2021
+    ],
+    "join": {
+     "2020": {
+      "join_rate": 0.9958712929603537,
+      "n_parcels": 2614620,
+      "n_mapped": 2603812
+     },
+     "2021": {
+      "join_rate": 0.9958225865333674,
+      "n_parcels": 2610467,
+      "n_mapped": 2599515
+     }
+    }
+   },
+   "dk": {
+    "years": [
+     2018,
+     2019
+    ],
+    "join": {
+     "2018": {
+      "join_rate": 0.9990594530020948,
+      "n_parcels": 594335,
+      "n_mapped": 593761
+     },
+     "2019": {
+      "join_rate": 0.9991195054243235,
+      "n_parcels": 587170,
+      "n_mapped": 586653
+     }
+    }
+   },
+   "si": {
+    "years": [
+     2020,
+     2021
+    ],
+    "join": {
+     "2020": {
+      "join_rate": 0.8533818762132162,
+      "n_parcels": 819619,
+      "n_mapped": 699445
+     },
+     "2021": {
+      "join_rate": 0.8502260297483532,
+      "n_parcels": 824449,
+      "n_mapped": 700965
+     }
+    }
+   }
+  },
+  "window_px": 4,
+  "chip_px": 64,
+  "crop_px": 60,
+  "grid": 15,
+  "purity_threshold": 0.75,
+  "n_classes": 11,
+  "season": [
+   "06-15",
+   "08-31"
+  ],
+  "boa_offset_removed": 1000,
+  "cell_metres": 20000,
+  "caveats": [
+   "a declaration is not an observation: extent is cadastral, a declared crop may fail",
+   "the HCAT harmonisation is the EuroCrops project's, and unmapped codes are dropped",
+   "both years are labelled, which is what makes the two-date comparison decidable"
+  ]
+ },
+ "results": {
+  "regions": {
+   "at": {
+    "n_chips": 900,
+    "n_graded_windows_year0": 37036,
+    "classes": [
+     "pasture_meadow_grassland_grass",
+     "winter_common_soft_wheat",
+     "grain_maize_corn_popcorn",
+     "winter_barley",
+     "green_silo_maize",
+     "soy_soybeans",
+     "clover",
+     "fallow_land_not_crop",
+     "winter_triticale",
+     "vineyards_wine_vine_rebland_grapes",
+     "other_crop"
+    ],
+    "probe_tuning": {
+     "grid": [
+      {
+       "weight_decay": 0.0001,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.8235325998590862,
+       "inner_val_accuracy": 0.7431289111389237
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.8574061026502628,
+       "inner_val_accuracy": 0.7658072590738423
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.8761584737954582,
+       "inner_val_accuracy": 0.771314142678348
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.8963199826567666,
+       "inner_val_accuracy": 0.7688110137672091
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.9151807490108937,
+       "inner_val_accuracy": 0.7691614518147685
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.8235325998590862,
+       "inner_val_accuracy": 0.7431289111389237
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.857297707441331,
+       "inner_val_accuracy": 0.7657571964956196
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.8761584737954582,
+       "inner_val_accuracy": 0.7713642052565707
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.8961573898433689,
+       "inner_val_accuracy": 0.7689111389236546
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.9148555633840985,
+       "inner_val_accuracy": 0.7694117647058824
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.8217440789117121,
+       "inner_val_accuracy": 0.7421777221526908
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.8527993062706628,
+       "inner_val_accuracy": 0.7634543178973717
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.8706845157444041,
+       "inner_val_accuracy": 0.7698623279098874
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.8832583599804888,
+       "inner_val_accuracy": 0.7719649561952441
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.8930139287843477,
+       "inner_val_accuracy": 0.7725156445556947
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.6426209961519701,
+       "inner_val_accuracy": 0.5692115143929912
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.6347081458999512,
+       "inner_val_accuracy": 0.5616520650813517
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.6332990081838382,
+       "inner_val_accuracy": 0.56090112640801
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.6329196249525771,
+       "inner_val_accuracy": 0.5602503128911139
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.6319982656766571,
+       "inner_val_accuracy": 0.5588485607008761
+      }
+     ],
+     "chosen": {
+      "weight_decay": 1.0,
+      "epochs": 320,
+      "inner_val_accuracy": 0.7725156445556947
+     },
+     "best_at_grid_edge": true
+    },
+    "window_accuracy_report": 0.7852089858516038,
+    "part_a": {
+     "signals": {
+      "margin": {
+       "excess_aurc": 0.03368658333046015,
+       "capture": {
+        "0.05": 0.1409176618478944,
+        "0.1": 0.27818981772470147,
+        "0.2": 0.5204274041483343
+       },
+       "auroc": 0.8575556999370038
+      },
+      "one_minus_top1": {
+       "excess_aurc": 0.03416187464429548,
+       "capture": {
+        "0.05": 0.14167190446260214,
+        "0.1": 0.2720301697045883,
+        "0.2": 0.5135135135135135
+       },
+       "auroc": 0.8558432891800879
+      },
+      "entropy": {
+       "excess_aurc": 0.037685546702332824,
+       "capture": {
+        "0.05": 0.1267127592708988,
+        "0.1": 0.2516656191074796,
+        "0.2": 0.4822124450031427
+       },
+       "auroc": 0.8408422401800161
+      },
+      "boundary_first": {
+       "excess_aurc": 0.04046597643441747,
+       "capture": {
+        "0.05": 0.14217473287240728,
+        "0.1": 0.2786926461345066,
+        "0.2": 0.515901948460088
+       },
+       "auroc": 0.8347690884674595
+      },
+      "ctl_pixel_variance": {
+       "excess_aurc": 0.2220724419681633,
+       "capture": {
+        "0.05": 0.05091137649277184,
+        "0.1": 0.0972972972972973,
+        "0.2": 0.18277812696417348
+       },
+       "auroc": 0.45528597155464534
+      },
+      "ctl_class_rarity": {
+       "excess_aurc": 0.08643640877048503,
+       "capture": {
+        "0.05": 0.09899143256537674,
+        "0.1": 0.16263251439611434,
+        "0.2": 0.2629689840429037
+       },
+       "auroc": 0.7003480752334595
+      }
+     },
+     "best_control": "ctl_class_rarity",
+     "margin_lead": 0.05274982544002488,
+     "cell_sign_test": {
+      "wins": 50,
+      "losses": 3,
+      "p": 2.759792394613214e-12
+     }
+    },
+    "part_b": {
+     "n": 35815,
+     "n_declared_changed": 13402,
+     "model_change_rate_declared_changed": 0.7580211908670348,
+     "model_change_rate_declared_same": 0.14339892026948645,
+     "ratio": 5.286101104823539,
+     "n_differing": 13373,
+     "neither_right": 2750,
+     "share_neither_right": 0.20563822627682643,
+     "share_year0_right": 0.6252149854183803,
+     "share_year1_right": 0.4565168623345547,
+     "disagreement_rate": 0.3733910372748848,
+     "where": {
+      "boundary_y0": {
+       "n": 35815,
+       "n_disagree": 13373,
+       "n_with_cue": 16330,
+       "share_disagree": 0.7672175278546325,
+       "share_agree": 0.27047500222796544,
+       "enrichment": 2.8365561384042275,
+       "rate_with_cue": 0.6282914880587875
+      },
+      "low_margin_y0": {
+       "n": 35815,
+       "n_disagree": 13373,
+       "n_with_cue": 7163,
+       "share_disagree": 0.3527256412173783,
+       "share_agree": 0.10899206844309776,
+       "enrichment": 3.2362505479151285,
+       "rate_with_cue": 0.6585229652380288
+      }
+     },
+     "crosstab_against_year0_labels": {
+      "n": 35815,
+      "errors_a": 7655,
+      "errors_b": 14030,
+      "corrected": 1986,
+      "broken": 8361,
+      "both": 5669,
+      "neither": 19799,
+      "share_corrected": 0.2594382756368387,
+      "phi": 0.3725829511843742
+     }
+    },
+    "reference_probe": {
+     "weight_decay": 0.0001,
+     "epochs": 80,
+     "window_accuracy_report": 0.7837779457824819,
+     "margin_lead": 0.04986867932996181,
+     "best_control": "ctl_class_rarity",
+     "model_change_rate_declared_changed": 0.7646619907476496,
+     "model_change_rate_declared_same": 0.1487975728371927,
+     "ratio": 5.138941288943649
+    }
+   },
+   "dk": {
+    "n_chips": 900,
+    "n_graded_windows_year0": 54358,
+    "classes": [
+     "spring_barley",
+     "winter_common_soft_wheat",
+     "pasture_meadow_grassland_grass",
+     "plants_harvested_green",
+     "green_silo_maize",
+     "winter_rapeseed_rape",
+     "winter_rye",
+     "spring_oats",
+     "winter_barley",
+     "potatoes",
+     "other_crop"
+    ],
+    "probe_tuning": {
+     "grid": [
+      {
+       "weight_decay": 0.0001,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.6134545800799848,
+       "inner_val_accuracy": 0.5128309572301426
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.7041515901733003,
+       "inner_val_accuracy": 0.5696130346232179
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.7589982860407541,
+       "inner_val_accuracy": 0.5995926680244399
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.8048466958674538,
+       "inner_val_accuracy": 0.6210997963340122
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.8427918491715863,
+       "inner_val_accuracy": 0.635397148676171
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.6134545800799848,
+       "inner_val_accuracy": 0.5127902240325866
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.7039611502570939,
+       "inner_val_accuracy": 0.569572301425662
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.7588554561035993,
+       "inner_val_accuracy": 0.599551934826884
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.804703865930299,
+       "inner_val_accuracy": 0.6209368635437882
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.8424585793182251,
+       "inner_val_accuracy": 0.6353156822810591
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.6086935821748238,
+       "inner_val_accuracy": 0.5094501018329939
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.6956294039230623,
+       "inner_val_accuracy": 0.5643177189409369
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.7402399542944201,
+       "inner_val_accuracy": 0.590142566191446
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.77485240906494,
+       "inner_val_accuracy": 0.6040325865580448
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.7949438202247191,
+       "inner_val_accuracy": 0.6146639511201629
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.37721386402589985,
+       "inner_val_accuracy": 0.3369042769857434
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.36345458007998477,
+       "inner_val_accuracy": 0.32484725050916496
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.37507141496857743,
+       "inner_val_accuracy": 0.33189409368635436
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.36083603123214625,
+       "inner_val_accuracy": 0.3191038696537678
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.35821748238430773,
+       "inner_val_accuracy": 0.3219144602851324
+      }
+     ],
+     "chosen": {
+      "weight_decay": 0.0001,
+      "epochs": 320,
+      "inner_val_accuracy": 0.635397148676171
+     },
+     "best_at_grid_edge": true
+    },
+    "window_accuracy_report": 0.6949483056771772,
+    "part_a": {
+     "signals": {
+      "margin": {
+       "excess_aurc": 0.09307255109323101,
+       "capture": {
+        "0.05": 0.10469183451935835,
+        "0.1": 0.20636835122421904,
+        "0.2": 0.38523700398021954
+       },
+       "auroc": 0.7611858648541963
+      },
+      "one_minus_top1": {
+       "excess_aurc": 0.09209164206719153,
+       "capture": {
+        "0.05": 0.11259196719334218,
+        "0.1": 0.21336388855385358,
+        "0.2": 0.3904836569774454
+       },
+       "auroc": 0.7648327159850056
+      },
+      "entropy": {
+       "excess_aurc": 0.09765327050084485,
+       "capture": {
+        "0.05": 0.10668194427692679,
+        "0.1": 0.19967434567603426,
+        "0.2": 0.3710047038957906
+       },
+       "auroc": 0.7491729004626859
+      },
+      "boundary_first": {
+       "excess_aurc": 0.10020448747313307,
+       "capture": {
+        "0.05": 0.10806899047159571,
+        "0.1": 0.21083102158967554,
+        "0.2": 0.3951272464117718
+       },
+       "auroc": 0.7551095604425245
+      },
+      "ctl_pixel_variance": {
+       "excess_aurc": 0.22783654383702173,
+       "capture": {
+        "0.05": 0.06886985888312629,
+        "0.1": 0.13273429019418648,
+        "0.2": 0.24810034977686649
+       },
+       "auroc": 0.5515407676971059
+      },
+      "ctl_class_rarity": {
+       "excess_aurc": 0.23753584310398596,
+       "capture": {
+        "0.05": 0.06775394812097066,
+        "0.1": 0.11708037339237466,
+        "0.2": 0.1670120410781794
+       },
+       "auroc": 0.5201029896103464
+      }
+     },
+     "best_control": "ctl_pixel_variance",
+     "margin_lead": 0.13476399274379072,
+     "cell_sign_test": {
+      "wins": 70,
+      "losses": 0,
+      "p": 8.470329472543003e-22
+     }
+    },
+    "part_b": {
+     "n": 53408,
+     "n_declared_changed": 30082,
+     "model_change_rate_declared_changed": 0.8434944485074131,
+     "model_change_rate_declared_same": 0.36551487610391836,
+     "ratio": 2.307688424335435,
+     "n_differing": 33900,
+     "neither_right": 4380,
+     "share_neither_right": 0.12920353982300886,
+     "share_year0_right": 0.6568731563421829,
+     "share_year1_right": 0.5806784660766962,
+     "disagreement_rate": 0.6347363690832835,
+     "where": {
+      "boundary_y0": {
+       "n": 53408,
+       "n_disagree": 33900,
+       "n_with_cue": 33178,
+       "share_disagree": 0.6550737463126843,
+       "share_agree": 0.562384662702481,
+       "enrichment": 1.1648143872999588,
+       "rate_with_cue": 0.6693290734824281
+      },
+      "low_margin_y0": {
+       "n": 53408,
+       "n_disagree": 33900,
+       "n_with_cue": 10682,
+       "share_disagree": 0.22622418879056047,
+       "share_agree": 0.15444945663317614,
+       "enrichment": 1.46471340024104,
+       "rate_with_cue": 0.717936715970792
+      }
+     },
+     "crosstab_against_year0_labels": {
+      "n": 53408,
+      "errors_a": 16260,
+      "errors_b": 35106,
+      "corrected": 3422,
+      "broken": 22268,
+      "both": 12838,
+      "neither": 14880,
+      "share_corrected": 0.21045510455104552,
+      "phi": 0.18432369289922815
+     }
+    },
+    "reference_probe": {
+     "weight_decay": 0.0001,
+     "epochs": 80,
+     "window_accuracy_report": 0.6875160969866441,
+     "margin_lead": 0.13327306644623324,
+     "best_control": "ctl_pixel_variance",
+     "model_change_rate_declared_changed": 0.8237484209826474,
+     "model_change_rate_declared_same": 0.3345194203892652,
+     "ratio": 2.462483104939284
+    }
+   },
+   "si": {
+    "n_chips": 900,
+    "n_graded_windows_year0": 14880,
+    "classes": [
+     "pasture_meadow_grassland_grass",
+     "winter_common_soft_wheat",
+     "winter_barley",
+     "temporary_grass",
+     "vineyards_wine_vine_rebland_grapes",
+     "orchards_fruits",
+     "clover",
+     "winter_triticale",
+     "alfalfa_lucerne",
+     "winter_rapeseed_rape",
+     "other_crop"
+    ],
+    "probe_tuning": {
+     "grid": [
+      {
+       "weight_decay": 0.0001,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.8111239860950173,
+       "inner_val_accuracy": 0.7490217998882057
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.8502317497103129,
+       "inner_val_accuracy": 0.7685858021240917
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.8738412514484357,
+       "inner_val_accuracy": 0.7715669834171791
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.8983198146002318,
+       "inner_val_accuracy": 0.7656046208310043
+      },
+      {
+       "weight_decay": 0.0001,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.9177288528389339,
+       "inner_val_accuracy": 0.7568474007825601
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.8111239860950173,
+       "inner_val_accuracy": 0.7490217998882057
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.8500869061413673,
+       "inner_val_accuracy": 0.7685858021240917
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.8738412514484357,
+       "inner_val_accuracy": 0.7715669834171791
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.8980301274623407,
+       "inner_val_accuracy": 0.7656046208310043
+      },
+      {
+       "weight_decay": 0.01,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.9174391657010429,
+       "inner_val_accuracy": 0.757220048444196
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.8095307068366164,
+       "inner_val_accuracy": 0.7488354760573878
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.84545191193511,
+       "inner_val_accuracy": 0.7665362399850941
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.8650057937427578,
+       "inner_val_accuracy": 0.7683994782932737
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.8823870220162224,
+       "inner_val_accuracy": 0.7704490404322712
+      },
+      {
+       "weight_decay": 1.0,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.8923812282734647,
+       "inner_val_accuracy": 0.7685858021240917
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 15,
+       "inner_fit_accuracy": 0.6542584009269988,
+       "inner_val_accuracy": 0.5936277249860257
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 40,
+       "inner_fit_accuracy": 0.6541135573580533,
+       "inner_val_accuracy": 0.5932550773243898
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 80,
+       "inner_fit_accuracy": 0.6535341830822712,
+       "inner_val_accuracy": 0.5932550773243898
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 160,
+       "inner_fit_accuracy": 0.652954808806489,
+       "inner_val_accuracy": 0.5915781628470281
+      },
+      {
+       "weight_decay": 100.0,
+       "epochs": 320,
+       "inner_fit_accuracy": 0.6530996523754345,
+       "inner_val_accuracy": 0.5913918390162102
+      }
+     ],
+     "chosen": {
+      "weight_decay": 0.0001,
+      "epochs": 80,
+      "inner_val_accuracy": 0.7715669834171791
+     },
+     "best_at_grid_edge": false
+    },
+    "window_accuracy_report": 0.8452284946236559,
+    "part_a": {
+     "signals": {
+      "margin": {
+       "excess_aurc": 0.03170626505547125,
+       "capture": {
+        "0.05": 0.20625271385149804,
+        "0.1": 0.38254450716456795,
+        "0.2": 0.6430742509769866
+       },
+       "auroc": 0.8522278966516325
+      },
+      "one_minus_top1": {
+       "excess_aurc": 0.031171403252606256,
+       "capture": {
+        "0.05": 0.2201476335214937,
+        "0.1": 0.40078158923143725,
+        "0.2": 0.6456795484151108
+       },
+       "auroc": 0.8551491462180463
+      },
+      "entropy": {
+       "excess_aurc": 0.03204453628782734,
+       "capture": {
+        "0.05": 0.21363438992618325,
+        "0.1": 0.3799392097264438,
+        "0.2": 0.6365610073816761
+       },
+       "auroc": 0.8500864375835647
+      },
+      "boundary_first": {
+       "excess_aurc": 0.03468352458084024,
+       "capture": {
+        "0.05": 0.20581849761181067,
+        "0.1": 0.38514980460269216,
+        "0.2": 0.606600086843248
+       },
+       "auroc": 0.8367582741981129
+      },
+      "ctl_pixel_variance": {
+       "excess_aurc": 0.13987015143438125,
+       "capture": {
+        "0.05": 0.06730351715154147,
+        "0.1": 0.11723838471558837,
+        "0.2": 0.22448979591836735
+       },
+       "auroc": 0.5118353357559725
+      },
+      "ctl_class_rarity": {
+       "excess_aurc": 0.08385437297495668,
+       "capture": {
+        "0.05": 0.14152272221810364,
+        "0.1": 0.21405088305404663,
+        "0.2": 0.5236427270413779
+       },
+       "auroc": 0.6971646235394917
+      }
+     },
+     "best_control": "ctl_class_rarity",
+     "margin_lead": 0.05214810791948543,
+     "cell_sign_test": {
+      "wins": 23,
+      "losses": 1,
+      "p": 1.4901161193847656e-06
+     }
+    },
+    "part_b": {
+     "n": 12169,
+     "n_declared_changed": 460,
+     "model_change_rate_declared_changed": 0.5891304347826087,
+     "model_change_rate_declared_same": 0.05978307284994449,
+     "ratio": 9.854468944099379,
+     "n_differing": 971,
+     "neither_right": 282,
+     "share_neither_right": 0.29042224510813597,
+     "share_year0_right": 0.5561277033985582,
+     "share_year1_right": 0.20494335736354274,
+     "disagreement_rate": 0.0797929164269866,
+     "where": {
+      "boundary_y0": {
+       "n": 12169,
+       "n_disagree": 971,
+       "n_with_cue": 2151,
+       "share_disagree": 0.7229660144181257,
+       "share_agree": 0.12939810680478656,
+       "enrichment": 5.587145223915923,
+       "rate_with_cue": 0.3263598326359833
+      },
+      "low_margin_y0": {
+       "n": 12169,
+       "n_disagree": 971,
+       "n_with_cue": 2434,
+       "share_disagree": 0.7641606591143152,
+       "share_agree": 0.151098410430434,
+       "enrichment": 5.057370603287294,
+       "rate_with_cue": 0.30484798685291703
+      }
+     },
+     "crosstab_against_year0_labels": {
+      "n": 12169,
+      "errors_a": 1226,
+      "errors_b": 1622,
+      "corrected": 144,
+      "broken": 540,
+      "both": 1082,
+      "neither": 10403,
+      "share_corrected": 0.11745513866231648,
+      "phi": 0.7378564607139428
+     }
+    },
+    "reference_probe": {
+     "weight_decay": 0.0001,
+     "epochs": 80,
+     "window_accuracy_report": 0.8452284946236559,
+     "margin_lead": 0.05214810791948543,
+     "best_control": "ctl_class_rarity",
+     "model_change_rate_declared_changed": 0.5891304347826087,
+     "model_change_rate_declared_same": 0.05978307284994449,
+     "ratio": 9.854468944099379
+    }
+   }
+  }
+ },
+ "verdicts": {
+  "P1": {
+   "holds": true,
+   "per_region": {
+    "at": {
+     "lead": 0.05274982544002488,
+     "against": "ctl_class_rarity",
+     "sign_test": {
+      "wins": 50,
+      "losses": 3,
+      "p": 2.759792394613214e-12
+     }
+    },
+    "dk": {
+     "lead": 0.13476399274379072,
+     "against": "ctl_pixel_variance",
+     "sign_test": {
+      "wins": 70,
+      "losses": 0,
+      "p": 8.470329472543003e-22
+     }
+    },
+    "si": {
+     "lead": 0.05214810791948543,
+     "against": "ctl_class_rarity",
+     "sign_test": {
+      "wins": 23,
+      "losses": 1,
+      "p": 1.4901161193847656e-06
+     }
+    }
+   }
+  },
+  "P2": {
+   "holds": true,
+   "per_region": {
+    "at": {
+     "changed": 0.7580211908670348,
+     "same": 0.14339892026948645,
+     "ratio": 5.286101104823539
+    },
+    "dk": {
+     "changed": 0.8434944485074131,
+     "same": 0.36551487610391836,
+     "ratio": 2.307688424335435
+    },
+    "si": {
+     "changed": 0.5891304347826087,
+     "same": 0.05978307284994449,
+     "ratio": 9.854468944099379
+    }
+   },
+   "note": "the change rate where the declaration did not change is the labelled floor exp68 could only bound"
+  },
+  "P3": {
+   "holds": true,
+   "per_region": {
+    "at": {
+     "share_neither_right": 0.20563822627682643,
+     "share_year0_right": 0.6252149854183803,
+     "share_year1_right": 0.4565168623345547
+    },
+    "dk": {
+     "share_neither_right": 0.12920353982300886,
+     "share_year0_right": 0.6568731563421829,
+     "share_year1_right": 0.5806784660766962
+    },
+    "si": {
+     "share_neither_right": 0.29042224510813597,
+     "share_year0_right": 0.5561277033985582,
+     "share_year1_right": 0.20494335736354274
+    }
+   }
+  }
+ }
+}

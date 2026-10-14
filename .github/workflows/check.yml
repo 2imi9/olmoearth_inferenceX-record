@@ -1,0 +1,43 @@
+# Every push to main and every pull request: each claim still holds on its committed artifact, the experiments' code
+# still computes what the record says, and the package's outputs still match the recorded numbers, all against the
+# released olmoearth-inferencex 1.12.1 from PyPI and never against a working tree.
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  record:
+    # Both ends of the declared requires-python.
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      # --frozen: a pyproject edited without relocking fails here rather than resolving to something else.
+      - name: Install the released package and pytest
+        run: uv sync --frozen --python ${{ matrix.python }}
+      - name: The package under test is the release from PyPI, not a copy in the tree
+        run: >-
+          uv run --frozen --python ${{ matrix.python }} python -c "import os, oe_inferencex as ox;
+          assert ox.__version__ == '1.12.1', ox.__version__;
+          assert 'site-packages' in os.path.abspath(ox.__file__), ox.__file__"
+      - name: The claims, the experiments' code and the recorded numbers
+        run: uv run --frozen --python ${{ matrix.python }} pytest -q
+      - name: The suite-regression runner still scores a candidate reading and grades an encoder
+        run: uv run --frozen --python ${{ matrix.python }} python scripts/suite_regression.py --smoke
+      - name: The stale view lists only superseded claims
+        # claims.py stale exits 1 whenever it lists a claim, and two claims are superseded today
+        run: |
+          code=0
+          uv run --frozen --python ${{ matrix.python }} python scripts/claims.py stale > stale.txt || code=$?
+          cat stale.txt
+          test "$code" -eq 0 || { test "$code" -eq 1 && ! grep -q "check fails" stale.txt; }

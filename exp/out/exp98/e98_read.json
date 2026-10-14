@@ -1,0 +1,57 @@
+{
+ "roots": [
+  {
+   "root_id": "root_0",
+   "windows": 270,
+   "parts": [
+    {
+     "windows": 56,
+     "grid_gib": 2.41
+    },
+    {
+     "windows": 17,
+     "grid_gib": 2.79
+    },
+    {
+     "windows": 56,
+     "grid_gib": 2.41
+    },
+    {
+     "windows": 18,
+     "grid_gib": 2.79
+    },
+    {
+     "windows": 14,
+     "grid_gib": 2.84
+    },
+    {
+     "windows": 46,
+     "grid_gib": 2.41
+    },
+    {
+     "windows": 17,
+     "grid_gib": 2.41
+    },
+    {
+     "windows": 29,
+     "grid_gib": 1.8
+    },
+    {
+     "windows": 15,
+     "grid_gib": 1.2
+    },
+    {
+     "windows": 1,
+     "grid_gib": 0.04
+    },
+    {
+     "windows": 1,
+     "grid_gib": 0.04
+    }
+   ]
+  }
+ ],
+ "part_limit_gib": 3.0,
+ "parts_read": 11,
+ "pilot": false
+}

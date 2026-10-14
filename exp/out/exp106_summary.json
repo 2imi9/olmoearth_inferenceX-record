@@ -1,0 +1,414 @@
+{
+ "experiment": "exp106: does disagreement with an independent product find a product's confident errors?",
+ "prereg_page": "docs/plan/second_opinion.md",
+ "prereg_status": "frozen",
+ "commit": "5169e46e5895a6d8bbd2d4448a19cffad74a68a7",
+ "dirty": false,
+ "config": {
+  "bootstrap": {
+   "R": 2000,
+   "seed": 106,
+   "level": 0.9
+  },
+  "scores": "u = 101 - confidence; d = product != second product; c = d + u / 102",
+  "weights": "every row equal"
+ },
+ "cells": {
+  "east_africa_cgls": {
+   "n": 12574,
+   "errors": 5266,
+   "error_rate": 0.4188006998568475,
+   "disagreement_share": 0.4153809448067441,
+   "auroc_own": 0.720541962348542,
+   "auroc_disagreement": 0.6257278103212334,
+   "auroc_combined": 0.7182902951070899,
+   "gain": -0.0022516672414520933,
+   "capture_10pct": {
+    "own": 0.16401010889278292,
+    "disagreement": 0.13514056229280072,
+    "combined": 0.18015778588566914
+   },
+   "precision_of_d_for_errors": 0.566149722381773,
+   "recall_of_d_for_errors": 0.5615267755412078,
+   "confident": {
+    "median_correct_confidence": 46.0,
+    "confident_errors": 990,
+    "confident_correct": 3693,
+    "f_err": 0.30707070707070705,
+    "f_ok": 0.2122935282967777,
+    "ratio": 1.4464440321583176,
+    "recall_of_d_for_confident_errors": 0.30707070707070705,
+    "precision_of_d_among_confident": 0.27941176470588236
+   },
+   "decomposition": {
+    "r": 0.5615267755412078,
+    "q": 0.3100711548987411,
+    "A10": 0.8129772474622036,
+    "A01": 0.5494848814856635,
+    "identity_gain": -0.0022516672414520794,
+    "gain_from_pairs_u_ties": 0.0019415117916237656
+   },
+   "bootstrap": {
+    "resamples": 2000,
+    "ratio_resamples": 2000,
+    "resampling": "within each country",
+    "gain_interval": [
+     -0.008235709085754562,
+     0.0037607941904279065
+    ],
+    "ratio_interval": [
+     1.3122595966921105,
+     1.5908113835973423
+    ]
+   },
+   "by_country": {
+    "ethiopia": {
+     "n": 1965,
+     "errors": 691,
+     "auroc_own": 0.7367277646893111,
+     "auroc_combined": 0.7182927161736341,
+     "gain": -0.01843504851567701
+    },
+    "kenya": {
+     "n": 1875,
+     "errors": 425,
+     "auroc_own": 0.6994028397565923,
+     "auroc_combined": 0.7149046653144017,
+     "gain": 0.015501825557809323
+    },
+    "malawi": {
+     "n": 1567,
+     "errors": 769,
+     "auroc_own": 0.6921595275575154,
+     "auroc_combined": 0.7037872639987485,
+     "gain": 0.01162773644123305
+    },
+    "rwanda": {
+     "n": 1782,
+     "errors": 772,
+     "auroc_own": 0.7084517519109423,
+     "auroc_combined": 0.6667951315856975,
+     "gain": -0.041656620325244864
+    },
+    "tanzania": {
+     "n": 1852,
+     "errors": 979,
+     "auroc_own": 0.6785941191130581,
+     "auroc_combined": 0.6938562036442264,
+     "gain": 0.015262084531168285
+    },
+    "uganda": {
+     "n": 1632,
+     "errors": 728,
+     "auroc_own": 0.7297466084800156,
+     "auroc_combined": 0.6852564609063503,
+     "gain": -0.04449014757366532
+    },
+    "zambia": {
+     "n": 1901,
+     "errors": 902,
+     "auroc_own": 0.7110819244965586,
+     "auroc_combined": 0.7561014451258353,
+     "gain": 0.04501952062927672
+    }
+   }
+  },
+  "europe_odse": {
+   "n": 4807,
+   "errors": 504,
+   "error_rate": 0.10484709798210942,
+   "disagreement_share": 0.18223424173080924,
+   "auroc_own": 0.7868688880773473,
+   "auroc_disagreement": 0.7694781510869124,
+   "auroc_combined": 0.8633880386146248,
+   "gain": 0.07651915053727742,
+   "capture_10pct": {
+    "own": 0.33651837928153716,
+    "disagreement": 0.3649683808074219,
+    "combined": 0.5398809523809525
+   },
+   "precision_of_d_for_errors": 0.3824200913242009,
+   "recall_of_d_for_errors": 0.6646825396825397,
+   "confident": {
+    "median_correct_confidence": 77.0,
+    "confident_errors": 59,
+    "confident_correct": 2183,
+    "f_err": 0.4576271186440678,
+    "f_ok": 0.11131470453504352,
+    "ratio": 4.111111111111111,
+    "recall_of_d_for_confident_errors": 0.4576271186440678,
+    "precision_of_d_among_confident": 0.1
+   },
+   "decomposition": {
+    "r": 0.6646825396825397,
+    "q": 0.12572623750871484,
+    "A10": 0.8178933879248098,
+    "A01": 0.6951350228045806,
+    "identity_gain": 0.07651915053727741,
+    "gain_from_pairs_u_ties": 0.0022769275035136064
+   },
+   "bootstrap": {
+    "resamples": 2000,
+    "ratio_resamples": 2000,
+    "resampling": "by tile",
+    "gain_interval": [
+     0.055506117281045216,
+     0.09732377798383915
+    ],
+    "ratio_interval": [
+     2.4945265782882324,
+     6.4957888156399175
+    ]
+   }
+  },
+  "conus_lcmap": {
+   "n": 4794,
+   "errors": 850,
+   "error_rate": 0.1773049645390071,
+   "disagreement_share": 0.2117229870671673,
+   "auroc_own": 0.7531280575110368,
+   "auroc_disagreement": 0.7252535496957404,
+   "auroc_combined": 0.8321973809807899,
+   "gain": 0.07906932346975304,
+   "capture_10pct": {
+    "own": 0.2869647058823529,
+    "disagreement": 0.2748246884960881,
+    "combined": 0.3715294117647059
+   },
+   "precision_of_d_for_errors": 0.4876847290640394,
+   "recall_of_d_for_errors": 0.5823529411764706,
+   "confident": {
+    "median_correct_confidence": 99.0,
+    "confident_errors": 199,
+    "confident_correct": 2563,
+    "f_err": 0.5829145728643216,
+    "f_ok": 0.11744049941474834,
+    "ratio": 4.963488539040719,
+    "recall_of_d_for_confident_errors": 0.5829145728643216,
+    "precision_of_d_among_confident": 0.27817745803357313
+   },
+   "decomposition": {
+    "r": 0.5823529411764706,
+    "q": 0.13184584178498987,
+    "A10": 0.7695211460398377,
+    "A01": 0.680184182015168,
+    "identity_gain": 0.07906932346975298,
+    "gain_from_pairs_u_ties": 0.03546354850256532
+   },
+   "bootstrap": {
+    "resamples": 2000,
+    "ratio_resamples": 2000,
+    "resampling": "simple",
+    "gain_interval": [
+     0.06565929591083022,
+     0.0930268168095978
+    ],
+    "ratio_interval": [
+     4.3350811373810485,
+     5.67314948024492
+    ]
+   }
+  }
+ },
+ "control_related_products": {
+  "nlcd_A2001": {
+   "n": 7337,
+   "errors": 1558,
+   "error_rate": 0.212348371268911,
+   "disagreement_share": 0.17541229385307347,
+   "auroc_own": 0.7421136152964976,
+   "auroc_disagreement": 0.6298556523875455,
+   "auroc_combined": 0.7449068614373542,
+   "gain": 0.002793246140856631,
+   "capture_10pct": {
+    "own": 0.260167153743206,
+    "disagreement": 0.21670641439575972,
+    "combined": 0.25750962772785624
+   },
+   "precision_of_d_for_errors": 0.45998445998445997,
+   "recall_of_d_for_errors": 0.37997432605905007,
+   "confident": {
+    "median_correct_confidence": 99.0,
+    "confident_errors": 328,
+    "confident_correct": 3181,
+    "f_err": 0.051829268292682924,
+    "f_ok": 0.01854762653253694,
+    "ratio": 2.7943881769326167,
+    "recall_of_d_for_confident_errors": 0.051829268292682924,
+    "precision_of_d_among_confident": 0.2236842105263158
+   },
+   "decomposition": {
+    "r": 0.37997432605905007,
+    "q": 0.12026302128395916,
+    "A10": 0.9050450738405597,
+    "A01": 0.3882196106468862,
+    "identity_gain": 0.0027932461408566034,
+    "gain_from_pairs_u_ties": 0.002622093938901885
+   }
+  },
+  "nlcd_A2006": {
+   "n": 7193,
+   "errors": 1595,
+   "error_rate": 0.22174336160155708,
+   "disagreement_share": 0.20937022104824135,
+   "auroc_own": 0.7388893368769186,
+   "auroc_disagreement": 0.6377786065556328,
+   "auroc_combined": 0.7435180051989011,
+   "gain": 0.004628668321982499,
+   "capture_10pct": {
+    "own": 0.2501567398119122,
+    "disagreement": 0.20234381179565958,
+    "combined": 0.25517241379310346
+   },
+   "precision_of_d_for_errors": 0.448871181938911,
+   "recall_of_d_for_errors": 0.42382445141065833,
+   "confident": {
+    "median_correct_confidence": 99.0,
+    "confident_errors": 328,
+    "confident_correct": 3034,
+    "f_err": 0.10365853658536585,
+    "f_ok": 0.03889255108767304,
+    "ratio": 2.6652542372881354,
+    "recall_of_d_for_confident_errors": 0.10365853658536585,
+    "precision_of_d_among_confident": 0.2236842105263158
+   },
+   "decomposition": {
+    "r": 0.42382445141065833,
+    "q": 0.14826723829939265,
+    "A10": 0.8864433997855526,
+    "A01": 0.42566369941135596,
+    "identity_gain": 0.004628668321982429,
+    "gain_from_pairs_u_ties": 0.004296709191930392
+   }
+  },
+  "nlcd_A2011": {
+   "n": 7201,
+   "errors": 1594,
+   "error_rate": 0.2213581447021247,
+   "disagreement_share": 0.20344396611581725,
+   "auroc_own": 0.735800092150451,
+   "auroc_disagreement": 0.6839859948321454,
+   "auroc_combined": 0.7673413699804801,
+   "gain": 0.031541277830029135,
+   "capture_10pct": {
+    "own": 0.25613909302742427,
+    "disagreement": 0.24080061322108076,
+    "combined": 0.2998745294855709
+   },
+   "precision_of_d_for_errors": 0.5331058020477816,
+   "recall_of_d_for_errors": 0.48996235884567124,
+   "confident": {
+    "median_correct_confidence": 99.0,
+    "confident_errors": 326,
+    "confident_correct": 2933,
+    "f_err": 0.15337423312883436,
+    "f_ok": 0.037504261847937266,
+    "ratio": 4.0895147796988285,
+    "recall_of_d_for_confident_errors": 0.15337423312883436,
+    "precision_of_d_among_confident": 0.3125
+   },
+   "decomposition": {
+    "r": 0.48996235884567124,
+    "q": 0.12199036918138041,
+    "A10": 0.8643534242962623,
+    "A01": 0.4309367874380498,
+    "identity_gain": 0.0315412778300292,
+    "gain_from_pairs_u_ties": 0.007342833467486309
+   }
+  },
+  "nlcd_B2011": {
+   "n": 4217,
+   "errors": 965,
+   "error_rate": 0.2288356651648091,
+   "disagreement_share": 0.19255394830448186,
+   "auroc_own": 0.7241867897953591,
+   "auroc_disagreement": 0.6889246314742941,
+   "auroc_combined": 0.7783858797137194,
+   "gain": 0.05419908991836031,
+   "capture_10pct": {
+    "own": 0.24658277818899582,
+    "disagreement": 0.25150463258378214,
+    "combined": 0.2905699481865285
+   },
+   "precision_of_d_for_errors": 0.5751231527093597,
+   "recall_of_d_for_errors": 0.48393782383419687,
+   "confident": {
+    "median_correct_confidence": 99.0,
+    "confident_errors": 223,
+    "confident_correct": 1833,
+    "f_err": 0.28699551569506726,
+    "f_ok": 0.036552100381887616,
+    "ratio": 7.851683287597885,
+    "recall_of_d_for_confident_errors": 0.28699551569506726,
+    "precision_of_d_among_confident": 0.48854961832061067
+   },
+   "decomposition": {
+    "r": 0.48393782383419687,
+    "q": 0.10608856088560886,
+    "A10": 0.8189023909650265,
+    "A01": 0.4409871369536115,
+    "identity_gain": 0.05419908991836031,
+    "gain_from_pairs_u_ties": 0.017598257588793506
+   }
+  },
+  "nlcd_B2016": {
+   "n": 4240,
+   "errors": 993,
+   "error_rate": 0.23419811320754716,
+   "disagreement_share": 0.23113207547169812,
+   "auroc_own": 0.7227224386535747,
+   "auroc_disagreement": 0.7823925160136974,
+   "auroc_combined": 0.8302379049403725,
+   "gain": 0.10751546628679787,
+   "capture_10pct": {
+    "own": 0.2360873943692806,
+    "disagreement": 0.2871282652033623,
+    "combined": 0.3221965523369469
+   },
+   "precision_of_d_for_errors": 0.6724489795918367,
+   "recall_of_d_for_errors": 0.6636455186304129,
+   "confident": {
+    "median_correct_confidence": 99.0,
+    "confident_errors": 210,
+    "confident_correct": 1756,
+    "f_err": 0.41904761904761906,
+    "f_ok": 0.03986332574031891,
+    "ratio": 10.512108843537415,
+    "recall_of_d_for_confident_errors": 0.41904761904761906,
+    "precision_of_d_among_confident": 0.5569620253164557
+   },
+   "decomposition": {
+    "r": 0.6636455186304129,
+    "q": 0.09886048660301817,
+    "A10": 0.7965622948252131,
+    "A01": 0.4254714869326767,
+    "identity_gain": 0.10751546628679784,
+    "gain_from_pairs_u_ties": 0.024349690209042596
+   }
+  }
+ },
+ "verdicts": {
+  "P1": {
+   "bar": "AUROC(c) - AUROC(u) >= 0.02 on at least 2 of 3",
+   "cells_meeting": [
+    "europe_odse",
+    "conus_lcmap"
+   ],
+   "holds": true,
+   "blind_cells_meeting": [
+    "europe_odse"
+   ],
+   "reading": "cell 3 is not blind for P1 (exp92 graded d and u on its rows); reported, not a bar"
+  },
+  "P2": {
+   "bar": "f_err >= 2.0 f_ok on all 3 (floor 20 confident errors)",
+   "by_cell": {
+    "east_africa_cgls": false,
+    "europe_odse": true,
+    "conus_lcmap": true
+   },
+   "holds": false,
+   "determined": true
+  }
+ }
+}

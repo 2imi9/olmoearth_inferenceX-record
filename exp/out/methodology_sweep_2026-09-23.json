@@ -1,0 +1,1454 @@
+{
+ "what": "literature sweep behind docs/plan/methodology_redesign.md, night of 2026-09-22/23: five search angles (web search plus arXiv abstracts, no full PDFs) and one synthesis against the record digest; claims of what a paper examines are from abstracts and method sections unless key_numbers says otherwise",
+ "angles": [
+  "evaluation rules for failure detection and probing protocol",
+  "label-free accuracy estimation",
+  "model-assisted and prediction-powered evaluation",
+  "Earth-observation foundation model inference examination",
+  "systematic error discovery and auditing frameworks"
+ ],
+ "sweeps": [
+  {
+   "papers": [
+    {
+     "title": "Failure detection in medical image classification under realistic distribution shifts: A large-scale benchmark",
+     "authors_venue_year": "Steinmetz, Frouin, Morard, Buvat; medRxiv preprint, May 2026",
+     "url": "https://www.medrxiv.org/content/10.64898/2026.05.04.26350496v1",
+     "rule": "Grade confidence scoring functions across many tasks, backbones, training setups and failure sources with threshold-free risk-coverage metrics (AUGRC style); report that failure-detection performance is confounded with classifier accuracy, and test score aggregation (combining several CSFs) as a standing arm because no single CSF dominates.",
+     "examines": "Eight confidence scoring functions and two score-aggregation strategies on eight medical-imaging classification tasks under realistic shifts; graded by risk-coverage area metrics and silent-failure rate (abstract only).",
+     "key_numbers": "8 CSFs, 2 aggregation strategies, 8 tasks; no single method dominates; aggregation matches or approaches the best single method and cuts silent failures; FD performance strongly correlated with accuracy (no numeric values in abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Largely covered: exp70/73/74 race the margin against many CSFs on 24 tasks x 16 encoders with E-AURC and AUGRC. Partial gap: the record only tests label-fitted fusion (exp65, +0.0006) and never a label-free rank/score aggregation of margin with a second cue; and the accuracy confound is addressed by excess AURC but not reported as a correlation across the 384 (task, encoder) cells."
+    },
+    {
+     "title": "A Systematic Analysis of Out-of-Distribution Detection Under Representation and Training Paradigm Shifts",
+     "authors_venue_year": "Claros Olivares, Brockmeier; arXiv 2511.11934, Nov 2025 (rev. May 2026)",
+     "url": "https://arxiv.org/abs/2511.11934",
+     "rule": "Rank detectors with a multiple-comparison-controlled rank pipeline over threshold-free metrics (AURC, AUGRC) and treat the winning detector family as a property of the representation, not of the score; simple probabilistic scores are the ones that catch misclassifications.",
+     "examines": "OOD and misclassification detectors across CNN/ViT, several training paradigms, four datasets with near/mid/far OOD; graded by AURC/AUGRC under rank tests with multiplicity control; Neural-Collapse statistics of the classifier predict which detector family wins (abstract only).",
+     "key_numbers": "4 datasets (CIFAR-10/100, SuperCIFAR-100, TinyImageNet); margin/probabilistic scores best for misclassification; geometry-aware scores (NNGuide, fDBD, CTM) gain as shift grows; PCA filtering improves detectors (no values in abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Consistent with exp73 (margin beats kNN and Mahalanobis on all 24 tasks). Gap: the record runs one-sided sign tests per comparison without a family-wise control across the ~20 alternatives it has raced; and it never computes a representation statistic (e.g. Neural Collapse / class-mean separation on the cached embeddings) that would predict per-encoder which ranker wins."
+    },
+    {
+     "title": "From Misclassifications to Outliers: Joint Reliability Assessment in Classification",
+     "authors_venue_year": "Li, Sha, Wang, Hospedales, Shen, Hu, Yu; arXiv 2603.03903, Mar 2026 (submitted to TPAMI)",
+     "url": "https://arxiv.org/abs/2603.03903",
+     "rule": "Do not evaluate misclassification detection and OOD detection separately; grade a classifier's reliability jointly with double-scoring metrics (DS-F1, DS-AURC) that count both in-distribution errors and OOD inputs as failures to be rejected.",
+     "examines": "Joint reliability of classifiers on OpenOOD with a double scoring function (one score for OOD, one for ID error); graded by DS-F1 and DS-AURC (abstract only).",
+     "key_numbers": "OOD-based scores give large gains under far-OOD, only marginal gains under near-OOD; SURE+ improves across scenarios (no values in abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap: the record's unit is an error under a labelled reference, so an out-of-support window (unseen class, sensor artefact) is either an error or ignored; there is no stratum of OOD windows and no DS-AURC-style joint grade. The cached embedding bank and the exported margin would allow a two-score evaluation without new training."
+    },
+    {
+     "title": "Comparative Benchmarking of Failure Detection Methods in Medical Image Segmentation: Unveiling the Role of Confidence Aggregation",
+     "authors_venue_year": "Zenk, Zimmerer, Isensee, Traub, Norajitra, J\u00e4ger, Maier-Hein; arXiv 2406.03323, Jun 2024; Medical Image Analysis 2024",
+     "url": "https://arxiv.org/abs/2406.03323",
+     "rule": "For segmentation, failure detection must be graded with risk-coverage analysis after an explicit, ablated aggregation of pixel confidences to the unit of decision; pairwise Dice between ensemble members is the baseline every new method must beat.",
+     "examines": "Failure-detection strategies (aggregations of pixel confidence, ensemble pairwise Dice, learned quality regressors) on five 3D medical datasets under test-time shift; graded by risk-coverage analysis (abstract only).",
+     "key_numbers": "5 public 3D datasets; pairwise Dice of ensemble predictions is the robust baseline; aggregation choice decides the outcome (no values in abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Already covered: exp76 compares five window aggregators (gaps of order 0.001) and exp73 runs the 5-seed probe ensemble (mutual information, vote disagreement, bag margin) which loses 22/24. Cite as the origin of the aggregation rule the record already follows."
+    },
+    {
+     "title": "ValUES: A Framework for Systematic Validation of Uncertainty Estimation in Semantic Segmentation",
+     "authors_venue_year": "Kahl, L\u00fcth, Zenk, Maier-Hein, Jaeger; ICLR 2024 (oral); arXiv 2401.08501",
+     "url": "https://arxiv.org/abs/2401.08501",
+     "rule": "Validate an uncertainty method by its downstream use (failure detection, OOD detection, active learning, calibration, ambiguity modelling), ablate the aggregation component separately from the score, and do not assume the aleatoric/epistemic split transfers from simulated to real data.",
+     "examines": "Uncertainty methods for segmentation in controlled environments with injected ambiguity and shift plus real data; graded on five downstream tasks with component ablations (abstract only).",
+     "key_numbers": "5 downstream tasks; ensembles most robust, test-time augmentation a lightweight alternative; type separation works on simulation but not reliably on real data (no values in abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Partially followed: the record grades failure detection and the error-rate estimator, and ablates aggregation (exp76). Gap: no controlled-ambiguity environment (the record's exp23 reference disagreement is observational, not injected) and calibration of the margin is not graded alongside its ranking."
+    },
+    {
+     "title": "Rethinking Evaluation Protocols of Visual Representations Learned via Self-supervised Learning",
+     "authors_venue_year": "Lee, Yoon, Ji, Kim, Hwang; arXiv 2304.03456, Apr 2023",
+     "url": "https://arxiv.org/abs/2304.03456",
+     "rule": "Linear-probe and transfer results are very sensitive to probe hyperparameters; normalise probe inputs (batch norm before the linear layer) so that linear-probe and kNN rankings agree and evaluation is stable across learning rate, weight decay and schedule.",
+     "examines": "Sensitivity of linear probing, kNN and transfer learning of SSL representations to protocol hyperparameters; graded by stability of accuracy and by LP/kNN rank agreement (abstract only).",
+     "key_numbers": "Input batch normalisation considerably improves LP stability and resolves the kNN/LP inconsistency; SSL weight decay affects transferability invisibly to upstream LP/kNN (no values in abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap: the record reseeds the probe (exp79, 10 seeds) but does not vary learning rate, epochs or feature normalisation of Ai2's probe recipe, so it cannot say whether the margin's lead over controls survives a differently-normalised probe. Cheap to test on the cached embeddings: refit probes with standardised features and compare E-AURC of the margin."
+    },
+    {
+     "title": "The Benchmark Lottery",
+     "authors_venue_year": "Dehghani, Tay, Gritsenko, Zhao, Houlsby, Diaz, Metzler, Vinyals; arXiv 2107.07002, Jul 2021",
+     "url": "https://arxiv.org/abs/2107.07002",
+     "rule": "Which method looks superior is determined largely by which tasks are in the suite; a claim must state the task-selection rule and show how the ranking moves under alternative task subsets.",
+     "examines": "Ranking fragility across NLP, vision, IR, recommender and RL benchmarks as a function of task selection; graded by rank changes under subset choice (abstract only).",
+     "key_numbers": "No numbers in abstract; the paper gives recommendations on mitigating the lottery.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Partially followed: the record fixes the suite at Ai2's 24 tasks and reports per-task wins, which limits cherry-picking. Gap: no leave-tasks-out or subset-resampling of the 24 tasks to show the margin's 24/24 or >=75% claim is not a property of Ai2's task mix (17 classification, 7 segmentation)."
+    },
+    {
+     "title": "GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI",
+     "authors_venue_year": "Simumba, Lehmann, Fraccaro, Alemohammad, De Mel, Khan, Maskey, Longepe, Zhu, Kerner, Bernabe-Moreno, Lacoste; arXiv 2511.15658, Nov 2025 (v2 Feb 2026)",
+     "url": "https://arxiv.org/abs/2511.15658",
+     "rule": "Rank geospatial models within capability groups (datasets sharing resolution, bands, temporality) under a prescriptive adaptation protocol rather than by one aggregate score, because no single model dominates.",
+     "examines": "19 permissively licensed datasets across classification, segmentation, regression, detection, instance segmentation; graded by capability-group rankings under a fixed protocol; seeds and hyperparameter budgets not stated in the abstract.",
+     "key_numbers": "19 datasets, 5 task types; EO-pretrained models win on multispectral tasks, ImageNet models on high-resolution tasks; no single model dominates.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Partially followed: the record reports per-task and per-encoder results but aggregates by counting task wins, not by capability group. Gap: the 24 tasks could be grouped by sensor/resolution/temporality to state where the margin's lead is thin (many-class tasks are already flagged), which would follow the field's shift away from a single aggregate."
+    },
+    {
+     "title": "Data-Centric Benchmark for Label Noise Estimation and Ranking in Remote Sensing Binary Building Segmentation",
+     "authors_venue_year": "Nogueira, Diaconu, Kerekes, Gawlikowski, L\u00e9onard, Ait Ali Braham, Goo, Zeng, Liu, Jain, Nascetti, H\u00e4nsch; arXiv 2603.00604, Feb 2026 (rev. Aug 2026), accepted Neurocomputing",
+     "url": "https://arxiv.org/abs/2603.00604",
+     "rule": "Grade a label-noise ranker on a dataset with controlled, graded annotation perturbations so that the ranking of samples by noise severity can be scored against known injected noise; use uncertainty, prediction consistency and representation analysis as the candidate signals.",
+     "examines": "Methods that detect and rank training samples by label-noise severity in RS binary building segmentation; graded against controlled perturbations of a new public dataset (abstract only).",
+     "key_numbers": "Two proposed methods consistently beat baselines across settings (no values in abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap: the record observes reference disagreement (exp23, WorldCover 2020 vs 2021) but never injects controlled reference noise into the grading labels to measure how E-AURC of the margin, the boundary claim, and exp78's error-rate estimate move with reference error rate. This is runnable on per-unit exports by flipping labels at set rates."
+    },
+    {
+     "title": "Ground Truth in Classification Accuracy Assessment: Myth and Reality",
+     "authors_venue_year": "Foody; Geomatics 4(1), Feb 2024",
+     "url": "https://doi.org/10.3390/geomatics4010005",
+     "rule": "Reference data are never perfect; accuracy assessment must state the reference error rate and, where possible, correct estimates of accuracy and class area for it, because bias grows with reference error and with class rarity.",
+     "examines": "Simulation of how ground-data error of varying magnitude and nature, interacting with class prevalence, biases per-class and overall accuracy and derived area estimates (search-result summary; abstract page returned 403).",
+     "key_numbers": "From the related Foody 2009/2010 work surfaced in the same search: 90%-accurate reference data made producer's accuracy of change read ~61% when the truth was 80%, and change extent 26% when the truth was 20%.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Partially followed: the record cites Olofsson 2014 and Stehman & Foody 2019 and treats WorldCover/LUCAS references as fallible. Gap: exp78's design-based error-rate estimator assumes the reviewer's labels are exact; no correction term or sensitivity band for reviewer error, and no statement of the reference error rate on the task cards."
+    },
+    {
+     "title": "RSPDBench: Benchmarking Vision Foundation Models on Earth Observation Tasks Under Physically Grounded Remote-Sensing Product Degradations",
+     "authors_venue_year": "Faruk, Reza, Pallickara, Pallickara; arXiv 2609.23427, Sep 2026",
+     "url": "https://arxiv.org/abs/2609.23427",
+     "rule": "Robustness must be measured as the drop from each model's clean baseline under physically grounded product degradations (spatial, radiometric, alignment, noise, harmonisation) and under compound chains, because compound chains expose failures that isolated degradations do not predict.",
+     "examines": "Seven foundation models and two supervised baselines on five EO datasets under audited primitive degradations and compound product chains; graded by performance drop from clean (abstract only).",
+     "key_numbers": "5 datasets, 7 FMs + 2 supervised; compound-chain drops up to 38 percentage points beyond single degradations.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Gap: the record cites REOBench (known) and uses perturbations only as candidate signals (masking, tile phase, dihedral), never as an evaluation condition; whether the margin still ranks errors when the input product is degraded is unmeasured. Needs new encoder passes, so not runnable on cached embeddings."
+    },
+    {
+     "title": "Benchmarking Geospatial Foundation Models for Agriculture Applications",
+     "authors_venue_year": "Shang, Das, Eldawy; arXiv 2606.29664, Jun 2026 (submitted to ACM SIGSPATIAL 2026)",
+     "url": "https://arxiv.org/abs/2606.29664",
+     "rule": "Region-aware evaluation is a necessary standard: assign train, validation and test splits to disjoint regions so that reported numbers measure geographic transfer, and report per-class behaviour because models collapse to the frequent classes under regional shift.",
+     "examines": "Prithvi, SpectralGPT and SatMAE on multi-temporal crop segmentation and change detection across four US states with region-disjoint splits; graded by degradation under regional shift and rare-class recall (abstract only).",
+     "key_numbers": "3 GFMs, 4 states; all three degrade sharply under regional shift and miss rare crops; input-format harmonisation affects each model differently.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Partially followed: the record inherits Ai2's splits (some are region-disjoint, some random) and does not state per task whether the test region overlaps training. Gap: the audit's headline (margin wins 24/24) is not stratified by split type, and the boundary/error claims are not reported per class frequency, although exp77 found scene-typicality confounded with class frequency."
+    }
+   ],
+   "field_rules": [
+    "Grade a confidence ranker by threshold-free risk-coverage areas (AURC/E-AURC, AUGRC) across many tasks, backbones and failure sources, and never by a single fixed-threshold metric (Jaeger 2023, Traub 2024, Steinmetz 2026, Claros Olivares 2025).",
+    "Failure-detection scores are confounded with classifier accuracy; report excess or normalised metrics and the correlation with accuracy explicitly (Steinmetz 2026, Jaeger 2023).",
+    "When many rankers are compared, use a rank pipeline with multiple-comparison control, and expect the winning family to depend on the representation rather than the score (Claros Olivares 2025).",
+    "Misclassification and out-of-support inputs must be graded jointly; a selective system is scored on both with a double-scoring risk-coverage metric (Li 2026).",
+    "In segmentation, the aggregation from pixel confidence to the decision unit is a separately ablated component of the method, and ensemble pairwise Dice is the baseline to beat (Zenk 2024, Kahl 2024).",
+    "Uncertainty methods are validated by downstream use (failure detection, OOD, calibration, active learning) in controlled environments with injected ambiguity and shift, not by proxy scores alone (Kahl 2024).",
+    "Linear-probe results are hyperparameter-sensitive; normalise probe inputs and check that kNN and linear-probe rankings agree before drawing conclusions about the representation (Lee 2023).",
+    "A ranking claim must state the task-selection rule and show stability under task subsets, because the suite decides the winner (Dehghani 2021).",
+    "Geospatial model rankings are reported within capability groups (resolution, bands, temporality) under a prescriptive adaptation protocol, not as one aggregate (Simumba 2025).",
+    "Label-noise detectors are graded against controlled, graded annotation perturbations with known ground truth (Nogueira 2026).",
+    "Reference data are imperfect; state the reference error rate and correct or bound accuracy and area estimates for it, with bias rising for rare classes (Foody 2024).",
+    "Robustness is the drop from each model's clean baseline under physically grounded, compound product degradations, not generic corruptions (Faruk 2026).",
+    "Splits must be region-disjoint and results reported per class, because foundation models collapse to frequent classes under regional shift (Shang 2026)."
+   ],
+   "gaps_in_our_tool": [
+    "Multiplicity: the record runs one-sided sign tests per alternative across ~20 raced signals without family-wise control; Claros Olivares 2025 uses a multiple-comparison-controlled rank pipeline. Fix on existing per-task numbers.",
+    "Probe-protocol variance: exp79 covers seeds only; Lee 2023 shows learning rate, weight decay and feature normalisation move linear-probe results and that BN-on-inputs stabilises them. The margin's lead is untested under a standardised-feature probe; runnable on cached embeddings.",
+    "Joint OOD + error grading: the record has no out-of-support stratum and no DS-AURC-style metric (Li 2026); windows that are neither in the label space nor clean errors are invisible.",
+    "Task-subset stability: no leave-tasks-out or bootstrap over the 24 Ai2 tasks to show the 24/24 and >=75% claims are not a benchmark-lottery artefact (Dehghani 2021); nor capability-group reporting by sensor/resolution/temporality (Simumba 2025).",
+    "Reference-error sensitivity: exp23 observes reference disagreement but no controlled label-flip experiment measures how E-AURC, the boundary claim and exp78's error-rate estimate move with reference error rate (Nogueira 2026, Foody 2024); exp78 assumes reviewer labels are exact and gives no correction or band for reviewer error.",
+    "Accuracy confound reporting: excess AURC is used, but the correlation between the margin's failure-detection score and probe accuracy across the 384 task-encoder cells is not reported (Steinmetz 2026).",
+    "Label-free score aggregation: the field's standing arm is aggregating several confidence scores without labels (Steinmetz 2026); the record tests only label-fitted fusion (exp65).",
+    "Controlled-ambiguity validation and calibration: ValUES-style injected ambiguity/shift environments and a calibration grade of the margin alongside its ranking are absent (Kahl 2024).",
+    "Degradation as an evaluation condition: perturbations are used only as candidate signals; no measurement of the margin's ranking under physically grounded product degradations or compound chains (Faruk 2026); needs GPU passes.",
+    "Split-type and class-frequency stratification: the headline is not stratified by whether a task's split is region-disjoint, and error/boundary claims are not reported by class frequency despite exp77's confound (Shang 2026)."
+   ],
+   "searches_run": [
+    "failure detection benchmark \"call to reflect\" Jaeger follow-up 2025 AUGRC selective prediction evaluation",
+    "linear probe evaluation variance seed learning rate hyperparameters foundation model \"probing\" protocol 2025 arXiv",
+    "GEO-Bench-2 PANGAEA Copernicus-Bench evaluation protocol critique Earth observation foundation models 2025 2026",
+    "label noise reference data error benchmark Earth observation foundation model evaluation 2025 2026 arXiv",
+    "\"benchmark lottery\" OR \"probing is not evaluation\" foundation models representation evaluation 2025",
+    "selective classification evaluation distribution shift benchmark 2026 arXiv failure detection confidence scoring functions",
+    "\"linear probing\" evaluation protocol sensitivity hyperparameters seeds \"self-supervised\" representation quality unreliable 2024 2025 arXiv",
+    "Copernicus-Bench arXiv 2025 evaluation protocol geospatial foundation models \"linear probing\" fine-tuning ranking inconsistency",
+    "\"reference data\" error \"accuracy assessment\" land cover map imperfect reference labels bias correction 2025 2026",
+    "Traub Jaeger 2025 2026 arXiv selective classification evaluation \"generalized risk\" OR \"failure detection\" segmentation pixel-level aggregation",
+    "Foody 2024 \"ground data\" imperfect reference error accuracy assessment classification \"Remote Sensing of Environment\" OR \"Remote Sensing\" bias",
+    "geospatial foundation model benchmark ranking instability seeds \"linear probing\" variance \"confidence intervals\" 2025 2026 arXiv statistically significant ranking",
+    "\"misclassification detection\" OR \"failure prediction\" evaluation protocol critique 2025 2026 arXiv \"AURC\" accuracy confounding normalization metric",
+    "Fetched abstracts: medrxiv 2026.05.04.26350496v1, arXiv 2603.03903, 2511.11934, 2511.15658, 2603.00604, 2609.23427, 2604.13386, 2505.22843 (abs + html), 2406.03323, 2304.03456, 2401.08501, 2107.07002, 2607.07758, 2606.29664, 2504.03478; Foody 2024 (doi redirect to MDPI returned 403, summary from search result); CEOS LPV protocol PDF blocked (access denied)"
+   ]
+  },
+  {
+   "papers": [
+    {
+     "title": "Leveraging Unlabeled Data to Predict Out-of-Distribution Performance (ATC)",
+     "authors_venue_year": "Garg, Balakrishnan, Lipton, Neyshabur, Sedghi; ICLR 2022",
+     "url": "https://arxiv.org/abs/2201.04234",
+     "rule": "Average Thresholded Confidence: fit one threshold on a labelled SOURCE (validation) set so that the fraction of source examples with confidence above it equals source accuracy; the target accuracy estimate is the fraction of unlabelled target examples whose confidence exceeds that threshold. Any confidence score (max-prob, margin, negative entropy) can be plugged in.",
+     "examines": "Dataset-level accuracy of a fixed classifier on shifted unlabelled test sets; graded by mean absolute error between estimated and true accuracy across synthetic corruptions, dataset reproductions and novel subpopulations.",
+     "key_numbers": "Abstract only: 2-4x lower estimation error than prior methods (DoC, GDE-style, importance weighting). Also proves that identifying accuracy is as hard as identifying the best predictor, so every estimator rests on an assumption about the shift.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap. The record has the margin as an instance ranker and exp78's design-based estimate that needs labels on the deployment map; ATC would give a label-free point estimate of each task's error rate from the per-unit margin/p1 exports plus the probe's validation split. Not on the related-work page (2201.04234 absent).",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "Predicting with Confidence on Unseen Distributions (DoC)",
+     "authors_venue_year": "Guillory, Shankar, Ebrahimi, Darrell, Schmidt; ICCV 2021",
+     "url": "https://arxiv.org/abs/2107.03315",
+     "rule": "Difference of Confidences: the drop in mean top-1 confidence from source to target predicts the drop in accuracy, optionally with a linear map fitted on held-out shifts; distributional distances (Frechet, MMD) between feature sets do not.",
+     "examines": "Dataset-level accuracy under natural shifts (ImageNet-V2, -R, -Vid-Robust, etc.); graded by error of predicted accuracy against true accuracy.",
+     "key_numbers": "Abstract only: 46% lower predictive error than distance-based baselines on realistic shifts.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap, and a direct methodological contrast: the record tested feature-space typicality (kNN, Mahalanobis, SHRUG-FM U_E) as instance rankers and they lost; DoC is the dataset-level analogue of that finding (confidence beats distance) and is the cheapest estimator to grade on 24x16 from mean p1 per task.",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "Agreement-on-the-Line: Predicting the Performance of Neural Networks under Distribution Shift",
+     "authors_venue_year": "Baek, Jiang, Raghunathan, Kolter; NeurIPS 2022",
+     "url": "https://arxiv.org/abs/2206.13089",
+     "rule": "When ID and OOD accuracy are linearly related across a family of models (accuracy-on-the-line), pairwise ID vs OOD AGREEMENT of those models lies on a line with the same slope and intercept; agreement needs no labels, so the OOD accuracy line can be fitted from unlabelled OOD data alone (ALine-S/ALine-D estimators).",
+     "examines": "Dataset-level OOD accuracy across a model family; graded by MAE of predicted accuracy and by whether the linear fit holds (R^2 across models).",
+     "key_numbers": "Abstract only: outperforms prior estimators even where the line breaks; the phenomenon is reported to hold only for neural-network classifiers.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap. exp73 used seed ensembles only as an instance ranker; the 16 encoders and 10 seeds per task (exp79) form exactly the model family this method needs, provided the tool has at least one genuinely shifted unlabelled split per task (geographic or temporal), which the Ai2 splits may not give.",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "Predicting the Performance of Foundation Models via Agreement-on-the-Line",
+     "authors_venue_year": "Saxena, Kim, Mehra, Baek, Kolter, Raghunathan; arXiv 2404.01542, 2024 (v2 Oct 2024; NeurIPS 2024 per listing, from abstract page only)",
+     "url": "https://arxiv.org/abs/2404.01542",
+     "rule": "For lightly finetuned or probed foundation models, agreement-on-the-line holds only when ensemble members differ by RANDOM HEAD INITIALISATION; varying data order or subsets gives too little diversity. Ensembles of different foundation models finetuned on the same task also lie on the line.",
+     "examines": "Dataset-level OOD accuracy prediction for finetuned/probed foundation models across vision and language shifts; graded by MAE of predicted accuracy and linear-fit quality.",
+     "key_numbers": "Abstract only: no numbers in the abstract; the claim is which randomness source induces the line.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap that matches the record's assets precisely: 10 seeds x 16 encoders of linear probes on frozen encoders are the two ensemble types the paper says work. Needs per-seed decisions exported (digest says cheap follow-up).",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "Characterizing Out-of-Distribution Error via Optimal Transport (COT / COTT)",
+     "authors_venue_year": "Lu, Qin, Zhai, Shen, Chen, Wang, Kolouri, Stepputtis, Campbell, Sycara; NeurIPS 2023",
+     "url": "https://arxiv.org/abs/2305.15640",
+     "rule": "Confidence-based estimators UNDERESTIMATE error when the predicted label marginal on the target drifts from the true one (pseudo-label shift); estimate error as the optimal-transport cost between the target softmax outputs and the source label marginal (COT), or threshold the transport cost per sample (COTT).",
+     "examines": "Dataset-level OOD error; graded by MAE against true error and specifically by the underestimation bias of ATC/DoC-style methods under label shift.",
+     "key_numbers": "Abstract only: up to 3x lower estimation error than prior state of the art.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap. Names the failure mode most relevant to EO maps (class prevalence differs by region and date); needs full per-unit probability vectors, obtainable from cached embeddings + the probe on CPU.",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "Confidence and Dispersity Speak: Characterising Prediction Matrix for Unsupervised Accuracy Estimation (nuclear norm)",
+     "authors_venue_year": "Deng, Suh, Gould, Zheng; ICML 2023 (arXiv 2302.01094)",
+     "url": "https://arxiv.org/abs/2302.01094",
+     "rule": "A well-performing model on a test set gives predictions that are both confident (peaked rows) and dispersed across classes (balanced columns); the nuclear norm of the softmax prediction matrix captures both and correlates with accuracy across shifts. Known limit: severe class imbalance breaks the dispersity assumption.",
+     "examines": "Dataset-level accuracy across shifts and architectures (ViT, ConvNeXt; ImageNet, CUB); graded by correlation (R^2, rho) between the score and true accuracy across shifted test sets.",
+     "key_numbers": "Abstract only: improved correlation and robustness over prior methods; imbalance stated as a limitation.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap, with a warning: EO segmentation tasks are heavily imbalanced (flood/no-flood), which is the paper's own stated failure mode; the tool's per-class recording would expose it.",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "MaNo: Exploiting Matrix Norm for Unsupervised Accuracy Estimation Under Distribution Shifts",
+     "authors_venue_year": "Xie, Odonnat, Feofanov, Deng, Zhang, An; NeurIPS 2024 (arXiv 2405.18979)",
+     "url": "https://arxiv.org/abs/2405.18979",
+     "rule": "Logit-based estimators are biased by overconfidence under natural shift; apply a data-dependent normalisation to the logits (softrun) and use the Lp norm of the normalised logit matrix as the accuracy score, justified by a low-density-separation argument.",
+     "examines": "Dataset-level accuracy across synthetic, natural and subpopulation shifts; graded by correlation with true accuracy across test sets.",
+     "key_numbers": "Abstract only: state-of-the-art across architectures; no numbers in the abstract.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap; same inputs as the nuclear norm (logit matrix from embeddings + probe). Together with Deng 2023 and GdScore it is the family the field grades new dataset-level estimators against.",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "Leveraging Gradients for Unsupervised Accuracy Estimation under Distribution Shift (GdScore)",
+     "authors_venue_year": "Xie, Odonnat, Feofanov, Redko, Zhang, An; TMLR 2025 (arXiv 2401.08909)",
+     "url": "https://arxiv.org/abs/2401.08909",
+     "rule": "The norm of the classification-layer gradient of the cross-entropy loss against the model's own pseudo-labels, after one step over the unlabelled test set, is larger when the model generalises worse; it replaces ProjNorm's retraining (Yu 2022, arXiv 2202.05834) with one gradient step on the head.",
+     "examines": "Dataset-level accuracy under shift; graded by linear correlation with true accuracy, with the claim that the relation stays linear at high error where confidence-based scores saturate.",
+     "key_numbers": "Abstract only: significantly outperforms prior estimators across architectures and shifts.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap; for a linear probe the head gradient is a closed form of embeddings and softmax outputs, so it is computable from the cached bank without encoder passes.",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "Label-free estimation of clinically relevant performance metrics under distribution shifts",
+     "authors_venue_year": "Fluehmann, Bissoto, Hoang, Koch; UNSURE 2025 workshop at MICCAI (oral); arXiv 2507.22776",
+     "url": "https://arxiv.org/abs/2507.22776",
+     "rule": "Generalise ATC/DoC-style estimators to estimate the full CONFUSION MATRIX rather than accuracy, so that per-class metrics (sensitivity, specificity, counts) follow; grade estimators separately under real-world shift, covariate shift and PREVALENCE shift, because simulated prevalence shift makes all confidence-based estimators fail systematically.",
+     "examines": "Dataset-level confusion matrix and derived metrics of chest X-ray classifiers under real and simulated shifts; graded by error of estimated vs true metric per shift type.",
+     "key_numbers": "Abstract only: outperforms baselines for real-world and covariate shifts; systematic failure of every method under simulated prevalence shifts.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap and the honest framing the task asks for: a label-free estimate exists, its known failure mode is prevalence shift, and the confusion-matrix form is what an EO map user needs (per-class omission/commission, cf. Olofsson 2014 already cited).",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "ConfIC-RCA: Statistically Grounded Efficient Estimation of Segmentation Quality (In-Context Reverse Classification Accuracy)",
+     "authors_venue_year": "Cosarinsky, Billot, Mansilla, Jimenez, Gaggion, Fu, Tirer, Ferrante; IEEE TMI 2025 (arXiv 2503.04522)",
+     "url": "https://arxiv.org/abs/2503.04522",
+     "rule": "Reverse Classification Accuracy: treat the predicted mask as pseudo ground truth, use it to segment (via an in-context segmenter with retrieved references) a small labelled reference set, and read the best Dice on the references as the quality of the predicted mask; wrap it in split conformal prediction to give per-image quality INTERVALS with coverage guarantees instead of point estimates.",
+     "examines": "Per-image segmentation quality (Dice) without a label for that image; graded on 10 medical segmentation tasks by correlation with true Dice and by conformal coverage of the intervals.",
+     "key_numbers": "Abstract only: validated on 10 tasks across organs and modalities; no numbers in the abstract.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": false,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Gap in method: the record has no per-map quality estimator for segmentation and no conformal interval around a label-free estimate; RCA needs a small labelled reference set (allowed by filter 2) and an in-context segmenter, not the frozen probe.",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "Towards Reliable Test-Time Adaptation: Style Invariance as a Correctness Likelihood (SICL)",
+     "authors_venue_year": "Nam, Kim, Jeong, Yang; WACV 2026 (arXiv 2512.07390)",
+     "url": "https://arxiv.org/abs/2512.07390",
+     "rule": "Instance-wise correctness likelihood = prediction consistency of the model across style-altered variants of the input (forward passes only), used to recalibrate confidence under test-time adaptation.",
+     "examines": "Instance-level calibration of adapted classifiers; graded by expected calibration error across four baselines, five TTA methods, three architectures, two scenarios.",
+     "key_numbers": "Abstract only: mean 13 percentage-point reduction in calibration error.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Already covered in substance: the record tested tile-phase/perturbation stability, dihedral consistency, masking perturbation and shift-TTA of the head (exp53) as instance rankers and they lost to the margin. Cite only as the 2026 confirmation that the field grades consistency by calibration, not ranking; a new encoder pass per variant would be needed.",
+     "key_numbers_note": ""
+    },
+    {
+     "title": "Right Regions, Wrong Labels: Semantic Label Flips in Segmentation under Correlation Shift",
+     "authors_venue_year": "Achara, Yahathugoda, Byrne, Antonelli, Puyol Anton, Hammers, King; arXiv 2604.13326, CAO workshop at ICLR 2026",
+     "url": "https://arxiv.org/abs/2604.13326",
+     "rule": "Decompose segmentation foreground error into correct, identity-flipped (right region, wrong foreground class) and missed-to-background pixels; a label-free 'flip-risk' score from the entropy over FOREGROUND classes only flags identity flips at inference, which grow as category-scene correlation in training increases.",
+     "examines": "Pixel-level error types of segmentation models under correlation shift; graded by the Flip metric against ground truth and by how flip-risk ranks flipped pixels.",
+     "key_numbers": "Abstract only: no numbers in the abstract; the claim is that the gap between common and rare scene conditions widens with correlation strength.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Partly covered (exp76 compared confidence forms; exp77 tested scene-typicality) but the error TYPE decomposition is absent: the record reports boundary vs interior errors, not identity flips vs omissions, and the tool's explain module could carry this label-free cue on multi-class tasks.",
+     "key_numbers_note": ""
+    }
+   ],
+   "field_rules": [
+    "A label-free accuracy estimate is graded by the absolute error between estimated and true accuracy across many (model, shifted test set) pairs, never on one dataset, because identifying accuracy is as hard as identifying the best predictor and every estimator carries a shift assumption (Garg et al. 2022, ATC).",
+    "Confidence-based estimators must be fitted on a labelled source split (a threshold or a linear map) and applied to unlabelled targets; feature-distribution distances are not a substitute (Guillory et al. 2021, DoC; Garg et al. 2022).",
+    "When a family of models is available, unlabelled pairwise agreement on the target replaces labels: ID-vs-OOD agreement lies on the same line as accuracy, and for probed foundation models the family must differ by random head initialisation (Baek et al. 2022; Saxena et al. 2024).",
+    "Every confidence-based estimator underestimates error when the predicted class marginal on the target differs from the source label marginal; the fix is an optimal-transport cost to the source marginal, and the grade must include label/prevalence-shift cases (Lu et al. 2023, COT/COTT).",
+    "Dataset-level scores are compared by correlation with true accuracy across shifted sets, and the ones that survive are logit-matrix statistics with an overconfidence correction (nuclear norm, Deng et al. 2023; MaNo, Xie et al. 2024) or the one-step head-gradient norm (GdScore, Xie et al. 2025), with class imbalance as a declared failure mode (Deng et al. 2023).",
+    "Estimate the confusion matrix, not accuracy, when users need per-class metrics, and report estimator behaviour separately under covariate shift and prevalence shift, where all confidence-based estimators fail (Fluehmann et al. 2025).",
+    "Per-image segmentation quality without a label is estimated by reverse classification against a small labelled reference set and reported as a conformal interval with coverage, not a point (Cosarinsky et al. 2025, ConfIC-RCA).",
+    "Instance-level consistency under semantics-preserving perturbation is graded as a correctness likelihood by calibration error (Nam et al. 2026, SICL), and segmentation error is decomposed into region, identity-flip and omission components before any label-free flag is judged (Achara et al. 2026)."
+   ],
+   "gaps_in_our_tool": [
+    "The tool says 'how wrong the map is needs a reference'; the field has label-free dataset-level estimators with a declared failure mode (prevalence/pseudo-label shift: Lu 2023, Fluehmann 2025). Gap: no ATC/DoC/COT estimate is computed, though the per-unit exports (margin, p1, decision) and the probe validation split are enough for ATC and DoC on 24x16 tonight; COT, nuclear norm, MaNo and GdScore need full probability vectors from the cached embeddings + probe (CPU per encoder).",
+    "Grading rule not followed: the field grades an estimator by MAE across many (model, test set) pairs including shifted ones (Garg 2022). The 24 Ai2 tasks are mostly in-distribution splits; grading on 24x16 would measure in-distribution bias only unless a geographic/temporal held-out split per task is defined, which the record does not have.",
+    "Agreement-on-the-line is untested although the record holds the exact family it needs (10 random-init probe seeds x 16 encoders; Saxena 2024 says random head init is the diversity that works). exp73 used seed disagreement only as an instance ranker; GDE (Jiang 2022, cited) as a dataset-level error-rate estimate is also not on the record. Needs per-seed decisions exported.",
+    "Class-prevalence shift is the named failure mode of every confidence-based estimator (Lu 2023, Fluehmann 2025) and EO maps shift prevalence by region and date (flood extent, crop mix); the tool's estimate module has no label-free component and no prevalence-shift check at all.",
+    "The estimate module reports overall error with a labelled sample; the field's clinical line estimates the full confusion matrix (Fluehmann 2025), which for maps is the per-class omission/commission that Olofsson 2014 (cited) requires. A label-free confusion-matrix estimate could serve as the predictor in the difference/PPI estimator already shipped, reducing the labelled sample needed.",
+    "No per-map segmentation quality estimate or interval exists; the field's answer for segmentation is reverse classification accuracy against a small reference set with conformal intervals (Cosarinsky 2025). Not computable from the frozen probe; would need a reference set per task and an in-context segmenter.",
+    "Segmentation error is not decomposed into identity flips vs omissions (Achara 2026); the record's boundary-vs-interior split is a different axis, and the explain module has no flip-risk cue for multi-class tasks.",
+    "Label-free model selection across the 16 encoders (which encoder to deploy on an unlabelled region) is not offered; the field does it by agreement (Saxena 2024) and by pseudo-label discrepancy (Larrea et al. 2026, arXiv 2608.25810, AURCC, Spearman up to 0.943 over six models)."
+   ],
+   "searches_run": [
+    "label-free accuracy estimation under distribution shift foundation models 2025",
+    "unsupervised accuracy estimation semantic segmentation without labels 2025 2026",
+    "MaNo matrix norm accuracy estimation Xie 2024 NeurIPS logits",
+    "test-time augmentation agreement instance-level confidence invariance consistency 2025",
+    "remote sensing land cover map accuracy estimation without reference labels model outputs 2025 2026",
+    "\"accuracy estimation\" \"without labels\" 2026 arxiv shift estimation failure modes",
+    "performance prediction semantic segmentation unlabeled target domain mIoU estimation without ground truth",
+    "unsupervised accuracy estimation benchmark limitations \"AutoEval\" 2025 2026 arxiv",
+    "estimating accuracy of vision foundation model linear probe without labels embeddings 2025 2026",
+    "GdScore gradient norm unsupervised accuracy estimation distribution shift",
+    "segmentation quality estimation without ground truth remote sensing satellite pixel-level failure prediction 2025 2026",
+    "\"prediction-powered\" AutoEval adaptive reliability efficiency guarantees 2025 unlabeled evaluation",
+    "Jiang 2022 \"assessing generalization\" disagreement calibration GDE extension 2025 2026",
+    "2026 arxiv unsupervised accuracy estimation dense prediction segmentation \"without labels\" pixel foundation model",
+    "Earth observation foundation model performance estimation unlabeled region accuracy prediction spatial transfer 2025 2026",
+    "Fetched abstracts: 2201.04234, 2107.03315, 2206.13089, 2404.01542, 2305.15640, 2302.01094, 2405.18979, 2401.08909, 2202.05834, 2507.22776, 2608.25810, 2606.06335, 2512.07390, 2503.04522, 2604.13326, 2401.08348, 2502.13990, 2505.18659"
+   ]
+  },
+  {
+   "papers": [
+    {
+     "title": "PPI++: Efficient Prediction-Powered Inference",
+     "authors_venue_year": "Angelopoulos, Duchi, Zrnic; arXiv 2311.01453 (Nov 2023, rev. Mar 2024); a search result says it appears in Annals of Applied Statistics 2026",
+     "url": "https://arxiv.org/abs/2311.01453",
+     "rule": "Estimate with the difference estimator but multiply the prediction term by a power-tuning coefficient lambda chosen from the data to minimise variance; lambda=0 recovers the classical labelled-only estimate, lambda=1 is plain PPI, so the tuned interval is never wider than the classical one (abstract plus method summary).",
+     "examines": "Estimation of means, quantiles and M-estimation parameters from a small labelled set plus a large predicted set; graded by confidence-interval width at nominal coverage.",
+     "key_numbers": "Abstract gives no numbers; the claim is that intervals 'always improve on classical intervals using only the labeled data'.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Extends the plain PPI already cited and the 'PPI = difference estimator' equivalence (Mozer 2026). exp78 ran a difference estimator with confidence as predictor as one arm, apparently with the coefficient fixed at 1; the field's rule is to tune lambda (PPI++) so the arm cannot lose to the stratified classical estimator. Testable on exp78's per-unit files."
+    },
+    {
+     "title": "Active Statistical Inference",
+     "authors_venue_year": "Zrnic, Cand\u00e8s; ICML 2024 (arXiv 2403.03208, rev. Apr 2026)",
+     "url": "https://arxiv.org/abs/2403.03208",
+     "rule": "Under a label budget, sample each unit for labelling with a probability that increases with the model's uncertainty, then form an inverse-probability-weighted prediction-powered estimator; valid intervals for any black-box model and any distribution (abstract).",
+     "examines": "Mean and regression-coefficient estimation with model-chosen labelling; graded by interval width and test power versus non-adaptive designs on public-opinion, census and proteomics data.",
+     "key_numbers": "Abstract: 'same level of accuracy with far fewer samples' than baselines; no figure in the abstract.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap. The tool's design is a fixed confidence-quintile Neyman allocation; active inference is the field's version of 'let the margin choose who gets labelled' with a design-consistent estimator. It can be simulated on the fully labelled per-unit exports (24 tasks x 16 encoders) with no GPU."
+    },
+    {
+     "title": "Robust Sampling for Active Statistical Inference",
+     "authors_venue_year": "Li, Zrnic, Cand\u00e8s; NeurIPS 2025 (arXiv 2511.08991)",
+     "url": "https://arxiv.org/abs/2511.08991",
+     "rule": "Because inaccurate uncertainty scores can make active sampling noisier than uniform sampling, mix the uncertainty-driven sampling rule with uniform sampling and calibrate the mixture so the estimator is never worse than uniform and better when the scores are good (abstract).",
+     "examines": "Failure mode of active inference under miscalibrated uncertainty; graded by estimator variance and coverage on social-science and survey data.",
+     "key_numbers": "None in the abstract.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap, and directly relevant: the record shows the margin's ranking quality varies across 16 encoders and 24 tasks, so any confidence-driven label allocation needs the field's hedge against a poorly ranked task. Monte Carlo on the per-unit exports would grade it."
+    },
+    {
+     "title": "Stratified Prediction-Powered Inference for Hybrid Language Model Evaluation",
+     "authors_venue_year": "Fisch, Maynez, Hofer, Dhingra, Globerson, Cohen; NeurIPS 2024 (arXiv 2406.04291)",
+     "url": "https://arxiv.org/abs/2406.04291",
+     "rule": "Partition units into strata where the automatic rater's accuracy differs, draw labels by stratified sampling, and apply PPI with a separate power-tuning coefficient per stratum; valid without assumptions on the rater (abstract plus method summary).",
+     "examines": "Hybrid human/auto evaluation of language-model outputs; graded by confidence-interval width at nominal coverage.",
+     "key_numbers": "Abstract: 'substantially tighter confidence intervals than unstratified approaches' when rater accuracy varies across strata; no figure.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Closest published relative of exp78's confidence-stratified design. The tool stratifies and uses classical within-stratum estimation; StratPPI adds per-stratum tuned use of the predictions on the unlabelled units. A gap in the estimator, not the design."
+    },
+    {
+     "title": "Prediction-Powered Inference with Imputed Covariates and Nonuniform Sampling",
+     "authors_venue_year": "Kluger, Lu, Zrnic, Wang, Bates; arXiv 2501.18577 (Jan 2025, rev. Nov 2025)",
+     "url": "https://arxiv.org/abs/2501.18577",
+     "rule": "When the labelled units come from a weighted, stratified or clustered sample, or when features as well as labels are imputed, use bootstrap confidence intervals for the predict-then-debias estimator; valid under no assumption on model quality (abstract).",
+     "examines": "Validity of PPI intervals under survey-type sampling designs; graded by coverage in simulation and applications.",
+     "key_numbers": "None in the abstract.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap. The tool's ratio estimator for tile clusters (design effect 1.2-3) is classical; this paper is the PPI-side treatment of exactly that clustered/stratified case, so a PPI arm on segmentation tiles must use these intervals rather than i.i.d. PPI formulas."
+    },
+    {
+     "title": "Regression coefficient estimation from remote sensing maps",
+     "authors_venue_year": "Lu, Kluger, Bates, Wang; arXiv 2407.13659 (Jul 2024, rev. Jul 2025); Remote Sensing of Environment 2025 (search result)",
+     "url": "https://arxiv.org/abs/2407.13659",
+     "rule": "Treat an ML-derived map as an auxiliary variable and use a small random ground-truth sample to debias downstream estimates via PPI, with no assumptions on the map's error structure (abstract).",
+     "examines": "Bias of regression coefficients computed from remote-sensing map products; graded by interval coverage and effective sample size versus ground-truth-only estimation.",
+     "key_numbers": "Effective sample size gains of up to 17x over ground-truth-only (abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Already in spirit via 'Angelopoulos PPI 2023' and Mozer 2026, but this is the canonical EO application and is not on the cited-id list. Useful as the anchor for saying what a map user expects when the map feeds a downstream regression, which the tool does not address."
+    },
+    {
+     "title": "Conformal Risk Control",
+     "authors_venue_year": "Angelopoulos, Bates, Fisch, Lei, Schuster; ICLR 2024 (arXiv 2208.02814, rev. Jun 2025). Companion: Learn then Test, Angelopoulos, Bates, Cand\u00e8s, Jordan, Lei, Annals of Applied Statistics 2025 (arXiv 2110.01052)",
+     "url": "https://arxiv.org/abs/2208.02814",
+     "rule": "For any loss that is monotone in a threshold (e.g. false-negative rate of a segmentation mask as the threshold on pixel scores is lowered), pick the threshold on a calibration sample so that the expected loss on new data is at most alpha, tight to O(1/n); Learn then Test does the same for non-monotone losses by multiple hypothesis testing (abstracts).",
+     "examines": "Post-hoc calibration of set-valued outputs (segmentation masks, multilabel sets) to a risk level; graded by realised risk versus alpha on held-out data.",
+     "key_numbers": "Guarantee tight up to O(1/n); applications include false-negative-rate control in vision and token-level F1 in NLP (abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap. The record answers 'how wrong is the map' as an estimate with an interval; the field also answers 'how much to review or dilate so the missed-error rate is at most alpha' as a risk-control threshold on the margin. Computable from the per-unit exports with a labelled calibration split."
+    },
+    {
+     "title": "A Framework for Efficient Model Evaluation through Stratification, Sampling, and Estimation",
+     "authors_venue_year": "Fogliato, Patil, Monfort, Perona; ECCV 2024",
+     "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/12117.pdf",
+     "rule": "To estimate a model's accuracy under a label budget, stratify by k-means clustering on a prediction of per-unit model performance (not on raw confidence bins), allocate one-shot, and use model-assisted estimators that exploit predicted accuracy on the unlabelled units; abstract and introduction read.",
+     "examines": "Precision of accuracy estimates for computer-vision models across stratification, sampling and estimator choices; graded by variance versus simple random sampling.",
+     "key_numbers": "Up to 10x efficiency gain over simple random sampling; model-assisted estimators generally more efficient than labelled-only (abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Contradicts one tool choice: the tool cuts strata at confidence quintiles; this paper's key result is that strata formed by k-means on a predicted-performance score are more efficient. Cheap to test on exp78's per-unit files (quintile vs k-means on the margin or on a fitted error predictor)."
+    },
+    {
+     "title": "Prediction-Powered Active Testing",
+     "authors_venue_year": "Ashouritaklimi, Kilian, Huang, Rainforth, Caron; arXiv 2607.08347 (Jul 2026)",
+     "url": "https://arxiv.org/abs/2607.08347",
+     "rule": "Estimate a model's risk under a label budget by combining active-testing acquisition (which test points to label) with prediction-powered control variates that residualise the loss, keeping unbiasedness while cutting variance; asymptotic normality gives intervals (abstract).",
+     "examines": "Label-efficient test-risk estimation on tabular regression and image classification; graded by interval coverage and width against labels used.",
+     "key_numbers": "Abstract: target coverage reached 'with substantially fewer labels and smaller widths'; no figure.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap. Same question as exp78 ('how wrong is this model at budget B') answered with sequential acquisition plus control variates instead of a fixed stratified design. Abstract only; method details not read."
+    },
+    {
+     "title": "Choosing a sample size allocation to strata based on trade-offs in precision when estimating accuracy and area of a rare class from a stratified sample",
+     "authors_venue_year": "Stehman, Wagner; Remote Sensing of Environment 2023 (Nov 2023)",
+     "url": "https://www.sciencedirect.com/science/article/abs/pii/S0034425723004327",
+     "rule": "Sample allocation to strata trades precision among user's accuracy, producer's accuracy and area; the trade-off grows as the target class becomes rarer (<=10% of the region) and user's accuracy is the estimate most sensitive to the allocation, so an allocation must be chosen against all three targets, not one (search-result abstract only; the page returned 403).",
+     "examines": "Precision of UA, PA and area estimates under different allocations for a rare binary target class (change, forest loss, water, burned area).",
+     "key_numbers": "Target class rare at <=10% of the study region; no other figures in the abstract.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap in what the tool reports: exp78 estimates an error rate with Neyman allocation for that single target; the map-accuracy field expects per-class user's/producer's accuracy and error-adjusted area, and shows Neyman for one target degrades the others. Per-unit exports (decision, error, class) allow computing all three."
+    },
+    {
+     "title": "Land Cover and Change Map Accuracy Assessment and Area Estimation Good Practices Protocol, Version 1.1",
+     "authors_venue_year": "Tyukavina, Stehman, Foody, Bontemps, See, Olofsson, Tsendbazar, et al.; CEOS WGCV Land Product Validation subgroup, November 2025, doi:10.5067/doc/ceoswgcv/lpv/lc.001",
+     "url": "https://ceos.org/document_management/Working_Groups/WGCV/CEOS_WGCV_LPV_Land_Cover_protocol_Nov2025_V1.1.pdf",
+     "rule": "Accuracy assessment is a probability sample of independent reference data with design-based estimators (overall, user's, producer's accuracy and class area from the reference sample, never from pixel counting); algorithm-variance metrics are not an accuracy assessment; at least 30% of budget goes to assessment; model-assisted estimators (post-stratification, regression, logistic) may use a wall-to-wall map or continuous layer as auxiliary while keeping design-based validity; local map quality metrics are expected to supplement global ones (executive summary and chapters 3 and 5 read from the PDF text).",
+     "examines": "Community standard for what a map producer must report and how; graded by conformance to the sampling, response and analysis design elements listed in its tables.",
+     "key_numbers": "Budget: at least 30% of the mapping project for assessment; UA objective: 75-150 units per map-class stratum; Neyman optimal allocation preferred for overall accuracy or change area with two strata (Stehman 2012 cited).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Olofsson 2014 and Stehman & Foody 2019 are cited; this 2025 protocol supersedes them as the field standard and states explicitly that a confidence layer alone is not an accuracy assessment, which frames the tool's `estimate` command as the compliant half and its rankers as the non-compliant half. It names model-assisted estimation with a continuous auxiliary (the margin qualifies) as good practice."
+    },
+    {
+     "title": "Optimizing satellite-based cropland area estimation through integrated map accuracy assessment and stratified sampling design across six African countries",
+     "authors_venue_year": "Adebayo, Nakalembe, Skakun, Frimpong, et al.; International Journal of Applied Earth Observation and Geoinformation 2026",
+     "url": "https://www.sciencedirect.com/science/article/pii/S1569843226001391",
+     "rule": "Link a map's user's/producer's accuracy to the relative efficiency of a map-stratified design and pick the map (stratifier) and sample size that reach a target coefficient of variation; a companion 2025 RSE paper (S0034425725002093) finds producer's accuracy drives relative efficiency more than user's accuracy (search-result abstracts only; both pages returned 403).",
+     "examines": "Sample-based cropland area estimation with seven land-cover products as strata in Kenya, Rwanda, Malawi, Tanzania, Uganda, Zambia; graded by precision (CV) and required sample size.",
+     "key_numbers": "8-15% precision versus 27-36% for conventional methods; most efficient stratifiers cut required sample size 20-40% at a 10% CV target.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap in planning: exp78 grades coverage and bias at a given budget, but the field's design question is inverted, 'what n reaches a target CV given this map's PA/UA'. The tool has no sample-size planner; the relative-efficiency-vs-accuracy relation could be fitted on the 24 fully labelled tasks."
+    }
+   ],
+   "field_rules": [
+    "Never estimate a population quantity from predictions alone; use a probability sample of reference labels and treat the model output as an auxiliary variable whose only job is variance reduction, with validity coming from the design (CEOS LPV protocol 2025; Lu et al. 2024/2025).",
+    "Use the predictions on the unlabelled units through a debiased (difference/PPI) estimator with a data-tuned coefficient so the interval can never be wider than the labelled-only one (PPI++, Angelopoulos, Duchi, Zrnic 2023).",
+    "When the model's accuracy varies across identifiable groups, stratify and tune the prediction weight per stratum (StratPPI, Fisch et al. 2024).",
+    "If the model's uncertainty may choose which units get labelled, weight by the inclusion probabilities and hedge the uncertainty-driven rule with a uniform component so a badly ranked case is never worse than random (Active Statistical Inference, Zrnic & Cand\u00e8s 2024; Robust Sampling, Li, Zrnic, Cand\u00e8s 2025).",
+    "For clustered or stratified labelled samples and imputed covariates, PPI intervals must come from a design-aware bootstrap, not i.i.d. formulas (Kluger et al. 2025).",
+    "Strata for accuracy estimation are best formed by clustering a predicted per-unit performance score rather than by fixed confidence bins, and model-assisted estimators beat labelled-only ones (Fogliato et al., ECCV 2024).",
+    "A map user is owed user's accuracy, producer's accuracy and error-adjusted area per class with standard errors, and an allocation chosen for one of these degrades the others, most of all user's accuracy of a rare class (Stehman & Wagner 2023; CEOS protocol 2025).",
+    "Sample size is planned backwards from a target coefficient of variation using the map's producer's and user's accuracy, which set the design's relative efficiency (Adebayo et al. 2026; RSE 2025 companion).",
+    "Beyond point estimates with intervals, a deployable guarantee is a threshold chosen so a monotone risk such as the missed-error rate is at most alpha on new data (Conformal Risk Control, Angelopoulos et al. 2024; Learn then Test 2025).",
+    "Label-efficient risk estimation can be sequential: acquire the next label where it most reduces variance and residualise the loss with prediction-based control variates while staying unbiased (Prediction-Powered Active Testing, 2026)."
+   ],
+   "gaps_in_our_tool": [
+    "The difference-estimator arm in exp78 fixes the prediction coefficient at 1; the field tunes it (PPI++), which is the rule that makes the arm provably no worse than the stratified classical estimator, and StratPPI tunes it per confidence stratum. Both are computable on exp78's per-unit files.",
+    "The design is one-shot fixed Neyman on confidence quintiles; the field's alternative is active inference where the margin sets inclusion probabilities, with the Li-Zrnic-Cand\u00e8s uniform mixture as the guard for tasks where the margin ranks poorly. The record's own finding that ranking quality varies by task and encoder is the reason the guard matters; Monte Carlo on the 24 fully labelled tasks would grade it.",
+    "Strata are confidence quintiles; Fogliato et al. (ECCV 2024) report that k-means strata on a predicted-performance score are more efficient, up to 10x over SRS. The tool has not compared quintile cuts against clustered cuts.",
+    "The tile-cluster ratio estimator has classical intervals only; if a PPI-style arm is used on segmentation tiles, its intervals must be the design-aware bootstrap of Kluger et al. 2025, which the tool lacks.",
+    "The tool reports an error rate; the map-accuracy field (CEOS 2025, Stehman & Wagner 2023) expects per-class user's accuracy, producer's accuracy and error-adjusted area with standard errors, and warns that Neyman for one target harms the others. The per-unit exports carry decision, error and class, so these can be added without new labels.",
+    "No sample-size planner: the field plans n backwards from a target CV using PA/UA-driven relative efficiency (Adebayo 2026; RSE 2025); the tool only grades a given budget.",
+    "No risk-control output: Conformal Risk Control / Learn then Test would turn the margin into a threshold with a guaranteed bound on the missed-error rate at review budget B, a different deliverable from an estimate with an interval, and it is computable from the per-unit exports with a labelled calibration split.",
+    "The CEOS 2025 protocol states that algorithm-variance or confidence layers are not an accuracy assessment; the tool's docs should say plainly that only `sample`/`estimate` produce an accuracy assessment in the protocol's sense and that the rankers are review-ordering aids.",
+    "No sequential option: Prediction-Powered Active Testing (2026) and the UCB allocation of Ye, Lyu, Tao (2604.12497, 68-task survey, uniform's 10-12% gap cut to 2-6%) show that spending the budget in rounds approaches the Neyman oracle without the pilot estimates the fixed design needs."
+   ],
+   "searches_run": [
+    "PPI++ efficient prediction-powered inference arXiv",
+    "active statistical inference Zrnic Cand\u00e8s 2024 arXiv",
+    "stratified prediction-powered inference small sample failure 2025",
+    "Bayesian prediction-powered inference arXiv 2025",
+    "conformal risk control segmentation risk-controlling prediction sets Angelopoulos learn then test",
+    "map accuracy area estimation model-assisted estimator machine learning predictions auxiliary variable remote sensing 2025",
+    "optimal stratification continuous auxiliary variable land cover map accuracy assessment sample design 2024 2026",
+    "prediction-powered inference remote sensing land cover area estimation 2026",
+    "conformal risk control remote sensing segmentation map 2025 arXiv flood land cover",
+    "two-phase sampling land cover accuracy assessment user's producer's accuracy error-adjusted area 2025 Stehman",
+    "cross-prediction-powered inference Zrnic Cand\u00e8s PNAS",
+    "Fisch \"Stratified Prediction-Powered Inference\" arXiv 2406",
+    "Tyukavina Stehman 2025 \"Practical global sampling methods for estimating area and map accuracy\" Remote Sensing of Environment",
+    "\"Optimizing satellite-based cropland area estimation\" integrated map accuracy assessment stratified sampling six African countries",
+    "\"impact of map accuracy on area estimation\" stratified random sampling Remote Sensing of Environment 2025",
+    "conformal prediction semantic segmentation Earth observation pixel-wise risk control 2025 2026",
+    "stratification by classifier probability uncertainty strata accuracy assessment area estimation sampling efficiency remote sensing",
+    "Stehman Wickham 2023 \"Choosing a sample size allocation to strata based on trade-offs in precision\" rare class accuracy area",
+    "Angelopoulos Duchi Zrnic 2024 \"prediction-powered\" classifier accuracy evaluation label budget Neyman allocation confidence strata \"active\" 2026",
+    "Fetched abstracts: arxiv 2311.01453, 2403.03208, 2208.02814, 2110.01052, 2501.18577, 2602.10332, 2407.13659, 2511.08991, 2607.08347, 2603.16041, 2605.29249, 2601.20819, 2309.16598, 2406.04291, 2601.22326, 2505.18659, 2405.06034, 2405.17734, 2606.03211, 2604.12497; ECCV 2024 Fogliato PDF (first two pages); CEOS LPV protocol V1.1 PDF (executive summary, chapters 3 and 5 excerpts); openreview and three ScienceDirect/ResearchGate pages returned 403 or a bot check"
+   ]
+  },
+  {
+   "papers": [
+    {
+     "title": "RSPDBench: Benchmarking Vision Foundation Models on Earth Observation Tasks Under Physically Grounded Remote-Sensing Product Degradations",
+     "authors_venue_year": "Tanjim Bin Faruk, Khondaker Masfiq Reza, Shrideep Pallickara, Sangmi Lee Pallickara; arXiv, 20 Sep 2026",
+     "url": "https://arxiv.org/abs/2609.23427",
+     "rule": "Evaluate a frozen encoder with a head trained on clean data, then report robustness as the drop from that model's OWN clean baseline (native protocol), under four primitive product degradations (effective-resolution loss, radiometric gain shift, band misregistration, signal-relative sensor noise) AND compound product chains, because compound chains fail in ways the isolated primitives do not predict.",
+     "examines": "Inference of 7 foundation-model entries plus 2 supervised baselines on 5 EO datasets under physically grounded product defects; graded by accuracy drop from each model's clean baseline (abstract only).",
+     "key_numbers": "Compound degradation chains drop performance up to 38 percentage points beyond the strongest single component; resolution-conditioned and channel-grouped encoders protect different failure axes.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Gap. Lehmann 2026 (2608.16614, known) covers calibration drift under cloud/noise; RSPDBench adds product-level defects (misregistration, radiometric gain, compound chains) and the native-baseline rule. The tool never grades whether the margin's ranking survives product degradation; that would need re-encoding, not cached embeddings."
+    },
+    {
+     "title": "Distribution Shifts at Scale: Out-of-distribution Detection in Earth Observation (TARDIS)",
+     "authors_venue_year": "Burak Ekim, Girmaw Abebe Tadesse, Caleb Robinson, Gilles Hacheme, Michael Schmitt, Rahul Dodhia, Juan M. Lavista Ferres (Microsoft AI for Good); arXiv, Dec 2024, rev. Apr 2025",
+     "url": "https://arxiv.org/abs/2412.13394",
+     "rule": "Post-hoc, label-free OOD detection for globally deployed EO models: generate surrogate in-distribution vs out-of-distribution labels from the frozen model's own feature space (no OOD examples needed), fit a light detector on those, and report against an upper bound with true OOD labels across covariate and semantic shifts.",
+     "examines": "Whether a shift in deployment imagery can be detected from internal activations of a frozen encoder; graded by OOD-detection AUROC against oracle-labelled shifts on EuroSAT, xBD and Fields of the World across 17 shift setups (abstract only).",
+     "key_numbers": "Near-upper-bound surrogate-labelling performance in 13 of 17 setups; matches top activation- and scoring-based post-hoc methods; code released (microsoft/geospatial-ood-detection).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap, adjacent to exp49 (SHRUG-FM U_E k-means/NCDD) and exp73 (kNN Sun 2022, Mahalanobis Lee 2018 lost 24/24 to the margin). TARDIS's surrogate-label estimator is a distinct construction (cluster ID features, treat far clusters as pseudo-OOD, train a binary detector) not yet raced against the margin; computable from the cached embedding bank. Headroom filter says it will likely lose as an error ranker, but it is the field's canonical label-free SHIFT detector, a different question from error ranking."
+    },
+    {
+     "title": "Aligning Validation with Deployment in Spatial Prediction: Target-Weighted Cross-Validation",
+     "authors_venue_year": "Alexander Brenning, Thomas Suesse; arXiv, Mar 2026 (rev. May 2026)",
+     "url": "https://arxiv.org/abs/2603.29981",
+     "rule": "When training/validation samples are preferentially or cluster sampled, weight validation cases so the validation task matches the deployment domain, using spatial task descriptors (environmental covariates, prediction distance); separate the generation of validation tasks from risk estimation (importance-weighted CV plus target-weighted CV).",
+     "examines": "Bias of cross-validated error estimates for spatial prediction models when the sample does not match the prediction domain; graded by bias of the estimated error against known truth in simulation and a Germany NO2 mapping case (abstract only).",
+     "key_numbers": "Weighted CV substantially reduces bias versus conventional CV in simulation; NO2 case study estimates more consistent with deployment conditions (no single headline number in abstract).",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Partly covered by exp78 (design-based, stratified by confidence quintile, Neyman allocation, tile-cluster ratio estimator). Gap: exp78 weights by confidence strata, not by a deployment-domain descriptor (prediction distance / covariate dissimilarity to the training set). Successor to Olofsson 2014 / Stehman & Foody 2019 (known) on the sampling side."
+    },
+    {
+     "title": "GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI",
+     "authors_venue_year": "Naomi Simumba, Nils Lehmann, Paolo Fraccaro, Hamed Alemohammad, Geeth De Mel, Salman Khan, Manil Maskey, Nicolas Longepe, Xiao Xiang Zhu, Hannah Kerner, Juan Bernabe-Moreno, Alexandre Lacoste; arXiv, Nov 2025 (rev. Feb 2026)",
+     "url": "https://arxiv.org/abs/2511.15658",
+     "rule": "Rank GeoFMs only under a prescribed protocol: capped Bayesian HPO over a fixed space, task-type-defined adaptation heads, then repeat with five random seeds; report rankings per capability group (resolution, bands, temporality) rather than one global number, since no model is universally best.",
+     "examines": "Model ranking stability across 19 datasets and five task types; graded by per-capability-group ranking with seed repetition (abstract plus search-result summary of the protocol; five-seed detail is from a search summary, not the abstract).",
+     "key_numbers": "19 datasets; 5 seeds; natural-image models (ConvNeXt-IN, DINOv3) lead on high-resolution tasks, EO models (TerraMind, Prithvi, Clay) on multispectral agriculture/disaster tasks.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Largely covered: exp79 runs 10 seeds x 24 tasks x 16 encoders; the tool uses Ai2's fixed probe recipe (no HPO). Gap: the record reports wins as counts over all 24 tasks; GEO-Bench-2's rule would also report the margin's lead per capability group (sensor, resolution, temporality) so a map user can see where it holds."
+    },
+    {
+     "title": "Uncertainty and Generalizability in Foundation Models for Earth Observation",
+     "authors_venue_year": "Raul Ramos-Pollan, Freddie Kalaitzis, Karthick Panner Selvam; arXiv, Sep 2024",
+     "url": "https://arxiv.org/abs/2409.08744",
+     "rule": "Under a fixed labelling budget, quantify a frozen FM's downstream performance AND its uncertainty by repeated resampling of the label set and of the area of interest; report the spread across AOIs, tasks and FMs, not a single score.",
+     "examines": "Spatial generalisability and label-sample variance of linear heads on 8 FMs over Sentinel-1/2 for ESA WorldCover class proportions across 11 AOIs; graded by correlation of chip-level predictions with truth and its variance over ~500,000 repeated linear fits (abstract only).",
+     "key_numbers": "8 FMs, 11 AOIs, ~500k linear regressions; >0.9 correlation on chip-level tasks; performance and uncertainty vary greatly across AOIs, tasks and FMs.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Partly covered: exp79 gives seed floors; exp70/74 give per-task spread. Gap: no AOI-level (geographic block) resampling of the probe on record; the cached bank plus tile grids would allow it."
+    },
+    {
+     "title": "Temporal Sensitivity Analysis of Tessera Embeddings",
+     "authors_venue_year": "Julia Guerrero-Viu, Alex Lopez-Cifuentes, Ignacio Perez-Villar, Fabio Pacifici; arXiv, 27 Aug 2026",
+     "url": "https://arxiv.org/abs/2608.27175",
+     "rule": "Keep the encoder frozen and recompute embeddings over shrinking observation windows (year to day); report probe accuracy as a function of window length per class group, against from-scratch baselines, so that the temporal dependence of the representation is stated rather than assumed.",
+     "examines": "Inference sensitivity of a frozen annual-embedding encoder to the temporal window of its input, with a linear probe and a UNet head on LUCAS, DynamicEarthNet, PASTIS-R (abstract only).",
+     "key_numbers": "PASTIS-R mIoU 58.3 (~46% above best from-scratch); year-to-month window cut costs 39% on PASTIS-R but 5% on DynamicEarthNet; single-day embeddings still 3.4x chance on LUCAS.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Gap, but outside scope for single-date inputs (TESSERA parked per memory). Relevant rule for the tool's compare module: a dated-input sensitivity axis is a legitimate 'why errors are shared' explanation the tool does not compute."
+    },
+    {
+     "title": "From Foundation Embeddings to Cropland Maps: Label Efficiency, Temporal Transferability and Independent Human Validation",
+     "authors_venue_year": "Mohammad Ammar Mughees, Giovanni Montefoschi, Zhongxin Chen, Maria Antonia Brovelli; arXiv, 15 Sep 2026",
+     "url": "https://arxiv.org/abs/2609.17138",
+     "rule": "Validate a map produced from frozen embeddings with an independent, blind, two-interpreter consensus on a random point sample inside one contiguous held-out block, and compare agreement against the incumbent product on the same points with a paired test; test cross-year transfer of a classifier trained on one year.",
+     "examines": "Whether AlphaEarth annual embeddings plus a light classifier give a cropland map that holds across years and against independent interpreters; graded by held-out accuracy, blind-interpreter agreement and kappa (abstract only).",
+     "key_numbers": "93.7% OA held-out; 90.8% balanced accuracy; 60k labelled pixels within 1.3 pp of 8.6M; blind 385-point block: 95.3% agreement (kappa 0.82) vs USDA CDL 91.7% (kappa 0.72, p=0.016); vs TerraMind 93.5% (p=0.14).",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Adjacent to exp68 (LUCAS surveyor with design weights) and exp23 (WorldCover 2020 vs 2021 disagreement). Gap: no blind double-interpreter sample on the record; the record's paired reference comparisons use existing products, whose disagreement exp23 already showed exceeds model error."
+    },
+    {
+     "title": "Characterizing AlphaEarth Embedding Geometry for Agentic Environmental Reasoning",
+     "authors_venue_year": "Mashrekur Rahman, Samuel J. Barrett, Christina Last; arXiv, 20 Apr 2026",
+     "url": "https://arxiv.org/abs/2604.18715",
+     "rule": "Diagnose a geospatial embedding space label-free with participation ratio (effective dimensionality), local intrinsic dimension, and local-tangent-space rotation across locations; treat low local-global alignment as evidence that global vector arithmetic is invalid and that retrieval coherence must be predicted from local geometry.",
+     "examines": "Geometry of 12.1M AlphaEarth 64-d embeddings over CONUS 2017-2023; graded by intrinsic-dimension estimates, tangent-rotation angles, and R^2 of local geometry against retrieval coherence (abstract only).",
+     "key_numbers": "Participation ratio 13.3 of 64; local ID ~10; 84% of locations rotate >60 degrees; mean |cos| 0.17 vs 0.125 random; local geometry predicts retrieval coherence R^2=0.32.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap. exp77 tested one scene direction; exp73 tested distance-based typicality. No per-region intrinsic-dimension or tangent-rotation diagnostic on record. Computable from the 792 GB cached bank per encoder; headroom filter applies if used as an error ranker, but as an embedding-quality diagnostic per tile it is a different deliverable."
+    },
+    {
+     "title": "What on Earth is AlphaEarth? Hierarchical structure and functional interpretability for global land cover",
+     "authors_venue_year": "Ivan Felipe Benavides-Martinez et al. (Auroop R. Ganguly senior author); arXiv, 8 Mar 2026",
+     "url": "https://arxiv.org/abs/2603.16911",
+     "rule": "Attribute each embedding dimension a functional role (specialist / generalist / high-generalist) via feature-importance patterns and progressive dimension ablation of the probe; report how many dimensions carry the task.",
+     "examines": "Which dimensions of a frozen embedding a land-cover probe actually uses; graded by probe accuracy under progressive ablation (abstract only).",
+     "key_numbers": "98% of baseline performance retained with only 2-12 of 64 dimensions.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap, low priority. The record never reports which embedding dimensions the probe leans on; could feed the explain module as a cue but does not pass filter 1 for a map user."
+    },
+    {
+     "title": "Probing Geospatial SSL Representations with Environmental Signals",
+     "authors_venue_year": "Rohita Mocharla, Vishal M. Patel; arXiv, 6 Jul 2026",
+     "url": "https://arxiv.org/abs/2607.05207",
+     "rule": "Evaluate a representation by probing it for physically co-varying environmental variables (ERA5 temperature, precipitation, radiation, pressure, soil moisture) co-located with the pretraining data; representation-level metrics separate models that tie on downstream benchmarks.",
+     "examines": "Whether frozen SSL encoders (DINO, MAE, MoCo on SSL4EO) encode physical covariates of the imaging process; graded by probe accuracy on ERA5 targets and its correlation with PANGAEA task performance (abstract only).",
+     "key_numbers": "Three architectures under identical conditions; representation-level metrics distinguish models with similar downstream scores; ERA5 accessibility correlates with performance on environment-dependent PANGAEA tasks; ERA5 annotations for SSL4EO released.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Gap. Needs chip geolocation and dates (available for GEOID-Flood, not all Ai2 tasks). Label-free in the task sense (ERA5 is a free global covariate). Untested; unclear it passes filter 1."
+    },
+    {
+     "title": "Scalable and Trustworthy Earth Observation Foundation Models",
+     "authors_venue_year": "Syed Usama Imtiaz, Mitra Nasr Azadani, Nasrin Alamdari; arXiv, 8 Jul 2026 (review / position)",
+     "url": "https://arxiv.org/abs/2607.07758",
+     "rule": "Position: EO FMs must be assessed beyond benchmark accuracy on modality-aware transfer and physical plausibility of representations; inconsistent evaluation is named as the main obstacle to fair comparison and reliable deployment.",
+     "examines": "Review of RSFM design, adaptation and trustworthiness requirements; no experiment; grades nothing (abstract only).",
+     "key_numbers": "None (review).",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Position paper, weaker than 2605.12678 and 2608.16614 (both known). Citable in related_work as a 2026 trustworthiness position; imposes no estimator."
+    }
+   ],
+   "field_rules": [
+    "Frozen-encoder robustness is reported as the drop from each model's own clean baseline, under compound product-defect chains as well as isolated corruptions, because chains fail beyond their strongest component (RSPDBench, 2609.23427).",
+    "Distribution shift at deployment is detected label-free from the frozen model's feature space using surrogate ID/OOD labels, and graded against an oracle-labelled shift upper bound across covariate and semantic shifts (TARDIS, 2412.13394).",
+    "A cross-validated error estimate is weighted so the validation task matches the deployment domain via spatial task descriptors such as prediction distance and covariate dissimilarity (Brenning & Suesse, 2603.29981).",
+    "Model rankings are only reported after capped HPO, fixed task-type heads and five seeds, and per capability group rather than as one global number (GEO-Bench-2, 2511.15658).",
+    "Downstream performance of a frozen FM is stated with its spread across areas of interest and repeated label resamples under a fixed budget (Ramos-Pollan et al., 2409.08744).",
+    "The temporal dependence of a frozen representation is measured by shrinking the observation window and reporting probe accuracy per class group against from-scratch baselines (Guerrero-Viu et al., 2608.27175).",
+    "A map from frozen embeddings is validated by a blind two-interpreter consensus on a random sample in a held-out block, with a paired test against the incumbent product on the same points (Mughees et al., 2609.17138).",
+    "Embedding spaces are diagnosed label-free by participation ratio, local intrinsic dimension and local-tangent rotation, and local geometry is required to predict retrieval coherence before global vector operations are trusted (Rahman et al., 2604.18715).",
+    "Representation quality is probed for physically co-varying environmental variables, which separates models that tie on task benchmarks (Mocharla & Patel, 2607.05207).",
+    "Calibration (ECE, Brier, reliability) is absent from all 152 GeoFM papers and drifts to overconfidence under shift; EO pretraining gives no more stability than ImageNet pretraining (Lehmann et al., 2608.16614, known)."
+   ],
+   "gaps_in_our_tool": [
+    "No degradation stress axis: the audit grades rankers on clean inputs only; the native-baseline rule of RSPDBench (2609.23427) and the shift-miscalibration finding of 2608.16614 (known) mean the margin's ranking quality under product defects (misregistration, radiometric gain, compound chains) is unmeasured; needs re-encoding, not cached embeddings.",
+    "No label-free SHIFT detector of the TARDIS kind (2412.13394): exp49/exp73 raced typicality and distance scores as error rankers, but the tool has no per-tile 'this imagery is off-distribution for the probe' flag built from surrogate ID/OOD labels in feature space; computable from the cached bank.",
+    "Error-rate estimation (exp78) stratifies by confidence quintile but does not weight the labelled sample toward the deployment domain by prediction distance or covariate dissimilarity as target-weighted CV requires (2603.29981); per-unit exports plus tile coordinates suffice to test the bias.",
+    "Seed variance is on record (exp79) but AOI-level resampling of the probe is not (2409.08744); the win counts do not say in which geographic blocks the margin's lead collapses.",
+    "Wins are reported over all 24 tasks; GEO-Bench-2 (2511.15658) would report them per capability group (sensor, resolution, temporality) so a map user sees where the margin's lead holds.",
+    "No embedding-geometry diagnostics per region (participation ratio, local intrinsic dimension, tangent rotation; 2604.18715) or per-dimension probe reliance (2603.16911); exp77 tested a single scene direction only.",
+    "No blind double-interpreter validation sample on record (2609.17138); paired references are existing products whose mutual disagreement (exp23) exceeds model error.",
+    "The compare module explains shared errors across dates but has no observation-window sensitivity axis (2608.27175); out of scope for single-date encoders but a stated omission."
+   ],
+   "searches_run": [
+    "geospatial foundation model robustness distribution shift evaluation 2025 arXiv frozen encoder linear probe",
+    "trustworthy Earth observation foundation models position paper 2026 uncertainty calibration",
+    "selective prediction Earth observation foundation model 2026 arXiv",
+    "spatial autocorrelation evaluation geospatial foundation models benchmark leakage 2025",
+    "label-free domain shift detection satellite imagery embeddings foundation model 2025 2026",
+    "calibration of geospatial foundation model probes temporal geographic shift 2026 arXiv Prithvi TerraMind Galileo",
+    "\"foundation model\" Earth observation embeddings out-of-distribution detection zero-shot uncertainty 2026 arXiv Sentinel",
+    "remote sensing foundation model temporal shift sensor shift evaluation benchmark 2026 arXiv robustness \"foundation models\"",
+    "land cover map quality assessment without labels model confidence uncertainty map 2025 2026 arXiv foundation model",
+    "geospatial foundation model embedding space diagnostics anisotropy dimensional collapse remote sensing 2025 2026",
+    "spatial cross-validation blocking evaluation remote sensing deep learning overestimation 2025 2026 arXiv \"foundation model\"",
+    "conformal prediction satellite image segmentation foundation model 2026 arXiv coverage guarantee Earth observation",
+    "GEO-Bench-2 evaluation protocol geospatial foundation models 2026 ranking sensitivity seeds",
+    "accuracy estimation of land cover maps without reference data model-assisted foundation model embeddings 2026 arXiv",
+    "abstention OR \"reject option\" OR \"selective classification\" remote sensing foundation model probe 2026",
+    "OlmoEarth OR \"AlphaEarth\" embeddings uncertainty geographic generalization audit 2026 arXiv failure analysis",
+    "\"EuroSAT-Embed\" embedding pooling geographic generalization AlphaEarth OlmoEarth Tessera arXiv",
+    "\"152\" geospatial foundation model papers calibration ECE audit none report arXiv 2026",
+    "year-to-year temporal drift linear probe frozen satellite embeddings land cover classifier degradation 2026 arXiv Sentinel-2 annual embeddings",
+    "Abstracts fetched: arxiv.org/abs/2607.07758, 2609.23427, 2409.08744, 2412.13394, 2603.29981, 2606.20697 (dropped: no embedding diagnostics in abstract), 2511.15658, 2604.18715, 2609.17138, 2607.05207, 2603.16911, 2608.27175. Known ids seen and not re-reported: 2608.16614, 2605.12678, 2605.29330, 2606.13896, 2603.02080, 2511.10370, 2510.19586, 2511.13655, 2605.18667"
+   ]
+  },
+  {
+   "papers": [
+    {
+     "title": "Domino: Discovering Systematic Errors with Cross-Modal Embeddings",
+     "authors_venue_year": "Eyuboglu, Varma, Saab, Delbrouck, Lee-Messer, Dunnmon, Zou, Re; ICLR 2022 (oral)",
+     "url": "https://arxiv.org/abs/2203.14960",
+     "rule": "A slice discovery method (SDM) must be graded quantitatively against planted or metadata-defined slices on two criteria at once: the slice underperforms AND it is coherent (united by a human-understandable concept); slices are found by an error-aware mixture model over (embedding, prediction, label), and each slice must be named in natural language and the name scored for exactness.",
+     "examines": "Post-hoc error clustering of a trained classifier's test set; grades SDMs by precision-at-k recovery of 1,235 known slices across natural images, medical images, time series, plus whether the generated text name matches the planted slice.",
+     "key_numbers": "1,235 slice settings; Domino recovers 36% of slices (+12 pp over prior SDMs); exact slice name generated in 35% of settings (abstract).",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Not cited (2203.14960 absent from the known list). Origin of the field's grading protocol for error regions. The reliability module's k-means over embeddings is an unsupervised cousin: Domino's mixture is fitted jointly on embedding + prediction + LABEL, so it is a grading-time tool, not a deployment tool. Gap: the tool has never graded its embedding clusters as slices (precision of recovering labelled error-dense regions) on the 24 tasks."
+    },
+    {
+     "title": "The Spotlight: A General Method for Discovering Systematic Errors in Deep Learning Models",
+     "authors_venue_year": "d'Eon, d'Eon, Wright, Leyton-Brown; ACM FAccT 2022 (arXiv 2107.00758, 2021)",
+     "url": "https://arxiv.org/abs/2107.00758",
+     "rule": "Systematic errors are found as CONTIGUOUS regions of the model's own final-hidden-layer space (a kernel-weighted 'spotlight' whose weight mass is lower-bounded and whose weighted loss is maximised), not as arbitrary subsets; the region, not the individual error, is the unit of report.",
+     "examples": null,
+     "examines": "Contiguous high-loss regions in representation space of vision, NLP and recommender models; graded qualitatively by whether surfaced regions are semantically meaningful (abstract only).",
+     "key_numbers": "None in abstract; method applied across CV, NLP and recommender models.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Not cited. Uses the model's own feature space (for the tool: the frozen encoder's embeddings the probe reads), which matches the tool's setting exactly. It needs per-unit loss (labels). Label-free variant possible: replace loss by 1-margin and ask whether the spotlight on low-margin windows is contiguous; not run in the record."
+    },
+    {
+     "title": "Towards a More Rigorous Science of Blindspot Discovery in Image Classification Models (SpotCheck / PlaneSpot)",
+     "authors_venue_year": "Plumb, Johnson, Cabrera, Talwalkar; TMLR 2023 (arXiv 2207.04104)",
+     "url": "https://arxiv.org/abs/2207.04104",
+     "rule": "Blindspot discovery methods must be evaluated on synthetic datasets with PLANTED blindspots (SpotCheck) so that discovery rate and false discoveries are measurable; and a method that appends the model's own confidence to a 2-D projection of the model's embedding (PlaneSpot) is competitive with cross-modal methods.",
+     "examines": "Recovery of known blindspots as a function of number of blindspots and the features defining them; validated on MS-COCO (abstract).",
+     "key_numbers": "No numbers in abstract; PlaneSpot 'competitive with and in many cases outperforms' prior BDMs on SpotCheck.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Not cited. PlaneSpot = embedding + confidence fed to an error-aware mixture, which is nearly the reliability module's k-means plus the margin, but with the label in the fit. The planted-blindspot protocol is a gap: the tool's Monte Carlo grading is for estimators (exp78), never for region discovery."
+    },
+    {
+     "title": "Where Does My Model Underperform? A Human Evaluation of Slice Discovery Algorithms",
+     "authors_venue_year": "Johnson, Cabrera, Plumb, Talwalkar; AAAI HCOMP 2023 (best paper), arXiv 2306.08167",
+     "url": "https://arxiv.org/abs/2306.08167",
+     "rule": "A discovered slice is only defensible if a human hypothesis formed from it is VERIFIED on held-out data (does the model actually underperform on all images matching the description); slice coherence does not imply hypothesis correctness, so a 'why' must be checked by a labelled test of the named group, not by visual coherence.",
+     "examines": "Controlled user study (N=15, 40 slices from Domino and PlaneSpot, object detection model); grades whether users' hypotheses about where the model underperforms are correct when checked against data.",
+     "key_numbers": "N=15, 40 slices (abstract). From search-result summaries, not the abstract: hypotheses correct 73% (Domino), 49% (PlaneSpot), 35% (random-error baseline); no significant association between slice coherence and hypothesis correctness.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Not cited. Directly bears on the explain module: a cue with 'measured enrichment' is a coherence-style statement about flagged windows; the field's rule adds a second step, verify that the NAMED group (e.g. all windows with cue X) has elevated error on held-out labelled units, with a confidence interval. Gap unless the enrichment is computed on held-out units."
+    },
+    {
+     "title": "Error Discovery by Clustering Influence Embeddings (InfEmbed)",
+     "authors_venue_year": "Wang, Adebayo, Tan, Garcia-Olano, Kokhlikyan; NeurIPS 2023 (arXiv 2312.04712)",
+     "url": "https://arxiv.org/abs/2312.04712",
+     "rule": "Coherence should mean 'wrong for the same reason': cluster test examples by how they are influenced by the training data (influence embeddings, K-means), so a slice shares a training-data cause rather than an appearance.",
+     "examines": "Slice discovery on classification benchmarks; graded by recovery of known slices on two benchmarks plus debugging case studies (abstract).",
+     "key_numbers": "Outperforms state of the art on 2 benchmarks (abstract, no figures).",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Not cited. For a linear probe on frozen features, influence embeddings are cheap (closed-form for logistic regression) and would need the training features from the embedding bank, not only per-unit exports. Offers a different 'why': which training samples drove the error, compare/contrast with the tool's cue-enrichment 'why'. Untested."
+    },
+    {
+     "title": "HiBug2: Efficient and Interpretable Error Slice Discovery for Comprehensive Model Debugging",
+     "authors_venue_year": "Chen, Zhao, Xu; ICLR 2025 (arXiv 2501.16751; successor of HiBug, NeurIPS 2023)",
+     "url": "https://arxiv.org/abs/2501.16751",
+     "rule": "Group first by human-understandable attributes (LLM-proposed, VLM-annotated), then test each attribute combination for underperformance; report slices as attribute conjunctions and grade them by coherence and precision, and predict error slices beyond the validation set.",
+     "examines": "Classification, pose estimation, object detection; grades coherence and precision of slices and downstream repair (abstract).",
+     "key_numbers": "None in abstract.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Not cited. Attribute-first (name then test) is the opposite order to the tool's cluster-then-describe; the tool's label-free cues (boundary, band, texture) already are predefined attributes, so the explain module is closer to HiBug's flow than to Domino's. The missing piece is HiBug2's attribute-conjunction enumeration with a precision statistic per slice."
+    },
+    {
+     "title": "Error Slice Discovery via Manifold Compactness (MCSD)",
+     "authors_venue_year": "Yu, Zou, Liu, Xu, He, Zhang, Cui; arXiv 2501.19032 (v2 Dec 2025)",
+     "url": "https://arxiv.org/abs/2501.19032",
+     "rule": "Slice coherence must be measurable WITHOUT metadata: manifold compactness (a data-geometry statistic on the embedding manifold) is the coherence metric, and slice discovery should optimise risk and compactness jointly rather than describe clusters after the fact.",
+     "examines": "Post-hoc slice discovery on typical benchmarks; validates the compactness metric against metadata-defined slices, then uses it as the objective (abstract).",
+     "key_numbers": "None in abstract.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Not cited. Gives the reliability module a metadata-free coherence score for its k-means clusters, computable from cached embeddings alone; the record has no coherence statistic for any cluster. Risk term needs labels, but a margin-substituted version is label-free."
+    },
+    {
+     "title": "Detecting Systematic Weaknesses in Vision Models along Predefined Human-Understandable Dimensions",
+     "authors_venue_year": "Gannamaneni, Rao, Mock, Akila, Wrobel; arXiv 2502.12360, 2025",
+     "url": "https://arxiv.org/abs/2502.12360",
+     "rule": "Slices must align with operational-design-domain dimensions fixed in advance by domain experts; foundation models supply zero-shot metadata for those dimensions, a combinatorial search finds low-performance cells, and metadata noise from the foundation model is handled explicitly.",
+     "examines": "Recovery of planted systematic weaknesses on synthetic data and weaknesses of pretrained CV models on real data (abstract).",
+     "key_numbers": "None in abstract.",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Not cited. Predefined dimensions for EO would be land-cover class, season, sensor, terrain, cloud: the tool's task cards and compare module partly do this. Gap: no combinatorial search over cue conjunctions with a per-cell error statistic and a noise model for the cue itself."
+    },
+    {
+     "title": "Automatic Discovery and Assessment of Interpretable Systematic Errors in Semantic Segmentation",
+     "authors_venue_year": "Singh, Singh, Kale, Gandhi; arXiv 2411.10845, 2024",
+     "url": "https://arxiv.org/abs/2411.10845",
+     "rule": "For segmentation, a systematic error is a recurring (predicted class, target class) confusion on a coherent sub-group of objects; errors are retrieved on UNLABELLED data with multimodal foundation models, then grouped by conceptual linkage and error type and assessed for coherence.",
+     "examines": "UperNet ConvNeXt and Swin on Berkeley Deep Drive; qualitative and quantitative benchmark of discovered coherent systematic errors (abstract).",
+     "key_numbers": "None in abstract; two SOTA segmentation models, one dataset.",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": false,
+     "relation_to_record": "Not cited. Closest published attempt at label-free systematic-error discovery for segmentation; relies on a VLM as a pseudo-oracle, which does not exist for multispectral EO patches. The tool's compare module already reports shared-error 'why' across inferences but with no confusion-pair grouping; gap: no per-confusion-pair systematic-error report."
+    },
+    {
+     "title": "GH-ESD: Grounded Hypothesis-Driven Error Slice Discovery for Instance-Level Vision Tasks",
+     "authors_venue_year": "Zhang, Wang, Guan, Kao, Zhao, Wu, He; ECCV 2026 (arXiv 2512.24592)",
+     "url": "https://arxiv.org/abs/2512.24592",
+     "rule": "For detection and segmentation, slices are relational and spatially grounded, so the protocol is generate-and-verify: hypothesise a failure pattern (LLM prior plus grounded evidence), find instances matching it, then STATISTICALLY verify the slice against instance-level errors; grade with expert-defined grounded slices (GESD benchmark) by Precision@10.",
+     "examines": "Instance-level error slice discovery on detection and segmentation; new benchmark GESD with expert, spatially grounded slices.",
+     "key_numbers": "Precision@10 0.73 vs 0.63 for the best prior method on GESD detection (abstract/page summary).",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Not cited. Sets the 2026 rule that a segmentation slice needs statistical verification, and supplies the Precision@10 grade. The tool's boundary finding (75% of errors on prediction boundaries) is a spatial slice with a verified statistic; the explain module's other cues lack a Precision@k-style grade."
+    },
+    {
+     "title": "FALCON-Discover: Discovering Concentrated False-Confidence Regions for Calibration",
+     "authors_venue_year": "Cenacchi, Cao, Yang; arXiv 2607.18278, 2026",
+     "url": "https://arxiv.org/abs/2607.18278",
+     "rule": "Measure false-confidence CONCENTRATION: the share of confident errors captured by a compact region of prediction space; rank predictions by DISCREPANCY between confidence, local support, neighbourhood agreement and perturbation stability, and report whether that recovers more dangerous-error mass than confidence alone, with cross-fitting over seeds.",
+     "examines": "Post-hoc, model-agnostic, on 7 binary tabular datasets with XGBoost/CatBoost, 4 seeds, 5-fold cross-fitting; grades recovery of high-confidence errors under a review budget.",
+     "key_numbers": "7 datasets, 4 seeds, 5-fold; concentration 'recurrent but regime-dependent'; discrepancy ranking beats calibration and trust-score baselines in the strongest regimes (abstract/search summary; no figures in abstract).",
+     "label_free_at_deployment": true,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Not cited (2607.17581 is known, this is a different id). Its ingredients (kNN support, neighbourhood contradiction, perturbation stability) each LOST to the margin in exp73 and the flood testbeds, so the ranking claim is likely already answered; the new piece is the concentration STATISTIC (fraction of confident errors inside the top-q compact region) which the record never computes and which is computable from per-unit exports plus cached embeddings."
+    },
+    {
+     "title": "Active Slice Discovery in Large Language Models",
+     "authors_venue_year": "Zhang, Ijner, Wald, Creager; NeurIPS 2025 Reliable ML workshop (arXiv 2511.20713)",
+     "url": "https://arxiv.org/abs/2511.20713",
+     "rule": "When labels are scarce, slice discovery is an active-learning problem: group likely-same-slice errors from embeddings, query an annotator only on whether selected samples share an error pattern, and grade by slice-recovery accuracy versus fraction of membership labels used.",
+     "examines": "Toxicity classification with LLMs; accuracy of recovered slices as a function of annotation budget, uncertainty-based querying vs baselines.",
+     "key_numbers": "Competitive slice recovery with 2-10% of slice-membership information (abstract).",
+     "label_free_at_deployment": false,
+     "applies_to_frozen_encoder_plus_probe": true,
+     "testable_on_cached_embeddings_or_per_unit_exports": true,
+     "relation_to_record": "Not cited. Matches the tool's 'small labelled sample may feed an estimator' scope: exp78 spends a review budget to estimate an error RATE; nobody has spent it to confirm or reject an error REGION. Gap: a budgeted region-verification loop over the reliability module's clusters."
+    }
+   ],
+   "field_rules": [
+    "A reported error region must be both underperforming and coherent, and a method is graded by how many planted or metadata-defined slices it recovers, with the natural-language name scored for exactness (Domino, Eyuboglu et al. ICLR 2022).",
+    "Systematic errors are contiguous regions of the model's own representation space, so the region with a minimum mass and maximal weighted loss is the unit of report, not individual errors (Spotlight, d'Eon et al. FAccT 2022).",
+    "Discovery methods are validated on synthetic data with known blindspots so discovery and false-discovery rates are measurable, and appending the model's own confidence to a low-dimensional embedding is a strong baseline (SpotCheck/PlaneSpot, Plumb et al. TMLR 2023).",
+    "Coherence of a slice does not imply a correct hypothesis; a 'why' is defensible only when the named group is checked for elevated error on held-out data (Johnson et al. HCOMP 2023).",
+    "Coherence should mean 'wrong for the same reason', operationalised through training-data influence rather than appearance (InfEmbed, Wang et al. NeurIPS 2023).",
+    "Attribute-first discovery: propose human-understandable attributes, then enumerate attribute conjunctions and test each for underperformance, reporting per-slice precision (HiBug2, Chen et al. ICLR 2025).",
+    "Coherence needs a metadata-free geometric statistic (manifold compactness) so that risk and coherence can be optimised jointly (Yu et al. 2025).",
+    "Slices should be aligned to predefined operational-design-domain dimensions with an explicit noise model for foundation-model-derived metadata (Gannamaneni et al. 2025).",
+    "For segmentation the systematic error is a confusion pair on a coherent object sub-group, discoverable on unlabelled data via a foundation-model oracle (Singh et al. 2024).",
+    "Instance-level slices are spatial and relational and must be statistically verified after hypothesis generation, graded by Precision@10 on expert-defined slices (GH-ESD, Zhang et al. ECCV 2026).",
+    "False-confidence concentration (share of confident errors inside a compact region) is a reportable property, and discrepancy between confidence and structural signals is compared against confidence alone with cross-fitting (FALCON-Discover, Cenacchi et al. 2026).",
+    "With a label budget, slice discovery becomes active: query only whether selected samples share an error pattern and grade recovery against labels used (Zhang et al. NeurIPS 2025 workshop)."
+   ],
+   "gaps_in_our_tool": [
+    "No planted-slice or metadata-slice grading of the reliability module's k-means clusters: the field grades a discovery method by recovery precision of known error regions (Domino 2022; SpotCheck/PlaneSpot 2023); the tool grades rankers only (E-AURC, AUROC), never regions. Computable on the 24 tasks with labels as grader: fraction of labelled error mass inside the top-k clusters versus a random or margin-only partition.",
+    "No verification step for the explain module's 'why': Johnson et al. 2023 show coherent slices give wrong hypotheses about half the time; a cue enrichment measured on the same units that produced the cue is a coherence statistic, not a verified hypothesis. Rule: compute enrichment on held-out units (or separate seed exports) with a CI, and report the fraction of cues whose enrichment survives.",
+    "No statistical verification of segmentation slices in the GH-ESD sense (ECCV 2026): the boundary cue is verified (75% vs 21%), but other label-free cues have no Precision@k against labelled errors and no test that the named group as a whole underperforms.",
+    "No coherence statistic for clusters: manifold compactness (Yu et al. 2025) is metadata-free and computable from cached embeddings alone; the tool reports cluster membership without any coherence score, so a reader cannot tell a coherent failure region from a heterogeneous bin.",
+    "No false-confidence concentration statistic (FALCON-Discover 2026): the record shows confident errors exist but never reports what fraction of them sit inside a compact embedding region of size q; that number, per task and encoder, is computable from exp79 per-unit exports plus cached embeddings and would say whether confident errors can be found as regions at all.",
+    "No confidence-augmented embedding for region finding (PlaneSpot 2023 appends confidence to the embedding before fitting): the reliability module clusters embeddings alone and applies the margin afterwards; the field's baseline fits both jointly.",
+    "No attribute-conjunction enumeration (HiBug2 2025; Gannamaneni 2025): cues are reported one at a time with a single enrichment; the field enumerates conjunctions (e.g. boundary AND low-texture AND class X) with per-cell error statistics and a noise model for the cue itself.",
+    "No budgeted region-verification loop (Active Slice Discovery 2025): exp78 spends the review budget on a rate; the field also spends a few labels to confirm or reject each candidate region, reporting recovery versus labels used.",
+    "No training-data 'why' (InfEmbed 2023): for a linear probe on frozen features influence is closed-form, so 'which training samples drove this error cluster' is cheap from the embedding bank; the tool offers only input-side cues.",
+    "No per-confusion-pair systematic-error report for segmentation (Singh et al. 2024): the compare module says why errors are shared but does not group them by (predicted, reference) class pair on a coherent sub-group."
+   ],
+   "searches_run": [
+    "slice discovery evaluation Domino Spotlight PlaneSpot FACTS coherent underperforming subgroups embeddings",
+    "\"slice discovery\" vision foundation model embeddings unsupervised failure modes 2025",
+    "Johnson 2023 \"Does the slice discovery method\" human evaluation slice discovery arXiv",
+    "HiBug interpretable model debugging LLM attributes failure slices NeurIPS 2023",
+    "\"discover-then-name\" concept bottleneck OR \"failure modes\" vision-language error discovery 2024",
+    "segmentation failure discovery embedding clusters error explanation semantic segmentation 2025 arXiv",
+    "label-free failure mode discovery foundation model embeddings confidence 2026 arXiv",
+    "model auditing framework computer vision systematic error discovery benchmark 2025 2026",
+    "FALCON-Discover false-confidence concentration confident errors compact discoverable regions arXiv",
+    "PlaneSpot Plumb \"Towards a More Rigorous Science of Blindspot Discovery\" arXiv",
+    "Spotlight d'Eon \"Discovering Systematic Errors in Deep Learning Models\" arXiv 2107.00758",
+    "error slice discovery remote sensing OR earth observation land cover segmentation systematic errors 2025 2026",
+    "slice discovery without ground truth labels unlabeled test set pseudo-labels confidence \"error slices\" 2025 2026",
+    "\"Where Does My Model Underperform\" 49% hypotheses coherence not associated with correctness PlaneSpot Domino",
+    "WebFetch abstracts: arxiv.org/abs/2203.14960, 2306.08167, 2501.16751, 2411.10845, 2501.19032, 2502.12360, 2505.03132, 2605.29836, 2602.24183, 2512.24592, 2512.16921, 2607.18278, 2207.04104, 2107.00758, 2312.04712, 2511.20713, 2409.09261"
+   ]
+  }
+ ],
+ "synthesis": {
+  "field_rule_audit": [
+   {
+    "rule": "Grade a confidence ranker by threshold-free risk-coverage areas (AURC/E-AURC, AUGRC) across many tasks, backbones and failure sources, never by one fixed-threshold metric.",
+    "set_by": "Jaeger 2023; Traub 2024; Steinmetz 2026 (medRxiv 2026.05.04); Claros Olivares & Brockmeier 2025 (2511.11934)",
+    "tool_status": "follows",
+    "evidence": "exp70/exp74: E-AURC, AUROC and capture at 5/10/20% on 24 tasks x 16 encoders (exp/out/exp70_tasks.csv, exp74_summary.json); AUGRC computed in exp76 and agrees with AUROC ordering on 22 of 24 (docs/related_work.md section 7).",
+    "consequence_if_violated": "n/a"
+   },
+   {
+    "rule": "Failure-detection scores are confounded with classifier accuracy; report excess or normalised metrics AND the correlation with accuracy explicitly.",
+    "set_by": "Steinmetz 2026; Jaeger 2023",
+    "tool_status": "partial",
+    "evidence": "Excess AURC is the primary statistic. The correlation is never reported: computed from exp70/exp74 summaries while writing this audit, Spearman(test accuracy, margin AUROC) = 0.61 over 356 cells and Spearman(accuracy, E-AURC lead) = -0.46, i.e. the lead in E-AURC grows on worse maps because it is bounded by the error rate.",
+    "consequence_if_violated": "A reader cannot tell whether 'the margin ranks errors well on task T' is a fact about the ranking or about the probe being accurate; the two statistics move in opposite directions with accuracy and only one is shown."
+   },
+   {
+    "rule": "When many rankers are compared, control multiplicity (rank pipeline with family-wise control) and treat the winning family as a property of the representation, not the score.",
+    "set_by": "Claros Olivares & Brockmeier 2025 (2511.11934)",
+    "tool_status": "partial",
+    "evidence": "exp73 and exp74 run one-sided sign tests per alternative and per encoder with no Holm/Bonferroni (exp/exp74_suite_encoders.py:171, exp73_alternatives_suite.py:312). Recorded p-values are 6e-8 (24/24) and 1.1e-4 (19/21); a Holm bar over 19 tests is 0.0026, so no verdict flips. The representation-statistic half (which encoder property predicts the ranker's margin) is not computed; headroom_by_encoder.json gives per-encoder headroom 0.55-0.69 without a predictor.",
+    "consequence_if_violated": "Low here: at the recorded p-values the correction changes nothing. The cost is a reviewer's objection, not a wrong claim."
+   },
+   {
+    "rule": "Misclassification and out-of-support inputs are graded jointly with a double-scoring risk-coverage metric (DS-AURC).",
+    "set_by": "Li et al. 2026 (2603.03903)",
+    "tool_status": "violates",
+    "evidence": "Every unit is in the label space by construction of Ai2's test splits; there is no OOD stratum, so an out-of-support window at deployment is either counted as an error against a wrong reference or not scored. No DS-AURC anywhere in exp/out.",
+    "consequence_if_violated": "A map built from imagery the probe has never seen (sensor artefact, unseen class) is ranked as if in-distribution; Lehmann 2026 (known) says the margin goes overconfident there. Cannot be graded inside the 24 tasks without an OOD stratum."
+   },
+   {
+    "rule": "In segmentation, the pixel-to-unit aggregation is a separately ablated component and ensemble pairwise disagreement is the baseline to beat.",
+    "set_by": "Zenk et al. 2024 (2406.03323); Kahl et al. ICLR 2024 (2401.08501)",
+    "tool_status": "follows",
+    "evidence": "exp76: five window aggregators on the seven segmentation tasks, gaps of order 0.001; exp73: 5-seed ensemble (vote disagreement, MI, bag margin) loses 22/24 to the margin (exp73_tasks.csv).",
+    "consequence_if_violated": "n/a"
+   },
+   {
+    "rule": "Validate an uncertainty method by downstream use in controlled environments with injected ambiguity and shift; grade calibration alongside ranking.",
+    "set_by": "Kahl et al. 2024 (ValUES)",
+    "tool_status": "partial",
+    "evidence": "Downstream uses are graded (review ordering at budgets, exp78 estimation). No injected ambiguity: exp23's reference disagreement is observational. ECE appears only in exp65 (0.159 on Bolivia fusion) and exp67; the margin's calibration on the 24 tasks is not graded.",
+    "consequence_if_violated": "Any deliverable that uses the margin as a probability rather than a rank (a label-free error estimate, a PPI predictor) inherits an ungraded bias."
+   },
+   {
+    "rule": "Linear-probe results are hyperparameter-sensitive; normalise probe inputs and check kNN/LP agreement before concluding about the representation.",
+    "set_by": "Lee et al. 2023 (2304.03456)",
+    "tool_status": "not applicable",
+    "evidence": "The claim audited is 'this probe's own confidence ranks this probe's own errors'; a re-normalised probe is a different model with different errors, so the rule targets representation claims the record does not make. exp79 varies seeds; Ai2's recipe (probe_lrs recorded in the exp79 export) is fixed by design.",
+    "consequence_if_violated": "n/a for the ranking claim; applies only if the tool ever claims a property of the encoder rather than of a given probe."
+   },
+   {
+    "rule": "A ranking claim states its task-selection rule and shows stability under task subsets (benchmark lottery).",
+    "set_by": "Dehghani et al. 2021 (2107.07002)",
+    "tool_status": "follows",
+    "evidence": "exp70 states the rule ('tasks we did not choose', Ai2's suite, one exclusion documented) and reports per task and per distinct source (14 sources, exp74_encoders.csv). The claims are per-task win counts, so any subset of a 24/24 result is still all wins; subset resampling adds nothing.",
+    "consequence_if_violated": "n/a"
+   },
+   {
+    "rule": "Report geospatial rankings within capability groups (sensor, resolution, temporality) under a prescriptive protocol with seed repetition, not as one aggregate.",
+    "set_by": "Simumba et al. GEO-Bench-2 (2511.15658); Ramos-Pollan et al. 2024 (2409.08744); Shang et al. 2026 (2606.29664)",
+    "tool_status": "partial",
+    "evidence": "Seeds: exp79 (10). Groups: only classification vs segmentation. No sensor/resolution/split-type table. From exp70_tasks.csv the median lead by sensor group is 0.113-0.131 (no sensor effect), while all 10 exp74 losses sit on cropharvest_Togo (n=306) or nandi_sentinel1 (accuracy 0.33); no AOI/tile-block spread of the lead is reported although the exports carry the tile grid.",
+    "consequence_if_violated": "A user of an S1 map or a small-region map cannot see that the thin cells (46 of 356 with lead < 0.03) are small-n / low-accuracy cells rather than a sensor property."
+   },
+   {
+    "rule": "Label-noise detectors and grades under imperfect references are validated against controlled, graded label perturbations.",
+    "set_by": "Nogueira et al. 2026 (2603.00604)",
+    "tool_status": "partial",
+    "evidence": "exp23 measured reference instability (WorldCover 2020 vs 2021: 10.8% of errors vs 0.8% of correct windows changed class) and exp68 used a design-weighted survey; no controlled perturbation of the grading labels was run, and E-AURC's sensitivity to reference error is unmeasured.",
+    "consequence_if_violated": "The 24-task grades assume the reference is right; a random flip experiment would not model reference error, which exp23 shows is spatially structured, so the honest fix is a stated reviewer-error band on the estimate (see proposal 1), not a flip run."
+   },
+   {
+    "rule": "Reference data are imperfect: state the reference error rate and correct or bound accuracy and area estimates for it; bias grows for rare classes.",
+    "set_by": "Foody 2024 (Geomatics 4(1)); CEOS LPV Land Cover protocol V1.1 (Nov 2025)",
+    "tool_status": "partial",
+    "evidence": "Olofsson 2014 and Stehman & Foody 2019 cited; references treated as fallible in exp23/exp68. `estimate` (oe_inferencex/estimate.py:360) treats the reviewer's 0/1 as exact; no sensitivity band; task cards do not state a reference error rate.",
+    "consequence_if_violated": "exp78's honest interval is honest only for a perfect reviewer; with a 5% reviewer error on a map at 8% error the point estimate is biased by roughly the reviewer's error rate, larger than the interval half-width (0.029-0.031 at B=300)."
+   },
+   {
+    "rule": "Robustness is the drop from each model's own clean baseline under physically grounded, compound product degradations.",
+    "set_by": "Faruk et al. RSPDBench 2026 (2609.23427); Lehmann et al. 2026 (2608.16614, known)",
+    "tool_status": "violates",
+    "evidence": "All 24-task grades are on clean inputs; perturbations appear only as candidate signals (masking, tile phase, dihedral), never as an evaluation condition. related_work section 7 marks shift as 'never applied here'.",
+    "consequence_if_violated": "Whether the margin still ranks errors under misregistration or radiometric gain shift is unknown; needs new encoder passes, so out of tonight's scope."
+   },
+   {
+    "rule": "Splits must be region-disjoint and results reported per class, because foundation models collapse to frequent classes under regional shift.",
+    "set_by": "Shang et al. 2026 (2606.29664)",
+    "tool_status": "partial",
+    "evidence": "Splits are Ai2's; exp70 records train-test gaps (so2sat 0.26, forestnet 0.23) that indicate some splits are shifted, but split type is not on the task cards (taskcard.py reads a splitter class only from olmoearth_run.yaml). No per-class error or boundary statistics; exp77 found scene-typicality confounded with class frequency.",
+    "consequence_if_violated": "The headline mixes region-disjoint and random splits, and the per-class collapse the field warns of is invisible in an overall error rate."
+   },
+   {
+    "rule": "A label-free accuracy estimate is graded by MAE between estimate and truth across many (model, shifted test set) pairs; it must be fitted on a labelled source split and applied to unlabelled targets; feature-distribution distances are not a substitute.",
+    "set_by": "Garg et al. ICLR 2022 ATC (2201.04234); Guillory et al. ICCV 2021 DoC (2107.03315)",
+    "tool_status": "violates",
+    "evidence": "The tool's position is that 'how wrong' needs a reference (Usage). No ATC/DoC is computed. The record does contain an implicit label-free estimate: exp78's D2c allocation uses mean(1 - p1) per stratum as the stratum error rate; its calibration as a point estimate is never graded. The exports (margin, p1, dec, err, y) and 356 cells suffice to grade one.",
+    "consequence_if_violated": "The tool cannot say anything about a map's error rate before a single label is spent, although the field has estimators with declared failure modes that run on what the tool already exports."
+   },
+   {
+    "rule": "With a family of models, unlabelled pairwise agreement lies on the accuracy line; for probed foundation models the family must differ by random head initialisation.",
+    "set_by": "Baek et al. NeurIPS 2022 (2206.13089); Saxena et al. 2024 (2404.01542)",
+    "tool_status": "violates",
+    "evidence": "exp73 used seed disagreement only as an instance ranker (lost 22/24). The 10-seed x 16-encoder family exists (exp79) but only seed-0 per-unit decisions are exported (exp79_seed_floors.py:108-113), so agreement cannot be computed tonight.",
+    "consequence_if_violated": "The cheapest dataset-level error estimate the field has for exactly this asset (random-init linear heads) is untested; needs a per-seed decision export job."
+   },
+   {
+    "rule": "Confidence-based estimators underestimate error under pseudo-label/prevalence shift; use an optimal-transport cost to the source marginal and grade under label-shift cases separately.",
+    "set_by": "Lu et al. NeurIPS 2023 COT (2305.15640); Fluehmann et al. 2025 (2507.22776)",
+    "tool_status": "not applicable",
+    "evidence": "No label-free estimator exists yet, so nothing to correct. Prevalence shift between train and test is measurable per task once the training label marginal is read from the cached bank (one cluster job); between tile-block halves of a test split it is measurable from the exports' y.",
+    "consequence_if_violated": "Becomes 'violates' the moment proposal 4 ships without its prevalence-shift grade; EO maps shift prevalence by region and date (flood extent, crop mix)."
+   },
+   {
+    "rule": "Dataset-level scores are compared by correlation with true accuracy; survivors are logit-matrix statistics with an overconfidence correction (nuclear norm, MaNo) or the one-step head-gradient norm (GdScore), with class imbalance declared as a failure mode.",
+    "set_by": "Deng et al. ICML 2023 (2302.01094); Xie et al. NeurIPS 2024 (2405.18979); Xie et al. TMLR 2025 (2401.08909)",
+    "tool_status": "violates",
+    "evidence": "Not computed; needs full probability vectors, which the exports lack (margin and p1 only); one CPU/GPU job per encoder on the cached bank.",
+    "consequence_if_violated": "Only matters if ATC/DoC (computable tonight) fail on the imbalanced segmentation tasks; ordered behind them."
+   },
+   {
+    "rule": "Estimate the confusion matrix, not accuracy, when users need per-class metrics; report behaviour separately under covariate and prevalence shift.",
+    "set_by": "Fluehmann et al. 2025 (2507.22776)",
+    "tool_status": "violates",
+    "evidence": "`estimate` returns one error rate with an interval (estimate.py:360-431). The per-unit exports carry y and dec, so a labelled confusion matrix per task is computable without new labels; a label-free one is not attempted.",
+    "consequence_if_violated": "A map user gets 'the map is 8% wrong' and not 'water is missed 20% of the time', which is the number a flood-response user acts on."
+   },
+   {
+    "rule": "Per-image segmentation quality without a label is estimated by reverse classification against a small reference set and reported as a conformal interval.",
+    "set_by": "Cosarinsky et al. IEEE TMI 2025 (2503.04522)",
+    "tool_status": "not applicable",
+    "evidence": "Needs an in-context segmenter over retrieved references, not the frozen probe (filter 2: no new head as deliverable).",
+    "consequence_if_violated": "n/a"
+   },
+   {
+    "rule": "Instance-level consistency under semantics-preserving perturbation is graded as a correctness likelihood by calibration error, and segmentation error is decomposed into identity-flip vs omission before any label-free flag is judged.",
+    "set_by": "Nam et al. WACV 2026 SICL (2512.07390); Achara et al. 2026 (2604.13326)",
+    "tool_status": "partial",
+    "evidence": "Consistency signals (tile phase, dihedral, masking, shift-TTA exp53) were graded as rankers and lost; never as calibration. The record's error axis is boundary vs interior; identity flip vs omission is absent although y and dec on the six multi-class segmentation tasks allow it.",
+    "consequence_if_violated": "The explain module cannot say whether a flagged region is the right object with the wrong class or a missed object, which decides the user's fix (relabel vs redraw)."
+   },
+   {
+    "rule": "Never estimate a population quantity from predictions alone; use a probability sample of reference labels and treat the model output as an auxiliary variable for variance reduction only.",
+    "set_by": "CEOS LPV protocol 2025; Lu, Kluger, Bates, Wang 2024/2025 (2407.13659)",
+    "tool_status": "follows",
+    "evidence": "`sample`/`estimate` are design-based (Wilson/Korn-Graubard, stratified, ratio estimator); exp78 graded coverage by Monte Carlo (P1 holds 7/7 at 0.93); a guard rejects estimating from the review set (2-6x bias).",
+    "consequence_if_violated": "n/a"
+   },
+   {
+    "rule": "Use the predictions on unlabelled units through a debiased difference/PPI estimator with a data-tuned coefficient so the interval is never wider than the labelled-only one; tune per stratum when accuracy varies across strata.",
+    "set_by": "Angelopoulos, Duchi, Zrnic PPI++ (2311.01453); Fisch et al. NeurIPS 2024 StratPPI (2406.04291)",
+    "tool_status": "violates",
+    "evidence": "docs/plan/map_error_estimation.md lists arm E3d (difference estimator, g = 1 - p1, cross-fitted by tile) but exp78's run_designs has no such arm and exp78_summary.json has only D1/E1, D2p/E1, D2c/E1, D2star/E1, D1+E3ps, D4/E2_naive, D4/E1_cluster. The digest's sentence 'a difference estimator with confidence as predictor was an arm' is therefore not backed by the record.",
+    "consequence_if_violated": "The predictions on the unlabelled 99.9% of units contribute nothing to the estimate; and an unrun arm is being described as run, which the audit-before-record rule forbids."
+   },
+   {
+    "rule": "If the model's uncertainty chooses which units get labelled, weight by inclusion probabilities and mix with uniform sampling so a badly ranked case is never worse than random.",
+    "set_by": "Zrnic & Candes ICML 2024 (2403.03208); Li, Zrnic, Candes NeurIPS 2025 (2511.08991)",
+    "tool_status": "partial",
+    "evidence": "D2c is a one-shot Neyman allocation from the model's confidence with a per-stratum floor (estimate.neyman_allocation, MIN_PER_STRATUM), i.e. a bounded version of confidence-driven inclusion; exp78 shows D2c within 0.0007 of the oracle allocation D2star on MADOS and Sen1Floods11, so the allocation has no headroom left for an active rule to claim.",
+    "consequence_if_violated": "Low: the record's own ceiling arm says allocation is saturated; the guard the field adds is already implicit in the stratum floor."
+   },
+   {
+    "rule": "For clustered or stratified labelled samples, PPI intervals must come from a design-aware bootstrap, not i.i.d. formulas.",
+    "set_by": "Kluger et al. 2025 (2501.18577)",
+    "tool_status": "not applicable",
+    "evidence": "No PPI arm exists; the classical tile-cluster ratio estimator uses ultimate-cluster variance (estimate.cluster_interval). Becomes binding for proposal 5 on the tile design.",
+    "consequence_if_violated": "n/a until a PPI arm runs on tile draws; then coverage failure of the kind exp78 recorded for D4/E2_naive (0.51-0.82)."
+   },
+   {
+    "rule": "Strata for accuracy estimation are best formed by clustering a predicted per-unit performance score rather than fixed confidence bins; model-assisted estimators beat labelled-only ones.",
+    "set_by": "Fogliato, Patil, Monfort, Perona ECCV 2024",
+    "tool_status": "partial",
+    "evidence": "Strata are margin quintiles (estimate.confidence_strata). The oracle arm D2star bounds what any stratification can buy: D2c half-width 0.01858 vs D2star 0.01797 on MADOS, 0.02497 vs 0.02494 on Sen1Floods11 (exp78_summary.json). Fogliato's 10x is against SRS on low-error tasks; the record's model-free ceiling from capture@20% is 1.66x (plan P4).",
+    "consequence_if_violated": "None measurable: the strata cannot beat the oracle allocation they already sit next to; the model-assisted gain must come from the estimator (PPI), which is the violated rule above."
+   },
+   {
+    "rule": "A map user is owed user's accuracy, producer's accuracy and error-adjusted area per class with standard errors; an allocation chosen for one target degrades the others, most for a rare class.",
+    "set_by": "Stehman & Wagner RSE 2023; CEOS LPV protocol 2025 (75-150 units per map-class stratum)",
+    "tool_status": "violates",
+    "evidence": "`estimate` reports overall error only; no UA/PA/area anywhere in oe_inferencex (grep for producer/user's accuracy finds only the Dawid-Skene confusion in evidence.py). The exports carry y, dec and margin, so all three are computable from exp78's Monte Carlo without new labels.",
+    "consequence_if_violated": "The tool's 'how wrong is the map' does not meet the field's definition of an accuracy assessment, and Neyman-on-confidence may be starving the rare class the user cares about (water in a flood map)."
+   },
+   {
+    "rule": "Sample size is planned backwards from a target coefficient of variation using the map's PA/UA-driven relative efficiency.",
+    "set_by": "Adebayo et al. IJAEOG 2026; RSE 2025 companion",
+    "tool_status": "violates",
+    "evidence": "The tool grades a given budget; exp78 has half-widths at B in {100, 300, 1000} per task, the ingredients of a planner, but no `sample --target-cv` exists.",
+    "consequence_if_violated": "A user must guess B; the field's answer ('n for 10% CV given this map') is one function of numbers the record already holds."
+   },
+   {
+    "rule": "Beyond an estimate with an interval, a deployable guarantee is a threshold chosen so a monotone risk (missed-error rate) is at most alpha on new data.",
+    "set_by": "Angelopoulos, Bates, Fisch, Lei, Schuster ICLR 2024 CRC (2208.02814); Learn then Test AoAS 2025 (2110.01052)",
+    "tool_status": "violates",
+    "evidence": "The tool orders review by margin and reports capture at fixed budgets (exp70); no threshold with a risk bound is produced. Li et al. 2026 conformal SAR flood is cited (known) but not implemented.",
+    "consequence_if_violated": "A user who reviews the top 10% learns afterwards what they caught; they cannot ask for 'a review set that leaves at most alpha missed errors' in advance."
+   },
+   {
+    "rule": "Label-efficient risk estimation can be sequential: acquire the next label where it most reduces variance, with prediction-based control variates.",
+    "set_by": "Ashouritaklimi et al. 2026 PPAT (2607.08347); Ye, Lyu, Tao 2026 (2604.12497)",
+    "tool_status": "violates",
+    "evidence": "One-shot design only. exp78 P4 bounds any saving at 1.8x vs SRS (max recorded 2.5x for the oracle arm), and D2c sits at the oracle allocation, so a sequential design can only recover the pilot-estimate gap, which D2c does not have.",
+    "consequence_if_violated": "Small by the record's own bound; a reviewer-in-the-loop design costs more than it returns here."
+   },
+   {
+    "rule": "A confidence or algorithm-variance layer is not an accuracy assessment; documentation must say which outputs are assessments in the protocol's sense.",
+    "set_by": "CEOS LPV protocol 2025, executive summary and chapter 3",
+    "tool_status": "partial",
+    "evidence": "Usage says `estimate` needs a labelled sample and the guard rejects review-set estimation; the docs do not say in the protocol's words that `assess`'s ranking and the explain cues are review-ordering aids and only `sample`/`estimate` are an accuracy assessment.",
+    "consequence_if_violated": "A reader of the task cards may take capture-at-budget for an accuracy statement."
+   },
+   {
+    "rule": "Distribution shift at deployment is detected label-free from the frozen model's feature space with surrogate ID/OOD labels and graded against an oracle-labelled shift.",
+    "set_by": "Ekim et al. TARDIS 2024/2025 (2412.13394)",
+    "tool_status": "violates",
+    "evidence": "exp49 (SHRUG-FM U_E) and exp73 (kNN, Mahalanobis, 24/24 losses) graded typicality as error rankers, a different question; no per-scene 'off-distribution for this probe' flag exists, and the 24 tasks have no oracle-labelled shift stratum (only the Bolivia flood split).",
+    "consequence_if_violated": "The one condition the record knows the margin fails in (shift, per Lehmann 2026) is the one the tool cannot flag."
+   },
+   {
+    "rule": "Weight a cross-validated error estimate so the validation task matches the deployment domain via spatial task descriptors.",
+    "set_by": "Brenning & Suesse 2026 (2603.29981)",
+    "tool_status": "not applicable",
+    "evidence": "`estimate`'s estimand is the error rate of the map at hand, and the sample is drawn from that map (a census of its units), so validation-to-deployment reweighting does not arise; it would apply only to transferring a 24-task grade to a new region, which the tool does not claim.",
+    "consequence_if_violated": "n/a"
+   },
+   {
+    "rule": "The temporal dependence of a frozen representation is measured by shrinking the observation window.",
+    "set_by": "Guerrero-Viu et al. 2026 (2608.27175)",
+    "tool_status": "not applicable",
+    "evidence": "Single-date encoders and single-date chips throughout the suite (TESSERA parked per memory).",
+    "consequence_if_violated": "n/a"
+   },
+   {
+    "rule": "A map from frozen embeddings is validated by a blind two-interpreter consensus on a random sample in a held-out block, with a paired test against the incumbent product.",
+    "set_by": "Mughees et al. 2026 (2609.17138)",
+    "tool_status": "partial",
+    "evidence": "exp26 hand-check kit and exp68 LUCAS surveyor exist; no blind double interpretation, so the reviewer error rate that rule 11 needs is unmeasured.",
+    "consequence_if_violated": "The reviewer-error band on the estimate has no measured input; a data-collection task, not a methodology change."
+   },
+   {
+    "rule": "Embedding spaces are diagnosed label-free by participation ratio, local intrinsic dimension and tangent rotation; representations are probed for co-varying environmental variables; probe reliance per dimension is reported.",
+    "set_by": "Rahman et al. 2026 (2604.18715); Mocharla & Patel 2026 (2607.05207); Benavides-Martinez et al. 2026 (2603.16911)",
+    "tool_status": "violates",
+    "evidence": "Not computed. exp73 and exp77 and claim no-encoder-internal-signal-beats-confidence: feature-space statistics carried no error information as rankers; none of the three maps to a statement a map user acts on.",
+    "consequence_if_violated": "None for a map user; fails filter 1."
+   },
+   {
+    "rule": "Calibration (ECE, Brier, reliability) must be reported and drifts to overconfidence under shift.",
+    "set_by": "Lehmann et al. 2026 (2608.16614, known)",
+    "tool_status": "partial",
+    "evidence": "ECE in exp65/exp67 only; not graded for the margin on the 24 tasks; exp70's train-test gaps (so2sat 0.26, forestnet 0.23) mark the cells where overconfidence is expected.",
+    "consequence_if_violated": "A label-free estimate built on p1 is biased exactly on those cells; the ranking deliverable is unaffected because it uses ranks."
+   },
+   {
+    "rule": "A reported error region must be both underperforming and coherent; discovery methods are graded by recovery of planted or metadata slices on synthetic data with known blindspots; coherence needs a metadata-free statistic.",
+    "set_by": "Eyuboglu et al. ICLR 2022 Domino; d'Eon et al. FAccT 2022 Spotlight; Plumb et al. TMLR 2023 SpotCheck; Yu et al. 2025 MCSD",
+    "tool_status": "not applicable",
+    "evidence": "The tool ships no region-discovery deliverable: oe_inferencex/reliability.kmeans has no callers in the package (grep), it is a leftover of exp49. The record's region statements are the boundary finding (75% vs 21%) and the tile design effect (1.2-9.8), both verified spatial statistics.",
+    "consequence_if_violated": "n/a; would become binding if a cluster-based region report were ever shipped."
+   },
+   {
+    "rule": "Coherence of a slice does not imply a correct hypothesis; a 'why' is defensible only when the named group is checked for elevated error on held-out data; instance slices must be statistically verified (Precision@k).",
+    "set_by": "Johnson, Cabrera, Plumb, Talwalkar HCOMP 2023 (2306.08167); Zhang et al. ECCV 2026 GH-ESD (2512.24592)",
+    "tool_status": "partial",
+    "evidence": "explain.CUES quotes enrichments measured with tile-clustered bootstrap CIs on one testbed (boundary 0.750 vs 0.214, Bolivia; explain.py:62-72) and applies them to any map; the record notes 'narrower scope on many-class tasks' but no per-task recomputation on the 24 tasks is on file, although boundary and low_confidence are computable from the exports (dec, grid, margin, err).",
+    "consequence_if_violated": "On a PASTIS map the explain module quotes a Bolivia flood number; the field's finding is that about half of coherent-looking hypotheses are wrong when checked, so the quoted 'why' is a hypothesis presented as a measurement."
+   },
+   {
+    "rule": "Attribute-first discovery: predefined human-understandable attributes, conjunctions enumerated and tested per cell, with a noise model for the attribute itself.",
+    "set_by": "Chen, Zhao, Xu ICLR 2025 HiBug2 (2501.16751); Gannamaneni et al. 2025 (2502.12360)",
+    "tool_status": "partial",
+    "evidence": "The cue library is attribute-first and explain.cooccurrence reports pairwise co-occurrence; no per-conjunction error statistic and no noise model for a cue (e.g. boundary computed from the map's own decisions).",
+    "consequence_if_violated": "Cues that co-occur (boundary and low_confidence overlap by construction) are counted as two reasons for one error."
+   },
+   {
+    "rule": "For segmentation the systematic error is a (predicted, reference) confusion pair on a coherent object sub-group.",
+    "set_by": "Singh et al. 2024 (2411.10845)",
+    "tool_status": "violates",
+    "evidence": "compare reports why errors are shared across two inferences; no confusion-pair grouping in explain or compare; y and dec in the exports allow the labelled version on the six multi-class segmentation tasks.",
+    "consequence_if_violated": "A user of a 19-class crop map cannot learn that most errors are two crops confused with each other, which is the actionable finding."
+   },
+   {
+    "rule": "False-confidence concentration (share of confident errors inside a compact region) is a reportable property, compared against confidence alone with cross-fitting; with a label budget, slice discovery becomes an active query over candidate regions.",
+    "set_by": "Cenacchi, Cao, Yang 2026 FALCON-Discover (2607.18278); Zhang, Ijner, Wald, Creager NeurIPS 2025 workshop (2511.20713)",
+    "tool_status": "violates",
+    "evidence": "Not computed; FALCON's ingredients (kNN support, neighbourhood contradiction, perturbation stability) each lost in exp73 and the flood testbeds, so only the concentration statistic is new; its spatial analogue is exp78's design effect. No region deliverable exists to verify actively.",
+    "consequence_if_violated": "Low: the record already says confident errors cluster spatially (design effect up to 9.8 on MADOS); an embedding-space version needs the cached bank and has no user-facing statement yet."
+   },
+   {
+    "rule": "Coherence should mean 'wrong for the same reason', operationalised through training-data influence.",
+    "set_by": "Wang et al. NeurIPS 2023 InfEmbed (2312.04712)",
+    "tool_status": "not applicable",
+    "evidence": "'Which training samples caused this error' is a model developer's question; a map user cannot act on it (filter 1), and it needs the training features from the bank.",
+    "consequence_if_violated": "n/a"
+   }
+  ],
+  "proposals": [
+   {
+    "name": "Per-class accuracy assessment from the same labelled sample: user's accuracy, producer's accuracy and error-adjusted area with standard errors, a class-aware allocation, and a sample-size planner",
+    "rank": 1,
+    "field_rules_followed": [
+     "CEOS LPV protocol 2025: UA/PA/area from the reference sample, 75-150 units per map-class stratum",
+     "Stehman & Wagner 2023: allocation trade-off across UA, PA and area, worst for rare classes",
+     "Fluehmann et al. 2025: estimate the confusion matrix, not accuracy",
+     "Adebayo et al. 2026: plan n backwards from a target CV",
+     "Foody 2024: state a reviewer-error band",
+     "Shang et al. 2026: report per class"
+    ],
+    "what_changes": "`estimate` returns, beside the overall error rate, the labelled confusion matrix of the sample and design-based UA_c, PA_c and error-adjusted area A_c per map class with SEs (Olofsson 2014 estimators on the stratified sample, ratio form on tile draws), plus a reviewer-error band (estimate recomputed under a stated reviewer error rate e in {0, 0.02, 0.05}). `sample` gains design D3: strata = predicted class x margin half, with the CEOS floor per map-class stratum, and `sample --target-cv 0.10` returns the B that reaches it from the class rates. exp78's Monte Carlo (R=2000) is extended to grade UA/PA/area coverage per class on every (task, encoder) cell of the exp79 export. Docs state, in the protocol's words, that only `sample`/`estimate` are an accuracy assessment and `assess` is a review-ordering aid.",
+    "what_a_map_user_gains": "'Water is missed 19% of the time and 12% of mapped water is not water, so the flooded area is 8.1 +/- 0.9 km2 not 9.4' instead of 'the map is 8% wrong'. That is the number a flood or crop user acts on and the number the field's standard says a producer owes.",
+    "filter_1_map_user": "Passes: per-class omission/commission and corrected area are unknowable from the map today and are what CEOS/Olofsson define as the assessment.",
+    "filter_2_audit_scope": "Passes: no training, no head; labels come from the same small review sample the tool already asks for; the map's own decisions define the strata.",
+    "filter_3_headroom": "Not a ranker; the margin's ranking is kept as the stratifier. The headroom bound that applies is exp78's: D2c is within 0.0007 half-width of the oracle allocation, so the gain is in what is reported, not in the interval width.",
+    "already_in_record": "exp78 (overall error rate, 7 segmentation tasks, D1/D2p/D2c/D2star/E3ps/D4 arms) and exp68 (LUCAS with design weights, overall). Nothing per class; grep finds no UA/PA in the package. Not a repeat: same sample, new estimands and a class-aware design.",
+    "testable_tonight": "local from exp79 exports",
+    "preregistration_sketch": "Estimands: UA_c, PA_c, A_c per class c, overall theta, per (task, encoder), truth from y and dec in the export. Arms: D1/E1 (SRS), D2c/E1 (record), D3 (class x margin-half strata, CEOS floor). B = 300 headline, {100, 300, 1000} reported, R = 2000. P1 (honesty): for every class with at least 30 sampled units the UA_c and PA_c intervals cover at 0.93 or better on every cell (exp78 P1 bar 0.93; exp79 P5's Monte Carlo tolerance max(0.01, 3 SE)). P2 (Stehman & Wagner): under D2c at B = 300 the rarest class's UA half-width exceeds twice the overall half-width (exp78 overall half-widths 0.018-0.053) on all 7 segmentation tasks. P3 (allocation trade-off): D3 cuts the rarest-class UA half-width by at least 20% against D2c while widening the overall half-width by at most 10%; failing P3 means the class-aware design costs the overall estimate more than it buys. P4 (Olofsson): error-adjusted area differs from pixel-count area by more than one SE for at least one class on at least 5 of 7 segmentation tasks. P5 (planner): the B predicted for a 10% CV on theta from exp78's half-widths at {100, 300, 1000} is within 15% of the Monte Carlo B. P6 (reviewer error, Foody): at reviewer error e = 0.05 the overall estimate's bias exceeds the B = 300 half-width on both tasks with theta < 0.10 (mados, sen1floods11, half-widths 0.029-0.031).",
+    "how_it_could_fail": "On the 19-class PASTIS tasks most classes get under 30 units at B = 300, so per-class intervals are Wilson-at-tiny-n and P1 is untestable there; that is itself the CEOS answer (budget scales with classes) and must be reported, not hidden. Classification tasks have no area meaning (area only for segmentation). Ai2's test splits are not a map's class mix, so the Monte Carlo grades the estimator, not a deployment.",
+    "papers": [
+     "CEOS WGCV LPV Land Cover protocol V1.1, Nov 2025, doi:10.5067/doc/ceoswgcv/lpv/lc.001",
+     "Stehman & Wagner, RSE 2023, S0034425723004327",
+     "Fluehmann et al. 2025, arXiv 2507.22776",
+     "Adebayo et al. 2026, IJAEOG S1569843226001391",
+     "Foody 2024, Geomatics 4(1)",
+     "Olofsson et al. 2014 (known)"
+    ]
+   },
+   {
+    "name": "A verification rule for `explain`: every cue's enrichment is recomputed per task on held-out units with a clustered CI, the library value is quoted only where it survives, and multi-class segmentation errors are reported by confusion pair and by flip-vs-omission",
+    "rank": 2,
+    "field_rules_followed": [
+     "Johnson et al. HCOMP 2023: a 'why' is defensible only when the named group is verified on held-out data",
+     "Zhang et al. GH-ESD ECCV 2026: statistical verification of instance slices, Precision@k",
+     "Singh et al. 2024: segmentation systematic error = confusion pair",
+     "Achara et al. 2026: identity-flip vs omission decomposition",
+     "HiBug2 2025: per-conjunction cell statistics"
+    ],
+    "what_changes": "A grading stage `explain --verify` runs on every (task, encoder) export: for each cue computable label-free from the export (boundary from dec and the tile grid; low_confidence from margin; their conjunction), the share among errors, share among correct, enrichment ratio and Precision@k at the record's budgets (5, 10, 20%) with explain.cue_enrichment's tile-clustered bootstrap CI. explain.CUES gains a per-task table; at deployment the module quotes the verified value for the task family at hand and prints 'library value from Bolivia, unverified on this task type' otherwise. For multi-class segmentation, `explain` adds the top confusion pairs (labelled grade) and, label-free, the flip-risk cue (entropy over foreground classes, Achara) and the flip-vs-omission split against a background class where one exists.",
+    "what_a_map_user_gains": "The 'why' beside a flagged window becomes a number measured on maps like theirs with an interval, or an honest 'unverified'; and on a crop map they learn 'most errors are maize-vs-sorghum on field edges', which decides relabel vs redraw.",
+    "filter_1_map_user": "Passes: which cue explanations are trustworthy for their task type, and the dominant confusion, are unknowable today.",
+    "filter_2_audit_scope": "Passes: labels grade only; cues remain label-free; no new head.",
+    "filter_3_headroom": "Not a ranker. The verification may shrink what the explain module claims; that is the point.",
+    "already_in_record": "exp37 (cue enrichment, Bolivia) and claims cue-enrichment-table, errors-sit-on-boundaries (75% vs 21%), boundary-first-review-order ('narrower scope on many-class tasks'). Not a repeat: those are one testbed; nothing per task on the 24-task suite, no confusion-pair or flip/omission report anywhere.",
+    "testable_tonight": "local from exp79 exports",
+    "preregistration_sketch": "Estimand per (task, encoder, cue): share of errors carrying the cue (s_e), share of correct windows (s_c), ratio s_e/s_c, tile-clustered 95% CI (n_boot = 2000, explain.cue_enrichment). P1: boundary ratio >= 2 on at least 6 of 7 OlmoEarth Base segmentation tasks (Bolivia 0.750/0.214 = 3.5; the record's many-class caveat predicts the PASTIS 19-class tasks as the likely miss). P2: the library values 0.750 and 0.214 fall outside the per-task CI on at least 4 of 7 tasks, establishing that quoting Bolivia on another task is wrong by the record's own CI. P3: across the 16 encoders at least 75% of (encoder, segmentation task) cells keep ratio >= 2 (exp74's 75% bar). P4 (conjunction): boundary AND low_confidence has Precision@5% at least 0.05 above boundary alone on at least 5 of 7 tasks, otherwise the two cues are one reason and the module must say so. P5 (confusion pairs): on the six multi-class segmentation tasks the top three (predicted, reference) pairs hold at least 50% of errors on at least 4 of 6. P6 (flip vs omission): the label-free flip-risk cue's enrichment ratio >= 1.5 for identity flips on at least 3 of the tasks that have a background class; if it fails, the cue is not added.",
+    "how_it_could_fail": "Boundary computed from the map's own decisions is noisier on 19-class maps (every class change is a boundary), so the ratio can collapse without the mechanism changing; P1's expected miss must be reported by class count, not averaged away. Precision@k on classification tasks with 200-306 units (awf, Togo) has CIs too wide to verify anything; those cells are reported as unverifiable, not as failures.",
+    "papers": [
+     "Johnson, Cabrera, Plumb, Talwalkar, HCOMP 2023, arXiv 2306.08167",
+     "Zhang et al., GH-ESD, ECCV 2026, arXiv 2512.24592",
+     "Singh et al. 2024, arXiv 2411.10845",
+     "Achara et al. 2026, arXiv 2604.13326",
+     "Chen, Zhao, Xu, HiBug2, ICLR 2025, arXiv 2501.16751"
+    ]
+   },
+   {
+    "name": "Where the lead holds: a capability-group, split-type and spatial-block re-tabulation of the headline, with the accuracy confound and multiplicity reported",
+    "rank": 3,
+    "field_rules_followed": [
+     "Steinmetz 2026 / Jaeger 2023: report the correlation of failure-detection score with accuracy",
+     "GEO-Bench-2 (Simumba 2025): report per capability group",
+     "Ramos-Pollan 2024: spread across areas of interest",
+     "Shang 2026: stratify by split type and class frequency",
+     "Claros Olivares 2025: family-wise control over the raced alternatives",
+     "CEOS 2025: say which outputs are an accuracy assessment"
+    ],
+    "what_changes": "A committed script re-tabulates exp70/exp74/exp79 by sensor group (S1, S2, Landsat, multi), task family, class count, unit count and split type (from Ai2's task metadata, added to the task cards), and reports Spearman(accuracy, margin AUROC) and Spearman(accuracy, E-AURC lead) over all cells with a bootstrap CI; Holm over the 16 encoder sign tests and the exp73 alternatives; and on the 7 segmentation tasks the per-tile-block E-AURC lead via stats.block_bootstrap_indices, reported as a 10th-percentile-across-blocks. The Findings page states the headline with these strata beside it.",
+    "what_a_map_user_gains": "Whether the margin's lead applies to their sensor, region size and map type, and that the thin cells are small-n or low-accuracy cells rather than a sensor property; and the confound: the ranking statistic (AUROC) rises with probe accuracy, so a bad probe ranks its errors worse.",
+    "filter_1_map_user": "Passes: today the user sees 24/24 and cannot locate their own case in it.",
+    "filter_2_audit_scope": "Passes: re-analysis of committed artifacts.",
+    "filter_3_headroom": "Not a ranker; it qualifies the existing claim.",
+    "already_in_record": "exp70/74 report per task and per distinct source; exp79 adds seeds; docs/related_work section 7 says the spatial support of the 24 tasks is not characterised. Not a repeat: no group table, no confound statistic, no block spread, no Holm. Computed while writing this audit from committed summaries: 356 cells, Spearman(accuracy, AUROC) = 0.61, Spearman(accuracy, lead) = -0.46; all 10 exp74 losses on cropharvest_Togo (n = 306) or nandi_sentinel1 (accuracy 0.33); sensor-group median leads 0.113-0.131.",
+    "testable_tonight": "local from committed artifacts",
+    "preregistration_sketch": "Because the seed-0 statistics were seen while auditing, the predictions are stated on the exp79 reseeded cells. P1 (confound): Spearman(accuracy, margin AUROC) >= 0.5 under every one of the 10 seeds (seed-0 value 0.61), and the sign of Spearman(accuracy, E-AURC lead) is negative under every seed. P2 (thin cells belong to small or bad cells, not sensors): every (encoder, task) loss under any seed is on a task with n <= 306 or accuracy <= 0.40 (the seed-0 pattern); the median lead by sensor group differs by at most 0.03 between groups (seed-0 range 0.113-0.131). P3 (multiplicity): Holm over the 19 sign tests (16 encoders + ensemble, kNN, Mahalanobis) changes no verdict (smallest recorded p 1.1e-4 for 19/21 against a Holm bar of 0.0026). P4 (block spread): on at least 6 of 7 segmentation tasks the 10th percentile across tile blocks of the margin's E-AURC lead over the best control is above 0; the task that fails is named with its blocks. P5 (split type): on region-disjoint tasks the median lead is within 0.03 of random-split tasks; if it is not, the headline is re-stated per split type.",
+    "how_it_could_fail": "Split type for the 24 tasks may not be fully documented upstream (Ai2 inherits GEO-Bench and CropHarvest splits), leaving P5 partly unclassifiable; the block spread depends on block size, which must be fixed to exp78's tile before looking. The confound correlation is descriptive; the record's remedy stays excess AURC, and P1 only forces the number onto the page.",
+    "papers": [
+     "Steinmetz, Frouin, Morard, Buvat, medRxiv 2026.05.04.26350496",
+     "Simumba et al., GEO-Bench-2, arXiv 2511.15658",
+     "Ramos-Pollan, Kalaitzis, Panner Selvam 2024, arXiv 2409.08744",
+     "Shang, Das, Eldawy 2026, arXiv 2606.29664",
+     "Claros Olivares & Brockmeier 2025, arXiv 2511.11934",
+     "Dehghani et al. 2021, arXiv 2107.07002"
+    ]
+   },
+   {
+    "name": "A label-free error-rate estimate with a declared failure mode: ATC and DoC on the margin, graded by MAE across all cells and by prevalence shift between tile-block halves, then used as the pilot for `sample`",
+    "rank": 4,
+    "field_rules_followed": [
+     "Garg et al. 2022 ATC: fit one threshold on a labelled source, apply to unlabelled target, grade by MAE across many (model, set) pairs",
+     "Guillory et al. 2021 DoC",
+     "Lu et al. 2023 / Fluehmann et al. 2025: grade separately under prevalence shift; confidence-based estimators underestimate error there",
+     "Lehmann 2026 (known): overconfidence under shift",
+     "CEOS 2025: a confidence layer is not an accuracy assessment (so the output is labelled a pilot, not an assessment)"
+    ],
+    "what_changes": "`estimate --label-free` returns a point estimate of the map's error rate from margin/p1 alone, with the source threshold fitted on the probe's labelled validation split (the tool already holds the probe) and a printed failure mode ('assumes the class mix of this map matches the training split; under prevalence shift this underestimates'). `sample` uses the ATC-calibrated stratum rates in place of raw mean(1 - p1) for Neyman allocation (D2c'). Grading: on every (task, encoder) export, split by tile blocks (segmentation) or at random (classification) into source and target halves; ATC, DoC and the naive mean(1 - p1) estimate the target error; MAE across 356 cells; signed error against the prevalence shift |Delta class marginal| between halves computed from y.",
+    "what_a_map_user_gains": "Before spending one label: 'this map is roughly 9% wrong, unless its class mix differs from training, in which case more'. Today the tool says nothing until 300 labels arrive.",
+    "filter_1_map_user": "Passes: a pre-label estimate with a stated failure mode is new information; labelling it a pilot keeps it honest.",
+    "filter_2_audit_scope": "Passes: label-free at deployment; the source threshold uses the probe's own validation labels, which exist for any probed model.",
+    "filter_3_headroom": "Not a ranker. The allocation headroom is already gone (D2c within 0.0007 of D2star in exp78), so D2c' is predicted to gain nothing; the value is the estimate itself.",
+    "already_in_record": "exp78's D2c uses mean(1 - p1) per stratum as an implicit label-free stratum rate for allocation only; its calibration as an estimate is ungraded. exp70 holds train-test gaps per task (so2sat 0.26, forestnet 0.23) that predict where p1 overconfidence breaks it. Not a repeat: no label-free point estimate has been produced or graded.",
+    "testable_tonight": "local from exp79 exports",
+    "preregistration_sketch": "Estimand: target-half error rate per cell. Arms: naive mean(1 - p1), ATC on margin, DoC on p1 with a linear map fitted across the classification tasks' source halves. P1: ATC's MAE is at most the exp78 B = 300 SRS half-width (0.029-0.031) on the two low-error segmentation tasks (mados, sen1floods11) and on m_eurosat and m_brick_kiln for OlmoEarth Base. P2 (overconfidence): the naive estimate's ratio to truth is below 0.7 on every task whose exp70 train-test gap exceeds 0.20 (so2sat, forestnet, and the nandi/cropharvest S1 tasks where recorded), and ATC halves that shortfall. P3 (Lu 2023): across cells the signed ATC error correlates with the prevalence shift between halves, Spearman >= 0.3, and the sign is underestimation when the target's majority class shrinks. P4 (honesty): ATC's MAE exceeds the labelled B = 300 half-width on at least one third of all cells, so the output is documented as a pilot for allocation and a sanity check, never as the accuracy assessment. P5 (allocation): D2c' half-width is within 0.002 of D2star on every segmentation task (D2c already is within 0.0007 on mados and sen1floods11), i.e. no allocation gain is claimed.",
+    "how_it_could_fail": "The tile-block halves of Ai2's test splits are mild shifts, so the grade is mostly in-distribution and P3 may be underpowered; that limits the claim to 'graded under mild shift'. Segmentation tasks are imbalanced (sen1floods11 water share small), Deng 2023's declared failure mode for dispersity-based scores; ATC is threshold-based and less exposed, but a per-class version needs full probability vectors the exports lack. If P2 fails in the other direction (naive overestimates), p1 is underconfident on those probes and the failure-mode text must be rewritten.",
+    "papers": [
+     "Garg, Balakrishnan, Lipton, Neyshabur, Sedghi, ICLR 2022, arXiv 2201.04234",
+     "Guillory, Shankar, Ebrahimi, Darrell, Schmidt, ICCV 2021, arXiv 2107.03315",
+     "Lu et al., NeurIPS 2023, arXiv 2305.15640",
+     "Fluehmann, Bissoto, Hoang, Koch, UNSURE 2025, arXiv 2507.22776",
+     "Deng, Suh, Gould, Zheng, ICML 2023, arXiv 2302.01094"
+    ]
+   },
+   {
+    "name": "Run the model-assisted arm exp78 planned and never ran, as PPI++ with a per-stratum tuned coefficient, cross-fitted by tile with design-aware intervals; correct the record where the arm is described as run",
+    "rank": 5,
+    "field_rules_followed": [
+     "Angelopoulos, Duchi, Zrnic PPI++: data-tuned lambda, never wider than labelled-only",
+     "Fisch et al. StratPPI: lambda per stratum",
+     "Kluger et al. 2025: design-aware bootstrap for clustered labelled samples",
+     "Mozer 2026 (known): PPI = difference estimator",
+     "Audit-before-record (user's rule): an unrun arm must not be described as run"
+    ],
+    "what_changes": "exp78's run_designs gains E3d (lambda = 1, the planned arm), E3d++ (lambda tuned, PPI++), and E3s (lambda per margin quintile, StratPPI), predictor g = 1 - p1 or the ATC-calibrated g from proposal 4, cross-fitted by tile; on the D4 tile design the interval is Kluger's design-aware bootstrap. `estimate` gains `--model-assisted` that uses the predictions on the unlabelled units. The digest sentence 'a difference estimator with confidence as predictor was an arm' and any docs echo are corrected to 'planned in docs/plan/map_error_estimation.md, not run in exp78'.",
+    "what_a_map_user_gains": "A narrower interval from the same 300 labels, guaranteed no wider than the classical one; and a record that says what was run.",
+    "filter_1_map_user": "Passes weakly: the user gains precision, not a new kind of statement; ranked below the deliverables above for that reason.",
+    "filter_2_audit_scope": "Passes: labels feed an estimator; predictions are auxiliary.",
+    "filter_3_headroom": "Bounded by the record: exp78 P4 caps any saving at 1.8x against SRS and the capture-based ceiling is 1.66x; with a median margin AUROC of 0.76 the residual err - g keeps most of the variance, so the expected gain over D2c is small and the preregistration says so.",
+    "already_in_record": "docs/plan/map_error_estimation.md lists E3d; exp78_summary.json has no E3d key and exp/exp78_error_rate_estimation.py run_designs has no such arm; the guard against fitting the predictor on the sample without cross-fitting is in the plan's invalidation list. Not a repeat: never run.",
+    "testable_tonight": "local from exp79 exports",
+    "preregistration_sketch": "Estimand: theta per (task, encoder) at B = 300, R = 2000, the exp78 harness. P1 (honesty): coverage >= 0.93 on every cell for E3d++ and E3s (exp78 P1 bar; exp79 P5 tolerance). P2 (guarantee): E3d++ half-width ratio against D2c/E1 <= 1.00 on every cell; a ratio above 1.00 anywhere is a bug in lambda tuning, not a finding. P3 (gain): median ratio across the 7 segmentation tasks <= 0.95 for E3s; if the median is above 0.98 the arm is recorded as 'no gain at this ranking quality' and not shipped as a flag. P4 (why lambda is tuned): plain E3d (lambda = 1) is wider than D2c on at least 2 of 7 tasks. P5 (honesty, exp78 P4): no arm saves more than 1.8x labels against D1/E1 at equal half-width; a larger saving means leakage (predictor fitted on the sample) and P1 is where it shows. P6 (tiles): on the D4 design the i.i.d. PPI interval covers below 0.85 on the task with the largest design effect (MADOS, 9.77) while the design-aware bootstrap covers at 0.93.",
+    "how_it_could_fail": "If g = 1 - p1 is uncalibrated, lambda tunes toward 0 and the arm reproduces D2c exactly: honest but empty, and the run still corrects the record. Cross-fitting by tile on classification tasks (no tiles) falls back to random folds, which is fine for D1/D2 but the D4 clause is segmentation-only.",
+    "papers": [
+     "Angelopoulos, Duchi, Zrnic, PPI++, arXiv 2311.01453",
+     "Fisch et al., StratPPI, NeurIPS 2024, arXiv 2406.04291",
+     "Kluger, Lu, Zrnic, Wang, Bates 2025, arXiv 2501.18577",
+     "Lu, Kluger, Bates, Wang, RSE 2025, arXiv 2407.13659",
+     "Mozer et al. 2026 (known)"
+    ]
+   },
+   {
+    "name": "A review set with a guarantee: conformal risk control on the margin so the missed-error rate among unreviewed windows is at most alpha, calibrated on the `sample` labels",
+    "rank": 6,
+    "field_rules_followed": [
+     "Angelopoulos, Bates, Fisch, Lei, Schuster ICLR 2024: conformal risk control for a monotone risk, tight to O(1/n)",
+     "Learn then Test 2025: high-probability version for non-monotone or stricter guarantees",
+     "Li et al. 2026 conformal SAR flood (known)",
+     "CEOS 2025: local quality statements beside global ones"
+    ],
+    "what_changes": "`assess --alpha 0.04` returns the margin threshold tau and the review fraction such that the expected missed-error rate among windows above tau is at most alpha, calibrated on the labelled sample `sample` already produces (n = 300), with the exchangeability condition printed (calibration must be an SRS of windows, or a tile draw with a design-effect-inflated n). Grading on every (task, encoder) export: 2000 calibration draws, realised risk on the rest.",
+    "what_a_map_user_gains": "An operating point chosen in advance with a stated bound ('review these 12% and at most 4% of what remains is wrong') instead of learning the capture afterwards.",
+    "filter_1_map_user": "Passes: how far to trust the unreviewed remainder is a guarantee the tool does not give today.",
+    "filter_2_audit_scope": "Passes: the same small labelled sample; no head, no training.",
+    "filter_3_headroom": "Not a ranker; it wraps the margin's existing ranking in a bound. Its usefulness is limited by the same capture curves (exp70) that bound the margin.",
+    "already_in_record": "exp70 capture at 5/10/20% and exp35 operating points (null) grade fixed budgets after the fact; exp78's sample is the calibration set. Not a repeat: no threshold with a risk bound exists.",
+    "testable_tonight": "local from exp79 exports",
+    "preregistration_sketch": "Risk R(tau) = P(error and margin > tau) over unreviewed windows; alpha = half the task's true error rate so 'review halves the residual error'. P1 (guarantee): mean realised R over 2000 SRS calibration draws of n = 300 <= alpha + 1/300 on every cell. P2 (review cost): the review fraction for that alpha is <= 20% on tasks whose exp70 capture at 20% is >= 0.5 (m_eurosat 0.86, mados 0.50 at 10%, sen1floods11 0.46 at 10%) and > 40% on pastis_sentinel1, m_cashew_plant and m_forestnet (capture at 10% <= 0.22). P3 (exchangeability): with tile-clustered calibration draws (16 windows per tile, exp78 D4) the realised mean R exceeds alpha by more than 0.01 on the cell with the largest design effect (MADOS, 9.77) unless n is deflated by the design effect. P4 (conditional honesty): the share of single calibration draws whose realised R exceeds alpha is between 0.4 and 0.6 (the CRC guarantee is in expectation); the tool prints this, and LTT's high-probability tau is reported as the alternative with its extra review cost.",
+    "how_it_could_fail": "A user with one calibration sample gets an in-expectation guarantee that misses alpha on about half of draws; if P4 shows the miss is large in magnitude on high-error tasks, the deliverable must ship LTT's version or not ship. Segmentation exchangeability requires the calibration windows to be sampled from the same map, so the guarantee is per map, never transferable across dates, and the docs must say so.",
+    "papers": [
+     "Angelopoulos, Bates, Fisch, Lei, Schuster, ICLR 2024, arXiv 2208.02814",
+     "Angelopoulos, Bates, Candes, Jordan, Lei, Learn then Test, AoAS 2025, arXiv 2110.01052",
+     "Li et al. 2026 conformal SAR flood (known)"
+    ]
+   }
+  ],
+  "dropped": [
+   "TARDIS-style label-free shift flag from the cached bank (Ekim 2024): the 24 tasks contain no oracle-labelled shift stratum to grade it against; the only shifted split on record (Bolivia) is one case, and the generality rule forbids building on one case.",
+   "Agreement-on-the-line / GDE dataset-level estimate from the 10-seed family (Baek 2022, Saxena 2024): only seed-0 per-unit decisions are exported (exp79_seed_floors.py:108-113); needs a follow-up cluster job, so it queues behind ATC, which runs on what exists.",
+   "COT, nuclear norm, MaNo, GdScore (Lu 2023, Deng 2023, Xie 2024/2025): need full probability vectors and the training label marginal from the cached bank; run only if proposal 4 confirms prevalence-shift failure.",
+   "RSPDBench degradation axis (Faruk 2026): needs re-encoding under product defects, outside the no-new-encoder-passes constraint.",
+   "Probe hyperparameter and input-normalisation sensitivity (Lee 2023): the audited claim is about a given probe's own confidence; a re-normalised probe is a different model with different errors and does not test it.",
+   "Joint OOD + error DS-AURC grading (Li 2026): no out-of-support stratum exists in Ai2's suite.",
+   "ConfIC-RCA per-map segmentation quality (Cosarinsky 2025): needs an in-context segmenter, a new model, which filter 2 forbids as a deliverable.",
+   "InfEmbed training-data influence (Wang 2023): 'which training samples caused this' is a developer's question, not a map user's (filter 1).",
+   "Embedding-geometry diagnostics, per-dimension probe reliance and ERA5 covariate probing (Rahman 2026, Benavides-Martinez 2026, Mocharla & Patel 2026): no route to a statement a map user acts on, and exp73/exp77 say feature-space statistics carry no error information here.",
+   "Temporal-window sensitivity (Guerrero-Viu 2026): single-date encoders throughout.",
+   "Blind double-interpreter validation (Mughees 2026): a label-collection project, not a methodology change; its output (reviewer error rate) enters proposal 1 as a stated band instead.",
+   "Active statistical inference and robust mixing (Zrnic & Candes 2024; Li, Zrnic, Candes 2025): exp78's D2c already sits within 0.0007 half-width of the oracle allocation D2star, so the allocation has no headroom for an active rule to claim.",
+   "k-means strata on a predicted performance score (Fogliato 2024): same D2star ceiling; no stratification can beat the oracle allocation it already matches, and the model-free saving bound is 1.66x.",
+   "Sequential prediction-powered active testing and UCB allocation (2607.08347, 2604.12497): exp78 P4 bounds any saving at 1.8x and D2c has no pilot-estimate gap to recover; a reviewer-in-the-loop design costs more than it returns.",
+   "Label-free score aggregation of the margin with a second cue (Steinmetz 2026): it is another ranker; exp65's label-fitted fusion gained 0.0006 and the label-free midrank fusion is already a recorded loss (claim label-free-midrank-fusion-lost).",
+   "Controlled label-flip sensitivity of E-AURC (Nogueira 2026, Foody 2024): random flips do not model reference error, which exp23 shows is spatially structured (10.8% of errors vs 0.8% of correct windows changed class); kept as the reviewer-error band in proposal 1.",
+   "FALCON false-confidence concentration statistic (Cenacchi 2026): needs the cached bank for compactness, its ingredients each lost in exp73, and its spatial analogue is already exp78's design effect (1.2-9.8).",
+   "Active or planted-slice region verification (Zhang 2025; Domino, Spotlight, SpotCheck, MCSD): the tool ships no region-discovery deliverable; reliability.kmeans has no callers in the package.",
+   "HiBug2 attribute-conjunction enumeration as its own proposal: with three cues computable from the exports the conjunction table has seven cells; folded into proposal 2 (P4).",
+   "Family-wise multiplicity control as its own proposal: Holm changes no recorded verdict (smallest p 1.1e-4 against a bar of 0.0026); folded into proposal 3 as one line.",
+   "Task-subset resampling against the benchmark lottery (Dehghani 2021): the claims are per-task win counts, and any subset of a 24/24 result is all wins; no information.",
+   "Calibration grade (ECE) of the margin per task: one number a map user cannot act on; it matters only where the margin is used as a probability, which proposal 4 grades directly by MAE.",
+   "Target-weighted cross-validation (Brenning & Suesse 2026): `estimate` samples the deployment map itself, so validation-to-deployment reweighting does not arise."
+  ]
+ }
+}

@@ -1,0 +1,998 @@
+{
+ "experiment": "exp72 agent-skill cross-check on real logits",
+ "what": "oe_inferencex.metrics (numpy) against OlmoEarth-Agent skill #18 (pure Python), over identical real probability matrices from Ai2's published embeddings",
+ "skill_sha256": "93390fdd90df96a0fcb4c01d9d46a8bf26e0688b72cc3cd96eebbe9429364d76",
+ "skill_source": "2imi9/OlmoEarth-Agent src/olmoearth_agent/analysis/review_set.py, copied verbatim",
+ "tolerance": 1e-09,
+ "budgets": [
+  0.05,
+  0.1,
+  0.2
+ ],
+ "n_tasks": 17,
+ "results": [
+  {
+   "task": "m_eurosat",
+   "n": 1000,
+   "n_classes": 10,
+   "accuracy": 0.981,
+   "error_rate": 0.019,
+   "margin_min": 0.024636894464492798,
+   "margin_max": 1.0,
+   "n_exact_margin_ties": 540,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.0016871311832737485,
+    "auroc": 0.9255056601749021,
+    "capture": {
+     "0.05": 0.6842105263157895,
+     "0.10": 0.7368421052631579,
+     "0.20": 0.8421052631578947
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.0016884003349628362,
+    "auroc": 0.9254788347014324,
+    "capture": {
+     "0.05": 0.6842105263157895,
+     "0.10": 0.7368421052631579,
+     "0.20": 0.8421052631578947
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.001688400334962835,
+    "auroc": 0.9254788347014324,
+    "capture": {
+     "0.05": 0.6842105263157895,
+     "0.10": 0.7368421052631579,
+     "0.20": 0.8421052631578947
+    }
+   },
+   "max_stat_delta": 2.6825473469660466e-05,
+   "deltas": {
+    "excess_aurc": 1.2691516890865617e-06,
+    "auroc": 2.6825473469660466e-05,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 1.0842021724855044e-18,
+   "deltas_f64": {
+    "excess_aurc": 1.0842021724855044e-18,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "m_brick_kiln",
+   "n": 999,
+   "n_classes": 2,
+   "accuracy": 0.964964964964965,
+   "error_rate": 0.035035035035035036,
+   "margin_min": 0.008168429136276245,
+   "margin_max": 1.0,
+   "n_exact_margin_ties": 107,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.0035810044922902204,
+    "auroc": 0.9108476585655009,
+    "capture": {
+     "0.05": 0.45714285714285713,
+     "0.10": 0.6857142857142857,
+     "0.20": 0.8
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.0035810044922902204,
+    "auroc": 0.9108476585655009,
+    "capture": {
+     "0.05": 0.45714285714285713,
+     "0.10": 0.6857142857142857,
+     "0.20": 0.8
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.0035810044922902195,
+    "auroc": 0.9108476585655009,
+    "capture": {
+     "0.05": 0.45714285714285713,
+     "0.10": 0.6857142857142857,
+     "0.20": 0.8
+    }
+   },
+   "max_stat_delta": 8.673617379884035e-19,
+   "deltas": {
+    "excess_aurc": 8.673617379884035e-19,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 8.673617379884035e-19,
+   "deltas_f64": {
+    "excess_aurc": 8.673617379884035e-19,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "m_forestnet",
+   "n": 993,
+   "n_classes": 12,
+   "accuracy": 0.5095669687814703,
+   "error_rate": 0.4904330312185297,
+   "margin_min": 0.00014716386795043945,
+   "margin_max": 0.9999786615371704,
+   "n_exact_margin_ties": 186,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.19399833800711236,
+    "auroc": 0.6879864622476889,
+    "capture": {
+     "0.05": 0.07802874743326489,
+     "0.10": 0.1601642710472279,
+     "0.20": 0.28952772073921973
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.19399833800711236,
+    "auroc": 0.6879864622476889,
+    "capture": {
+     "0.05": 0.07802874743326489,
+     "0.10": 0.1601642710472279,
+     "0.20": 0.28952772073921973
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.1939983380071126,
+    "auroc": 0.6879864622476889,
+    "capture": {
+     "0.05": 0.07802874743326489,
+     "0.10": 0.1601642710472279,
+     "0.20": 0.28952772073921973
+    }
+   },
+   "max_stat_delta": 2.498001805406602e-16,
+   "deltas": {
+    "excess_aurc": 2.498001805406602e-16,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 2.498001805406602e-16,
+   "deltas_f64": {
+    "excess_aurc": 2.498001805406602e-16,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "m_so2sat",
+   "n": 986,
+   "n_classes": 17,
+   "accuracy": 0.6622718052738337,
+   "error_rate": 0.33772819472616633,
+   "margin_min": 0.0004666447639465332,
+   "margin_max": 1.0,
+   "n_exact_margin_ties": 29,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.10765051011014204,
+    "auroc": 0.7442894655758362,
+    "capture": {
+     "0.05": 0.11411411411411411,
+     "0.10": 0.2012012012012012,
+     "0.20": 0.36036036036036034
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.10765051011014204,
+    "auroc": 0.7442894655758362,
+    "capture": {
+     "0.05": 0.11411411411411411,
+     "0.10": 0.2012012012012012,
+     "0.20": 0.36036036036036034
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.10765051011014212,
+    "auroc": 0.7442894655758362,
+    "capture": {
+     "0.05": 0.11411411411411411,
+     "0.10": 0.2012012012012012,
+     "0.20": 0.36036036036036034
+    }
+   },
+   "max_stat_delta": 8.326672684688674e-17,
+   "deltas": {
+    "excess_aurc": 8.326672684688674e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 8.326672684688674e-17,
+   "deltas_f64": {
+    "excess_aurc": 8.326672684688674e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "awf_landsat",
+   "n": 200,
+   "n_classes": 9,
+   "accuracy": 0.785,
+   "error_rate": 0.215,
+   "margin_min": 0.02957668900489807,
+   "margin_max": 1.0,
+   "n_exact_margin_ties": 4,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.043191046403613376,
+    "auroc": 0.8244704488223967,
+    "capture": {
+     "0.05": 0.16279069767441862,
+     "0.10": 0.23255813953488372,
+     "0.20": 0.46511627906976744
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.043191046403613376,
+    "auroc": 0.8244704488223967,
+    "capture": {
+     "0.05": 0.16279069767441862,
+     "0.10": 0.23255813953488372,
+     "0.20": 0.46511627906976744
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.04319104640361339,
+    "auroc": 0.8244704488223967,
+    "capture": {
+     "0.05": 0.16279069767441862,
+     "0.10": 0.23255813953488372,
+     "0.20": 0.46511627906976744
+    }
+   },
+   "max_stat_delta": 1.3877787807814457e-17,
+   "deltas": {
+    "excess_aurc": 1.3877787807814457e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 1.3877787807814457e-17,
+   "deltas_f64": {
+    "excess_aurc": 1.3877787807814457e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "awf_sentinel1",
+   "n": 200,
+   "n_classes": 9,
+   "accuracy": 0.715,
+   "error_rate": 0.285,
+   "margin_min": 0.004513055086135864,
+   "margin_max": 1.0,
+   "n_exact_margin_ties": 6,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.09858804797473103,
+    "auroc": 0.7131640289535026,
+    "capture": {
+     "0.05": 0.08771929824561403,
+     "0.10": 0.21052631578947367,
+     "0.20": 0.3333333333333333
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.09858804797473103,
+    "auroc": 0.7131640289535026,
+    "capture": {
+     "0.05": 0.08771929824561403,
+     "0.10": 0.21052631578947367,
+     "0.20": 0.3333333333333333
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.098588047974731,
+    "auroc": 0.7131640289535026,
+    "capture": {
+     "0.05": 0.08771929824561403,
+     "0.10": 0.21052631578947367,
+     "0.20": 0.3333333333333333
+    }
+   },
+   "max_stat_delta": 2.7755575615628914e-17,
+   "deltas": {
+    "excess_aurc": 2.7755575615628914e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 2.7755575615628914e-17,
+   "deltas_f64": {
+    "excess_aurc": 2.7755575615628914e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "awf_sentinel2",
+   "n": 200,
+   "n_classes": 9,
+   "accuracy": 0.83,
+   "error_rate": 0.17,
+   "margin_min": 0.0010226666927337646,
+   "margin_max": 1.0,
+   "n_exact_margin_ties": 2,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.03816053771465171,
+    "auroc": 0.8152019844082211,
+    "capture": {
+     "0.05": 0.11764705882352941,
+     "0.10": 0.2647058823529412,
+     "0.20": 0.5
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.03816053771465171,
+    "auroc": 0.8152019844082211,
+    "capture": {
+     "0.05": 0.11764705882352941,
+     "0.10": 0.2647058823529412,
+     "0.20": 0.5
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.03816053771465168,
+    "auroc": 0.8152019844082211,
+    "capture": {
+     "0.05": 0.11764705882352941,
+     "0.10": 0.2647058823529412,
+     "0.20": 0.5
+    }
+   },
+   "max_stat_delta": 2.7755575615628914e-17,
+   "deltas": {
+    "excess_aurc": 2.7755575615628914e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 2.7755575615628914e-17,
+   "deltas_f64": {
+    "excess_aurc": 2.7755575615628914e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "nandi_landsat",
+   "n": 825,
+   "n_classes": 6,
+   "accuracy": 0.7212121212121212,
+   "error_rate": 0.2787878787878788,
+   "margin_min": 0.002912193536758423,
+   "margin_max": 0.9999999403953552,
+   "n_exact_margin_ties": 1,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.079688277653208,
+    "auroc": 0.7653196930946291,
+    "capture": {
+     "0.05": 0.11304347826086956,
+     "0.10": 0.20869565217391303,
+     "0.20": 0.3565217391304348
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.079688277653208,
+    "auroc": 0.7653196930946291,
+    "capture": {
+     "0.05": 0.11304347826086956,
+     "0.10": 0.20869565217391303,
+     "0.20": 0.3565217391304348
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.079688277653208,
+    "auroc": 0.7653196930946291,
+    "capture": {
+     "0.05": 0.11304347826086956,
+     "0.10": 0.20869565217391303,
+     "0.20": 0.3565217391304348
+    }
+   },
+   "max_stat_delta": 0.0,
+   "deltas": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 0.0,
+   "deltas_f64": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "nandi_sentinel1",
+   "n": 825,
+   "n_classes": 6,
+   "accuracy": 0.33090909090909093,
+   "error_rate": 0.6690909090909091,
+   "margin_min": 0.00047090649604797363,
+   "margin_max": 0.9179110527038574,
+   "n_exact_margin_ties": 0,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.2884872814309904,
+    "auroc": 0.6134535754100972,
+    "capture": {
+     "0.05": 0.057971014492753624,
+     "0.10": 0.11956521739130435,
+     "0.20": 0.2318840579710145
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.2884872814309904,
+    "auroc": 0.6134535754100972,
+    "capture": {
+     "0.05": 0.057971014492753624,
+     "0.10": 0.11956521739130435,
+     "0.20": 0.2318840579710145
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.2884872814309904,
+    "auroc": 0.6134535754100972,
+    "capture": {
+     "0.05": 0.057971014492753624,
+     "0.10": 0.11956521739130435,
+     "0.20": 0.2318840579710145
+    }
+   },
+   "max_stat_delta": 0.0,
+   "deltas": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 0.0,
+   "deltas_f64": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "nandi_sentinel2",
+   "n": 825,
+   "n_classes": 6,
+   "accuracy": 0.8109090909090909,
+   "error_rate": 0.1890909090909091,
+   "margin_min": 0.00038567185401916504,
+   "margin_max": 1.0,
+   "n_exact_margin_ties": 2,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.03702512070347863,
+    "auroc": 0.8440554214096815,
+    "capture": {
+     "0.05": 0.1794871794871795,
+     "0.10": 0.2948717948717949,
+     "0.20": 0.5576923076923077
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.03702512070347863,
+    "auroc": 0.8440554214096815,
+    "capture": {
+     "0.05": 0.1794871794871795,
+     "0.10": 0.2948717948717949,
+     "0.20": 0.5576923076923077
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.03702512070347863,
+    "auroc": 0.8440554214096815,
+    "capture": {
+     "0.05": 0.1794871794871795,
+     "0.10": 0.2948717948717949,
+     "0.20": 0.5576923076923077
+    }
+   },
+   "max_stat_delta": 0.0,
+   "deltas": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 0.0,
+   "deltas_f64": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "cropharvest_Togo_12_sentinel1",
+   "n": 306,
+   "n_classes": 2,
+   "accuracy": 0.7222222222222222,
+   "error_rate": 0.2777777777777778,
+   "margin_min": 0.0011262893676757812,
+   "margin_max": 0.9994301199913025,
+   "n_exact_margin_ties": 0,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.12289333350163818,
+    "auroc": 0.6764439712536598,
+    "capture": {
+     "0.05": 0.07058823529411765,
+     "0.10": 0.1411764705882353,
+     "0.20": 0.29411764705882354
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.12289333350163818,
+    "auroc": 0.6764439712536598,
+    "capture": {
+     "0.05": 0.07058823529411765,
+     "0.10": 0.1411764705882353,
+     "0.20": 0.29411764705882354
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.12289333350163804,
+    "auroc": 0.6764439712536598,
+    "capture": {
+     "0.05": 0.07058823529411765,
+     "0.10": 0.1411764705882353,
+     "0.20": 0.29411764705882354
+    }
+   },
+   "max_stat_delta": 1.3877787807814457e-16,
+   "deltas": {
+    "excess_aurc": 1.3877787807814457e-16,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 1.3877787807814457e-16,
+   "deltas_f64": {
+    "excess_aurc": 1.3877787807814457e-16,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "cropharvest_Togo_12_sentinel2",
+   "n": 306,
+   "n_classes": 2,
+   "accuracy": 0.8300653594771242,
+   "error_rate": 0.16993464052287582,
+   "margin_min": 0.0073538124561309814,
+   "margin_max": 0.9999707341194153,
+   "n_exact_margin_ties": 0,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.0529807751477505,
+    "auroc": 0.7864930345245306,
+    "capture": {
+     "0.05": 0.15384615384615385,
+     "0.10": 0.28846153846153844,
+     "0.20": 0.5
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.0529807751477505,
+    "auroc": 0.7864930345245306,
+    "capture": {
+     "0.05": 0.15384615384615385,
+     "0.10": 0.28846153846153844,
+     "0.20": 0.5
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.0529807751477505,
+    "auroc": 0.7864930345245306,
+    "capture": {
+     "0.05": 0.15384615384615385,
+     "0.10": 0.28846153846153844,
+     "0.20": 0.5
+    }
+   },
+   "max_stat_delta": 0.0,
+   "deltas": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 0.0,
+   "deltas_f64": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "cropharvest_Togo_12_sentinel2_sentinel1",
+   "n": 306,
+   "n_classes": 2,
+   "accuracy": 0.7810457516339869,
+   "error_rate": 0.21895424836601307,
+   "margin_min": 0.0010970830917358398,
+   "margin_max": 0.9999837875366211,
+   "n_exact_margin_ties": 0,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.07663323399517323,
+    "auroc": 0.7797414600636983,
+    "capture": {
+     "0.05": 0.08955223880597014,
+     "0.10": 0.208955223880597,
+     "0.20": 0.44776119402985076
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.07663323399517323,
+    "auroc": 0.7797414600636983,
+    "capture": {
+     "0.05": 0.08955223880597014,
+     "0.10": 0.208955223880597,
+     "0.20": 0.44776119402985076
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.07663323399517324,
+    "auroc": 0.7797414600636983,
+    "capture": {
+     "0.05": 0.08955223880597014,
+     "0.10": 0.208955223880597,
+     "0.20": 0.44776119402985076
+    }
+   },
+   "max_stat_delta": 1.3877787807814457e-17,
+   "deltas": {
+    "excess_aurc": 1.3877787807814457e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 1.3877787807814457e-17,
+   "deltas_f64": {
+    "excess_aurc": 1.3877787807814457e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "cropharvest_Peoples_Republic_of_China_6",
+   "n": 4397,
+   "n_classes": 2,
+   "accuracy": 0.7350466226972936,
+   "error_rate": 0.2649533773027064,
+   "margin_min": 0.0008616149425506592,
+   "margin_max": 0.9999457001686096,
+   "n_exact_margin_ties": 849,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.10380399590235374,
+    "auroc": 0.7134911613478945,
+    "capture": {
+     "0.05": 0.10386266094420601,
+     "0.10": 0.1888412017167382,
+     "0.20": 0.3648068669527897
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.10380399590235374,
+    "auroc": 0.7134911613478945,
+    "capture": {
+     "0.05": 0.10386266094420601,
+     "0.10": 0.1888412017167382,
+     "0.20": 0.3648068669527897
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.10380399590235374,
+    "auroc": 0.7134911613478945,
+    "capture": {
+     "0.05": 0.10386266094420601,
+     "0.10": 0.1888412017167382,
+     "0.20": 0.3648068669527897
+    }
+   },
+   "max_stat_delta": 0.0,
+   "deltas": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 0.0,
+   "deltas_f64": {
+    "excess_aurc": 0.0,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "cropharvest_Peoples_Republic_of_China_6_sentinel1",
+   "n": 4397,
+   "n_classes": 2,
+   "accuracy": 0.6431657948601319,
+   "error_rate": 0.3568342051398681,
+   "margin_min": 0.00014781951904296875,
+   "margin_max": 0.9945868849754333,
+   "n_exact_margin_ties": 809,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.09265364882154187,
+    "auroc": 0.7758778643502154,
+    "capture": {
+     "0.05": 0.07393244104525175,
+     "0.10": 0.14467813894200127,
+     "0.20": 0.3027405991077119
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.09265364882154187,
+    "auroc": 0.7758778643502154,
+    "capture": {
+     "0.05": 0.07393244104525175,
+     "0.10": 0.14467813894200127,
+     "0.20": 0.3027405991077119
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.09265364882154195,
+    "auroc": 0.7758778643502154,
+    "capture": {
+     "0.05": 0.07393244104525175,
+     "0.10": 0.14467813894200127,
+     "0.20": 0.3027405991077119
+    }
+   },
+   "max_stat_delta": 8.326672684688674e-17,
+   "deltas": {
+    "excess_aurc": 8.326672684688674e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 8.326672684688674e-17,
+   "deltas_f64": {
+    "excess_aurc": 8.326672684688674e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "cropharvest_Peoples_Republic_of_China_6_sentinel1_sentinel2",
+   "n": 4397,
+   "n_classes": 2,
+   "accuracy": 0.7737093472822378,
+   "error_rate": 0.2262906527177621,
+   "margin_min": 0.003387361764907837,
+   "margin_max": 0.9999764561653137,
+   "n_exact_margin_ties": 865,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.08495950453816381,
+    "auroc": 0.7195495407667378,
+    "capture": {
+     "0.05": 0.10954773869346733,
+     "0.10": 0.1708542713567839,
+     "0.20": 0.33668341708542715
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.0849585229729233,
+    "auroc": 0.7195501316104331,
+    "capture": {
+     "0.05": 0.10954773869346733,
+     "0.10": 0.1708542713567839,
+     "0.20": 0.33668341708542715
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.08495852297292326,
+    "auroc": 0.7195501316104331,
+    "capture": {
+     "0.05": 0.10954773869346733,
+     "0.10": 0.1708542713567839,
+     "0.20": 0.33668341708542715
+    }
+   },
+   "max_stat_delta": 9.81565240545934e-07,
+   "deltas": {
+    "excess_aurc": 9.81565240545934e-07,
+    "auroc": 5.908436953028229e-07,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 4.163336342344337e-17,
+   "deltas_f64": {
+    "excess_aurc": 4.163336342344337e-17,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  },
+  {
+   "task": "breizhcrops",
+   "n": 122614,
+   "n_classes": 9,
+   "accuracy": 0.7022444419071232,
+   "error_rate": 0.29775555809287685,
+   "margin_min": 8.791685104370117e-06,
+   "margin_max": 0.9999902844429016,
+   "n_exact_margin_ties": 978,
+   "max_abs_margin_delta": 2.9802322387695312e-08,
+   "max_abs_margin_delta_f64": 0.0,
+   "n_decision_disagreements": 0,
+   "probs_dtype": "float32",
+   "numpy": {
+    "excess_aurc": 0.07748125047992607,
+    "auroc": 0.772830603854229,
+    "capture": {
+     "0.05": 0.0993453668958339,
+     "0.10": 0.19307567996932262,
+     "0.20": 0.36875838834260044
+    }
+   },
+   "numpy_float64": {
+    "excess_aurc": 0.07748124904395348,
+    "auroc": 0.7728306048085466,
+    "capture": {
+     "0.05": 0.0993453668958339,
+     "0.10": 0.19307567996932262,
+     "0.20": 0.36875838834260044
+    }
+   },
+   "agent": {
+    "excess_aurc": 0.07748124904395254,
+    "auroc": 0.7728306048085466,
+    "capture": {
+     "0.05": 0.0993453668958339,
+     "0.10": 0.19307567996932262,
+     "0.20": 0.36875838834260044
+    }
+   },
+   "max_stat_delta": 1.4359735345248481e-09,
+   "deltas": {
+    "excess_aurc": 1.4359735345248481e-09,
+    "auroc": 9.543176249238172e-10,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   },
+   "max_stat_delta_f64": 9.43689570931383e-16,
+   "deltas_f64": {
+    "excess_aurc": 9.43689570931383e-16,
+    "auroc": 0.0,
+    "capture@0.05": 0.0,
+    "capture@0.10": 0.0,
+    "capture@0.20": 0.0
+   }
+  }
+ ],
+ "failures": {},
+ "verdicts": {
+  "P1_decisions_and_margins_agree": true,
+  "P2_statistics_agree": true,
+  "P3_ties_exercised": "holds"
+ },
+ "dtype_note": {
+  "at_the_probe_dtype_float32": {
+   "P1": false,
+   "P2": false,
+   "worst_stat_delta": 2.6825473469660466e-05
+  },
+  "reading": "P1/P2 are judged against the float64 numpy path. The probe emits float32, so the native numpy path subtracts in float32 while the agent, receiving .tolist(), works in float64. Any gap that closes when numpy is promoted is a precision difference, not a difference in what the two implementations compute."
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "tile": "label_dw_-71p8353625474_-16p4098607856-20190609.tif",
+ "n_windows": 16380,
+ "n_windows_scored": 15813,
+ "error_rate": 0.19275279833048758,
+ "review_sets": {
+  "0.01": {
+   "n_windows": 164,
+   "boundary_share_in_set": 0.9817073170731707,
+   "errors_captured_fraction": 0.037729658792650916,
+   "precision_in_set": 0.7278481012658228
+  },
+  "0.05": {
+   "n_windows": 819,
+   "boundary_share_in_set": 0.9743589743589743,
+   "errors_captured_fraction": 0.17454068241469817,
+   "precision_in_set": 0.672566371681416
+  },
+  "0.1": {
+   "n_windows": 1638,
+   "boundary_share_in_set": 0.9597069597069597,
+   "errors_captured_fraction": 0.3159448818897638,
+   "precision_in_set": 0.6091081593927894
+  },
+  "0.2": {
+   "n_windows": 3276,
+   "boundary_share_in_set": 0.9062881562881563,
+   "errors_captured_fraction": 0.5459317585301837,
+   "precision_in_set": 0.5260828327537148
+  },
+  "0.5": {
+   "n_windows": 8190,
+   "boundary_share_in_set": 0.6567765567765568,
+   "errors_captured_fraction": 0.8690944881889764,
+   "precision_in_set": 0.33506197824437134
+  }
+ }
+}

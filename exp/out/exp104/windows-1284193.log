@@ -1,0 +1,22 @@
+== 2026-10-11T13:21:32-04:00 job 1284193 on w0002: exp104 windows, commit 4f4fd484ccadf7487e28731e95b6fe77528e62fd, page draft ==
+rslearn 0.1.17
+{"dataset.json": {"canonical": true, "reversed_is_ai2s": true, "is_ai2s_mpc_version": true}, "model.yaml": {"reversed_is_ai2s": true}, "ai2": {"repo": "allenai/olmoearth_projects", "commit": "f3c9b0c89c7670b3525647dda4c14b76245d682d", "dir": "olmoearth_run_data/forest_loss_driver"}, "ok": true}
+polygons: 50 of 696 asked, 50 received
+polygons: 100 of 696 asked, 100 received
+polygons: 150 of 696 asked, 150 received
+polygons: 200 of 696 asked, 200 received
+polygons: 250 of 696 asked, 250 received
+polygons: 300 of 696 asked, 300 received
+polygons: 350 of 696 asked, 350 received
+polygons: 400 of 696 asked, 400 received
+polygons: 450 of 696 asked, 450 received
+polygons: 500 of 696 asked, 500 received
+polygons: 550 of 696 asked, 550 received
+polygons: 600 of 696 asked, 600 received
+polygons: 650 of 696 asked, 650 received
+polygons: 696 of 696 asked, 696 received
+{"windows": 696, "by_stratum": {"agriculture": 300, "mining": 389, "roads": 7}, "axis_order": "lonlat", "centroid_outside_polygon": 221}
+== rslearn 0.1.17 reads the dataset (config, windows, request ranges, centres against shapely and pyproj) ==
+/scratch/qi_zim_neu/olmoearth_inferenceX/e104_code/exp/exp104_forest_loss.py:897: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  shp3857 = _tf(lambda x, y, z=None: t.transform(x, y), shp)
+{"rslearn": "0.1.17", "windows": 696, "bad": {"projection": 0, "size": 0, "time_range": 0, "pre_range": 0, "post_range": 0, "centre_pixel": 3}, "ok": false}

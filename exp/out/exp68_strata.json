@@ -1,0 +1,98 @@
+{
+ "A:field": {
+  "N_stratum": 6251,
+  "n_sampled": 1000,
+  "inclusion_probability": 0.15997440409534475,
+  "ht_weight": 6.251
+ },
+ "A:photo": {
+  "N_stratum": 464,
+  "n_sampled": 464,
+  "inclusion_probability": 1.0,
+  "ht_weight": 1.0
+ },
+ "B:field": {
+  "N_stratum": 42005,
+  "n_sampled": 1000,
+  "inclusion_probability": 0.023806689679800024,
+  "ht_weight": 42.005
+ },
+ "B:photo": {
+  "N_stratum": 802,
+  "n_sampled": 802,
+  "inclusion_probability": 1.0,
+  "ht_weight": 1.0
+ },
+ "C:field": {
+  "N_stratum": 39364,
+  "n_sampled": 1000,
+  "inclusion_probability": 0.02540392236561325,
+  "ht_weight": 39.364
+ },
+ "C:photo": {
+  "N_stratum": 3242,
+  "n_sampled": 900,
+  "inclusion_probability": 0.27760641579272055,
+  "ht_weight": 3.602222222222222
+ },
+ "D:field": {
+  "N_stratum": 7194,
+  "n_sampled": 1000,
+  "inclusion_probability": 0.13900472616068946,
+  "ht_weight": 7.194
+ },
+ "D:photo": {
+  "N_stratum": 558,
+  "n_sampled": 558,
+  "inclusion_probability": 1.0,
+  "ht_weight": 1.0
+ },
+ "E:field": {
+  "N_stratum": 30185,
+  "n_sampled": 1000,
+  "inclusion_probability": 0.033129037601457675,
+  "ht_weight": 30.185
+ },
+ "E:photo": {
+  "N_stratum": 1256,
+  "n_sampled": 900,
+  "inclusion_probability": 0.7165605095541401,
+  "ht_weight": 1.3955555555555557
+ },
+ "F:field": {
+  "N_stratum": 3612,
+  "n_sampled": 1000,
+  "inclusion_probability": 0.2768549280177187,
+  "ht_weight": 3.612
+ },
+ "F:photo": {
+  "N_stratum": 160,
+  "n_sampled": 160,
+  "inclusion_probability": 1.0,
+  "ht_weight": 1.0
+ },
+ "G:field": {
+  "N_stratum": 1573,
+  "n_sampled": 1000,
+  "inclusion_probability": 0.6357279084551812,
+  "ht_weight": 1.573
+ },
+ "G:photo": {
+  "N_stratum": 156,
+  "n_sampled": 156,
+  "inclusion_probability": 1.0,
+  "ht_weight": 1.0
+ },
+ "H:field": {
+  "N_stratum": 1004,
+  "n_sampled": 1000,
+  "inclusion_probability": 0.9960159362549801,
+  "ht_weight": 1.004
+ },
+ "H:photo": {
+  "N_stratum": 133,
+  "n_sampled": 133,
+  "inclusion_probability": 1.0,
+  "ht_weight": 1.0
+ }
+}

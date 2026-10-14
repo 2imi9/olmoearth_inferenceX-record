@@ -1,0 +1,844 @@
+{
+ "experiment": "exp99: the transfer test, Ai2's FT-AWF deployment configuration on 2017 imagery over the windows holding East Africa TimeSync plots within 100 km of the AWF request geometry, graded at those plots",
+ "prereg_page": "docs/plan/awf_transfer.md",
+ "utc": "2026-10-10T16:44:04Z",
+ "commit": "52489b12d86900c5a3e3dcd177d43aa58b025b29",
+ "dirty": false,
+ "selection": {
+  "rule": "plots of kenya and tanzania with a 2017 label within D km of the request geometry (distance in EPSG:32737, 0 inside), D the smallest multiple of 10 km giving at least 300 plots",
+  "d_km": 100,
+  "counts_by_d_km": {
+   "0": 47,
+   "10": 59,
+   "20": 76,
+   "30": 97,
+   "40": 124,
+   "50": 153,
+   "60": 186,
+   "70": 218,
+   "80": 247,
+   "90": 282,
+   "100": 309
+  },
+  "n_selected": 309,
+  "by_country": {
+   "kenya": 219,
+   "tanzania": 90
+  },
+  "inside_request_geometry": {
+   "kenya": 33,
+   "tanzania": 14
+  },
+  "labels": {
+   "Dense Forest": 4,
+   "Open Forest": 2,
+   "Wooded Grassland": 138,
+   "Open Grassland": 112,
+   "Cropland": 44,
+   "Open Water": 1,
+   "Otherland": 8
+  },
+  "utm_zones": {
+   "36": 10,
+   "37": 299
+  },
+  "label_changes": {
+   "two_or_more_labels_2015_2017": 2,
+   "two_or_more_labels_any_year": 14
+  },
+  "timesync": {
+   "repository": "github.com/bullocke/eastafrica @ fc2014fcbc55cb75e0fbf801ffd9ca1ba4dc5c02, yearly_point_data.csv",
+   "sha256": "5309a982cdd45a4e7378008b9a6385b6accca7d071bdd652360ef7ef66fc429a",
+   "licence": "CC0-1.0"
+  },
+  "request_geometry_sha256": "fee3ce01008d26c6f3c239e68be70851035eb157d5da70bd72cb46dbc8623784",
+  "matches_preregistration": true,
+  "areas": {
+   "region_km2": 107679.0342156744,
+   "by_country_km2": {
+    "kenya": 60573.70167584882,
+    "tanzania": 47105.3325398302
+   },
+   "weights": {
+    "kenya": 0.5625394220616882,
+    "tanzania": 0.43746057793831183
+   },
+   "share_outside_both_countries": 0.0,
+   "country_km2": {
+    "kenya": 585702.3018181457,
+    "tanzania": 941505.5097186802
+   },
+   "source": "github.com/nvkelso/natural-earth-vector v5.1.2 (f1890d9f152c896d250a77557a5751a93d494776), geojson/ne_10m_admin_0_countries.geojson",
+   "area_crs": "EPSG:6933"
+  },
+  "plots_on_boundaries": {
+   "n": 309,
+   "inside_own_country": 309,
+   "outside_own_country": 0
+  }
+ },
+ "crosswalk": {
+  "strict": {
+   "Dense Forest": "woodland_forest",
+   "Open Forest": "shrubland_savanna",
+   "Wooded Grassland": "shrubland_savanna",
+   "Open Grassland": "grassland_barren",
+   "Cropland": "agriculture_settlement",
+   "Settlements": "urban_dense_development",
+   "Open Water": "open_water",
+   "Vegetated Wetland": "herbaceous_wetland",
+   "Otherland": "grassland_barren"
+  },
+  "lenient": {
+   "Dense Forest": [
+    "woodland_forest",
+    "montane_forest",
+    "lava_forest"
+   ],
+   "Open Forest": [
+    "shrubland_savanna",
+    "woodland_forest",
+    "montane_forest",
+    "lava_forest"
+   ],
+   "Wooded Grassland": [
+    "shrubland_savanna",
+    "grassland_barren"
+   ],
+   "Open Grassland": [
+    "grassland_barren",
+    "shrubland_savanna"
+   ],
+   "Cropland": [
+    "agriculture_settlement"
+   ],
+   "Settlements": [
+    "urban_dense_development",
+    "agriculture_settlement"
+   ],
+   "Open Water": [
+    "open_water",
+    "herbaceous_wetland"
+   ],
+   "Vegetated Wetland": [
+    "herbaceous_wetland",
+    "open_water"
+   ],
+   "Otherland": [
+    "grassland_barren",
+    "open_water"
+   ]
+  },
+  "awf_classes": {
+   "0": "woodland_forest",
+   "1": "open_water",
+   "2": "shrubland_savanna",
+   "3": "herbaceous_wetland",
+   "4": "grassland_barren",
+   "5": "agriculture_settlement",
+   "6": "montane_forest",
+   "7": "lava_forest",
+   "8": "urban_dense_development"
+  },
+  "untrained_channel": 9,
+  "sha256": "4c8b452896a880189fc51922037acbdb4abc21e05c496e0acc67000a860d1846",
+  "why": {
+   "Dense Forest": "Both legends set this class at a canopy over 40% (TimeSync's Dense Forest, AWF's woodland forest). AWF also has montane and lava forest, forests named by setting rather than canopy, which a TimeSync forest on a mountain slope or a lava flow can be; LENIENT accepts both.",
+   "Open Forest": "A canopy of 15-40% is below AWF's woodland forest (over 40%), and AWF has no class for it; its class of woody cover below that is shrubland/savanna. LENIENT adds the three forest classes: two interpreters read a canopy near 40% differently, and montane and lava forest carry no published canopy threshold.",
+   "Wooded Grassland": "Natural land with shrubs or very sparse trees below both forest thresholds is a savanna or shrubland. LENIENT adds grassland/barren, since AWF publishes no woody-cover threshold between its shrubland/savanna and grassland classes and a sparse-shrub grassland meets both. Woodland forest is not accepted even by LENIENT: this class is below 15% canopy and AWF's woodland forest above 40%, so the definitions are disjoint.",
+   "Open Grassland": "Grass, grass-like plants and forbs without substantial woody vegetation is AWF's grassland/barren. LENIENT adds shrubland/savanna for the same unpublished boundary between the two AWF classes.",
+   "Cropland": "Land used primarily for agriculture is AWF's agriculture/settlement, the only AWF class that names agriculture; LENIENT accepts nothing else.",
+   "Settlements": "Land primarily built (buildings, roads) is AWF's urban/dense development. LENIENT adds agriculture/settlement, where AWF puts homesteads among fields.",
+   "Open Water": "Open water. LENIENT adds herbaceous wetland: the region's lakes and swamps are seasonal, and a water body vegetated for part of the year meets both definitions.",
+   "Vegetated Wetland": "A mix of vegetation and open water for part of the year is AWF's herbaceous wetland; by the same mix LENIENT adds open water.",
+   "Otherland": "Barren land, rock outcrops and salt crusts: AWF merges barren land with grassland. LENIENT adds open water for the salt crusts of seasonal lake beds, which are water part of the year."
+  },
+  "awf_only": {
+   "montane_forest": "no TimeSync counterpart (TimeSync splits forest by canopy, AWF by setting): under STRICT a prediction of it is always an error; LENIENT accepts it for Dense and Open Forest",
+   "lava_forest": "as montane_forest",
+   "channel 9": "AWF's untrained no-data channel: never accepted, an error under both rules"
+  },
+  "timesync_only": {
+   "Open Forest": "no AWF class of 15-40% canopy: STRICT takes shrubland_savanna",
+   "Otherland": "no AWF class of its own: AWF merges barren land with grassland (grassland_barren)"
+  }
+ },
+ "inputs": {
+  "n_grids": 271,
+  "crs": [
+   "EPSG:32736",
+   "EPSG:32737"
+  ],
+  "from_olmoearth": {
+   "parts": 271,
+   "windows_read": 271
+  },
+  "condition_names": {
+   "1": "sentinel2_scl:all:some-cloud",
+   "2": "sentinel2_scl:all:cloudy",
+   "0": "sentinel2_scl:all:clear",
+   "3": "sentinel2_scl:most:clear",
+   "4": "sentinel2_scl:most:some-cloud",
+   "5": "sentinel2_scl:most:cloudy"
+  },
+  "request_period": {
+   "oe_start_time": "2017-01-01T00:00:00Z",
+   "oe_end_time": "2017-12-31T00:00:00Z"
+  }
+ },
+ "plots": {
+  "kenya": {
+   "selected": 219,
+   "in_a_grid": 192,
+   "covered": 192
+  },
+  "tanzania": {
+   "selected": 90,
+   "in_a_grid": 79,
+   "covered": 79
+  },
+  "total": {
+   "selected": 309,
+   "in_a_grid": 271,
+   "covered": 271
+  }
+ },
+ "overlapping_grids": {
+  "in_two_or_more_grids": 36,
+  "covered_in_two_or_more": 36,
+  "covered_in_two_differing": 1,
+  "covered_only_in_a_later_grid": 0,
+  "rule": "a plot in two grids takes the first whose pixel is covered"
+ },
+ "cannot_show": [
+  "A certified zone needs the whole region's confidence ranking: certify's zones are the most confident shares of every window of the map, and a run over the windows that hold a plot does not give the region's ranking. plan's labels for certify are reported instead.",
+  "The windows are a cluster sample of the region chosen through the plots: only the plots are a probability sample, and the windows' other pixels are described, never graded.",
+  "2017 imagery read by a model fine-tuned on 2023 imagery, in places beyond its training area, against labels from another legend through a crosswalk: a gap between the error rate here and Ai2's 89.5% has all of these as causes, and this experiment does not separate them. Part F compares the 2017 and 2023 maps at the 47 plots inside Ai2's geometry; that difference mixes the imagery's year, satellite availability and processing, and land change after 2017 (which counts against the 2023 map), so it is descriptive and apportions no gap.",
+  "The sample's design makes the plots of a country inside the region a simple random sample of its part of the region given their number; plots without input (a window with no 2017 imagery) are treated as missing at random within their country, and their labels are reported."
+ ],
+ "weights": {
+  "by_country": {
+   "kenya": 0.5625394220616882,
+   "tanzania": 0.43746057793831183
+  },
+  "per_plot": {
+   "kenya": 0.002929892823237959,
+   "tanzania": 0.005537475670105213
+  },
+  "rule": "W_c, the country's share of the region's area, over n_c, its plots with input"
+ },
+ "readings": {
+  "sum_dev": 2.750237584336901e-07,
+  "n_pred_untrained": 0,
+  "n_saturated_float32": 0,
+  "n_p1_rounds_to_one": 0
+ },
+ "plots_without_input": {
+  "n": 38,
+  "by_country": {
+   "kenya": 27,
+   "tanzania": 11
+  },
+  "by_label": {
+   "Dense Forest": 1,
+   "Open Forest": 2,
+   "Wooded Grassland": 9,
+   "Open Grassland": 15,
+   "Cropland": 11
+  },
+  "outside_every_grid": 38,
+  "in_a_grid_uncovered": 0,
+  "assumption": "The sample's design makes the plots of a country inside the region a simple random sample of its part of the region given their number; plots without input (a window with no 2017 imagery) are treated as missing at random within their country, and their labels are reported."
+ },
+ "rules": {
+  "strict": {
+   "n": 271,
+   "errors": 91,
+   "by_country": {
+    "kenya": {
+     "n": 192,
+     "errors": 57
+    },
+    "tanzania": {
+     "n": 79,
+     "errors": 34
+    }
+   },
+   "stratified": {
+    "estimate": 0.35527806366726183,
+    "low": 0.26006058939930576,
+    "high": 0.45799744645183676,
+    "strata_in_interval": 2,
+    "nominal_coverage": 0.95,
+    "weights": {
+     "kenya": 0.5625394223678875,
+     "tanzania": 0.43746057763211255
+    },
+    "method": "the condition design's interval of oe_inferencex.estimate: each country's exact hypergeometric interval at 1 - 0.05/L, weighted by its share of the area (union bound)",
+    "by_country": {
+     "kenya": {
+      "n": 192,
+      "errors": 57,
+      "rate": 0.296875,
+      "low": 0.2332452021831778,
+      "high": 0.3668994361624097,
+      "pixels": 605737017
+     },
+     "tanzania": {
+      "n": 79,
+      "errors": 34,
+      "rate": 0.43037974683544306,
+      "low": 0.31942357906082075,
+      "high": 0.5467141453677246,
+      "pixels": 471053325
+     }
+    }
+   },
+   "ratio_estimate_reported": {
+    "estimate": 0.3500235316559673,
+    "standard_error": 0.030056483855775768,
+    "low_normal": 0.2911139057967372,
+    "high_normal": 0.4089331575151974,
+    "region_km2_estimated_from_plots": {
+     "kenya": 56227.42097454199,
+     "tanzania": 37189.46763388786
+    },
+    "method": "Stehman (2014) ratio estimator over the countries' samples of 2,000 (as Bullock et al. 2021 for ecoregions); normal-theory interval, reported, not exact"
+   },
+   "unweighted_rate": 0.33579335793357934,
+   "by_class": {
+    "Dense Forest": {
+     "n": 3,
+     "errors": 3
+    },
+    "Wooded Grassland": {
+     "n": 129,
+     "errors": 29
+    },
+    "Open Grassland": {
+     "n": 97,
+     "errors": 44
+    },
+    "Cropland": {
+     "n": 33,
+     "errors": 9
+    },
+    "Open Water": {
+     "n": 1,
+     "errors": 1
+    },
+    "Otherland": {
+     "n": 8,
+     "errors": 5
+    }
+   },
+   "by_condition": {
+    "sentinel2_scl:all:clear": {
+     "code": 0,
+     "n": 34,
+     "errors": 9
+    },
+    "sentinel2_scl:all:some-cloud": {
+     "code": 1,
+     "n": 223,
+     "errors": 76
+    },
+    "sentinel2_scl:all:cloudy": {
+     "code": 2,
+     "n": 3,
+     "errors": 2
+    },
+    "sentinel2_scl:most:some-cloud": {
+     "code": 4,
+     "n": 10,
+     "errors": 3
+    },
+    "sentinel2_scl:most:cloudy": {
+     "code": 5,
+     "n": 1,
+     "errors": 1
+    }
+   },
+   "three_by_three_majority_errors": 91,
+   "ranking": {
+    "n": 271,
+    "n_errors": 91,
+    "weighted": {
+     "auroc": 0.6378135514190493,
+     "error_rate": 0.3552780637081408,
+     "capture": {
+      "0.05": 0.09714670690861243,
+      "0.1": 0.17870709922096475,
+      "0.2": 0.2614380535522777
+     },
+     "random": {
+      "0.05": 0.05,
+      "0.1": 0.1,
+      "0.2": 0.2
+     },
+     "ceiling": {
+      "0.05": 0.1407348359145381,
+      "0.1": 0.2814696718290762,
+      "0.2": 0.5629393436581523
+     },
+     "gap_closed": {
+      "0.05": 0.5196097665621976,
+      "0.1": 0.4337204031266332,
+      "0.2": 0.16927912232669212
+     },
+     "lift": {
+      "0.05": 1.9429341381722487,
+      "0.1": 1.7870709922096475,
+      "0.2": 1.3071902677613885
+     },
+     "aurc": 0.24226526064452464,
+     "excess_aurc": 0.16926480073865327
+    },
+    "unweighted": {
+     "auroc": 0.6526862026862027,
+     "error_rate": 0.33579335793357934,
+     "capture": {
+      "0.05": 0.10989010989010989,
+      "0.1": 0.18791208791208794,
+      "0.2": 0.26373626373626374
+     },
+     "random": {
+      "0.05": 0.05,
+      "0.1": 0.1,
+      "0.2": 0.2
+     },
+     "ceiling": {
+      "0.05": 0.1489010989010989,
+      "0.1": 0.2978021978021978,
+      "0.2": 0.5956043956043956
+     },
+     "gap_closed": {
+      "0.05": 0.6055555555555555,
+      "0.1": 0.4444444444444446,
+      "0.2": 0.1611111111111111
+     },
+     "lift": {
+      "0.05": 2.1978021978021975,
+      "0.1": 1.8791208791208793,
+      "0.2": 1.3186813186813187
+     },
+     "aurc": 0.2213754382808983,
+     "excess_aurc": 0.1567315882269087
+    },
+    "auroc_weighted_bootstrap": {
+     "n_resamples": 2000,
+     "lo90": 0.5794255450284485,
+     "hi90": 0.6958492514128781,
+     "lower_one_sided_95": 0.5794255450284485,
+     "resampling": "plots within each country"
+    },
+    "gap_closed_0.1_weighted_bootstrap": {
+     "n_resamples": 2000,
+     "lo90": 0.10265758799542804,
+     "hi90": 0.6499608425017828,
+     "lower_one_sided_95": 0.10265758799542804,
+     "resampling": "plots within each country"
+    }
+   }
+  },
+  "lenient": {
+   "n": 271,
+   "errors": 37,
+   "by_country": {
+    "kenya": {
+     "n": 192,
+     "errors": 27
+    },
+    "tanzania": {
+     "n": 79,
+     "errors": 10
+    }
+   },
+   "stratified": {
+    "estimate": 0.1344818629327769,
+    "low": 0.07465792351989725,
+    "high": 0.21873207328599906,
+    "strata_in_interval": 2,
+    "nominal_coverage": 0.95,
+    "weights": {
+     "kenya": 0.5625394223678875,
+     "tanzania": 0.43746057763211255
+    },
+    "method": "the condition design's interval of oe_inferencex.estimate: each country's exact hypergeometric interval at 1 - 0.05/L, weighted by its share of the area (union bound)",
+    "by_country": {
+     "kenya": {
+      "n": 192,
+      "errors": 27,
+      "rate": 0.140625,
+      "low": 0.0947621317321606,
+      "high": 0.1979697271827784,
+      "pixels": 605737017
+     },
+     "tanzania": {
+      "n": 79,
+      "errors": 10,
+      "rate": 0.12658227848101267,
+      "low": 0.06240430634896803,
+      "high": 0.2204942274847545,
+      "pixels": 471053325
+     }
+    }
+   },
+   "ratio_estimate_reported": {
+    "estimate": 0.1350345618554464,
+    "standard_error": 0.021218917598472397,
+    "low_normal": 0.09344624757151737,
+    "high_normal": 0.17662287613937544,
+    "region_km2_estimated_from_plots": {
+     "kenya": 56227.42097454199,
+     "tanzania": 37189.46763388786
+    },
+    "method": "Stehman (2014) ratio estimator over the countries' samples of 2,000 (as Bullock et al. 2021 for ecoregions); normal-theory interval, reported, not exact"
+   },
+   "unweighted_rate": 0.13653136531365315,
+   "by_class": {
+    "Dense Forest": {
+     "n": 3,
+     "errors": 0
+    },
+    "Wooded Grassland": {
+     "n": 129,
+     "errors": 20
+    },
+    "Open Grassland": {
+     "n": 97,
+     "errors": 5
+    },
+    "Cropland": {
+     "n": 33,
+     "errors": 9
+    },
+    "Open Water": {
+     "n": 1,
+     "errors": 0
+    },
+    "Otherland": {
+     "n": 8,
+     "errors": 3
+    }
+   },
+   "by_condition": {
+    "sentinel2_scl:all:clear": {
+     "code": 0,
+     "n": 34,
+     "errors": 8
+    },
+    "sentinel2_scl:all:some-cloud": {
+     "code": 1,
+     "n": 223,
+     "errors": 29
+    },
+    "sentinel2_scl:all:cloudy": {
+     "code": 2,
+     "n": 3,
+     "errors": 0
+    },
+    "sentinel2_scl:most:some-cloud": {
+     "code": 4,
+     "n": 10,
+     "errors": 0
+    },
+    "sentinel2_scl:most:cloudy": {
+     "code": 5,
+     "n": 1,
+     "errors": 0
+    }
+   },
+   "three_by_three_majority_errors": 37,
+   "ranking": {
+    "n": 271,
+    "n_errors": 37,
+    "weighted": {
+     "auroc": 0.6775400400527327,
+     "error_rate": 0.134481862928477,
+     "capture": {
+      "0.05": 0.19368206883498965,
+      "0.1": 0.2372551241070778,
+      "0.2": 0.28082817937916604
+     },
+     "random": {
+      "0.05": 0.05,
+      "0.1": 0.1,
+      "0.2": 0.2
+     },
+     "ceiling": {
+      "0.05": 0.37179734806761316,
+      "0.1": 0.7435946961352263,
+      "0.2": 1.0
+     },
+     "gap_closed": {
+      "0.05": 0.4464986106871224,
+      "0.1": 0.21326329276995623,
+      "0.2": 0.10103522422395754
+     },
+     "lift": {
+      "0.05": 3.873641376699793,
+      "0.1": 2.372551241070778,
+      "0.2": 1.4041408968958302
+     },
+     "aurc": 0.07090778083275791,
+     "excess_aurc": 0.06116730151733123
+    },
+    "unweighted": {
+     "auroc": 0.6957726957726957,
+     "error_rate": 0.13653136531365315,
+     "capture": {
+      "0.05": 0.21621621621621623,
+      "0.1": 0.2702702702702703,
+      "0.2": 0.32432432432432434
+     },
+     "random": {
+      "0.05": 0.05,
+      "0.1": 0.1,
+      "0.2": 0.2
+     },
+     "ceiling": {
+      "0.05": 0.3662162162162162,
+      "0.1": 0.7324324324324324,
+      "0.2": 1.0
+     },
+     "gap_closed": {
+      "0.05": 0.5256410256410258,
+      "0.1": 0.2692307692307693,
+      "0.2": 0.1554054054054054
+     },
+     "lift": {
+      "0.05": 4.324324324324325,
+      "0.1": 2.7027027027027026,
+      "0.2": 1.6216216216216217
+     },
+     "aurc": 0.06813938581765452,
+     "excess_aurc": 0.05811166631690905
+    },
+    "auroc_weighted_bootstrap": {
+     "n_resamples": 2000,
+     "lo90": 0.5993596525589875,
+     "hi90": 0.7558538421795855,
+     "lower_one_sided_95": 0.5993596525589875,
+     "resampling": "plots within each country"
+    },
+    "gap_closed_0.1_weighted_bootstrap": {
+     "n_resamples": 2000,
+     "lo90": 0.04843012524730654,
+     "hi90": 0.40295147355780203,
+     "lower_one_sided_95": 0.04843012524730654,
+     "resampling": "plots within each country"
+    }
+   }
+  }
+ },
+ "p3_transfer_gap": {
+  "bar_error_rate": 0.15499999999999997,
+  "ai2_accuracy": 0.895,
+  "margin": 0.05,
+  "call": "not determined",
+  "rule": "a transfer gap when LENIENT's exact 95% interval lies wholly above Ai2's error rate (10.5%) plus 5 points; no gap shown when STRICT's lies wholly below it; otherwise not determined. Descriptive: it does not say which of year, place, legend or Ai2's point placement makes the gap"
+ },
+ "confusion_counts": {
+  "Wooded Grassland -> shrubland_savanna": 100,
+  "Open Grassland -> grassland_barren": 53,
+  "Open Grassland -> shrubland_savanna": 39,
+  "Cropland -> agriculture_settlement": 24,
+  "Wooded Grassland -> woodland_forest": 18,
+  "Wooded Grassland -> grassland_barren": 9,
+  "Cropland -> shrubland_savanna": 8,
+  "Dense Forest -> montane_forest": 3,
+  "Open Grassland -> agriculture_settlement": 3,
+  "Otherland -> grassland_barren": 3,
+  "Otherland -> open_water": 2,
+  "Otherland -> shrubland_savanna": 2,
+  "Wooded Grassland -> agriculture_settlement": 2,
+  "Cropland -> woodland_forest": 1,
+  "Open Grassland -> open_water": 1,
+  "Open Grassland -> woodland_forest": 1,
+  "Open Water -> herbaceous_wetland": 1,
+  "Otherland -> herbaceous_wetland": 1
+ },
+ "where_the_plots_sit_reported": {
+  "n_window_pixels": 245366784,
+  "n_sampled": 1725553,
+  "grid_overlaps_not_deduplicated": 0,
+  "reading": "the share of the windows' pixels less confident than a plot, averaged over the plots; about 0.5 if the plots sit in their windows as random pixels do (exp98's P5 asks the same of Ai2's expert-placed points)",
+  "mean_percentile": 0.48184281424745373,
+  "mean_percentile_weighted": 0.4974325899866993,
+  "windows_confidence_quantiles": {
+   "0.1": 0.6976436098789199,
+   "0.25": 0.9128750226552783,
+   "0.5": 0.9928736289337579,
+   "0.75": 0.9994907633783228,
+   "0.9": 0.9999171721648608
+  },
+  "plots_confidence_quantiles": {
+   "0.1": 0.6565473388015345,
+   "0.25": 0.8840388467037756,
+   "0.5": 0.9917583874051262,
+   "0.75": 0.9993215141150411,
+   "0.9": 0.9999040879956639
+  }
+ },
+ "plan_reported": {
+  "n_windows": 1076790342,
+  "patch_px": 1,
+  "width": 0.1,
+  "alpha": 0.1,
+  "note": "Planned before any label. Each probability is over the reviewer's random draw, for a map with the stated error rate or difference; the map's own error rate is what the labels will measure, so a plan made at a guessed rate holds for that rate only. Labels are assumed right.",
+  "error_rate": {
+   "strict": {
+    "error_rate": 0.35527806366726183,
+    "labels": 383,
+    "probability_at_labels": 0.923459039740486,
+    "refusal": null
+   },
+   "lenient": {
+    "error_rate": 0.1344818629327769,
+    "labels": 228,
+    "probability_at_labels": 0.9052403187273352,
+    "refusal": null
+   },
+   "default_0.5": {
+    "error_rate": 0.5,
+    "labels": 402,
+    "probability_at_labels": 0.9999999999988091,
+    "refusal": null
+   }
+  },
+  "zone": {
+   "strict:0.5": {
+    "coverage": 0.5,
+    "zone_error": 0.2615273505767624,
+    "labels_to_test": 44,
+    "min_labels_inside": 22,
+    "refusal": "a zone wrong 0.261527 of the time is wrong more than alpha 0.1; no budget certifies it, and a rule that did would be wrong",
+    "unplanned": null
+   },
+   "strict:0.8": {
+    "coverage": 0.8,
+    "zone_error": 0.3264195855940588,
+    "labels_to_test": 28,
+    "min_labels_inside": 22,
+    "refusal": "a zone wrong 0.32642 of the time is wrong more than alpha 0.1; no budget certifies it, and a rule that did would be wrong",
+    "unplanned": null
+   },
+   "strict:1": {
+    "coverage": 1.0,
+    "zone_error": 0.3552780637081408,
+    "labels_to_test": 22,
+    "min_labels_inside": 22,
+    "refusal": "a zone wrong 0.355278 of the time is wrong more than alpha 0.1; no budget certifies it, and a rule that did would be wrong",
+    "unplanned": null
+   },
+   "lenient:0.5": {
+    "coverage": 0.5,
+    "zone_error": 0.08542203108042119,
+    "labels_to_test": 44,
+    "min_labels_inside": 22,
+    "refusal": null,
+    "unplanned": null,
+    "bonferroni": {
+     "labels": null,
+     "probability_at_labels": null
+    },
+    "prefix_even": {
+     "labels": null,
+     "probability_at_labels": null
+    }
+   },
+   "lenient:0.8": {
+    "coverage": 0.8,
+    "zone_error": 0.12117761923147866,
+    "labels_to_test": 28,
+    "min_labels_inside": 22,
+    "refusal": "a zone wrong 0.121178 of the time is wrong more than alpha 0.1; no budget certifies it, and a rule that did would be wrong",
+    "unplanned": null
+   },
+   "lenient:1": {
+    "coverage": 1.0,
+    "zone_error": 0.134481862928477,
+    "labels_to_test": 22,
+    "min_labels_inside": 22,
+    "refusal": "a zone wrong 0.134482 of the time is wrong more than alpha 0.1; no budget certifies it, and a rule that did would be wrong",
+    "unplanned": null
+   }
+  },
+  "zone_population": {
+   "n_windows_planned": 999999999,
+   "n_region": 1076790342,
+   "capped": true,
+   "why": "numpy's multivariate_hypergeometric (method marginals) refuses a population of 1e9 or more"
+  },
+  "zone_error_source": "the design-weighted error rate among the most confident share of the graded plots, a guess at the zone's: the plots are a sample of the region, but the zone is defined on the region's own confidence ranking, which this run does not have",
+  "certify_min_labels": 22,
+  "sequential_min_labels": 34
+ },
+ "inside_awf_reported": {
+  "n_inside": 47,
+  "n_inside_covered": 27,
+  "rules_2017": {
+   "strict": 11,
+   "lenient": 0
+  },
+  "n_inside_covered_both": 27,
+  "paired": {
+   "strict": {
+    "both_right": 13,
+    "right_2017_only": 3,
+    "right_2023_only": 2,
+    "both_wrong": 9,
+    "sign_test_two_sided_p": 1.0
+   },
+   "lenient": {
+    "both_right": 27,
+    "right_2017_only": 0,
+    "right_2023_only": 0,
+    "both_wrong": 0,
+    "sign_test_two_sided_p": 1.0
+   }
+  },
+  "same_class_both_years": 22
+ },
+ "prereg": {
+  "P1": {
+   "rule": "design-weighted AUROC of the deployed confidence for the STRICT errors at the plots >= 0.7",
+   "threshold": 0.7,
+   "value": 0.6378135514190493,
+   "graded": true,
+   "holds": false,
+   "lenient_check": {
+    "value": 0.6775400400527327,
+    "meets_threshold": false
+   },
+   "reading": "both rules fail: transfer is the likelier reading"
+  },
+  "P2": {
+   "rule": "design-weighted share of the gap from random to the ceiling closed by the least confident 10% of the plots (STRICT errors) >= 0.25",
+   "threshold": 0.25,
+   "value": 0.4337204031266332,
+   "graded": true,
+   "holds": true,
+   "lenient_check": {
+    "value": 0.21326329276995623,
+    "meets_threshold": false
+   }
+  },
+  "P3": {
+   "rule": "descriptive: the exact 95% interval of the error rate under each rule beside Ai2's 89.5%, and the transfer-gap call fixed in advance",
+   "graded": false,
+   "call": "not determined"
+  },
+  "floors": {
+   "min_with_input": 250,
+   "min_errors": 20,
+   "min_correct": 20,
+   "n_with_input": 271,
+   "n_errors": 91,
+   "n_correct": 180
+  }
+ },
+ "seconds": 223.9,
+ "prereg_status": "frozen"
+}

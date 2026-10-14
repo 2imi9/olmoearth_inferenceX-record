@@ -1,0 +1,716 @@
+{
+ "experiment": "exp100: exp98's and exp99's maps read at their label points moved by whole pixels; where do the map and the labels agree best",
+ "prereg_page": "docs/plan/alignment.md",
+ "utc": "2026-10-11T00:33:36Z",
+ "commit": "70b2c01357f0ee1a8ce76a2cb5244c510bd92ee8",
+ "dirty": false,
+ "rule": {
+  "shift_px": 3,
+  "level": 0.9,
+  "half_px": 0.5,
+  "calls": [
+   "aligned",
+   "offset",
+   "not determined"
+  ],
+  "score": "the probability on the classes the label accepts; agreement reported beside it"
+ },
+ "mapping": {
+  "exp98": {
+   "n_grids": 11,
+   "same_crs": 1042,
+   "reprojected": 0,
+   "largest_offset_from_pixel_middle_px": 0.0
+  },
+  "exp99": {
+   "n_grids": 271,
+   "crs": [
+    "EPSG:32736",
+    "EPSG:32737"
+   ],
+   "same_crs": 0,
+   "reprojected": 271
+  }
+ },
+ "sets": {
+  "T": {
+   "what": "exp98's training points on the map (in-sample: the model was fitted to these labels at these pixels, so the best position is where the record's code puts them; tests that code, not the imagery)",
+   "n": 783,
+   "errors_at_labelled_pixel": 16,
+   "reproduces_record": true,
+   "n_full_block": 780,
+   "n_excluded_partial_block": 3,
+   "mean_score_surface": [
+    [
+     0.934265,
+     0.950276,
+     0.955271,
+     0.954792,
+     0.949056,
+     0.941223,
+     0.930354
+    ],
+    [
+     0.945137,
+     0.961035,
+     0.967499,
+     0.968205,
+     0.96522,
+     0.95823,
+     0.944672
+    ],
+    [
+     0.948779,
+     0.965372,
+     0.970277,
+     0.971786,
+     0.971804,
+     0.965651,
+     0.95217
+    ],
+    [
+     0.949664,
+     0.964669,
+     0.970416,
+     0.971454,
+     0.970722,
+     0.966428,
+     0.953028
+    ],
+    [
+     0.945515,
+     0.96019,
+     0.966452,
+     0.968959,
+     0.968164,
+     0.963356,
+     0.951301
+    ],
+    [
+     0.935533,
+     0.950155,
+     0.956541,
+     0.960879,
+     0.961653,
+     0.956037,
+     0.943691
+    ],
+    [
+     0.922045,
+     0.939271,
+     0.94552,
+     0.948654,
+     0.950657,
+     0.943435,
+     0.92914
+    ]
+   ],
+   "mean_agreement_surface": [
+    [
+     0.94359,
+     0.962821,
+     0.961538,
+     0.962821,
+     0.95641,
+     0.941026,
+     0.932051
+    ],
+    [
+     0.957692,
+     0.970513,
+     0.973077,
+     0.971795,
+     0.970513,
+     0.967949,
+     0.948718
+    ],
+    [
+     0.95641,
+     0.971795,
+     0.978205,
+     0.976923,
+     0.978205,
+     0.971795,
+     0.95641
+    ],
+    [
+     0.958974,
+     0.970513,
+     0.976923,
+     0.979487,
+     0.976923,
+     0.970513,
+     0.958974
+    ],
+    [
+     0.952564,
+     0.970513,
+     0.974359,
+     0.978205,
+     0.971795,
+     0.970513,
+     0.960256
+    ],
+    [
+     0.942308,
+     0.964103,
+     0.965385,
+     0.967949,
+     0.971795,
+     0.962821,
+     0.952564
+    ],
+    [
+     0.937179,
+     0.951282,
+     0.955128,
+     0.952564,
+     0.964103,
+     0.951282,
+     0.934615
+    ]
+   ],
+   "surface_layout": "[south][east], from -3 to +3 px; the labelled pixel in the middle",
+   "estimate": {
+    "south_px": -0.6411549745393863,
+    "east_px": 0.5029176036968805,
+    "best_south_px": -1,
+    "best_east_px": 1,
+    "at_edge": false
+   },
+   "interval": {
+    "south_px": [
+     -1.0715063772113151,
+     0.010640457786765794
+    ],
+    "east_px": [
+     -0.8290814699480511,
+     0.9938088676314817
+    ],
+    "level": 0.9
+   },
+   "bootstrap": {
+    "n_resamples": 2000,
+    "share_maximum_at_labelled_pixel": 0.1505,
+    "share_maximum_on_edge": 0.0,
+    "resampled": "annotation tasks"
+   },
+   "n_clusters": 21,
+   "agreement_at_labelled_pixel": 0.9794871794871794,
+   "agreement_at_best_position": 0.9782051282051282,
+   "agreement_best_over_surface": 0.9794871794871794,
+   "call": "not determined"
+  },
+  "V": {
+   "what": "exp98's graded validation points (held out, the same experts: tests whether the map and AWF's labels line up where the model was not fitted)",
+   "n": 259,
+   "errors_at_labelled_pixel": 33,
+   "reproduces_record": true,
+   "n_full_block": 259,
+   "n_excluded_partial_block": 0,
+   "mean_score_surface": [
+    [
+     0.818681,
+     0.836212,
+     0.839999,
+     0.84881,
+     0.853386,
+     0.860876,
+     0.855632
+    ],
+    [
+     0.834033,
+     0.8464,
+     0.84642,
+     0.857044,
+     0.863433,
+     0.871317,
+     0.866887
+    ],
+    [
+     0.838833,
+     0.850925,
+     0.852802,
+     0.862719,
+     0.870237,
+     0.874638,
+     0.86863
+    ],
+    [
+     0.83822,
+     0.850706,
+     0.857931,
+     0.866515,
+     0.874556,
+     0.878898,
+     0.871214
+    ],
+    [
+     0.838513,
+     0.853711,
+     0.86171,
+     0.868926,
+     0.875557,
+     0.876975,
+     0.865993
+    ],
+    [
+     0.832845,
+     0.851228,
+     0.86087,
+     0.866999,
+     0.870665,
+     0.870296,
+     0.860414
+    ],
+    [
+     0.821496,
+     0.84129,
+     0.852665,
+     0.860458,
+     0.863673,
+     0.864675,
+     0.852471
+    ]
+   ],
+   "mean_agreement_surface": [
+    [
+     0.826255,
+     0.849421,
+     0.853282,
+     0.861004,
+     0.861004,
+     0.876448,
+     0.864865
+    ],
+    [
+     0.849421,
+     0.853282,
+     0.853282,
+     0.868726,
+     0.888031,
+     0.876448,
+     0.880309
+    ],
+    [
+     0.84556,
+     0.861004,
+     0.857143,
+     0.876448,
+     0.88417,
+     0.88417,
+     0.880309
+    ],
+    [
+     0.849421,
+     0.84556,
+     0.857143,
+     0.872587,
+     0.888031,
+     0.891892,
+     0.880309
+    ],
+    [
+     0.84556,
+     0.861004,
+     0.864865,
+     0.864865,
+     0.888031,
+     0.888031,
+     0.861004
+    ],
+    [
+     0.837838,
+     0.857143,
+     0.868726,
+     0.868726,
+     0.876448,
+     0.872587,
+     0.864865
+    ],
+    [
+     0.826255,
+     0.837838,
+     0.872587,
+     0.868726,
+     0.861004,
+     0.868726,
+     0.857143
+    ]
+   ],
+   "surface_layout": "[south][east], from -3 to +3 px; the labelled pixel in the middle",
+   "estimate": {
+    "south_px": 0.18900080405247735,
+    "east_px": 1.8610591314938052,
+    "best_south_px": 0,
+    "best_east_px": 2,
+    "at_edge": false
+   },
+   "interval": {
+    "south_px": [
+     -2.095565284506918,
+     3.0
+    ],
+    "east_px": [
+     0.6782430128494725,
+     2.3998394941907586
+    ],
+    "level": 0.9
+   },
+   "bootstrap": {
+    "n_resamples": 2000,
+    "share_maximum_at_labelled_pixel": 0.0,
+    "share_maximum_on_edge": 0.1105,
+    "resampled": "annotation tasks"
+   },
+   "n_clusters": 20,
+   "agreement_at_labelled_pixel": 0.8725868725868726,
+   "agreement_at_best_position": 0.8918918918918919,
+   "agreement_best_over_surface": 0.8918918918918919,
+   "call": "offset"
+  },
+  "S_strict": {
+   "what": "exp99's plots with 2017 input, under STRICT (primary): independent labels at 30 m plots, reprojected from WGS84 (tests the reprojection and the plots' registration)",
+   "n": 271,
+   "errors_at_labelled_pixel": 91,
+   "reproduces_record": true,
+   "n_full_block": 266,
+   "n_excluded_partial_block": 5,
+   "mean_score_surface": [
+    [
+     0.646096,
+     0.651909,
+     0.652252,
+     0.65036,
+     0.64599,
+     0.644922,
+     0.63952
+    ],
+    [
+     0.639898,
+     0.64739,
+     0.647502,
+     0.641503,
+     0.638256,
+     0.636586,
+     0.63334
+    ],
+    [
+     0.639534,
+     0.648761,
+     0.650982,
+     0.645193,
+     0.64218,
+     0.637264,
+     0.629815
+    ],
+    [
+     0.643738,
+     0.652808,
+     0.656772,
+     0.650425,
+     0.647751,
+     0.644741,
+     0.632934
+    ],
+    [
+     0.640628,
+     0.650126,
+     0.659112,
+     0.657219,
+     0.654309,
+     0.646246,
+     0.638112
+    ],
+    [
+     0.634473,
+     0.641643,
+     0.647392,
+     0.650265,
+     0.647026,
+     0.639071,
+     0.632752
+    ],
+    [
+     0.631203,
+     0.631269,
+     0.635638,
+     0.637543,
+     0.637793,
+     0.632265,
+     0.625642
+    ]
+   ],
+   "mean_agreement_surface": [
+    [
+     0.676692,
+     0.669173,
+     0.661654,
+     0.654135,
+     0.650376,
+     0.661654,
+     0.639098
+    ],
+    [
+     0.654135,
+     0.669173,
+     0.665414,
+     0.650376,
+     0.635338,
+     0.639098,
+     0.642857
+    ],
+    [
+     0.650376,
+     0.676692,
+     0.672932,
+     0.665414,
+     0.646617,
+     0.650376,
+     0.635338
+    ],
+    [
+     0.650376,
+     0.676692,
+     0.680451,
+     0.657895,
+     0.661654,
+     0.661654,
+     0.642857
+    ],
+    [
+     0.639098,
+     0.665414,
+     0.669173,
+     0.684211,
+     0.676692,
+     0.654135,
+     0.654135
+    ],
+    [
+     0.635338,
+     0.650376,
+     0.661654,
+     0.672932,
+     0.669173,
+     0.654135,
+     0.646617
+    ],
+    [
+     0.642857,
+     0.639098,
+     0.646617,
+     0.646617,
+     0.646617,
+     0.646617,
+     0.635338
+    ]
+   ],
+   "surface_layout": "[south][east], from -3 to +3 px; the labelled pixel in the middle",
+   "estimate": {
+    "south_px": 0.6664650547718005,
+    "east_px": -0.6739960888346099,
+    "best_south_px": 1,
+    "best_east_px": -1,
+    "at_edge": false
+   },
+   "interval": {
+    "south_px": [
+     -3.0,
+     1.4697131126314564
+    ],
+    "east_px": [
+     -2.2235624261474785,
+     3.0
+    ],
+    "level": 0.9
+   },
+   "bootstrap": {
+    "n_resamples": 2000,
+    "share_maximum_at_labelled_pixel": 0.001,
+    "share_maximum_on_edge": 0.3625,
+    "resampled": "plots within country"
+   },
+   "n_clusters": 266,
+   "agreement_at_labelled_pixel": 0.6578947368421053,
+   "agreement_at_best_position": 0.6691729323308271,
+   "agreement_best_over_surface": 0.6842105263157895,
+   "call": "not determined"
+  },
+  "S_lenient": {
+   "what": "the same plots under LENIENT (reported beside STRICT)",
+   "n": 271,
+   "errors_at_labelled_pixel": 37,
+   "reproduces_record": true,
+   "n_full_block": 266,
+   "n_excluded_partial_block": 5,
+   "mean_score_surface": [
+    [
+     0.844994,
+     0.848133,
+     0.849649,
+     0.84825,
+     0.848906,
+     0.849495,
+     0.845873
+    ],
+    [
+     0.841802,
+     0.845035,
+     0.845075,
+     0.840629,
+     0.839286,
+     0.841708,
+     0.842626
+    ],
+    [
+     0.843602,
+     0.846781,
+     0.847524,
+     0.84409,
+     0.842263,
+     0.842573,
+     0.839985
+    ],
+    [
+     0.847648,
+     0.848761,
+     0.850015,
+     0.848183,
+     0.847199,
+     0.846487,
+     0.841175
+    ],
+    [
+     0.846096,
+     0.849067,
+     0.85495,
+     0.857871,
+     0.857691,
+     0.852404,
+     0.846088
+    ],
+    [
+     0.844918,
+     0.845745,
+     0.851036,
+     0.852882,
+     0.85119,
+     0.845309,
+     0.8402
+    ],
+    [
+     0.840947,
+     0.83971,
+     0.843948,
+     0.84425,
+     0.84611,
+     0.842079,
+     0.835962
+    ]
+   ],
+   "mean_agreement_surface": [
+    [
+     0.868421,
+     0.860902,
+     0.868421,
+     0.853383,
+     0.853383,
+     0.864662,
+     0.853383
+    ],
+    [
+     0.853383,
+     0.857143,
+     0.864662,
+     0.853383,
+     0.838346,
+     0.845865,
+     0.853383
+    ],
+    [
+     0.857143,
+     0.860902,
+     0.860902,
+     0.853383,
+     0.849624,
+     0.857143,
+     0.849624
+    ],
+    [
+     0.864662,
+     0.864662,
+     0.868421,
+     0.860902,
+     0.864662,
+     0.864662,
+     0.849624
+    ],
+    [
+     0.857143,
+     0.87594,
+     0.87218,
+     0.887218,
+     0.879699,
+     0.868421,
+     0.857143
+    ],
+    [
+     0.857143,
+     0.860902,
+     0.868421,
+     0.87594,
+     0.868421,
+     0.857143,
+     0.849624
+    ],
+    [
+     0.857143,
+     0.853383,
+     0.860902,
+     0.864662,
+     0.860902,
+     0.857143,
+     0.849624
+    ]
+   ],
+   "surface_layout": "[south][east], from -3 to +3 px; the labelled pixel in the middle",
+   "estimate": {
+    "south_px": 1.1600958757863433,
+    "east_px": 0.44177799895197484,
+    "best_south_px": 1,
+    "best_east_px": 0,
+    "at_edge": false
+   },
+   "interval": {
+    "south_px": [
+     -3.0,
+     3.0
+    ],
+    "east_px": [
+     -3.0,
+     2.4299807785381113
+    ],
+    "level": 0.9
+   },
+   "bootstrap": {
+    "n_resamples": 2000,
+    "share_maximum_at_labelled_pixel": 0.0005,
+    "share_maximum_on_edge": 0.3845,
+    "resampled": "plots within country"
+   },
+   "n_clusters": 266,
+   "agreement_at_labelled_pixel": 0.8609022556390977,
+   "agreement_at_best_position": 0.8872180451127819,
+   "agreement_best_over_surface": 0.8872180451127819,
+   "call": "not determined"
+  }
+ },
+ "cannot_show": [
+  "A constant offset between Sentinel-2 and AWF's labels already present in the training data could be learned by the model and so be invisible in V.",
+  "An offset that differs from point to point (geolocation noise) flattens the surface without moving its maximum: the check sees systematic offsets only.",
+  "The map's classes are smooth over a few pixels, so offsets well under a pixel are not resolved; a TimeSync plot spans three pixels."
+ ],
+ "seconds": 89.7,
+ "prereg_status": "frozen"
+}
