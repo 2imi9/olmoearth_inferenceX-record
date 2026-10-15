@@ -328,6 +328,8 @@ def test_exp110_recorded_by_a_second_route():
         return 0
     assert longest(C) <= 64, "aggregates only: no per-window or per-chip list"
     assert C["script_sha256"] == hashlib.sha256(src.encode("utf-8")).hexdigest(), "the committed crosscheck ran"
+    with open(os.path.join(ROOT, "exp", "exp110_ftw_field_map.py"), "rb") as f:
+        assert S["script_sha256"] == hashlib.sha256(f.read()).hexdigest(), "the committed run script is the one that ran"
     assert S["prereg_status"] == "frozen" and S["dirty"] is False and S["commit"].startswith("cf59be4")
 
     # inputs: the same files, and they match the acquisition manifest's list

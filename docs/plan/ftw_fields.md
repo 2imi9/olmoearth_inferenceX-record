@@ -28,8 +28,9 @@ page defines the truth (the 2-class mask), the three predictions and the three c
   errors; P3(a)'s largest share of draws certifying a zone wrong more often than α is 0.040 (bar 0.115); P4(a)'s
   largest probability of naming the worse map is 0.0036 (bar 0.025).
 
-**Amendment, 14 October 2026 (after the run).** Two findings made after the labels were read with the maps, ruled on
-by the owner on 14 October 2026. Neither changes a bar or a verdict.
+**Amendment, 14 October 2026 (after the run).** Two findings made after freezing, ruled on by the owner on 14 October
+2026: the first when the labels were read with the maps, the second in the B3 run's report, before any label was read.
+Neither changes a bar or a verdict.
 - **The truth is field only.** The label-only check this page lists found that the 2-class mask is not field plus
   boundary: in all four countries it equals the 3-class mask's field class pixel for pixel, and every boundary pixel
   is coded background (449,464, 968,577, 334,035 and 951,825 pixels). The page assumed otherwise (its base rates and

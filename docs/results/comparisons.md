@@ -4163,8 +4163,9 @@ independent of them. Which legend's line is right is not asked and cannot be rea
 
 ## Another organisation's deployed field map: FTW's 2nd-edition map at the FTW benchmark's test chips (exp110)
 
-Every result before this was on OlmoEarth models and probes, or on land-cover products graded against land-cover
-references. exp110 ([preregistration](../plan/ftw_fields.md), frozen cf59be4 on 14 October 2026, before any metric was
+Every deployed product graded before this was an Ai2 OlmoEarth model or a land-cover product graded against land-cover
+references (Dynamic World, LCMAP, NLCD, ESA WorldCover, GFC2020, CGLS-LC100, Esri, ODSE-LULC). exp110
+([preregistration](../plan/ftw_fields.md), frozen cf59be4 on 14 October 2026, before any metric was
 computed; bars confirmed by the owner) is the record's first test on another organisation's deployed product outside
 land cover: FTW's 2nd-edition global field map (FTW Global Data 2e, CC-BY-4.0), whose per-pixel field and boundary
 probabilities come from FTW's ftw-q model. The package read it as it reads any probability map: the field-extent
@@ -4184,8 +4185,9 @@ numbers with its own numpy and scipy code and found no mismatch; its script is t
 package (run once at recording, 6 minutes; `tests/test_exp110.py` checks that the committed file is the one that ran
 and compares the two files: counts exactly, rates to 1e-8 or tighter, the Monte Carlo cells draw for draw).
 
-Two findings came after the labels were read with the maps; the owner ruled on both on 14 October 2026, and the page
-carries them as a dated amendment:
+Two findings came after freezing, the first when the labels were read with the maps, the second in the B3 run's
+report, before any label was read; the owner ruled on both on 14 October 2026, and the page carries them as a dated
+amendment:
 - **The 2-class truth is field only.** In all four countries the 2-class mask equals the 3-class mask's field class
   pixel for pixel, and every boundary pixel is coded background (449,464, 968,577, 334,035 and 951,825 pixels). The
   page assumed field plus boundary, so its main measure compares the map's field + boundary with a field-only truth.
@@ -4202,7 +4204,7 @@ carries them as a dated amendment:
 | Window error rate θ | 0.1356 | 0.0972 | 0.0419 | 0.1415 | 0.1110 |
 | AUROC of the confidence (90% chip bootstrap) | 0.837 (0.825 to 0.850) | 0.870 (0.852 to 0.887) | 0.936 (0.926 to 0.945) | 0.863 (0.854 to 0.872) | 0.874 (0.867 to 0.880) |
 | Capture at 10% (random 0.10) | 0.308 | 0.393 | 0.694 | 0.340 | 0.385 |
-| Best no-model control, AUROC | rarity 0.819 | variance 0.743 | rarity 0.838 | variance 0.556 | rarity 0.579 |
+| Best no-model control, AUROC | rarity 0.819 | variance 0.743 | rarity 0.838 | variance 0.556 | rarity 0.578 |
 | Lead over it (90% chip bootstrap) | 0.018 (0.004 to 0.034) | 0.127 (0.109 to 0.145) | 0.098 (0.071 to 0.129) | 0.307 (0.291 to 0.322) | 0.295 (0.278 to 0.312) |
 | Errors as confident as the median correct window | 3.1% | 1.7% | 0.0% | 1.3% | 1.0% |
 | Exact coverage of the interval, 100 / 300 labels | 0.973 / 0.966 | 0.974 / 0.958 | 0.961 / 0.971 | 0.957 / 0.962 | 0.976 / 0.958 |
@@ -4243,7 +4245,7 @@ out).
 | Field + boundary truth | Belgium | Croatia | Slovenia | Sweden | Pooled |
 |---|---|---|---|---|---|
 | Window error rate (graded reading) | 0.1150 (0.1356) | 0.0776 (0.0972) | 0.0343 (0.0419) | 0.1450 (0.1415) | 0.1025 (0.1110) |
-| AUROC; capture at 10%; lead over the best control | 0.842; 0.357; 0.056 | 0.862; 0.430; 0.154 | 0.929; 0.692; 0.206 | 0.857; 0.335; 0.297 | 0.869; 0.409; 0.331 |
+| AUROC; capture at 10%; lead over the best control | 0.842; 0.357; 0.056 | 0.862; 0.430; 0.154 | 0.928; 0.692; 0.206 | 0.857; 0.335; 0.297 | 0.869; 0.409; 0.331 |
 | Median certified share, the run's draw seeds / an independent set | 0.40 / 0.35 | 0.00 / 0.55 | 0.90 / 0.90 | 0.00 / 0.00 | 0.55 / 0.45 |
 | Which map: K_A; K_B; P(names the better map) at 100 labels | 8,403; 14,083; 0.673 (B3) | 35,168; 12,660; 0.998 (2e) | 7,962; 3,600; 0.963 (2e) | 15,647; 42,194; 0.997 (B3) | 67,180; 72,537; 0.042 (B3) |
 
@@ -4268,16 +4270,17 @@ order 0.792 to 0.928).
 2e map agrees better with the labels in Croatia (0.903 against 0.839), B3 in Belgium (0.899 against 0.864) and Sweden
 (0.907 against 0.858), and the two are within a point in Slovenia and pooled. They differ in model, input imagery (the
 benchmark's two Sentinel-2 windows against the map's quarterly mosaics), resolution and label definition (B3 was
-trained on v1's own masks, which favours it at edges), and both most likely trained on these countries' train chips,
-so the comparison says which map agrees better with these labels on these test chips, not which generalises better.
+trained on v1's own masks, which the page expected to favour it at edges; not measured), and both most likely trained
+on these countries' train chips, so the comparison says which map agrees better with these labels on these test chips,
+not which generalises better.
 
 **Reading.** On a deployed product made by another organisation for a task that is not land cover, read through the
 package as any probability map, the product's shipped probability ranked its window errors well above chance in every
 country and above both no-model controls by at least 0.05 in three; the labelled routes kept their guarantees; 300
-random labels certified a zone on about half the draws; and 100 labels named the better of two FTW maps in three
-countries. Few errors are confident (0.0% to 3.1% by country at or above the median correct window's confidence). In
-Belgium a map-only control, the rarity of the predicted class, nearly matches the confidence, so there the confidence
-adds little over what the map's own class shares give.
+random labels certified a zone on about half the draws; and 100 labels named the better-agreeing of two FTW maps with
+probability at least 0.8 in three countries. Few errors are confident (0.0% to 3.1% by country at or above the median
+correct window's confidence). In Belgium a map-only control, the rarity of the predicted class, nearly matches the
+confidence, so there the confidence adds little over what the map's own class shares give.
 
 **What it cannot show.**
 - **The labels are declarations and LPIS blocks, taken as right.** An undeclared field is background, so a map that
@@ -4295,9 +4298,10 @@ adds little over what the map's own class shares give.
 - **One run.** The Monte Carlo cells rest on 2,000 draws and the chip bootstrap on 2,000 resamples; P3(b)'s medians sit
   on the edge of certifying any zone, and another set of draws can move them.
 - **Both maps share FTW's training data.** The map's model trained on the FTW-Q train split, which holds train chips of
-  all four countries, and B3 most likely did too; the test chips are not train chips, but they are not held out from
-  these countries, years or landscapes, and whether FTW's splits are spatially blocked was not checked. θ is the error
-  rate over the test chips' windows, not a country's map, and the pooled rate weights Sweden most.
+  all four countries, and B3 most likely trained on these countries' v1 train chips; the test chips are not train
+  chips, but they are not held out from these countries, years or landscapes, and whether FTW's splits are spatially
+  blocked was not checked. θ is the error rate over the test chips' windows, not a country's map, and the pooled rate
+  weights Sweden most.
 - **The reading.** The package read area-averaged probabilities on the mask grid, not the product's 2.5 m pixels, and
   the map ships no logits, so a window wholly at 0 or 255 ties at confidence 1. Four European countries, one product,
   one year each: one non-land-cover task, not a general test.
