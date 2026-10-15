@@ -432,6 +432,64 @@ bad = dict(sd); bad.pop("1.bias"); bad["extra.weight"] = torch.zeros(1); bad["0.
 mi, un, sh = j.compare_state_dicts(m, bad)
 assert (mi, un, sh) == (["1.bias"], ["extra.weight"], ["0.weight"]), (mi, un, sh)
 print("compare_state_dicts finds missing, unexpected and shape-mismatched keys")
+# the verdict on a module carrying olmoearth's own legacy hook (CompositeEncodings._drop_pos_embed_hook), as v1's
+# checkpoint meets it under rslearn 0.1.17 (env job 1355980): the legacy table is accepted only with on-the-fly values
+import argparse, os, tempfile
+from olmoearth_pretrain_minimal.olmoearth_pretrain_v1.nn.flexi_vit import CompositeEncodings
+from olmoearth_pretrain_minimal.olmoearth_pretrain_v1.nn.encodings import get_1d_sincos_pos_encoding
+class Enc(CompositeEncodings):          # the hook's own class, built without the real encoder's tables
+    def __init__(self, d=8):
+        torch.nn.Module.__init__(self)
+        self.lin, self.embedding_dim_per_embedding_type = torch.nn.Linear(3, 4), d
+        self._register_load_state_dict_pre_hook(CompositeEncodings._drop_pos_embed_hook)
+class Plain(torch.nn.Module):           # a module of another class that drops the same key: not accepted
+    def __init__(self):
+        super().__init__()
+        self.lin = torch.nn.Linear(3, 4)
+        self._register_load_state_dict_pre_hook(CompositeEncodings._drop_pos_embed_hook)
+class M(torch.nn.Module):
+    def __init__(self, enc=None):
+        super().__init__()
+        self.composite_encodings, self.head = enc if enc is not None else Enc(), torch.nn.Linear(4, 2)
+K = "composite_encodings.pos_embed"
+base = {k: v.clone() for k, v in M().state_dict().items()}
+table = get_1d_sincos_pos_encoding(torch.arange(20), 8)
+r = j.load_check_result(M(), base)
+assert r["ok"] and r["accepted_unexpected"] == [], r
+r = j.load_check_result(M(), {**base, K: table.clone()})
+assert r["ok"] and r["strict_load"] and r["accepted_unexpected"] == [K] and r["legacy_table_max_abs_diff"][K] <= 1e-6, r
+r = j.load_check_result(M(), {**base, K: table[None].clone()})
+assert r["ok"], r
+for what, bad in (("perturbed", table + 0.01), ("another width", get_1d_sincos_pos_encoding(torch.arange(20), 4)),
+                  ("empty", table[:0]), ("complex", torch.complex(table, torch.ones_like(table))),
+                  ("integer", table.round().to(torch.int64))):
+    r = j.load_check_result(M(), {**base, K: bad})
+    assert not r["ok"], (what, r)
+r = j.load_check_result(M(Plain()), {**{k: v for k, v in base.items()}, K: table.clone()})
+assert r["strict_load"] and not r["ok"] and r["legacy_table_max_abs_diff"][K] is None, r
+r = j.load_check_result(M(), {**base, "head.extra": torch.zeros(1)})
+assert not r["strict_load"] and not r["ok"] and r["load_error"], r
+r = j.load_check_result(M(), {**base, "head.junk": 5})
+assert not r["ok"] and r["non_tensor"] == 1, r
+r = j.load_check_result(M(), {k: v for k, v in base.items() if k != "head.bias"})
+assert not r["ok"], r
+print("load_check_result: only CompositeEncodings' legacy table at on-the-fly values and width is accepted; any other extra, non-tensor or missing key fails")
+d = tempfile.mkdtemp()
+torch.save({"state_dict": base, "hyper_parameters": {"lr": 0.1}}, os.path.join(d, "plain.ckpt"))
+sd, how = j.load_checkpoint_safely(os.path.join(d, "plain.ckpt"))
+assert how == "weights_only" and sorted(sd) == sorted(base), how
+torch.save({"state_dict": base, "hyper_parameters": argparse.Namespace(a=1)}, os.path.join(d, "stub.ckpt"))
+sd, how = j.load_checkpoint_safely(os.path.join(d, "stub.ckpt"))
+assert "inert stub" in how and sorted(sd) == sorted(base), how
+import operator
+for i, x in enumerate((os.stat(d), operator.methodcaller("lower"))):
+    torch.save({"state_dict": base, "x": x}, os.path.join(d, f"bad{i}.ckpt"))
+    try:
+        j.load_checkpoint_safely(os.path.join(d, f"bad{i}.ckpt"))
+        raise SystemExit(f"a checkpoint naming {type(x)} was loaded")
+    except RuntimeError as ex:
+        assert "refused" in str(ex), ex
+print("load_checkpoint_safely: weights_only, inert stubs for other globals, refuses os.* and operator.*")
 EOF
 
 echo "== the job scripts: syntax, lint, usage, inputs record, redo, the A' budget, the gate's commits, the submit chain (dry run), rule consistency =="

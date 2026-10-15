@@ -39,7 +39,8 @@ input counts, never a label.
     gate-records       gatecheck's check of the gate job's records: the device record (the gate's GPU and
                        predict_commit) and the four output checks, all passing and all written by one Slurm job
     load-check         build the LightningModule from model.yaml (CPU, offline) and load a checkpoint's state dict:
-                       0 missing and 0 unexpected keys, no shape mismatch
+                       0 missing keys, no shape mismatch, a strict load through the module's own load hooks, and
+                       any key those hooks drop only the legacy frozen temporal table with on-the-fly values
     aprime-config      for diagnostic A': model.yaml restricted (predict_config groups + names) to exp98's deployment
                        windows that hold the gate-A points; nothing else differs (checked after rslearn's substitution)
     item-identity      per gate unit, our sentinel2 item groups against those of the deployment window holding it
@@ -925,37 +926,139 @@ def build_cli(config, extra=()):
                                save_config_kwargs={"overwrite": True}, parser_class=RslearnArgumentParser, run=False)
 
 
+# The one key a module's own load hook may drop: olmoearth_pretrain's legacy frozen temporal position table. Checkpoints
+# saved before the encoder computed it on the fly (get_1d_sincos_pos_encoding) still carry it, and the encoder's
+# load_state_dict pre-hook (_drop_pos_embed_hook) deletes it, so Lightning's strict restore passes. It is accepted only
+# when its values equal that on-the-fly encoding, so nothing learned is dropped.
+LEGACY_DROPPABLE = re.compile(r"(^|\.)composite_encodings\.pos_embed$")
+LEGACY_TOL = 1e-5
+# exp89's rule for loading a checkpoint: weights_only=True; other pickled globals become inert stubs; a global from
+# these modules is refused (exp89's list with the call-building modules added: operator, functools, types, _codecs)
+REFUSED_PREFIXES = ("os.", "posix.", "nt.", "subprocess.", "sys.", "builtins.", "__builtin__.", "shutil.", "socket.",
+                    "importlib.", "runpy.", "pickle.", "marshal.", "code.", "ctypes.", "pty.", "multiprocessing.",
+                    "webbrowser.", "operator.", "_operator.", "functools.", "types.", "_codecs.")
+
+
+def _stub_class(fullname):
+    module, _, name = fullname.rpartition(".")
+
+    def init(self, *args, **kwargs):
+        self.__dict__["_stub_args"] = (args, kwargs)
+
+    def setstate(self, state):
+        self.__dict__["_stub_state"] = state
+    return type(name, (), {"__module__": module, "__qualname__": name, "__init__": init, "__setstate__": setstate,
+                           "__doc__": f"inert stand-in for {fullname}, never imported"})
+
+
+def load_checkpoint_safely(path):
+    """(the checkpoint's state_dict as stored, how), exp89's rule: torch.load with weights_only=True first; if the
+    checkpoint pickles other globals (Lightning's, jsonargparse's), each becomes an inert stub class under its own name
+    and the load is retried with weights_only=True, so nothing from those packages is imported or run. A global from a
+    module REFUSED_PREFIXES lists is refused. The state_dict is returned unfiltered (non-tensor entries and its
+    _metadata kept), as Lightning hands it to load_state_dict."""
+    import torch
+    try:
+        ck = torch.load(path, map_location="cpu", weights_only=True)
+        how = "weights_only"
+    except Exception as first:                                     # an unsupported global
+        unsafe = list(torch.serialization.get_unsafe_globals_in_checkpoint(path))
+        bad = [g for g in unsafe if g.startswith(REFUSED_PREFIXES)]
+        if bad or not unsafe:
+            raise RuntimeError(f"refused: the checkpoint pickles {bad or 'no listed global'} ({type(first).__name__})") \
+                from None
+        with torch.serialization.safe_globals([(_stub_class(g), g) for g in unsafe]):
+            ck = torch.load(path, map_location="cpu", weights_only=True)
+        how = f"weights_only with {len(unsafe)} inert stub classes: {sorted(unsafe)}"
+    sd = ck["state_dict"] if isinstance(ck, dict) and "state_dict" in ck else ck
+    if not isinstance(sd, dict):
+        raise RuntimeError("refused: the checkpoint holds no state_dict")
+    return sd, how
+
+
+def legacy_table_diffs(module, sd, keys):
+    """{key: max |checkpoint value - get_1d_sincos_pos_encoding(arange(T), D)|} for each key that is the legacy table:
+    named as LEGACY_DROPPABLE says, its owner in `module` a CompositeEncodings (the class whose hook drops it), a real
+    floating (T, D) tensor (leading unit dimensions squeezed) with T > 0 and D the owner's embedding_dim_per_embedding_type,
+    the width the encoder computes the table at. None for any other key."""
+    import torch
+    from olmoearth_pretrain_minimal.olmoearth_pretrain_v1.nn.encodings import get_1d_sincos_pos_encoding
+    from olmoearth_pretrain_minimal.olmoearth_pretrain_v1.nn.flexi_vit import CompositeEncodings
+    out = {}
+    for k in keys:
+        out[k] = None
+        v = sd[k]
+        if not (LEGACY_DROPPABLE.search(k) and isinstance(v, torch.Tensor) and torch.is_floating_point(v)):
+            continue
+        try:
+            owner = module.get_submodule(k.rsplit(".", 1)[0])
+        except AttributeError:
+            continue
+        if not isinstance(owner, CompositeEncodings):
+            continue
+        t = v.detach().to(torch.float32)
+        while t.ndim > 2 and t.shape[0] == 1:
+            t = t[0]
+        d = int(getattr(owner, "embedding_dim_per_embedding_type", -1))
+        if t.ndim != 2 or t.shape[0] == 0 or t.shape[1] != d or d % 2:
+            continue
+        ref = get_1d_sincos_pos_encoding(torch.arange(t.shape[0]), d).to(torch.float32)
+        out[k] = float((t - ref).abs().max())
+    return out
+
+
+def load_check_result(module, sd):
+    """The load check's verdict: a strict load_state_dict (which runs the module's own load hooks, as Lightning's
+    restore does) must pass with no missing key and no shape mismatch, and every key the module does not hold (so one
+    its hooks dropped) must be the legacy table with values equal to the on-the-fly encoding."""
+    import torch
+    missing, unexpected, shapes = compare_state_dicts(module, sd)
+    non_tensor = sorted(k for k, v in sd.items() if not isinstance(v, torch.Tensor))
+    loaded, error = False, None
+    try:
+        module.load_state_dict(sd, strict=True)              # torch copies sd (and its _metadata) before the hooks run
+        loaded = True
+    except (RuntimeError, TypeError, ValueError) as ex:
+        error = f"{type(ex).__name__}: {str(ex)[:300]}"
+    accepted = unexpected if loaded else []                 # keys the module lacks that the strict load accepted
+    diffs = legacy_table_diffs(module, sd, accepted)
+    legacy_ok = all(d is not None and d <= LEGACY_TOL for d in diffs.values())
+    return {"missing": len(missing), "unexpected": len(unexpected), "shape_mismatch": len(shapes),
+            "non_tensor": len(non_tensor), "first_missing": missing[:5], "first_unexpected": unexpected[:5],
+            "first_shape_mismatch": shapes[:5], "first_non_tensor": non_tensor[:5],
+            "strict_load": loaded, "load_error": error, "accepted_unexpected": accepted,
+            "legacy_table_max_abs_diff": diffs, "legacy_tolerance": LEGACY_TOL,
+            "ok": bool(loaded and not missing and not shapes and not non_tensor and legacy_ok)}
+
+
 def compare_state_dicts(module, sd):
     """(missing, unexpected, shape mismatches) of loading `sd` into `module`, the way Lightning restores a checkpoint
     with strict loading (missing or unexpected keys fail it)."""
     own = module.state_dict()
     missing = sorted(set(own) - set(sd))
     unexpected = sorted(set(sd) - set(own))
-    shapes = sorted(k for k in set(own) & set(sd) if tuple(own[k].shape) != tuple(sd[k].shape))
+    shapes = sorted(k for k in set(own) & set(sd)
+                    if tuple(own[k].shape) != tuple(getattr(sd[k], "shape", (None,))))
     return missing, unexpected, shapes
 
 
 def cmd_load_check(a):
-    import torch
     os.environ["MODEL_ID"] = a.model_id
     cli = build_cli(a.config, ("--trainer.accelerator", "cpu", "--trainer.devices", "1",
                                "--trainer.strategy", "auto", "--trainer.logger", "false"))
-    ck = torch.load(a.ckpt, map_location="cpu", weights_only=False)
-    sd = ck.get("state_dict", ck)
-    missing, unexpected, shapes = compare_state_dicts(cli.model, sd)
-    loaded = False
-    if not (missing or unexpected or shapes):
-        cli.model.load_state_dict(sd, strict=True)
-        loaded = True
-    rec = {"model_id": a.model_id, "checkpoint_sha256": sha256_file(a.ckpt) if a.hash else None,
-           "keys_in_checkpoint": len(sd), "keys_in_module": len(cli.model.state_dict()),
-           "missing": len(missing), "unexpected": len(unexpected), "shape_mismatch": len(shapes),
-           "first_missing": missing[:5], "first_unexpected": unexpected[:5], "first_shape_mismatch": shapes[:5],
-           "strict_load": loaded, "ok": loaded}
+    sd, how = load_checkpoint_safely(a.ckpt)
+    n_module = len(cli.model.state_dict())
+    rec = {"model_id": a.model_id, "checkpoint_sha256": sha256_file(a.ckpt) if a.hash else None, "load": how,
+           "keys_in_checkpoint": len(sd), "keys_in_module": n_module, **load_check_result(cli.model, sd)}
+    # rslearn's predict loads --ckpt_path with weights_only=True (LightningCLI._parse_ckpt_path) and restores through
+    # Lightning, whose torch.load leaves weights_only at torch's default (True since torch 2.6): a checkpoint that needs
+    # stubs here would fail there, on the GPU, so it fails here
+    rec["plain_weights_only"] = how == "weights_only"
+    rec["ok"] = bool(rec["ok"] and rec["plain_weights_only"])
     if a.record:
         write_json(rec, a.record)
     print(json.dumps(rec))
-    return 0 if loaded else 1
+    return 0 if rec["ok"] else 1
 
 
 def deployment_windows(inv_path, run_dir):

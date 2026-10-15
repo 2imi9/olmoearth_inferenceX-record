@@ -227,11 +227,27 @@ route, which already ran on the cluster:
   `MODEL_ID` selects the encoder.
 - **v1.** Ai2's checkpoint `allenai/OlmoEarth-v1-FT-AWF-Base` at revision `a347b154...`, sha256 `1036b76b...` (exp98's
   pins), with `OLMOEARTH_V1_BASE`.
-  - The env job checks that this checkpoint loads under rslearn 0.1.17 with every key matched, on CPU, before any
-    imagery is fetched.
+  - The env job checks that this checkpoint passes a strict load under rslearn 0.1.17 (as amended below), on CPU, before
+    any imagery is fetched. The checkpoint is read with `torch.load(weights_only=True)` (exp89's rule, with the list
+    widened: a global from a listed module such as os, subprocess, builtins, operator or functools is refused, and any
+    other becomes an inert stub), and the check fails unless the plain `weights_only` load works, because rslearn's
+    predict loads `--ckpt_path` that way (LightningCLI) and restores through Lightning, which does too.
   - If it does not, v1 predicts with rslearn 0.0.29 installed directly (the first release with exp98's
     `get_item_by_name` fix), still not through the runner. The gates are rerun on that route before freezing. The
     owner decides.
+  - **Amended 15 October 2026, after the first phase-1 submission and before any imagery was fetched or any prediction
+    made.** That submission's env job (1355980) refused v1: its checkpoint holds one key the module does not,
+    `model.encoder.0.model.composite_encodings.pos_embed`, OlmoEarth's legacy frozen temporal position table. The
+    encoder now computes that table on the fly (`get_1d_sincos_pos_encoding`) and its own `load_state_dict` pre-hook
+    drops the stored copy, so Lightning's strict restore passes; the record's check compared key sets without running
+    that hook. The check now runs the strict load through the module's own hooks and accepts a key the module lacks only
+    when it is that table, held by a CompositeEncodings module (the class whose hook drops it), a real floating tensor
+    at the width the encoder computes it at, with values equal to the on-the-fly encoding (maximum absolute difference
+    at most 1e-5); any other extra, missing, reshaped or non-tensor key still fails it. exp89's inventory of the same
+    checkpoint (sha256 `1036b76b...`) lists the table at 12 x 192 and loaded it with plain `weights_only`; the same
+    table in the locally cached OlmoEarth v1-Base weights (the encoder v1 was fine-tuned from, with the table frozen)
+    differs from the on-the-fly encoding by at most 6e-8. The gates, which compare v1's predictions with exp98's and
+    exp99's, remain the test of the route; no bar, floor, size or allowance changed.
 - **v1.2.** exp102's checkpoint (epoch 60, sha256 `5ce88827...`, public at `2imi9/OlmoEarth-v1_2-FT-AWF-Base` at
   `7a1db147...`) with `OLMOEARTH_V1_2_BASE`, as exp103 ran it.
 - **One GPU model.** The gate and the blind predict both run on `b200-devel`, on B200 GPUs, as exp102 and exp103 did
