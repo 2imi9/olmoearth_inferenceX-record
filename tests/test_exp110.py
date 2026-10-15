@@ -282,3 +282,152 @@ def test_the_summary_holds_no_identifier():
             return max([len(o)] + [longest(v) for v in o])
         return 0
     assert longest(json.loads(text)) <= 64, "no per-window or per-chip list"
+
+
+CROSSCHECK = os.path.join(ROOT, "exp", "out", "exp110_crosscheck.json")
+CROSSCHECK_SCRIPT = os.path.join(ROOT, "exp", "exp110_crosscheck.py")
+
+
+def _no_identifier(text):
+    assert not re.search(r"g\d+(-\d+)?_\d{5}_\d+", text), "an FTW aoi_id"
+    assert not re.search(r"\b\d{2}[A-Z]{3}(_\d_\d)?\b", text), "a Sentinel-2 or 2e tile name"
+    assert "/Users/" not in text and "s2_images/" not in text
+
+
+def test_exp110_recorded_by_a_second_route():
+    """The run's graded numbers against exp/exp110_crosscheck.py, written from the independent audit with numpy, scipy
+    and rasterio (its own windowing, ranks, hypergeometric tails, certify steps and sign test), importing neither the
+    run's script nor the package: the inputs' sha256, the label-free and label checks, and per country and pooled every
+    count exactly and every rate to 1e-9 or tighter (the exact coverage to 1e-8: scipy's tails against the package's
+    lgamma), the Monte Carlo cells draw for draw from their seeds, the chip bootstrap's ends to its Monte Carlo error,
+    and the six verdicts. The field + boundary reading, which only the crosscheck computes, is checked against the
+    package's own exact functions from its counts."""
+    import ast
+    import hashlib
+
+    from oe_inferencex import plan
+
+    src = open(CROSSCHECK_SCRIPT, encoding="utf-8").read()
+    imported = set()
+    for node in ast.walk(ast.parse(src)):
+        if isinstance(node, ast.Import):
+            imported |= {a.name.split(".")[0] for a in node.names}
+        elif isinstance(node, ast.ImportFrom):
+            imported.add((node.module or "").split(".")[0])
+    assert not imported & {"oe_inferencex", "exp110_ftw_field_map"}, "the second route imports neither"
+    S = json.load(open(SUMMARY, encoding="utf-8"))
+    text = open(CROSSCHECK, encoding="utf-8").read()
+    _no_identifier(text)
+    C = json.loads(text)
+
+    def longest(o):
+        if isinstance(o, dict):
+            return max([longest(v) for v in o.values()] + [0])
+        if isinstance(o, list):
+            return max([len(o)] + [longest(v) for v in o])
+        return 0
+    assert longest(C) <= 64, "aggregates only: no per-window or per-chip list"
+    assert C["script_sha256"] == hashlib.sha256(src.encode("utf-8")).hexdigest(), "the committed crosscheck ran"
+    assert S["prereg_status"] == "frozen" and S["dirty"] is False and S["commit"].startswith("cf59be4")
+
+    # inputs: the same files, and they match the acquisition manifest's list
+    SI, CI = S["inputs"], C["inputs"]
+    assert CI["npz_and_index_sha256"] == SI["npz_and_index_sha256"] and CI["npz_and_index_match_manifest"]
+    assert CI["s2_files"] == {k: SI["s2_files"][k] for k in CI["s2_files"]} and CI["s2_files"]["all_match_manifest"]
+    assert CI["manifest_files_csv_sha256"] == SI["manifest_files_csv_sha256"]
+
+    # label-free and label checks, per country
+    for c in e110.COUNTRIES:
+        r, lf, ck = C["countries"][c], S["label_free"]["countries"][c], S["checks"]["labels"][c]
+        assert (r["chips"], r["windows"], r["seam_chips"]) == (lf["chips"], lf["windows"], lf["seam_chips"])
+        assert r["sorted_ids"] and r["mask2_eq_mask3_field"] and not r["mask2_eq_mask3_field_or_boundary"]
+        assert r["boundary_px_coded_background_in_mask2"] == ck["mask2_differs_from_mask3_field_or_boundary_pixels"]
+        assert (r["truth_tied"], r["truth_tied_16"], r["truth3_tied"]) == (
+            ck["windows_truth_tied"], ck["windows_truth_tied_16px"], ck["windows_truth3_tied"])
+        assert (r["mask2_values"], r["mask3_values"]) == (ck["mask2_values"], ck["mask3_values"])
+        assert r["truth_field_share"] == pytest.approx(ck["truth_class_share"]["1"], abs=1e-12)
+        assert (r["zero_imagery_windows"], r["map_windows_conf_1"], r["D_all_windows"]) == (
+            lf["zero_imagery_windows"], lf["map_windows_at_confidence_1"], lf["D_all_windows"])
+        ctl = lf["controls"]
+        assert (r["variance_windows_no_pixel"], r["px_zero_one_window_only"], r["px_zero_all8"]) == (
+            ctl["pixel_variance_windows_with_no_pixel"], ctl["pixels_zero_in_one_window_only"],
+            ctl["pixels_zero_in_every_band"])
+        assert r["band_sd"] == pytest.approx(ctl["band_sd"], rel=1e-9)
+        assert r["map_class_share_field"] == pytest.approx(lf["map_class_share"]["1"], abs=1e-12)
+        assert r["map_conf_median"] == pytest.approx(lf["map_confidence_quantiles"]["0.5"], abs=1e-12)
+        assert r["b3_agree_stated"] == pytest.approx(lf["b3_agreement_stated"], abs=1e-12)
+        assert r["b3_agree_reversed"] == pytest.approx(lf["b3_agreement_reversed"], abs=1e-12)
+        assert r["b3_zero_flag_matches_s2"] and r["swap_band_order"] == ["B02", "B03", "B04", "B08"]
+
+    def close(a, b, tol, what):
+        assert a == pytest.approx(b, abs=tol), what
+
+    for pop in e110.COUNTRIES + ("pooled",):
+        R, Q = S["populations"][pop], C["populations"][pop]
+        # arm 1
+        r1, q1 = R["arm1"], Q["arm1"]
+        assert (q1["N"], q1["errors"], q1["best_control"]) == (r1["N"], r1["errors"], r1["best_control"]), pop
+        close(q1["theta"], r1["theta"], 1e-12, (pop, "theta"))
+        for k in ("auroc", "capture_10", "excess_aurc", "oracle_capture_10", "lead_over_best_control"):
+            close(q1[k], r1[k], 1e-9, (pop, k))
+        close(q1["confident_error_share"], r1["confident_errors"]["share_of_errors"], 1e-12, (pop, "confident"))
+        for k in ("ctl_pixel_variance", "ctl_class_rarity"):
+            for m in ("auroc", "capture_10"):
+                close(q1["controls"][k][m], r1["controls"][k][m], 1e-9, (pop, k, m))
+        # the chip bootstrap: 400 resamples (150 pooled) against the run's 2,000, so its ends agree to Monte Carlo error
+        for k in ("auroc", "lead_over_best_control"):
+            assert np.allclose(q1["bootstrap"][k], r1["bootstrap"][k], atol=0.006), (pop, k)
+        # arm 2: the exact coverage, and the run's Monte Carlo draw for draw
+        for B in ("100", "300"):
+            cell = R["arm2"]["cells"][B]
+            close(Q["arm2"][B]["exact_coverage"], cell["exact_coverage"], 1e-8, (pop, B, "exact"))
+            assert Q["arm2"][B]["mc_coverage_same_seeds"] == cell["mc_coverage"], (pop, B)
+        # arm 3: certify on the run's draws, both alphas, count for count
+        for a in ("0.05", "0.1"):
+            q3, r3 = Q["arm3"][a]["same_seeds"], R["arm3"]["by_alpha"][a]
+            assert (q3["violations"], q3["refused_as_review_set"], q3["certified_share_counts"]) == (
+                r3["violations"], r3["refused_as_review_set"], r3["certified_share_counts"]), (pop, a)
+            for k in ("p_certify_any", "violation_share", "median_certified_share"):
+                close(q3[k], r3[k], 1e-12, (pop, a, k))
+            close(q3["zone_true_error_median"], r3["zone_true_error"]["median"], 1e-12, (pop, a, "zone error"))
+        # arm 4: the counts, the exact probabilities and the Monte Carlo draw for draw
+        q4, r4 = Q["arm4"], R["arm4"]
+        assert (q4["N"], q4["D"], q4["K_A"], q4["K_B"], q4["better_agreeing"]) == (
+            r4["N"], r4["D"], r4["K_A"], r4["K_B"], r4["better_agreeing"]), pop
+        for n in ("100", "300"):
+            for k in ("p_right", "p_wrong"):
+                close(q4["budgets"][n][k], r4["budgets"][n][k], 1e-9, (pop, n, k))
+                assert q4["budgets"][n]["mc_same_seeds"][k] == r4["budgets"][n]["mc"][k], (pop, n, k)
+        # reported readings
+        for k in ("windows_16px", "three_class_8px", "lenient_extent_8px", "without_seam_chips"):
+            if k not in Q["reported"]:
+                assert pop == "pooled" and k != "without_seam_chips"
+                continue
+            q, r = Q["reported"][k], R["reported"][k]
+            assert (q["N"], q["errors"]) == (r["N"], r["errors"]), (pop, k)
+            close(q["theta"], r["theta"], 1e-12, (pop, k))
+            close(q["auroc"], r["auroc"], 1e-9, (pop, k))
+    for k in ("P1", "P2", "P3a", "P3b", "P4a", "P4b"):
+        assert C["verdicts"][k]["holds"] is S["verdicts"][k]["holds"] is True, k
+    assert C["verdicts"]["P1"]["countries_meeting"] == S["verdicts"]["P1"]["countries_meeting"]
+    assert C["verdicts"]["P3b"]["countries_meeting"] == S["verdicts"]["P3b"]["countries_meeting"]
+    assert C["verdicts"]["P4b"]["countries_meeting"] == S["verdicts"]["P4b"]["countries_meeting"]
+
+    # the field + boundary reading (beside the graded result): its arithmetic against the package's exact functions
+    F = C["field_plus_boundary"]
+    for c in e110.COUNTRIES:
+        assert F[c]["arm1"]["N"] == C["countries"][c]["windows"] - C["countries"][c]["field_plus_boundary_truth_tied"]
+    assert F["pooled"]["arm1"]["N"] == sum(F[c]["arm1"]["N"] for c in e110.COUNTRIES)
+    assert F["pooled"]["arm1"]["errors"] == sum(F[c]["arm1"]["errors"] for c in e110.COUNTRIES)
+    for pop in e110.COUNTRIES + ("pooled",):
+        f1, f4 = F[pop]["arm1"], F[pop]["arm4"]
+        close(f1["theta"], f1["errors"] / f1["N"], 1e-15, (pop, "fb theta"))
+        close(f1["lead_over_best_control"], f1["auroc"] - f1["controls"][f1["best_control"]]["auroc"], 1e-15, pop)
+        for B in ("100", "300"):
+            pkg = est.exact_coverage_srs(f1["N"], f1["errors"], int(B), interval=est.hypergeom_interval)
+            close(F[pop]["arm2"][B]["exact_coverage"], pkg, 1e-8, (pop, B, "fb exact coverage"))
+        assert f4["K_A"] + f4["K_B"] == f4["D"], "two classes: one map is right"
+        for n in ("100", "300"):
+            pa, pb = plan.which_map_probability(f4["N"], f4["D"], int(n), f4["K_A"], f4["K_B"])
+            close(f4["budgets"][n]["p_names_2e"], pa, 1e-9, (pop, n, "fb 2e"))
+            close(f4["budgets"][n]["p_names_b3"], pb, 1e-9, (pop, n, "fb b3"))

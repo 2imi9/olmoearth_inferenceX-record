@@ -5388,3 +5388,144 @@
     practice or a gap in what the training labels support. The split of the loss is descriptive (unweighted
     expert-placed points against a design-weighted random sample). The plot-matched CGLS join in the comparisons
     section is exploratory, on data not committed, and carries no claim.
+
+- id: exp110-ftw-map-confidence-ranks-its-window-errors
+  statement: "In the record's first test on another organisation's deployed product outside land cover (exp110, preregistered, frozen cf59be4), FTW's 2nd-edition global field map, read by the package as a two-class field-extent probability (field + boundary) at the FTW benchmark v1 test chips of Belgium, Croatia, Slovenia and Sweden (1,295 chips, 8-px windows, truth the window majority of the benchmark's 2-class mask, which turned out to be field only), ranks its window errors at AUROC 0.837, 0.870, 0.936 and 0.863 (pooled 0.874), the least confident 10% holding 0.308, 0.393, 0.694 and 0.340 of them, and leads the best no-model control by 0.018 (Belgium, the predicted-class rarity; 90% chip bootstrap 0.004 to 0.034), 0.127, 0.098 and 0.307: preregistered P1 holds in 3 of 4 countries, Belgium meeting the AUROC and capture bars but not the lead of 0.05. The window error rates are 0.1356, 0.0972, 0.0419 and 0.1415 (pooled 0.1110, 146,597 errors in 1,321,132 windows), and 1.0% of the pooled errors are as confident as the median correct window."
+  crosscheck: tests/test_exp110.py::test_exp110_recorded_by_a_second_route
+  status: supported
+  experiments: [exp110]
+  artifacts: [exp/out/exp110_summary.json, exp/out/exp110_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda P, V, pops: S['prereg_status'] == 'frozen' and S['dirty'] is False and S['commit'].startswith('cf59be4')
+      and V['P1']['holds'] is True and V['P1']['countries_meeting'] == ['croatia', 'slovenia', 'sweden'] and V['P1']['below_floor'] == []
+      and C['verdicts']['P1']['countries_meeting'] == ['croatia', 'slovenia', 'sweden']
+      and [round(P[c]['arm1']['auroc'], 3) for c in pops] == [0.837, 0.87, 0.936, 0.863, 0.874]
+      and [round(P[c]['arm1']['capture_10'], 3) for c in pops] == [0.308, 0.393, 0.694, 0.34, 0.385]
+      and [round(P[c]['arm1']['lead_over_best_control'], 3) for c in pops] == [0.018, 0.127, 0.098, 0.307, 0.295]
+      and [P[c]['arm1']['best_control'] for c in pops[:4]] == ['ctl_class_rarity', 'ctl_pixel_variance', 'ctl_class_rarity', 'ctl_pixel_variance']
+      and [round(x, 3) for x in P['belgium']['arm1']['bootstrap']['lead_over_best_control']] == [0.004, 0.034]
+      and [round(P[c]['arm1']['theta'], 4) for c in pops] == [0.1356, 0.0972, 0.0419, 0.1415, 0.111]
+      and (P['pooled']['arm1']['N'], P['pooled']['arm1']['errors']) == (1321132, 146597)
+      and round(P['pooled']['arm1']['confident_errors']['share_of_errors'], 3) == 0.01
+      and all(round(C['populations'][c]['arm1']['auroc'], 9) == round(P[c]['arm1']['auroc'], 9) for c in pops)
+    )(S['populations'], S['verdicts'], ('belgium', 'croatia', 'slovenia', 'sweden', 'pooled')))(A['exp/out/exp110_summary.json'], A['exp/out/exp110_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp110-ftw-map-confidence-ranks-its-window-errors}
+    - {file: docs/Findings.md, marker: exp110-ftw-map-confidence-ranks-its-window-errors}
+    - {file: docs/Summary.md, marker: exp110-ftw-map-confidence-ranks-its-window-errors}
+  note: >-
+    Run once at the frozen cf59be4 on the Mac (exp/exp110_ftw_field_map.py, olmoearth-inferencex 1.12.1). The run script
+    was untracked when it ran; the sha256 the summary records matches the committed file. Recorded after an
+    independent audit (368 numbers, no mismatch), whose script became exp/exp110_crosscheck.py. The labels are
+    parcel declarations (Belgium, Slovenia), photo-interpreted parcels (Croatia) and LPIS blocks (Sweden), taken as
+    right; the test chips are a benchmark split, not a sample of any country, and their countries' train chips trained
+    the map's model. The truth follows the page literally, as the owner ruled; the field + boundary reading is
+    exp110-ftw-field-plus-boundary-reading.
+
+- id: exp110-ftw-certified-share-at-300-labels
+  statement: "In the record's first test on another organisation's deployed product outside land cover (exp110, preregistered), certify at alpha 0.05, delta 0.10 and 300 random labels (2,000 draws, draw r with seed 110 + r) gives FTW's 2nd-edition field map a median certified share of 0.40 (Belgium), 0.45 (Croatia), 0.90 (Slovenia) and 0.00 (Sweden), so preregistered P3(b), a quarter in 2 of 4 countries, holds in 3 of 4, but the verdict is fragile: each country certifies any zone with an exact probability near one half (0.525, 0.517, 0.525 and 0.484; pooled 0.515), so the certified share has two modes, no zone or a large one, and each median sits on that edge. Sweden's 0.00 follows from its 0.484; an independent set of 2,000 draws gave Croatia 0.55; with these exact probabilities P3(b) holds in 3 of 4 in the limit of many draws, and 2,000 draws put a median at zero with probability about 0.07 (Croatia) and 0.014 (Belgium, Slovenia). A certified zone's true error rate has a median of 0.022 to 0.029. Between 22% and 51% of each country's windows sit at confidence exactly 1.0, so which of them enter a zone is set by the package's tie rule (by index, the mosaic's raster order), not by evidence; the rule is fixed before any label is read, so the guarantee stands."
+  crosscheck: tests/test_exp110.py::test_exp110_recorded_by_a_second_route
+  status: supported
+  experiments: [exp110]
+  artifacts: [exp/out/exp110_summary.json, exp/out/exp110_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda P, V, L, X, cs: V['P3b']['holds'] is True and V['P3b']['countries_meeting'] == ['belgium', 'croatia', 'slovenia']
+      and [V['P3b']['median_certified_share'][c] for c in cs] == [0.4, 0.45, 0.9, 0.0]
+      and [round(X[c]['arm3']['exact_p_certify_any_0.05'], 3) for c in cs + ('pooled',)] == [0.525, 0.517, 0.525, 0.484, 0.515]
+      and X['croatia']['arm3']['0.05']['independent_seeds']['median_certified_share'] == 0.55
+      and C['verdicts_independent_certify_draws']['P3b']['countries_meeting'] == ['belgium', 'croatia', 'slovenia']
+      and round(X['croatia']['arm3']['p_at_most_half_of_2000_draws_certify'], 2) == 0.07
+      and [round(X[c]['arm3']['p_at_most_half_of_2000_draws_certify'], 3) for c in ('belgium', 'slovenia')] == [0.014, 0.014]
+      and [round(P[c]['arm3']['by_alpha']['0.05']['zone_true_error']['median'], 3) for c in cs] == [0.022, 0.029, 0.027, 0.022]
+      and [round(f(L[c]['map_windows_at_confidence_1'] / L[c]['windows'] for c in cs), 2) for f in (min, max)] == [0.22, 0.51]
+    )(S['populations'], S['verdicts'], S['label_free']['countries'], C['populations'], ('belgium', 'croatia', 'slovenia', 'sweden')))(A['exp/out/exp110_summary.json'], A['exp/out/exp110_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp110-ftw-certified-share-at-300-labels}
+  note: >-
+    The exact probability of certifying any zone (the first testable level, 0.15 of the windows at alpha 0.05 and 300
+    labels, passing; the review-set guard aside) and the independent draws are the crosscheck's (exp/exp110_crosscheck.py,
+    seed 20261014), not the run's. The run computed certify_zone's steps once per population and called certify_zone
+    itself on 20 draws per population, which agreed; the crosscheck reproduces all 2,000 draws count for count.
+
+- id: exp110-ftw-which-map-at-100-labels
+  statement: "In the record's first test on another organisation's deployed product outside land cover (exp110, preregistered), 100 labels drawn where FTW's 2nd-edition field map and FTW's PRUE B3 model (the CC-BY checkpoint of ftw-baselines v3.1, run by the record on the benchmark's two Sentinel-2 windows) differ name the better-agreeing map, by the exact sign test, with probability 0.858 in Belgium (B3: 7,773 windows where only the 2e map is right against 14,811 where only B3 is), 0.999 in Croatia (the 2e map: 35,408 against 12,378) and 0.993 in Sweden (B3: 16,238 against 41,516): preregistered P4(b) holds in 3 of 4 countries. Slovenia (0.141; 6,415 against 5,210) and the pooled population (0.063; B3, 65,834 against 73,915) do not reach 0.8 at 100 labels (0.410 and 0.153 at 300). B3 is the better-agreeing map in Belgium, Sweden and pooled under both the graded and the field + boundary truth. The page expected the 2e map to lead because B3 never saw these countries; after the run FTW's v3.1 release notes and prue_efnet3.yaml showed that B3 most likely trained on their train chips too, and the owner withdrew that expectation in a dated amendment, bars and verdicts unchanged: the result says which map agrees better with these labels on these test chips, not which generalises better."
+  crosscheck: tests/test_exp110.py::test_exp110_recorded_by_a_second_route
+  status: supported
+  experiments: [exp110]
+  artifacts: [exp/out/exp110_summary.json, exp/out/exp110_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda P, V, pops: V['P4b']['holds'] is True and V['P4b']['countries_meeting'] == ['belgium', 'croatia', 'sweden']
+      and [round(P[c]['arm4']['budgets']['100']['p_right'], 3) for c in pops] == [0.858, 0.999, 0.141, 0.993, 0.063]
+      and [round(P[c]['arm4']['budgets']['300']['p_right'], 3) for c in ('slovenia', 'pooled')] == [0.41, 0.153]
+      and [(P[c]['arm4']['K_A'], P[c]['arm4']['K_B']) for c in pops] == [(7773, 14811), (35408, 12378), (6415, 5210), (16238, 41516), (65834, 73915)]
+      and [P[c]['arm4']['better_agreeing'] for c in pops] == ['b3', '2e', '2e', 'b3', 'b3']
+      and [C['field_plus_boundary'][c]['arm4']['better_agreeing'] for c in ('belgium', 'sweden', 'pooled')] == ['b3', 'b3', 'b3']
+      and all(P[c]['arm4']['budgets']['100']['rule'] == 'sign' for c in pops)
+    )(S['populations'], S['verdicts'], ('belgium', 'croatia', 'slovenia', 'sweden', 'pooled')))(A['exp/out/exp110_summary.json'], A['exp/out/exp110_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp110-ftw-which-map-at-100-labels}
+    - {file: docs/Findings.md, marker: exp110-ftw-which-map-at-100-labels}
+    - {file: docs/Summary.md, marker: exp110-ftw-which-map-at-100-labels}
+  note: >-
+    Arithmetic on (N, D, K_A, K_B) once the counts are known, as the page says; what it measures is mostly the size of
+    the gap. The two maps differ in model, input imagery (the benchmark's two Sentinel-2 windows against quarterly
+    mosaics) and label definition (B3 was trained on v1's own masks), and both most likely trained on these
+    countries' train chips; the population leaves out windows with a pixel zero in every band of either Sentinel-2
+    window (713 in Sweden, 7 in Belgium). B3's run (checkpoint opened with weights_only=True) passed both label-free
+    stop rules (agreement with the 2e map 0.867 to 0.950, above 0.70; the band-swapped control lower everywhere).
+
+- id: exp110-ftw-labelled-routes-keep-their-guarantees
+  statement: "The three checks of exp110 hold on FTW's 2nd-edition field map at 1,295 FTW benchmark test chips, in the record's first test on another organisation's deployed product outside land cover (preregistered; checks of the package's reading of a third party's map, not predictions): the package's exact interval covers the window error rate with probability at least 0.957 in all 10 cells (four countries and pooled, 100 and 300 random labels; bar 0.95), 2,000 draws per cell agreeing within 1.69 Monte Carlo standard errors (P2); at alpha 0.05 and 300 labels the share of 2,000 draws certifying a zone wrong more often than alpha is 0.038, 0.040, 0.000 and 0.0185 in Belgium, Croatia, Slovenia and Sweden and 0.0105 pooled (bar 0.115; an independent set of 2,000 draws at most 0.048) (P3(a)); and labels drawn where the map and PRUE B3 differ name the worse-agreeing map with probability at most 0.0036 (pooled, 100 labels; bar 0.025) (P4(a)). The labels are the benchmark's masks, taken as right."
+  crosscheck: tests/test_exp110.py::test_exp110_recorded_by_a_second_route
+  status: measured
+  experiments: [exp110]
+  artifacts: [exp/out/exp110_summary.json, exp/out/exp110_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda P, V, pops: all(V[k]['holds'] is True for k in ('P2', 'P3a', 'P4a'))
+      and round(min(P[c]['arm2']['cells'][b]['exact_coverage'] for c in pops for b in ('100', '300')), 3) == 0.957
+      and round(max(abs(P[c]['arm2']['cells'][b]['mc_minus_exact_in_se']) for c in pops for b in ('100', '300')), 2) == 1.69
+      and [V['P3a']['violation_share'][c] for c in pops] == [0.038, 0.04, 0.0, 0.0185, 0.0105]
+      and round(max(C['verdicts_independent_certify_draws']['P3a']['violation_share'].values()), 3) == 0.048
+      and round(max(V['P4a']['p_wrong'].values()), 4) == 0.0036 and max(V['P4a']['p_wrong'], key=V['P4a']['p_wrong'].get) == 'pooled:100'
+    )(S['populations'], S['verdicts'], ('belgium', 'croatia', 'slovenia', 'sweden', 'pooled')))(A['exp/out/exp110_summary.json'], A['exp/out/exp110_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp110-ftw-labelled-routes-keep-their-guarantees}
+    - {file: docs/Findings.md, marker: exp110-ftw-labelled-routes-keep-their-guarantees}
+    - {file: docs/Summary.md, marker: exp110-ftw-labelled-routes-keep-their-guarantees}
+  note: >-
+    The exact interval covers at least 95% by construction for a random sample whose labels are right, so P2 checks
+    the package's pooling and reading of a third party's map; P4(a) is exact arithmetic on the counts. Reported, not
+    graded: a chip-cluster design (16 windows from each of a sample of chips) covers 0.811 to 0.9425, below 0.95, as
+    exp78 found where errors cluster.
+
+- id: exp110-ftw-field-plus-boundary-reading
+  statement: "Reported beside exp110's graded result, not in place of it, as the owner ruled on 14 October 2026, in the record's first test on another organisation's deployed product outside land cover: the FTW benchmark's 2-class mask is field only (it equals the 3-class mask's field class pixel for pixel in all four countries, with 449,464, 968,577, 334,035 and 951,825 boundary pixels coded background), while the map is read as field + boundary. With the truth taken instead as the window majority of field + boundary, a reading chosen after the labels were read with the maps, FTW's field map's window error rate is 0.1150 (Belgium), 0.0776 (Croatia), 0.0343 (Slovenia) and 0.1450 (Sweden), 0.1025 pooled, against 0.1356, 0.0972, 0.0419, 0.1415 and 0.1110 under the graded truth: lower in three countries and higher in Sweden, so the boundary pixels coded background account for only part of the window errors. The six verdicts are the same: P1 is met in all 4 countries (Belgium's AUROC 0.842, lead 0.056); P4(b) in 3 of 4 (Belgium falls to 0.673, B3 still the better-agreeing map; Slovenia rises to 0.963); P3(b) in 2 of 4 on the run's draw seeds (Croatia's median 0.00) and 3 of 4 on an independent set (Croatia 0.55); the exact coverage is at least 0.955, at most 0.0295 of draws certify a zone wrong more often than alpha, and the worse map is named with probability at most 0.0064."
+  crosscheck: tests/test_exp110.py::test_exp110_recorded_by_a_second_route
+  status: measured
+  experiments: [exp110]
+  artifacts: [exp/out/exp110_summary.json, exp/out/exp110_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda P, F, K, V, VI, pops: all(K[c]['mask2_eq_mask3_field'] and not K[c]['mask2_eq_mask3_field_or_boundary'] for c in pops[:4])
+      and [S['checks']['labels'][c]['mask2_differs_from_mask3_field_or_boundary_pixels'] for c in pops[:4]] == [449464, 968577, 334035, 951825]
+      and [round(F[c]['arm1']['theta'], 4) for c in pops] == [0.115, 0.0776, 0.0343, 0.145, 0.1025]
+      and [round(P[c]['arm1']['theta'], 4) for c in pops] == [0.1356, 0.0972, 0.0419, 0.1415, 0.111]
+      and [F[c]['arm1']['theta'] < P[c]['arm1']['theta'] for c in pops] == [True, True, True, False, True]
+      and all(V[k]['holds'] is True for k in ('P1', 'P2', 'P3a', 'P3b', 'P4a', 'P4b'))
+      and V['P1']['countries_meeting'] == ['belgium', 'croatia', 'slovenia', 'sweden']
+      and [round(F['belgium']['arm1'][k], 3) for k in ('auroc', 'lead_over_best_control')] == [0.842, 0.056]
+      and V['P4b']['countries_meeting'] == ['croatia', 'slovenia', 'sweden']
+      and [round(V['P4b']['p_right'][c], 3) for c in ('belgium', 'slovenia')] == [0.673, 0.963] and F['belgium']['arm4']['better_agreeing'] == 'b3'
+      and V['P3b']['countries_meeting'] == ['belgium', 'slovenia'] and V['P3b']['median_certified_share']['croatia'] == 0.0
+      and VI['P3b']['countries_meeting'] == ['belgium', 'croatia', 'slovenia'] and VI['P3b']['median_certified_share']['croatia'] == 0.55
+      and round(V['P2']['min_exact_coverage'], 3) == 0.955
+      and round(max(list(V['P3a']['violation_share'].values()) + list(VI['P3a']['violation_share'].values())), 4) == 0.0295
+      and round(V['P4a']['max_p_wrong'], 4) == 0.0064
+    )(S['populations'], C['field_plus_boundary'], C['countries'], C['field_plus_boundary_verdicts'],
+      C['field_plus_boundary_verdicts_independent_certify_draws'], ('belgium', 'croatia', 'slovenia', 'sweden', 'pooled')))(A['exp/out/exp110_summary.json'], A['exp/out/exp110_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp110-ftw-field-plus-boundary-reading}
+  note: >-
+    Computed only by the second route (exp/exp110_crosscheck.py), after the labels had been read with the maps; the
+    test checks its exact coverage and which-map probabilities against the package's own functions from its counts.
+    Its P3 draws: the run's seeds 110 + r, and the audit's independent set (seed 777). P2 here is the exact coverage
+    alone. It changes no verdict and is not a second grade: the page's truth is the 2-class mask.

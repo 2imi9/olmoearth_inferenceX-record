@@ -9,6 +9,45 @@ stated). The window (8 px graded, 16 px reported), the population rules and the 
 were confirmed before the second map (PRUE B3) was run and before any label-free inventory of either map (the map's
 confidence quantiles, the windows where the two maps differ); none of that inventory was seen before freezing.
 
+**Result, 14 October 2026 (added at recording; the frozen text is unchanged).** Run once at cf59be4
+(`exp/exp110_ftw_field_map.py`, `exp/out/exp110_summary.json`) and recorded after an independent audit that recomputed
+368 numbers with its own numpy and scipy code and found no mismatch; its script is this page's second route,
+`exp/exp110_crosscheck.py` (`exp/out/exp110_crosscheck.json`)
+([comparisons](../results/comparisons.md#another-organisations-deployed-field-map-ftws-2nd-edition-map-at-the-ftw-benchmarks-test-chips-exp110)).
+The run script was untracked when it ran; the sha256 the summary records matches the committed file. Graded as this
+page defines the truth (the 2-class mask), the three predictions and the three checks hold:
+- **P1 holds** (3 of 4): Croatia, Slovenia and Sweden meet all three bars (AUROC 0.870, 0.936, 0.863; lead over the
+  best no-model control 0.127, 0.098, 0.307). Belgium meets the AUROC (0.837) and capture (0.308) bars but leads the
+  predicted-class rarity by 0.018 (90% chip bootstrap 0.004 to 0.034), short of 0.05. No country is below the floor.
+- **P3(b) holds** (3 of 4, fragile): median certified shares 0.40, 0.45, 0.90 and 0.00 (Sweden). Each country
+  certifies any zone with an exact probability near one half (0.525, 0.517, 0.525 and 0.484), so each median sits on
+  that edge; an independent set of 2,000 draws gave Croatia 0.55.
+- **P4(b) holds** (3 of 4): 100 labels name the better-agreeing map with probability 0.858 (Belgium, B3), 0.999
+  (Croatia, the 2e map) and 0.993 (Sweden, B3); Slovenia (0.141) and pooled (0.063) do not reach 0.8.
+- **The checks hold:** P2's exact coverage is at least 0.957 in all 10 cells, the Monte Carlo within 1.69 standard
+  errors; P3(a)'s largest share of draws certifying a zone wrong more often than α is 0.040 (bar 0.115); P4(a)'s
+  largest probability of naming the worse map is 0.0036 (bar 0.025).
+
+**Amendment, 14 October 2026 (after the run).** Two findings made after the labels were read with the maps, ruled on
+by the owner on 14 October 2026. Neither changes a bar or a verdict.
+- **The truth is field only.** The label-only check this page lists found that the 2-class mask is not field plus
+  boundary: in all four countries it equals the 3-class mask's field class pixel for pixel, and every boundary pixel
+  is coded background (449,464, 968,577, 334,035 and 951,825 pixels). The page assumed otherwise (its base rates and
+  "field extent" are field plus boundary), so its main measure compares the map's field + boundary with a field-only
+  truth. The owner ruled that the graded result follows this page literally: truth = the 2-class mask. The field +
+  boundary reading (truth = the majority of the 3-class mask in {1, 2}) is reported beside it, dated, as a difference
+  found after the labels were read with the maps; it never replaces a verdict. Under it the pooled window error rate
+  is 0.1025 against 0.1110, lower in Belgium, Croatia and Slovenia and higher in Sweden (0.1450 against 0.1415), so the
+  boundary pixels coded background account for only part of the window errors; the six verdicts are the same.
+- **B3's training countries.** The Gate section and P4's reading say PRUE B3 never trained on Belgium, Croatia,
+  Slovenia or Sweden. That matches FTW's older v1 CC-BY configuration, not the checkpoint used: FTW's v3.1 release
+  notes say the CC-BY PRUE models used the `prue_efnet*.yaml` configurations without the non-commercial countries, and
+  `prue_efnet3.yaml` trains on all four, none of them non-commercial. The checkpoint stores no country list, so B3
+  most likely trained on these countries' train chips, as the 2e map's model did. The test chips are the held-out
+  test split for both maps. The page's expectation of a gap in the 2e map's favour is withdrawn; B3 is the
+  better-agreeing map in Belgium, Sweden and pooled under both truth readings. Arm 4 says which map agrees better on
+  these chips, not which generalises better.
+
 Changed at freezing, with the bars' numbers unchanged: the steps the draft allowed before freezing (the label-free
 inventory, the B3 run and its band-swap control, the label-only and metadata checks) were not taken before it. They
 come after freezing and before any arm's metric; the label-free stop rules for B3 under What would invalidate the run

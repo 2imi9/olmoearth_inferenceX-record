@@ -50,7 +50,10 @@ input, below the preregistered 0.70; the record's own fine-tune of the task on O
 weakened the ranking; a report-only reading found most of its confident errors on one grass/shrub boundary that neither
 legend defines. On a second task, Ai2's Forest Loss Driver model at a stratified sample of 689 Amazon alerts
 MapBiomas Alerta published in 2026, the confidence ranked the disagreements at 0.770, at or above the bar of 0.70 on the point value
-(interval 0.682 to 0.855), except the confident confusions between the two labelled classes. On three published
+(interval 0.682 to 0.855), except the confident confusions between the two labelled classes. On another
+organisation's deployed product outside land cover, FTW's global field map at 1,295 benchmark test chips in four
+European countries, the map's own probability ranked its window errors at AUROC 0.837 to 0.936, meeting the
+preregistered bar in 3 of 4 countries, and the labelled routes kept their guarantees. On three published
 products, disagreement with a second product flagged their confident errors four to five times as often as their
 confident correct rows on two and 1.45 times on the third, short of the preregistered twofold on all three. On PASTIS, a probe read without the
 optical input it was trained with erred confidently (59.8\% of its errors as confident as the median correct window,
@@ -68,7 +71,7 @@ agreement with the reference (they named one on 6\% to 29\% of draws at 50 to 20
 confidence ranked its errors with an AUROC of 0.75; certified zones on that confidence met their guarantee in every
 cell, and at 300 labels the default rule returned no zone on 87\% of draws at $\alpha$ half the error rate, though 65\%
 of the plots lie in a zone within it.
-The record comprises 99 experiment scripts and 243 ledger claims, 241 of them checked against a committed artifact,
+The record comprises 104 experiment scripts and 252 ledger claims, 250 of them checked against a committed artifact,
 and reports failed predictions as failed.
 \end{abstract}
 
@@ -472,12 +475,12 @@ analysts interpreting a simple random sample & LCMAP Reference Data Product v1.2
 Experiments state their predictions and falsification conditions before they run, in their scripts or, for many from
 exp48 on, in a preregistration page (\code{docs/plan}), with dated amendments; four early, exploratory scripts state
 none (exp01, exp18, exp19 and exp32), and results read afterwards are marked as not preregistered here and in the
-ledger. The repository holds 102 experiment scripts named \code{expNN\_*.py},
-covering 91 experiment numbers from exp01 to exp109. The ledger \code{docs/claims.yaml} holds 247 claims, each with a
-statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 81 are supported, 87 measured, 33 mixed, 44 rejected and 2
+ledger. The repository holds 104 experiment scripts named \code{expNN\_*.py},
+covering 92 experiment numbers from exp01 to exp110. The ledger \code{docs/claims.yaml} holds 252 claims, each with a
+statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 84 are supported, 89 measured, 33 mixed, 44 rejected and 2
 superseded, and \code{scripts/claims.py stale} flags only the two superseded ones. After an audit on 23 September 2026
-found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 110 of the
-247 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
+found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 115 of the
+252 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
 name one.
 
 Corrected results appear in their current form. exp78's cluster-corrected arm is now the ratio estimator, which
@@ -840,6 +843,37 @@ most flagged confident rows are correct (10.0\% to 27.9\% are errors)
 \claim{exp106-second-opinion-flags-confident-errors-on-two-of-three}. A related product, NLCD for LCMAP, meets the
 ratio too, so it does not measure independence \claim{exp106-a-related-second-product-also-meets-the-ratio}.
 
+\subsection{Another organisation's deployed field map}
+\label{sec:res-ftw}
+
+exp110 (preregistered, frozen before any metric was computed) is the record's first test on another organisation's
+deployed product outside land cover: FTW's 2nd-edition global field map, whose per-pixel field and boundary
+probabilities come from FTW's ftw-q model, read by the package as a two-class field-extent probability (field plus
+boundary) at the FTW benchmark v1 test chips of Belgium, Croatia, Slovenia and Sweden: 1,295 chips, 1,321,132
+windows of $8\times8$ mask pixels with a truth majority, graded against the benchmark's masks from parcel declarations,
+photo-interpreted parcels and LPIS blocks, taken as right. The benchmark's 2-class mask turned out to be field only,
+its boundary pixels coded background; as the owner ruled after the run, the graded result keeps the preregistered
+truth, and the field-plus-boundary reading is reported beside it. The map's confidence ranked its window errors at
+AUROC 0.837, 0.870, 0.936 and 0.863, the least confident 10\% holding 0.308 to 0.694 of them, and led the best
+no-model control by 0.127, 0.098 and 0.307 in Croatia, Slovenia and Sweden but by 0.018 in Belgium (90\% chip
+bootstrap 0.004 to 0.034, against the rarity of the predicted class), so the ranking prediction held in 3 of 4
+countries \claim{exp110-ftw-map-confidence-ranks-its-window-errors}. The three checks held: the exact interval covered
+with probability at least 0.957 in all ten cells, certify's zone was wrong more often than $\alpha = 0.05$ on at most
+4.0\% of 2,000 draws, and labels drawn where two maps differ named the worse-agreeing one with probability at most
+0.0036 \claim{exp110-ftw-labelled-routes-keep-their-guarantees}. At 300 labels the median certified share was 0.40,
+0.45, 0.90 and 0 (Sweden), a quarter or more in 3 of 4 as predicted, but fragile: each country certifies any zone
+with an exact probability of 0.484 to 0.525, so each median sits on that edge, and 22\% to 51\% of the windows sit at
+confidence exactly 1, where the package's tie rule (raster order), not evidence, decides which enter a zone
+\claim{exp110-ftw-certified-share-at-300-labels}. With 100 labels drawn where the map and FTW's PRUE B3 model, run by
+the record on the benchmark's imagery, differ, the better-agreeing map was named with probability 0.858 (Belgium, B3),
+0.999 (Croatia, the 2nd-edition map) and 0.993 (Sweden, B3), as predicted for 3 of 4, but not in Slovenia (0.141) or
+pooled (0.063); B3 most likely trained on these countries' train chips too, so this says which map agrees better on
+these test chips, not which generalises better \claim{exp110-ftw-which-map-at-100-labels}. Under the field-plus-boundary
+truth the pooled window error rate is 0.1025 against 0.1110, lower in three countries and higher in Sweden, so the
+boundary pixels account for only part of the errors, and the six verdicts are the same
+\claim{exp110-ftw-field-plus-boundary-reading}. The run script was untracked when it ran; its recorded sha256 matches
+the committed file, and an independent recomputation with its own code reproduced every graded number.
+
 \subsection{Estimation from a labelled sample}
 \label{sec:res-estimate}
 
@@ -1098,12 +1132,14 @@ models. The package reads a model's scores after the fact and loads no model. On
 compares two maps, estimates the error rate, certifies a zone, names the more accurate of two maps by an exact
 test and audits each class's confident calls. It refuses some inputs that would void its intervals, such as a review set offered as a random
 sample, though labels from the confident end of a map, or clustered by tile, pass its check. Beside it stands the record
-of Section~\ref{sec:protocol-ledger}: 102 experiment scripts covering 91 experiment numbers from exp01 to
-exp109, and 247 ledger claims, 245 of them checked against a committed artifact; the failed preregistered predictions
-of exp77 to exp107 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
+of Section~\ref{sec:protocol-ledger}: 104 experiment scripts covering 92 experiment numbers from exp01 to
+exp110, and 252 ledger claims, 250 of them checked against a committed artifact; the failed preregistered predictions
+of exp77 to exp110 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
 the place, the legend and the kind of point at once, the confident errors it does not find, the zone that often returns
 nothing at 300 labels, a which-map design that fell short of practice's z form on nearly equal pairs, and a reviewer
-model that did not help. Not yet run are an exact paired interval on a whole-map sample, selection with guaranteed risk
+model that did not help. Other organisations' deployed products outside land cover have been tested once, on one
+field map at benchmark test chips from countries whose train chips trained it (exp110); a product graded at a
+probability sample of land it never saw has not. Not yet run are an exact paired interval on a whole-map sample, selection with guaranteed risk
 on the same maps, map-class strata graded for class areas and per-class accuracy, a measurement of human reviewers' error rates, the ranking
 under corruption or a real cloud, a blind test of a fine-tuned model moved to a new place, and an end-to-end test in which
 an AI agent evaluating maps with the tool is compared with one reading only a validation figure.
@@ -1147,7 +1183,7 @@ their errors, it estimates 0.975 to 0.983 for maps 0.883 to 0.914 accurate, and 
 is 0.83, 0.71 and 0.62 on PASTIS Sentinel-2, MADOS and Sen1Floods11 \claim{consensus-order-recovered-only-where-true-gaps-are-large}.
 Within one family it estimates 0.996 to 0.999 for maps 0.81 to 0.93 accurate
 \claim{within-family-consensus-is-the-unanimous-limit}. An error rate therefore requires a reference.
-Table~\ref{tab:failed} lists the failed predictions of exp77 to exp107.
+Table~\ref{tab:failed} lists the failed predictions of exp77 to exp110.
 
 \begin{table}[h]
 \centering\footnotesize
@@ -1179,12 +1215,12 @@ exp106 P2 & a second product's flag at least twice as frequent among confident e
 exp107 P1 & labels where two maps differ name the better-agreeing one at least as often as McNemar's test on a whole-map sample, exact and z form, on 7 of 9 pairs at 100 labels & 8 of 9 (exact), 6 of 9 (z form); the losses on pairs under 1.2 points \claim{exp107-tool-design-against-mcnemar} \\
 \bottomrule
 \end{tabularx}
-\caption{Preregistered predictions of exp77 to exp107 recorded as failed or failed as written. exp89 was report-only by
+\caption{Preregistered predictions of exp77 to exp110 recorded as failed or failed as written. exp89 was report-only by
 an amendment made before any result, exp90 was not preregistered, exp100 applied a fixed rule with no predictions,
 exp102 trained a model, the predictions of exp92, exp93, exp94, exp96 (at its preregistered seed) and exp97 held,
 exp103's others held (its review prediction on the point value), exp104's two held (P1 on its point value, its interval
 containing 0.70), exp105's two held (P1 at its bar), exp106's P1 held (on 2 of 3 cells, one of the two blind),
-exp107's P2 held, and exp108 and exp109 were report-only.}
+exp107's P2 held, exp108 and exp109 were report-only, and exp110's three held (P3(b) fragile).}
 \label{tab:failed}
 \end{table}
 
@@ -1201,8 +1237,11 @@ Ai2's expert-placed points (exp98) and one transfer test graded at the plots of 
 (exp99), both through the v1-era olmoearth\_run configuration with runner and rslearn versions the record chose, not
 Ai2's lock or the current rslearn prediction, and the record's own v1.2 fine-tune of the same task, run over the same
 two datasets with rslearn~0.1.17's prediction (exp103); and Ai2's Forest Loss Driver model, run with rslearn at 689
-MapBiomas Alerta alerts in two of its ten classes against the analysts' drivers (exp104). The ranking has been graded on four products' own confidence: Dynamic World's, LCMAP's, CGLS-LC100's and
-ODSE-LULC's. The hand-labelled testbeds are mostly binary water
+MapBiomas Alerta alerts in two of its ten classes against the analysts' drivers (exp104); and one deployed product of
+another organisation outside land cover, FTW's 2nd-edition field map, at 1,295 FTW benchmark test chips in four
+European countries against masks from parcel declarations and LPIS blocks, a benchmark split whose countries' train
+chips trained the map's model and most likely the second map's (exp110). The ranking has been graded on five
+products' own confidence: Dynamic World's, LCMAP's, CGLS-LC100's, ODSE-LULC's and FTW's field map's. The hand-labelled testbeds are mostly binary water
 tasks, on which the margin, one minus the top probability and entropy coincide, and the fine-tuned evidence is FT-AWF's
 41 errors on 344 points with Forest Loss Driver report-only \claim{fine-tuned-model-audit}, FT-AWF's re-run at 259 of
 those points, and its 2017 map at 271 TimeSync plots, whose missing plots are not missing at random and whose two

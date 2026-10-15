@@ -47,6 +47,14 @@ all, with the evidence.
   trained: its confidence ranked its disagreements with the analysts' drivers at a design-weighted
   AUROC of 0.770 (bar 0.70 on the point value; the interval reaches 0.682), and a 10% review held
   47.5% of them. <!-- claim:exp104-forest-loss-confidence-ranks-the-disagreements -->
+- **Another organisation's product.** FTW's 2nd-edition global field map, a deployed product
+  outside land cover, read at 1,295 test chips of the FTW benchmark in four European countries
+  against parcel declarations and LPIS blocks: its own probability ranked its window errors at an
+  AUROC of 0.837 to 0.936, and met the preregistered ranking bar in 3 of 4 countries. <!-- claim:exp110-ftw-map-confidence-ranks-its-window-errors -->
+  The error-rate interval, the certified zone and the comparison of two maps kept their
+  guarantees. <!-- claim:exp110-ftw-labelled-routes-keep-their-guarantees -->
+  100 labels drawn where it and FTW's PRUE B3 model differ named the better-agreeing map with
+  probability at least 0.858 in 3 of 4 countries, B3 in two of them. <!-- claim:exp110-ftw-which-map-at-100-labels -->
 - **Error rate.** From 300 randomly drawn windows, a 95% Wilson interval held the true rate in
   93.3% to 96.1% of 2,000 repeated draws, on each of the suite's seven segmentation tasks. <!-- claim:design-based-interval-is-honest -->
   `estimate` now prints the exact hypergeometric interval instead, which covers at least 95% by
