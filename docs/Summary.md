@@ -59,8 +59,8 @@ all, with the evidence.
 - **A blind transfer test.** At 890 fresh TimeSync 2017 plots in Kenya and Tanzania, drawn and
   frozen before any prediction, the v1.2 fine-tune's confidence ranked its errors at a region
   AUROC of 0.729, above the 0.70 bar that exp99 missed: the earlier miss did not replicate. <!-- claim:exp111-v12-ranking-reaches-the-bar-at-fresh-plots -->
-  Standardised to exp99's label mix, as preregistered, most confident errors were still the
-  grass/shrub definitional pair (0.611); weighted by region the pair's share is 0.334. <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
+  Standardised to exp99's label mix, as preregistered, most confident errors under the one-to-one
+  crosswalk were still the grass/shrub definitional pair (0.611); weighted by region the pair's share is 0.334. <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
   Ai2's v1 checkpoint did not reproduce its own predictions under the current rslearn (14 of 259
   points change class), a finding for anyone rerunning a deployed model on a newer library. <!-- claim:exp111-v1-does-not-reproduce-exp98-under-rslearn-0117 -->
 - **Error rate.** From 300 randomly drawn windows, a 95% Wilson interval held the true rate in

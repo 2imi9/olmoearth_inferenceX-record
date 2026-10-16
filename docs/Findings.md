@@ -367,7 +367,7 @@ errors at a region AUROC of 0.729 (90% interval 0.701 to 0.758, its lower end on
 replicate there. <!-- claim:exp111-v12-ranking-reaches-the-bar-at-fresh-plots -->
 Standardised to exp99's label mix, as preregistered, the grass/shrub pair was still most of the confident STRICT errors
 (0.611; 0.334 weighted by region). <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
-By the page's frozen reading the miss was local to the plots near the AWF area, and exp109's report-only diagnosis of
+By exp111's frozen reading the miss was local to the plots near the AWF area, and exp109's report-only diagnosis of
 those plots (most confident STRICT errors on that pair, ranked near chance) describes them, not the transfer. Why the two
 samples differ is not separated: the fresh plots lie farther away and hold more non-grassland land. See [the record](results/comparisons.md#a-blind-transfer-test-of-the-awf-fine-tunes-at-fresh-timesync-plots-exp111).
 

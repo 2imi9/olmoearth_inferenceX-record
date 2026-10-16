@@ -149,7 +149,9 @@ reference maps on narrow channels (exp15).
   year, the place or the legend caused it. A preregistered blind test at
   890 fresh plots more than 100 km from the area did not repeat the miss
   for v1.2 (AUROC 0.729, interval 0.701 to 0.758), though most confident
-  errors there were still the grass/shrub legend pair (exp111). Ai2's v1
+  errors under the one-to-one crosswalk there were still the grass/shrub
+  legend pair when standardised to exp99's label mix (0.611; 0.334 weighted
+  by region) (exp111). Ai2's v1
   checkpoint did not reproduce its earlier predictions under rslearn 0.1.17
   (exp111), so pin the library version when rerunning a fine-tuned model.
   Forest Loss Driver, graded at

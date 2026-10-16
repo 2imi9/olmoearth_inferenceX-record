@@ -61,9 +61,9 @@ not repeat the miss: the v1.2 fine-tune's confidence ranked its errors at 0.729 
 lower end on the bar), and Ai2's v1 checkpoint, which did not reproduce its earlier predictions under the current
 rslearn, was reported only. On a second task, Ai2's Forest Loss Driver model at a stratified sample of 689 Amazon alerts
 MapBiomas Alerta published in 2026, the confidence ranked the disagreements at 0.770, at or above the bar of 0.70 on the point value
-(interval 0.682 to 0.855), but most of that comes from the 53 disagreements in which the model chose a class the
-reference does not record (0.945); the 18 confusions between the two classes the alerts were sampled from ranked at
-0.400, as confident as the correct alerts. On another
+(interval 0.682 to 0.855); post hoc, the 53 disagreements in which the model chose a class the reference does not
+record ranked at 0.945 and the 18 confusions between the two classes the alerts were sampled from at 0.400, below
+chance and as confident as the correct alerts. On another
 organisation's deployed product outside land cover, FTW's global field map at 1,295 benchmark test chips in four
 European countries, the map's own probability ranked its window errors at AUROC 0.837 to 0.936, meeting the
 preregistered bar in 3 of 4 countries, and the labelled routes kept their guarantees. On three published
@@ -74,7 +74,7 @@ against 6.0\%), though not on CropHarvest China 6; given a raster of input condi
 samples and certifies each condition on its own. The random-sample interval is exact; it remains valid when a reviewer cannot judge some windows, and
 widens to sharp bounds for a reviewer whose error rates the user states; the bounds, their sharpness and the transfer
 of coverage are proved in Lean (proofs archived at v1.9.0 and not built by the continuous integration), and the
-package's own intervals are checked numerically. The certified zone met its
+monotonicity of the package's own intervals is checked numerically. The certified zone met its
 guarantee on all 110 graded cells. Over 2,514 pairs of encoder maps, 100 labels drawn among the windows where two maps
 differ named the more accurate map on 60.3\% of draws, against 12.7\% for 100 labels drawn from the whole map; on the
 1,709 pairs that differ on more than 100 windows, where the labels are a sample rather than all of them, 42.8\%
@@ -879,7 +879,7 @@ countries \claim{exp110-ftw-map-confidence-ranks-its-window-errors}. The three c
 with probability at least 0.957 in all ten cells, certify's zone was wrong more often than $\alpha = 0.05$ on at most
 4.0\% of 2,000 draws, and labels drawn where two maps differ named the worse-agreeing one with probability at most
 0.0036 \claim{exp110-ftw-labelled-routes-keep-their-guarantees}. At 300 labels the median certified share was 0.40,
-0.45, 0.90 and 0 (Sweden), a quarter or more in 3 of 4 against a preregistered 2 of 4, but fragile: each country certifies any zone
+0.45, 0.90 and 0 (Sweden), a quarter or more in 3 of 4 against a preregistered at least 2 of 4, but fragile: each country certifies any zone
 with an exact probability of 0.484 to 0.525, so each median sits on that edge, and 22\% to 51\% of the windows sit at
 confidence exactly 1, where the package's tie rule (raster order), not evidence, decides which enter a zone
 \claim{exp110-ftw-certified-share-at-300-labels}. With 100 labels drawn where the map and FTW's PRUE B3 model, run by
@@ -907,8 +907,8 @@ bar exp99 missed, so the predicted miss did not replicate; the lower end sits at
 be above the bar either \claim{exp111-v12-ranking-reaches-the-bar-at-fresh-plots}. Standardised to exp99's label
 mix, as preregistered, the grass/shrub definitional pair was 0.611 of the confident STRICT errors (interval 0.438 to 0.768;
 13 of 25 unweighted), as exp109 diagnosed; weighted by region it is 0.334, and the map's montane forest class
-holds the largest region-weighted share of the confident STRICT-only errors (0.469), so the diagnosis holds under the
-preregistered weighting only
+holds the largest region-weighted share of the confident STRICT-only errors (0.469), so the diagnosis holds
+standardised and unweighted, not region-weighted
 \claim{exp111-v12-grass-shrub-pair-is-most-confident-strict-errors}. The confidence was not blind to the STRICT-only
 errors (0.656 against the predicted at most 0.65) \claim{exp111-v12-strict-only-errors-rank-just-above-the-bar}, and a 20-label
 per-class audit would flag the pair with probability 0.287, not more often than not
@@ -1167,7 +1167,7 @@ the error rate the prefix rule returned no zone on 73\% to 97\% of draws on the 
 estimate. The package takes upper bounds on the two rates from the user and returns the error rates consistent with them
 and with the sample's interval; the bounds are sharp, and they and the transfer of coverage are proved in Lean~4
 (Section~\ref{sec:estimate}), in proofs that the continuous integration does not build and that do not cover the
-package's own intervals, which the tests check numerically. Windows the reviewer cannot judge widen the interval to cover any choice of them. These
+monotonicity of the package's own intervals, which the tests check numerically. Windows the reviewer cannot judge widen the interval to cover any choice of them. These
 are statements about rates the user gives. The one reviewer whose rates were measured, a vision-language model on 60
 calibration windows, missed 14 of the 19 map errors it judged (74\%), and the widened interval ran from 0 to 100\%
 \claim{exp91-vlm-reviewer-shares-the-maps-errors}. No human reviewer's rates have been measured, and \code{certify}
@@ -1236,10 +1236,18 @@ Table~\ref{tab:failed} lists the failed predictions of exp77 to exp111.
 \setlength{\LTcapwidth}{\linewidth}
 \setlength{\LTpre}{6pt}
 \begin{longtable}{@{}l>{\raggedright\arraybackslash}p{0.385\linewidth}>{\raggedright\arraybackslash}p{0.385\linewidth}@{}}
+\caption{Preregistered predictions of exp77 to exp111 recorded as failed or failed as written. exp89 was report-only by
+an amendment made before any result, exp90 was not preregistered, exp100 applied a fixed rule with no predictions,
+exp102 trained a model, the predictions of exp92, exp93, exp94, exp96 (at its preregistered seed) and exp97 held,
+exp103's others held (its review prediction on the point value), exp104's two held (P1 on its point value, its interval
+containing 0.70), exp105's two held (P1 at its bar), exp106's P1 held (on 2 of 3 cells, one of the two blind),
+exp107's P2 held, exp108 and exp109 were report-only, exp110's three held (P3(b) fragile), and exp111's P2(a) held,
+graded for v1.2, with v1 report-only after it failed its gate on rslearn 0.1.17.}\label{tab:failed} \\
 \toprule
 Test & Predicted & Observed \\
 \midrule
 \endfirsthead
+\multicolumn{3}{@{}l}{\emph{Table~\ref{tab:failed} (continued)}} \\
 \toprule
 Test & Predicted & Observed \\
 \midrule
@@ -1248,14 +1256,6 @@ Test & Predicted & Observed \\
 \multicolumn{3}{r@{}}{\emph{continued on the next page}} \\
 \endfoot
 \bottomrule
-\addlinespace
-\caption{Preregistered predictions of exp77 to exp111 recorded as failed or failed as written. exp89 was report-only by
-an amendment made before any result, exp90 was not preregistered, exp100 applied a fixed rule with no predictions,
-exp102 trained a model, the predictions of exp92, exp93, exp94, exp96 (at its preregistered seed) and exp97 held,
-exp103's others held (its review prediction on the point value), exp104's two held (P1 on its point value, its interval
-containing 0.70), exp105's two held (P1 at its bar), exp106's P1 held (on 2 of 3 cells, one of the two blind),
-exp107's P2 held, exp108 and exp109 were report-only, exp110's three held (P3(b) fragile), and exp111's P2(a) held,
-graded for v1.2, with v1 report-only after it failed its gate on rslearn 0.1.17.}\label{tab:failed} \\
 \endlastfoot
 exp77 P2; P3 & gain $\ge$ 0.5 points on 4 of 7 tasks; gap ranks with gain & loss on 7 of 7; $\rho = -0.49$ \claim{scene-contamination-diagnosis-has-nothing-to-locate} \\
 exp78 P3; P4 & ratio $> 0.94$ at over 30\% error; saving $\le 1.8\times$ & 0.9361; $2.51\times$ \\
@@ -1398,8 +1398,8 @@ unofficial mirror of it.
 \section{Author contributions and use of AI tools}
 \label{sec:ai}
 
-The author, Ziming Qi, set the questions, the preregistered bars and every decision the record attributes to the
-owner. Much of the code, the analysis and the text was drafted with an AI coding assistant, a large-language-model
+The author, Ziming Qi, chose the questions, confirmed the preregistered bars and made every decision the record
+attributes to the owner. Much of the code, the analysis and the text was drafted with an AI coding assistant, a large-language-model
 agent working under the author's direction. The audits and reviews named in the record, among them the finders and the
 second agent of the 1.7.0 bug hunt (Section~\ref{sec:software}), the reviews before each release and the independent
 audits before a result was recorded, were run as separate AI agents, and their outputs were checked against the

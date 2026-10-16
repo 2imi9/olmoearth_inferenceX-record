@@ -9,8 +9,8 @@ date-released: 2026-10-16
 license: Apache-2.0
 repository-code: "https://github.com/2imi9/olmoearth_inferenceX-record"
 abstract: >-
-  The experiments, committed artifacts, claim ledger and technical report behind olmoearth-inferencex 1.12.1. The
-  methods are evaluated on the 24 tasks of Ai2's published embedding suite across 16 encoders; each recorded result is
+  The experiments, committed artifacts, claim ledger and technical report behind olmoearth-inferencex 1.12.2, whose
+  code and API are those of 1.12.1, the release the checks run against. The methods are evaluated on the 24 tasks of Ai2's published embedding suite across 16 encoders; each recorded result is
   linked to a committed artifact and re-checked against it by the test suite.
 preferred-citation:
   type: report
@@ -25,6 +25,6 @@ references:
     authors:
       - family-names: Qi
         given-names: Ziming
-    version: 1.12.1
+    version: 1.12.2
     repository-code: "https://github.com/2imi9/olmoearth_inferenceX"
     url: "https://olmoearth-inferencex.readthedocs.io"
