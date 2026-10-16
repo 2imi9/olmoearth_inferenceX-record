@@ -5530,3 +5530,158 @@
     test checks its exact coverage and which-map probabilities against the package's own functions from its counts.
     Its P3 draws: the run's seeds 110 + r, and the audit's independent set (seed 777). P2 here is the exact coverage
     alone. It changes no verdict and is not a second grade: the page's truth is the 2-class mask.
+
+- id: exp111-v12-ranking-reaches-the-bar-at-fresh-plots
+  statement: "In the record's blind transfer test (exp111, preregistered, frozen 6d80ab7 before any prediction at a fresh plot), at 890 Kenya and Tanzania TimeSync 2017 plots more than 100 km from the AWF area (a draw of 900 from the 3,691-plot pool, 300 Open Grassland, 300 Wooded Grassland and 300 other, none graded before), the record's v1.2 fine-tune of FT-AWF, the graded model, run with rslearn 0.1.17 directly, ranks its STRICT errors (419) at a design-weighted AUROC of 0.729 (90% bootstrap within country x label-group cells 0.701 to 0.758), at or above the bar of 0.70, so preregistered P1(a), a miss below 0.70 as at exp99's 271 plots within 100 km (0.642 for v1.2), does not hold: that miss does not replicate at fresh plots. LENIENT minus STRICT is -0.008 (-0.036 to 0.020), so the legend's share of the ranking that P1(b) predicted is not detected (unweighted the difference is +0.017), and LENIENT's 0.721 (0.690 to 0.751) is not determined against 0.70. The STRICT interval's lower end sits on the bar (0.6999 to 0.7017 over six other resampling streams), so the run does not show the AUROC above 0.70 beyond Monte Carlo noise. v1, report-only, which failed its known-answer gate on this route: 0.730 (0.702 to 0.760), difference -0.009, LENIENT 0.722, the same verdicts."
+  crosscheck: tests/test_exp111.py::test_exp111_recorded_by_a_second_route
+  status: rejected
+  experiments: [exp111]
+  artifacts: [exp/out/exp111_summary.json, exp/out/exp111_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda s, x, v1, x1: S['graded_models'] == ['v12'] and S['draw_sha256'].startswith('3e5506e5')
+      and all(S['verdicts_graded'][k] == {'v12': 'does not hold'} for k in ('P1a', 'P1b', 'P1'))
+      and s['P1a']['strict_below_0.70'] is False and s['P1a']['interval_above_0.50'] is True
+      and round(s['P1a']['value'], 3) == 0.729 and [round(a, 3) for a in s['P1a']['interval90']] == [0.701, 0.758]
+      and round(s['P1b']['value'], 3) == -0.008 and [round(a, 3) for a in s['P1b']['interval90']] == [-0.036, 0.02]
+      and s['lenient_call']['call'] == 'not determined' and round(s['lenient_call']['value'], 3) == 0.721
+      and [round(a, 3) for a in s['lenient_call']['interval90']] == [0.69, 0.751]
+      and (s['point']['n'], s['point']['errors_strict'], s['point']['errors_lenient']) == (890, 419, 229)
+      and round(x['P1']['diff_unweighted'], 3) == 0.017
+      and [round(a, 4) for a in x['strict_lower_end_over_the_other_streams']] == [0.6999, 0.7017]
+      and round(x['P1']['auc_strict'], 9) == round(s['P1a']['value'], 9) and x['verdicts']['P1'] == 'does not hold'
+      and round(v1['P1a']['value'], 3) == 0.73 and [round(a, 3) for a in v1['P1a']['interval90']] == [0.702, 0.76]
+      and round(v1['P1b']['value'], 3) == -0.009 and round(v1['lenient_call']['value'], 3) == 0.722
+      and v1['P1']['verdict'] == x1['verdicts']['P1'] == 'does not hold' and v1['lenient_call']['call'] == 'not determined'
+    )(S['models']['v12'], C['models']['v12'], S['models']['v1'], C['models']['v1']))(A['exp/out/exp111_summary.json'], A['exp/out/exp111_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp111-v12-ranking-reaches-the-bar-at-fresh-plots}
+    - {file: docs/Findings.md, marker: exp111-v12-ranking-reaches-the-bar-at-fresh-plots}
+    - {file: docs/Summary.md, marker: exp111-v12-ranking-reaches-the-bar-at-fresh-plots}
+  note: >-
+    Graded from the run's units files at 6d80ab7 (grade job 1369841) and recorded after an independent audit that
+    recomputed every graded number from the page alone (to 4e-15, the intervals exactly); its scripts became
+    exp/exp111_crosscheck.py, which reruns from the committed units (the run's files without cgls_raw). v1.2 is the
+    graded model by the amendment of 16 October 2026, made after gate A failed for v1 and before any blind prediction.
+    The pool lies farther from the AWF area than exp99's plots and holds more non-grassland land, so place, distance and
+    land cover are not separated; by the page's frozen reading, the miss was local to the plots near the AWF area.
+
+- id: exp111-v12-grass-shrub-pair-is-most-confident-strict-errors
+  statement: "In exp111's blind test (preregistered, graded for the v1.2 fine-tune), the contested legend pair exp109 found at the 271 seen plots, the map's shrubland_savanna where TimeSync says Open Grassland, is again most of the confident STRICT errors at 890 fresh plots: 13 of v1.2's 25 (p1 at or above exp109's cut; 25 is exactly the preregistered floor), a share of 0.611 standardised to the 271's label mix (90% bootstrap 0.438 to 0.768, crossing 0.50), so preregistered P2(a), at least 0.50, holds. 22 of the 25 are STRICT-only (0.881 standardised); the reverse pair, grassland_barren on Wooded Grassland, holds 0.114. The share depends on the weighting: region-weighted it is 0.334, and the class holding the most region-weighted confident STRICT-only errors is montane_forest (0.469), while standardised or unweighted it is shrubland_savanna. v1, report-only: 20 of 40, 0.534 (0.394 to 0.666)."
+  crosscheck: tests/test_exp111.py::test_exp111_recorded_by_a_second_route
+  status: supported
+  experiments: [exp111]
+  artifacts: [exp/out/exp111_summary.json, exp/out/exp111_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda s, x, v1: S['verdicts_graded']['P2a'] == {'v12': 'holds'} and s['P2a']['verdict'] == 'holds'
+      and round(s['P2a']['value'], 3) == 0.611 and [round(a, 3) for a in s['P2a']['interval90']] == [0.438, 0.768]
+      and (s['point']['confident_strict_errors'], s['point']['confident_strict_errors_pair']) == (25, 13)
+      and s['floors']['P2_counts'] is True and x['counts']['confident_strict_only_errors'] == 22
+      and round(s['point']['strict_only_share_of_confident_strict_errors_std'], 3) == 0.881
+      and round(s['point']['reverse_pair_share_std'], 3) == 0.114
+      and round(s['point']['region_weighted']['pair_share'], 3) == 0.334
+      and s['report_only']['class_with_most_confident_strict_only_errors']['class'] == 'montane_forest'
+      and round(s['report_only']['class_with_most_confident_strict_only_errors']['weighted_share'], 3) == 0.469
+      and [x['class_with_most_confident_strict_only_errors'][k]['class'] for k in ('standardised', 'unweighted')] == ['shrubland_savanna'] * 2
+      and min(x['counts']['nearest_p1_above_the_cut'], x['counts']['nearest_p1_below_the_cut']) > 1e-5
+      and round(x['P2']['standardised']['pair_share'], 9) == round(s['P2a']['value'], 9)
+      and v1['P2a']['verdict'] == 'holds' and round(v1['P2a']['value'], 3) == 0.534
+      and [round(a, 3) for a in v1['P2a']['interval90']] == [0.394, 0.666]
+      and (v1['point']['confident_strict_errors'], v1['point']['confident_strict_errors_pair']) == (40, 20)
+    )(S['models']['v12'], C['models']['v12'], S['models']['v1']))(A['exp/out/exp111_summary.json'], A['exp/out/exp111_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp111-v12-grass-shrub-pair-is-most-confident-strict-errors}
+    - {file: docs/Findings.md, marker: exp111-v12-grass-shrub-pair-is-most-confident-strict-errors}
+    - {file: docs/Summary.md, marker: exp111-v12-grass-shrub-pair-is-most-confident-strict-errors}
+  note: >-
+    The share is P2(a) as preregistered, standardised to the 271's label mix (O 97, W 129, X 45) so that the pool's
+    other mix does not move it; the region-weighted reading is reported beside it. The 25 confident STRICT errors sit at
+    the floor; no p1 lies within 2.9e-5 of the cut, so no precision question moves the count. Labels are taken as right:
+    the STRICT-only bucket cannot say whose boundary is right.
+
+- id: exp111-v12-strict-only-errors-rank-just-above-the-bar
+  statement: "In exp111's blind test (preregistered, graded for the v1.2 fine-tune), the confidence ranks v1.2's STRICT-only errors against the STRICT-correct fresh plots at a standardised AUROC of 0.656 (90% bootstrap 0.617 to 0.693) and its LENIENT errors at 0.778 (0.746 to 0.808), a gap of 0.122 (0.083 to 0.162). Two of P2(b)'s three arms hold, but the STRICT-only AUROC exceeds the bar of at most 0.65 by 0.006, with an interval on both sides of it, so preregistered P2(b), and with it P2, does not hold. The STRICT-only errors still rank well below the LENIENT ones and below every product confidence the record graded (0.720 to 0.787), but less near chance than at the 271 seen plots (0.561). The floor of 30 STRICT-only errors counted all of them (190); counted among the confident only (22) it would have left v1.2's P2 without a verdict. v1, report-only: STRICT-only 0.646, LENIENT 0.780, gap 0.135, so P2 holds for v1 as standardised, but region-weighted (0.665) or unweighted (0.653) its STRICT-only arm would fail."
+  crosscheck: tests/test_exp111.py::test_exp111_recorded_by_a_second_route
+  status: rejected
+  experiments: [exp111]
+  artifacts: [exp/out/exp111_summary.json, exp/out/exp111_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda b, x, v1, x1: S['verdicts_graded']['P2b'] == S['verdicts_graded']['P2'] == {'v12': 'does not hold'}
+      and (b['gap_interval_above_0'], b['strict_only_at_most_0.65'], b['lenient_at_least_0.65']) == (True, False, True)
+      and round(b['auc_strict_only_vs_correct'], 3) == 0.656 and round(b['auc_strict_only_vs_correct'] - 0.65, 3) == 0.006
+      and [round(a, 3) for a in b['auc_strict_only_vs_correct_interval90']] == [0.617, 0.693]
+      and round(b['auc_lenient_vs_correct'], 3) == 0.778 and [round(a, 3) for a in b['auc_lenient_vs_correct_interval90']] == [0.746, 0.808]
+      and round(b['gap'], 3) == 0.122 and [round(a, 3) for a in b['gap_interval90']] == [0.083, 0.162]
+      and S['models']['v12']['point']['strict_only'] == 190 and x['counts']['confident_strict_only_errors'] == 22
+      and x['floors']['P2_counts'] is True and x['floors']['P2_counts_if_strict_only_were_counted_among_the_confident'] is False
+      and round(x['P2']['standardised']['auc_strict_only_vs_correct'], 9) == round(b['auc_strict_only_vs_correct'], 9)
+      and v1['P2b']['verdict'] == v1['P2']['verdict'] == 'holds'
+      and [round(v1['P2b'][k], 3) for k in ('auc_strict_only_vs_correct', 'auc_lenient_vs_correct', 'gap')] == [0.646, 0.78, 0.135]
+      and [round(x1['P2'][k]['auc_strict_only_vs_correct'], 3) for k in ('region_weighted', 'unweighted')] == [0.665, 0.653]
+      and x1['strict_only_arm_by_weighting'] == {'standardised': True, 'region_weighted': False, 'unweighted': False}
+    )(S['models']['v12']['P2b'], C['models']['v12'], S['models']['v1'], C['models']['v1']))(A['exp/out/exp111_summary.json'], A['exp/out/exp111_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp111-v12-strict-only-errors-rank-just-above-the-bar}
+    - {file: docs/Findings.md, marker: exp111-v12-strict-only-errors-rank-just-above-the-bar}
+  note: >-
+    A point bar missed by 0.006 with an interval straddling it: the verdict is the frozen rule's, and the measurement
+    does not separate 0.656 from 0.65. The 0.720 to 0.787 range is the page's (products' own confidences on probability
+    samples, exp92 and exp94). v1's verdict is report-only and turns on the weighting.
+
+- id: exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair
+  statement: "In exp111's blind test (preregistered, graded for the v1.2 fine-tune), v1.2's shrubland_savanna confident zone at the fresh plots (76 plots with input) is wrong at a region-weighted 13.8% under STRICT (90% bootstrap 8.1% to 20.4%) and 4.3% under LENIENT (0 to 9.5%). With 20 labels the package's per-class audit calls a class above alpha 0.05 at 4 or more errors (k* = 4), so its note (STRICT above, the crosswalk's LENIENT pairs not) fires with probability 0.287 (0.140 at 15 labels, 0.394 at 30): preregistered P3, at least 0.5, does not hold, against exp109's prediction of 0.81. v1, report-only: 81 plots, 17.6% and 1.3%, P(note) 0.478. Report-only, one literal unweighted draw of 20 labels at v1.2's zone found 4 STRICT errors, all on Open Grassland and none under the also-accept reading, and the note fired; on both models it also fired on montane_forest (7 of 7 and 8 of 8 STRICT errors, all Dense Forest)."
+  crosscheck: tests/test_exp111.py::test_exp111_recorded_by_a_second_route
+  status: rejected
+  experiments: [exp111]
+  artifacts: [exp/out/exp111_summary.json, exp/out/exp111_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda s, x, v1, L12, L1: S['verdicts_graded']['P3'] == {'v12': 'does not hold'} and s['P3']['verdict'] == 'does not hold'
+      and s['P3']['zone_plots'] == 76 and (round(s['P3']['zone_eS'], 3), round(s['P3']['zone_eL'], 3)) == (0.138, 0.043)
+      and [round(a, 3) for a in s['P3']['zone_eS_interval90'] + s['P3']['zone_eL_interval90']] == [0.081, 0.204, 0.0, 0.095]
+      and s['P3']['k_star'] == 4 and round(s['P3']['p_note'], 3) == 0.287
+      and [(r['k_star'], round(r['p_note'], 3)) for r in (s['report_only']['P3']['labels_15'], s['report_only']['P3']['labels_30'])] == [(4, 0.14), (5, 0.394)]
+      and round(x['P3']['labels']['20']['p_note'], 9) == round(s['P3']['p_note'], 9)
+      and (v1['P3']['verdict'], v1['P3']['zone_plots'], round(v1['P3']['zone_eS'], 3), round(v1['P3']['zone_eL'], 3), round(v1['P3']['p_note'], 3)) == ('does not hold', 81, 0.176, 0.013, 0.478)
+      and (L12['2']['n_labelled'], L12['2']['strict_wrong'], L12['2']['strict_verdict'], L12['2']['also_accept_wrong'], L12['2']['note_fires']) == (20, 4, 'above', 0, True)
+      and 'reference classes the alternative accepts (4: 4)' in L12['2']['package_note']
+      and (L12['6']['strict_wrong'], L12['6']['n_labelled'], L12['6']['note_fires'], L1['6']['strict_wrong'], L1['6']['n_labelled'], L1['6']['note_fires']) == (7, 7, True, 8, 8, True)
+      and L12['4']['note_fires'] is False and L1['4']['note_fires'] is False and L1['2']['note_fires'] is False
+    )(S['models']['v12'], C['models']['v12'], S['models']['v1'], S['models']['v12']['report_only']['literal_audit']['per_class'],
+      S['models']['v1']['report_only']['literal_audit']['per_class']))(A['exp/out/exp111_summary.json'], A['exp/out/exp111_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair}
+    - {file: docs/Findings.md, marker: exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair}
+  note: >-
+    P(note) is the audit's operating characteristic computed from the zone's estimated rates (the binomial limit of the
+    package's interval), not twenty labels drawn from the map's pixels. The literal draw is report-only, unweighted
+    (Open Grassland over-represented) and one draw. On grassland_barren the package's note text appears in the literal
+    run under the extended-code reading although note_fires is false; the record quotes note_fires.
+
+- id: exp111-v1-does-not-reproduce-exp98-under-rslearn-0117
+  statement: "Run with rslearn 0.1.17 (olmoearth-pretrain-minimal 0.1.2, torch 2.14.1) on an NVIDIA B200, the GPU model of exp98's run, Ai2's FT-AWF v1 checkpoint does not reproduce exp98's deployment (rslearn 0.0.27, olmoearth_pretrain 0.0.2, torch 2.7.1) at Ai2's 259 validation points: 245 of 259 points the same class (14, 5.4%, change class; exp111's gate needed 98%), 39 with |p1 - exp98's p1| above 0.05 (5 allowed) and a Spearman correlation of the suspicion of 0.916, identically in three jobs (the failed gate 1365118, the passing gate 1369594 and the route diagnostic's formula variant 1369140). v1's own stored temporal table gave 245 (40 above the tolerance), that with the encodings added in float32 245 (40), and without autocast 244 (39), so the table, the encodings' precision and autocast are not the cause, which is not isolated. At exp99's 2017 plots it gave 237 of 263 the same class (89 above, Spearman 0.840, 76 of 91 confident plots kept). v1.2 on the same route reproduced exp103 at 259 of 259 and 262 of 263. So the owner made v1.2 exp111's graded model (16 October 2026, after gate A and before any blind prediction), and v1's blind verdicts are report-only."
+  crosscheck: tests/test_exp111.py::test_exp111_v1_does_not_reproduce_exp98_under_rslearn_0117
+  status: measured
+  experiments: [exp111]
+  artifacts: [exp/out/exp111/records/e111_gate.json, exp/out/exp111/gate_3dd770d/e111_gate.json, exp/out/exp111/records/e111_v1diag.json, exp/out/exp111_crosscheck.json]
+  check: |-
+    (lambda G, F, D, C: G['pass'] is True and F['pass'] is False and G['device']['name'] == F['device']['name'] == 'NVIDIA B200'
+      and (G['device']['job'], F['device']['job']) == ('1369594', '1365118')
+      and all((r['covered_both'], r['same_class'], r['dp1_above_tol'], round(r['spearman_suspicion'], 3)) == (259, 245, 39, 0.916)
+              for r in (G['A']['models']['v1'], F['A']['models']['v1'], D['variants']['formula']))
+      and [(D['variants'][k]['same_class'], D['variants'][k]['dp1_above_tol']) for k in ('table', 'table_fp32buf', 'table_fp32')] == [(245, 40), (245, 40), (244, 39)]
+      and not any(v['would_pass_A1_A2'] for v in D['variants'].values()) and D['variants_failed'] == []
+      and round(C['gate']['v1_share_changing_class_at_gate_A'], 3) == 0.054 and C['gate']['v1_formula_route_the_same_in_three_jobs'] is True
+      and (lambda b: (b['covered_both'], b['same_class'], b['dp1_above_tol'], round(b['spearman_suspicion'], 3),
+                      b['confident_zone']['kept'], b['confident_zone']['known']) == (263, 237, 89, 0.84, 76, 91))(G['B']['models']['v1'])
+      and (G['A']['models']['v12']['same_class'], G['B']['models']['v12']['same_class'], G['B']['models']['v12']['covered_both']) == (259, 262, 263)
+      and G['A']['graded_checks'] == ['A3', 'A4', 'A_floor'] and G['B']['graded_checks'] == ['B2', 'B_floor']
+    )(A['exp/out/exp111/records/e111_gate.json'], A['exp/out/exp111/gate_3dd770d/e111_gate.json'], A['exp/out/exp111/records/e111_v1diag.json'], A['exp/out/exp111_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp111-v1-does-not-reproduce-exp98-under-rslearn-0117}
+    - {file: docs/Findings.md, marker: exp111-v1-does-not-reproduce-exp98-under-rslearn-0117}
+    - {file: docs/Summary.md, marker: exp111-v1-does-not-reproduce-exp98-under-rslearn-0117}
+  note: >-
+    Gate A compares with exp98's committed known answer, so this measures rslearn 0.1.17's route against exp98's
+    pipeline at the same points and imagery route (A', v1 on exp98's own deployment windows in the failed gate, gave the
+    same 245, so the imagery is not the cause). The stack differs in rslearn, olmoearth_pretrain and torch at once; which
+    of them changes v1's predictions was not isolated. Running exp98's stack again needs its environment rebuilt (the
+    scratch purge emptied its CUDA libraries).

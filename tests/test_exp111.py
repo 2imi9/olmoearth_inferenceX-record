@@ -185,3 +185,174 @@ def test_exp111_committed_units_are_the_runs_without_cgls_raw():
         names = [f"{c}:{g}" for c in z["country_names"] for g in z["stratum_names"]]
         drawn = {k: int(((z["country"] == i // 3) & (z["stratum"] == i % 3)).sum()) for i, k in enumerate(names)}
         assert drawn == R["drawn_by_cell"]
+
+
+# ----------------------------------------------------------------------------- recorded numbers (16 October 2026)
+CROSSCHECK = os.path.join(OUT, "exp111_crosscheck.json")
+CROSSCHECK_SCRIPT = os.path.join(ROOT, "exp", "exp111_crosscheck.py")
+RECORDS = os.path.join(E111_OUT, "records")
+GATE_3DD770D = os.path.join(E111_OUT, "gate_3dd770d")
+
+
+def _close(a, b, tol, path="."):
+    """a and b equal in shape, strings and booleans equal, numbers within tol."""
+    if isinstance(a, dict):
+        assert isinstance(b, dict) and set(a) == set(b), (path, sorted(set(a) ^ set(b)))
+        for k in a:
+            _close(a[k], b[k], tol, f"{path}/{k}")
+    elif isinstance(a, list):
+        assert isinstance(b, list) and len(a) == len(b), path
+        for i, (x, y) in enumerate(zip(a, b)):
+            _close(x, y, tol, f"{path}[{i}]")
+    elif isinstance(a, bool) or a is None or isinstance(a, str):
+        assert a == b, (path, a, b)
+    else:
+        assert b == pytest.approx(a, abs=tol), (path, a, b)
+
+
+@recorded
+def test_exp111_recorded_by_a_second_route(tmp_path):
+    """The grade (exp111_summary.json) against exp/exp111_crosscheck.py, written from the independent audit with numpy
+    and scipy (its own weights, weighted AUROC, bootstrap, Clopper-Pearson k* and exact multinomial P(note)), importing
+    neither the grader, the run's modules nor the package: the crosscheck reruns here to its committed output, which
+    agrees with the summary in every count exactly, every point value and interval to 1e-12 (the region's error-rate
+    estimate, the package's own route, to 1e-9) and every verdict; k* agrees with the package's interval. R1 is not
+    recomputed: the committed units do not hold cgls_raw."""
+    import ast
+    import importlib.util
+
+    from oe_inferencex.estimate import hypergeom_interval, interval_verdict
+
+    src = open(CROSSCHECK_SCRIPT, encoding="utf-8").read()
+    imported = set()
+    for node in ast.walk(ast.parse(src)):
+        if isinstance(node, ast.Import):
+            imported |= {a.name.split(".")[0] for a in node.names}
+        elif isinstance(node, ast.ImportFrom):
+            imported.add((node.module or "").split(".")[0])
+    assert not imported & {"oe_inferencex", "exp111_grade", "exp111_blind_transfer", "exp111_jobs"}, imported
+    C, S = _json(CROSSCHECK), _json(SUMMARY)
+    assert C["script_sha256"] == hashlib.sha256(src.encode("utf-8")).hexdigest(), "the committed crosscheck ran"
+    spec = importlib.util.spec_from_file_location("exp111_crosscheck", CROSSCHECK_SCRIPT)
+    xc = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(xc)
+    _close(xc.main(["--out", str(tmp_path / "again.json")]), C, 1e-12)
+
+    # the inputs: the committed units, which are the run's without cgls_raw, and the run's units record
+    for fn, f in C["inputs"]["units"].items():
+        assert f["is_the_committed_file"] and f["run_sha256"] == S["units_sha256"][fn]
+    assert C["inputs"]["units_record_sha256"] == S["units_record_sha256"]
+    assert C["inputs"]["draw_sha256"] == S["draw_sha256"]
+    ch = C["checks"]
+    assert ch["rows"] == 900 and ch["no_cgls_raw_column"] and ch["shared_columns_equal_across_models"]
+    assert ch["label_group_is_the_stratum"] and ch["drawn_by_cell_is_the_records"] and ch["in_gate17_cell"] == 0
+    assert ch["weight_column_is_the_region_weight_over_its_sum_max_abs"] < 1e-15 and ch["weight_column_zero_without_input"]
+    assert ch["crosswalk_sha256"] == S["crosswalk_sha256"]
+    assert ch["with_input_by_cell"] == {k: v["with_input"] for k, v in S["report_only"]["R5_inventory"]["by_label_cell"].items()}
+    for m in ("v1", "v12"):
+        assert ch[f"{m}_wrong_strict_is_the_crosswalk"] and ch[f"{m}_wrong_lenient_is_the_crosswalk"]
+        assert ch[f"{m}_suspicion_is_minus_log_p1_max_abs"] < 1e-12 and ch[f"{m}_ties_in_suspicion"] == 0
+
+    for m in ("v1", "v12"):
+        x, s = C["models"][m], S["models"][m]
+        pt = s["point"]
+        for k in ("n", "errors_strict", "errors_lenient", "correct_strict", "correct_lenient", "strict_only",
+                  "confident", "confident_strict_errors", "confident_strict_errors_pair", "zone_plots"):
+            assert x["counts"][k] == pt[k], (m, k)
+        assert x["floors"] == {**s["floors"], "P2_counts_if_strict_only_were_counted_among_the_confident":
+                               x["floors"]["P2_counts_if_strict_only_were_counted_among_the_confident"]}
+        P1 = x["P1"]
+        for k in ("auc_strict", "auc_lenient", "diff_lenient_minus_strict", "auc_strict_unweighted", "auc_lenient_unweighted"):
+            assert P1[k] == pytest.approx(pt[k], abs=1e-12), (m, k)
+        assert P1["auc_strict_by_every_pair"] == pytest.approx(P1["auc_strict"], abs=1e-12)
+        assert P1["auc_lenient_by_every_pair"] == pytest.approx(P1["auc_lenient"], abs=1e-12)
+        for rule in ("strict", "lenient"):
+            for wn in ("weighted", "unweighted"):
+                c, g = P1["capture_10"][f"{rule}_{wn}"], s["report_only"]["ranking"][rule][wn]
+                assert (c["capture"], c["gap_closed"], c["error_rate"]) == pytest.approx(
+                    (g["capture"]["0.1"], g["gap_closed"]["0.1"], g["error_rate"]), abs=1e-12), (m, rule, wn)
+        st, rw = x["P2"]["standardised"], x["P2"]["region_weighted"]
+        for k, sk in (("pair_share", "pair_share_std"), ("reverse_pair_share", "reverse_pair_share_std"),
+                      ("auc_lenient_vs_correct", "auc_lenient_vs_correct_std"),
+                      ("auc_strict_only_vs_correct", "auc_strict_only_vs_correct_std"), ("gap", "gap_std"),
+                      ("strict_only_share_of_confident_strict_errors", "strict_only_share_of_confident_strict_errors_std")):
+            assert st[k] == pytest.approx(pt[sk], abs=1e-12), (m, k)
+        for k in ("pair_share", "auc_lenient_vs_correct", "auc_strict_only_vs_correct", "gap"):
+            assert rw[k] == pytest.approx(pt["region_weighted"][k], abs=1e-12), (m, k)
+        assert (x["P3"]["zone_eS"], x["P3"]["zone_eL"]) == pytest.approx((s["P3"]["zone_eS"], s["P3"]["zone_eL"]), abs=1e-12)
+        for n in ("15", "20", "30"):
+            mine, theirs = x["P3"]["labels"][n], s["report_only"]["P3"][f"labels_{n}"]
+            assert mine["k_star"] == theirs["k_star"]
+            for k in ("p_note", "p_strict_above", "p_lenient_above"):
+                assert mine[k] == pytest.approx(theirs[k], abs=1e-12), (m, n, k)
+            k = mine["k_star"]                     # the package's interval at N = 10^6 calls k* above alpha, k* - 1 not
+            assert interval_verdict(*hypergeom_interval(k, int(n), 10 ** 6, 0.95), 0.05) == "above"
+            assert interval_verdict(*hypergeom_interval(k - 1, int(n), 10 ** 6, 0.95), 0.05) != "above"
+        for k, v in s["intervals90"].items():
+            if k in x["intervals90"]:
+                assert x["intervals90"][k] == pytest.approx(v, abs=1e-12), (m, k)   # the grade's resamples, exactly
+        assert s["intervals90"]["resamples"] == 2000 and not any(s["intervals90"]["resamples_undefined"].values())
+        v = x["verdicts"]
+        assert {k: v[k] for k in ("P1a", "P1b", "P1", "P2a", "P2b", "P2", "P3")} == {
+            k: s[k]["verdict"] for k in ("P1a", "P1b", "P1", "P2a", "P2b", "P2", "P3")}
+        assert v["lenient_call"] == s["lenient_call"]["call"] == "not determined"
+        assert v["P2b_arms"] == {k: s["P2b"][k] for k in v["P2b_arms"]}
+        lead = s["report_only"]["class_with_most_confident_strict_only_errors"]
+        mine = x["class_with_most_confident_strict_only_errors"]["region_weighted"]
+        assert mine["class"] == lead["class"] and mine["share"] == pytest.approx(lead["weighted_share"], abs=1e-12)
+        for b in ("0", "1", "2"):
+            r, g = x["R2_bands"][b], s["report_only"]["R2_distance_bands"][f"band_{b}"]
+            assert r["plots"] == g["plots"]
+            for rule in ("strict", "lenient"):
+                assert (r[rule]["error_rate"], r[rule]["auroc"]) == pytest.approx(
+                    (g[rule]["error_rate"], g[rule]["auroc"]), abs=1e-12), (m, b, rule)
+        for rule in ("strict", "lenient"):
+            g = s["report_only"]["R4_region_error_rate"][rule]
+            for k in ("estimate", "envelope_missing_right", "envelope_missing_wrong"):
+                assert C["R4"][m][rule][k] == pytest.approx(g[k], abs=1e-9), (m, rule, k)
+        assert x["R5_condition_codes"] == S["report_only"]["R5_inventory"]["condition_codes"][m]
+    assert S["graded_models"] == ["v12"]
+    assert C["verdicts_graded"] == {k: v["v12"] for k, v in S["verdicts_graded"].items()}
+    assert C["models_same_class_share"] == pytest.approx(S["report_only"]["R5_inventory"]["models_same_class_share"], abs=1e-15)
+    assert S["report_only"]["without_plots_in_a_gate17_cell"] == {"plots_in_a_gate17_cell_with_input": 0}
+
+
+@recorded
+def test_exp111_v1_does_not_reproduce_exp98_under_rslearn_0117():
+    """Three jobs ran v1 with the formula's temporal table at gate A's 259 points, each against exp98's committed known
+    answer, and agree: the failed gate (1365118 at 3dd770d), the passing gate (1369594 at 8dc3a01) and the v1 route
+    diagnostic's formula variant (1369140); the diagnostic's three other routes do no better. v1.2 on the same route
+    reproduces exp103. The gate that passed counted v1.2's checks only (the amendment of 16 October 2026), and the
+    blind prediction ran on the gate's GPU model at the frozen commit."""
+    failed, passed = _json(os.path.join(GATE_3DD770D, "e111_gate.json")), _json(os.path.join(RECORDS, "e111_gate.json"))
+    diag = _json(os.path.join(RECORDS, "e111_v1diag.json"))
+    assert (failed["device"]["job"], failed["predict_commit"][:7], failed["pass"]) == ("1365118", "3dd770d", False)
+    assert (passed["device"]["job"], passed["predict_commit"][:7], passed["commit"][:7], passed["pass"]) == (
+        "1369594", "8dc3a01", "8dc3a01", True)
+    assert failed["A"]["checks"] == passed["A"]["checks"] == {"A1": False, "A2": False, "A3": True, "A4": True, "A_floor": True}
+    assert "B" not in failed and passed["A"]["graded_checks"] == ["A3", "A4", "A_floor"]
+    assert passed["B"]["graded_checks"] == ["B2", "B_floor"] and passed["B"]["B2"] and not passed["B"]["B1"]
+    runs = [failed["A"]["models"]["v1"], passed["A"]["models"]["v1"], diag["variants"]["formula"]]
+    assert {(r["covered_both"], r["same_class"], r["dp1_above_tol"], round(r["spearman_suspicion"], 3)) for r in runs} == {
+        (259, 245, 39, 0.916)}
+    assert round(1 - 245 / 259, 3) == 0.054
+    V = diag["variants"]
+    assert [(k, V[k]["same_class"], V[k]["dp1_above_tol"], V[k]["would_pass_A1_A2"]) for k in V] == [
+        ("formula", 245, 39, False), ("table", 245, 40, False), ("table_fp32buf", 245, 40, False),
+        ("table_fp32", 244, 39, False)] and diag["variants_failed"] == []
+    for g in (failed, passed):
+        v12 = g["A"]["models"]["v12"]
+        assert (v12["same_class"], v12["dp1_above_tol"], round(v12["dp1_max"], 3)) == (259, 0, 0.044)
+    b1, b2 = passed["B"]["models"]["v1"], passed["B"]["models"]["v12"]
+    assert (b1["covered_both"], b1["same_class"], b1["dp1_above_tol"], round(b1["spearman_suspicion"], 3)) == (263, 237, 89, 0.84)
+    assert (b1["confident_zone"]["known"], b1["confident_zone"]["kept"]) == (91, 76)
+    assert (b2["same_class"], b2["dp1_above_tol"], round(b2["spearman_suspicion"], 4)) == (262, 1, 0.9995)
+    assert (b2["confident_zone"]["known"], b2["confident_zone"]["kept"]) == (90, 89)
+    pred = _json(os.path.join(RECORDS, "e111_device_predict.json"))
+    assert pred["name"] == passed["device"]["name"] == failed["device"]["name"] == "NVIDIA B200"
+    assert (pred["job"], pred["commit"][:7]) == ("1369838", "6d80ab7")
+    for f in ("e111_versions_gate.json", "e111_versions_predict.json", "e111_versions_v1diag.json"):
+        assert _json(os.path.join(RECORDS, f))["pins"] == {"rslearn": "0.1.17", "olmoearth-pretrain-minimal": "0.1.2",
+                                                            "torch": "2.14.1", "lightning": "2.6.6", "jsonargparse": "4.52.0"}
+    C = _json(CROSSCHECK)["gate"]
+    assert C["v1_formula_route_the_same_in_three_jobs"] and round(C["v1_share_changing_class_at_gate_A"], 3) == 0.054

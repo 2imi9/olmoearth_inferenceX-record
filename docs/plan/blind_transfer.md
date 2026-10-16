@@ -27,6 +27,51 @@ kept). The earlier gate (job 1365118 at 3dd770d, v1 with the formula's table) an
 are in the amendments above. Inventory: blind17 890 of 900 windows with all twelve groups (10 with none), above the 720
 floor; gate17 263 of 309 (exp99 had 271).
 
+**Result, 16 October 2026 (added at recording; the frozen text is unchanged).** Run once at 6d80ab7 (predict 1369838,
+read 1369839, units 1369840, grade 1369841; `exp/out/exp111_summary.json`, records and masked logs in `exp/out/exp111/`)
+and recorded after an independent audit that recomputed every graded number from this page alone (point values to
+4e-15, the intervals exactly, every verdict); its scripts became the second route, `exp/exp111_crosscheck.py`
+(`exp/out/exp111_crosscheck.json`)
+([comparisons](../results/comparisons.md#a-blind-transfer-test-of-the-awf-fine-tunes-at-fresh-timesync-plots-exp111)).
+The committed units files are the run's without the `cgls_raw` column (the owner's decision: 7 rows were linkable to
+public plot ids through country, label and CGLS class and the committed exp94 point file);
+`exp/out/exp111_units_committed.json` holds the run's sha256 beside the committed files'. Floors met: 890 of 900 plots
+with input; v1.2 has exactly 25 confident STRICT errors, the floor. Graded for v1.2:
+- **P1 does not hold.** STRICT AUROC 0.729 (90% bootstrap 0.701 to 0.758), above the 0.70 bar: exp99's ranking miss
+  (0.638; v1.2 0.642) does not replicate at fresh plots. P1(b): LENIENT − STRICT −0.008 (−0.036 to 0.020), the
+  legend's share not detected (not reversed). LENIENT 0.721, not determined. The STRICT lower end is 0.6999 to 0.7017
+  on six other resampling streams, so the AUROC is not shown to be above 0.70 either.
+- **P2 does not hold.** P2(a) holds: the pair's share is 0.611 (0.438 to 0.768). P2(b) fails only on its STRICT-only
+  arm, 0.656 against at most 0.65 (interval 0.617 to 0.693, on both sides of the bar); the gap is 0.122 (0.083 to
+  0.162) and LENIENT 0.778.
+- **P3 does not hold.** P(note) 0.287 at 20 labels; e_S 0.138, e_L 0.043; k* 4; 76 plots in the zone.
+
+v1, report-only (it failed its gate checks on this route, A 245 of 259 and B 237 of 263): P1 does not hold (STRICT
+0.730), P2 holds (pair share 0.534, STRICT-only 0.646; region-weighted 0.665 or unweighted 0.653 would fail P2(b)), P3
+does not hold (0.478). That v1 does not reproduce exp98 under rslearn 0.1.17 is a finding: 14 of Ai2's 259 points
+(5.4%) change class in all three jobs that ran it (gate 1365118, gate 1369594, diagnostic 1369140), and its stored
+table, the encodings' precision and autocast are ruled out; the cause is not isolated.
+
+**Notes at recording (16 October 2026; the frozen text is unchanged).**
+- The amendment of 16 October (8dc3a01) changed the gate's pass rule and the graded scope after gate A's known answers
+  were seen, before any blind data. These lines below still state the old rule and are superseded by it: the gate's
+  "PASS = A1 to A4, gate A's floor, B1 and B2"; under "If a gate fails", "Nothing is predicted at a fresh plot" (v1
+  failed A1, A2 and B1 and still predicted, report-only); P2(a)'s "for both models"; and the gate's row of "Decisions
+  for the owner". Both gate runs and the v1 route diagnostic are reported (comparisons), as is the diagnostic's first
+  attempt, job 1368915, which this page does not name.
+- "The amendments above" in the gates paragraph are below it, under Pins. Diagnostic A′ ran in the failed gate (v1 245
+  of 259 on exp98's own windows) and was skipped in the gate that passed.
+- The R2 band cuts, 330 and 580 km, were computed at the draw (`exp/out/exp111/records/e111_select.json`, before any
+  prediction) but were not written here at freezing. The gate17-cell flag's method and count (0 plots; exp99's 313
+  deployment windows read whole) are in `e111_windows.json`.
+- Under Design weights, "60,574 km² Kenya, 47,105 km² Tanzania" are the parts of exp99's region subtracted from each
+  country, not A′_c; A′_c is 525,129 and 894,400 km² (`e111_select.json`), as the weights used.
+- The floor of 30 STRICT-only errors was applied to all STRICT-only errors (190 for v1.2); counted among the confident
+  only (22) it would have left v1.2's P2 without a verdict.
+- "Nothing polls" (Cost) did not hold overnight: at the owner's request the jobs' states were read with `sacct` every 5
+  to 15 minutes over one persistent ssh connection.
+- The blind predict and read records carry no time or commit; the Slurm logs give both.
+
 - **Allowed before freezing:**
   - the draw (below), which reads only TimeSync 2017 labels, countries and the distance to Ai2's request geometry;
   - the windows, their imagery and the label-free checks (windows, item groups, coverage, condition codes, the count

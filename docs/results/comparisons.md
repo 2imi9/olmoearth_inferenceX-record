@@ -4306,6 +4306,173 @@ confidence, so there the confidence adds little over what the map's own class sh
   the map ships no logits, so a window wholly at 0 or 255 ties at confidence 1. Four European countries, one product,
   one year each: one non-land-cover task, not a general test.
 
+## A blind transfer test of the AWF fine-tunes at fresh TimeSync plots (exp111)
+
+exp99 (v1) and exp103 (the record's v1.2 fine-tune) ranked FT-AWF's errors below the preregistered 0.70 at the 271
+East Africa TimeSync 2017 plots within 100 km of the AWF area (STRICT: 0.638 and 0.642), and exp109, a report-only
+reading of the same plots, put most of the confident STRICT errors on one contested legend pair. exp111
+([preregistration](../plan/blind_transfer.md); bars, floors, gate, sizes and failure allowance confirmed by the owner
+and binding at e52bb59 on 15 October 2026; frozen 6d80ab7 on 16 October 2026 at 11:20 ET, after the gates and before
+the first prediction at a fresh plot, 11:31 ET) asks the same questions blind. The plots are 900 of the 3,691 Kenya and
+Tanzania plots of the same TimeSync sample that lie more than 100 km from Ai2's request geometry (300 Open Grassland,
+300 Wooded Grassland and 300 other, split between the countries in proportion to the pool, seed 111; draw sha256
+`3e5506e5...`, the ids kept off the repository). Their labels had been read before (exp94), but no model's output at
+any of them had. Both models ran through rslearn 0.1.17 directly (olmoearth-pretrain-minimal 0.1.2, torch 2.14.1), on
+124-px windows on the deployment's crop lattice, on NVIDIA B200 GPUs, after a known-answer gate at exp98's and exp99's
+points. 890 of the 900 plots received 2017 input (the 10 without: 3, 1, 0, 1, 2 and 3 by cell), above the floor of 720.
+No drawn plot lies where an output of exp99 or exp103 exists; the flag's method (exp99's 313 deployment windows, read
+whole, and the gate17 cells) is recorded in `exp/out/exp111/records/e111_windows.json`, not on the page. The grade
+ran once at 6d80ab7 (job 1369841; `exp/out/exp111_summary.json`, aggregates only; the jobs' records and masked logs in
+`exp/out/exp111/`). The committed per-plot files, `exp/out/exp111_units_v1.npz` and `exp111_units_v12.npz`, are the
+run's without the `cgls_raw` column, as the owner decided: through country, label and CGLS class, 7 of the 900 rows
+were unique among the Kenya and Tanzania 2017 rows of the committed `exp/out/exp94_eastafrica_points.csv`, so each could
+be linked to a public plot id. `exp/out/exp111_units_committed.json` pairs the run's sha256 (`b7916d06...` for v1 and
+`f8426132...` for v1.2, as the units record and the summary hold them) with the committed files' (`c8962c13...` and
+`5f6c25fc...`); R1 below is quoted from the summary only. Recorded after an independent audit that recomputed every
+graded number from the frozen page alone, without reading the grader: point values to 4e-15, the intervals exactly on
+the grade's resampling stream, every verdict. Its scripts became the page's second route, `exp/exp111_crosscheck.py`,
+which writes `exp/out/exp111_crosscheck.json` from the committed files and imports neither the grader, the run's
+modules nor the package; `tests/test_exp111.py` reruns it and compares it with the summary (counts exactly, values and
+intervals to 1e-12).
+
+**What changed after the decision, and how the run went.**
+- **The graded model and the gate's pass rule (amendment of 16 October 2026, 8dc3a01).** Gate A at 3dd770d (job
+  1365118) failed for v1: 245 of Ai2's 259 points the same class as exp98's (A1 needs 98%), 39 with |Δp1| above 0.05
+  (A2 allows 5), Spearman 0.916. v1.2 reproduced exp103 there at all 259. A report-only diagnostic (job 1369140, after
+  a first attempt, 1368915, whose no-autocast variant exited on its patch) ran three other v1 routes, and none reproduced
+  exp98 (below). The owner then made v1.2 the graded model: the gate now passes on A3, A4, gate A's floor, B2 and gate
+  B's floor, with A1, A2 and B1 computed and reported, and P1 to P3 are graded for v1.2 with v1's verdicts beside. That
+  changed the gate's pass rule and the graded scope after gate A's known answers had been seen, though before any
+  blind prediction; the bars, floors, sizes and allowance did not change. The page's lines that still state the old
+  rule (the gate's "PASS = A1 to A4, gate A's floor, B1 and B2", "If a gate fails ... nothing is predicted at a fresh
+  plot", P2(a)'s "for both models" and the decisions table's gate row) are superseded by that amendment. v1 is
+  therefore a model that failed its original gate checks, and its blind verdicts below are report-only.
+- **The gate that passed** (job 1369594 and gatecheck 1369595 at 8dc3a01, on a B200): v1.2 gate A 259 of 259, none
+  above the tolerance (largest 0.044), Spearman 0.9996; gate B 262 of 263, 1 above, Spearman 0.9995, 89 of its 90
+  confident plots kept. v1 failed all four of B1's checks: 237 of 263, 89 above, Spearman 0.840, 76 of 91 confident
+  plots kept. Diagnostic A′ was skipped in that gate; in the failed gate, v1 on exp98's own deployment windows gave the
+  same 245 of 259, so the imagery is not the cause.
+- **Polling.** The page says nothing polls. Overnight, at the owner's request, the jobs' states were read from Slurm's
+  accounting (`sacct`) every 5 to 15 minutes over one persistent ssh connection; nothing was submitted or changed by it.
+- **Records.** The blind prediction's and read's records carry no time or commit; the masked Slurm logs give both
+  (predict 1369838, read 1369839, units 1369840 and grade 1369841, all at 6d80ab7).
+- **Not on the page as it said.** The distance-band cuts, 330 and 580 km, were computed at the draw
+  (`e111_select.json`, 04:48 UTC on 16 October, before any prediction) but not written on the page at freezing. The
+  page's "60,574 km² Kenya, 47,105 km² Tanzania" are the parts of exp99's region subtracted from each country, not
+  A′_c; A′_c is 525,129 and 894,400 km² (`e111_select.json`), as the weights used. The gates paragraph's "the amendments
+  above" are below it, under Pins.
+
+| | v1.2, graded | v1, report-only | exp109's prediction for the pool (v1.2; v1) | Seen at the 271 (v1.2; v1) |
+|---|---|---|---|---|
+| Plots with input; STRICT / LENIENT errors | 890; 419 / 229 | 890; 440 / 236 | | 271 plots |
+| P1(a): AUROC, STRICT (90% bootstrap) | 0.729 (0.701 to 0.758) | 0.730 (0.702 to 0.760) | 0.664; 0.644 | 0.642; 0.638 |
+| AUROC, LENIENT; the call against 0.70 | 0.721 (0.690 to 0.751); not determined | 0.722 (0.692 to 0.752); not determined | 0.744; 0.704 | 0.730; 0.678 |
+| P1(b): LENIENT − STRICT | −0.008 (−0.036 to 0.020) | −0.009 (−0.035 to 0.018) | +0.080; +0.060 | +0.088; +0.040 |
+| Confident STRICT errors; of them the pair | 25; 13 | 40; 20 | | 22, of them 19; 20, of them 11 |
+| P2(a): the pair's share, standardised | 0.611 (0.438 to 0.768) | 0.534 (0.394 to 0.666) | 0.86; 0.55 | 0.84; 0.56 |
+| AUROC, STRICT-only errors against STRICT-correct | 0.656 (0.617 to 0.693) | 0.646 (0.605 to 0.687) | 0.556; 0.609 | 0.561; 0.601 |
+| AUROC, LENIENT errors against STRICT-correct | 0.778 (0.746 to 0.808) | 0.780 (0.748 to 0.811) | 0.750; 0.716 | 0.741; 0.698 |
+| P2(b): the gap | 0.122 (0.083 to 0.162) | 0.135 (0.097 to 0.175) | | 0.180; 0.097 |
+| shrubland_savanna's confident zone: plots; e_S / e_L | 76; 0.138 / 0.043 | 81; 0.176 / 0.013 | 0.27 / 0.05; 0.22 / 0.10 | 0.33 / 0.01; 0.26 / 0.04 |
+| P3: P(note) at 20 labels (15 / 30) | 0.287 (0.140 / 0.394) | 0.478 (0.264 / 0.628) | 0.81; 0.56 | 0.93; 0.80 |
+| Verdicts | P1 no; P2 no (P2(a) yes, P2(b) no); P3 no | P1 no; P2 yes; P3 no | | |
+
+The pair is the map's shrubland_savanna where TimeSync says Open Grassland. "Confident" is p1 at or above exp109's cut
+(0.99888118198 for v1.2, 0.99875695977 for v1): 161 and 183 of the 890 fresh plots, against 91 of the 271 by
+construction. P2's values are standardised to the 271's label mix; P1's and P3's are region-weighted. The seen values
+are exp109's on exp99's design weights, so against P2's standardised values the comparison is near, not exact.
+
+**P1 (prediction) does not hold for v1.2: exp99's ranking miss does not replicate at fresh plots.** The design-weighted
+AUROC of the confidence for the STRICT errors is 0.729 (90% bootstrap 0.701 to 0.758), at or above the bar of 0.70,
+where exp109 predicted 0.664. Its interval's lower end sits on the bar: 0.701 on the grade's resampling stream and
+0.6999 to 0.7017 on six others (other seeds, a multinomial resampler, all of a cell's resamples drawn at once, the
+cells in label-group order), so the run does not show the AUROC above 0.70 beyond Monte Carlo noise either. LENIENT
+minus STRICT is −0.008 (−0.036 to 0.020): the legend's share of the ranking that P1(b) predicted is not detected
+(unweighted the difference is +0.017; "not detected", not "reversed"). LENIENT's 0.721 is not determined against 0.70.
+v1, report-only, gives the same verdicts: 0.730 (0.702 to 0.760), −0.009, LENIENT 0.722. <!-- claim:exp111-v12-ranking-reaches-the-bar-at-fresh-plots -->
+**P2(a) holds: the contested pair is again most of the confident STRICT errors.** Of v1.2's 25 confident STRICT errors,
+exactly the preregistered floor of 25 (no p1 lies within 2.9e-5 of the cut), 13 are the pair, a standardised share of
+0.611 (0.438 to 0.768, an interval that crosses 0.50), and 22 are STRICT-only (0.881); the reverse pair, grassland_barren
+on Wooded Grassland, holds 0.114. The share depends on the weighting: region-weighted it is 0.334, and the class
+holding the most region-weighted confident STRICT-only errors is montane_forest (0.469; seven plots on Dense Forest),
+while standardised or unweighted it is shrubland_savanna. v1, report-only: 20 of 40, 0.534 (0.394 to 0.666). <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
+**P2(b), and with it P2, does not hold for v1.2, on one arm by 0.006.** The confidence ranks the STRICT-only errors
+against the STRICT-correct plots at 0.656 (0.617 to 0.693) and the LENIENT errors at 0.778 (0.746 to 0.808), a gap of
+0.122 (0.083 to 0.162). The gap's interval lies above 0 and the LENIENT arm clears 0.65, but the STRICT-only AUROC
+exceeds the bar of at most 0.65 by 0.006, with an interval on both sides of it. The STRICT-only errors still rank well
+below the LENIENT ones and below every product confidence the record graded (0.720 to 0.787), but less near chance
+than at the 271 (0.561). The floor of 30 STRICT-only errors counted all of them (190); had it counted only the
+confident ones (22), v1.2's P2 would have had no verdict. v1, report-only: STRICT-only 0.646, LENIENT 0.780, gap 0.135,
+so P2 holds for v1 as standardised; region-weighted (0.665) or unweighted (0.653) its STRICT-only arm would fail. <!-- claim:exp111-v12-strict-only-errors-rank-just-above-the-bar -->
+**P3 does not hold: 20 labels per class do not reliably flag the pair.** v1.2's shrubland_savanna confident zone (76
+plots) is wrong at a region-weighted 13.8% under STRICT (8.1% to 20.4%) and 4.3% under LENIENT (0 to 9.5%), against
+exp109's predicted 27% and 5%. With 20 labels the audit calls the class above α = 0.05 at 4 or more errors (k* = 4),
+so its note fires with probability 0.287 (0.140 at 15 labels, 0.394 at 30), below the bar of 0.5 and exp109's 0.81.
+What limits it is the STRICT side (P(K_S ≥ 4) = 0.296), not genuine errors masking the pair (P(K_L ≥ 4) = 0.009). v1,
+report-only: 81 plots, 17.6% and 1.3%, P(note) 0.478. In the literal run (report-only: one unweighted draw of 20
+labels per class at the fresh plots, Open Grassland over-represented), v1.2's shrubland_savanna zone gave 4 STRICT
+errors, all on Open Grassland and none under the also-accept reading, and the note fired; on both models it also fired
+on montane_forest (7 of 7 and 8 of 8 STRICT errors, all on Dense Forest). <!-- claim:exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair -->
+On grassland_barren the literal run's `package_note` text appears although `note_fires` is false (v1.2: 2 STRICT
+errors in 20, undetermined under both readings): the package wrote it from the extended-code reading, in which
+Otherland counts against grassland_barren, so the record quotes `note_fires`.
+
+**v1 does not reproduce exp98 under rslearn 0.1.17.** Three jobs ran v1 with the formula's temporal table at Ai2's 259
+points and agree: 245 the same class as exp98's (14, 5.4%, change class), 39 above the |Δp1| tolerance, Spearman 0.916
+(the failed gate, the passing gate and the diagnostic's formula variant). The diagnostic's other routes did no better:
+v1's own stored table 245 (40 above), that with the encodings added in float32 245 (40), and no autocast 244 (39), with
+the same confusions (grassland_barren to shrubland_savanna 6, woodland_forest to shrubland_savanna 4). So the stored
+table, the encodings' precision and autocast are ruled out, and the difference lies elsewhere between the two stacks
+(rslearn 0.0.27 against 0.1.17, olmoearth_pretrain 0.0.2 against minimal 0.1.2, torch 2.7.1 against 2.14.1), not
+isolated. Both runs used a B200. At exp99's 2017 plots v1 gave 237 of 263 the same class. v1.2 on the same route
+reproduced exp103 at 259 of 259 and 262 of 263, but v1.2's encoder never uses the additive temporal table, so it shows
+that the pipeline and the GPU repeat, not that the library change is harmless for v1. That the predictions of a
+fine-tuned OlmoEarth checkpoint change with the library version is a finding for Ai2. <!-- claim:exp111-v1-does-not-reproduce-exp98-under-rslearn-0117 -->
+
+**Report-only.**
+- **R1, the CGLS-disagreement order** (from the summary; the committed units do not hold CGLS's class): plots whose
+  class CGLS-LC100's raw 2017 class does not accept, put first, raise the region-weighted AUROC by +0.017 (v1.2, 183
+  plots flagged) and +0.012 (v1, 169) under STRICT, and by +0.063 for both under LENIENT, against +0.060 and +0.055,
+  and +0.163 and +0.141, seen in-sample at the 271. CGLS shares WorldCover's lineage, a pretraining target of both
+  encoders.
+- **R2, distance to the AWF area** (bands at 330 and 580 km; 295, 300 and 295 plots): v1.2's STRICT AUROC is 0.701,
+  0.726 and 0.732 from the nearest band to the farthest, its STRICT error rate 45.3%, 46.2% and 58.0%; v1's AUROC 0.653,
+  0.723 and 0.771. Seen at the 271 (v1.2; v1): 0.674 and 0.656 within 100 km outside the geometry, 0.376 and 0.490 at the
+  27 plots inside it. The bands do not separate distance from landscape.
+- **R4, the region's error rate** (the six cells as strata, the package's interval): v1.2 50.3% under STRICT (40.2% to
+  60.4%) and 31.4% under LENIENT (23.1% to 41.0%); v1 52.4% (42.3% to 62.3%) and 32.2% (24.1% to 41.5%). With the 10
+  plots without input all right or all wrong, each moves by less than 0.8 points.
+- **R5.** The two models give the same class at 83.1% of the fresh plots (82.3% at the 271). Condition codes at the
+  plots with input: 206 clear, 673 some cloud, 11 cloudy.
+
+**Reading.** At fresh plots more than 100 km from the AWF area, the v1.2 fine-tune's confidence ranks its STRICT errors
+at 0.729, within the range of published products' own confidences at probability samples (0.720 to 0.787; exp92,
+exp94) and not at the 0.64 seen near the area, and the LENIENT reading no longer ranks better than the STRICT one. By
+the page's frozen reading of this outcome, the miss was local to the plots near the AWF area, and exp109's diagnosis
+describes those plots, not the transfer. Part of that diagnosis carries over: the contested pair still holds most of
+the confident STRICT errors, and the confidence still ranks the STRICT-only errors below the genuine ones, though no
+longer near chance. Fewer plots are confident (18% and 21% of the fresh plots against a third at the 271), and v1.2's
+zone is wrong under STRICT at 13.8% against 33% seen, so 20 labels per class would name the pair less often than not. The nearest band
+ranks lowest for both models, but place, distance and land cover are not separated. Separately, Ai2's v1 checkpoint
+does not reproduce its earlier deployment under the current rslearn, which made it a report-only model here.
+
+**What it cannot show.**
+- **Whose boundary is right.** The labels are taken as right; the STRICT-only bucket is the crosswalk's and cannot
+  separate a legend convention, a TimeSync interpretation practice and a gap in AWF's labels.
+- **Why the result differs from exp99's.** The pool is farther from the AWF area than exp99's plots and holds more
+  non-grassland land (40% of the pool against 17% at the 271), and the design weights differ; R2 describes, it does not
+  separate.
+- **v1 as Ai2 deployed it.** v1 ran a route that does not reproduce exp98, so its blind verdicts are a different
+  stack's, report-only.
+- **Two confirmations.** The two models share Ai2's labels and recipe and are graded on the same plots.
+- **Verdicts at the bars.** P2(b) misses by 0.006 on a point bar, P2(a)'s interval crosses 0.50, v1.2 sits at the
+  floor of 25 confident STRICT errors, the STRICT AUROC's lower end sits on 0.70, and v1's P2 turns on the weighting.
+- **The process.** The graded model and the gate's pass rule were changed after gate A's known answers were seen,
+  before any blind data; both gate runs and the diagnostic are reported above.
+- **A literal audit of the map.** P3 is the audit's operating characteristic from plot estimates of the zone's rates,
+  not 20 labels drawn from the map's pixels.
+- **Other years, places or legends.** 2017, Kenya and Tanzania, one legend pair, two fine-tunes of one task.
+
 ## A vision-language model as the reviewer (exp91)
 
 **Question.** The labelled routes need a reviewer. Can a general-purpose vision-language model supply the labels from

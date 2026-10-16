@@ -475,12 +475,12 @@ analysts interpreting a simple random sample & LCMAP Reference Data Product v1.2
 Experiments state their predictions and falsification conditions before they run, in their scripts or, for many from
 exp48 on, in a preregistration page (\code{docs/plan}), with dated amendments; four early, exploratory scripts state
 none (exp01, exp18, exp19 and exp32), and results read afterwards are marked as not preregistered here and in the
-ledger. The repository holds 104 experiment scripts named \code{expNN\_*.py},
-covering 92 experiment numbers from exp01 to exp110. The ledger \code{docs/claims.yaml} holds 252 claims, each with a
-statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 84 are supported, 89 measured, 33 mixed, 44 rejected and 2
+ledger. The repository holds 110 experiment scripts named \code{expNN\_*.py},
+covering 93 experiment numbers from exp01 to exp111. The ledger \code{docs/claims.yaml} holds 257 claims, each with a
+statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 85 are supported, 90 measured, 33 mixed, 47 rejected and 2
 superseded, and \code{scripts/claims.py stale} flags only the two superseded ones. After an audit on 23 September 2026
-found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 115 of the
-252 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
+found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 120 of the
+257 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
 name one.
 
 Corrected results appear in their current form. exp78's cluster-corrected arm is now the ratio estimator, which
@@ -874,6 +874,26 @@ boundary pixels account for only part of the errors, and the six verdicts are th
 \claim{exp110-ftw-field-plus-boundary-reading}. The run script was untracked when it ran; its recorded sha256 matches
 the committed file, and an independent recomputation with its own code reproduced every graded number.
 
+\subsection{A blind transfer test}
+\label{sec:res-blind}
+
+exp111 (preregistered, frozen before any prediction at a fresh plot) asks whether exp99's ranking miss under transfer
+and exp109's diagnosis of it hold where no model has looked: 900 Kenya and Tanzania TimeSync 2017 plots more than
+100 km from the AWF area, drawn 300 Open Grassland, 300 Wooded Grassland and 300 other (890 with input), read from
+rslearn 0.1.17 directly after a known-answer gate at the points exp98, exp99 and exp103 graded. The record's v1.2
+fine-tune passed the gate (259 of 259 and 262 of 263 the same class as its earlier runs); Ai2's v1 did not (245 of
+259, 237 of 263), under any route the record tried, so by an amendment made after the gate and before any blind
+prediction v1.2 is graded and v1 reported beside \claim{exp111-v1-does-not-reproduce-exp98-under-rslearn-0117}.
+The confidence ranked the STRICT errors at a region AUROC of 0.729 (90\% bootstrap 0.701 to 0.758), above the 0.70
+bar exp99 missed, so the predicted miss did not replicate; the lower end sits at 0.70, so the AUROC is not shown to
+be above the bar either \claim{exp111-v12-ranking-reaches-the-bar-at-fresh-plots}. The grass/shrub definitional
+pair was 0.611 of the confident STRICT errors, as exp109 diagnosed
+\claim{exp111-v12-grass-shrub-pair-is-most-confident-strict-errors}, but the confidence was not blind to it (0.656
+against the predicted at most 0.65) \claim{exp111-v12-strict-only-errors-rank-just-above-the-bar}, and a 20-label
+per-class audit would flag the pair with probability 0.287, not more often than not
+\claim{exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair}. An independent recomputation from the frozen
+page reproduced every graded number.
+
 \subsection{Estimation from a labelled sample}
 \label{sec:res-estimate}
 
@@ -1132,10 +1152,10 @@ models. The package reads a model's scores after the fact and loads no model. On
 compares two maps, estimates the error rate, certifies a zone, names the more accurate of two maps by an exact
 test and audits each class's confident calls. It refuses some inputs that would void its intervals, such as a review set offered as a random
 sample, though labels from the confident end of a map, or clustered by tile, pass its check. Beside it stands the record
-of Section~\ref{sec:protocol-ledger}: 104 experiment scripts covering 92 experiment numbers from exp01 to
-exp110, and 252 ledger claims, 250 of them checked against a committed artifact; the failed preregistered predictions
-of exp77 to exp110 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
-the place, the legend and the kind of point at once, the confident errors it does not find, the zone that often returns
+of Section~\ref{sec:protocol-ledger}: 110 experiment scripts covering 93 experiment numbers from exp01 to
+exp111, and 257 ledger claims, 255 of them checked against a committed artifact; the failed preregistered predictions
+of exp77 to exp111 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
+the place, the legend and the kind of point at once (which a blind test at fresh plots did not repeat, exp111), the confident errors it does not find, the zone that often returns
 nothing at 300 labels, a which-map design that fell short of practice's z form on nearly equal pairs, and a reviewer
 model that did not help. Other organisations' deployed products outside land cover have been tested once, on one
 field map at benchmark test chips from countries whose train chips trained it (exp110); a product graded at a
@@ -1183,7 +1203,7 @@ their errors, it estimates 0.975 to 0.983 for maps 0.883 to 0.914 accurate, and 
 is 0.83, 0.71 and 0.62 on PASTIS Sentinel-2, MADOS and Sen1Floods11 \claim{consensus-order-recovered-only-where-true-gaps-are-large}.
 Within one family it estimates 0.996 to 0.999 for maps 0.81 to 0.93 accurate
 \claim{within-family-consensus-is-the-unanimous-limit}. An error rate therefore requires a reference.
-Table~\ref{tab:failed} lists the failed predictions of exp77 to exp110.
+Table~\ref{tab:failed} lists the failed predictions of exp77 to exp111.
 
 \begin{table}[h]
 \centering\footnotesize
@@ -1213,14 +1233,18 @@ exp101 P1; P2 & a two-step review holds $\ge 5$ points more STRICT errors than c
 exp103 P1 & exp99's P1 for the record's v1.2 fine-tune & 0.642 STRICT (interval to 0.703), 0.730 LENIENT \claim{exp103-v12-transfer-ranking-misses-under-strict} \\
 exp106 P2 & a second product's flag at least twice as frequent among confident errors as among confident correct rows on all three products & 4.11, 4.96 and 1.45 (CGLS-LC100) \claim{exp106-second-opinion-flags-confident-errors-on-two-of-three} \\
 exp107 P1 & labels where two maps differ name the better-agreeing one at least as often as McNemar's test on a whole-map sample, exact and z form, on 7 of 9 pairs at 100 labels & 8 of 9 (exact), 6 of 9 (z form); the losses on pairs under 1.2 points \claim{exp107-tool-design-against-mcnemar} \\
+exp111 P1 & STRICT AUROC $< 0.70$ at fresh plots, above 0.50; LENIENT above STRICT & 0.729 (0.701 to 0.758); $-0.008$, not detected \claim{exp111-v12-ranking-reaches-the-bar-at-fresh-plots} \\
+exp111 P2(b) & STRICT-only errors against STRICT-correct at most 0.65 & 0.656 (0.617 to 0.693) \claim{exp111-v12-strict-only-errors-rank-just-above-the-bar} \\
+exp111 P3 & a 20-label audit flags the grass/shrub pair with probability $\ge 0.5$ & 0.287 \claim{exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair} \\
 \bottomrule
 \end{tabularx}
-\caption{Preregistered predictions of exp77 to exp110 recorded as failed or failed as written. exp89 was report-only by
+\caption{Preregistered predictions of exp77 to exp111 recorded as failed or failed as written. exp89 was report-only by
 an amendment made before any result, exp90 was not preregistered, exp100 applied a fixed rule with no predictions,
 exp102 trained a model, the predictions of exp92, exp93, exp94, exp96 (at its preregistered seed) and exp97 held,
 exp103's others held (its review prediction on the point value), exp104's two held (P1 on its point value, its interval
 containing 0.70), exp105's two held (P1 at its bar), exp106's P1 held (on 2 of 3 cells, one of the two blind),
-exp107's P2 held, exp108 and exp109 were report-only, and exp110's three held (P3(b) fragile).}
+exp107's P2 held, exp108 and exp109 were report-only, exp110's three held (P3(b) fragile), and exp111's P2(a) held,
+graded for v1.2, with v1 report-only after it failed its gate on rslearn 0.1.17.}
 \label{tab:failed}
 \end{table}
 
@@ -1244,7 +1268,7 @@ chips trained the map's model and most likely the second map's (exp110). The ran
 products' own confidence: Dynamic World's, LCMAP's, CGLS-LC100's, ODSE-LULC's and FTW's field map's. The hand-labelled testbeds are mostly binary water
 tasks, on which the margin, one minus the top probability and entropy coincide, and the fine-tuned evidence is FT-AWF's
 41 errors on 344 points with Forest Loss Driver report-only \claim{fine-tuned-model-audit}, FT-AWF's re-run at 259 of
-those points, and its 2017 map at 271 TimeSync plots, whose missing plots are not missing at random and whose two
+those points, its 2017 map at 271 TimeSync plots, the v1.2 fine-tune at 890 fresh TimeSync plots (exp111), whose missing plots are not missing at random and whose two
 crosswalks differ mostly at a legend boundary AWF does not define, and the v1.2 fine-tune's maps at the same points and
 plots. exp98's equivalence interval, exp99's LENIENT AUROC and least-confident-tenth interval, and exp103's AUROC
 intervals under both rules and its least-confident-tenth interval (0.017 to 0.497) lie at or across their bars, and

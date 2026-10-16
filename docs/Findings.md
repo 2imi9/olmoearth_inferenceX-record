@@ -47,6 +47,17 @@ artifact under `exp/out/`, with its evidence in the [results record](results/com
   100 labels drawn where it and FTW's PRUE B3 model differ named the better-agreeing map with probability at least 0.8
   in 3 of 4 countries (B3 in Belgium and Sweden; both maps' models most likely trained on these countries' train
   chips); the labels are parcel declarations and LPIS blocks taken as right. <!-- claim:exp110-ftw-which-map-at-100-labels -->
+- In a preregistered blind test at 890 fresh Kenya and Tanzania TimeSync 2017 plots more than 100 km from the AWF area,
+  graded for the record's v1.2 fine-tune, the confidence ranked the STRICT errors at a region AUROC of 0.729 (90%
+  interval 0.701 to 0.758): above the 0.70 bar, so exp99's ranking miss (0.638) did not replicate at fresh plots, and the
+  prediction that it would was rejected (exp111). <!-- claim:exp111-v12-ranking-reaches-the-bar-at-fresh-plots -->
+  The grass/shrub definitional pair (shrubland_savanna on TimeSync Open Grassland) was most of the confident STRICT
+  errors, 0.611 standardised to exp99's label mix, as exp109 diagnosed. <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
+  The confidence was not blind to those definitional errors (AUROC 0.656 against the predicted at most 0.65, interval
+  0.617 to 0.693), <!-- claim:exp111-v12-strict-only-errors-rank-just-above-the-bar -->
+  and a 20-label per-class audit would flag the pair with probability 0.29, not more often than not. <!-- claim:exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair -->
+  Ai2's v1 fine-tune did not reproduce its own earlier predictions under rslearn 0.1.17 (14 of 259 points change class;
+  the stored temporal table, the encodings' precision and autocast ruled out), so it was graded report-only. <!-- claim:exp111-v1-does-not-reproduce-exp98-under-rslearn-0117 -->
 - On three published products, disagreement with a second product (Esri) flagged their confident errors 4.1 and 5.0
   times as often as their confident correct rows on two of them and 1.45 times on the third, so the preregistered
   twofold on all three did not hold; a related product (NLCD for LCMAP) meets the ratio too, and most flagged confident
