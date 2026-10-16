@@ -54,6 +54,11 @@ def test_the_page_states_the_codes_numbers():
     assert f["with_input"] == int(0.8 * sum(b111.SIZES.values()))
     assert re.search(r"^MAX_FAILED_SHARE=0$", sh, re.M)
     assert (j111.LEGACY_MAX, j111.LEGACY_EQUAL) == (0.01, 1e-5)
+    # the amendment of 16 October 2026: v1.2 is the graded model, v1 report-only
+    assert b111.GRADED_MODELS == ("v12",) and b111.GRADED_CHECKS == {"A": ("A3", "A4", "A_floor"), "B": ("B2", "B_floor")}
+    for phrase in ("v1.2 is the graded model.", "A3, A4, gate A's floor, B2 (all four checks) and gate B's floor",
+                   "graded for v1.2; v1's verdict is reported beside"):
+        assert phrase in t, phrase
 
 
 def test_the_sizing_record_holds_the_select_steps_pool():

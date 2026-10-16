@@ -161,6 +161,11 @@ ROOTS = {"gate23": {"year": 2023, "prefix": "a", "n": 259},
 MAX_TOTAL_WINDOWS = 1500
 DEPLOY17_WINDOWS = 313                                # exp99's 2017 deployment (its inventory): a read of fewer is partial
 MODELS = {"v1": "output_v1", "v12": "output_v12"}
+# The graded model (docs/plan/blind_transfer.md, amendment of 16 October 2026, the owner's decision after gate A and the
+# v1 route diagnostic): v1 does not reproduce exp98 under rslearn 0.1.17 by any route tried (245 of 259), so the gates'
+# pass and the grade are v1.2's; v1 runs beside, report-only, its checks and verdicts recorded.
+GRADED_MODELS = ("v12",)
+GRADED_CHECKS = {"A": ("A3", "A4", "A_floor"), "B": ("B2", "B_floor")}
 SCL = jobs.SCL
 
 KNOWN = {("gate23", "v1"): os.path.join(OUT, "exp98_units.npz"),
@@ -1028,8 +1033,9 @@ def gate_a(priv, bars=GATE_BARS, known=KNOWN, aprime=True, identity_flags=None):
     c1, c12 = model_checks(out["models"]["v1"], bars), model_checks(out["models"]["v12"], bars)
     floor = bars["floor_with_input_both"]["gate23"]
     out["checks"] = {"A1": c1["class"], "A2": c1["dp1"], "A3": c12["class"], "A4": c12["dp1"],
-                     "A_floor": min(out["models"][m]["covered_both"] for m in MODELS) >= floor}
-    out["pass"] = bool(all(out["checks"].values()))
+                     "A_floor": min(out["models"][m]["covered_both"] for m in GRADED_MODELS) >= floor}
+    out["graded_checks"] = list(GRADED_CHECKS["A"])
+    out["pass"] = bool(all(out["checks"][k] for k in GRADED_CHECKS["A"]))
     out["report_only"] = {"accuracy_within_points": {
         m: abs(out["models"][m]["accuracy_here"] - out["models"][m]["accuracy_known"])
         <= GATE_REPORT_ONLY["accuracy_points"] + 1e-12 for m in MODELS},
@@ -1076,12 +1082,13 @@ def gate_b(priv, bars=GATE_BARS, known=KNOWN, cut=CONFIDENT_CUT):
         for name, ok in model_checks(out["models"][m], bars, zone=True).items():
             out["checks"][f"{tag}_{name}"] = ok
     floor = bars["floor_with_input_both"]["gate17"]
-    out["checks"]["B_floor"] = min(out["models"][m]["covered_both"] for m in MODELS) >= floor
+    out["checks"]["B_floor"] = min(out["models"][m]["covered_both"] for m in GRADED_MODELS) >= floor
     out["B1"] = all(v for k2, v in out["checks"].items() if k2.startswith("B1_"))
     out["B2"] = all(v for k2, v in out["checks"].items() if k2.startswith("B2_"))
+    out["graded_checks"] = list(GRADED_CHECKS["B"])
     out["report_only"] = {m: {k2: out["models"][m][k2] for k2 in ("covered_here", "known_covered", "gained_input",
                                                                    "lost_input")} for m in MODELS}
-    out["pass"] = bool(all(out["checks"].values()))
+    out["pass"] = bool(out["B2"] and out["checks"]["B_floor"])
     return out
 
 
@@ -1613,9 +1620,11 @@ def smoke(out_dir=None, log=print):
                        "B_v1_same_share": gb["models"]["v1"]["same_class_share"]}
         # the designed answers: one of three v1 classes differs (A1 fails; A2, A3, A4 and the floor hold), B agrees
         # everywhere (every B check holds)
+        # and gate A passes (v1 is report-only, amendment of 16 October 2026)
         rec["gate"]["as_designed"] = bool(ga["models"]["v1"]["same_class"] == 2 and not ga["checks"]["A1"]
                                           and ga["checks"]["A2"] and ga["checks"]["A3"] and ga["checks"]["A4"]
-                                          and ga["checks"]["A_floor"] and gb["pass"] and gb["B1"] and gb["B2"])
+                                          and ga["checks"]["A_floor"] and ga["pass"] and gb["pass"] and gb["B1"]
+                                          and gb["B2"])
         # run_gate on a passing synthetic known answer (no unit changed): it passes with the GPU's name and both commits
         # (gatecheck's and the gate job's, from its device record), and does not pass without the gate job's commit
         kn_pass = _smoke_known(priv, tmp, w, differ=False)
@@ -1637,8 +1646,13 @@ def smoke(out_dir=None, log=print):
                                                                     and not g_nc["pass"])}
         # the refusals: gate B after a failed A, the units before freezing
         refused = []
+        kn12 = _smoke_known(priv, tmp, w, model="v12")       # one of v1.2's known answers differs: A3 fails, A fails
+        ga12 = gate_a(priv, bars=sbars, known=kn12, aprime=False)
+        gfile12 = os.path.join(tmp, "gate_v12_fails.json")
+        jobs.write_json(e98_jsonable({"A": ga12}), gfile12)
+        rec["gate"]["v12_failure_fails_A"] = bool(not ga12["checks"]["A3"] and not ga12["pass"])
         try:
-            run_gate("B", priv, gfile, known=kn, commit="smoke")
+            run_gate("B", priv, gfile12, known=kn12, commit="smoke")
         except PermissionError:
             refused.append("gate B after a failed gate A")
         try:
@@ -1699,7 +1713,7 @@ def smoke(out_dir=None, log=print):
                      and rec["select"]["same_sha_twice"] and rec["select"]["smaller_size_is_a_prefix"]
                      and all(v["ok"] for k, v in rec["read"].items() if isinstance(v, dict))
                      and rec["read"]["classes_as_written"] and rec["units"]["same_row_order"]
-                     and rec["gate"]["as_designed"] and len(rec["refusals"]) == 4
+                     and rec["gate"]["as_designed"] and rec["gate"]["v12_failure_fails_A"] and len(rec["refusals"]) == 4
                      and rec["check_draw_accepts_the_page_draw"]
                      and len(rec["sizes_refused"]) == 4
                      and rec["select"]["rerun_keeps_the_same_draw"] and rec["select"]["rerun_refuses_another_draw"]
@@ -1775,6 +1789,8 @@ def smoke_gate_on_committed(tmp, known=KNOWN):
     out["failing_checks"] = fails
     out["as_expected"] = bool(
         out["same"]["A_pass"] and out["same"]["B_pass"] and out["same"]["A_v1_share"] == 1.0
+        # v1 is report-only (amendment of 16 October 2026): a failure of v1's checks alone passes the gate
+        and all(out[t]["A_pass"] and out[t]["B_pass"] for t in ("v12_as_v1", "dp1_six", "zone_five"))
         and fails["v12_as_v1"] == ["A1", "A2", "B1_class", "B1_confident_zone", "B1_dp1", "B1_spearman"]
         and fails["dp1_six"] == ["A2", "B1_dp1"] and fails["zone_five"] == ["B1_confident_zone"])
     return out
@@ -1803,16 +1819,16 @@ def _smoke_read_blind(priv, root, model):
         prereg_status, check_draw = keep, keep_draw
 
 
-def _smoke_known(priv, tmp, w, differ=True):
-    """Synthetic 'committed' units in exp98's and exp99's layouts for the smoke's gate units (differ: one of v1's
-    gate-A known answers differs, so A1 fails)."""
+def _smoke_known(priv, tmp, w, differ=True, model="v1"):
+    """Synthetic 'committed' units in exp98's and exp99's layouts for the smoke's gate units (differ: one of the model's
+    gate-A known answers differs, so A1 fails for v1, A3 for v1.2)."""
     kn = {}
     n23, n17 = len(w["gate23"]), len(w["gate17"])
-    tag = "" if differ else "_same"
+    tag = ("" if model == "v1" else f"_{model}") if differ else "_same"
     for m in MODELS:
         r = _load_read(priv, "gate23", m)
         pred = r["pred"].copy()
-        if m == "v1" and differ:
+        if m == model and differ:
             pred[0] = (pred[0] + 1) % 9                      # one known answer differs
         path = os.path.join(tmp, f"known23_{m}{tag}.npz")
         np.savez(path, names=np.array([u["key"] for u in w["gate23"]]), split=np.array(["val"] * n23),

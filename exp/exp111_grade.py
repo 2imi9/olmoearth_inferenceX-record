@@ -571,11 +571,14 @@ def grade(units, rec, R=BOOT["R"], literal=True, log=print):
         both[p] = ("holds for both models" if all(v == "holds" for v in vs) else
                    "no verdict for a model (below a floor)" if any(v.startswith("no verdict") for v in vs) else
                    "does not hold for both models")
+    # the graded verdicts are v1.2's (amendment of 16 October 2026); both models' are kept beside, report-only
+    graded = {p: {m: models[m][p]["verdict"] for m in b111.GRADED_MODELS} for p in both}
     out = {"experiment": "exp111 grade: P1-P3 per model at the floors, the report-only readings",
            "draw_sha256": rec.get("draw_sha256"), "bars": BARS, "floors": FLOORS, "p3": P3, "bootstrap": BOOT,
            "confident_cut": CUT, "standardised_counts_O_W_X": [STD_COUNTS[g] for g in STRATA], "also_accept": {str(k): v for k, v in ALSO_ACCEPT.items()},
            "extended_code": EXTENDED_CODE, "arm_w": {str(k): list(v) for k, v in ARM_W.items()},
-           "crosswalk_sha256": tsx.crosswalk_record()["sha256"], "verdicts_both_models": both, "models": models,
+           "crosswalk_sha256": tsx.crosswalk_record()["sha256"], "graded_models": list(b111.GRADED_MODELS),
+           "verdicts_graded": graded, "verdicts_both_models_report_only": both, "models": models,
            "report_only": {"without_plots_in_a_gate17_cell": excl, "R2_seen": r2_seen(),
                            "R5_inventory": r5_inventory(units, data)},
            "seconds": round(time.time() - t0, 1)}

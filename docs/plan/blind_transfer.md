@@ -364,6 +364,22 @@ sample's sorted ids, with country and inside flags checked.
 `GATE_BARS` holds exactly these numbers. The gate's GPU and both of its commits must be recorded, or the gate does not
 pass.
 
+**Amended 16 October 2026 (the owner's decision, after gate A at 3dd770d and the v1 route diagnostic, before any blind
+prediction): v1.2 is the graded model.** v1 does not reproduce exp98 under rslearn 0.1.17 by any route tried: the
+report-only diagnostic (job 1369140, at gate A's 259 points) gave 245 of 259 the same class with the formula's table,
+245 with v1's stored table, 245 with that and the encodings added in float32, and 244 with no autocast, each with 39 or
+40 points above the |Δp1| tolerance and the same confusions (grassland_barren to shrubland_savanna 6, woodland_forest to
+shrubland_savanna 4), so the stored table, the encodings' precision and autocast are ruled out and the difference lies
+elsewhere between the two stacks (rslearn 0.0.27 against 0.1.17, olmoearth_pretrain 0.0.2 against minimal 0.1.2, torch
+2.7.1 against 2.14.1; not isolated). So the gates pass on A3, A4, gate A's floor, B2 (all four checks) and gate B's
+floor, counted on v1.2 (`GRADED_MODELS` and `GRADED_CHECKS` in `exp111_blind_transfer.py`); A1, A2 and B1 are computed
+and reported. P1 to P3 are graded for v1.2 (`verdicts_graded` in the grade); v1 still predicts the blind plots and its
+verdicts are reported beside, report-only, as the verdicts of a model that does not reproduce its known answer on this
+route. The bars, floors, sizes and allowance are unchanged. The decision was made after seeing gate A's known answers,
+not any blind plot; both gate runs and the diagnostic are reported beside the result. That a fine-tuned OlmoEarth
+checkpoint's predictions change with the library version (5.4% of the 259 points change class) is itself a finding,
+recorded with the result.
+
 **Report-only beside the gates, never a verdict:**
 
 - the accuracy against Ai2's labels at the 259, beside exp98's 226 and exp103's 227 (within 3 points is not a check:
@@ -434,7 +450,8 @@ The design-weighted (region) AUROC of the suspicion for the errors at the plots 
   noise-level confidence from passing it.
 - **P1(b), the legend's share.** Holds when LENIENT's AUROC minus STRICT's, on the same plots, has a 90% interval above
   **0**.
-- **P1 holds for a model** when (a) and (b) both hold; the prediction is for both models.
+- **P1 holds for a model** when (a) and (b) both hold; the prediction is for both models (amended 16 October
+  2026: graded for v1.2; v1's verdict is reported beside).
 - **LENIENT against 0.70, as a call, not a bar.**
   - "Above" when the 90% interval lies wholly above 0.70.
   - "Below" when it lies wholly below.
@@ -453,7 +470,8 @@ The design-weighted (region) AUROC of the suspicion for the errors at the plots 
     graded on a probability sample (0.720 to 0.787);
   - AUROC(LENIENT errors against STRICT-correct) is at least **0.65**: the confidence still ranks the genuine errors,
     so a degraded or noise-level confidence cannot pass the arm above.
-- **P2 holds for a model** when (a) and (b) both hold; the prediction is for both models.
+- **P2 holds for a model** when (a) and (b) both hold; the prediction is for both models (amended 16 October
+  2026: graded for v1.2; v1's verdict is reported beside).
 - The share of confident STRICT errors that are STRICT-only, the reverse pair (grassland_barren on Wooded Grassland) and
   the region-weighted values are reported.
 
@@ -468,7 +486,8 @@ This is the package's audit (`sample --design audit --per-class 20 --zone-cut <t
   binomial limit), the class is "above" α = 0.05 at 4 or more errors (k* = 4, computed from `hypergeom_interval` and
   `interval_verdict`). The audit's note fires when the STRICT reading is above and the also-accept reading is not.
   - P(note) = P(K_S ≥ 4 and K_L ≤ 3), with (K_L, K_S − K_L) multinomial(20; e_L, e_S − e_L).
-- **Bar:** P(note) at least **0.5** for each model, meaning the audit names the pair more often than not.
+- **Bar:** P(note) at least **0.5** for each model, meaning the audit names the pair more often than not
+  (amended 16 October 2026: graded for v1.2; v1's is reported beside).
   - The component probabilities P(K_S ≥ 4) and P(K_L ≥ 4), the 90% intervals of e_S and e_L, and P(note) at 15 and 30
     labels are reported.
 - **"Clears" means not flagged.** Twenty labels cannot certify a class below 5%: 0 errors in 20 still leaves an upper
