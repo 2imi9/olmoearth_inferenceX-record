@@ -1,0 +1,94 @@
+{
+ "layer": "output_v12",
+ "job": "1369838",
+ "windows": 900,
+ "with_12_groups": 890,
+ "with_output": 890,
+ "missing_output": 0,
+ "output_without_input": 0,
+ "bad_bandset": 0,
+ "bad_header": 0,
+ "sampled": [
+  {
+   "window_index": 0,
+   "finite": true,
+   "min": 1.7463568369180393e-08,
+   "max": 0.9999921321868896,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 2.9972706983016906e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 127,
+   "finite": true,
+   "min": 2.440513213741724e-08,
+   "max": 0.9999920129776001,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.218306119379122e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 254,
+   "finite": true,
+   "min": 2.2527885334966413e-08,
+   "max": 0.9999669790267944,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.55527049578086e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 381,
+   "finite": true,
+   "min": 1.8580816885105378e-08,
+   "max": 0.999990701675415,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 2.942338142020162e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 508,
+   "finite": true,
+   "min": 5.240520408733573e-07,
+   "max": 0.9997556805610657,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.129291599179851e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 635,
+   "finite": true,
+   "min": 4.0393317135567486e-07,
+   "max": 0.9995334148406982,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.4196818887721747e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 762,
+   "finite": true,
+   "min": 2.3700857809672016e-07,
+   "max": 0.9999183416366577,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.2018579076975584e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 889,
+   "finite": true,
+   "min": 6.290194960456574e-06,
+   "max": 0.9973799586296082,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 2.492124622222036e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  }
+ ],
+ "ok": true
+}

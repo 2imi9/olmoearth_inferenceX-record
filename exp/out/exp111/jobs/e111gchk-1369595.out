@@ -1,0 +1,19 @@
+== <n>-10-16T11:07:07-04:00 job <n> on w<n>: exp111 gatecheck, commit 8dc3a014f<n>e5cb9d9c856ea17e1c<n>a1dd, page draft ==
+no olmoearth_run or olmoearth-runner in this Python
+{"gate_job_records": "one job's, all passing", "predict_commit": "8dc3a014f394"}
+200 of 259 windows read (29 s)
+{"root": "gate23", "model": "v1", "units": 259, "covered": 259, "ok": true}
+200 of 259 windows read (17 s)
+{"root": "gate23", "model": "v12", "units": 259, "covered": 259, "ok": true}
+{"units": 259, "identical": 135, "differ": 124, "no_deployment_window": 0, "no_items_here": 0, "no_items_there": 0, "same_scenes_other_order": 0}
+{"stage": "A", "checks": {"A1": false, "A2": false, "A3": true, "A4": true, "A_floor": true}, "pass": true}
+200 of 263 windows read (28 s)
+{"root": "gate17", "model": "v1", "units": 309, "covered": 263, "ok": true}
+200 of 263 windows read (17 s)
+{"root": "gate17", "model": "v12", "units": 309, "covered": 263, "ok": true}
+{"units": 309, "identical": 203, "differ": 106, "no_deployment_window": 0, "no_items_here": 0, "no_items_there": 0, "same_scenes_other_order": 0}
+{"stage": "B", "checks": {"B1_class": false, "B1_dp1": false, "B1_spearman": false, "B1_confident_zone": false, "B2_class": true, "B2_dp1": true, "B2_spearman": true, "B2_confident_zone": true, "B_floor": true}, "pass": true}
+== <n>-10-16T11:10:22-04:00 the gate passed: e111_out/e111_gate.json ==
+on scratch: 109K	<out>
+on scratch: 9.7G	<private>
+removed layers/output_e111_v1/ from 0 window(s)

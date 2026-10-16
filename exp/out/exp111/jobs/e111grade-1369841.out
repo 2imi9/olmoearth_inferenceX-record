@@ -1,0 +1,8 @@
+== <n>-10-16T11:48:49-04:00 job <n> on w<n>: exp111 grade, commit 6d80ab<n>ad6def27a1fae85c<n>ec164c422b, page frozen ==
+{"draw": "the page's", "sha256": "3e<n>e51f4d<n>"}
+grade-smoke: 9 s
+{"v1": {"P1": "does not hold", "P2": "holds", "P3": "does not hold"}, "v12": {"P1": "does not hold", "P2": "does not hold", "P3": "does not hold"}}
+<out>/grade/exp111_summary.json
+== <n>-10-16T11:49:00-04:00 done: e111_out/grade/exp111_summary.json ==
+on scratch: 240K	<out>
+on scratch: 11G	<private>

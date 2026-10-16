@@ -1,0 +1,11 @@
+== <n>-10-16T04:51:04-04:00 job <n> on w<n>: exp111 gatecheck, commit 3dd770db4b704ee<n>e284c0c41e<n>ad043d, page draft ==
+no olmoearth_run or olmoearth-runner in this Python
+{"gate_job_records": "one job's, all passing", "predict_commit": "3dd770db4b70"}
+200 of 259 windows read (31 s)
+{"root": "gate23", "model": "v1", "units": 259, "covered": 259, "ok": true}
+200 of 259 windows read (21 s)
+{"root": "gate23", "model": "v12", "units": 259, "covered": 259, "ok": true}
+{"units": 259, "identical": 135, "differ": 124, "no_deployment_window": 0, "no_items_here": 0, "no_items_there": 0, "same_scenes_other_order": 0}
+{"stage": "A", "checks": {"A1": false, "A2": false, "A3": true, "A4": true, "A_floor": true}, "pass": false}
+gate A did not pass (exit 4): gate B is not read; nothing blind is predicted
+removed layers/output_e111_v1/ from 0 window(s)

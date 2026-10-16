@@ -1,0 +1,12 @@
+{
+ "dataset.json": {
+  "sha256": "b8a4f5d6389b3344ade31436107e89b1df426a8955f54852c073ba324e2e1da0",
+  "added_key": "layers.sentinel2.data_source.query_config.per_period_mosaic_reverse_time_order",
+  "added_value": true,
+  "equals_e98_without_it": true
+ },
+ "e98_dataset.json": "ad076afb56cf3ba2018a3148400d0684ddd449fce54cd208a12e2693249dd328",
+ "scl_dataset.json": "e3d8de8b0d9dad5facef07098389075854b20da42381a9dd3926f09704387a01",
+ "model.yaml": "b8af519ae70cc6ce9b6654cc254808ea6812dd12ad2b0360cd2aadc4099f5e9e",
+ "ok": true
+}

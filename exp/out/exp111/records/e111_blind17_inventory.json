@@ -1,0 +1,85 @@
+{
+ "root": "blind17",
+ "total": {
+  "windows": 900,
+  "with_12_groups": 890,
+  "partial": 0,
+  "none": 10,
+  "prepared_rejected": 10,
+  "unprepared": 0,
+  "materialize_failed": 0,
+  "quarantined": 0,
+  "quarantined_earlier_now_with_input": 0
+ },
+ "by_stratum": {
+  "kenya:O": {
+   "windows": 154,
+   "with_12_groups": 151,
+   "partial": 0,
+   "none": 3,
+   "prepared_rejected": 3,
+   "unprepared": 0,
+   "materialize_failed": 0,
+   "quarantined": 0,
+   "quarantined_earlier_now_with_input": 0
+  },
+  "kenya:W": {
+   "windows": 152,
+   "with_12_groups": 151,
+   "partial": 0,
+   "none": 1,
+   "prepared_rejected": 1,
+   "unprepared": 0,
+   "materialize_failed": 0,
+   "quarantined": 0,
+   "quarantined_earlier_now_with_input": 0
+  },
+  "kenya:X": {
+   "windows": 133,
+   "with_12_groups": 133,
+   "partial": 0,
+   "none": 0,
+   "prepared_rejected": 0,
+   "unprepared": 0,
+   "materialize_failed": 0,
+   "quarantined": 0,
+   "quarantined_earlier_now_with_input": 0
+  },
+  "tanzania:O": {
+   "windows": 146,
+   "with_12_groups": 145,
+   "partial": 0,
+   "none": 1,
+   "prepared_rejected": 1,
+   "unprepared": 0,
+   "materialize_failed": 0,
+   "quarantined": 0,
+   "quarantined_earlier_now_with_input": 0
+  },
+  "tanzania:W": {
+   "windows": 148,
+   "with_12_groups": 146,
+   "partial": 0,
+   "none": 2,
+   "prepared_rejected": 2,
+   "unprepared": 0,
+   "materialize_failed": 0,
+   "quarantined": 0,
+   "quarantined_earlier_now_with_input": 0
+  },
+  "tanzania:X": {
+   "windows": 167,
+   "with_12_groups": 164,
+   "partial": 0,
+   "none": 3,
+   "prepared_rejected": 3,
+   "unprepared": 0,
+   "materialize_failed": 0,
+   "quarantined": 0,
+   "quarantined_earlier_now_with_input": 0
+  }
+ },
+ "bytes": 4276555625,
+ "quarantine_runs": 0,
+ "counted_utc": "2026-10-16T07:50:36+00:00"
+}

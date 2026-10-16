@@ -1,0 +1,11 @@
+{
+ "windows": 2,
+ "twelve_groups": 2,
+ "newest_first": 2,
+ "reflectance_plausible": 2,
+ "medians_b02": [
+  521.0,
+  532.0
+ ],
+ "ok": true
+}

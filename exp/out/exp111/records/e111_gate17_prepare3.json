@@ -1,0 +1,17 @@
+{
+ "layer": "sentinel2",
+ "summary": {
+  "layer": "sentinel2",
+  "prepared": 0,
+  "skipped": 263,
+  "rejected": 46,
+  "failed": 0
+ },
+ "total_windows_requested": 309,
+ "failed_added_from_earlier_record": 0,
+ "denominator": 309,
+ "max_failed_share": 0.0,
+ "failed_total": 0,
+ "failed_share": 0.0,
+ "ok": true
+}

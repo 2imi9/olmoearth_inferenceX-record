@@ -1,0 +1,93 @@
+{
+ "experiment": "exp111 windows",
+ "utc": "2026-10-16T04:50:05Z",
+ "window_px": 124,
+ "cell_px": 1024,
+ "crop_px": 16,
+ "stride_px": 12,
+ "group": "e111",
+ "roots": {
+  "gate23": {
+   "windows": 259,
+   "year": 2023,
+   "time_range": [
+    "2023-01-01T00:00:00+00:00",
+    "2023-12-31T00:00:00+00:00"
+   ],
+   "config_sha256": "b8a4f5d6389b3344ade31436107e89b1df426a8955f54852c073ba324e2e1da0",
+   "root": "written",
+   "epsg": {
+    "32737": 259
+   },
+   "distinct_cells": 56,
+   "lead_px_min": 0,
+   "lead_px_max": 118,
+   "flush_with_a_cell_edge": 71
+  },
+  "gate17": {
+   "windows": 309,
+   "year": 2017,
+   "time_range": [
+    "2017-01-01T00:00:00+00:00",
+    "2017-12-31T00:00:00+00:00"
+   ],
+   "config_sha256": "b8a4f5d6389b3344ade31436107e89b1df426a8955f54852c073ba324e2e1da0",
+   "root": "written",
+   "epsg": {
+    "32737": 299,
+    "32736": 10
+   },
+   "distinct_cells": 263,
+   "lead_px_min": 0,
+   "lead_px_max": 123,
+   "flush_with_a_cell_edge": 77
+  },
+  "blind17": {
+   "windows": 900,
+   "year": 2017,
+   "time_range": [
+    "2017-01-01T00:00:00+00:00",
+    "2017-12-31T00:00:00+00:00"
+   ],
+   "config_sha256": "b8a4f5d6389b3344ade31436107e89b1df426a8955f54852c073ba324e2e1da0",
+   "root": "written",
+   "epsg": {
+    "32736": 347,
+    "32637": 193,
+    "32737": 304,
+    "32636": 55,
+    "32735": 1
+   },
+   "distinct_cells": 876,
+   "lead_px_min": 0,
+   "lead_px_max": 123,
+   "flush_with_a_cell_edge": 195,
+   "by_cell": {
+    "kenya:O": 154,
+    "kenya:W": 152,
+    "kenya:X": 133,
+    "tanzania:O": 146,
+    "tanzania:W": 148,
+    "tanzania:X": 167
+   }
+  }
+ },
+ "total": 1468,
+ "blind_plots_in_a_gate17_cell": {
+  "n": 0,
+  "n_by_own_cell_rule": 0,
+  "n_by_deployment_windows": 0,
+  "deployment_windows_read": 313,
+  "deployment_2017": "read whole",
+  "method": "exp99's 2017 deployment windows (each in its own CRS) or a gate17 unit's (EPSG, 1,024-px cell): the union",
+  "rule": "an output of exp99 (v1) or exp103 (v1.2) exists on scratch at the drawn plot, never read at it or joined to its label; reported separately by the grade (in_gate17_cell)",
+  "by_cell": {
+   "kenya:O": 0,
+   "kenya:W": 0,
+   "kenya:X": 0,
+   "tanzania:O": 0,
+   "tanzania:W": 0,
+   "tanzania:X": 0
+  }
+ }
+}

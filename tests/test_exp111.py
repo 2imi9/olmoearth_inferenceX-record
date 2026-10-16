@@ -2,7 +2,12 @@
 numbers the code holds (bars, floors, gate, sizes, failure allowance, confident cuts); the committed sizing record's
 pool is the one the select step refuses without; the selection, window, gate and units smoke and the grader's smoke
 (synthetic units with known answers, the known answer at exp99's 271) pass. No network. Needs rasterio, shapely and
-pyproj (the geo extra); skipped without them."""
+pyproj (the geo extra); skipped without them.
+
+Added with the run's outputs (16 October 2026): the committed records, logs and units hold no identifier or position,
+and the units files are the run's without the cgls_raw column (the owner's decision), the run's sha256 kept beside
+the committed files' own."""
+import hashlib
 import json
 import os
 import re
@@ -105,3 +110,78 @@ def test_the_v1_diagnostic_compares_each_variant_with_exp98(tmp_path, monkeypatc
     assert f["same_class"] == f["covered_both"] == int(sel.sum()) and f["would_pass_A1_A2"]
     assert t["same_class"] == int(sel.sum()) - 10 and not t["would_pass_A1_A2"]
     assert not any(k.startswith("v1diag_") for k in b111.MODELS)
+
+
+# ----------------------------------------------------------------------------- the run's outputs (16 October 2026)
+OUT = os.path.join(ROOT, "exp", "out")
+E111_OUT = os.path.join(OUT, "exp111")
+SUMMARY = os.path.join(OUT, "exp111_summary.json")
+UNITS_RECORD = os.path.join(OUT, "exp111_units_record.json")
+UNITS_COMMITTED = os.path.join(OUT, "exp111_units_committed.json")
+UNITS = {m: os.path.join(OUT, f"exp111_units_{m}.npz") for m in ("v1", "v12")}
+RUN_COLUMNS = ["country", "country_names", "label", "label_names", "covered", "inside_awf", "weight", "stratum",
+               "stratum_names", "band", "cgls_raw", "in_gate17_cell", "pred", "suspicion", "p1", "condition",
+               "majority_3x3", "wrong_strict", "wrong_lenient"]
+recorded = pytest.mark.skipif(not os.path.exists(SUMMARY), reason="exp111's outputs are not committed")
+
+
+def _sha256(path):
+    with open(path, "rb") as f:
+        return hashlib.sha256(f.read()).hexdigest()
+
+
+def _json(path):
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@recorded
+def test_exp111_outputs_hold_no_identifier_or_position():
+    """Every committed record passes the pack jobs' key check (exp111_jobs.pack_check, the set the cluster ran before
+    anything left it), no committed text names a TimeSync plot id, and the units files hold no identifier, position or
+    CGLS class: the run's cgls_raw column is dropped (7 rows were unique among exp94's Kenya and Tanzania 2017 rows
+    through country, label and cgls_raw, so each could be linked to a public plot id)."""
+    import numpy as np
+    bad, n = j111.pack_check([E111_OUT])
+    assert not bad and n == 83, (bad, n)
+    texts = []
+    for p in (SUMMARY, UNITS_RECORD, UNITS_COMMITTED):
+        j111.check_record_keys(_json(p), os.path.basename(p))
+        texts.append(open(p, encoding="utf-8").read())
+    for dp, _, fs in os.walk(E111_OUT):
+        texts += [open(os.path.join(dp, fn), encoding="utf-8").read() for fn in fs]
+    assert len(texts) == 3 + 83 + 9                     # three top-level records, 83 records, 9 Slurm logs
+    for t in texts:
+        assert not re.search(r"\b(kenya|tanzania|ethiopia|uganda|rwanda|burundi|malawi):\d", t, re.I), "a plot id"
+        assert "POINT" not in t and '"coordinates"' not in t
+    for m, p in UNITS.items():
+        z = np.load(p, allow_pickle=False)
+        assert list(z.files) == [k for k in RUN_COLUMNS if k != "cgls_raw"]
+        assert not [k for k in z.files if k.lower() in j111.RECORD_FORBIDDEN_KEYS or "pid" in k.lower() or k == "id"]
+        assert all(z[k].shape == (900,) for k in z.files if not k.endswith("_names"))
+
+
+@recorded
+def test_exp111_committed_units_are_the_runs_without_cgls_raw():
+    """The committed units files are the run's minus one column: the grade read the run's files (their sha256 in the
+    units record and the summary), the committed record is the run's (its sha256 in the summary), and
+    exp111_units_committed.json pairs each run sha256 with the committed file's. The rows' counts are the run's."""
+    import numpy as np
+    S, R, C = _json(SUMMARY), _json(UNITS_RECORD), _json(UNITS_COMMITTED)
+    page_sha = b111.page_draw_sha()
+    assert page_sha == S["draw_sha256"] == R["draw_sha256"] == "3e5506e51f4d66620665fab17939a298fdc85bc5b1ed7b1c499e1a2095c0731c"
+    assert S["units_sha256"] == R["sha256"] and S["units_record_sha256"] == _sha256(UNITS_RECORD)
+    assert C["dropped_column"] == "cgls_raw" and sorted(C["files"]) == sorted(os.path.basename(p) for p in UNITS.values())
+    for m, p in UNITS.items():
+        f = C["files"][os.path.basename(p)]
+        assert f["run_sha256"] == R["sha256"][os.path.basename(p)] != f["committed_sha256"] == _sha256(p)
+        assert f["run_columns"] == RUN_COLUMNS and f["committed_columns"] == [k for k in RUN_COLUMNS if k != "cgls_raw"]
+        z = np.load(p, allow_pickle=False)
+        cov = z["covered"]
+        assert len(cov) == R["n_plots"] == 900
+        assert (int(cov.sum()), int(np.nansum(z["wrong_strict"][cov])), int(np.nansum(z["wrong_lenient"][cov]))) == (
+            R["models"][m]["covered"], R["models"][m]["errors_strict"], R["models"][m]["errors_lenient"])
+        assert int(z["in_gate17_cell"].sum()) == R["in_gate17_cell"] == 0
+        names = [f"{c}:{g}" for c in z["country_names"] for g in z["stratum_names"]]
+        drawn = {k: int(((z["country"] == i // 3) & (z["stratum"] == i % 3)).sum()) for i, k in enumerate(names)}
+        assert drawn == R["drawn_by_cell"]

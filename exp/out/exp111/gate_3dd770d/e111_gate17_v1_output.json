@@ -1,0 +1,94 @@
+{
+ "layer": "output_v1",
+ "job": "1365118",
+ "windows": 309,
+ "with_12_groups": 263,
+ "with_output": 263,
+ "missing_output": 0,
+ "output_without_input": 0,
+ "bad_bandset": 0,
+ "bad_header": 0,
+ "sampled": [
+  {
+   "window_index": 0,
+   "finite": true,
+   "min": 7.3224093455337425e-09,
+   "max": 0.9999921321868896,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.3878294658507e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 37,
+   "finite": true,
+   "min": 8.089983793979627e-09,
+   "max": 0.9999821186065674,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.2701290919590065e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 75,
+   "finite": true,
+   "min": 6.687586484588337e-09,
+   "max": 0.9999947547912598,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.9000218521323404e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 112,
+   "finite": true,
+   "min": 1.8968382420325725e-09,
+   "max": 0.9999876022338867,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.696928558838408e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 150,
+   "finite": true,
+   "min": 4.7867292352066215e-09,
+   "max": 0.9999955892562866,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.4683222693843163e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 187,
+   "finite": true,
+   "min": 7.659108902657863e-09,
+   "max": 0.9999586343765259,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.961602779156692e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 225,
+   "finite": true,
+   "min": 1.3328468329021348e-09,
+   "max": 0.999996542930603,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.5969033262972516e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  },
+  {
+   "window_index": 262,
+   "finite": true,
+   "min": 3.1769591402053265e-08,
+   "max": 0.9999902248382568,
+   "uncovered_share": 0.0,
+   "max_abs_sum_minus_1": 3.308814484626055e-07,
+   "argmax_is_9_share": 0.0,
+   "ok": true
+  }
+ ],
+ "ok": true
+}

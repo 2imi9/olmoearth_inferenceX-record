@@ -1,0 +1,41 @@
+{
+ "root": "gate17",
+ "total": {
+  "windows": 309,
+  "with_12_groups": 263,
+  "partial": 0,
+  "none": 46,
+  "prepared_rejected": 46,
+  "unprepared": 0,
+  "materialize_failed": 0,
+  "quarantined": 0,
+  "quarantined_earlier_now_with_input": 0
+ },
+ "by_stratum": {
+  "kenya:all": {
+   "windows": 219,
+   "with_12_groups": 188,
+   "partial": 0,
+   "none": 31,
+   "prepared_rejected": 31,
+   "unprepared": 0,
+   "materialize_failed": 0,
+   "quarantined": 0,
+   "quarantined_earlier_now_with_input": 0
+  },
+  "tanzania:all": {
+   "windows": 90,
+   "with_12_groups": 75,
+   "partial": 0,
+   "none": 15,
+   "prepared_rejected": 15,
+   "unprepared": 0,
+   "materialize_failed": 0,
+   "quarantined": 0,
+   "quarantined_earlier_now_with_input": 0
+  }
+ },
+ "bytes": 1281907374,
+ "quarantine_runs": 0,
+ "counted_utc": "2026-10-16T06:33:53+00:00"
+}

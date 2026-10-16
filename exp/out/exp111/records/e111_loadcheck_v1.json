@@ -1,0 +1,48 @@
+{
+ "model_id": "OLMOEARTH_V1_BASE",
+ "checkpoint_sha256": null,
+ "load": "weights_only",
+ "keys_in_checkpoint": 233,
+ "keys_in_module": 232,
+ "missing": 0,
+ "unexpected": 1,
+ "shape_mismatch": 0,
+ "non_tensor": 0,
+ "first_missing": [],
+ "first_unexpected": [
+  "model.encoder.0.model.composite_encodings.pos_embed"
+ ],
+ "first_shape_mismatch": [],
+ "first_non_tensor": [],
+ "strict_load": true,
+ "load_error": null,
+ "accepted_unexpected": [
+  "model.encoder.0.model.composite_encodings.pos_embed"
+ ],
+ "legacy_table_max_abs_diff": {
+  "model.encoder.0.model.composite_encodings.pos_embed": 0.0036813020706176758
+ },
+ "legacy_table_row_max_abs_diff": {
+  "model.encoder.0.model.composite_encodings.pos_embed": [
+   0.003097,
+   0.003147,
+   0.003446,
+   0.002471,
+   0.002817,
+   0.002611,
+   0.00311,
+   0.003681,
+   0.003474,
+   0.003225,
+   0.002502,
+   0.002237
+  ]
+ },
+ "legacy_table_is_the_formula": {
+  "model.encoder.0.model.composite_encodings.pos_embed": false
+ },
+ "legacy_equal": 1e-05,
+ "legacy_max": 0.01,
+ "ok": true,
+ "plain_weights_only": true
+}

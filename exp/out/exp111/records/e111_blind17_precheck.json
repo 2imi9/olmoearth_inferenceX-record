@@ -1,0 +1,19 @@
+{
+ "root": "blind17",
+ "rslearn": "0.1.17",
+ "filesystem": {
+  "windows": 900,
+  "with_12_groups": 890,
+  "partial": 0,
+  "none": 10,
+  "scl_incomplete": 0,
+  "dropped_share": 0.0,
+  "max_drop_share": 0.0
+ },
+ "scl_checked": true,
+ "windows_rslearn_predicts": 890,
+ "same_as_twelve_groups": true,
+ "windows_match_units_map": true,
+ "scl_complete_where_input": true,
+ "ok": true
+}

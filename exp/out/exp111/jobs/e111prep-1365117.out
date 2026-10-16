@@ -1,0 +1,83 @@
+== <n>-10-16T01:37:08-04:00 job <n> on w<n>: exp111 prepare, commit 3dd770db4b704ee<n>e284c0c41e<n>ad043d, page draft ==
+no olmoearth_run or olmoearth-runner in this Python
+== the smoke root: two of gate23's windows, prepared and materialized first ==
+smoke2-prepare: 8 s
+smoke2-materialize: 269 s
+{"windows": 2, "twelve_groups": 2, "newest_first": 2, "reflectance_plausible": 2, "medians_b02": [521.0, 532.0], "ok": true}
+== <n>-10-16T01:41:47-04:00 gate23 ==
+gate23-prepare1: 16 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "prepared": 259, "skipped": 0, "rejected": 0, "failed": 0}, "total_windows_requested": 259, "failed_added_from_earlier_record": 0, "denominator": 259, "max_failed_share": <n>, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate23-ingest1: 3 s
+gate23-materialize1: <n> s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "materialized": 259, "failed": 0}, "total_windows_requested": 259, "failed_added_from_earlier_record": 0, "denominator": 259, "max_failed_share": <n>, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate23-prepare2: 3 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "prepared": 0, "skipped": 259, "rejected": 0, "failed": 0}, "total_windows_requested": 259, "failed_added_from_earlier_record": 0, "denominator": 259, "max_failed_share": 1.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate23-ingest2: 2 s
+gate23-materialize2: 6 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "materialized": 0, "failed": 0}, "total_windows_requested": 259, "failed_added_from_earlier_record": 0, "denominator": 259, "max_failed_share": 1.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate23-prepare3: 3 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "prepared": 0, "skipped": 259, "rejected": 0, "failed": 0}, "total_windows_requested": 259, "failed_added_from_earlier_record": 0, "denominator": 259, "max_failed_share": 0.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate23-ingest3: 3 s
+gate23-materialize3: 5 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "materialized": 0, "failed": 0}, "total_windows_requested": 259, "failed_added_from_earlier_record": 0, "denominator": 259, "max_failed_share": 0.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+{"sidecar_windows_written": 259, "unchanged": 0, "root_windows_without_full_input": 0, "stale_sidecar_windows_removed": 0}
+gate23-scl: 138 s
+{"layer": "sentinel2_scl", "summary": {"layer": "sentinel2_scl", "materialized": 259, "failed": 0}, "total_windows_requested": 259, "failed_added_from_earlier_record": 0, "denominator": 259, "max_failed_share": 0.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python<n>/site-packages/rslearn/config/dataset.py:426: FutureWarning: SpaceMode.PER_PERIOD_MOSAIC is deprecated and will be removed after <n>-05-01. Use SpaceMode.MOSAIC with period_duration instead.
+  warnings.warn(
+{"root": "gate23", "rslearn": "0.<n>", "filesystem": {"windows": 259, "with_12_groups": 259, "partial": 0, "none": 0, "scl_incomplete": 0, "dropped_share": 0.0, "max_drop_share": 0.0}, "scl_checked": true, "windows_rslearn_predicts": 259, "same_as_twelve_groups": true, "windows_match_units_map": true, "scl_complete_where_input": true, "ok": true}
+{"windows": 259, "root_windows_with_input": 259, "missing_sidecar": 0, "sidecar_without_input": 0, "mismatched_group_counts": 0, "codes": {"2": 704, "3": <n>, "4": <n>, "5": <n>, "6": 416, "7": <n>, "8": <n>, "9": <n>, "10": <n>}, "ok": true}
+{"root": "gate23", "total": {"windows": 259, "with_12_groups": 259, "partial": 0, "none": 0, "prepared_rejected": 0, "unprepared": 0, "materialize_failed": 0, "quarantined": 0, "quarantined_earlier_now_with_input": 0}, "gb": <n>}
+== <n>-10-16T02:06:18-04:00 gate17 ==
+gate17-prepare1: 78 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "prepared": 263, "skipped": 0, "rejected": 46, "failed": 0}, "total_windows_requested": 309, "failed_added_from_earlier_record": 0, "denominator": 309, "max_failed_share": <n>, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate17-ingest1: 3 s
+gate17-materialize1: <n> s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "materialized": 309, "failed": 0}, "total_windows_requested": 309, "failed_added_from_earlier_record": 0, "denominator": 309, "max_failed_share": <n>, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate17-prepare2: 4 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "prepared": 0, "skipped": 263, "rejected": 46, "failed": 0}, "total_windows_requested": 309, "failed_added_from_earlier_record": 0, "denominator": 309, "max_failed_share": 1.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate17-ingest2: 3 s
+gate17-materialize2: 5 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "materialized": 46, "failed": 0}, "total_windows_requested": 309, "failed_added_from_earlier_record": 0, "denominator": 309, "max_failed_share": 1.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate17-prepare3: 3 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "prepared": 0, "skipped": 263, "rejected": 46, "failed": 0}, "total_windows_requested": 309, "failed_added_from_earlier_record": 0, "denominator": 309, "max_failed_share": 0.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+gate17-ingest3: 3 s
+gate17-materialize3: 5 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "materialized": 46, "failed": 0}, "total_windows_requested": 309, "failed_added_from_earlier_record": 0, "denominator": 309, "max_failed_share": 0.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+{"sidecar_windows_written": 263, "unchanged": 0, "root_windows_without_full_input": 46, "stale_sidecar_windows_removed": 0}
+gate17-scl: 142 s
+{"layer": "sentinel2_scl", "summary": {"layer": "sentinel2_scl", "materialized": 263, "failed": 0}, "total_windows_requested": 263, "failed_added_from_earlier_record": 0, "denominator": 309, "max_failed_share": 0.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python<n>/site-packages/rslearn/config/dataset.py:426: FutureWarning: SpaceMode.PER_PERIOD_MOSAIC is deprecated and will be removed after <n>-05-01. Use SpaceMode.MOSAIC with period_duration instead.
+  warnings.warn(
+{"root": "gate17", "rslearn": "0.<n>", "filesystem": {"windows": 309, "with_12_groups": 263, "partial": 0, "none": 46, "scl_incomplete": 0, "dropped_share": 0.0, "max_drop_share": 0.0}, "scl_checked": true, "windows_rslearn_predicts": 263, "same_as_twelve_groups": true, "windows_match_units_map": true, "scl_complete_where_input": true, "ok": true}
+{"windows": 263, "root_windows_with_input": 263, "missing_sidecar": 0, "sidecar_without_input": 0, "mismatched_group_counts": 0, "codes": {"2": <n>, "3": <n>, "4": <n>, "5": <n>, "6": 120, "7": <n>, "8": <n>, "9": <n>, "10": <n>, "11": 80}, "ok": true}
+{"root": "gate17", "total": {"windows": 309, "with_12_groups": 263, "partial": 0, "none": 46, "prepared_rejected": 46, "unprepared": 0, "materialize_failed": 0, "quarantined": 0, "quarantined_earlier_now_with_input": 0}, "gb": <n>}
+== <n>-10-16T02:33:53-04:00 blind17 ==
+blind17-prepare1: 282 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "prepared": 890, "skipped": 0, "rejected": 10, "failed": 0}, "total_windows_requested": 900, "failed_added_from_earlier_record": 0, "denominator": 900, "max_failed_share": <n>, "failed_total": 0, "failed_share": 0.0, "ok": true}
+blind17-ingest1: 3 s
+blind17-materialize1: <n> s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "materialized": 900, "failed": 0}, "total_windows_requested": 900, "failed_added_from_earlier_record": 0, "denominator": 900, "max_failed_share": <n>, "failed_total": 0, "failed_share": 0.0, "ok": true}
+blind17-prepare2: 3 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "prepared": 0, "skipped": 890, "rejected": 10, "failed": 0}, "total_windows_requested": 900, "failed_added_from_earlier_record": 0, "denominator": 900, "max_failed_share": 1.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+blind17-ingest2: 3 s
+blind17-materialize2: 6 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "materialized": 10, "failed": 0}, "total_windows_requested": 900, "failed_added_from_earlier_record": 0, "denominator": 900, "max_failed_share": 1.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+blind17-prepare3: 3 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "prepared": 0, "skipped": 890, "rejected": 10, "failed": 0}, "total_windows_requested": 900, "failed_added_from_earlier_record": 0, "denominator": 900, "max_failed_share": 0.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+blind17-ingest3: 3 s
+blind17-materialize3: 5 s
+{"layer": "sentinel2", "summary": {"layer": "sentinel2", "materialized": 10, "failed": 0}, "total_windows_requested": 900, "failed_added_from_earlier_record": 0, "denominator": 900, "max_failed_share": 0.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+{"sidecar_windows_written": 890, "unchanged": 0, "root_windows_without_full_input": 10, "stale_sidecar_windows_removed": 0}
+blind17-scl: 230 s
+{"layer": "sentinel2_scl", "summary": {"layer": "sentinel2_scl", "materialized": 890, "failed": 0}, "total_windows_requested": 890, "failed_added_from_earlier_record": 0, "denominator": 900, "max_failed_share": 0.0, "failed_total": 0, "failed_share": 0.0, "ok": true}
+/scratch/qi_zim_neu/olmoearth_inferenceX/e102/venv/lib/python<n>/site-packages/rslearn/config/dataset.py:426: FutureWarning: SpaceMode.PER_PERIOD_MOSAIC is deprecated and will be removed after <n>-05-01. Use SpaceMode.MOSAIC with period_duration instead.
+  warnings.warn(
+{"root": "blind17", "rslearn": "0.<n>", "filesystem": {"windows": 900, "with_12_groups": 890, "partial": 0, "none": 10, "scl_incomplete": 0, "dropped_share": 0.0, "max_drop_share": 0.0}, "scl_checked": true, "windows_rslearn_predicts": 890, "same_as_twelve_groups": true, "windows_match_units_map": true, "scl_complete_where_input": true, "ok": true}
+{"windows": 890, "root_windows_with_input": 890, "missing_sidecar": 0, "sidecar_without_input": 0, "mismatched_group_counts": 0, "codes": {"2": <n>, "3": <n>, "4": <n>, "5": <n>, "6": 52, "7": <n>, "8": <n>, "9": <n>, "10": <n>, "11": 352}, "ok": true}
+{"root": "blind17", "total": {"windows": 900, "with_12_groups": 890, "partial": 0, "none": 10, "prepared_rejected": 10, "unprepared": 0, "materialize_failed": 0, "quarantined": 0, "quarantined_earlier_now_with_input": 0}, "gb": <n>}
+6.5G	<private>
+usage: /home 54 GiB in <n> files, our scratch tree <n> GiB
+== <n>-10-16T03:58:51-04:00 done: records/e111_*_inventory.json (the input loss by root and, for blind17, by cell) ==
+on scratch: 68K	<out>
+on scratch: 6.5G	<private>

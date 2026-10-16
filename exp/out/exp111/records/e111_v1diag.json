@@ -1,0 +1,155 @@
+{
+ "experiment": "exp111 v1 route diagnostic (report-only)",
+ "utc": "2026-10-16T14:22:45Z",
+ "bars": {
+  "same_class_min_share": 0.98,
+  "dp1_tol": 0.05,
+  "dp1_max_share": 0.02,
+  "spearman_suspicion_min": 0.95,
+  "confident_zone_min_share": 0.95,
+  "floor_with_input_both": {
+   "gate23": 240,
+   "gate17": 250
+  }
+ },
+ "variants": {
+  "formula": {
+   "read_ok": true,
+   "units": 259,
+   "known_covered": 259,
+   "covered_here": 259,
+   "covered_both": 259,
+   "gained_input": 0,
+   "lost_input": 0,
+   "same_class": 245,
+   "same_class_share": 0.9459459459459459,
+   "dp1_above_tol": 39,
+   "dp1_allowed": 5,
+   "dp1_mean": 0.029765581364130614,
+   "dp1_max": 0.46523847940403873,
+   "report_only": {
+    "near_tie_p1": 0.6,
+    "units_known_p1_at_least": 250,
+    "same_class_share_there": 0.964,
+    "near_ties_below": 9,
+    "near_ties_differing": 5
+   },
+   "confusion_differing": {
+    "grassland_barren -> urban_dense_development": 1,
+    "grassland_barren -> shrubland_savanna": 6,
+    "woodland_forest -> shrubland_savanna": 4,
+    "montane_forest -> woodland_forest": 1,
+    "montane_forest -> lava_forest": 1,
+    "shrubland_savanna -> woodland_forest": 1
+   },
+   "spearman_suspicion": 0.9155524550873386,
+   "accuracy_here": 0.8764478764478765,
+   "accuracy_known": 0.8725868725868726,
+   "would_pass_A1_A2": false
+  },
+  "table": {
+   "read_ok": true,
+   "units": 259,
+   "known_covered": 259,
+   "covered_here": 259,
+   "covered_both": 259,
+   "gained_input": 0,
+   "lost_input": 0,
+   "same_class": 245,
+   "same_class_share": 0.9459459459459459,
+   "dp1_above_tol": 40,
+   "dp1_allowed": 5,
+   "dp1_mean": 0.030203930711806708,
+   "dp1_max": 0.4558698238041058,
+   "report_only": {
+    "near_tie_p1": 0.6,
+    "units_known_p1_at_least": 250,
+    "same_class_share_there": 0.964,
+    "near_ties_below": 9,
+    "near_ties_differing": 5
+   },
+   "confusion_differing": {
+    "grassland_barren -> urban_dense_development": 1,
+    "grassland_barren -> shrubland_savanna": 6,
+    "woodland_forest -> shrubland_savanna": 4,
+    "montane_forest -> woodland_forest": 1,
+    "montane_forest -> lava_forest": 1,
+    "shrubland_savanna -> woodland_forest": 1
+   },
+   "spearman_suspicion": 0.9143879376437515,
+   "accuracy_here": 0.8764478764478765,
+   "accuracy_known": 0.8725868725868726,
+   "would_pass_A1_A2": false
+  },
+  "table_fp32buf": {
+   "read_ok": true,
+   "units": 259,
+   "known_covered": 259,
+   "covered_here": 259,
+   "covered_both": 259,
+   "gained_input": 0,
+   "lost_input": 0,
+   "same_class": 245,
+   "same_class_share": 0.9459459459459459,
+   "dp1_above_tol": 40,
+   "dp1_allowed": 5,
+   "dp1_mean": 0.02991550752144711,
+   "dp1_max": 0.4696476432843999,
+   "report_only": {
+    "near_tie_p1": 0.6,
+    "units_known_p1_at_least": 250,
+    "same_class_share_there": 0.964,
+    "near_ties_below": 9,
+    "near_ties_differing": 5
+   },
+   "confusion_differing": {
+    "grassland_barren -> urban_dense_development": 1,
+    "grassland_barren -> shrubland_savanna": 6,
+    "woodland_forest -> shrubland_savanna": 4,
+    "montane_forest -> woodland_forest": 1,
+    "montane_forest -> lava_forest": 1,
+    "shrubland_savanna -> woodland_forest": 1
+   },
+   "spearman_suspicion": 0.915494436424669,
+   "accuracy_here": 0.8764478764478765,
+   "accuracy_known": 0.8725868725868726,
+   "would_pass_A1_A2": false
+  },
+  "table_fp32": {
+   "read_ok": true,
+   "units": 259,
+   "known_covered": 259,
+   "covered_here": 259,
+   "covered_both": 259,
+   "gained_input": 0,
+   "lost_input": 0,
+   "same_class": 244,
+   "same_class_share": 0.9420849420849421,
+   "dp1_above_tol": 39,
+   "dp1_allowed": 5,
+   "dp1_mean": 0.02914241625137303,
+   "dp1_max": 0.4693576763887113,
+   "report_only": {
+    "near_tie_p1": 0.6,
+    "units_known_p1_at_least": 250,
+    "same_class_share_there": 0.964,
+    "near_ties_below": 9,
+    "near_ties_differing": 6
+   },
+   "confusion_differing": {
+    "grassland_barren -> urban_dense_development": 1,
+    "grassland_barren -> shrubland_savanna": 6,
+    "woodland_forest -> shrubland_savanna": 4,
+    "montane_forest -> woodland_forest": 1,
+    "montane_forest -> lava_forest": 1,
+    "shrubland_savanna -> woodland_forest": 1,
+    "shrubland_savanna -> grassland_barren": 1
+   },
+   "spearman_suspicion": 0.9167211167211166,
+   "accuracy_here": 0.8803088803088803,
+   "accuracy_known": 0.8725868725868726,
+   "would_pass_A1_A2": false
+  }
+ },
+ "variants_failed": []
+}

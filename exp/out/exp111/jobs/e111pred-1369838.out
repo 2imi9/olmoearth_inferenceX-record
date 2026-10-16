@@ -1,0 +1,21 @@
+== <n>-10-16T11:31:38-04:00 job <n> on <window>: exp111 predict, commit 6d80ab<n>ad6def27a1fae85c<n>ec164c422b, page frozen ==
+{"draw": "the page's", "sha256": "3e<n>e51f4d<n>"}
+NVIDIA B200, <n>.05, <n> MiB
+no olmoearth_run or olmoearth-runner in this Python
+device: NVIDIA B200 sm_100 torch <n>.1+cu130
+checkpoints: v1 allenai/OlmoEarth-v1-FT-AWF-Base @ a347b154 and v1.2 (exp102), sha256 verified
+== <n>-10-16T11:32:02-04:00 rslearn model predict (pred-blind17-v1): v1, layer output_v1, 8 workers, limit 3h ==
+  v1 table: formula
+pred-blind17-v1: 188 s
+  format=<n>-10-16 11:32:50,034 loglevel=INFO   logger=rslearn.train.dataset _filter_windows_by_layers() L<n> Skipped 10 windows due to missing input 'sentinel2_l2a'
+  format=<n>-10-16 11:32:50,059 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 890 examples in split predict
+{"layer": "output_v1", "job": "<n>", "windows": 900, "with_12_groups": 890, "with_output": 890, "missing_output": 0, "output_without_input": 0, "bad_bandset": 0, "bad_header": 0, "ok": true}
+== <n>-10-16T11:35:17-04:00 rslearn model predict (pred-blind17-v12): v12, layer output_v12, 8 workers, limit 3h ==
+  v1 table: n/a (v1.2)
+pred-blind17-v12: 207 s
+  format=<n>-10-16 11:35:45,544 loglevel=INFO   logger=rslearn.train.dataset _filter_windows_by_layers() L<n> Skipped 10 windows due to missing input 'sentinel2_l2a'
+  format=<n>-10-16 11:35:45,567 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 890 examples in split predict
+{"layer": "output_v12", "job": "<n>", "windows": 900, "with_12_groups": 890, "with_output": 890, "missing_output": 0, "output_without_input": 0, "bad_bandset": 0, "bad_header": 0, "ok": true}
+== <n>-10-16T11:38:49-04:00 done: records/e111_blind17_*_output.json ==
+on scratch: 116K	<out>
+on scratch: 11G	<private>

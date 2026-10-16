@@ -1,0 +1,33 @@
+== <n>-10-16T11:00:29-04:00 job <n> on <window>: exp111 gate, commit 8dc3a014f<n>e5cb9d9c856ea17e1c<n>a1dd, page draft ==
+NVIDIA B200, <n>.05, <n> MiB
+no olmoearth_run or olmoearth-runner in this Python
+device: NVIDIA B200 sm_100 torch <n>.1+cu130
+checkpoints: v1 allenai/OlmoEarth-v1-FT-AWF-Base @ a347b154 and v1.2 (exp102), sha256 verified
+== <n>-10-16T11:00:36-04:00 rslearn model predict (pred-gate23-v1): v1, layer output_v1, 8 workers, limit 3h ==
+  v1 table: formula
+pred-gate23-v1: 67 s
+  format=<n>-10-16 11:00:59,972 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 259 examples in split predict
+{"layer": "output_v1", "job": "<n>", "windows": 259, "with_12_groups": 259, "with_output": 259, "missing_output": 0, "output_without_input": 0, "bad_bandset": 0, "bad_header": 0, "ok": true}
+== <n>-10-16T11:01:47-04:00 rslearn model predict (pred-gate23-v12): v12, layer output_v12, 8 workers, limit 3h ==
+  v1 table: n/a (v1.2)
+pred-gate23-v12: 78 s
+  format=<n>-10-16 11:02:10,140 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 259 examples in split predict
+{"layer": "output_v12", "job": "<n>", "windows": 259, "with_12_groups": 259, "with_output": 259, "missing_output": 0, "output_without_input": 0, "bad_bandset": 0, "bad_header": 0, "ok": true}
+== <n>-10-16T11:03:10-04:00 rslearn model predict (pred-gate17-v1): v1, layer output_v1, 8 workers, limit 3h ==
+  v1 table: formula
+pred-gate17-v1: 65 s
+  format=<n>-10-16 11:03:31,740 loglevel=INFO   logger=rslearn.train.dataset _filter_windows_by_layers() L<n> Skipped 46 windows due to missing input 'sentinel2_l2a'
+  format=<n>-10-16 11:03:31,750 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 263 examples in split predict
+{"layer": "output_v1", "job": "<n>", "windows": 309, "with_12_groups": 263, "with_output": 263, "missing_output": 0, "output_without_input": 0, "bad_bandset": 0, "bad_header": 0, "ok": true}
+== <n>-10-16T11:04:19-04:00 rslearn model predict (pred-gate17-v12): v12, layer output_v12, 8 workers, limit 3h ==
+  v1 table: n/a (v1.2)
+pred-gate17-v12: 77 s
+  format=<n>-10-16 11:04:41,005 loglevel=INFO   logger=rslearn.train.dataset _filter_windows_by_layers() L<n> Skipped 46 windows due to missing input 'sentinel2_l2a'
+  format=<n>-10-16 11:04:41,015 loglevel=INFO   logger=rslearn.train.data_module setup() L175  got 263 examples in split predict
+{"layer": "output_v12", "job": "<n>", "windows": 309, "with_12_groups": 263, "with_output": 263, "missing_output": 0, "output_without_input": 0, "bad_bandset": 0, "bad_header": 0, "ok": true}
+== <n>-10-16T11:05:38-04:00 gate predictions done ==
+note: A' skipped (E111_APRIME=0 or exp98's deployment dataset is gone)
+== <n>-10-16T11:05:38-04:00 gate done ==
+on scratch: 98K	<out>
+on scratch: 9.7G	<private>
+removed layers/output_e111_v1/ from 0 window(s)

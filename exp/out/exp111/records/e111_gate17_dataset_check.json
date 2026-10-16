@@ -1,0 +1,64 @@
+{
+ "root": "gate17",
+ "rslearn": "0.1.17",
+ "layers": [
+  "label",
+  "output",
+  "sentinel2"
+ ],
+ "sentinel2": {
+  "class_path": "rslearn.data_sources.planetary_computer.Sentinel2",
+  "space_mode": "PER_PERIOD_MOSAIC",
+  "period_duration_days": 30.0,
+  "min_matches": 12,
+  "max_matches": 12,
+  "reverse_time_order": true,
+  "harmonize": true,
+  "sort_by": "eo:cloud_cover"
+ },
+ "sentinel2_as_pinned": {
+  "class_path": true,
+  "space_mode": true,
+  "period_duration_days": true,
+  "min_matches": true,
+  "max_matches": true,
+  "reverse_time_order": true,
+  "harmonize": true,
+  "sort_by": true
+ },
+ "windows": 309,
+ "expected": 309,
+ "sizes": {
+  "124x124": 309
+ },
+ "epsg": {
+  "32737": 299,
+  "32736": 10
+ },
+ "bad": {
+  "not_in_units_map": 0,
+  "projection": 0,
+  "window_bounds_differ": 0,
+  "time_range": 0,
+  "request_range": 0,
+  "rslearn_utm": 0,
+  "crop_off_lattice": 0,
+  "plot_crop_differs_from_cell": 0,
+  "outside_cell": 0,
+  "plot_outside_window": 0
+ },
+ "units_with_lonlat_checked_by_rslearn_utm": 309,
+ "min_margin_to_unshared_edge_px": 56,
+ "periods": {
+  "n": 12,
+  "newest": [
+   "2017-12-01",
+   "2017-12-31"
+  ],
+  "oldest": [
+   "2017-01-05",
+   "2017-02-04"
+  ]
+ },
+ "ok": true
+}

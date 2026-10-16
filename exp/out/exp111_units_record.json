@@ -1,0 +1,52 @@
+{
+ "experiment": "exp111 units (exp99's schema per model; rows shuffled, permutation private)",
+ "utc": "2026-10-16T15:47:16Z",
+ "n_plots": 900,
+ "draw_sha256": "3e5506e51f4d66620665fab17939a298fdc85bc5b1ed7b1c499e1a2095c0731c",
+ "sizes_O_W_X": [
+  300,
+  300,
+  300
+ ],
+ "drawn_by_cell": {
+  "kenya:O": 154,
+  "kenya:W": 152,
+  "kenya:X": 133,
+  "tanzania:O": 146,
+  "tanzania:W": 148,
+  "tanzania:X": 167
+ },
+ "pool_counts": {
+  "kenya:O": 379,
+  "kenya:W": 755,
+  "kenya:X": 647,
+  "tanzania:O": 361,
+  "tanzania:W": 733,
+  "tanzania:X": 816
+ },
+ "area_outside_region_km2": {
+  "kenya": 525128.6001422952,
+  "tanzania": 894400.1771788538
+ },
+ "band_cuts_km": [
+  330.0,
+  580.0
+ ],
+ "in_gate17_cell": 0,
+ "models": {
+  "v1": {
+   "covered": 890,
+   "errors_strict": 440,
+   "errors_lenient": 236
+  },
+  "v12": {
+   "covered": 890,
+   "errors_strict": 419,
+   "errors_lenient": 229
+  }
+ },
+ "sha256": {
+  "exp111_units_v1.npz": "b7916d0613043bdacc4c99b33df71c3a82a19dd5b010b645b1e6b141a76a70a3",
+  "exp111_units_v12.npz": "f84261326e5f443f535874d8e623723e05e6203be7dec88671bce58b8432ea26"
+ }
+}

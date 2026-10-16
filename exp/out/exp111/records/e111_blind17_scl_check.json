@@ -1,0 +1,502 @@
+{
+ "windows": 890,
+ "root_windows_with_input": 890,
+ "missing_sidecar": 0,
+ "sidecar_without_input": 0,
+ "mismatched_group_counts": 0,
+ "sampled": [
+  {
+   "window_index": 0,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 127,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 254,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 381,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 508,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 635,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 762,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 889,
+   "group": 11,
+   "coverage_agreement": 1.0
+  }
+ ],
+ "codes": {
+  "2": 7392,
+  "3": 17776,
+  "4": 369185,
+  "5": 875007,
+  "6": 52,
+  "7": 14301,
+  "8": 47770,
+  "9": 120188,
+  "10": 24073,
+  "11": 352
+ },
+ "ok": true
+}

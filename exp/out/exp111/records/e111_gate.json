@@ -1,0 +1,357 @@
+{
+ "experiment": "exp111 known-answer gate",
+ "commit": "8dc3a014f3940e5cb9d9c856ea17e1c28157a1dd",
+ "utc": "2026-10-16T15:10:21Z",
+ "bars": {
+  "same_class_min_share": 0.98,
+  "dp1_tol": 0.05,
+  "dp1_max_share": 0.02,
+  "spearman_suspicion_min": 0.95,
+  "confident_zone_min_share": 0.95,
+  "floor_with_input_both": {
+   "gate23": 240,
+   "gate17": 250
+  }
+ },
+ "report_only_settings": {
+  "accuracy_points": 0.03,
+  "near_tie_p1": 0.6
+ },
+ "confident_cut": {
+  "v1": 0.99875695977,
+  "v12": 0.99888118198
+ },
+ "A": {
+  "units": 259,
+  "bars": {
+   "same_class_min_share": 0.98,
+   "dp1_tol": 0.05,
+   "dp1_max_share": 0.02,
+   "spearman_suspicion_min": 0.95,
+   "confident_zone_min_share": 0.95,
+   "floor_with_input_both": {
+    "gate23": 240,
+    "gate17": 250
+   }
+  },
+  "models": {
+   "v1": {
+    "units": 259,
+    "known_covered": 259,
+    "covered_here": 259,
+    "covered_both": 259,
+    "gained_input": 0,
+    "lost_input": 0,
+    "same_class": 245,
+    "same_class_share": 0.9459459459459459,
+    "dp1_above_tol": 39,
+    "dp1_allowed": 5,
+    "dp1_mean": 0.029765581364130614,
+    "dp1_max": 0.46523847940403873,
+    "report_only": {
+     "near_tie_p1": 0.6,
+     "units_known_p1_at_least": 250,
+     "same_class_share_there": 0.964,
+     "near_ties_below": 9,
+     "near_ties_differing": 5
+    },
+    "confusion_differing": {
+     "grassland_barren -> urban_dense_development": 1,
+     "grassland_barren -> shrubland_savanna": 6,
+     "woodland_forest -> shrubland_savanna": 4,
+     "montane_forest -> woodland_forest": 1,
+     "montane_forest -> lava_forest": 1,
+     "shrubland_savanna -> woodland_forest": 1
+    },
+    "spearman_suspicion": 0.9155524550873386,
+    "accuracy_here": 0.8764478764478765,
+    "accuracy_known": 0.8725868725868726,
+    "identical_items": {
+     "units": 135,
+     "known_covered": 135,
+     "covered_here": 135,
+     "covered_both": 135,
+     "gained_input": 0,
+     "lost_input": 0,
+     "same_class": 124,
+     "same_class_share": 0.9185185185185185,
+     "dp1_above_tol": 29,
+     "dp1_allowed": 2,
+     "dp1_mean": 0.03846914686768223,
+     "dp1_max": 0.4207646930484812,
+     "report_only": {
+      "near_tie_p1": 0.6,
+      "units_known_p1_at_least": 128,
+      "same_class_share_there": 0.9453125,
+      "near_ties_below": 7,
+      "near_ties_differing": 4
+     },
+     "confusion_differing": {
+      "grassland_barren -> urban_dense_development": 1,
+      "grassland_barren -> shrubland_savanna": 5,
+      "woodland_forest -> shrubland_savanna": 3,
+      "montane_forest -> woodland_forest": 1,
+      "montane_forest -> lava_forest": 1
+     },
+     "spearman_suspicion": 0.9279094722466102
+    },
+    "differing_items": {
+     "units": 124,
+     "known_covered": 124,
+     "covered_here": 124,
+     "covered_both": 124,
+     "gained_input": 0,
+     "lost_input": 0,
+     "same_class": 121,
+     "same_class_share": 0.9758064516129032,
+     "dp1_above_tol": 10,
+     "dp1_allowed": 2,
+     "dp1_mean": 0.02028992537236073,
+     "dp1_max": 0.46523847940403873,
+     "report_only": {
+      "near_tie_p1": 0.6,
+      "units_known_p1_at_least": 122,
+      "same_class_share_there": 0.9836065573770492,
+      "near_ties_below": 2,
+      "near_ties_differing": 1
+     },
+     "confusion_differing": {
+      "grassland_barren -> shrubland_savanna": 1,
+      "woodland_forest -> shrubland_savanna": 1,
+      "shrubland_savanna -> woodland_forest": 1
+     },
+     "spearman_suspicion": 0.8974854445318646
+    }
+   },
+   "v12": {
+    "units": 259,
+    "known_covered": 259,
+    "covered_here": 259,
+    "covered_both": 259,
+    "gained_input": 0,
+    "lost_input": 0,
+    "same_class": 259,
+    "same_class_share": 1.0,
+    "dp1_above_tol": 0,
+    "dp1_allowed": 5,
+    "dp1_mean": 0.0002298743791753815,
+    "dp1_max": 0.044281317585513236,
+    "report_only": {
+     "near_tie_p1": 0.6,
+     "units_known_p1_at_least": 252,
+     "same_class_share_there": 1.0,
+     "near_ties_below": 7,
+     "near_ties_differing": 0
+    },
+    "confusion_differing": {},
+    "spearman_suspicion": 0.9996325484697577,
+    "accuracy_here": 0.8764478764478765,
+    "accuracy_known": 0.8764478764478765,
+    "identical_items": {
+     "units": 135,
+     "known_covered": 135,
+     "covered_here": 135,
+     "covered_both": 135,
+     "gained_input": 0,
+     "lost_input": 0,
+     "same_class": 135,
+     "same_class_share": 1.0,
+     "dp1_above_tol": 0,
+     "dp1_allowed": 2,
+     "dp1_mean": 7.433187034136226e-05,
+     "dp1_max": 0.008209315575057996,
+     "report_only": {
+      "near_tie_p1": 0.6,
+      "units_known_p1_at_least": 129,
+      "same_class_share_there": 1.0,
+      "near_ties_below": 6,
+      "near_ties_differing": 0
+     },
+     "confusion_differing": {},
+     "spearman_suspicion": 1.0
+    },
+    "differing_items": {
+     "units": 124,
+     "known_covered": 124,
+     "covered_here": 124,
+     "covered_both": 124,
+     "gained_input": 0,
+     "lost_input": 0,
+     "same_class": 124,
+     "same_class_share": 1.0,
+     "dp1_above_tol": 0,
+     "dp1_allowed": 2,
+     "dp1_mean": 0.0003992150137930637,
+     "dp1_max": 0.044281317585513236,
+     "report_only": {
+      "near_tie_p1": 0.6,
+      "units_known_p1_at_least": 123,
+      "same_class_share_there": 1.0,
+      "near_ties_below": 1,
+      "near_ties_differing": 0
+     },
+     "confusion_differing": {},
+     "spearman_suspicion": 0.9988796223446104
+    }
+   }
+  },
+  "checks": {
+   "A1": false,
+   "A2": false,
+   "A3": true,
+   "A4": true,
+   "A_floor": true
+  },
+  "graded_checks": [
+   "A3",
+   "A4",
+   "A_floor"
+  ],
+  "pass": true,
+  "report_only": {
+   "accuracy_within_points": {
+    "v1": true,
+    "v12": true
+   },
+   "accuracy_note": "report-only: v1.2's classes given as v1's pass it (226 against 227 of the 259)",
+   "auroc_new_p1_for_its_errors": 0.8928964757709251
+  }
+ },
+ "device": {
+  "job": "1369594",
+  "commit": "8dc3a014f3940e5cb9d9c856ea17e1c28157a1dd",
+  "name": "NVIDIA B200",
+  "capability": [
+   10,
+   0
+  ],
+  "arch": "sm_100",
+  "torch": "2.14.1+cu130",
+  "cuda": "13.0",
+  "arch_in_build": true,
+  "source": "torch.cuda"
+ },
+ "predict_commit": "8dc3a014f3940e5cb9d9c856ea17e1c28157a1dd",
+ "pass": true,
+ "B": {
+  "units": 309,
+  "bars": {
+   "same_class_min_share": 0.98,
+   "dp1_tol": 0.05,
+   "dp1_max_share": 0.02,
+   "spearman_suspicion_min": 0.95,
+   "confident_zone_min_share": 0.95,
+   "floor_with_input_both": {
+    "gate23": 240,
+    "gate17": 250
+   }
+  },
+  "mapping": "sorted plot ids; country and inside flags checked",
+  "models": {
+   "v1": {
+    "units": 309,
+    "known_covered": 271,
+    "covered_here": 263,
+    "covered_both": 263,
+    "gained_input": 0,
+    "lost_input": 8,
+    "same_class": 237,
+    "same_class_share": 0.9011406844106464,
+    "dp1_above_tol": 89,
+    "dp1_allowed": 5,
+    "dp1_mean": 0.07602913815593267,
+    "dp1_max": 0.5205894536063642,
+    "report_only": {
+     "near_tie_p1": 0.6,
+     "units_known_p1_at_least": 244,
+     "same_class_share_there": 0.9262295081967213,
+     "near_ties_below": 19,
+     "near_ties_differing": 8
+    },
+    "confusion_differing": {
+     "woodland_forest -> shrubland_savanna": 8,
+     "shrubland_savanna -> woodland_forest": 1,
+     "agriculture_settlement -> grassland_barren": 2,
+     "grassland_barren -> shrubland_savanna": 10,
+     "shrubland_savanna -> grassland_barren": 1,
+     "agriculture_settlement -> herbaceous_wetland": 1,
+     "agriculture_settlement -> shrubland_savanna": 1,
+     "montane_forest -> woodland_forest": 1,
+     "woodland_forest -> agriculture_settlement": 1
+    },
+    "spearman_suspicion": 0.8398998108094556,
+    "confident_zone": {
+     "cut": 0.99875695977,
+     "known": 91,
+     "kept": 76,
+     "kept_share": 0.8351648351648352,
+     "entered_report_only": 18
+    }
+   },
+   "v12": {
+    "units": 309,
+    "known_covered": 271,
+    "covered_here": 263,
+    "covered_both": 263,
+    "gained_input": 0,
+    "lost_input": 8,
+    "same_class": 262,
+    "same_class_share": 0.9961977186311787,
+    "dp1_above_tol": 1,
+    "dp1_allowed": 5,
+    "dp1_mean": 0.0011970892558870066,
+    "dp1_max": 0.0934683634413418,
+    "report_only": {
+     "near_tie_p1": 0.6,
+     "units_known_p1_at_least": 246,
+     "same_class_share_there": 1.0,
+     "near_ties_below": 17,
+     "near_ties_differing": 1
+    },
+    "confusion_differing": {
+     "grassland_barren -> shrubland_savanna": 1
+    },
+    "spearman_suspicion": 0.9995052548531197,
+    "confident_zone": {
+     "cut": 0.99888118198,
+     "known": 90,
+     "kept": 89,
+     "kept_share": 0.9888888888888889,
+     "entered_report_only": 1
+    }
+   }
+  },
+  "checks": {
+   "B1_class": false,
+   "B1_dp1": false,
+   "B1_spearman": false,
+   "B1_confident_zone": false,
+   "B2_class": true,
+   "B2_dp1": true,
+   "B2_spearman": true,
+   "B2_confident_zone": true,
+   "B_floor": true
+  },
+  "B1": false,
+  "B2": true,
+  "graded_checks": [
+   "B2",
+   "B_floor"
+  ],
+  "report_only": {
+   "v1": {
+    "covered_here": 263,
+    "known_covered": 271,
+    "gained_input": 0,
+    "lost_input": 8
+   },
+   "v12": {
+    "covered_here": 263,
+    "known_covered": 271,
+    "gained_input": 0,
+    "lost_input": 8
+   }
+  },
+  "pass": true
+ }
+}

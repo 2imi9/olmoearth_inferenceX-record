@@ -1,0 +1,37 @@
+{
+ "root": "blind17",
+ "model": "v12",
+ "layer": "output_v12",
+ "units": 900,
+ "view": {
+  "windows": 890,
+  "with_scl": 890,
+  "missing_sidecar": 0,
+  "metadata_differs": 0
+ },
+ "parts": 890,
+ "largest_sum_deviation": 4.3796171667054296e-07,
+ "covered": 890,
+ "reprojected": 890,
+ "read_from_own_window": 890,
+ "direct_route": {
+  "units_with_output": 890,
+  "largest_difference": 0.0,
+  "agrees": true
+ },
+ "condition_names": {
+  "0": "sentinel2_scl:all:clear",
+  "1": "sentinel2_scl:all:some-cloud",
+  "2": "sentinel2_scl:all:cloudy",
+  "4": "sentinel2_scl:most:some-cloud",
+  "3": "sentinel2_scl:most:clear"
+ },
+ "overlap": {
+  "in_two_or_more_grids": 0,
+  "covered_in_two_or_more": 0,
+  "covered_in_two_differing": 0,
+  "covered_only_in_a_later_grid": 0,
+  "units_also_inside_another_units_window": 2
+ },
+ "ok": true
+}

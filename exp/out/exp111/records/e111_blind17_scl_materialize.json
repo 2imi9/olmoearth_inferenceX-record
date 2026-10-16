@@ -1,0 +1,15 @@
+{
+ "layer": "sentinel2_scl",
+ "summary": {
+  "layer": "sentinel2_scl",
+  "materialized": 890,
+  "failed": 0
+ },
+ "total_windows_requested": 890,
+ "failed_added_from_earlier_record": 0,
+ "denominator": 900,
+ "max_failed_share": 0.0,
+ "failed_total": 0,
+ "failed_share": 0.0,
+ "ok": true
+}

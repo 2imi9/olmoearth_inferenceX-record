@@ -1,0 +1,84 @@
+{
+ "experiment": "exp111 selection: exp99's 309 (gate B), the pool and the blind draw",
+ "utc": "2026-10-16T04:48:01Z",
+ "private_files": {
+  "gate17.json": "written",
+  "draw.json": "written"
+ },
+ "versions": {
+  "numpy": "2.5.4",
+  "python": "3.13.15",
+  "rng": "numpy.random.default_rng(seed), PCG64; permutation per cell in CELL_ORDER"
+ },
+ "exp99_rule": {
+  "d_km": 100,
+  "n_selected": 309,
+  "by_country": {
+   "kenya": 219,
+   "tanzania": 90
+  },
+  "inside_request_geometry": {
+   "kenya": 33,
+   "tanzania": 14
+  }
+ },
+ "pool": {
+  "n": 3691,
+  "cells": {
+   "kenya:O": 379,
+   "kenya:W": 755,
+   "kenya:X": 647,
+   "tanzania:O": 361,
+   "tanzania:W": 733,
+   "tanzania:X": 816
+  },
+  "matches_page": true
+ },
+ "draw": {
+  "seed": 111,
+  "sizes_O_W_X": [
+   300,
+   300,
+   300
+  ],
+  "allocation": {
+   "kenya:O": 154,
+   "tanzania:O": 146,
+   "kenya:W": 152,
+   "tanzania:W": 148,
+   "kenya:X": 133,
+   "tanzania:X": 167
+  },
+  "n": 900,
+  "sha256_sorted_ids": "3e5506e51f4d66620665fab17939a298fdc85bc5b1ed7b1c499e1a2095c0731c",
+  "rule": "per label group, the size split between Kenya and Tanzania in proportion to the pool by largest remainder (ties to Kenya); one numpy Generator default_rng(seed) visits the cells kenya:O, kenya:W, kenya:X, tanzania:O, tanzania:W, tanzania:X and draws rng.permutation(N_cell) over each cell's plot ids sorted as strings ('country:plotid'); the cell's first m ids in that order are drawn"
+ },
+ "distance": {
+  "band_cuts_km": [
+   330.0,
+   580.0
+  ],
+  "min_km_rounded": 100.0,
+  "rule": "exp99's: EPSG:32737, the geometry's edges densified every 0.001 degree"
+ },
+ "areas": {
+  "outside_exp99_region_km2": {
+   "kenya": 525128.6001422952,
+   "tanzania": 894400.1771788538
+  },
+  "country_km2": {
+   "kenya": 585702.3018181443,
+   "tanzania": 941505.509718684
+  },
+  "exp99_region_by_country_km2": {
+   "kenya": 60573.70167584902,
+   "tanzania": 47105.33253983024
+  },
+  "crs": "EPSG:6933"
+ },
+ "timesync": {
+  "repository": "github.com/bullocke/eastafrica @ fc2014fcbc55cb75e0fbf801ffd9ca1ba4dc5c02, yearly_point_data.csv",
+  "sha256": "5309a982cdd45a4e7378008b9a6385b6accca7d071bdd652360ef7ef66fc429a"
+ },
+ "request_geometry_sha256": "fee3ce01008d26c6f3c239e68be70851035eb157d5da70bd72cb46dbc8623784"
+}

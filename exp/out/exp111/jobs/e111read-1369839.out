@@ -1,0 +1,14 @@
+== <n>-10-16T11:40:15-04:00 job <n> on w<n>: exp111 read, commit 6d80ab<n>ad6def27a1fae85c<n>ec164c422b, page frozen ==
+{"draw": "the page's", "sha256": "3e<n>e51f4d<n>"}
+200 of 890 windows read (31 s)
+400 of 890 windows read (60 s)
+600 of 890 windows read (89 s)
+800 of 890 windows read (117 s)
+{"root": "blind17", "model": "v1", "units": 900, "covered": 890, "ok": true}
+200 of 890 windows read (18 s)
+400 of 890 windows read (37 s)
+600 of 890 windows read (56 s)
+800 of 890 windows read (75 s)
+{"root": "blind17", "model": "v12", "units": 900, "covered": 890, "ok": true}
+on scratch: 118K	<out>
+on scratch: 11G	<private>

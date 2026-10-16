@@ -1,0 +1,20 @@
+{
+ "year": 2023,
+ "distinct": 1,
+ "windows": 270,
+ "unreadable": 0,
+ "roots_missing": 0,
+ "roots": 1,
+ "checked": true,
+ "values": [
+  {
+   "time_range": [
+    "2023-01-01T00:00:00+00:00",
+    "2023-12-31T00:00:00+00:00"
+   ],
+   "windows": 270
+  }
+ ],
+ "equals_literal": true,
+ "ok": true
+}

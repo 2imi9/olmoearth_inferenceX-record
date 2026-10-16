@@ -1,0 +1,502 @@
+{
+ "windows": 263,
+ "root_windows_with_input": 263,
+ "missing_sidecar": 0,
+ "sidecar_without_input": 0,
+ "mismatched_group_counts": 0,
+ "sampled": [
+  {
+   "window_index": 0,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 0,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 37,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 75,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 112,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 150,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 187,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 225,
+   "group": 11,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 0,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 1,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 2,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 3,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 4,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 5,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 6,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 7,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 8,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 9,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 10,
+   "coverage_agreement": 1.0
+  },
+  {
+   "window_index": 262,
+   "group": 11,
+   "coverage_agreement": 1.0
+  }
+ ],
+ "codes": {
+  "2": 59144,
+  "3": 2520,
+  "4": 222820,
+  "5": 973200,
+  "6": 120,
+  "7": 38200,
+  "8": 21120,
+  "9": 151096,
+  "10": 7796,
+  "11": 80
+ },
+ "ok": true
+}

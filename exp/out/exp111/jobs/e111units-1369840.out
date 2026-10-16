@@ -1,0 +1,11 @@
+== <n>-10-16T11:47:15-04:00 job <n> on w<n>: exp111 units, commit 6d80ab<n>ad6def27a1fae85c<n>ec164c422b, page frozen ==
+{"draw": "the page's", "sha256": "3e<n>e51f4d<n>"}
+{"v1": {"covered": 890, "errors_strict": 440, "errors_lenient": 236}, "v12": {"covered": 890, "errors_strict": 419, "errors_lenient": 229}}
+total 47
+drwx------ 2 qi_zim_neu qi_zim_neu  <n> Oct 16 11:47 .
+drwx------ 2 qi_zim_neu qi_zim_neu  <n> Oct 16 11:47 ..
+-rw------- 1 qi_zim_neu qi_zim_neu  <n> Oct 16 11:47 exp111_units_record.json
+-rw------- 1 qi_zim_neu qi_zim_neu <n> Oct 16 11:47 exp111_units_v1.npz
+-rw------- 1 qi_zim_neu qi_zim_neu <n> Oct 16 11:47 exp111_units_v12.npz
+on scratch: 165K	<out>
+on scratch: 11G	<private>

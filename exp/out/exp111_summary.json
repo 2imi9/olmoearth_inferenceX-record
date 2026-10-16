@@ -1,0 +1,1278 @@
+{
+ "experiment": "exp111 grade: P1-P3 per model at the floors, the report-only readings",
+ "draw_sha256": "3e5506e51f4d66620665fab17939a298fdc85bc5b1ed7b1c499e1a2095c0731c",
+ "bars": {
+  "P1a_strict_below": 0.7,
+  "P1a_lower_above": 0.5,
+  "P1b_lower_above": 0.0,
+  "lenient_call": 0.7,
+  "P2a_pair_share_min": 0.5,
+  "P2b_gap_lower_above": 0.0,
+  "P2b_strict_only_max": 0.65,
+  "P2b_lenient_min": 0.65,
+  "P3_p_note_min": 0.5
+ },
+ "floors": {
+  "with_input": 720,
+  "errors_per_rule": 40,
+  "correct_per_rule": 40,
+  "confident_strict_errors": 25,
+  "strict_only_errors": 30,
+  "zone_plots": 30
+ },
+ "p3": {
+  "labels": 20,
+  "alpha": 0.05,
+  "conf": 0.95,
+  "N": 1000000,
+  "labels_reported": [
+   15,
+   30
+  ]
+ },
+ "bootstrap": {
+  "R": 2000,
+  "seed": 111,
+  "level": 0.9
+ },
+ "confident_cut": {
+  "v1": 0.99875695977,
+  "v12": 0.99888118198
+ },
+ "standardised_counts_O_W_X": [
+  97,
+  129,
+  45
+ ],
+ "also_accept": {
+  "0": [
+   10
+  ],
+  "1": [
+   3,
+   11
+  ],
+  "2": [
+   4,
+   10
+  ],
+  "3": [
+   1
+  ],
+  "4": [
+   2,
+   11
+  ],
+  "5": [
+   8
+  ],
+  "6": [
+   0,
+   10
+  ],
+  "7": [
+   0,
+   10
+  ]
+ },
+ "extended_code": {
+  "Dense Forest": 0,
+  "Open Forest": 10,
+  "Wooded Grassland": 2,
+  "Open Grassland": 4,
+  "Cropland": 5,
+  "Settlements": 8,
+  "Open Water": 1,
+  "Vegetated Wetland": 3,
+  "Otherland": 11
+ },
+ "arm_w": {
+  "0": [
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126
+  ],
+  "6": [
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126
+  ],
+  "7": [
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126
+  ],
+  "1": [
+   80,
+   90,
+   200
+  ],
+  "3": [
+   80,
+   90,
+   200
+  ],
+  "2": [
+   20,
+   30,
+   100,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126
+  ],
+  "4": [
+   20,
+   30,
+   60,
+   100
+  ],
+  "5": [
+   40,
+   50
+  ],
+  "8": [
+   50
+  ],
+  "9": []
+ },
+ "crosswalk_sha256": "4c8b452896a880189fc51922037acbdb4abc21e05c496e0acc67000a860d1846",
+ "graded_models": [
+  "v12"
+ ],
+ "verdicts_graded": {
+  "P1a": {
+   "v12": "does not hold"
+  },
+  "P1b": {
+   "v12": "does not hold"
+  },
+  "P1": {
+   "v12": "does not hold"
+  },
+  "P2a": {
+   "v12": "holds"
+  },
+  "P2b": {
+   "v12": "does not hold"
+  },
+  "P2": {
+   "v12": "does not hold"
+  },
+  "P3": {
+   "v12": "does not hold"
+  }
+ },
+ "verdicts_both_models_report_only": {
+  "P1a": "does not hold for both models",
+  "P1b": "does not hold for both models",
+  "P1": "does not hold for both models",
+  "P2a": "holds for both models",
+  "P2b": "does not hold for both models",
+  "P2": "does not hold for both models",
+  "P3": "does not hold for both models"
+ },
+ "models": {
+  "v1": {
+   "floors": {
+    "with_input": true,
+    "errors_and_correct_per_rule": true,
+    "P2_counts": true,
+    "P3_zone": true
+   },
+   "P1a": {
+    "verdict": "does not hold",
+    "strict_below_0.70": false,
+    "interval_above_0.50": true,
+    "value": 0.7303486802190404,
+    "interval90": [
+     0.7015549717008699,
+     0.7595710697934941
+    ]
+   },
+   "P1b": {
+    "verdict": "does not hold",
+    "value": -0.008503618518339251,
+    "interval90": [
+     -0.03525016828989237,
+     0.01780623022319153
+    ]
+   },
+   "P1": {
+    "verdict": "does not hold"
+   },
+   "lenient_call": {
+    "call": "not determined",
+    "value": 0.7218450617007012,
+    "interval90": [
+     0.6918190962523855,
+     0.7517343371011953
+    ]
+   },
+   "P2a": {
+    "verdict": "holds",
+    "value": 0.5335758472546184,
+    "interval90": [
+     0.3943664298498985,
+     0.6661856357256768
+    ]
+   },
+   "P2b": {
+    "verdict": "holds",
+    "gap_interval_above_0": true,
+    "strict_only_at_most_0.65": true,
+    "lenient_at_least_0.65": true,
+    "gap": 0.13460444782169534,
+    "gap_interval90": [
+     0.09659497487841141,
+     0.17518017789950152
+    ],
+    "auc_strict_only_vs_correct": 0.6455505481243212,
+    "auc_strict_only_vs_correct_interval90": [
+     0.6054927116597034,
+     0.6869986857543643
+    ],
+    "auc_lenient_vs_correct": 0.7801549959460166,
+    "auc_lenient_vs_correct_interval90": [
+     0.7484899829720063,
+     0.8108790480263872
+    ]
+   },
+   "P2": {
+    "verdict": "holds"
+   },
+   "P3": {
+    "verdict": "does not hold",
+    "p_note": 0.47827574620015073,
+    "k_star": 4,
+    "labels": 20,
+    "alpha": 0.05,
+    "zone_eS": 0.17599498655335225,
+    "zone_eL": 0.012852144162926309,
+    "zone_eS_interval90": [
+     0.11884620743767671,
+     0.23342458194067506
+    ],
+    "zone_eL_interval90": [
+     0.0,
+     0.03677664896106419
+    ],
+    "zone_plots": 81
+   },
+   "point": {
+    "auc_strict": 0.7303486802190404,
+    "auc_lenient": 0.7218450617007012,
+    "auc_lenient_vs_correct_std": 0.7801549959460166,
+    "auc_strict_only_vs_correct_std": 0.6455505481243212,
+    "pair_share_std": 0.5335758472546184,
+    "zone_eS": 0.17599498655335225,
+    "zone_eL": 0.012852144162926309,
+    "diff_lenient_minus_strict": -0.008503618518339251,
+    "gap_std": 0.13460444782169534,
+    "n": 890,
+    "errors_strict": 440,
+    "errors_lenient": 236,
+    "correct_strict": 450,
+    "correct_lenient": 654,
+    "strict_only": 204,
+    "confident": 183,
+    "confident_share": 0.20561797752808988,
+    "confident_strict_errors": 40,
+    "confident_strict_errors_pair": 20,
+    "zone_plots": 81,
+    "auc_strict_unweighted": 0.7244242424242424,
+    "auc_lenient_unweighted": 0.7420761416057637,
+    "reverse_pair_share_std": 0.11404655152943473,
+    "strict_only_share_of_confident_strict_errors_std": 0.7515490755140678,
+    "region_weighted": {
+     "pair_share": 0.3404067307723333,
+     "auc_lenient_vs_correct": 0.7713303531087015,
+     "auc_strict_only_vs_correct": 0.6650315541470762,
+     "gap": 0.10629879896162531
+    }
+   },
+   "intervals90": {
+    "auc_strict": [
+     0.7015549717008699,
+     0.7595710697934941
+    ],
+    "auc_lenient": [
+     0.6918190962523855,
+     0.7517343371011953
+    ],
+    "diff_lenient_minus_strict": [
+     -0.03525016828989237,
+     0.01780623022319153
+    ],
+    "auc_lenient_vs_correct_std": [
+     0.7484899829720063,
+     0.8108790480263872
+    ],
+    "auc_strict_only_vs_correct_std": [
+     0.6054927116597034,
+     0.6869986857543643
+    ],
+    "gap_std": [
+     0.09659497487841141,
+     0.17518017789950152
+    ],
+    "pair_share_std": [
+     0.3943664298498985,
+     0.6661856357256768
+    ],
+    "zone_eS": [
+     0.11884620743767671,
+     0.23342458194067506
+    ],
+    "zone_eL": [
+     0.0,
+     0.03677664896106419
+    ],
+    "resamples": 2000,
+    "resamples_undefined": {
+     "auc_strict": 0,
+     "auc_lenient": 0,
+     "diff_lenient_minus_strict": 0,
+     "auc_lenient_vs_correct_std": 0,
+     "auc_strict_only_vs_correct_std": 0,
+     "gap_std": 0,
+     "pair_share_std": 0,
+     "zone_eS": 0,
+     "zone_eL": 0
+    }
+   },
+   "report_only": {
+    "ranking": {
+     "strict": {
+      "weighted": {
+       "auroc": 0.7303486802190404,
+       "error_rate": 0.5235582161957857,
+       "capture": {
+        "0.05": 0.08051018249905341,
+        "0.1": 0.16307633629310922,
+        "0.2": 0.3051666122460753
+       },
+       "random": {
+        "0.05": 0.05,
+        "0.1": 0.1,
+        "0.2": 0.2
+       },
+       "ceiling": {
+        "0.05": 0.09550036357619188,
+        "0.1": 0.19100072715238375,
+        "0.2": 0.3820014543047675
+       },
+       "gap_closed": {
+        "0.05": 0.6705481033786266,
+        "0.1": 0.6931410139996551,
+        "0.2": 0.5778339115355104
+       },
+       "lift": {
+        "0.05": 1.6102036499810681,
+        "0.1": 1.630763362931092,
+        "0.2": 1.5258330612303763
+       },
+       "aurc": 0.3443599393648764,
+       "excess_aurc": 0.17368642524867334
+      },
+      "unweighted": {
+       "auroc": 0.7244242424242424,
+       "error_rate": 0.4943820224719101,
+       "capture": {
+        "0.05": 0.08068181818181819,
+        "0.1": 0.16363636363636364,
+        "0.2": 0.30454545454545456
+       },
+       "random": {
+        "0.05": 0.05,
+        "0.1": 0.1,
+        "0.2": 0.2
+       },
+       "ceiling": {
+        "0.05": 0.10113636363636365,
+        "0.1": 0.2022727272727273,
+        "0.2": 0.4045454545454546
+       },
+       "gap_closed": {
+        "0.05": 0.6,
+        "0.1": 0.622222222222222,
+        "0.2": 0.5111111111111111
+       },
+       "lift": {
+        "0.05": 1.6136363636363638,
+        "0.1": 1.6363636363636362,
+        "0.2": 1.5227272727272727
+       },
+       "aurc": 0.32048566705825937,
+       "excess_aurc": 0.17064431066969257
+      }
+     },
+     "lenient": {
+      "weighted": {
+       "auroc": 0.7218450617007012,
+       "error_rate": 0.32170935464302985,
+       "capture": {
+        "0.05": 0.08765203641662696,
+        "0.1": 0.18821229460593733,
+        "0.2": 0.3428314075384188
+       },
+       "random": {
+        "0.05": 0.05,
+        "0.1": 0.1,
+        "0.2": 0.2
+       },
+       "ceiling": {
+        "0.05": 0.15541978894421715,
+        "0.1": 0.3108395778884343,
+        "0.2": 0.6216791557768686
+       },
+       "gap_closed": {
+        "0.05": 0.35716288937507285,
+        "0.1": 0.4183858433477553,
+        "0.2": 0.33872057838684816
+       },
+       "lift": {
+        "0.05": 1.753040728332539,
+        "0.1": 1.8821229460593731,
+        "0.2": 1.7141570376920938
+       },
+       "aurc": 0.17036806090980855,
+       "excess_aurc": 0.11171961279544962
+      },
+      "unweighted": {
+       "auroc": 0.7420761416057637,
+       "error_rate": 0.2651685393258427,
+       "capture": {
+        "0.05": 0.1038135593220339,
+        "0.1": 0.211864406779661,
+        "0.2": 0.3898305084745763
+       },
+       "random": {
+        "0.05": 0.05,
+        "0.1": 0.1,
+        "0.2": 0.2
+       },
+       "ceiling": {
+        "0.05": 0.1885593220338983,
+        "0.1": 0.3771186440677966,
+        "0.2": 0.7542372881355932
+       },
+       "gap_closed": {
+        "0.05": 0.38837920489296635,
+        "0.1": 0.4036697247706421,
+        "0.2": 0.3425076452599388
+       },
+       "lift": {
+        "0.05": 2.0762711864406778,
+        "0.1": 2.11864406779661,
+        "0.2": 1.9491525423728813
+       },
+       "aurc": 0.1250561422460281,
+       "excess_aurc": 0.08615064013006006
+      }
+     }
+    },
+    "P3": {
+     "labels_20": {
+      "k_star": 4,
+      "p_note": 0.47827574620015073,
+      "p_strict_above": 0.4783878495043863,
+      "p_lenient_above": 0.00011210330423440294
+     },
+     "labels_15": {
+      "k_star": 4,
+      "p_note": 0.26388542637850093,
+      "p_strict_above": 0.2639186747716145,
+      "p_lenient_above": 3.324839311329031e-05
+     },
+     "labels_30": {
+      "k_star": 5,
+      "p_note": 0.6277759262731784,
+      "p_strict_above": 0.6278141421497795,
+      "p_lenient_above": 3.821587659883257e-05
+     }
+    },
+    "own_top_third": {
+     "cut": 0.9945180945581285,
+     "confident": 297,
+     "pair_share_std": 0.4741689959830902,
+     "p_note": 0.6402778556307827
+    },
+    "class_with_most_confident_strict_only_errors": {
+     "class": "shrubland_savanna",
+     "weighted_share": 0.4586204147247196
+    },
+    "R1_cgls_order": {
+     "flagged": 169,
+     "without_cgls": 0,
+     "strict": {
+      "auroc_suspicion": 0.7303486802190404,
+      "auroc_order": 0.7422552965880649,
+      "gain": 0.011906616369024459
+     },
+     "lenient": {
+      "auroc_suspicion": 0.7218450617007012,
+      "auroc_order": 0.7848150143460246,
+      "gain": 0.06296995264532346
+     }
+    },
+    "R2_distance_bands": {
+     "band_cuts_km": [
+      330.0,
+      580.0
+     ],
+     "band_0": {
+      "plots": 295,
+      "strict": {
+       "error_rate": 0.4423013618413944,
+       "auroc": 0.6528739271604134
+      },
+      "lenient": {
+       "error_rate": 0.250568411101902,
+       "auroc": 0.7375629029475362
+      }
+     },
+     "band_1": {
+      "plots": 300,
+      "strict": {
+       "error_rate": 0.4735011613269609,
+       "auroc": 0.7230967186994675
+      },
+      "lenient": {
+       "error_rate": 0.2953548643675973,
+       "auroc": 0.7278976908951845
+      }
+     },
+     "band_2": {
+      "plots": 295,
+      "strict": {
+       "error_rate": 0.6329735384029868,
+       "auroc": 0.771009792704692
+      },
+      "lenient": {
+       "error_rate": 0.40158029048819294,
+       "auroc": 0.675592417550363
+      }
+     }
+    },
+    "R4_region_error_rate": {
+     "strict": {
+      "estimate": 0.5235582161980332,
+      "low": 0.4228585696879764,
+      "high": 0.62269712240796,
+      "strata_in_interval": 6,
+      "envelope_missing_right": 0.517067039574662,
+      "envelope_missing_wrong": 0.528551134176716,
+      "method": "the condition design's interval of oe_inferencex.estimate over the six country x label cells (exp99's Part A with cells as strata)"
+     },
+     "lenient": {
+      "estimate": 0.3217093546466058,
+      "low": 0.24078150289429853,
+      "high": 0.4148975852537653,
+      "strata_in_interval": 6,
+      "envelope_missing_right": 0.3176248722768363,
+      "envelope_missing_wrong": 0.3291089668788902,
+      "method": "the condition design's interval of oe_inferencex.estimate over the six country x label cells (exp99's Part A with cells as strata)"
+     }
+    },
+    "literal_audit": {
+     "seed": 111,
+     "labels_per_class": 20,
+     "zone_plots": 183,
+     "per_class": {
+      "0": {
+       "class": "woodland_forest",
+       "n_zone": 7,
+       "n_labelled": 7,
+       "strict_wrong": 7,
+       "strict_verdict": "above",
+       "also_accept_wrong": 6,
+       "also_accept_verdict": "above",
+       "note_fires": false,
+       "package_note": null
+      },
+      "2": {
+       "class": "shrubland_savanna",
+       "n_zone": 81,
+       "n_labelled": 20,
+       "strict_wrong": 3,
+       "strict_verdict": "undetermined",
+       "also_accept_wrong": 1,
+       "also_accept_verdict": "undetermined",
+       "note_fires": false,
+       "package_note": null
+      },
+      "3": {
+       "class": "herbaceous_wetland",
+       "n_zone": 2,
+       "n_labelled": 2,
+       "strict_wrong": 0,
+       "strict_verdict": "below",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "below",
+       "note_fires": false,
+       "package_note": null
+      },
+      "4": {
+       "class": "grassland_barren",
+       "n_zone": 71,
+       "n_labelled": 20,
+       "strict_wrong": 0,
+       "strict_verdict": "undetermined",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "undetermined",
+       "note_fires": false,
+       "package_note": "under the strict reading class 4's confident zone is wrong at least 5% of the time; under the alternative it is not shown to be: 8 of its 8 errors are on reference classes the alternative accepts (11: 8). Those windows are errors only if the reference legend's boundary is the one that holds, and the labels cannot say whose boundary that is: a legend difference, not necessarily a model error"
+      },
+      "5": {
+       "class": "agriculture_settlement",
+       "n_zone": 13,
+       "n_labelled": 13,
+       "strict_wrong": 0,
+       "strict_verdict": "below",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "below",
+       "note_fires": false,
+       "package_note": null
+      },
+      "6": {
+       "class": "montane_forest",
+       "n_zone": 8,
+       "n_labelled": 8,
+       "strict_wrong": 8,
+       "strict_verdict": "above",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "below",
+       "note_fires": true,
+       "package_note": "under the strict reading class 6's confident zone is wrong at least 5% of the time; under the alternative it is not shown to be: 8 of its 8 errors are on reference classes the alternative accepts (0: 8). Those windows are errors only if the reference legend's boundary is the one that holds, and the labels cannot say whose boundary that is: a legend difference, not necessarily a model error"
+      },
+      "8": {
+       "class": "urban_dense_development",
+       "n_zone": 1,
+       "n_labelled": 1,
+       "strict_wrong": 0,
+       "strict_verdict": "below",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "below",
+       "note_fires": false,
+       "package_note": null
+      }
+     },
+     "readings_equal_the_crosswalk": true,
+     "note": "unweighted on the fresh plots, so Open Grassland is over-represented: a demonstration, not the grade"
+    }
+   }
+  },
+  "v12": {
+   "floors": {
+    "with_input": true,
+    "errors_and_correct_per_rule": true,
+    "P2_counts": true,
+    "P3_zone": true
+   },
+   "P1a": {
+    "verdict": "does not hold",
+    "strict_below_0.70": false,
+    "interval_above_0.50": true,
+    "value": 0.7287741339723091,
+    "interval90": [
+     0.701462600417837,
+     0.7578813486994364
+    ]
+   },
+   "P1b": {
+    "verdict": "does not hold",
+    "value": -0.008110662661285462,
+    "interval90": [
+     -0.036012485861453836,
+     0.019745546951195066
+    ]
+   },
+   "P1": {
+    "verdict": "does not hold"
+   },
+   "lenient_call": {
+    "call": "not determined",
+    "value": 0.7206634713110236,
+    "interval90": [
+     0.6903489594003404,
+     0.7514868810703208
+    ]
+   },
+   "P2a": {
+    "verdict": "holds",
+    "value": 0.6109500036788613,
+    "interval90": [
+     0.4381215632379804,
+     0.7681394083153829
+    ]
+   },
+   "P2b": {
+    "verdict": "does not hold",
+    "gap_interval_above_0": true,
+    "strict_only_at_most_0.65": false,
+    "lenient_at_least_0.65": true,
+    "gap": 0.12160170916941948,
+    "gap_interval90": [
+     0.08298418748145718,
+     0.16186021359731947
+    ],
+    "auc_strict_only_vs_correct": 0.6561189523093013,
+    "auc_strict_only_vs_correct_interval90": [
+     0.617038845893196,
+     0.6934595180694396
+    ],
+    "auc_lenient_vs_correct": 0.7777206614787208,
+    "auc_lenient_vs_correct_interval90": [
+     0.7464921356093053,
+     0.8078624921725892
+    ]
+   },
+   "P2": {
+    "verdict": "does not hold"
+   },
+   "P3": {
+    "verdict": "does not hold",
+    "p_note": 0.2866655412989264,
+    "k_star": 4,
+    "labels": 20,
+    "alpha": 0.05,
+    "zone_eS": 0.13826243699088084,
+    "zone_eL": 0.04257729938465386,
+    "zone_eS_interval90": [
+     0.08109637108172528,
+     0.203529463845304
+    ],
+    "zone_eL_interval90": [
+     0.0,
+     0.09504740688108106
+    ],
+    "zone_plots": 76
+   },
+   "point": {
+    "auc_strict": 0.7287741339723091,
+    "auc_lenient": 0.7206634713110236,
+    "auc_lenient_vs_correct_std": 0.7777206614787208,
+    "auc_strict_only_vs_correct_std": 0.6561189523093013,
+    "pair_share_std": 0.6109500036788613,
+    "zone_eS": 0.13826243699088084,
+    "zone_eL": 0.04257729938465386,
+    "diff_lenient_minus_strict": -0.008110662661285462,
+    "gap_std": 0.12160170916941948,
+    "n": 890,
+    "errors_strict": 419,
+    "errors_lenient": 229,
+    "correct_strict": 471,
+    "correct_lenient": 661,
+    "strict_only": 190,
+    "confident": 161,
+    "confident_share": 0.18089887640449437,
+    "confident_strict_errors": 25,
+    "confident_strict_errors_pair": 13,
+    "zone_plots": 76,
+    "auc_strict_unweighted": 0.726763246836822,
+    "auc_lenient_unweighted": 0.7433160026161235,
+    "reverse_pair_share_std": 0.11351867401360421,
+    "strict_only_share_of_confident_strict_errors_std": 0.8814238830652529,
+    "region_weighted": {
+     "pair_share": 0.3336551438214438,
+     "auc_lenient_vs_correct": 0.7661999006876777,
+     "auc_strict_only_vs_correct": 0.666536250761288,
+     "gap": 0.09966364992638976
+    }
+   },
+   "intervals90": {
+    "auc_strict": [
+     0.701462600417837,
+     0.7578813486994364
+    ],
+    "auc_lenient": [
+     0.6903489594003404,
+     0.7514868810703208
+    ],
+    "diff_lenient_minus_strict": [
+     -0.036012485861453836,
+     0.019745546951195066
+    ],
+    "auc_lenient_vs_correct_std": [
+     0.7464921356093053,
+     0.8078624921725892
+    ],
+    "auc_strict_only_vs_correct_std": [
+     0.617038845893196,
+     0.6934595180694396
+    ],
+    "gap_std": [
+     0.08298418748145718,
+     0.16186021359731947
+    ],
+    "pair_share_std": [
+     0.4381215632379804,
+     0.7681394083153829
+    ],
+    "zone_eS": [
+     0.08109637108172528,
+     0.203529463845304
+    ],
+    "zone_eL": [
+     0.0,
+     0.09504740688108106
+    ],
+    "resamples": 2000,
+    "resamples_undefined": {
+     "auc_strict": 0,
+     "auc_lenient": 0,
+     "diff_lenient_minus_strict": 0,
+     "auc_lenient_vs_correct_std": 0,
+     "auc_strict_only_vs_correct_std": 0,
+     "gap_std": 0,
+     "pair_share_std": 0,
+     "zone_eS": 0,
+     "zone_eL": 0
+    }
+   },
+   "report_only": {
+    "ranking": {
+     "strict": {
+      "weighted": {
+       "auroc": 0.7287741339723091,
+       "error_rate": 0.5031442451902968,
+       "capture": {
+        "0.05": 0.07612954962288807,
+        "0.1": 0.1596268384799242,
+        "0.2": 0.3083834755502985
+       },
+       "random": {
+        "0.05": 0.05,
+        "0.1": 0.1,
+        "0.2": 0.2
+       },
+       "ceiling": {
+        "0.05": 0.09937508076056648,
+        "0.1": 0.19875016152113295,
+        "0.2": 0.3975003230422659
+       },
+       "gap_closed": {
+        "0.05": 0.5292052027134402,
+        "0.1": 0.6038150982382323,
+        "0.2": 0.5487761937842702
+       },
+       "lift": {
+        "0.05": 1.5225909924577612,
+        "0.1": 1.596268384799242,
+        "0.2": 1.5419173777514923
+       },
+       "aurc": 0.31961252440656535,
+       "excess_aurc": 0.16365657409679307
+      },
+      "unweighted": {
+       "auroc": 0.726763246836822,
+       "error_rate": 0.4707865168539326,
+       "capture": {
+        "0.05": 0.07995226730310262,
+        "0.1": 0.15990453460620524,
+        "0.2": 0.315035799522673
+       },
+       "random": {
+        "0.05": 0.05,
+        "0.1": 0.1,
+        "0.2": 0.2
+       },
+       "ceiling": {
+        "0.05": 0.10620525059665872,
+        "0.1": 0.21241050119331745,
+        "0.2": 0.4248210023866349
+       },
+       "gap_closed": {
+        "0.05": 0.532908704883227,
+        "0.1": 0.532908704883227,
+        "0.2": 0.5116772823779191
+       },
+       "lift": {
+        "0.05": 1.5990453460620524,
+        "0.1": 1.5990453460620524,
+        "0.2": 1.575178997613365
+       },
+       "aurc": 0.291732316956472,
+       "excess_aurc": 0.15745353131658074
+      }
+     },
+     "lenient": {
+      "weighted": {
+       "auroc": 0.7206634713110236,
+       "error_rate": 0.314203150231606,
+       "capture": {
+        "0.05": 0.07946114397434008,
+        "0.1": 0.17040356584666236,
+        "0.2": 0.3477812908067832
+       },
+       "random": {
+        "0.05": 0.05,
+        "0.1": 0.1,
+        "0.2": 0.2
+       },
+       "ceiling": {
+        "0.05": 0.1591327138609015,
+        "0.1": 0.318265427721803,
+        "0.2": 0.636530855443606
+       },
+       "gap_closed": {
+        "0.05": 0.2699570360899363,
+        "0.1": 0.322559402015776,
+        "0.2": 0.3385357276901005
+       },
+       "lift": {
+        "0.05": 1.5892228794868015,
+        "0.1": 1.7040356584666234,
+        "0.2": 1.738906454033916
+       },
+       "aurc": 0.16444889085298786,
+       "excess_aurc": 0.10867852667070507
+      },
+      "unweighted": {
+       "auroc": 0.7433160026161235,
+       "error_rate": 0.2573033707865168,
+       "capture": {
+        "0.05": 0.10043668122270742,
+        "0.1": 0.18777292576419213,
+        "0.2": 0.3930131004366812
+       },
+       "random": {
+        "0.05": 0.05,
+        "0.1": 0.1,
+        "0.2": 0.2
+       },
+       "ceiling": {
+        "0.05": 0.19432314410480353,
+        "0.1": 0.38864628820960706,
+        "0.2": 0.7772925764192141
+       },
+       "gap_closed": {
+        "0.05": 0.34947049924357027,
+        "0.1": 0.30408472012102866,
+        "0.2": 0.334341906202723
+       },
+       "lift": {
+        "0.05": 2.0087336244541483,
+        "0.1": 1.8777292576419213,
+        "0.2": 1.9650655021834058
+       },
+       "aurc": 0.11893866807878478,
+       "excess_aurc": 0.08241900916345496
+      }
+     }
+    },
+    "P3": {
+     "labels_20": {
+      "k_star": 4,
+      "p_note": 0.2866655412989264,
+      "p_strict_above": 0.29586982437970877,
+      "p_lenient_above": 0.009204283080782322
+     },
+     "labels_15": {
+      "k_star": 4,
+      "p_note": 0.1396552605385291,
+      "p_strict_above": 0.14272819221705324,
+      "p_lenient_above": 0.0030729316785241332
+     },
+     "labels_30": {
+      "k_star": 5,
+      "p_note": 0.39372370439583876,
+      "p_strict_above": 0.4019049292496075,
+      "p_lenient_above": 0.008181224853768689
+     }
+    },
+    "own_top_third": {
+     "cut": 0.9929767378322002,
+     "confident": 297,
+     "pair_share_std": 0.4465615181737102,
+     "p_note": 0.5682247724095378
+    },
+    "class_with_most_confident_strict_only_errors": {
+     "class": "montane_forest",
+     "weighted_share": 0.46853439258773905
+    },
+    "R1_cgls_order": {
+     "flagged": 183,
+     "without_cgls": 0,
+     "strict": {
+      "auroc_suspicion": 0.7287741339723091,
+      "auroc_order": 0.745898273249213,
+      "gain": 0.017124139276903927
+     },
+     "lenient": {
+      "auroc_suspicion": 0.7206634713110236,
+      "auroc_order": 0.7833873963934957,
+      "gain": 0.06272392508247215
+     }
+    },
+    "R2_distance_bands": {
+     "band_cuts_km": [
+      330.0,
+      580.0
+     ],
+     "band_0": {
+      "plots": 295,
+      "strict": {
+       "error_rate": 0.45304894887363667,
+       "auroc": 0.700893502370737
+      },
+      "lenient": {
+       "error_rate": 0.25391872525001563,
+       "auroc": 0.7578402048999348
+      }
+     },
+     "band_1": {
+      "plots": 300,
+      "strict": {
+       "error_rate": 0.4619508153873809,
+       "auroc": 0.7261212306847907
+      },
+      "lenient": {
+       "error_rate": 0.3027763614726324,
+       "auroc": 0.7026031053139029
+      }
+     },
+     "band_2": {
+      "plots": 295,
+      "strict": {
+       "error_rate": 0.580016897375038,
+       "auroc": 0.7316581478928891
+      },
+      "lenient": {
+       "error_rate": 0.3719456961189168,
+       "auroc": 0.6876519225223607
+      }
+     }
+    },
+    "R4_region_error_rate": {
+     "strict": {
+      "estimate": 0.5031442451938569,
+      "low": 0.40211209918949486,
+      "high": 0.6040791474696369,
+      "strata_in_interval": 6,
+      "envelope_missing_right": 0.49687266744730324,
+      "envelope_missing_wrong": 0.5083567620493572,
+      "method": "the condition design's interval of oe_inferencex.estimate over the six country x label cells (exp99's Part A with cells as strata)"
+     },
+     "lenient": {
+      "estimate": 0.3142031502364965,
+      "low": 0.23147954719522826,
+      "high": 0.40976125211519515,
+      "strata_in_interval": 6,
+      "envelope_missing_right": 0.3102256365096353,
+      "envelope_missing_wrong": 0.3217097311116892,
+      "method": "the condition design's interval of oe_inferencex.estimate over the six country x label cells (exp99's Part A with cells as strata)"
+     }
+    },
+    "literal_audit": {
+     "seed": 111,
+     "labels_per_class": 20,
+     "zone_plots": 161,
+     "per_class": {
+      "0": {
+       "class": "woodland_forest",
+       "n_zone": 1,
+       "n_labelled": 1,
+       "strict_wrong": 1,
+       "strict_verdict": "above",
+       "also_accept_wrong": 1,
+       "also_accept_verdict": "above",
+       "note_fires": false,
+       "package_note": null
+      },
+      "2": {
+       "class": "shrubland_savanna",
+       "n_zone": 76,
+       "n_labelled": 20,
+       "strict_wrong": 4,
+       "strict_verdict": "above",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "undetermined",
+       "note_fires": true,
+       "package_note": "under the strict reading class 2's confident zone is wrong at least 5% of the time; under the alternative it is not shown to be: 4 of its 4 errors are on reference classes the alternative accepts (4: 4). Those windows are errors only if the reference legend's boundary is the one that holds, and the labels cannot say whose boundary that is: a legend difference, not necessarily a model error"
+      },
+      "4": {
+       "class": "grassland_barren",
+       "n_zone": 66,
+       "n_labelled": 20,
+       "strict_wrong": 2,
+       "strict_verdict": "undetermined",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "undetermined",
+       "note_fires": false,
+       "package_note": "under the strict reading class 4's confident zone is wrong at least 5% of the time; under the alternative it is not shown to be: 3 of its 3 errors are on reference classes the alternative accepts (2: 2, 11: 1). Those windows are errors only if the reference legend's boundary is the one that holds, and the labels cannot say whose boundary that is: a legend difference, not necessarily a model error"
+      },
+      "5": {
+       "class": "agriculture_settlement",
+       "n_zone": 10,
+       "n_labelled": 10,
+       "strict_wrong": 0,
+       "strict_verdict": "below",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "below",
+       "note_fires": false,
+       "package_note": null
+      },
+      "6": {
+       "class": "montane_forest",
+       "n_zone": 7,
+       "n_labelled": 7,
+       "strict_wrong": 7,
+       "strict_verdict": "above",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "below",
+       "note_fires": true,
+       "package_note": "under the strict reading class 6's confident zone is wrong at least 5% of the time; under the alternative it is not shown to be: 7 of its 7 errors are on reference classes the alternative accepts (0: 7). Those windows are errors only if the reference legend's boundary is the one that holds, and the labels cannot say whose boundary that is: a legend difference, not necessarily a model error"
+      },
+      "8": {
+       "class": "urban_dense_development",
+       "n_zone": 1,
+       "n_labelled": 1,
+       "strict_wrong": 0,
+       "strict_verdict": "below",
+       "also_accept_wrong": 0,
+       "also_accept_verdict": "below",
+       "note_fires": false,
+       "package_note": null
+      }
+     },
+     "readings_equal_the_crosswalk": true,
+     "note": "unweighted on the fresh plots, so Open Grassland is over-represented: a demonstration, not the grade"
+    }
+   }
+  }
+ },
+ "report_only": {
+  "without_plots_in_a_gate17_cell": {
+   "plots_in_a_gate17_cell_with_input": 0
+  },
+  "R2_seen": {
+   "v1": {
+    "inside": {
+     "plots": 27,
+     "strict": {
+      "error_rate": 0.39575978866678024,
+      "auroc": 0.4902331460771801
+     },
+     "lenient": {
+      "error_rate": 0.0,
+      "auroc": null
+     }
+    },
+    "within_100_km": {
+     "plots": 244,
+     "strict": {
+      "error_rate": 0.3503873444654951,
+      "auroc": 0.6564035795382205
+     },
+     "lenient": {
+      "error_rate": 0.15072902224501186,
+      "auroc": 0.683201047185943
+     }
+    }
+   },
+   "v12": {
+    "inside": {
+     "plots": 27,
+     "strict": {
+      "error_rate": 0.39575978866678013,
+      "auroc": 0.37631900225617015
+     },
+     "lenient": {
+      "error_rate": 0.0,
+      "auroc": null
+     }
+    },
+    "within_100_km": {
+     "plots": 244,
+     "strict": {
+      "error_rate": 0.36644540529260466,
+      "auroc": 0.6736265638871586
+     },
+     "lenient": {
+      "error_rate": 0.18576775669156134,
+      "auroc": 0.7327871250473483
+     }
+    }
+   }
+  },
+  "R5_inventory": {
+   "by_label_cell": {
+    "kenya:O": {
+     "drawn": 154,
+     "with_input": 151
+    },
+    "kenya:W": {
+     "drawn": 152,
+     "with_input": 151
+    },
+    "kenya:X": {
+     "drawn": 133,
+     "with_input": 133
+    },
+    "tanzania:O": {
+     "drawn": 146,
+     "with_input": 145
+    },
+    "tanzania:W": {
+     "drawn": 148,
+     "with_input": 146
+    },
+    "tanzania:X": {
+     "drawn": 167,
+     "with_input": 164
+    }
+   },
+   "condition_codes": {
+    "v1": {
+     "0": 206,
+     "1": 673,
+     "2": 11
+    },
+    "v12": {
+     "0": 206,
+     "1": 673,
+     "2": 11
+    }
+   },
+   "models_same_class_share": 0.8314606741573034,
+   "seen_at_the_271": 0.823
+  }
+ },
+ "seconds": 1.6,
+ "units_record_sha256": "82d8c04e26ef937b769f3d68d2720217a33163d87a8808dbd7a94abccb481d46",
+ "units_sha256": {
+  "exp111_units_v1.npz": "b7916d0613043bdacc4c99b33df71c3a82a19dd5b010b645b1e6b141a76a70a3",
+  "exp111_units_v12.npz": "f84261326e5f443f535874d8e623723e05e6203be7dec88671bce58b8432ea26"
+ }
+}

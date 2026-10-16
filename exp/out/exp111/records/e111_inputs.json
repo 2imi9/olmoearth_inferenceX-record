@@ -1,0 +1,11 @@
+{
+ "timesync_and_natural_earth_verified": true,
+ "breadth_copy": "home",
+ "ai2_geometry_verified": true,
+ "ai2_geometry_copy": "deploy (purge-bound)",
+ "label_windows": 1459,
+ "deployment_2023": true,
+ "deployment_2017": true,
+ "required_ok": true,
+ "ok": true
+}

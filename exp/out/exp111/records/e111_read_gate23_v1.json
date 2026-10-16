@@ -1,0 +1,37 @@
+{
+ "root": "gate23",
+ "model": "v1",
+ "layer": "output_v1",
+ "units": 259,
+ "view": {
+  "windows": 259,
+  "with_scl": 259,
+  "missing_sidecar": 0,
+  "metadata_differs": 0
+ },
+ "parts": 259,
+ "largest_sum_deviation": 4.21826143792714e-07,
+ "covered": 259,
+ "reprojected": 0,
+ "read_from_own_window": 259,
+ "direct_route": {
+  "units_with_output": 259,
+  "largest_difference": 0.0,
+  "agrees": true
+ },
+ "condition_names": {
+  "0": "sentinel2_scl:all:clear",
+  "1": "sentinel2_scl:all:some-cloud",
+  "2": "sentinel2_scl:all:cloudy",
+  "3": "sentinel2_scl:most:clear",
+  "4": "sentinel2_scl:most:some-cloud"
+ },
+ "overlap": {
+  "in_two_or_more_grids": 0,
+  "covered_in_two_or_more": 0,
+  "covered_in_two_differing": 0,
+  "covered_only_in_a_later_grid": 0,
+  "units_also_inside_another_units_window": 139
+ },
+ "ok": true
+}

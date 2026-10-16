@@ -1,0 +1,19 @@
+{
+ "root": "gate17",
+ "rslearn": "0.1.17",
+ "filesystem": {
+  "windows": 309,
+  "with_12_groups": 263,
+  "partial": 0,
+  "none": 46,
+  "scl_incomplete": 0,
+  "dropped_share": 0.0,
+  "max_drop_share": 0.0
+ },
+ "scl_checked": true,
+ "windows_rslearn_predicts": 263,
+ "same_as_twelve_groups": true,
+ "windows_match_units_map": true,
+ "scl_complete_where_input": true,
+ "ok": true
+}

@@ -1,0 +1,18 @@
+{
+ "root": "gate23",
+ "total": {
+  "windows": 259,
+  "with_12_groups": 259,
+  "partial": 0,
+  "none": 0,
+  "prepared_rejected": 0,
+  "unprepared": 0,
+  "materialize_failed": 0,
+  "quarantined": 0,
+  "quarantined_earlier_now_with_input": 0
+ },
+ "by_stratum": null,
+ "bytes": 1207549165,
+ "quarantine_runs": 0,
+ "counted_utc": "2026-10-16T06:06:18+00:00"
+}

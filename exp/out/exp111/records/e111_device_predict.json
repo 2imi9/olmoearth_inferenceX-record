@@ -1,0 +1,14 @@
+{
+ "job": "1369838",
+ "commit": "6d80ab7074ad6def27a1fae85c0769ec164c422b",
+ "name": "NVIDIA B200",
+ "capability": [
+  10,
+  0
+ ],
+ "arch": "sm_100",
+ "torch": "2.14.1+cu130",
+ "cuda": "13.0",
+ "arch_in_build": true,
+ "source": "torch.cuda"
+}

@@ -1,0 +1,18 @@
+{
+ "variant": "table_fp32buf",
+ "table_key": "model.encoder.0.model.composite_encodings.pos_embed",
+ "load": "weights_only",
+ "table_shape": [
+  12,
+  192
+ ],
+ "table_max_abs_diff_from_formula": 0.0036813020706176758,
+ "table_row0_max_abs_diff": 0.0030969977378845215,
+ "job": "1369140",
+ "commit": "530d93498ffb12c5b9e44e6715d4259ad3483e71",
+ "calls_own_table": 6600,
+ "calls_formula": 0,
+ "calls_fp32_encodings": 6600,
+ "wrappers_without_autocast": 0,
+ "rslearn_exit": 0
+}
