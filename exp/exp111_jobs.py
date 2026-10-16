@@ -39,8 +39,9 @@ input counts, never a label.
     gate-records       gatecheck's check of the gate job's records: the device record (the gate's GPU and
                        predict_commit) and the four output checks, all passing and all written by one Slurm job
     load-check         build the LightningModule from model.yaml (CPU, offline) and load a checkpoint's state dict:
-                       0 missing keys, no shape mismatch, a strict load through the module's own load hooks, and
-                       any key those hooks drop only the legacy frozen temporal table with on-the-fly values
+                       0 missing keys, no shape mismatch, a strict load through the module's own load hooks, a plain
+                       weights_only load, and any key those hooks drop only the legacy temporal table, within
+                       LEGACY_MAX (0.01) of the on-the-fly encoding; whether it equals it (LEGACY_EQUAL) is recorded
     aprime-config      for diagnostic A': model.yaml restricted (predict_config groups + names) to exp98's deployment
                        windows that hold the gate-A points; nothing else differs (checked after rslearn's substitution)
     item-identity      per gate unit, our sentinel2 item groups against those of the deployment window holding it
@@ -926,12 +927,15 @@ def build_cli(config, extra=()):
                                save_config_kwargs={"overwrite": True}, parser_class=RslearnArgumentParser, run=False)
 
 
-# The one key a module's own load hook may drop: olmoearth_pretrain's legacy frozen temporal position table. Checkpoints
-# saved before the encoder computed it on the fly (get_1d_sincos_pos_encoding) still carry it, and the encoder's
-# load_state_dict pre-hook (_drop_pos_embed_hook) deletes it, so Lightning's strict restore passes. It is accepted only
-# when its values equal that on-the-fly encoding, so nothing learned is dropped.
+# The one key a module's own load hook may drop: olmoearth_pretrain's legacy temporal position table. Checkpoints saved
+# before the encoder computed it on the fly (get_1d_sincos_pos_encoding) still carry it, and the encoder's
+# load_state_dict pre-hook (_drop_pos_embed_hook) deletes it, so Lightning's strict restore passes. v1's fine-tuned copy
+# differs from the on-the-fly encoding by up to 0.0037 (env job 1361497; the v1-Base copy by 6e-8), so under rslearn
+# 0.1.17 v1 runs with the formula's table, not its own: the owner accepted that on 15 October 2026 and the gates judge
+# it. LEGACY_MAX is only a guard against a table that is not this one; LEGACY_EQUAL says whether it is the formula's.
 LEGACY_DROPPABLE = re.compile(r"(^|\.)composite_encodings\.pos_embed$")
-LEGACY_TOL = 1e-5
+LEGACY_EQUAL = 1e-5
+LEGACY_MAX = 0.01
 # exp89's rule for loading a checkpoint: weights_only=True; other pickled globals become inert stubs; a global from
 # these modules is refused (exp89's list with the call-building modules added: operator, functools, types, _codecs)
 REFUSED_PREFIXES = ("os.", "posix.", "nt.", "subprocess.", "sys.", "builtins.", "__builtin__.", "shutil.", "socket.",
@@ -976,8 +980,9 @@ def load_checkpoint_safely(path):
     return sd, how
 
 
-def legacy_table_diffs(module, sd, keys):
-    """{key: max |checkpoint value - get_1d_sincos_pos_encoding(arange(T), D)|} for each key that is the legacy table:
+def legacy_table_diffs(module, sd, keys, rows=False):
+    """{key: max |checkpoint value - get_1d_sincos_pos_encoding(arange(T), D)|}, or with rows the T per-row maxima, for
+    each key that is the legacy table:
     named as LEGACY_DROPPABLE says, its owner in `module` a CompositeEncodings (the class whose hook drops it), a real
     floating (T, D) tensor (leading unit dimensions squeezed) with T > 0 and D the owner's embedding_dim_per_embedding_type,
     the width the encoder computes the table at. None for any other key."""
@@ -1003,14 +1008,16 @@ def legacy_table_diffs(module, sd, keys):
         if t.ndim != 2 or t.shape[0] == 0 or t.shape[1] != d or d % 2:
             continue
         ref = get_1d_sincos_pos_encoding(torch.arange(t.shape[0]), d).to(torch.float32)
-        out[k] = float((t - ref).abs().max())
+        diff = (t - ref).abs()
+        out[k] = [round(float(x), 6) for x in diff.max(dim=1).values] if rows else float(diff.max())
     return out
 
 
 def load_check_result(module, sd):
     """The load check's verdict: a strict load_state_dict (which runs the module's own load hooks, as Lightning's
-    restore does) must pass with no missing key and no shape mismatch, and every key the module does not hold (so one
-    its hooks dropped) must be the legacy table with values equal to the on-the-fly encoding."""
+    restore does) must pass with no missing key, no shape mismatch and no non-tensor entry, and every key the module
+    does not hold (so one its hooks dropped or ignored) must be the legacy table within LEGACY_MAX of the on-the-fly
+    encoding; whether it equals it (LEGACY_EQUAL) is recorded."""
     import torch
     missing, unexpected, shapes = compare_state_dicts(module, sd)
     non_tensor = sorted(k for k, v in sd.items() if not isinstance(v, torch.Tensor))
@@ -1022,12 +1029,15 @@ def load_check_result(module, sd):
         error = f"{type(ex).__name__}: {str(ex)[:300]}"
     accepted = unexpected if loaded else []                 # keys the module lacks that the strict load accepted
     diffs = legacy_table_diffs(module, sd, accepted)
-    legacy_ok = all(d is not None and d <= LEGACY_TOL for d in diffs.values())
+    legacy_ok = all(d is not None and d <= LEGACY_MAX for d in diffs.values())
     return {"missing": len(missing), "unexpected": len(unexpected), "shape_mismatch": len(shapes),
             "non_tensor": len(non_tensor), "first_missing": missing[:5], "first_unexpected": unexpected[:5],
             "first_shape_mismatch": shapes[:5], "first_non_tensor": non_tensor[:5],
             "strict_load": loaded, "load_error": error, "accepted_unexpected": accepted,
-            "legacy_table_max_abs_diff": diffs, "legacy_tolerance": LEGACY_TOL,
+            "legacy_table_max_abs_diff": diffs, "legacy_table_row_max_abs_diff": legacy_table_diffs(module, sd, accepted,
+                                                                                                   rows=True),
+            "legacy_table_is_the_formula": {k: d is not None and d <= LEGACY_EQUAL for k, d in diffs.items()},
+            "legacy_equal": LEGACY_EQUAL, "legacy_max": LEGACY_MAX,
             "ok": bool(loaded and not missing and not shapes and not non_tensor and legacy_ok)}
 
 

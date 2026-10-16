@@ -235,19 +235,31 @@ route, which already ran on the cluster:
   - If it does not, v1 predicts with rslearn 0.0.29 installed directly (the first release with exp98's
     `get_item_by_name` fix), still not through the runner. The gates are rerun on that route before freezing. The
     owner decides.
-  - **Amended 15 October 2026, after the first phase-1 submission and before any imagery was fetched or any prediction
-    made.** That submission's env job (1355980) refused v1: its checkpoint holds one key the module does not,
-    `model.encoder.0.model.composite_encodings.pos_embed`, OlmoEarth's legacy frozen temporal position table. The
-    encoder now computes that table on the fly (`get_1d_sincos_pos_encoding`) and its own `load_state_dict` pre-hook
-    drops the stored copy, so Lightning's strict restore passes; the record's check compared key sets without running
-    that hook. The check now runs the strict load through the module's own hooks and accepts a key the module lacks only
-    when it is that table, held by a CompositeEncodings module (the class whose hook drops it), a real floating tensor
-    at the width the encoder computes it at, with values equal to the on-the-fly encoding (maximum absolute difference
-    at most 1e-5); any other extra, missing, reshaped or non-tensor key still fails it. exp89's inventory of the same
-    checkpoint (sha256 `1036b76b...`) lists the table at 12 x 192 and loaded it with plain `weights_only`; the same
-    table in the locally cached OlmoEarth v1-Base weights (the encoder v1 was fine-tuned from, with the table frozen)
-    differs from the on-the-fly encoding by at most 6e-8. The gates, which compare v1's predictions with exp98's and
-    exp99's, remain the test of the route; no bar, floor, size or allowance changed.
+  - **Amended 15 October 2026, twice, after two phase-1 submissions and before any imagery was fetched or any prediction
+    made.** The first submission's env job (1355980) refused v1: its checkpoint holds one key the module does not,
+    `model.encoder.0.model.composite_encodings.pos_embed`, OlmoEarth's legacy temporal position table. The encoder now
+    computes that table on the fly (`get_1d_sincos_pos_encoding`) and its own `load_state_dict` pre-hook drops the
+    stored copy, so Lightning's strict restore passes; the record's check compared key sets without running that hook.
+    The check was changed to run the strict load through the module's own hooks and to accept a key the module lacks
+    only when it is that table, held by a CompositeEncodings module (the class whose hook drops it), a real floating
+    tensor at the width the encoder computes it at, with values equal to the on-the-fly encoding within 1e-5. The second
+    submission's env job (1361497) then found the strict load passing and the plain `weights_only` load working, but
+    v1's stored table differing from the on-the-fly encoding by up to 0.0037 (the same table in the locally cached
+    OlmoEarth v1-Base weights, the encoder v1 was fine-tuned from, differs by at most 6e-8); a likely cause, not
+    checked, is that the table was trained along with the encoder during Ai2's fine-tune: Ai2's recipe
+    (exp/jobs/e102_config/model.yaml) freezes the encoder until epoch 20 with FreezeUnfreeze, and Lightning's unfreezing
+    sets every encoder parameter trainable, the table included. Storage in bfloat16 would give a difference of the same
+    size; the per-row record separates the two, because row 0 (sin 0, cos 0) is exact in every float format and would
+    stay at 0 under a precision cause only. So under rslearn 0.1.17 v1 runs with the formula's table, not its own, and
+    is not bit for bit the model exp98 and exp99 ran. The owner accepted that on 15 October 2026, and the gates judge
+    it: they compare v1's predictions under this route with exp98's and exp99's known answers at the gate's bars
+    (below). The check now accepts the table when it is within 0.01 of the formula (a guard against a table that is not
+    this one, set after seeing 0.0037, so not blind) and records the difference, per row too, and whether the table is
+    the formula's; any other extra, missing, reshaped or non-tensor key still fails it. exp89's inventory of the same
+    checkpoint (sha256 `1036b76b...`) lists the table at 12 x 192 and loaded it with plain `weights_only`. No bar,
+    floor, size or allowance changed. If gate A or B fails for v1, the imagery prepared for the gates is kept and the
+    next route is the owner's call: v1 with its own table (new code that restores the stored table at predict time, so a
+    guarded-file commit and a gate rerun) or rslearn 0.0.29 (not built; a second environment of about 4 GB).
 - **v1.2.** exp102's checkpoint (epoch 60, sha256 `5ce88827...`, public at `2imi9/OlmoEarth-v1_2-FT-AWF-Base` at
   `7a1db147...`) with `OLMOEARTH_V1_2_BASE`, as exp103 ran it.
 - **One GPU model.** The gate and the blind predict both run on `b200-devel`, on B200 GPUs, as exp102 and exp103 did
@@ -343,10 +355,12 @@ pass.
 **Why these levels.**
 
 - **98% the same class.** An equivalent pipeline on the same scenes should agree at nearly every unit; only a near-tie
-  can flip. exp98's own deployment against exp89's replica, a different imagery route, agreed at 91.9%, and two
-  different models (v1 and v1.2) agree at 88.4% of the 259 and 82.3% of the 271. So 98% sits well above an imagery
-  change and far above a model change. 3.5% (v1) and 2.7% (v1.2) of the 259 have p1 below 0.6, and 7.4% and 6.6% of
-  the 271; agreement above 0.6 is reported beside so that a failure on near-ties is visible as such.
+  can flip. These bars were set before v1's table was known (Pins, amendment); for v1 they now also bound the effect of
+  running the formula's table instead of its own, with v1.2, which has no legacy table, as the control. exp98's own
+  deployment against exp89's replica, a different imagery route, agreed at 91.9%, and two different models (v1 and v1.2)
+  agree at 88.4% of the 259 and 82.3% of the 271. So 98% sits well above an imagery change and far above a model change.
+  3.5% (v1) and 2.7% (v1.2) of the 259 have p1 below 0.6, and 7.4% and 6.6% of the 271; agreement above 0.6 is reported
+  beside so that a failure on near-ties is visible as such.
 - **The p1, rank and zone checks.** P1 to P3 grade p1's ranking and a confident cut, not only the class, so the gate
   checks them in 2017, the test year, for both models. v1 against v1.2 shows how far apart two models are: |Δp1| above
   0.05 at 49 of 259 and 87 of 271 units; Spearman correlations of p1 of 0.780 and 0.747; 65 of v1's 91 confident
@@ -357,8 +371,10 @@ pass.
 **If a gate fails.**
 
 - Nothing is predicted at a fresh plot.
-- The failure is diagnosed (versions, config, time order, item sets, A′) and reported to Ai2 as a finding, since it
-  would be evidence for Patrick's point.
+- The failure is diagnosed (versions, config, time order, item sets, v1's temporal table, A′) and reported to Ai2 as a
+  finding. v1.2 has no legacy table, so v1.2 passing while v1 fails points at v1's table or its library route and is not
+  by itself evidence for Patrick's point; A′ and the item-identity split (report-only) now measure rslearn 0.1.17
+  together with the table for v1, not the pipeline alone.
 - If gate B fails while gate A passes, the 2017 imagery is suspected, for example Planetary Computer items reprocessed
   since 9 October, rather than the pipeline.
 - A pixel-level diagnosis needs exp98's and exp99's deployment datasets, which the scratch purge removes around 7 to 9
@@ -602,8 +618,8 @@ recorded. Its script becomes the claims' second route.
 - **Whose boundary is right.** Labels are taken as right. The STRICT-only bucket is defined by the crosswalk, so it
   cannot separate a legend convention, a systematic TimeSync interpretation practice, or a gap in what AWF's labels
   support. Only AWF-protocol labels could (exp109's Part B, not run).
-- **Ai2's 1,024-px deployment, literally.** It is the same model and configuration at the plot's pixel, to the extent
-  the gates show.
+- **Ai2's 1,024-px deployment, literally.** It is the same checkpoint and configuration at the plot's pixel, with v1
+  running the formula's temporal table instead of its own (Pins, amendment), to the extent the gates show.
 - **Two independent confirmations.** The two models share Ai2's labels and recipe and are graded on the same plots.
 - **Why a difference from exp99 arises.** The pool is farther (beyond 100 km) and its land differs, so place, distance
   and land cover are not separated; R2 only describes them.
@@ -737,8 +753,9 @@ read. Each input below is checked by the env job, which refuses with the replace
   time-range check counts the windows it cannot read and checks the rest, and item identity becomes a note. None of
   this fails a job. Before about 7 November all of it runs whole.
 - **rslearn 0.1.17's defaults** may differ from 0.0.27's. The time order is pinned and the gates check the rest.
-- **The v1 checkpoint may not load under 0.1.17.** The env job finds out on CPU before any imagery; the fallback is
-  above.
+- **The v1 checkpoint under 0.1.17.** It loads (the env job's strict load, on CPU, before any imagery), with the
+  formula's temporal table instead of its own (Pins, amendment); the gates judge the difference, and the next routes are
+  named there.
 - **Retries.** Every job fails fast on the first systematic error, with no silent retry loop and no polling from the
   Mac. A resubmission from a later step (`--from prepare|gate|gatecheck`) costs one Duo push and repeats nothing that
   succeeded: select keeps an equal draw and roots, prepare resumes, and only the gate and gatecheck replace their own
@@ -772,7 +789,8 @@ freezing, nothing here can change (a change would be a new preregistration).
 Also confirmed by the owner on 15 October 2026, not fixed in code:
 
 1. **The pipeline:** rslearn 0.1.17 for both models, on b200-devel for gate and predict, with the 0.0.29 fallback for v1
-   if its checkpoint does not load.
+   if its checkpoint does not load. On 15 October 2026, after the second env job, the owner also accepted that v1 runs
+   with the formula's temporal table instead of its own, the gates judging the difference (Pins, amendment).
 2. **Cluster runs and downloads:** the plan above, phase 1 to be submitted by 18 October; each submission and each
    fetch is still confirmed at the time, with the costs above stated again together with /home and /scratch usage;
    the downloads in the table above, each only where marked (v1's checkpoint and the base weights are likely after

@@ -433,7 +433,8 @@ mi, un, sh = j.compare_state_dicts(m, bad)
 assert (mi, un, sh) == (["1.bias"], ["extra.weight"], ["0.weight"]), (mi, un, sh)
 print("compare_state_dicts finds missing, unexpected and shape-mismatched keys")
 # the verdict on a module carrying olmoearth's own legacy hook (CompositeEncodings._drop_pos_embed_hook), as v1's
-# checkpoint meets it under rslearn 0.1.17 (env job 1355980): the legacy table is accepted only with on-the-fly values
+# checkpoint meets it under rslearn 0.1.17 (env jobs 1355980, 1361497): the legacy table is accepted within LEGACY_MAX
+# (0.01) of the on-the-fly encoding, and whether it equals it is recorded
 import argparse, os, tempfile
 from olmoearth_pretrain_minimal.olmoearth_pretrain_v1.nn.flexi_vit import CompositeEncodings
 from olmoearth_pretrain_minimal.olmoearth_pretrain_v1.nn.encodings import get_1d_sincos_pos_encoding
@@ -454,13 +455,19 @@ class M(torch.nn.Module):
 K = "composite_encodings.pos_embed"
 base = {k: v.clone() for k, v in M().state_dict().items()}
 table = get_1d_sincos_pos_encoding(torch.arange(20), 8)
+assert (j.LEGACY_MAX, j.LEGACY_EQUAL) == (0.01, 1e-5)
 r = j.load_check_result(M(), base)
 assert r["ok"] and r["accepted_unexpected"] == [], r
 r = j.load_check_result(M(), {**base, K: table.clone()})
 assert r["ok"] and r["strict_load"] and r["accepted_unexpected"] == [K] and r["legacy_table_max_abs_diff"][K] <= 1e-6, r
+assert r["legacy_table_is_the_formula"][K] and len(r["legacy_table_row_max_abs_diff"][K]) == 20, r
+# a drifted table as in v1's checkpoint (up to 0.0037): accepted, recorded as not the formula's
+r = j.load_check_result(M(), {**base, K: table + 0.004})
+assert r["ok"] and not r["legacy_table_is_the_formula"][K] and abs(r["legacy_table_max_abs_diff"][K] - 0.004) < 1e-6, r
 r = j.load_check_result(M(), {**base, K: table[None].clone()})
 assert r["ok"], r
-for what, bad in (("perturbed", table + 0.01), ("another width", get_1d_sincos_pos_encoding(torch.arange(20), 4)),
+for what, bad in (("beyond the guard", table + 0.05), ("just beyond the guard", table + 0.0101),
+                  ("nan", table.masked_fill(table > 0.9, float("nan"))), ("another width", get_1d_sincos_pos_encoding(torch.arange(20), 4)),
                   ("empty", table[:0]), ("complex", torch.complex(table, torch.ones_like(table))),
                   ("integer", table.round().to(torch.int64))):
     r = j.load_check_result(M(), {**base, K: bad})
@@ -473,7 +480,7 @@ r = j.load_check_result(M(), {**base, "head.junk": 5})
 assert not r["ok"] and r["non_tensor"] == 1, r
 r = j.load_check_result(M(), {k: v for k, v in base.items() if k != "head.bias"})
 assert not r["ok"], r
-print("load_check_result: only CompositeEncodings' legacy table at on-the-fly values and width is accepted; any other extra, non-tensor or missing key fails")
+print("load_check_result: only CompositeEncodings' legacy table at the encoder's width and within 0.01 of the formula is accepted (equality recorded); any other extra, non-tensor or missing key fails")
 d = tempfile.mkdtemp()
 torch.save({"state_dict": base, "hyper_parameters": {"lr": 0.1}}, os.path.join(d, "plain.ckpt"))
 sd, how = j.load_checkpoint_safely(os.path.join(d, "plain.ckpt"))

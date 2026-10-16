@@ -458,7 +458,7 @@ case "$MODE" in
       echo "== strict load of $m into the module model.yaml builds (CPU) =="
       run_logged "loadcheck-$m" 30m "${JPY[@]}" load-check --config "$CONFIG" --ckpt "${CKPT[$m]}" \
         --model-id "${MODEL_IDS[$m]}" --record "$REC/e111_loadcheck_$m.json"
-      python3 -c 'import json,sys; r=json.load(open(sys.argv[1])); print({k: r.get(k) for k in ("model_id","load","keys_in_checkpoint","missing","unexpected","shape_mismatch","non_tensor","strict_load","load_error","accepted_unexpected","legacy_table_max_abs_diff","plain_weights_only","ok")})' "$REC/e111_loadcheck_$m.json"
+      python3 -c 'import json,sys; r=json.load(open(sys.argv[1])); print({k: r.get(k) for k in ("model_id","load","keys_in_checkpoint","missing","unexpected","shape_mismatch","non_tensor","strict_load","load_error","accepted_unexpected","legacy_table_max_abs_diff","legacy_table_is_the_formula","legacy_max","plain_weights_only","ok")})' "$REC/e111_loadcheck_$m.json"
     done
     rm -rf "$D"
     echo "== the record's environment (uv.lock; the first run in a fresh clone installs it from PyPI) =="

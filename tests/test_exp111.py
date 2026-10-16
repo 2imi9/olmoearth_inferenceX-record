@@ -46,12 +46,14 @@ def test_the_page_states_the_codes_numbers():
             f"at least {gate['spearman_suspicion_min']}",
             "{O}/{W}/{X}".format(**b111.SIZES),
             f"MAX_FAILED_SHARE` = {re.search(r'^MAX_FAILED_SHARE=([0-9.]+)$', sh, re.M).group(1)}",
-            f"at most {j111.MAX_FAILED_SHARE_CAP}"):
+            f"at most {j111.MAX_FAILED_SHARE_CAP}",
+            f"within {j111.LEGACY_MAX} of the formula", "on-the-fly encoding within 1e-5"):
         assert phrase in t, phrase
     assert all(str(c) in t for c in b111.CONFIDENT_CUT.values())
     assert b111.SIZES == {"O": 300, "W": 300, "X": 300} and b111.SEED == 111
     assert f["with_input"] == int(0.8 * sum(b111.SIZES.values()))
     assert re.search(r"^MAX_FAILED_SHARE=0$", sh, re.M)
+    assert (j111.LEGACY_MAX, j111.LEGACY_EQUAL) == (0.01, 1e-5)
 
 
 def test_the_sizing_record_holds_the_select_steps_pool():
