@@ -68,7 +68,10 @@ def test_the_sizing_record_holds_the_select_steps_pool():
 
 
 def test_the_selection_window_gate_and_units_smoke(tmp_path):
-    assert b111.smoke(out_dir=str(tmp_path), log=lambda *a: None)["ok"]
+    # the smoke's select, windows and redo paths are a draft page's; the page is frozen from 16 October 2026, and the
+    # module is guarded since the gate (8dc3a01), so the test, not the module, sets the draft status
+    with b111._pretend_status("draft"):
+        assert b111.smoke(out_dir=str(tmp_path), log=lambda *a: None)["ok"]
 
 
 def test_the_graders_smoke(tmp_path):

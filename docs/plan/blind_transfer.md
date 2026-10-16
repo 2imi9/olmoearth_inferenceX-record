@@ -1,21 +1,31 @@
 # A blind transfer test: do exp99's ranking miss and exp109's diagnosis hold at TimeSync plots no model has seen? (exp111 preregistration)
 
-**Status: decided, not frozen.** Written 14 October 2026; revised 15 October 2026 after three independent reviews
-(15 findings, then 11, then 5, all addressed below). On 15 October 2026 the owner confirmed, as proposed: the bars of
-P1 to P3, the floors, the gate (A1 to A4, B1, B2 and their floors), the draw sizes (300/300/300, seed 111), the failure
-allowance (0) and R3's exclusion. **They are binding at the phase-1 commit**, because the code phase 1 runs holds every
-one of them: `exp111_grade.py`'s `FLOORS` and `BARS`, `exp111_blind_transfer.py`'s `GATE_BARS` and `SIZES`, and
-`e111.sh`'s `MAX_FAILED_SHARE`. None is a submission option. The 720 floor is 80% of `SIZES`' 900 plots, and the
+**Status: frozen on 16 October 2026, after the gates passed and before any blind prediction.** The owner read the gates
+and the inventory and froze the page (below). Written 14 October 2026; revised 15 October 2026 after three independent
+reviews (15 findings, then 11, then 5, all addressed below). On 15 October 2026 the owner confirmed, as proposed: the
+bars of P1 to P3, the floors, the gate (A1 to A4, B1, B2 and their floors), the draw sizes (300/300/300, seed 111), the
+failure allowance (0) and R3's exclusion. **They are binding at the phase-1 commit**, because the code phase 1 runs
+holds every one of them: `exp111_grade.py`'s `FLOORS` and `BARS`, `exp111_blind_transfer.py`'s `GATE_BARS` and `SIZES`,
+and `e111.sh`'s `MAX_FAILED_SHARE`. None is a submission option. The 720 floor is 80% of `SIZES`' 900 plots, and the
 phase-2 guard, the units and the grade refuse a draw of other sizes. Every phase-2 step refuses if a guarded file
-changed since the gate. A later change costs a gate rerun at least, and a new draw and prepare for the sizes
-("Decisions for the owner" lists each cost). After freezing, none of them can change. At the phase-1 commit no cluster
-job, download or prediction has been made for it. The sizing numbers come from `exp/exp111_power.py`
-(`exp/out/exp111_power.json`), which reads only committed units files of exp98, exp99 and exp103. Scripts:
-`exp/exp111_blind_transfer.py` (selection, windows, read, gate, units), `exp/exp111_grade.py` (the grade of P1 to P3,
-written and smoked before any fresh plot was read) and `exp/exp111_jobs.py`; jobs `exp/jobs/e111.sh` and
-`exp/jobs/e111_submit.sh` with `exp/jobs/e111_config/`, and the local smoke `exp/jobs/e111_local_smoke.sh`.
+changed since the gate. A later change costs a gate rerun at least, and a new draw and prepare for the sizes ("Decisions
+for the owner" lists each cost). After freezing, none of them can change. At the phase-1 commit no cluster job, download
+or prediction has been made for it. The sizing numbers come from `exp/exp111_power.py` (`exp/out/exp111_power.json`),
+which reads only committed units files of exp98, exp99 and exp103. Scripts: `exp/exp111_blind_transfer.py` (selection,
+windows, read, gate, units), `exp/exp111_grade.py` (the grade of P1 to P3, written and smoked before any fresh plot was
+read) and `exp/exp111_jobs.py`; jobs `exp/jobs/e111.sh` and `exp/jobs/e111_submit.sh` with `exp/jobs/e111_config/`, and
+the local smoke `exp/jobs/e111_local_smoke.sh`.
 
-**Draw sha256 (frozen):** `(written here at freezing, from phase 1's e111_select.json)`
+**Draw sha256 (frozen):** `3e5506e51f4d66620665fab17939a298fdc85bc5b1ed7b1c499e1a2095c0731c`
+
+**The gates (16 October 2026, gate job 1369594 and gatecheck 1369595 at 8dc3a01, on an NVIDIA B200): passed.** v1.2, the
+graded model: gate A 259 of 259 points the same class as exp103's 2023 run, 0 with |Δp1| above 0.05 (largest 0.044),
+Spearman 0.9996; gate B 262 of 263 plots the same class as exp103's 2017 run, 1 with |Δp1| above 0.05, Spearman 0.9995,
+89 of its 90 confident plots kept; floors 259 of 259 and 263 of 271 with input in both. v1, report-only: gate A 245 of
+259 (39 above the tolerance, Spearman 0.916), gate B 237 of 263 (89 above, Spearman 0.840, 76 of 91 confident plots
+kept). The earlier gate (job 1365118 at 3dd770d, v1 with the formula's table) and the v1 route diagnostic (job 1369140)
+are in the amendments above. Inventory: blind17 890 of 900 windows with all twelve groups (10 with none), above the 720
+floor; gate17 263 of 309 (exp99 had 271).
 
 - **Allowed before freezing:**
   - the draw (below), which reads only TimeSync 2017 labels, countries and the distance to Ai2's request geometry;

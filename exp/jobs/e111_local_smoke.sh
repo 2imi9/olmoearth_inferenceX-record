@@ -40,7 +40,10 @@ refused() {   # refused <message> <command...>: the command fails and says <mess
 }
 
 echo "== record environment: select/draw, reruns, window geometry, deployment windows, synthetic outputs, reader, gate, draw check, units =="
-step record_smoke "$RECORD_PY" -I "$B" --smoke --out-dir "$OUT"
+# as a draft page (the page is frozen from 16 October 2026; the module is guarded since the gate, so the status is set here)
+step record_smoke "$RECORD_PY" -I -c "import sys; sys.path.insert(0, sys.argv[1]); import exp111_blind_transfer as b
+with b._pretend_status('draft'):
+    sys.exit(0 if b.smoke(sys.argv[2])['ok'] else 1)" "$EXP" "$OUT"
 echo "== the grader: synthetic units (a passing and a failing case for each bar, the interval cases), a plain-numpy bootstrap, the 271 =="
 step grade_smoke "$RECORD_PY" -I -W ignore "$GR" --smoke --out-dir "$OUT"
 
@@ -824,7 +827,7 @@ sys.path.insert(0, EXP)
 import exp111_blind_transfer as b, exp111_grade as g, exp111_jobs as j
 flat = re.sub(r"\s+", " ", page)
 need = {
-    "status is not frozen": re.search(r"^\*\*Status: (DRAFT|decided, not frozen)", page, re.M) is not None,
+    "status is a known one": re.search(r"^\*\*Status: (DRAFT|decided, not frozen|frozen on )", page, re.M) is not None,
     "binding at the phase-1 commit": "binding at the phase-1 commit" in flat,
     "floor 720": f"at least {g.FLOORS['with_input']} of the 900" in flat,
     "floors 40/40": f"at least {g.FLOORS['errors_per_rule']} errors and {g.FLOORS['correct_per_rule']} correct" in flat,
