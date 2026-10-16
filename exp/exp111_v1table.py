@@ -25,6 +25,7 @@ It refuses (exit 3) when rslearn exited 0 but a patch the variant needs was neve
 not apply cannot pass as this one.
 """
 import argparse
+import functools
 import os
 import sys
 
@@ -60,6 +61,7 @@ def install_fp32_encodings(calls):
     from olmoearth_pretrain_minimal.olmoearth_pretrain_v1.nn import flexi_vit
     original = flexi_vit.CompositeEncodings._apply_encodings_per_modality
 
+    @functools.wraps(original)
     def fp32(self, modality_name, modality_tokens, *args, **kwargs):
         calls["fp32buf"] += 1
         return original(self, modality_name, modality_tokens.float(), *args, **kwargs)
@@ -68,16 +70,20 @@ def install_fp32_encodings(calls):
 
 
 def install_no_autocast(calls):
-    """Make rslearn's OlmoEarth wrapper run without autocast (autocast_dtype None after its own __init__)."""
+    """Make rslearn's OlmoEarth wrapper run without autocast: its forward sets autocast_dtype to None before running.
+    forward, not __init__: jsonargparse builds the wrapper from model.yaml by __init__, and refused a replaced __init__
+    even with its signature kept (diagnostic job 1368915, exit 2). Counts the wrappers it turned off."""
     from rslearn.models.olmoearth_pretrain import model as oe_model
-    original = oe_model.OlmoEarth.__init__
+    original = oe_model.OlmoEarth.forward
 
-    def init(self, *args, **kwargs):
-        original(self, *args, **kwargs)
-        self.autocast_dtype = None
-        calls["no_autocast"] += 1
+    @functools.wraps(original)
+    def forward(self, *args, **kwargs):
+        if self.autocast_dtype is not None:
+            self.autocast_dtype = None
+            calls["no_autocast"] += 1
+        return original(self, *args, **kwargs)
 
-    oe_model.OlmoEarth.__init__ = init
+    oe_model.OlmoEarth.forward = forward
 
 
 def main():

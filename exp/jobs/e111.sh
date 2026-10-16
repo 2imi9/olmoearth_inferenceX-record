@@ -636,11 +636,16 @@ case "$MODE" in
     rec_ok "$REC/e111_gate23_precheck.json" || { echo "no passing precheck for gate23: run E111_MODE=prepare first"; exit 1; }
     gpu_prep "$PRIV/tmp/device-v1diag-$JOB.json"
     rm -f "$REC/e111_v1diag.json" "$REC"/e111_v1table_diag-*.json
+    OKV=()
     for v in formula table table_fp32buf table_fp32; do
       find "$PRIV/roots/gate23/windows" -mindepth 4 -maxdepth 4 -type d -name "output_d_$v" -path '*/layers/*' -exec rm -rf {} +
-      V1_TABLE=$v run_predict "$PRIV/roots/gate23" v1 "output_d_$v" "$CONFIG" "diag-$v"
+      # a variant that fails is a note: the others are still read (job 1368915 lost all four to one failure)
+      if ( V1_TABLE=$v run_predict "$PRIV/roots/gate23" v1 "output_d_$v" "$CONFIG" "diag-$v" ); then OKV+=("$v")
+      else echo "note: variant $v failed; the diagnostic reads the others"; fi
     done
-    "${PY[@]}" --v1diag --private-dir "$PRIV" --record "$REC/e111_v1diag.json" || { echo "the v1 diagnostic's read failed"; exit 1; }
+    [ "${#OKV[@]}" -gt 0 ] || { echo "every variant failed"; exit 1; }
+    "${PY[@]}" --v1diag --v1diag-variants "${OKV[*]}" --private-dir "$PRIV" --record "$REC/e111_v1diag.json" \
+      || { echo "the v1 diagnostic's read failed"; exit 1; }
     for v in formula table table_fp32buf table_fp32; do
       find "$PRIV/roots/gate23/windows" -mindepth 4 -maxdepth 4 -type d -name "output_d_$v" -path '*/layers/*' -exec rm -rf {} +
     done

@@ -590,15 +590,20 @@ assert CE._apply_encodings_per_modality(None, "sentinel2_l2a", torch.zeros(2, dt
 assert c2 == {"fp32buf": 1}, c2
 CE._apply_encodings_per_modality = saved
 from rslearn.models.olmoearth_pretrain import model as oe_model
-saved_init = oe_model.OlmoEarth.__init__
-def stub_init(self, *a, **k):
-    torch.nn.Module.__init__(self)
-    self.autocast_dtype = torch.bfloat16
-oe_model.OlmoEarth.__init__ = stub_init
+# the no-autocast patch leaves __init__ alone (jsonargparse refused a replaced one, job 1368915) and turns autocast off
+# at the first forward: a stand-in forward sees autocast_dtype None
+import inspect
+init_before = oe_model.OlmoEarth.__init__
+saved_fwd = oe_model.OlmoEarth.forward
+oe_model.OlmoEarth.forward = lambda self, *a, **k: self.autocast_dtype
 c3 = {"no_autocast": 0}
 vt.install_no_autocast(c3)
-assert oe_model.OlmoEarth().autocast_dtype is None and c3 == {"no_autocast": 1}, c3
-oe_model.OlmoEarth.__init__ = saved_init
+assert oe_model.OlmoEarth.__init__ is init_before
+w = torch.nn.Module.__new__(oe_model.OlmoEarth)
+torch.nn.Module.__init__(w)
+w.autocast_dtype = torch.bfloat16
+assert oe_model.OlmoEarth.forward(w) is None and oe_model.OlmoEarth.forward(w) is None and c3 == {"no_autocast": 1}, c3
+oe_model.OlmoEarth.forward = saved_fwd
 # a variant whose second patch never applied is refused like an unused table
 sys.argv = ["exp111_v1table.py", "--ckpt", ck, "--record", os.path.join(d, "e111_v1table_fp32unused.json"),
             "--variant", "table_fp32buf", "--", "model", "predict"]
@@ -612,7 +617,8 @@ assert R["variant"] == "table_fp32buf" and R["calls_own_table"] == 1 and R["call
 CE._apply_encodings_per_modality = saved
 sh = open(SH).read()
 assert "\nV1_TABLE=formula\n" in sh and 'if [ "$m" = v1 ] && [ "$V1_TABLE" != formula ]; then' in sh
-assert 'V1_TABLE=$v run_predict "$PRIV/roots/gate23" v1 "output_d_$v" "$CONFIG" "diag-$v"' in sh
+assert 'if ( V1_TABLE=$v run_predict "$PRIV/roots/gate23" v1 "output_d_$v" "$CONFIG" "diag-$v" ); then OKV+=("$v")' in sh
+assert '--v1diag-variants "${OKV[*]}"' in sh
 print("exp111_v1table: replaces flexi_vit's one temporal call (in CompositeEncodings), answers from the stored table at "
       "its width only; float32 encodings and no-autocast variants; refuses an unused route and a checkpoint without the "
       "table; records a crash; e111.sh routes v1 only, the committed route formula, v1diag all four")

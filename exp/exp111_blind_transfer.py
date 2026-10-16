@@ -1841,6 +1841,8 @@ def main(argv=None):
     g.add_argument("--check-draw", action="store_true")
     g.add_argument("--units", action="store_true")
     g.add_argument("--v1diag", action="store_true", help="report-only: v1 under each candidate route at gate A")
+    ap.add_argument("--v1diag-variants", default=" ".join(V1DIAG_VARIANTS),
+                    help="the variants whose prediction finished (space-separated; the others are recorded as failed)")
     ap.add_argument("--private-dir", default=None)
     ap.add_argument("--timesync", default=os.path.join(ROOT, "data", "breadth", tsx.TIMESYNC["file"]))
     ap.add_argument("--request-geometry", default=None)
@@ -1890,7 +1892,11 @@ def main(argv=None):
     elif a.units:
         rec = run_units(a.private_dir, a.gate_file, a.out_dir, a.cgls)
     elif a.v1diag:
-        rec = run_v1diag(a.private_dir)
+        done = a.v1diag_variants.split()
+        if not done or any(v not in V1DIAG_VARIANTS for v in done):
+            ap.error(f"--v1diag-variants: some of {V1DIAG_VARIANTS}")
+        rec = run_v1diag(a.private_dir, variants=tuple(v for v in V1DIAG_VARIANTS if v in done))
+        rec["variants_failed"] = [v for v in V1DIAG_VARIANTS if v not in done]
     if a.record:
         dump(rec, a.record)
     return 0 if rec.get("ok", True) else 1
