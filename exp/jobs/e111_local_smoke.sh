@@ -282,9 +282,10 @@ seq_case() {   # seq_case <case dir> <root name> <MAX_FAILED_SHARE> <job> <scena
   bash -c '
     set -euo pipefail
     [ -s "$1" ] || { echo "seq_case: no e111.sh (E111_SH unset?)"; exit 2; }
-    eval "$(sed -n "/^masked() /,/^}\$/p; /^prepare_root() /,/^}\$/p" "$1")"
-    declare -F masked prepare_root > /dev/null
-    case_dir=$2 name=$3 MAX_FAILED_SHARE=$4 JOB=$5
+    eval "$(sed -n "/^masked() /,/^}\$/p; /^set_tmp() /,/^}\$/p; /^prepare_root() /,/^}\$/p" "$1")"
+    declare -F masked set_tmp prepare_root > /dev/null
+    case_dir=$2 name=$3 MAX_FAILED_SHARE=$4 JOB=$5 TMPN=0
+    TSHORT=$(mktemp -d /tmp/e111s.XXXXXX)   # short, as on the cluster: set_tmp refuses a TMPDIR a socket cannot sit under
     PRIV=$case_dir/priv REC=$case_dir/rec DEPLOY=$case_dir/none VENV=$case_dir/no_venv NCPU=2
     CONFIG=$7/jobs/e102_config/model.yaml
     JPY=("$8" -I "$7/exp111_jobs.py")
@@ -499,6 +500,20 @@ for i, x in enumerate((os.stat(d), operator.methodcaller("lower"))):
 print("load_checkpoint_safely: weights_only, inert stubs for other globals, refuses os.* and operator.*")
 EOF
 
+# prepare 1364257 died on "AF_UNIX path too long": rslearn's forkserver socket sits 32 characters under TMPDIR and a
+# socket path holds at most 107; every TMPDIR goes through set_tmp, and the cluster's path leaves room
+step tmpdir_fits_a_socket bash -c '
+  set -euo pipefail
+  eval "$(sed -n "/^set_tmp() /,/^}\$/p" "$1")"
+  [ "$(grep -c "TMPDIR=" "$1")" = 1 ] && grep -q "^  export TMPDIR=\$TSHORT/\$JOB.\$TMPN$" "$1"
+  grep -q "^TSHORT=\$PRIV/t$" "$1" && grep -q "^PRIV=\$SCRATCH/e111_private$" "$1"
+  PRIV=/scratch/qi_zim_neu/olmoearth_inferenceX/e111_private; TSHORT=$PRIV/t; JOB=99999999; TMPN=98
+  mkdir() { :; }
+  set_tmp
+  [ "$TMPDIR" = /scratch/qi_zim_neu/olmoearth_inferenceX/e111_private/t/99999999.99 ] && [ $(( ${#TMPDIR} + 32 )) -le 100 ]
+  o=$(TSHORT=/scratch/$(printf "%070d" 0); set_tmp 2>&1) && exit 1
+  grep -q "too long for rslearn.s forkserver socket" <<< "$o"
+' _ "$E111_SH"
 echo "== the job scripts: syntax, lint, usage, inputs record, redo, the A' budget, the gate's commits, the submit chain (dry run), rule consistency =="
 step bash_syntax bash -c 'bash -n "$1" && bash -n "$2"' _ "$E111_SH" "$SUBMIT_SH"
 if command -v shellcheck > /dev/null; then

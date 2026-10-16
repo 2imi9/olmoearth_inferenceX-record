@@ -665,6 +665,7 @@ recorded. Its script becomes the claims' second route.
 | scratch, `deploy` | A′'s transient layer in exp98's dataset, removed by the gate's exit trap, gatecheck and pack1 | up to about 11 GB, for at most a few hours |
 | scratch, `e111_code` | the clone and its `.venv` (`uv run --frozen`) | about 0.2 GB of git objects and about 0.5 GB installed |
 | scratch, `e111_out` | records, masked logs, trainer directories, units, the summary, two tarballs | under 0.1 GB |
+| scratch, `e111_private/t` | the jobs' temporary files: rslearn's window lists and its forkserver sockets (amended 16 October 2026: under `e111_private/tmp/<tag>-<job>` the socket path reached the 107-character limit and prepare 1364257 failed before any imagery; now `t/<job>.<n>`) | KB to MB |
 | scratch, only if purged | a rebuilt rslearn venv (`e111/venv`); the checkpoints and base weights (`hf`); the public inputs (`e111_data`) | up to about 8 GB; about 3 GB; 39 MB |
 | /home | Slurm logs only, nothing collected; the env job refuses above 90 GiB or 450,000 files, or when the size is unknown; the end of prepare records the usage as a note only (it writes nothing to /home, and a refusal there would cancel the chain after hours of work) | KB to a few MB, about a dozen files |
 | Mac | the two tarballs and the units files | a few MB |

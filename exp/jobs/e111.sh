@@ -181,6 +181,12 @@ export HF_HUB_OFFLINE=${E111_HF_OFFLINE:-1}
 export PATH="$HOME/.local/bin:$PATH"
 mkdir -p "$PRIV/logs" "$PRIV/tmp"
 chmod 700 "$PRIV"
+# rslearn starts its pools with forkserver, whose socket lives under TMPDIR (pymp-XXXXXXXX/listener-XXXXXXXX: 32 more
+# characters), and a Unix socket path holds at most 107. $PRIV/tmp/<tag>-<job> came to about 106 and prepare 1364257
+# died on it (OSError: AF_UNIX path too long), so every TMPDIR is a short directory under TSHORT, inside $PRIV.
+TSHORT=$PRIV/t
+mkdir -p "$TSHORT"
+TMPN=0
 mkdir -p "$REC" "$OUT/logs" "$OUT/fetch"
 
 if [ ! -d "$CODE/.git" ]; then
@@ -216,9 +222,9 @@ run_logged() {   # run_logged <tag> <timeout> <command...>: output to $PRIV/logs
   local tag=$1 lim=$2; shift 2
   local log=$PRIV/logs/$tag-$JOB.log t0 rc=0
   t0=$(date +%s)
-  timeout "$lim" "$@" > "$log" 2>&1 || rc=$?
+  timeout --kill-after=120 "$lim" "$@" > "$log" 2>&1 || rc=$?
   if [ "$rc" != 0 ]; then
-    [ "$rc" = 124 ] && echo "$tag hit its time limit ($lim)"
+    { [ "$rc" = 124 ] || [ "$rc" = 137 ]; } && echo "$tag hit its time limit ($lim)"
     echo "$tag failed (exit $rc) after $(( $(date +%s) - t0 )) s; the last lines of its log, masked:"
     tail -n 40 "$log" | masked
     exit 1
@@ -336,8 +342,8 @@ run_predict() {   # run_predict <dataset root> <model v1|v12> <layer> <config> <
   export DATASET_PATH=$ds PREDICTION_OUTPUT_LAYER=$layer MODEL_ID=${MODEL_IDS[$m]} NUM_WORKERS=$WORKERS
   export TRAINER_DATA_PATH=$OUT/trainer/$tag-$JOB
   # rslearn's ModelDataset writes every window's name, bounds and projection to tempfile.gettempdir()
-  # (rslearn/train/dataset.py:1007-1019 at v0.1.17): keep them in the private directory
-  export TMPDIR=$PRIV/tmp/$tag-$JOB
+  # (rslearn/train/dataset.py:1007-1019 at v0.1.17): keep them in a private directory (TSHORT, mode 700)
+  set_tmp
   work=$PRIV/tmp/work-$tag-$JOB
   mkdir -p "$TRAINER_DATA_PATH" "$TMPDIR" "$work"
   echo "== $(date -Is) rslearn model predict ($tag): $m, layer $layer, $WORKERS workers, limit $lim =="
@@ -362,13 +368,19 @@ remove_aprime() {   # A''s layer out of exp98's deployment dataset: an EXIT trap
   fi
 }
 
+set_tmp() {   # export TMPDIR as a short private directory, numbered within the job; refuse one a socket cannot sit under
+  TMPN=$((TMPN + 1))
+  export TMPDIR=$TSHORT/$JOB.$TMPN
+  [ $(( ${#TMPDIR} + 32 )) -le 100 ] || { echo "TMPDIR $TMPDIR is too long for rslearn's forkserver socket"; exit 2; }
+  mkdir -p "$TMPDIR"
+}
+
 prepare_root() {   # prepare_root <name>: three passes of prepare/ingest/materialize, then the SCL sidecar (windows with
   # all twelve groups only), its materialize (failures added to pass 3's), precheck (quarantine within the allowance),
   # the SCL check (windows with input only), inventory. The local smoke runs this function itself, rslearn stood in for
   local name=$1 ds=$PRIV/roots/$1 pass maxf
   local -a plus
-  export TMPDIR=$PRIV/tmp/prep-$name-$JOB
-  mkdir -p "$TMPDIR"
+  set_tmp
   for pass in 1 2 3; do
     # pass 1 stops a systematic failure (above 2% of the windows); pass 2 retries; after pass 3 at most MAX_FAILED_SHARE
     # of the windows may fail, prepare's and materialize's failures summed (the owner's allowance; proposed 0)
@@ -452,7 +464,8 @@ case "$MODE" in
     D=$PRIV/tmp/env-ds-$JOB
     mkdir -p "$D"
     cp exp/jobs/e111_config/dataset.json "$D/config.json"
-    export DATASET_PATH=$D PREDICTION_OUTPUT_LAYER=output_v1 NUM_WORKERS=0 TRAINER_DATA_PATH=$OUT/trainer/env-$JOB TMPDIR=$PRIV/tmp
+    export DATASET_PATH=$D PREDICTION_OUTPUT_LAYER=output_v1 NUM_WORKERS=0 TRAINER_DATA_PATH=$OUT/trainer/env-$JOB
+    set_tmp
     "${JPY[@]}" parse-model --record "$REC/e111_parse_model.json" > /dev/null || { echo "model.yaml does not parse as expected"; exit 1; }
     for m in v1 v12; do
       echo "== strict load of $m into the module model.yaml builds (CPU) =="
@@ -536,8 +549,7 @@ case "$MODE" in
     mkdir -p "$SM/windows/e111"
     cp "$PRIV/roots/gate23/config.json" "$SM/config.json"
     for n in a0000 a0001; do mkdir -p "$SM/windows/e111/$n"; cp "$PRIV/roots/gate23/windows/e111/$n/metadata.json" "$SM/windows/e111/$n/"; done
-    export TMPDIR=$PRIV/tmp/prep-smoke-$JOB
-    mkdir -p "$TMPDIR"
+    set_tmp
     run_logged smoke2-prepare 30m "$VENV/bin/rslearn" dataset prepare --root "$SM" --workers 2 --retry-max-attempts 5 --retry-backoff-seconds 10
     run_logged smoke2-materialize 30m "$VENV/bin/rslearn" dataset materialize --root "$SM" --workers 2 --retry-max-attempts 5 --retry-backoff-seconds 10
     "${JPY[@]}" check-groups --root "$SM" --record "$REC/e111_smoke2_groups.json" | masked \
