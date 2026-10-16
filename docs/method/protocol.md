@@ -258,7 +258,10 @@ The comparison half, settled in exp57 and probed in exp58; the arithmetic is
 - **A null is not a demonstration of equality.** Where a signal is reported
   as not beating confidence at p > 0.05 (aligned tile-phase on Sen1Floods11
   Bolivia, 163/187, p=0.22) the claim is that no advantage was shown, not
-  that the two are equivalent. No equivalence test has been run.
+  that the two are equivalent. No equivalence test was run for these
+  signals; the one equivalence test the record ran since, exp98's (the
+  re-run within 5 points of the evaluation replica), did not show
+  equivalence.
 - **Cross-testbed comparisons change several things at once.** Moving from
   the WorldCover scenes to Sen1Floods11 changes the reference, the task
   (permanent against flood water), the geography, the unit of analysis

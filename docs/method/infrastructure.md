@@ -176,3 +176,10 @@ README that maps each script to its job ids and artifacts.
 - The replica reaches 0.881 on the validation split against the reported
   0.895; the remaining gap is within crop-alignment and interpolation
   choices (0.898 when the containing patch's logits are read directly).
+- Library version matters (exp111): Ai2's FT-AWF v1 checkpoint does not
+  reproduce its rslearn 0.0.27 predictions (exp98) under rslearn 0.1.17
+  (olmoearth-pretrain-minimal 0.1.2, torch 2.14.1): 245 of exp98's 259
+  points keep their class. The stored temporal table, the encodings'
+  precision and autocast are ruled out; the cause is not isolated. The
+  record's v1.2 fine-tune, whose encoder does not use that table, repeats
+  exp103 on the same route (259 of 259).

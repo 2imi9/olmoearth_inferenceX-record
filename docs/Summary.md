@@ -41,7 +41,8 @@ all, with the evidence.
   imagery, confidence ranked the errors with an AUROC of 0.638 under a one-to-one crosswalk, below
   the preregistered 0.70. <!-- claim:exp99-confidence-misses-the-ranking-bar-under-both-rules -->
   The record's own fine-tune of OlmoEarth v1.2 for the same task gave the same verdicts: 0.814 at
-  Ai2's points and, under the one-to-one crosswalk, 0.642 at those plots. <!-- claim:exp103-v12-ranking-holds-at-ai2s-points --> <!-- claim:exp103-v12-transfer-ranking-misses-under-strict -->
+  Ai2's points and, under the one-to-one crosswalk, 0.642 at those plots (a blind test at fresh plots
+  farther from the area did not repeat the miss; below). <!-- claim:exp103-v12-ranking-holds-at-ai2s-points --> <!-- claim:exp103-v12-transfer-ranking-misses-under-strict -->
 - **A second task.** Ai2's Forest Loss Driver model, graded at 689 agriculture and mining alerts
   that MapBiomas Alerta published for the Amazon in the first half of 2026, after the model was
   trained: its confidence ranked its disagreements with the analysts' drivers at a design-weighted
@@ -58,7 +59,8 @@ all, with the evidence.
 - **A blind transfer test.** At 890 fresh TimeSync 2017 plots in Kenya and Tanzania, drawn and
   frozen before any prediction, the v1.2 fine-tune's confidence ranked its errors at a region
   AUROC of 0.729, above the 0.70 bar that exp99 missed: the earlier miss did not replicate. <!-- claim:exp111-v12-ranking-reaches-the-bar-at-fresh-plots -->
-  Most confident errors were still the grass/shrub definitional pair (0.611). <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
+  Standardised to exp99's label mix, as preregistered, most confident errors were still the
+  grass/shrub definitional pair (0.611); weighted by region the pair's share is 0.334. <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
   Ai2's v1 checkpoint did not reproduce its own predictions under the current rslearn (14 of 259
   points change class), a finding for anyone rerunning a deployed model on a newer library. <!-- claim:exp111-v1-does-not-reproduce-exp98-under-rslearn-0117 -->
 - **Error rate.** From 300 randomly drawn windows, a 95% Wilson interval held the true rate in
@@ -110,11 +112,13 @@ detail.
   For the probe trained on both inputs, the share rose on Togo 12, from 10.4% to 48.5%, and fell
   on China 6, from 13.3% to 6.5%. <!-- claim:missing-modality-confident-errors-follow-the-shift-not-the-sensor -->
   No real cloud has been tested.
-- **Shift.** The ranking missed its bar on the one test under a shift of year and place, graded
-  at a random sample, with both models (above). That run cannot say whether the year, the place, the grass/shrub boundary
-  between the two legends or the move from expert-placed points to a random sample is the cause,
-  and no label-free reading tried in the record has found the errors a model makes confidently.
-  exp104's shift (months, inside the training region) is smaller and does not explain it; there
+- **Shift.** Under a shift of year and place, graded at a random sample, the ranking missed its bar
+  with both models at the plots within 100 km of the AWF area (exp99, exp103), and a preregistered
+  blind test at 890 fresh plots farther away did not repeat the miss (v1.2: 0.729, interval 0.701
+  to 0.758; exp111, above). Neither run separates the year, the place, the grass/shrub boundary
+  between the two legends or the kind of point, why the two differ is not established, and no
+  label-free reading tried in the record has found the errors a model makes confidently.
+  exp104's shift (months, inside the training region) is smaller and does not explain exp99's miss; there
   too the confusions between the two labelled classes were confident and ranked below chance. <!-- claim:exp104-the-ranked-disagreements-leave-the-two-labelled-classes -->
   On three published products, disagreement with a second product (Esri) flagged the confident
   errors 4.1 and 5.0 times as often as confident correct rows on two and 1.45 times on the third,

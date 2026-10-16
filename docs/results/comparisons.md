@@ -3764,6 +3764,9 @@ not missing at random. Anything about Ai2's 2023 map or exp98's re-run beyond th
 or per-class user's or producer's accuracy. Whether the labels are right: they are TimeSync interpretations of 30 m
 plots, read against a 10 m map and taken as right.
 
+*Later: a preregistered blind test at 890 fresh TimeSync 2017 plots more than 100 km from the area did not repeat this
+miss (v1.2 0.729, interval 0.701 to 0.758; v1, report-only, 0.730); see [exp111](#a-blind-transfer-test-of-the-awf-fine-tunes-at-fresh-timesync-plots-exp111).*
+
 
 ## Does the map line up with its labels? A shift check on exp98 and exp99 (exp100)
 
@@ -3911,6 +3914,9 @@ labels the failure STRICT's only, where for v1 (0.678) it labelled both rules fa
 **What it shows and does not show.** The layer's findings at Ai2's points and under transfer are not specific to Ai2's
 v1 model: a second fine-tune of the same task, on a newer encoder, gives the same verdicts. It is the same task, region
 and labels; a different task is exp104's question. Which model is better is not asked and cannot be read from one seed.
+
+*Later: at fresh plots farther from the area (exp111, blind), the STRICT miss did not repeat for v1.2 (0.729, interval
+0.701 to 0.758); see [exp111](#a-blind-transfer-test-of-the-awf-fine-tunes-at-fresh-timesync-plots-exp111).*
 
 ## A second task: Ai2's Forest Loss Driver model at 2026 MapBiomas Alerta alerts (exp104)
 
@@ -4160,6 +4166,12 @@ the lead contractor; Zanaga et al. 2021, 2022), and WorldCover 2021 is among Olm
 decode-only target of v1 and v1.2: the checkpoint's `config.json`, `only_decode_modalities`; the pretraining dataset
 card; Herzog et al. 2025, arXiv:2511.13655; see `docs/plan/roadmap.md`), so CGLS siding with the models is not
 independent of them. Which legend's line is right is not asked and cannot be read from these data.
+
+*Later: exp111 tested this diagnosis blind at 890 fresh plots more than 100 km from the AWF area. Standardised to
+exp99's label mix the pair was again most of v1.2's confident STRICT errors (0.611; 0.334 weighted by region), but the
+confidence ranked the STRICT-only errors at 0.656 (0.617 to 0.693), not near chance, and the ranking miss did not repeat
+(0.729). By exp111's frozen reading, this diagnosis describes the plots near the AWF area, not transfer; see
+[exp111](#a-blind-transfer-test-of-the-awf-fine-tunes-at-fresh-timesync-plots-exp111).*
 
 ## Another organisation's deployed field map: FTW's 2nd-edition map at the FTW benchmark's test chips (exp110)
 

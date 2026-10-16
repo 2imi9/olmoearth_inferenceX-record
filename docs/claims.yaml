@@ -5557,6 +5557,7 @@
     - {file: docs/results/comparisons.md, marker: exp111-v12-ranking-reaches-the-bar-at-fresh-plots}
     - {file: docs/Findings.md, marker: exp111-v12-ranking-reaches-the-bar-at-fresh-plots}
     - {file: docs/Summary.md, marker: exp111-v12-ranking-reaches-the-bar-at-fresh-plots}
+    - {file: docs/TECHNIQUES.md, marker: exp111-v12-ranking-reaches-the-bar-at-fresh-plots}
   note: >-
     Graded from the run's units files at 6d80ab7 (grade job 1369841) and recorded after an independent audit that
     recomputed every graded number from the page alone (to 4e-15, the intervals exactly); its scripts became

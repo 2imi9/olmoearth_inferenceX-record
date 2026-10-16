@@ -52,7 +52,8 @@ artifact under `exp/out/`, with its evidence in the [results record](results/com
   interval 0.701 to 0.758): above the 0.70 bar, so exp99's ranking miss (0.638) did not replicate at fresh plots, and the
   prediction that it would was rejected (exp111). <!-- claim:exp111-v12-ranking-reaches-the-bar-at-fresh-plots -->
   The grass/shrub definitional pair (shrubland_savanna on TimeSync Open Grassland) was most of the confident STRICT
-  errors, 0.611 standardised to exp99's label mix, as exp109 diagnosed. <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
+  errors under the preregistered standardisation to exp99's label mix (0.611), as exp109 diagnosed; weighted by region
+  its share is 0.334. <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
   The confidence was not blind to those definitional errors (AUROC 0.656 against the predicted at most 0.65, interval
   0.617 to 0.693), <!-- claim:exp111-v12-strict-only-errors-rank-just-above-the-bar -->
   and a 20-label per-class audit would flag the pair with probability 0.29, not more often than not. <!-- claim:exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair -->
@@ -75,7 +76,8 @@ artifact under `exp/out/`, with its evidence in the [results record](results/com
   with AUROC 0.64 (90% interval 0.58 to 0.696), below the preregistered 0.70, though the least confident 10% still hold
   errors beyond chance (0.43 of the gap closed against a bar of 0.25, interval 0.10 to 0.65). The plots without imagery
   are not missing at random, so these figures describe the plots with imagery, not the whole region (exp99). A
-  fine-tune of OlmoEarth v1.2 for the same task gives the same verdicts at both samples (exp103).
+  fine-tune of OlmoEarth v1.2 for the same task gives the same verdicts at both samples (exp103). A preregistered
+  blind test at fresh plots farther from the area did not repeat the ranking miss (exp111, above).
 - No signal from inside the encoder beats confidence, and a consensus of encoders does not estimate accuracy.
 - For a language-model agent at 7B the package is decisive when its tools are given directly; the agent as shipped
   found them on 17 of 40 runs. At 27B a model with a numpy sandbox nearly matches the package's ranking, and every arm
@@ -356,6 +358,18 @@ At the 2017 plots the strict AUROC is 0.642 (90% interval 0.582 to 0.703), below
 the bar on its point value, but its interval contains 0.70, as v1's did, so this is not a difference between the
 models. The two models share the task, the labels and the region, so this is a replication across model versions, not
 an independent test of the shift. <!-- claim:exp103-v12-transfer-ranking-misses-under-strict -->
+
+## A blind test at fresh plots
+
+An independent test followed (exp111, preregistered and frozen before any prediction at a fresh plot). At 890 TimeSync
+2017 plots of the same sample more than 100 km from the AWF area, the v1.2 fine-tune's confidence ranked its STRICT
+errors at a region AUROC of 0.729 (90% interval 0.701 to 0.758, its lower end on the bar), so exp99's miss did not
+replicate there. <!-- claim:exp111-v12-ranking-reaches-the-bar-at-fresh-plots -->
+Standardised to exp99's label mix, as preregistered, the grass/shrub pair was still most of the confident STRICT errors
+(0.611; 0.334 weighted by region). <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
+By the page's frozen reading the miss was local to the plots near the AWF area, and exp109's report-only diagnosis of
+those plots (most confident STRICT errors on that pair, ranked near chance) describes them, not the transfer. Why the two
+samples differ is not separated: the fresh plots lie farther away and hold more non-grassland land. See [the record](results/comparisons.md#a-blind-transfer-test-of-the-awf-fine-tunes-at-fresh-timesync-plots-exp111).
 
 ## The package as an agent tool
 

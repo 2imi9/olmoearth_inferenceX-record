@@ -1,5 +1,14 @@
 # Open items
 
+**Status, 16 October 2026.** The record ran to exp111 after v1.0.0; the per-experiment results are in
+[../results/comparisons.md](../results/comparisons.md) and the preregistrations in the [index](index.md). The blind
+transfer test of exp99's ranking miss was run (exp111): the miss did not replicate at fresh plots. A study of human
+reviewers' error rates with hired annotators was considered and dropped. An end-to-end agent demo is optional future
+work. Not run, as the technical report lists them: an exact paired interval on a whole-map sample, selection with
+guaranteed risk on the same maps, map-class strata graded for class areas and per-class accuracy, a measurement of human
+reviewers' error rates, and the ranking under corruption or a real cloud. The text below was last brought up to date at
+exp76 (18 September 2026) and is kept as written.
+
 **Status, 17 September 2026.** The evidence program closed with exp74 and the
 v1.0.0 release. The items below stay as the record of what would come next; their
 tracker issues (#2, #8, #11, #12, #13, #16) were closed the same day, as completed

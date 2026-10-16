@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: Qi
     given-names: Ziming
-date-released: 2026-10-14
+date-released: 2026-10-16
 license: Apache-2.0
 repository-code: "https://github.com/2imi9/olmoearth_inferenceX-record"
 abstract: >-
