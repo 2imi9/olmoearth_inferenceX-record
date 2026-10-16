@@ -899,6 +899,38 @@ def run_read_aprime(priv, plan_path, log=print):
 
 
 # ----------------------------------------------------------------------------- the gate
+V1DIAG_VARIANTS = ("formula", "table", "table_fp32buf", "table_fp32")
+
+
+def run_v1diag(priv, variants=V1DIAG_VARIANTS, known=KNOWN, bars=GATE_BARS, log=print):
+    """Report-only (amendment of 16 October 2026): v1 at gate A's 259 points under each candidate route (e111.sh mode
+    v1diag wrote layer output_d_<variant> into the gate23 root), each read as the gate reads and compared with exp98's
+    known answer as A1 and A2 compare it. Never a gate: it writes no gate record and decides nothing."""
+    u = np.load(known[("gate23", "v1")])
+    sel = (u["split"] == "val") & u["covered"]
+    units = read_json(os.path.join(priv, "units_gate23.json"))["units"]
+    if [x["key"] for x in units] != [str(n) for n in u["names"][sel]]:
+        raise ValueError("the gate-A units are not exp98's 259 in exp98's order")
+    ku = u["suspicion"][sel] if "suspicion" in u.files else None
+    out = {"experiment": "exp111 v1 route diagnostic (report-only)", "utc": e89.utc_now(), "bars": bars,
+           "variants": {}}
+    for v in variants:
+        model = f"v1diag_{v}"
+        MODELS[model] = f"output_d_{v}"
+        try:
+            rec = run_read(priv, "gate23", model, redo=True, log=log)
+            c = compare(_load_read(priv, "gate23", model), u["pred_deployed"][sel], u["p1"][sel], u["covered"][sel], ku,
+                        u["label"][sel], None, bars)
+        finally:
+            MODELS.pop(model, None)
+        chk = model_checks(c, bars)
+        out["variants"][v] = {"read_ok": rec["ok"], **c, "would_pass_A1_A2": bool(chk["class"] and chk["dp1"])}
+        log(json.dumps({"variant": v, "same_class": c["same_class"], "covered_both": c["covered_both"],
+                        "dp1_above_tol": c["dp1_above_tol"], "spearman": c["spearman_suspicion"],
+                        "would_pass_A1_A2": out["variants"][v]["would_pass_A1_A2"]}))
+    return out
+
+
 def _load_read(priv, root, model):
     path = os.path.join(priv, "read", f"{root}_{model}.npz")
     return dict(np.load(path)) if os.path.exists(path) else None
@@ -1808,6 +1840,7 @@ def main(argv=None):
     g.add_argument("--gate", choices=("A", "B"))
     g.add_argument("--check-draw", action="store_true")
     g.add_argument("--units", action="store_true")
+    g.add_argument("--v1diag", action="store_true", help="report-only: v1 under each candidate route at gate A")
     ap.add_argument("--private-dir", default=None)
     ap.add_argument("--timesync", default=os.path.join(ROOT, "data", "breadth", tsx.TIMESYNC["file"]))
     ap.add_argument("--request-geometry", default=None)
@@ -1856,6 +1889,8 @@ def main(argv=None):
         return 0
     elif a.units:
         rec = run_units(a.private_dir, a.gate_file, a.out_dir, a.cgls)
+    elif a.v1diag:
+        rec = run_v1diag(a.private_dir)
     if a.record:
         dump(rec, a.record)
     return 0 if rec.get("ok", True) else 1

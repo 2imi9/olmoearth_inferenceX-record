@@ -514,6 +514,109 @@ step tmpdir_fits_a_socket bash -c '
   o=$(TSHORT=/scratch/$(printf "%070d" 0); set_tmp 2>&1) && exit 1
   grep -q "too long for rslearn.s forkserver socket" <<< "$o"
 ' _ "$E111_SH"
+# v1's own temporal table (exp111_v1table.py, the route after gate A failed with the formula's, job 1365118): the one
+# call it replaces, the answers it gives, the refusal when it was never used, and e111.sh routing only v1 through it
+step v1table_route "$RSLEARN_PY" -I - "$EXP" "$OUT" "$E111_SH" <<'EOF'
+import ast, json, os, sys
+EXP, OUT, SH = sys.argv[1:4]
+sys.path.insert(0, EXP)
+import torch, exp111_v1table as vt
+from olmoearth_pretrain_minimal.olmoearth_pretrain_v1.nn import flexi_vit
+from olmoearth_pretrain_minimal.olmoearth_pretrain_v1.nn.encodings import get_1d_sincos_pos_encoding as formula
+tree = ast.parse(open(flexi_vit.__file__).read())
+calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call) and getattr(n.func, "id", None) == "get_1d_sincos_pos_encoding"]
+assert len(calls) == 1, f"flexi_vit calls the temporal encoding {len(calls)} times"
+owner = [c.name for c in ast.walk(tree) if isinstance(c, ast.ClassDef) and any(n is calls[0] for n in ast.walk(c))]
+assert owner == ["CompositeEncodings"], owner
+table = formula(torch.arange(12), 192) + 0.003
+counts = vt.install_own_table(table)
+assert torch.equal(flexi_vit.get_1d_sincos_pos_encoding(torch.arange(5), 192), table[:5])
+assert torch.allclose(flexi_vit.get_1d_sincos_pos_encoding(torch.arange(5), 8), formula(torch.arange(5), 8))
+try:
+    flexi_vit.get_1d_sincos_pos_encoding(torch.arange(13), 192)
+    raise SystemExit("13 timesteps were answered from a 12-row table")
+except ValueError:
+    pass
+assert counts == {"own": 1, "formula": 1}, counts
+# the script's main(), with rslearn's CLI stood in for (this Mac's venv lacks rslearn's extras; the cluster's has
+# them): one stand-in runs the temporal call once and exits 0, one only exits 0 (the table never used: refused), one
+# exits 2 (its code passes through)
+import types
+d = os.path.join(OUT, "v1table")
+os.makedirs(d, exist_ok=True)
+ck = os.path.join(d, "v1.ckpt")
+torch.save({"state_dict": {vt.TABLE_KEY: table.clone(), "model.head.weight": torch.zeros(2, 2)}}, ck)
+def run(entry, record, ckpt=ck):
+    sys.modules["rslearn.main"] = types.SimpleNamespace(main=entry)
+    sys.argv = ["exp111_v1table.py", "--ckpt", ckpt, "--record", record, "--", "model", "predict"]
+    try:
+        vt.main()
+    except SystemExit as ex:
+        return ex.code
+def uses_table():
+    assert sys.argv == ["rslearn", "model", "predict"], sys.argv
+    assert torch.equal(flexi_vit.get_1d_sincos_pos_encoding(torch.arange(12), 192), table)
+    raise SystemExit(0)
+def exits(code):
+    def f():
+        raise SystemExit(code)
+    return f
+assert run(uses_table, os.path.join(d, "e111_v1table_used.json")) == 0
+R = json.load(open(os.path.join(d, "e111_v1table_used.json")))
+assert R["calls_own_table"] == 1 and R["rslearn_exit"] == 0, R
+assert abs(R["table_max_abs_diff_from_formula"] - 0.003) < 1e-6 and abs(R["table_row0_max_abs_diff"] - 0.003) < 1e-6, R
+assert run(exits(0), os.path.join(d, "e111_v1table_unused.json")) == 3
+assert json.load(open(os.path.join(d, "e111_v1table_unused.json")))["calls_own_table"] == 0
+assert run(exits(2), os.path.join(d, "e111_v1table_failed.json")) == 2
+torch.save({"state_dict": {"model.head.weight": torch.zeros(2, 2)}}, os.path.join(d, "none.ckpt"))
+code = run(uses_table, os.path.join(d, "never.json"), os.path.join(d, "none.ckpt"))
+assert isinstance(code, str) and code.startswith("refused") and not os.path.exists(os.path.join(d, "never.json")), code
+# a stand-in that raises: the record names the exception, never exit 0
+def crashes():
+    raise RuntimeError("stand-in crash")
+try:
+    run(crashes, os.path.join(d, "e111_v1table_crash.json"))
+    raise SystemExit("a crash passed")
+except RuntimeError:
+    pass
+assert json.load(open(os.path.join(d, "e111_v1table_crash.json")))["rslearn_exit"] == "exception: RuntimeError"
+# the variants' other patches: the encodings in float32, and the wrapper without autocast (stand-ins for the originals)
+CE = flexi_vit.CompositeEncodings
+saved = CE._apply_encodings_per_modality
+CE._apply_encodings_per_modality = lambda self, name, tokens, *a, **k: tokens.dtype
+c2 = {"fp32buf": 0}
+vt.install_fp32_encodings(c2)
+assert CE._apply_encodings_per_modality(None, "sentinel2_l2a", torch.zeros(2, dtype=torch.bfloat16)) == torch.float32
+assert c2 == {"fp32buf": 1}, c2
+CE._apply_encodings_per_modality = saved
+from rslearn.models.olmoearth_pretrain import model as oe_model
+saved_init = oe_model.OlmoEarth.__init__
+def stub_init(self, *a, **k):
+    torch.nn.Module.__init__(self)
+    self.autocast_dtype = torch.bfloat16
+oe_model.OlmoEarth.__init__ = stub_init
+c3 = {"no_autocast": 0}
+vt.install_no_autocast(c3)
+assert oe_model.OlmoEarth().autocast_dtype is None and c3 == {"no_autocast": 1}, c3
+oe_model.OlmoEarth.__init__ = saved_init
+# a variant whose second patch never applied is refused like an unused table
+sys.argv = ["exp111_v1table.py", "--ckpt", ck, "--record", os.path.join(d, "e111_v1table_fp32unused.json"),
+            "--variant", "table_fp32buf", "--", "model", "predict"]
+sys.modules["rslearn.main"] = types.SimpleNamespace(main=uses_table)
+try:
+    vt.main()
+except SystemExit as ex:
+    assert ex.code == 3, ex.code
+R = json.load(open(os.path.join(d, "e111_v1table_fp32unused.json")))
+assert R["variant"] == "table_fp32buf" and R["calls_own_table"] == 1 and R["calls_fp32_encodings"] == 0, R
+CE._apply_encodings_per_modality = saved
+sh = open(SH).read()
+assert "\nV1_TABLE=formula\n" in sh and 'if [ "$m" = v1 ] && [ "$V1_TABLE" != formula ]; then' in sh
+assert 'V1_TABLE=$v run_predict "$PRIV/roots/gate23" v1 "output_d_$v" "$CONFIG" "diag-$v"' in sh
+print("exp111_v1table: replaces flexi_vit's one temporal call (in CompositeEncodings), answers from the stored table at "
+      "its width only; float32 encodings and no-autocast variants; refuses an unused route and a checkpoint without the "
+      "table; records a crash; e111.sh routes v1 only, the committed route formula, v1diag all four")
+EOF
 echo "== the job scripts: syntax, lint, usage, inputs record, redo, the A' budget, the gate's commits, the submit chain (dry run), rule consistency =="
 step bash_syntax bash -c 'bash -n "$1" && bash -n "$2"' _ "$E111_SH" "$SUBMIT_SH"
 if command -v shellcheck > /dev/null; then
@@ -607,14 +710,15 @@ for mode in ("gate", "predict"):
     line = re.search(rf"sub {mode} .*", sub).group(0)
     assert "-p b200-devel " in line and "rtx" not in line, f"{mode} is not pinned to b200-devel"
 guarded = re.search(r"^GUARDED=\((.*?)\)", sh, re.M | re.S).group(1).split()
-need = ["exp/exp111_blind_transfer.py", "exp/exp111_jobs.py", "exp/exp111_grade.py", "exp/jobs/e111.sh",
+need = ["exp/exp111_blind_transfer.py", "exp/exp111_jobs.py", "exp/exp111_grade.py", "exp/exp111_v1table.py",
+        "exp/jobs/e111.sh",
         "exp/jobs/e111_submit.sh", "exp/jobs/e111_config", "exp/jobs/e102_config/model.yaml", "exp/jobs/e98_config",
         "pyproject.toml", "uv.lock"]
 # the record modules: the import graph of the three exp111 modules. In an exp111 module every import counts, inside
 # functions too; in a record module the imports that run when it is imported (module level, through if/try/with and
 # class bodies, not function bodies: exp78's and exp89's function-level imports of exp21, exp51, exp54 and exp70 run
 # only in their own experiments). Followed through every module that is a file in exp/.
-EXP111 = ("exp111_blind_transfer", "exp111_jobs", "exp111_grade")
+EXP111 = ("exp111_blind_transfer", "exp111_jobs", "exp111_grade", "exp111_v1table")
 def local_imports(path, everywhere):
     out = set()
     def visit(nodes):

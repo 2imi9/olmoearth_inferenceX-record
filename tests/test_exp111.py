@@ -68,3 +68,32 @@ def test_the_selection_window_gate_and_units_smoke(tmp_path):
 
 def test_the_graders_smoke(tmp_path):
     assert g111.smoke(out_dir=str(tmp_path), log=lambda *a: None)["ok"]
+
+
+def test_the_v1_diagnostic_compares_each_variant_with_exp98(tmp_path, monkeypatch):
+    """The report-only v1 route diagnostic (amendment of 16 October 2026): each variant's read is compared with exp98's
+    known answer as A1 and A2 compare it; the temporary read names leave nothing behind."""
+    import numpy as np
+    u = np.load(b111.KNOWN[("gate23", "v1")])
+    sel = (u["split"] == "val") & u["covered"]
+    with open(tmp_path / "units_gate23.json", "w") as f:
+        json.dump({"units": [{"key": str(n)} for n in u["names"][sel]]}, f)
+
+    def fake_read(priv, root, model, redo=False, log=print):
+        assert root == "gate23" and b111.MODELS[model] == "output_d_" + model.split("_", 1)[1]
+        return {"ok": True}
+
+    def fake_load(priv, root, model):
+        p1, pred = u["p1"][sel].astype(float), u["pred_deployed"][sel].copy()
+        if model == "v1diag_table":
+            pred[:10] = (pred[:10] + 1) % 9
+        return {"covered": np.ones(len(pred), bool), "p1": p1, "pred": pred, "suspicion": -np.log(p1)}
+
+    monkeypatch.setattr(b111, "run_read", fake_read)
+    monkeypatch.setattr(b111, "_load_read", fake_load)
+    out = b111.run_v1diag(str(tmp_path), log=lambda *a: None)
+    assert list(out["variants"]) == list(b111.V1DIAG_VARIANTS)
+    f, t = out["variants"]["formula"], out["variants"]["table"]
+    assert f["same_class"] == f["covered_both"] == int(sel.sum()) and f["would_pass_A1_A2"]
+    assert t["same_class"] == int(sel.sum()) - 10 and not t["would_pass_A1_A2"]
+    assert not any(k.startswith("v1diag_") for k in b111.MODELS)

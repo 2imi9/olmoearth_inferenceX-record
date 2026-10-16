@@ -260,6 +260,27 @@ route, which already ran on the cluster:
     floor, size or allowance changed. If gate A or B fails for v1, the imagery prepared for the gates is kept and the
     next route is the owner's call: v1 with its own table (new code that restores the stored table at predict time, so a
     guarded-file commit and a gate rerun) or rslearn 0.0.29 (not built; a second environment of about 4 GB).
+  - **Amended 16 October 2026, overnight, after gate A failed for v1 and before any blind prediction.** The gate at
+    3dd770d (job 1365118) ran v1 with the formula's table: 245 of 259 points the same class as exp98's (A1 needs 98%),
+    39 with |Δp1| above 0.05 (A2 allows 5), Spearman 0.916. v1.2 reproduced exp103 at all 259 (|Δp1| at most 0.044,
+    Spearman 0.9996), but exp103 ran on this same stack and v1.2's encoder (rope_3d_mixed) never uses the additive
+    temporal table, so v1.2 shows the pipeline and the GPU are repeatable, not that the library change is harmless for
+    v1. A′, v1 on exp98's own deployment windows, gave the same 245, so the imagery is not the cause. exp98 predicted on
+    b200-devel too (job 1245574, a B200), so the GPU model is the same; torch (2.7.1+cu128 then, 2.14.1 now), rslearn
+    (0.0.27, 0.1.17) and olmoearth_pretrain (0.0.2, minimal 0.1.2) are not. Candidate causes, none yet isolated: (1) the
+    trained table (the load check's per-row record shows row 0 0.0031 from the formula, which no float format's rounding
+    explains, so the table was trained in Ai2's fine-tune); (2) the encodings' arithmetic: olmoearth_pretrain 0.1.0
+    added them through a float32 buffer, so under bfloat16 autocast the tokens left it in float32, while 0.1.2 builds
+    the buffer in the tokens' dtype (a review's proxy on the v1-Base encoder put this about 30 times above the table's
+    effect); (3) torch and rslearn's OlmoEarth wrapper. The committed route stays the owner's choice of 15 October
+    (`V1_TABLE=formula` in `exp/jobs/e111.sh`). `exp/exp111_v1table.py` builds three candidate routes (`table`: the
+    stored table; `table_fp32buf`: that, with the encodings added in float32; `table_fp32`: that, without autocast), and
+    the report-only mode `v1diag` runs them and the formula at gate A's 259 points, compared with exp98's known answer
+    as A1 and A2 compare it. This was built and run overnight because the owner asked for the work to continue; choosing
+    a route after seeing gate A's known answers is a second look at them, so whichever route the owner chooses, both
+    gate runs and every variant tried are reported beside the result. Running exp98's own stack directly would need its
+    environment rebuilt: the scratch purge has emptied its CUDA libraries (`deploy/venv/.../nvidia/cublas/lib`), a
+    download that is the owner's call. No bar, floor, size or allowance changed.
 - **v1.2.** exp102's checkpoint (epoch 60, sha256 `5ce88827...`, public at `2imi9/OlmoEarth-v1_2-FT-AWF-Base` at
   `7a1db147...`) with `OLMOEARTH_V1_2_BASE`, as exp103 ran it.
 - **One GPU model.** The gate and the blind predict both run on `b200-devel`, on B200 GPUs, as exp102 and exp103 did
@@ -791,7 +812,9 @@ Also confirmed by the owner on 15 October 2026, not fixed in code:
 
 1. **The pipeline:** rslearn 0.1.17 for both models, on b200-devel for gate and predict, with the 0.0.29 fallback for v1
    if its checkpoint does not load. On 15 October 2026, after the second env job, the owner also accepted that v1 runs
-   with the formula's temporal table instead of its own, the gates judging the difference (Pins, amendment).
+   with the formula's temporal table instead of its own, the gates judging the difference (Pins, amendment). After gate
+   A failed for v1 on that route (16 October), the route stays the formula until the owner chooses one of the candidates
+   the report-only diagnostic compares (Pins, amendment of 16 October).
 2. **Cluster runs and downloads:** the plan above, phase 1 to be submitted by 18 October; each submission and each
    fetch is still confirmed at the time, with the costs above stated again together with /home and /scratch usage;
    the downloads in the table above, each only where marked (v1's checkpoint and the base weights are likely after

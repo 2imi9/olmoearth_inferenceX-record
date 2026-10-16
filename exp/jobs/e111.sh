@@ -48,7 +48,8 @@
 #                        under $PRIV or if a window count changes.
 #   E111_MODE=gate       GPU, b200-devel only (the blind predict must run on the same device), 1 GPU, 8 CPUs, 64 GB,
 #                        2 h 30 (GATE_LIMIT_S). First removes the records of any earlier gate (the device record, the
-#                        four output checks, e111_gate.json). `rslearn model predict` for v1 and v1.2 on gate23 and
+#                        four output checks, e111_gate.json). `rslearn model predict` (v1 through exp111_v1table.py
+#                        unless V1_TABLE=formula) for v1 and v1.2 on gate23 and
 #                        gate17 (layers output_v1, output_v12), each checked (the record names this job); only when all
 #                        four pass, the GPU's name and this job's commit are recorded (e111_device_gate.json: the gate's
 #                        predict_commit, and its job). Then, report-
@@ -113,8 +114,8 @@ umask 077
 ulimit -n 65536
 T_START=$(date +%s)
 MODE=${E111_MODE:-}
-case "$MODE" in env|select|prepare|gate|gatecheck|pack1|predict|read|units|grade|pack2) ;;
-  *) echo "E111_MODE must be env, select, prepare, gate, gatecheck, pack1, predict, read, units, grade or pack2 (got '$MODE')"; exit 2 ;; esac
+case "$MODE" in env|select|prepare|gate|gatecheck|pack1|predict|read|units|grade|pack2|v1diag) ;;
+  *) echo "E111_MODE must be env, select, prepare, gate, gatecheck, pack1, predict, read, units, grade, pack2 or v1diag (got '$MODE')"; exit 2 ;; esac
 [[ "${E111_SHA:-}" =~ ^[0-9a-f]{40}$ ]] || { echo "E111_SHA must be the full 40-character commit (got '${E111_SHA:-}')"; exit 2; }
 [ -z "${E111_DROP_PARTIAL:-}" ] || { echo "E111_DROP_PARTIAL is gone: MAX_FAILED_SHARE in this file is the failure allowance"; exit 2; }
 [ -z "${E111_SIZES:-}" ] || { echo "E111_SIZES is gone: the draw's sizes are SIZES in exp/exp111_blind_transfer.py, part of the commit (the 720 floor is 80% of them)"; exit 2; }
@@ -139,6 +140,14 @@ GATE_LIMIT_S=9000                                    # the gate job's -t 02:30:0
 MAX_FAILED_SHARE=0
 [[ "$MAX_FAILED_SHARE" =~ ^0(\.[0-9]+)?$ ]] && awk -v s="$MAX_FAILED_SHARE" 'BEGIN { exit !(s <= 0.005) }' \
   || { echo "MAX_FAILED_SHARE must be between 0 and 0.005 (got $MAX_FAILED_SHARE)"; exit 2; }
+# v1's route at predict time (docs/plan/blind_transfer.md, Pins, amendments of 15 and 16 October 2026): "formula",
+# rslearn 0.1.17 as is (the owner's choice of 15 October; v1 failed gate A with it, job 1365118), or a variant of
+# exp/exp111_v1table.py: "table" (the checkpoint's stored temporal table), "table_fp32buf" (that, with the encodings
+# added in float32 as olmoearth_pretrain 0.1.0 did) or "table_fp32" (that, without bfloat16 autocast). Part of the
+# commit, like the bars; the report-only mode v1diag runs all four at gate A's points for the owner's choice. v1.2 has
+# no stored table and always runs rslearn as is.
+V1_TABLE=formula
+case "$V1_TABLE" in formula|table|table_fp32buf|table_fp32) ;; *) echo "V1_TABLE: formula, table, table_fp32buf or table_fp32 (got $V1_TABLE)"; exit 2 ;; esac
 HOMEDIR=/home/qi_zim_neu
 HOME_REPO=$HOMEDIR/olmoearth_inferenceX
 SCRATCH=/scratch/qi_zim_neu/olmoearth_inferenceX
@@ -170,7 +179,8 @@ declare -A MODEL_IDS=([v1]=OLMOEARTH_V1_BASE [v12]=OLMOEARTH_V1_2_BASE)
 # what the phase-2 modes refuse to run over if it changed since the gate's commit: the exp111 code and configs, the
 # record modules they import, the grader, and the record environment's pins
 # (the smoke derives the record modules from the exp111 modules' import graph and refuses a GUARDED that lacks one)
-GUARDED=(exp/exp111_blind_transfer.py exp/exp111_jobs.py exp/exp111_grade.py exp/jobs/e111.sh exp/jobs/e111_submit.sh
+GUARDED=(exp/exp111_blind_transfer.py exp/exp111_jobs.py exp/exp111_grade.py exp/exp111_v1table.py exp/jobs/e111.sh
+  exp/jobs/e111_submit.sh
   exp/jobs/e111_config exp/jobs/e102_config/model.yaml exp/jobs/e98_config exp/exp98_awf_deployment.py
   exp/exp98_burned.py exp/exp99_transfer.py exp/timesync_awf_crosswalk.py exp/exp89_finetuned_checkpoints.py
   exp/exp78_error_rate_estimation.py pyproject.toml uv.lock)
@@ -347,7 +357,13 @@ run_predict() {   # run_predict <dataset root> <model v1|v12> <layer> <config> <
   work=$PRIV/tmp/work-$tag-$JOB
   mkdir -p "$TRAINER_DATA_PATH" "$TMPDIR" "$work"
   echo "== $(date -Is) rslearn model predict ($tag): $m, layer $layer, $WORKERS workers, limit $lim =="
-  ( cd "$work" && run_logged "$tag" "$lim" "$VENV/bin/rslearn" model predict --config "$cfg" --ckpt_path "${CKPT[$m]}" ) || return 1
+  local -a cmd=("$VENV/bin/rslearn" model predict --config "$cfg" --ckpt_path "${CKPT[$m]}")
+  if [ "$m" = v1 ] && [ "$V1_TABLE" != formula ]; then
+    cmd=("$VENV/bin/python" -I -u "$CODE/exp/exp111_v1table.py" --ckpt "${CKPT[$m]}" --variant "$V1_TABLE"
+         --record "$REC/e111_v1table_$tag.json" -- model predict --config "$cfg" --ckpt_path "${CKPT[$m]}")
+  fi
+  echo "  v1 table: $([ "$m" = v1 ] && echo "$V1_TABLE" || echo "n/a (v1.2)")"
+  ( cd "$work" && run_logged "$tag" "$lim" "${cmd[@]}" ) || return 1
   { grep -E "examples in split predict|Skipped [0-9]+ windows|Loaded [0-9]+ windows" "$PRIV/logs/$tag-$JOB.log" \
       || echo "(no count line found)"; } | masked | sed 's/^/  /'
 }
@@ -612,6 +628,23 @@ case "$MODE" in
       echo "note: A' skipped (E111_APRIME=0 or exp98's deployment dataset is gone)"
     fi
     echo "== $(date -Is) gate done ==" ;;
+
+  v1diag)
+    # report-only (docs/plan/blind_transfer.md, amendment of 16 October 2026): v1 at gate A's 259 points (seen ones,
+    # nothing blind) under each candidate route, compared with exp98's known answer as A1 and A2 compare it; never a
+    # gate, no gate record touched. GPU b200-devel as the gate, 1 GPU, 8 CPUs, 64 GB, 1 h.
+    rec_ok "$REC/e111_gate23_precheck.json" || { echo "no passing precheck for gate23: run E111_MODE=prepare first"; exit 1; }
+    gpu_prep "$PRIV/tmp/device-v1diag-$JOB.json"
+    rm -f "$REC/e111_v1diag.json" "$REC"/e111_v1table_diag-*.json
+    for v in formula table table_fp32buf table_fp32; do
+      find "$PRIV/roots/gate23/windows" -mindepth 4 -maxdepth 4 -type d -name "output_d_$v" -path '*/layers/*' -exec rm -rf {} +
+      V1_TABLE=$v run_predict "$PRIV/roots/gate23" v1 "output_d_$v" "$CONFIG" "diag-$v"
+    done
+    "${PY[@]}" --v1diag --private-dir "$PRIV" --record "$REC/e111_v1diag.json" || { echo "the v1 diagnostic's read failed"; exit 1; }
+    for v in formula table table_fp32buf table_fp32; do
+      find "$PRIV/roots/gate23/windows" -mindepth 4 -maxdepth 4 -type d -name "output_d_$v" -path '*/layers/*' -exec rm -rf {} +
+    done
+    echo "== $(date -Is) done: records/e111_v1diag.json ==" ;;
 
   gatecheck)
     trap remove_aprime EXIT
