@@ -35,8 +35,8 @@ It never runs the model, so it works on OlmoEarth's outputs, other models' maps 
   legend clash, shrubland against TimeSync's "Open Grassland", not a model failure.
 - **Reproducibility.** On the same imagery, the v1 AWF checkpoint gives a slightly different map on rslearn 0.1.17
   than on 0.0.27: 14 of the 259 points change class, mostly among grassland, shrubland and woodland, and accuracy
-  stays the same (227 against 226). I could not find the cause; the stored temporal table, the encodings' precision
-  and autocast are ruled out (exp111).
+  stays the same (227 against 226). The stored temporal table, the encodings' precision and autocast are ruled out;
+  I did not pin down which of the three library changes (rslearn, olmoearth_pretrain, torch) causes it (exp111).
 - **A v1.2 AWF fine-tune** with your recipe, only the encoder swapped:
   https://huggingface.co/2imi9/OlmoEarth-v1_2-FT-AWF-Base
 - **Forest Loss Driver** at 2026 MapBiomas alerts (exp104): its confidence ranks its disagreements with the analysts
