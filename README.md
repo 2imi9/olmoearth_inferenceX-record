@@ -7,6 +7,8 @@ ledger that ties each stated result to an output, the pages that report the resu
 The package, its documentation and its own tests are in https://github.com/2imi9/olmoearth_inferenceX
 (documentation: https://olmoearth-inferencex.readthedocs.io; releases: https://pypi.org/project/olmoearth-inferencex/).
 
+A five-minute summary of what was done and found, for the OlmoEarth team: [CATCH_UP.md](CATCH_UP.md).
+
 Source
 ------
 
