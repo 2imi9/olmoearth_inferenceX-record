@@ -407,6 +407,21 @@ From a search of the 2025 and 2026 literature; each entry was checked against it
 - Kaushik et al. (2026). Assessing Geo-Foundational Models for Flood Inundation Mapping: Benchmarking Models for Sentinel-1, Sentinel-2, and Planetscope. *IEEE JSTARS*.
   [doi:10.1109/JSTARS.2026.3656855](https://doi.org/10.1109/JSTARS.2026.3656855). Geo-foundation models benchmarked for Sentinel-1 flood mapping. Reproduces, on the same task, that swapping foundation models buys little.
 
+### Added 22 October 2026
+
+Embedding products, after Ai2 released OlmoEarth v1.3 (each entry checked against its arXiv record or publisher page).
+
+- Brown, C. F. et al. (2025). AlphaEarth Foundations: an embedding field model for accurate and efficient global
+  mapping from sparse label data. [arXiv:2507.22291](https://arxiv.org/abs/2507.22291). Google DeepMind's annual
+  64-dimensional embedding field. Not evaluated in this record; Corley et al. (2026, section 3 above) pool over it.
+- Team OlmoEarth (2026). OlmoEarth v1.3 Embeddings. Technical report, Allen Institute for AI.
+  [allenai.org/papers/olmoearth-v1-3](https://allenai.org/papers/olmoearth-v1-3). Precomputed annual 10 m
+  embeddings, 128 or 64 dimensions, on [Source Cooperative](https://source.coop/olmoearth/olmoearth-v1-3-embeddings).
+  The report evaluates the embeddings by readout accuracy on class-balanced draws, against AlphaEarth and TESSERA v2;
+  it gives no confidence layer and no accuracy of a map made from them. Its section 4.3 notes that 2025, most of 2024
+  and small parts of 2019 and 2023 were computed before a fix for a seam every 20.48 km. The package's Usage page
+  shows how to check a classifier map made from them; this record has not graded that route.
+
 ## 6. Whether the tool helps a person
 
 - Bansal, G., Wu, T., Zhou, J., Fok, R., Nushi, B., Kamar, E., Ribeiro, M. T.

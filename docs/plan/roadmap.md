@@ -294,6 +294,23 @@ recipe restated (exp52).
 He also passed on the HOTOSM open call for EO GeoAI models: sub-metre imagery,
 outside the 10 m Sentinel setup this project is built on, so not pursued.
 
+## After OlmoEarth v1.3 (22 October 2026)
+
+Ai2's v1.3 makes precomputed embeddings the main way to use OlmoEarth: a user fits a small classifier on a few points
+and applies it to an area. Nothing in the release says how accurate such a map is. None of the items below has run.
+
+1. **The embedding route at a probability sample.** Fit logistic regression on v1.3 embeddings at part of the LCMAP
+   Reference plots (the probability sample of exp92 to exp94; LCMAP land use is also one of the report's own tasks)
+   and grade the ranking, the error-rate interval and the certified zone at the rest. Reading one plot moves one
+   chunk of about 3 MB (64 dimensions) or 6 MB (128), so the 25,000 plots move 75 to 150 GB: a cluster job, with
+   the download agreed first.
+2. **The seam years.** The report's section 4.3 says 2025, most of 2024 and small parts of 2019 and 2023 were computed
+   without the 48-pixel margin. With a condition layer marking windows near the 20.48 km grid, `estimate` gives the
+   error rate of a classifier map near the seams and away from them, each with its exact interval. Needs labels; one
+   or two tiles would do.
+3. **An ask of Ai2.** The embeddings explorer can train a small classifier and export its map. If the export carried the
+   class probabilities beside the class map, the map could be checked without any code.
+
 ## Closed
 
 exp22, exp39, exp40, exp44, exp53 and exp61 were archived on 10 October 2026; their rows below are kept as recorded,
