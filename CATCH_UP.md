@@ -12,7 +12,7 @@ A checker for Earth-observation maps. It reads the per-class scores a model writ
 - which of two maps is better.
 
 It never runs the model, so it works on OlmoEarth's outputs, other models' maps and published products.
-`pip install olmoearth-inferencex` (1.12.3). Code and pictures: https://github.com/2imi9/olmoearth_inferenceX
+`pip install olmoearth-inferencex` (1.13.0). Code and pictures: https://github.com/2imi9/olmoearth_inferenceX
 
 ## What I did with your suggestions
 
