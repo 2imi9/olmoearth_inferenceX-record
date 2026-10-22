@@ -1,7 +1,7 @@
 # A map made from OlmoEarth v1.3 embeddings: does the tool rank, estimate, certify and compare it at a probability sample? (exp112 preregistration)
 
-**Status: draft (22 October 2026).** Written before any embedding at a plot was read. The predictions below wait for
-the owner's confirmation; the page is frozen by a commit that says so, before any statistic of the map is computed.
+**Status: frozen (22 October 2026), the owner having confirmed the predictions as proposed.** Written and frozen
+before any embedding at a plot of S was read (the draft is 2ab2759) and before any statistic of the map was computed.
 
 ## The question
 
@@ -131,4 +131,4 @@ of finished plots; it stores 128 bytes per plot, about 1.5 MB. The analysis is a
 
 ## Decisions taken at freezing
 
-(Empty until the owner confirms the predictions.)
+- 22 October 2026: the owner confirmed P1 to P4, the bars (exp110's), the sizes (12,000 plots, 1,000 to fit, 300 and 3,000 reported) and the reads (option A, 128 dimensions) as proposed. Before freezing only four plots of S were read, in a smoke run that printed their norms; nothing of the map was computed.
