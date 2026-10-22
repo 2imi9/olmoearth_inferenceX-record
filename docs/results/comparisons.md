@@ -4240,6 +4240,12 @@ for Belgium and Slovenia. Where a zone is certified its true error rate has a me
 (Belgium) and 51% (Slovenia) of the windows sit at confidence exactly 1.0, where the map's probability saturates; which
 of them enter a zone is set by the package's tie rule (by index, the mosaic's raster order, so the southern window rows
 of every chip first), not by evidence. The rule is fixed before any label is read, so the guarantee stands. <!-- claim:exp110-ftw-certified-share-at-300-labels -->
+*Later (exp112, 22 October 2026): at 300 labels and α = 0.05 the first level the standard cut tests, 15% of the
+windows, expects exactly the 45 labels it needs, so any map certifies a zone with probability at most about 0.525 on a
+map this large, and a 2,000-draw median reaches a quarter only when that probability is above one half. Belgium's and
+Slovenia's probabilities (0.525) are that limit; Croatia's (0.517) and Sweden's (0.484) sit below it. So P3(b) at this
+budget turned on whether each country's most confident 15% was almost free of errors: its "3 of 4" says that, not
+that a quarter of each map is certifiable at 300 labels; see [exp112](#a-map-made-from-olmoearth-v13-embeddings-at-lcmaps-probability-sample-exp112).*
 **P4(b) (prediction) holds, in 3 of 4.** 100 labels drawn where the two maps differ name the better-agreeing map by the
 exact sign test with probability 0.858 (Belgium, B3), 0.999 (Croatia, the 2e map) and 0.993 (Sweden, B3). Slovenia
 (0.141, maps half a point apart) and pooled (0.063) do not reach 0.8 at 100 labels; the tool's design needs about 800
@@ -4484,6 +4490,66 @@ does not reproduce its earlier deployment under the current rslearn, which made 
 - **A literal audit of the map.** P3 is the audit's operating characteristic from plot estimates of the zone's rates,
   not 20 labels drawn from the map's pixels.
 - **Other years, places or legends.** 2017, Kenya and Tanzania, one legend pair, two fine-tunes of one task.
+
+## A map made from OlmoEarth v1.3 embeddings at LCMAP's probability sample (exp112)
+
+Ai2's OlmoEarth v1.3 (22 October 2026) makes precomputed embeddings the main way to use OlmoEarth: a user fits a small
+classifier on labelled points and applies it to an area. Its report evaluates the embeddings by readout accuracy and
+gives no confidence layer and no accuracy of a map made from them. exp112 ([preregistration](../plan/v13_embeddings.md),
+frozen f22f434 before any statistic of the map) grades such a map at an independent probability sample: a default
+logistic regression fitted on the 2018 v1.3 embeddings (128 dimensions) of 1,000 random plots of LCMAP Reference Data
+Product v1.2, applied to the other 11,000 plots of a 12,000-plot draw (seed 112). The plots are a simple random sample
+of CONUS's 30 m pixels and stand in for the map, so every rate is exact on them. The embedding at a plot is the 10 m
+pixel holding its centre, read from Ai2's store on Source Cooperative (job 1464443, 775 s); every plot had one.
+
+**The ranking holds.** The map errs on 11.7% of the 11,000 plots (1,290). Its top probability ranks those errors at
+AUROC 0.876 (90% bootstrap 0.869 to 0.884), and the least confident 10% hold 41.6% of them (the ceiling at this error
+rate is 85.3%). Preregistered P1 holds, 0.366 above the better of two no-model controls; both are near chance
+(predicted-class rarity 0.488, distance from the fit set's mean vector 0.511), so the lead mostly measures the AUROC's
+distance from 0.5. 2.7% of the errors are as confident as the median correct plot. The ranking is similar at other fit sizes
+and widths (reported, not graded): 300 fit plots give an error rate of 13.3% and AUROC 0.858, 3,000 give 10.7% and 0.882, and the first 64
+dimensions at 1,000 give 11.8% and 0.877. <!-- claim:exp112-v13-map-confidence-ranks-its-errors -->
+
+**The labelled routes keep their guarantees.** The exact interval for a simple random sample covers the error rate with
+exact probability 0.960 at 100 labels and 0.955 at 300 (P2); certify at α = 0.05, δ = 0.10 and 300 labels certifies a
+zone wrong more often than α on 0.0075 of 2,000 draws (P3(a); the second route's 100,000 draws give 0.0098); and the
+which-map route names the map that agrees worse with the reference with probability below 1e-8 at 100 and 300 labels
+against LCMAP Collection 1.3 and against Esri (P4). <!-- claim:exp112-labelled-routes-keep-their-guarantees -->
+
+**P3(b) does not hold; found after the run, at this budget the bar is a knife-edge.** The median certified share at
+α = 0.05 and 300 labels is 0.075, below the bar of 0.25: 1,000 of 2,000 draws certify nothing, and 0.075 is the
+midpoint between none and the first testable level, 0.15. At 300 labels the standard level cut first tests the 15%
+zone, which expects 45 labels, exactly the 45 that certify at α = 0.05 with no error, so any map certifies a zone with
+probability at most 0.525, and a 2,000-draw median reaches 0.25 only when that probability is above one half: the bar
+passes only a map whose most confident 15% holds at most one error (a perfect map passes with probability 0.99). This
+map's holds two of 1,650 (0.0012), and it certifies with exact probability 0.494 (guard aside). Beyond that edge its
+confident part is clean: the most confident 70% of the plots err at 0.028 and 80% at 0.049, a draw that certifies has a
+median share of 0.70, and at α = 0.10 the same draws certify a median of 0.85 of the map (median zone error 0.076). The
+bar was copied from exp110, whose P3(b) sat on the same edge (Belgium and Slovenia at the limit, Croatia at 0.517 and
+Sweden at 0.484 below it). With 400 labels the same cut certifies this map's 15% zone with probability 0.920 and a
+perfect map's with 0.989 (`plan.zone_level_probability`, exact; not graded here). <!-- claim:exp112-p3b-fails-at-the-level-cut -->
+
+**Agreement with the reference is not accuracy.** On the plots where LCMAP Collection 1.3 has a class, the v1.3 map
+agrees with the reference on 0.883 of them against LCMAP's 0.823 (they differ on 1,949; the v1.3 map alone is right on
+1,189, LCMAP alone on 536); against Esri, 0.883 and 0.797. 100 labels drawn where they differ name the v1.3 map with
+probability 0.948 and 0.999. The v1.3 map was fitted on plots of this reference, so it shares the reference's legend
+and its interpreters' conventions, and Esri is read through a crosswalk: this is agreement with this reference, not
+evidence that the v1.3 map is the more accurate map. <!-- claim:exp112-agreement-with-the-reference-not-accuracy -->
+
+**The 2018 vectors run low.** At the 12,000 plots the 2018 vectors' norms run 2.60 to 3.80 (1st to 99th percentile),
+median 3.08, below the dataset README's 3.0 to 3.8 with median 3.4 (the preregistration notes one box read before
+the run: a median of 2.91 in 2018 and 3.34 in 2025). Every plot lies in a 2018 window computed with the 48-pixel margin
+(checked by hand from `provenance/windows/2018.parquet` on 22 October; not in the run's outputs). Whether a
+classifier fitted on one year's embeddings carries to another year is not tested. <!-- claim:exp112-2018-vectors-run-below-the-readme -->
+
+What it cannot show: the fit points are a random sample of the same population, the favourable case, and a user's
+regional fit is not graded; one year, one country, one classifier and LCMAP's legend; the reference labels are taken
+as right (two analysts agreed on 88% of a subsample, Pengra et al. 2020). Recorded after an independent audit whose
+script is `exp/exp112_crosscheck.py`: it rebuilt the draw and the fit sets from the seeds, refitted the map from the
+private vectors and recomputed every graded number with its own code; every deterministic number matches (P4's tail probabilities to within the package's 1e-12 truncation), its own
+Monte Carlo draws agree within their errors, and P1 to P4 come out the same. The per-plot table
+(`exp/out/exp112_plots.csv`, no coordinate and no embedding) carries the OlmoEarth Artifact License's attribution and
+use restrictions (`exp/out/exp112_NOTICE.md`).
 
 ## A vision-language model as the reviewer (exp91)
 

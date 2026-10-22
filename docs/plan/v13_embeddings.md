@@ -132,3 +132,72 @@ of finished plots; it stores 128 bytes per plot, about 1.5 MB. The analysis is a
 ## Decisions taken at freezing
 
 - 22 October 2026: the owner confirmed P1 to P4, the bars (exp110's), the sizes (12,000 plots, 1,000 to fit, 300 and 3,000 reported) and the reads (option A, 128 dimensions) as proposed. Before freezing only four plots of S were read, in a smoke run that printed their norms; nothing of the map was computed.
+
+## Result (recorded 22 October 2026; the text above is the frozen page, unchanged)
+
+Run once: extract job 1464443 (12,000 plots read in 775 s, none without an embedding), analysis job 1464959 at the
+frozen f22f434 (olmoearth-inferencex 1.12.1 from PyPI, scikit-learn, zarr and obstore added by `uv run --with`).
+Recorded after the independent audit below.
+
+- **P1 holds.** On T (11,000 plots) the map errs on 0.1173 of them (1,290). Its top probability ranks the errors at
+  AUROC 0.876 (90% bootstrap 0.869 to 0.884), and the least confident 10% hold 0.416 of them (ceiling 0.853). The lead
+  over the better control is 0.366 (0.351 to 0.380); both controls are near chance (predicted-class rarity 0.488,
+  distance from F's mean vector 0.511), so P1(b) is a weak bar here. 2.7% of the errors are as confident as the median
+  correct plot.
+- **P2 holds.** Exact coverage 0.960 at B = 100 and 0.955 at B = 300; the Monte Carlo route is within 0.27 standard
+  errors of each.
+- **P3(a) holds.** A certified zone wrong more often than α on 0.0075 of the draws at α = 0.05 (0.011 at 0.10).
+- **P3(b) does not hold.** The median certified share at α = 0.05 is 0.075; see the note on its reading below.
+- **P4 holds.** The tool names the map that agrees worse with the reference with probability below 1e-8 at both
+  budgets against both second maps.
+- **Reported.** Fit 300: θ 0.133, AUROC 0.858; fit 3,000: θ 0.107, AUROC 0.882; the first 64 dimensions at fit 1,000:
+  θ 0.118, AUROC 0.877. Against LCMAP Collection 1.3 the map agrees with the reference on 0.883 of the plots against
+  0.823 (N 10,989, D 1,949, K_A 1,189, K_B 536), against Esri 0.883 and 0.797 (N 10,998, D 2,027, K_A 1,401, K_B 457);
+  100 labels name the v1.3 map with probability 0.948 and 0.999. Per class, among the predicted classes the producer's accuracy is lowest for
+  Barren (0.442) and Wetland (0.594); Snow/Ice, absent from F, is never predicted (2 plots in T). The 2018 vectors'
+  norms run 2.60 to 3.80 (1st to 99th percentile), median 3.08. All 12,000 plots lie in 2018 windows computed with the
+  48-pixel margin (`context_pixels` 48 in `provenance/windows/2018.parquet`; the share without it is 0; checked by hand on
+  22 October, not in the run's outputs).
+
+## Notes at recording (22 October 2026, after the run; the frozen text is unchanged)
+
+- **The reading of a P3(b) failure in "What would change the conclusion" is wrong for this run, and the verdict stands
+  as written.** At 300 labels and α = 0.05 the standard level cut first tests the 15% zone, which expects 45 labels:
+  exactly the 45 that certify at α = 0.05, δ = 0.10 with no error (`min_labels_to_certify`). So any map certifies a
+  zone with probability at most 0.525 (the hypergeometric chance of 45 or more labels of 300 in 1,650 of 11,000
+  plots), and a 2,000-draw median reaches 0.25 only when that probability is above one half: with no error in the
+  15% zone it is 0.525, with one 0.510, with two 0.494. The bar is a knife-edge: it passes only a map whose most
+  confident 15% holds at most one error (a perfect map passes with probability 0.99). This map's holds two (0.0012),
+  so it certifies with exact probability 0.494 (guard aside), and 1,000 of the run's 2,000 draws certified nothing:
+  its median, 0.075, is the midpoint between none and the first level (0.15). Beyond that edge the confident part is
+  clean: the most confident 50% err at 0.0093, 70% at 0.028, 80% at 0.049; when a draw certifies, its median share is
+  0.70, and at α = 0.10 the median is 0.85. Usage already says a level holds fewer than b_min labels about half the
+  time at the budget where it enters (exp95); the bar, copied from exp110, was set at that budget. exp110's P3(b) sat
+  on the same edge (Belgium's and Slovenia's probabilities, 0.525, are the limit; Croatia's 0.517 and Sweden's 0.484
+  sit below it), so its "holds in 3 of 4" turned on whether each country's most confident 15% was almost free of
+  errors; the note is posted there.
+- **What was read before freezing.** S was drawn and four plots of S (all in T) were read at 16:18 in a smoke run that
+  printed only their norms; the analysis code was run end to end on synthetic vectors (none equal to a real one) to
+  test it. No statistic of the real map was computed before f22f434. The draft (2ab2759) and the freeze were committed
+  eight seconds apart, after the owner's confirmation in conversation. So the Status line's "frozen before any
+  embedding at a plot of S was read" does not hold: four plots of S were read 34 minutes before the draft and the
+  freeze were committed, as the Decisions line says.
+- **The audit.** The page said the audit would recompute P1 to P4 from the per-plot table with numpy and scipy only.
+  The distance control needs the embeddings, which the table does not hold, so the second route
+  (`exp/exp112_crosscheck.py`, written by an agent that saw neither the run's script nor its outputs) rebuilt S and the
+  fit sets from the seeds, read the private vectors and refitted the map with scikit-learn, a check that also refits the map. It
+  imports neither the run's script nor the package. Every deterministic number matches (P4's tail probabilities to within the package's 1e-12 truncation); its own Monte
+  Carlo draws agree
+  within their errors; P1 to P4 come out the same. A separate review read the run against this page.
+- **Implementation details.** Arm 2's draw r uses seed 112 + r, the same at B = 100 and 300; the run's certify steps
+  were checked against `certify_zone` on the first 20 draws at α = 0.05. The package's which-map probabilities drop
+  up to 1e-12 of each tail, so their smallest values (the run's 0.0) are below 1e-11; the second route's exact values
+  are 1.4e-9 at most.
+- **Provenance.** The reference zip's sha256 is eb935d96...b4c (checked by the extract job), its CSV's 0959e322...;
+  the vectors file's e74adb89... The per-plot table carries the OlmoEarth Artifact License's attribution and use
+  restrictions (`exp/out/exp112_NOTICE.md`).
+- **What it shows and what it does not.** A default logistic regression on 1,000 random plots' v1.3 vectors ranks its
+  own errors well at an independent probability sample, across fit sizes and widths. The fit points are a random sample
+  of the same population, the favourable case; a user's regional fit is not graded. The v1.3 map's better agreement
+  than LCMAP Collection 1.3 and Esri is agreement with the reference that trained it (its legend and interpreters'
+  conventions), not evidence that it is the more accurate map.

@@ -18,7 +18,7 @@ the links that now cross between the two repositories; the claim citations that 
 two demo claims now cited in `docs/Findings.md`; the report's title block and availability section, with the PDF
 rebuilt; the upstream-revision check (`scripts/upstream_revision.py` and its test), which now reads the package's
 files from the installed release; and `.gitignore`. Their earlier history is in that repository. Experiments archived
-before the split are in its v1.9.0 tree. The record continues here: exp110 and exp111 were preregistered, run and
+before the split are in its v1.9.0 tree. The record continues here: exp110 to exp112 were preregistered, run and
 recorded in this repository after the split, and their history is this repository's. The package's release 1.12.2
 points its PyPI page's links and its docstrings here, with the code and API of 1.12.1, against which the checks below
 still run.

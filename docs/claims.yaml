@@ -5423,10 +5423,10 @@
     exp110-ftw-field-plus-boundary-reading.
 
 - id: exp110-ftw-certified-share-at-300-labels
-  statement: "In the record's first test on another organisation's deployed product outside land cover (exp110, preregistered), certify at alpha 0.05, delta 0.10 and 300 random labels (2,000 draws, draw r with seed 110 + r) gives FTW's 2nd-edition field map a median certified share of 0.40 (Belgium), 0.45 (Croatia), 0.90 (Slovenia) and 0.00 (Sweden), so preregistered P3(b), a quarter in 2 of 4 countries, holds in 3 of 4, but the verdict is fragile: each country certifies any zone with an exact probability near one half (0.525, 0.517, 0.525 and 0.484; pooled 0.515), so the certified share has two modes, no zone or a large one, and each median sits on that edge. Sweden's 0.00 follows from its 0.484; an independent set of 2,000 draws gave Croatia 0.55; with these exact probabilities P3(b) holds in 3 of 4 in the limit of many draws, and 2,000 draws put a median at zero with probability about 0.07 (Croatia) and 0.014 (Belgium, Slovenia). A certified zone's true error rate has a median of 0.022 to 0.029. Between 22% and 51% of each country's windows sit at confidence exactly 1.0, so which of them enter a zone is set by the package's tie rule (by index, the mosaic's raster order), not by evidence; the rule is fixed before any label is read, so the guarantee stands."
+  statement: "In the record's first test on another organisation's deployed product outside land cover (exp110, preregistered), certify at alpha 0.05, delta 0.10 and 300 random labels (2,000 draws, draw r with seed 110 + r) gives FTW's 2nd-edition field map a median certified share of 0.40 (Belgium), 0.45 (Croatia), 0.90 (Slovenia) and 0.00 (Sweden), so preregistered P3(b), a quarter in 2 of 4 countries, holds in 3 of 4, but the verdict is fragile: each country certifies any zone with an exact probability near one half (0.525, 0.517, 0.525 and 0.484; pooled 0.515), so the certified share has two modes, no zone or a large one, and each median sits on that edge. Sweden's 0.00 follows from its 0.484; an independent set of 2,000 draws gave Croatia 0.55; with these exact probabilities P3(b) holds in 3 of 4 in the limit of many draws, and 2,000 draws put a median at zero with probability about 0.07 (Croatia) and 0.014 (Belgium, Slovenia). Those probabilities sit at or below the limit any map has at this budget: at 300 labels and alpha 0.05 the 15% level enters expecting exactly the 45 labels it needs, so even a perfect map certifies with probability at most about 0.525 (Belgium and Slovenia are at it), and P3(b) here turned on whether each country's most confident 15% was almost free of errors (exp112). A certified zone's true error rate has a median of 0.022 to 0.029. Between 22% and 51% of each country's windows sit at confidence exactly 1.0, so which of them enter a zone is set by the package's tie rule (by index, the mosaic's raster order), not by evidence; the rule is fixed before any label is read, so the guarantee stands."
   crosscheck: tests/test_exp110.py::test_exp110_recorded_by_a_second_route
   status: supported
-  experiments: [exp110]
+  experiments: [exp110, exp112]
   artifacts: [exp/out/exp110_summary.json, exp/out/exp110_crosscheck.json]
   check: |-
     (lambda S, C: (lambda P, V, L, X, cs: V['P3b']['holds'] is True and V['P3b']['countries_meeting'] == ['belgium', 'croatia', 'slovenia']
@@ -5686,3 +5686,122 @@
     same 245, so the imagery is not the cause). The stack differs in rslearn, olmoearth_pretrain and torch at once; which
     of them changes v1's predictions was not isolated. Running exp98's stack again needs its environment rebuilt (the
     scratch purge emptied its CUDA libraries).
+
+- id: exp112-v13-map-confidence-ranks-its-errors
+  statement: "In a preregistered test (exp112, frozen f22f434) of a map made the way OlmoEarth v1.3 invites, a default logistic regression fitted on the 2018 v1.3 embeddings (128 dimensions) of 1,000 random plots of LCMAP Reference Data Product v1.2 and applied to the other 11,000 plots of a 12,000-plot draw (a simple random sample of CONUS's 30 m pixels), the map errs on 11.7% of the plots (1,290) and its top probability ranks those errors at AUROC 0.876 (90% bootstrap 0.869 to 0.884), the least confident 10% holding 0.416 of them (ceiling 0.853): preregistered P1 holds, 0.366 above the better of two no-model controls that are near chance (predicted-class rarity 0.488, distance from the fit set's mean vector 0.511). 2.7% of the errors are as confident as the median correct plot. With 300 or 3,000 fit plots the map errs on 13.3% and 10.7% and the AUROC is 0.858 and 0.882; at the first 64 dimensions, 11.8% and 0.877."
+  crosscheck: tests/test_exp112.py::test_exp112_recorded_by_a_second_route
+  status: supported
+  experiments: [exp112]
+  artifacts: [exp/out/exp112_summary.json, exp/out/exp112_crosscheck.json, exp/out/exp112_plots.csv]
+  check: |-
+    (lambda S, C, R: (lambda c, T: S['n_S'] == 12000 and S['no_embedding'] == 0 and len(R) == 12000
+      and sum(r['in_fit_1000'] == '1' for r in R) == 1000 and len(T) == 11000
+      and sum(r['pred'] != r['ref'] for r in T) == 1290 and c['arm1']['errors'] == 1290 and round(c['theta'], 4) == 0.1173
+      and round(c['arm1']['own']['auroc'], 3) == 0.876 and [round(x, 3) for x in c['arm1']['boot90']['auroc']] == [0.869, 0.884]
+      and round(c['arm1']['own']['capture_10'], 3) == 0.416 and round(c['arm1']['ceiling_10'], 3) == 0.853
+      and round(c['arm1']['lead'], 3) == 0.366 and c['arm1']['best_control'] == 'distance'
+      and round(c['arm1']['controls']['rarity']['auroc'], 3) == 0.488 and round(c['arm1']['controls']['distance']['auroc'], 3) == 0.511
+      and round(c['arm1']['confident_error_share'], 3) == 0.027
+      and S['verdicts']['P1']['holds'] is True and C['verdicts']['P1']['holds'] is True
+      and abs(C['arm1']['auroc'] - c['arm1']['own']['auroc']) < 1e-9 and abs(C['arm1']['lead_over_best_control'] - c['arm1']['lead']) < 1e-9
+      and [round(S['by_fit'][k]['128']['theta'], 3) for k in ('300', '3000')] == [0.133, 0.107]
+      and [round(S['by_fit'][k]['128']['ranking']['auroc'], 3) for k in ('300', '3000')] == [0.858, 0.882]
+      and (round(S['by_fit']['1000']['64']['theta'], 3), round(S['by_fit']['1000']['64']['ranking']['auroc'], 3)) == (0.118, 0.877)
+    )(S['by_fit']['1000']['128'], [r for r in R if r['in_fit_1000'] == '0' and r['has_embedding'] == '1']))(A['exp/out/exp112_summary.json'], A['exp/out/exp112_crosscheck.json'], A['exp/out/exp112_plots.csv'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp112-v13-map-confidence-ranks-its-errors}
+    - {file: docs/Findings.md, marker: exp112-v13-map-confidence-ranks-its-errors}
+    - {file: docs/Summary.md, marker: exp112-v13-map-confidence-ranks-its-errors}
+  note: >-
+    Run once at the frozen f22f434: extract job 1464443 on the cluster (12,000 plots read from Ai2's store in 775 s),
+    analysis job 1464959 (olmoearth-inferencex 1.12.1). Recorded after an independent audit whose script became
+    exp/exp112_crosscheck.py; it refits the map from the private vectors, and every deterministic number matches (P4's
+    tail probabilities to within the package's 1e-12 truncation). The
+    fit points are a random sample of the same population, the favourable case; a regional fit is not graded. The
+    reference labels are taken as right.
+
+- id: exp112-labelled-routes-keep-their-guarantees
+  statement: "On exp112's map, the package's exact interval for a simple random sample covers the error rate with exact probability 0.960 at 100 labels and 0.955 at 300 (P2 holds), certify at alpha 0.05, delta 0.10 and 300 labels certifies a zone wrong more often than alpha on 0.0075 of 2,000 draws (P3(a) holds; an independent route's 100,000 draws give 0.0098), and the which-map route names the map that agrees worse with the reference with probability below 1e-8 at 100 and 300 labels against LCMAP Collection 1.3 and against Esri (P4 holds)."
+  crosscheck: tests/test_exp112.py::test_exp112_recorded_by_a_second_route
+  status: supported
+  experiments: [exp112]
+  artifacts: [exp/out/exp112_summary.json, exp/out/exp112_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda c: S['verdicts']['P2'] is True and S['verdicts']['P3']['a'] is True and S['verdicts']['P4'] is True
+      and C['verdicts']['P2']['holds'] is True and C['verdicts']['P3a']['holds'] is True and C['verdicts']['P4']['holds'] is True
+      and [round(c['arm2']['cells'][b]['exact_coverage'], 3) for b in ('100', '300')] == [0.96, 0.955]
+      and all(abs(c['arm2']['cells'][b]['exact_coverage'] - C['arm2'][b]['exact_coverage']) < 1e-8 for b in ('100', '300'))
+      and c['arm3']['by_alpha']['0.05']['violation_share'] == 0.0075
+      and round(C['arm3']['0.05']['large_mc']['violation_share'], 4) == 0.0098
+      and max(v['p_names_worse'] for m in c['arm4'] for v in m['n'].values()) < 1e-8 and C['verdicts']['P4']['max_p_wrong'] < 1e-8
+    )(S['by_fit']['1000']['128']))(A['exp/out/exp112_summary.json'], A['exp/out/exp112_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp112-labelled-routes-keep-their-guarantees}
+    - {file: docs/Findings.md, marker: exp112-labelled-routes-keep-their-guarantees}
+  note: >-
+    The run's which-map probabilities come from the package's plan.which_map_probability, which drops up to 1e-12 of
+    each tail, so its smallest values (0.0) stand for values below 1e-11; the second route's exact values are 1.4e-9 at
+    most.
+
+- id: exp112-p3b-fails-at-the-level-cut
+  statement: "In exp112, preregistered P3(b), a median certified share of at least 0.25 of the map at alpha 0.05 and 300 labels, does not hold: half of 2,000 draws certify nothing, so the median, 0.075, is the midpoint between none and the first testable level (0.15), and an independent route's 100,000 draws put a 2,000-draw median at or above 0.25 with probability 0.00015. Found after the run, the bar is a knife-edge at this budget: the 15% zone is the first level the standard cut tests and it expects 45 labels, exactly the 45 that certify at alpha 0.05 with no error, so any map certifies a zone with probability at most 0.525, and a 2,000-draw median reaches 0.25 only when that probability is above one half, which needs at most one error among the 1,650 most confident plots (a perfect map passes with probability 0.99). This map has two there (0.0012), so it certifies with exact probability 0.494 (guard aside) and the bar fails. Beyond that edge the confident part is clean (the most confident 70% of the plots err at 0.028, 80% at 0.049); a draw that certifies has a median share of 0.70; at alpha 0.10 the same draws certify a median of 0.85 of the map (median zone error 0.076). The bar was copied from exp110, whose P3(b) sat on the same edge (three countries above one half, Sweden at 0.484 below)."
+  crosscheck: tests/test_exp112.py::test_exp112_p3b_limit_is_the_level_cut
+  status: supported
+  experiments: [exp112, exp110]
+  artifacts: [exp/out/exp112_summary.json, exp/out/exp112_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda c, z: S['verdicts']['P3']['b'] is False and C['verdicts']['P3b']['holds'] is False
+      and c['arm3']['by_alpha']['0.05']['median_certified_share'] == 0.075 and c['arm3']['by_alpha']['0.05']['p_certify_any'] == 0.5
+      and z['levels']['b_min'] == 45 and z['levels']['coverage'][0] == 0.15 and z['levels']['sizes'][0] == 1650
+      and round(z['exact_p_certify_any_guard_aside'], 3) == 0.494
+      and z['large_mc']['median_of_2000_draws']['p_at_least_0.25'] == 0.00015
+      and round(z['zone_true_error_by_level']['0.7'], 3) == 0.028 and round(z['zone_true_error_by_level']['0.8'], 3) == 0.049
+      and c['arm3']['by_alpha']['0.1']['median_certified_share'] == 0.85
+      and round(c['arm3']['by_alpha']['0.1']['zone_true_error_median'], 3) == 0.076
+      and (lambda k: sorted(sum(([float(v)] * n for v, n in k.items() if float(v) > 0), []))[(sum(n for v, n in k.items() if float(v) > 0) - 1) // 2])(z['certified_share_counts']) == 0.7
+    )(S['by_fit']['1000']['128'], C['arm3']['0.05']))(A['exp/out/exp112_summary.json'], A['exp/out/exp112_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp112-p3b-fails-at-the-level-cut}
+    - {file: docs/Findings.md, marker: exp112-p3b-fails-at-the-level-cut}
+    - {file: docs/Summary.md, marker: exp112-p3b-fails-at-the-level-cut}
+  note: >-
+    The page's reading of a P3(b) failure ("the map's confident part is not that clean") is wrong for this run, and the
+    verdict stands as written; the page carries the correction after the run. The limit 0.525 is the hypergeometric
+    chance of 45 or more of 300 labels in 1,650 of 11,000 plots (tests/test_exp112.py); the conditional median 0.70 and
+    the zone errors by level are the second route's. Usage already says a level holds fewer than b_min labels about
+    half the time at the budget where it enters (exp95).
+
+- id: exp112-agreement-with-the-reference-not-accuracy
+  statement: "On exp112's plots the v1.3 map agrees with the LCMAP reference on 0.883 of the plots where LCMAP Collection 1.3 has a class, against LCMAP Collection 1.3's 0.823 (they differ on 1,949 plots; the v1.3 map alone is right on 1,189, LCMAP alone on 536), and on 0.883 against Esri's 0.797 (D 2,027; 1,401 against 457); 100 labels drawn where they differ name the v1.3 map with probability 0.948 and 0.999. The v1.3 map was fitted on plots of this reference, so this is agreement with the reference's legend and its interpreters' conventions, not evidence that it is the more accurate map."
+  crosscheck: tests/test_exp112.py::test_exp112_recorded_by_a_second_route
+  status: supported
+  experiments: [exp112]
+  artifacts: [exp/out/exp112_summary.json]
+  check: |-
+    (lambda S: (lambda L, E: (L['N'], L['D'], L['K_A'], L['K_B']) == (10989, 1949, 1189, 536)
+      and (E['N'], E['D'], E['K_A'], E['K_B']) == (10998, 2027, 1401, 457)
+      and [round(x, 3) for x in (L['acc_A'], L['acc_B'], E['acc_A'], E['acc_B'])] == [0.883, 0.823, 0.883, 0.797]
+      and round(L['n']['100']['p_names_better'], 3) == 0.948 and round(E['n']['100']['p_names_better'], 3) == 0.999
+    )(*S['by_fit']['1000']['128']['arm4']))(A['exp/out/exp112_summary.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp112-agreement-with-the-reference-not-accuracy}
+    - {file: docs/Findings.md, marker: exp112-agreement-with-the-reference-not-accuracy}
+  note: >-
+    Esri is read through exp92's crosswalk; whether any reference plot trained LCMAP Collection 1.3 is not checked
+    (as exp92).
+
+- id: exp112-2018-vectors-run-below-the-readme
+  statement: "At exp112's 12,000 plots the 2018 OlmoEarth v1.3 vectors' norms run 2.60 to 3.80 (1st to 99th percentile), median 3.08, below the dataset README's 3.0 to 3.8 with median 3.4. Whether a classifier fitted on one year's embeddings carries to another year is not tested."
+  crosscheck: tests/test_exp112.py::test_exp112_recorded_by_a_second_route
+  status: supported
+  experiments: [exp112]
+  artifacts: [exp/out/exp112_summary.json, exp/out/exp112_crosscheck.json]
+  check: |-
+    (lambda S, C: [round(S['norms'][q], 2) for q in ('0.01', '0.5', '0.99')] == [2.6, 3.08, 3.8]
+      and abs(C['norms_2018_S']['quantiles']['0.5'] - S['norms']['0.5']) < 1e-9)(A['exp/out/exp112_summary.json'], A['exp/out/exp112_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp112-2018-vectors-run-below-the-readme}
+  note: >-
+    The README's figures are the dataset's own (source.coop/olmoearth/olmoearth-v1-3-embeddings, read 22 October
+    2026), not checked here; the preregistration notes one box read before the run, median 2.91 in 2018 and 3.34
+    in 2025.

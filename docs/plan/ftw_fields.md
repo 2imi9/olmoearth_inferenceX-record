@@ -22,6 +22,11 @@ page defines the truth (the 2-class mask), the three predictions and the three c
 - **P3(b) holds** (3 of 4, fragile): median certified shares 0.40, 0.45, 0.90 and 0.00 (Sweden). Each country
   certifies any zone with an exact probability near one half (0.525, 0.517, 0.525 and 0.484), so each median sits on
   that edge; an independent set of 2,000 draws gave Croatia 0.55.
+  *Note, 22 October 2026 (exp112):* at 300 labels and α = 0.05 any map, a perfect one included, certifies a zone
+  with probability at most about 0.525 (the 15% level enters there, expecting exactly the 45 labels it needs), so this
+  bar turned on whether each country's most confident 15% was almost free of errors; the four probabilities sit at or
+  below that limit (Belgium and Slovenia at it). See
+  [exp112](../results/comparisons.md#a-map-made-from-olmoearth-v13-embeddings-at-lcmaps-probability-sample-exp112).
 - **P4(b) holds** (3 of 4): 100 labels name the better-agreeing map with probability 0.858 (Belgium, B3), 0.999
   (Croatia, the 2e map) and 0.993 (Sweden, B3); Slovenia (0.141) and pooled (0.063) do not reach 0.8.
 - **The checks hold:** P2's exact coverage is at least 0.957 in all 10 cells, the Monte Carlo within 1.69 standard

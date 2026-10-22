@@ -43,7 +43,7 @@ artifact under `exp/out/`, with its evidence in the [results record](results/com
   preregistered ranking bar in 3 of 4 countries; in Belgium the rarity of the predicted class came within 0.018 of it
   (exp110). <!-- claim:exp110-ftw-map-confidence-ranks-its-window-errors -->
   The exact interval, the certified zone and the which-map design kept their guarantees there. <!-- claim:exp110-ftw-labelled-routes-keep-their-guarantees -->
-  300 random labels certified a zone on about half the draws. <!-- claim:exp110-ftw-certified-share-at-300-labels -->
+  300 random labels certified a zone on about half the draws, near the most any map can at that budget (0.525; exp112). <!-- claim:exp110-ftw-certified-share-at-300-labels -->
   100 labels drawn where it and FTW's PRUE B3 model differ named the better-agreeing map with probability at least 0.8
   in 3 of 4 countries (B3 in Belgium and Sweden; both maps' models most likely trained on these countries' train
   chips); the labels are parcel declarations and LPIS blocks taken as right. <!-- claim:exp110-ftw-which-map-at-100-labels -->
@@ -59,6 +59,18 @@ artifact under `exp/out/`, with its evidence in the [results record](results/com
   and a 20-label per-class audit would flag the pair with probability 0.29, not more often than not. <!-- claim:exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair -->
   Ai2's v1 fine-tune did not reproduce its own earlier predictions under rslearn 0.1.17 (14 of 259 points change class;
   the stored temporal table, the encodings' precision and autocast ruled out), so it was graded report-only. <!-- claim:exp111-v1-does-not-reproduce-exp98-under-rslearn-0117 -->
+- On a map made the way Ai2's OlmoEarth v1.3 invites, a default logistic regression fitted on the 2018 v1.3 embeddings
+  of 1,000 random plots of LCMAP's reference sample and graded at 11,000 others, the map erred on 11.7% of the plots
+  and its top probability ranked its errors at AUROC 0.876, the least confident 10% holding 41.6% of them, far above
+  two near-chance no-model controls (exp112, preregistered). The fit points were spread at random over the same
+  population, the favourable case; a regional fit is not graded. <!-- claim:exp112-v13-map-confidence-ranks-its-errors -->
+  The exact interval, the certified zone and the which-map route kept their guarantees. <!-- claim:exp112-labelled-routes-keep-their-guarantees -->
+  Preregistered P3(b) does not hold: 300 random labels certified a zone at α = 0.05 on half the draws (median share
+  0.075, bar 0.25). Found after the run: the first level the cut tests expects exactly the 45 labels it needs, so even
+  a perfect map certifies with probability at most 0.525, and the bar passes only a map whose most confident 15% holds
+  at most one error; this map's holds two. exp110's P3(b) sat on the same edge. <!-- claim:exp112-p3b-fails-at-the-level-cut -->
+  The v1.3 map agreed with the reference more often than LCMAP Collection 1.3 and Esri did, but it was fitted on that
+  reference's plots, so this is agreement with the reference's conventions, not accuracy. <!-- claim:exp112-agreement-with-the-reference-not-accuracy -->
 - On three published products, disagreement with a second product (Esri) flagged their confident errors 4.1 and 5.0
   times as often as their confident correct rows on two of them and 1.45 times on the third, so the preregistered
   twofold on all three did not hold; a related product (NLCD for LCMAP) meets the ratio too, and most flagged confident

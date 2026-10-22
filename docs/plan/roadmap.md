@@ -297,9 +297,11 @@ outside the 10 m Sentinel setup this project is built on, so not pursued.
 ## After OlmoEarth v1.3 (22 October 2026)
 
 Ai2's v1.3 makes precomputed embeddings the main way to use OlmoEarth: a user fits a small classifier on a few points
-and applies it to an area. Nothing in the release says how accurate such a map is. None of the items below has run.
+and applies it to an area. Nothing in the release says how accurate such a map is. Item 1 has run (exp112); items 2 and 3 have not.
 
-1. **The embedding route at a probability sample.** Fit logistic regression on v1.3 embeddings at part of the LCMAP
+1. **The embedding route at a probability sample.** Done as exp112 on 22 October 2026
+   ([result](../results/comparisons.md#a-map-made-from-olmoearth-v13-embeddings-at-lcmaps-probability-sample-exp112)):
+   the ranking held (AUROC 0.876); P3(b) failed on the level cut's knife-edge. The plan as written: Fit logistic regression on v1.3 embeddings at part of the LCMAP
    Reference plots (the probability sample of exp92 to exp94; LCMAP land use is also one of the report's own tasks)
    and grade the ranking, the error-rate interval and the certified zone at the rest. Reading one plot moves one
    chunk of about 3 MB (64 dimensions) or 6 MB (128), so the 25,000 plots move 75 to 150 GB: a cluster job, with

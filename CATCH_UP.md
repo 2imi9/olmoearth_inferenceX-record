@@ -1,6 +1,6 @@
 # Where this stands: a five-minute catch-up for the OlmoEarth team
 
-Ziming Qi, 17 October 2026.
+Ziming Qi, 17 October 2026; updated 22 October 2026.
 
 ## What it is
 
@@ -12,7 +12,7 @@ A checker for Earth-observation maps. It reads the per-class scores a model writ
 - which of two maps is better.
 
 It never runs the model, so it works on OlmoEarth's outputs, other models' maps and published products.
-`pip install olmoearth-inferencex` (1.12.2). Code and pictures: https://github.com/2imi9/olmoearth_inferenceX
+`pip install olmoearth-inferencex` (1.12.3). Code and pictures: https://github.com/2imi9/olmoearth_inferenceX
 
 ## What I did with your suggestions
 
@@ -39,6 +39,10 @@ It never runs the model, so it works on OlmoEarth's outputs, other models' maps 
   I did not pin down which of the three library changes (rslearn, olmoearth_pretrain, torch) causes it (exp111).
 - **A v1.2 AWF fine-tune** with your recipe, only the encoder swapped:
   https://huggingface.co/2imi9/OlmoEarth-v1_2-FT-AWF-Base
+- **OlmoEarth v1.3 embeddings** (exp112): logistic regression on the 2018 embeddings of 1,000 random LCMAP reference
+  plots, checked at 11,000 others. The map is wrong on 11.7% of them, and its own confidence ranks those errors at
+  AUROC 0.876. The fit points were spread over the whole country; a regional fit is untested. The 2018 vectors run
+  smaller than the dataset README says (median norm 3.08 against 3.4).
 - **Forest Loss Driver** at 2026 MapBiomas alerts (exp104): its confidence ranks its disagreements with the analysts
   at AUROC 0.77.
 - **Another organisation's product**, the Fields of the World field map (exp110): the ranking held in 3 of 4

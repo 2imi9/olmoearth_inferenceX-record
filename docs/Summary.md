@@ -63,6 +63,13 @@ all, with the evidence.
   crosswalk were still the grass/shrub definitional pair (0.611); weighted by region the pair's share is 0.334. <!-- claim:exp111-v12-grass-shrub-pair-is-most-confident-strict-errors -->
   Ai2's v1 checkpoint did not reproduce its own predictions under the current rslearn (14 of 259
   points change class), a finding for anyone rerunning a deployed model on a newer library. <!-- claim:exp111-v1-does-not-reproduce-exp98-under-rslearn-0117 -->
+- **A map from OlmoEarth v1.3 embeddings.** Logistic regression on the 2018 v1.3 embeddings of
+  1,000 random plots of LCMAP's reference sample, graded at 11,000 others: the map erred on
+  11.7% of them, and its own confidence ranked its errors at an AUROC of 0.876. <!-- claim:exp112-v13-map-confidence-ranks-its-errors -->
+  The fit points were random over the same population, the favourable case; a regional fit is
+  not graded. At 300 labels and α = 0.05 even a perfect map certifies a zone only about half the
+  time, since that budget is where the first level enters; the preregistered bar (a quarter
+  certified) failed on two errors among the map's most confident 15%. <!-- claim:exp112-p3b-fails-at-the-level-cut -->
 - **Error rate.** From 300 randomly drawn windows, a 95% Wilson interval held the true rate in
   93.3% to 96.1% of 2,000 repeated draws, on each of the suite's seven segmentation tasks. <!-- claim:design-based-interval-is-honest -->
   `estimate` now prints the exact hypergeometric interval instead, which covers at least 95% by
