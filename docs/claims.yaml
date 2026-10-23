@@ -5805,3 +5805,159 @@
     The README's figures are the dataset's own (source.coop/olmoearth/olmoearth-v1-3-embeddings, read 22 October
     2026), not checked here; the preregistration notes one box read before the run, median 2.91 in 2018 and 3.34
     in 2025.
+
+- id: exp113-v13-ranking-holds-on-held-out-territories
+  statement: "In a preregistered test (exp113, frozen 3f0f580) on Ai2's PLANTEUR crop-type benchmark, a default logistic regression (StandardScaler, then LogisticRegression) on the 2019 OlmoEarth v1.3 embeddings, fitted on 100,000 random non-void pixels of the other territories' train patches and applied to one held-out territory, ranks its 4 x 4 pixel window errors at AUROC 0.874 (Guadeloupe; 90% patch bootstrap 0.870 to 0.879), 0.857 (Martinique; 0.848 to 0.866), 0.816 (Guyane; 0.795 to 0.837), 0.876 (Réunion; 0.868 to 0.884) and 0.742 (Mayotte; 0.710 to 0.773), with capture at 10% of 0.420, 0.403, 0.323, 0.320 and 0.286 and leads of 0.137, 0.224, 0.303, 0.089 and 0.238 over the best no-model control (boundary 0.738, boundary 0.633, boundary 0.513, distance from the fit mean 0.787, rarity 0.504): preregistered P1 holds in 5 of 5 (bar 4). The lead is informative in Guadeloupe, Martinique and Réunion, where a control ranks errors on its own; in Guyane and Mayotte every control is near chance. TESSERA v2 and AlphaEarth meet both parts in 4 of 5 (not Mayotte and not Réunion)."
+  crosscheck: tests/test_exp113.py::test_exp113_recorded_by_a_second_route
+  status: supported
+  experiments: [exp113]
+  artifacts: [exp/out/exp113_summary.json, exp/out/exp113_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda M, T, ok: S['verdicts']['P1']['holds'] is True and S['verdicts']['P1']['territories_meeting'] == list(T)
+      and S['verdicts']['P1']['below_floor'] == [] and min(M(t, 'oe13')['errors'] for t in T) == 748
+      and C['verdicts']['P1']['holds'] is True and C['verdicts']['P1']['meeting_a_and_b'] == 5
+      and [round(M(t, 'oe13')['own']['auroc'], 3) for t in T] == [0.874, 0.857, 0.816, 0.876, 0.742]
+      and [[round(x, 3) for x in M(t, 'oe13')['boot90']['auroc']] for t in T] == [[0.87, 0.879], [0.848, 0.866], [0.795, 0.837], [0.868, 0.884], [0.71, 0.773]]
+      and [round(M(t, 'oe13')['own']['capture_10'], 3) for t in T] == [0.42, 0.403, 0.323, 0.32, 0.286]
+      and [M(t, 'oe13')['best_control'] for t in T] == ['boundary', 'boundary', 'boundary', 'distance', 'rarity']
+      and [round(M(t, 'oe13')['controls'][M(t, 'oe13')['best_control']]['auroc'], 3) for t in T] == [0.738, 0.633, 0.513, 0.787, 0.504]
+      and [round(M(t, 'oe13')['lead'], 3) for t in T] == [0.137, 0.224, 0.303, 0.089, 0.238]
+      and max(abs(M(t, 'oe13')['own']['auroc'] - C['populations']['loio:' + t]['v1.3']['arm1']['auroc']) for t in T) < 0.003
+      and [t for t in T if not ok(M(t, 'tessera2'))] == ['Mayotte'] and [t for t in T if not ok(M(t, 'aef'))] == ['Réunion']
+    )(lambda t, e: S['maps']['loio:' + t][e]['arm1'], ('Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Mayotte'),
+      lambda a: a['own']['auroc'] >= 0.7 and a['own']['capture_10'] >= 0.25 and a['lead'] >= 0.05))(A['exp/out/exp113_summary.json'], A['exp/out/exp113_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp113-v13-ranking-holds-on-held-out-territories}
+    - {file: docs/Findings.md, marker: exp113-v13-ranking-holds-on-held-out-territories}
+    - {file: docs/Summary.md, marker: exp113-v13-ranking-holds-on-held-out-territories}
+  note: >-
+    Run once at 3f63ffc (job 1468432, olmoearth-inferencex 1.12.1, scikit-learn 1.9.1) after a first run (job 1467772
+    at 9838301) failed at its verdict step; recorded after an independent audit whose script is
+    exp/exp113_crosscheck.py. The second route fits the stored float32 vectors where the run fits float64, so a few
+    windows flip; v1.3's AUROC differs by at most 0.003 and every verdict is the same. Errors are counted against
+    France's parcel registry.
+
+- id: exp113-transfer-drop-in-ranking-below-the-bar
+  statement: "In exp113, preregistered P2, that v1.3's mean AUROC over the five held-out territories is at least 0.05 below its AUROC on the default spatial split, does not hold: 0.833 against 0.880, a drop of 0.047. The drop is 0.006 (Guadeloupe), 0.023 (Martinique), 0.064 (Guyane), 0.004 (Réunion) and 0.138 (Mayotte), so transfer does cost ranking, unevenly; for TESSERA v2 the mean drop is 0.054 and for AlphaEarth 0.079. The page set no interval for the drop, and the default split's test patches pool all territories."
+  crosscheck: tests/test_exp113.py::test_exp113_recorded_by_a_second_route
+  status: rejected
+  experiments: [exp113]
+  artifacts: [exp/out/exp113_summary.json, exp/out/exp113_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda au, T: S['verdicts']['P2']['holds'] is False and C['verdicts']['P2']['holds'] is False
+      and abs(S['verdicts']['P2']['drop'] - (au('default', 'oe13') - sum(au('loio:' + t, 'oe13') for t in T) / 5)) < 1e-12
+      and round(S['verdicts']['P2']['drop'], 3) == 0.047 and round(S['verdicts']['P2']['loio_mean_auroc'], 3) == 0.833
+      and round(S['verdicts']['P2']['default_auroc'], 3) == 0.88
+      and [round(au('default', 'oe13') - au('loio:' + t, 'oe13'), 3) for t in T] == [0.006, 0.023, 0.064, 0.004, 0.138]
+      and [round(au('default', e) - sum(au('loio:' + t, e) for t in T) / 5, 3) for e in ('tessera2', 'aef')] == [0.054, 0.079]
+      and abs(C['verdicts']['P2']['default_minus_mean'] - S['verdicts']['P2']['drop']) < 1e-3
+    )(lambda c, e: S['maps'][c][e]['arm1']['own']['auroc'], ('Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Mayotte')))(A['exp/out/exp113_summary.json'], A['exp/out/exp113_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp113-transfer-drop-in-ranking-below-the-bar}
+    - {file: docs/Findings.md, marker: exp113-transfer-drop-in-ranking-below-the-bar}
+    - {file: docs/Summary.md, marker: exp113-transfer-drop-in-ranking-below-the-bar}
+  note: >-
+    The page read P2 as a question whose failure would be the more useful finding; the failure is narrow (0.003 under
+    the bar) and is not a ranking that transfer leaves untouched. The second route's drop is 0.04695.
+
+- id: exp113-labelled-routes-keep-their-guarantees
+  statement: "At exp113's 18 maps (three embeddings on six configurations) the package's exact interval for a simple random sample covers the window error rate with exact probability at least 0.953 at 100 and 400 windows (P3 holds; graded on the hypergeometric interval estimate prints, whereas the finite-population Wilson interval, exact_coverage_srs's default, falls to 0.895 at Mayotte, TESSERA v2, 100 windows), certify at alpha 0.05, delta 0.10 and 400 labels certifies a zone wrong more often than alpha on at most 0.0505 of 2,000 draws in each of the 15 held-out maps (P4 holds, bar 0.115), and the which-map route names the map that agrees worse with the labels with probability at most 0.0108 (P5 holds, bar 0.025). At 400 labels v1.3's map certifies some zone at alpha 0.05 on 0.85, 0.81, 0.26, 0.37 and 0.99 of the draws in Guadeloupe, Martinique, Guyane, Réunion and Mayotte (median share 0.70, 0.65, 0, 0 and 1.0) and on 0.92 on the default split (median 0.80)."
+  crosscheck: tests/test_exp113.py::test_exp113_recorded_by_a_second_route
+  status: supported
+  experiments: [exp113]
+  artifacts: [exp/out/exp113_summary.json, exp/out/exp113_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda V, W, T, a3: V['P3']['holds'] is True and W['P3']['holds'] is True and round(V['P3']['min_exact_coverage'], 3) == 0.953
+      and V['P3']['min_exact_coverage'] == min(v for c in S['maps'].values() for m in c.values() for v in m['arm2'].values())
+      and len([v for c in S['maps'].values() for m in c.values() for v in m['arm2'].values()]) == 36
+      and W['P3']['reading_wilson_fpc']['holds'] is False and round(W['P3']['reading_wilson_fpc']['min_exact_coverage'], 3) == 0.895
+      and V['P4']['holds'] is True and W['P4']['holds'] is True and V['P4']['max_violation_share'] == 0.0505 and W['P4']['max_violation_share'] <= 0.0505
+      and V['P5']['holds'] is True and W['P5']['holds'] is True and round(V['P5']['max_p_names_worse'], 4) == 0.0108
+      and [round(a3('loio:' + t)['p_certify_any'], 2) for t in T] == [0.85, 0.81, 0.26, 0.37, 0.99]
+      and [a3('loio:' + t)['median_certified_share'] for t in T] == [0.7, 0.65, 0.0, 0.0, 1.0]
+      and (round(a3('default')['p_certify_any'], 2), a3('default')['median_certified_share']) == (0.92, 0.8)
+    )(S['verdicts'], C['verdicts'], ('Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Mayotte'),
+      lambda c: S['maps'][c]['oe13']['arm3']['by_alpha']['0.05']))(A['exp/out/exp113_summary.json'], A['exp/out/exp113_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp113-labelled-routes-keep-their-guarantees}
+    - {file: docs/Findings.md, marker: exp113-labelled-routes-keep-their-guarantees}
+  note: >-
+    The page names "the package's interval for a simple random sample (estimate.exact_coverage_srs)"; both routes passed
+    the hypergeometric interval explicitly, and the page's notes record the Wilson reading. The run's certify steps
+    were checked against certify_zone on 20 draws at alpha 0.05 only. P3's minimum sits in another cell on the second
+    route (0.956), where its K falls on the other side of a jump in coverage.
+
+- id: exp113-held-out-maps-mostly-background
+  statement: "In three of exp113's five held-out territories v1.3's map is close to an all-Background map: Guyane's labels are 14% Meadow, which it maps at IoU 0.007; Réunion's are 16% Sugarcane, at IoU 0.013; Mayotte's are 99.4% Background. Their pixel mIoU over the eight classes is 0.120, 0.127 and 0.125, where an all-Background map would score 0.103, 0.093 and 0.124, so there the confidence mostly finds registry crop land the map calls Background. Mayotte's window error rate, 0.5%, is its registry crop share, and a 10% review list there holds about 1.5% errors. In Guadeloupe and Martinique the held-out map classifies crops (Sugarcane IoU 0.71 and 0.72, Banana 0.49 and 0.50; mIoU 0.308 and 0.319, against 0.356 on the default split)."
+  crosscheck: tests/test_exp113.py::test_exp113_recorded_by_a_second_route
+  status: measured
+  experiments: [exp113]
+  artifacts: [exp/out/exp113_summary.json, exp/out/exp113_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda m, sh, T: round(sh('loio:Guyane', 1), 2) == 0.14 and round(sh('loio:Réunion', 4), 2) == 0.16
+      and round(sh('loio:Mayotte', 0), 3) == 0.994
+      and round(m('loio:Guyane')['iou_per_class'][1], 3) == 0.007 and round(m('loio:Réunion')['iou_per_class'][4], 3) == 0.013
+      and [round(m('loio:' + t)['miou'], 3) for t in T] == [0.308, 0.319, 0.12, 0.127, 0.125] and round(m('default')['miou'], 3) == 0.356
+      and [round(sh('loio:' + t, 0) / 8, 3) for t in T] == [0.102, 0.102, 0.103, 0.093, 0.124]
+      and [round(m('loio:' + t)['iou_per_class'][4], 2) for t in ('Guadeloupe', 'Martinique')] == [0.71, 0.72]
+      and [round(m('loio:' + t)['iou_per_class'][5], 2) for t in ('Guadeloupe', 'Martinique')] == [0.49, 0.5]
+      and round(m('loio:Mayotte')['arm1']['theta'], 4) == 0.0052
+      and round(m('loio:Mayotte')['arm1']['own']['capture_10'] * m('loio:Mayotte')['arm1']['errors'] / (0.1 * m('loio:Mayotte')['arm1']['n']), 3) == 0.015
+      and max(abs(m('loio:' + t)['miou'] - C['populations']['loio:' + t]['v1.3']['miou_pixels_nonvoid']['miou_8_absent_0']) for t in T) < 0.002
+    )(lambda c: S['maps'][c]['oe13'], lambda c, k: S['maps'][c]['oe13']['truth_pixels_per_class'][k] / sum(S['maps'][c]['oe13']['truth_pixels_per_class']),
+      ('Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Mayotte')))(A['exp/out/exp113_summary.json'], A['exp/out/exp113_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp113-held-out-maps-mostly-background}
+    - {file: docs/Findings.md, marker: exp113-held-out-maps-mostly-background}
+    - {file: docs/Summary.md, marker: exp113-held-out-maps-mostly-background}
+  note: >-
+    Found at recording, from the reported mIoU and per-class IoU; not a preregistered prediction. The all-Background
+    mIoU is the Background share of non-void pixels over eight. Cropped land outside the parcel registry is labelled
+    Background, so some of the map's Background calls may be right on the ground.
+
+- id: exp113-which-embedding-agrees-best
+  statement: "In exp113 the map that agrees best with the labels is v1.3's in Guadeloupe, Martinique, Réunion and Mayotte and TESSERA v2's in Guyane. The gaps are 0.12 points or less in Guyane, Mayotte and between v1.3 and TESSERA v2 in Réunion, where 400 labels drawn where two maps differ name the better map with probability 0.04 to 0.16 (Mayotte's maps differ on 40 to 120 windows, a census); 0.4 to 1.9 points in Guadeloupe and Martinique (probability 0.65 to 1.0); and 10.6 to 10.7 points against AlphaEarth in Réunion. The mean held-out pixel mIoU orders the maps v1.3 (0.200), TESSERA v2 (0.185), AlphaEarth (0.168), the order of the v1.3 report's PLANTEUR table; that is consistent with the report, not a test of it."
+  crosscheck: tests/test_exp113.py::test_exp113_recorded_by_a_second_route
+  status: measured
+  experiments: [exp113]
+  artifacts: [exp/out/exp113_summary.json, exp/out/exp113_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda W, gap, T: S['best_agreeing_map'] == {'Guadeloupe': 'oe13', 'Martinique': 'oe13', 'Guyane': 'tessera2', 'Réunion': 'oe13', 'Mayotte': 'oe13'}
+      and C['arm4']['loio:Guyane']['v1.3~tessera_v2']['better_agreeing'] == 'B'
+      and max(gap(W[t][k]) for t in ('Guyane', 'Mayotte') for k in W[t]) < 0.001 and round(gap(W['Réunion']['oe13_vs_tessera2']), 4) == 0.0012
+      and [round(gap(W[t][k]), 3) for t in ('Guadeloupe', 'Martinique') for k in W[t]] == [0.01, 0.019, 0.009, 0.004, 0.012, 0.008]
+      and [round(gap(W['Réunion'][k]), 3) for k in ('oe13_vs_aef', 'tessera2_vs_aef')] == [0.107, 0.106]
+      and [round(W[t][k]['n']['400']['p_names_better'], 2) for t in ('Guyane',) for k in W[t]] + [round(W['Réunion']['oe13_vs_tessera2']['n']['400']['p_names_better'], 2)] == [0.16, 0.04, 0.15, 0.12]
+      and min(W[t][k]['n']['400']['p_names_better'] for t in ('Guadeloupe', 'Martinique') for k in W[t]) > 0.649
+      and [W['Mayotte'][k]['D'] for k in W['Mayotte']] == [40, 89, 120]
+      and [round(sum(S['maps']['loio:' + t][e]['miou'] for t in T) / 5, 3) for e in ('oe13', 'tessera2', 'aef')] == [0.2, 0.185, 0.168]
+    )(S['which_map'], lambda v: abs(v['acc_A'] - v['acc_B']), ('Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Mayotte')))(A['exp/out/exp113_summary.json'], A['exp/out/exp113_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp113-which-embedding-agrees-best}
+    - {file: docs/Findings.md, marker: exp113-which-embedding-agrees-best}
+  note: >-
+    Reported, not graded. The report's numbers (Table 2 of the v1.3 report: leave-one-island-out mIoU 24.9, 19.1 and
+    15.8) come from a tuned linear probe on embeddings computed without Searchlight; this run's mIoU counts Background,
+    75% to 99% of each territory's labelled pixels, so the numbers are not comparable. Agreement is with the parcel
+    registry's labels.
+
+- id: exp113-errors-concentrate-in-the-edge-band
+  statement: "In exp113, windows in the one-pixel class-edge band of v1.3's map (read as the package's boundary writes it) err at 0.434, 0.437, 0.543 and 0.781 in Guadeloupe, Martinique, Guyane and Réunion and at 0.388 on the default split, against 0.074, 0.092, 0.170, 0.218 and 0.065 for interior windows. The band holds 5% to 8% of the windows in Guadeloupe, Martinique, Réunion and the default split, 0.6% in Guyane and 28 windows in Mayotte."
+  crosscheck: tests/test_exp113.py::test_exp113_recorded_by_a_second_route
+  status: measured
+  experiments: [exp113]
+  artifacts: [exp/out/exp113_summary.json, exp/out/exp113_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda b, K: [round(b(c)['edge_band']['error_rate'], 3) for c in K] == [0.434, 0.437, 0.543, 0.781, 0.388]
+      and [round(b(c)['interior']['error_rate'], 3) for c in K] == [0.074, 0.092, 0.17, 0.218, 0.065]
+      and all(0.05 <= b(c)['edge_band']['windows'] / sum(v['windows'] for v in b(c).values()) <= 0.085 for c in ('loio:Guadeloupe', 'loio:Martinique', 'loio:Réunion', 'default'))
+      and round(b('loio:Guyane')['edge_band']['windows'] / sum(v['windows'] for v in b('loio:Guyane').values()), 3) == 0.006
+      and b('loio:Mayotte')['edge_band']['windows'] == 28
+      and max(abs(b(c)['interior']['error_rate'] - C['populations'][c]['v1.3']['edge_band']['interior']['error_rate']) for c in K) < 0.001
+    )(lambda c: S['maps'][c]['oe13']['arm1']['band'], ('loio:Guadeloupe', 'loio:Martinique', 'loio:Guyane', 'loio:Réunion', 'default')))(A['exp/out/exp113_summary.json'], A['exp/out/exp113_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp113-errors-concentrate-in-the-edge-band}
+    - {file: docs/Findings.md, marker: exp113-errors-concentrate-in-the-edge-band}
+  note: >-
+    Reported, not graded. The band is drawn on the predicted map, so a map that predicts little but Background
+    (Guyane, Mayotte) has few edges. Windows half in the band are a third stratum, not counted in either rate.

@@ -420,7 +420,13 @@ Embedding products, after Ai2 released OlmoEarth v1.3 (each entry checked agains
   The report evaluates the embeddings by readout accuracy on class-balanced draws, against AlphaEarth and TESSERA v2;
   it gives no confidence layer and no accuracy of a map made from them. Its section 4.3 notes that 2025, most of 2024
   and small parts of 2019 and 2023 were computed before a fix for a seam every 20.48 km. The package's Usage page
-  shows how to check a classifier map made from them; this record has not graded that route.
+  shows how to check a classifier map made from them; this record graded that route at LCMAP's probability sample
+  (exp112) and, fitted on other territories, on PLANTEUR (exp113).
+- Wolters, P., Tseng, G., Bastani, F., Redmon, J., Zhang, Y., Sablon, H. and Shah, A. (2026). PLANTEUR: a crop-type
+  segmentation benchmark for tropical regions. Allen Institute for AI. Dataset
+  [allenai/planteur-benchmark](https://huggingface.co/datasets/allenai/planteur-benchmark) (ODC-BY; the dataset card's
+  citation, read 22 October 2026; the v1.3 report cites it as a technical report on France's overseas territories). 2,750 patches with parcel-registry labels and 2019 embeddings from OlmoEarth v1.3, TESSERA v2 and
+  AlphaEarth on the label grid; its leave-one-island-out split is where exp113 grades a regional fit.
 
 ## 6. Whether the tool helps a person
 

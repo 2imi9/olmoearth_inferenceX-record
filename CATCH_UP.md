@@ -1,6 +1,6 @@
 # Where this stands: a five-minute catch-up for the OlmoEarth team
 
-Ziming Qi, 17 October 2026; updated 22 October 2026.
+Ziming Qi, 17 October 2026; updated 23 October 2026.
 
 ## What it is
 
@@ -41,8 +41,12 @@ It never runs the model, so it works on OlmoEarth's outputs, other models' maps 
   https://huggingface.co/2imi9/OlmoEarth-v1_2-FT-AWF-Base
 - **OlmoEarth v1.3 embeddings** (exp112): logistic regression on the 2018 embeddings of 1,000 random LCMAP reference
   plots, checked at 11,000 others. The map is wrong on 11.7% of them, and its own confidence ranks those errors at
-  AUROC 0.876. The fit points were spread over the whole country; a regional fit is untested. The 2018 vectors run
-  smaller than the dataset README says (median norm 3.08 against 3.4).
+  AUROC 0.876. The fit points were spread over the whole country. The 2018 vectors run smaller than the dataset README
+  says (median norm 3.08 against 3.4).
+- **A regional fit on PLANTEUR** (exp113): the same kind of classifier on 2019 embeddings, fitted on the other
+  territories and applied to one held out, five times. Its confidence ranks its errors at AUROC 0.74 to 0.88 in every
+  held-out territory. In three of the five the map is close to all Background, so there it mostly finds crop land the
+  map missed. The best-agreeing embedding is v1.3 in four territories and TESSERA v2 in Guyane, mostly by small gaps.
 - **Forest Loss Driver** at 2026 MapBiomas alerts (exp104): its confidence ranks its disagreements with the analysts
   at AUROC 0.77.
 - **Another organisation's product**, the Fields of the World field map (exp110): the ranking held in 3 of 4

@@ -66,10 +66,18 @@ all, with the evidence.
 - **A map from OlmoEarth v1.3 embeddings.** Logistic regression on the 2018 v1.3 embeddings of
   1,000 random plots of LCMAP's reference sample, graded at 11,000 others: the map erred on
   11.7% of them, and its own confidence ranked its errors at an AUROC of 0.876. <!-- claim:exp112-v13-map-confidence-ranks-its-errors -->
-  The fit points were random over the same population, the favourable case; a regional fit is
-  not graded. At 300 labels and α = 0.05 even a perfect map certifies a zone only about half the
+  The fit points were random over the same population, the favourable case; exp113 grades a
+  regional fit. At 300 labels and α = 0.05 even a perfect map certifies a zone only about half the
   time, since that budget is where the first level enters; the preregistered bar (a quarter
   certified) failed on two errors among the map's most confident 15%. <!-- claim:exp112-p3b-fails-at-the-level-cut -->
+- **A regional map from embeddings.** On Ai2's PLANTEUR crop-type benchmark, a logistic
+  regression on 2019 v1.3 embeddings fitted on the other territories and applied to one held
+  out ranked its window errors at AUROC 0.742 to 0.876 in each of five held-out territories,
+  meeting the preregistered bar in all of them. <!-- claim:exp113-v13-ranking-holds-on-held-out-territories -->
+  The ranking lost 0.047 on average against the default split, just under the predicted 0.05,
+  and up to 0.138 in one territory. <!-- claim:exp113-transfer-drop-in-ranking-below-the-bar -->
+  In three of the five the held-out map is close to an all-Background map, so there the
+  confidence mostly finds crop land the map calls Background. <!-- claim:exp113-held-out-maps-mostly-background -->
 - **Error rate.** From 300 randomly drawn windows, a 95% Wilson interval held the true rate in
   93.3% to 96.1% of 2,000 repeated draws, on each of the suite's seven segmentation tasks. <!-- claim:design-based-interval-is-honest -->
   `estimate` now prints the exact hypergeometric interval instead, which covers at least 95% by

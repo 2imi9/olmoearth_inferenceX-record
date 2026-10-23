@@ -86,8 +86,8 @@ agreement with the reference (they named one on 6\% to 29\% of draws at 50 to 20
 confidence ranked its errors with an AUROC of 0.75; certified zones on that confidence met their guarantee in every
 cell, and at 300 labels the default rule returned no zone on 87\% of draws at $\alpha$ half the error rate, though 65\%
 of the plots lie in a zone within it.
-The record comprises 112 experiment scripts covering 94 experiment numbers (exp01 to exp112) and 262 ledger claims,
-260 of them checked against a committed artifact and 125 by an independent second route, and reports failed
+The record comprises 114 experiment scripts covering 95 experiment numbers (exp01 to exp113) and 268 ledger claims,
+266 of them checked against a committed artifact and 131 by an independent second route, and reports failed
 predictions as failed.
 \end{abstract}
 
@@ -493,12 +493,12 @@ analysts interpreting a simple random sample & LCMAP Reference Data Product v1.2
 Experiments state their predictions and falsification conditions before they run, in their scripts or, for many from
 exp48 on, in a preregistration page (\code{docs/plan}), with dated amendments; four early, exploratory scripts state
 none (exp01, exp18, exp19 and exp32), and results read afterwards are marked as not preregistered here and in the
-ledger. The repository holds 112 experiment scripts named \code{expNN\_*.py},
-covering 94 experiment numbers from exp01 to exp112. The ledger \code{docs/claims.yaml} holds 262 claims, each with a
-statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 90 are supported, 90 measured, 33 mixed, 47 rejected and 2
+ledger. The repository holds 114 experiment scripts named \code{expNN\_*.py},
+covering 95 experiment numbers from exp01 to exp113. The ledger \code{docs/claims.yaml} holds 268 claims, each with a
+statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 92 are supported, 93 measured, 33 mixed, 48 rejected and 2
 superseded, and \code{scripts/claims.py stale} flags only the two superseded ones. After an audit on 23 September 2026
-found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 125 of the
-262 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
+found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 131 of the
+268 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
 name one.
 
 Corrected results appear in their current form. exp78's cluster-corrected arm is now the ratio estimator, which
@@ -934,8 +934,27 @@ certifies with probability at most 0.525, and the bar passes only a map with at 
 \claim{exp112-p3b-fails-at-the-level-cut}. The map agrees with the reference more often than LCMAP Collection 1.3 and
 Esri do, but it was fitted on that reference's plots, so this is agreement with its conventions, not accuracy
 \claim{exp112-agreement-with-the-reference-not-accuracy}. The fit points were spread at random over the same
-population, the favourable case; a regional fit is not graded. An independent route refitted the map and reproduced
-every graded number.
+population, the favourable case; the next subsection grades a regional fit. An independent route refitted the map and
+reproduced every graded number.
+
+\subsection{A regional map from embeddings: PLANTEUR}
+\label{sec:res-planteur}
+
+exp113 (preregistered, frozen before any label or embedding was read) grades the regional case on Ai2's PLANTEUR
+crop-type benchmark: patches in France's overseas territories labelled from the parcel registry, with 2019 embeddings
+from OlmoEarth v1.3, TESSERA v2 and AlphaEarth on the label grid. For each of five territories a default logistic
+regression was fitted on 100,000 random pixels of the other territories and applied to the held-out one, graded on
+4 by 4 pixel windows. v1.3's confidence ranked the held-out map's errors at AUROC 0.874, 0.857, 0.816, 0.876 and 0.742,
+meeting the preregistered bars in 5 of 5; the lead over the best no-model control is informative in three of them,
+where a boundary or distance control ranks errors on its own \claim{exp113-v13-ranking-holds-on-held-out-territories}.
+The prediction that transfer costs at least 0.05 of AUROC failed narrowly: the mean drop against the default split is
+0.047, from 0.004 to 0.138 by territory \claim{exp113-transfer-drop-in-ranking-below-the-bar}. The interval, the
+certified zone at 400 labels and the which-map route kept their guarantees at all 18 maps
+\claim{exp113-labelled-routes-keep-their-guarantees}. In three territories the held-out map is close to an
+all-Background map, so there the confidence mostly finds registry crop land the map calls Background; in the other two
+it classifies crops \claim{exp113-held-out-maps-mostly-background}. The best-agreeing embedding was v1.3 in four
+territories and TESSERA v2 in one, mostly by small gaps \claim{exp113-which-embedding-agrees-best}. An independent
+route drew the same fit pixels and reached the same verdicts.
 
 \subsection{Estimation from a labelled sample}
 \label{sec:res-estimate}
@@ -1200,9 +1219,9 @@ models. The package reads a model's scores after the fact and loads no model. On
 compares two maps, estimates the error rate, certifies a zone, names the more accurate of two maps by an exact
 test and audits each class's confident calls. It refuses some inputs that would void its intervals, such as a review set offered as a random
 sample, though labels from the confident end of a map, or clustered by tile, pass its check. Beside it stands the record
-of Section~\ref{sec:protocol-ledger}: 112 experiment scripts covering 94 experiment numbers from exp01 to
-exp112, and 262 ledger claims, 260 of them checked against a committed artifact; the failed preregistered predictions
-of exp77 to exp112 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
+of Section~\ref{sec:protocol-ledger}: 114 experiment scripts covering 95 experiment numbers from exp01 to
+exp113, and 268 ledger claims, 266 of them checked against a committed artifact; the failed preregistered predictions
+of exp77 to exp113 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
 the place, the legend and the kind of point at once (which a blind test at fresh plots did not repeat, exp111), the confident errors it does not find, the zone that often returns
 nothing at 300 labels, a which-map design that fell short of practice's z form on nearly equal pairs, and a reviewer
 model that did not help. Other organisations' deployed products outside land cover have been tested once, on one
@@ -1252,19 +1271,20 @@ their errors, it estimates 0.975 to 0.983 for maps 0.883 to 0.914 accurate, and 
 is 0.83, 0.71 and 0.62 on PASTIS Sentinel-2, MADOS and Sen1Floods11 \claim{consensus-order-recovered-only-where-true-gaps-are-large}.
 Within one family it estimates 0.996 to 0.999 for maps 0.81 to 0.93 accurate
 \claim{within-family-consensus-is-the-unanimous-limit}. An error rate therefore requires a reference.
-Table~\ref{tab:failed} lists the failed predictions of exp77 to exp112.
+Table~\ref{tab:failed} lists the failed predictions of exp77 to exp113.
 
 {\footnotesize
 \setlength{\LTcapwidth}{\linewidth}
 \setlength{\LTpre}{6pt}
 \begin{longtable}{@{}l>{\raggedright\arraybackslash}p{0.385\linewidth}>{\raggedright\arraybackslash}p{0.385\linewidth}@{}}
-\caption{Preregistered predictions of exp77 to exp112 recorded as failed or failed as written. exp89 was report-only by
+\caption{Preregistered predictions of exp77 to exp113 recorded as failed or failed as written. exp89 was report-only by
 an amendment made before any result, exp90 was not preregistered, exp100 applied a fixed rule with no predictions,
 exp102 trained a model, the predictions of exp92, exp93, exp94, exp96 (at its preregistered seed) and exp97 held,
 exp103's others held (its review prediction on the point value), exp104's two held (P1 on its point value, its interval
 containing 0.70), exp105's two held (P1 at its bar), exp106's P1 held (on 2 of 3 cells, one of the two blind),
 exp107's P2 held, exp108 and exp109 were report-only, exp110's three held (P3(b) fragile, on the edge exp112 found), exp111's P2(a) held,
-graded for v1.2, with v1 report-only after it failed its gate on rslearn 0.1.17, and exp112's P1 held.}\label{tab:failed} \\
+graded for v1.2, with v1 report-only after it failed its gate on rslearn 0.1.17, exp112's P1 held, and exp113's P1 and its
+checks P3 to P5 held.}\label{tab:failed} \\
 \toprule
 Test & Predicted & Observed \\
 \midrule
@@ -1305,6 +1325,7 @@ exp111 P1 & STRICT AUROC $< 0.70$ at fresh plots, above 0.50; LENIENT above STRI
 exp111 P2(b) & STRICT-only errors against STRICT-correct at most 0.65 & 0.656 (0.617 to 0.693) \claim{exp111-v12-strict-only-errors-rank-just-above-the-bar} \\
 exp111 P3 & a 20-label audit flags the grass/shrub pair with probability $\ge 0.5$ & 0.287 \claim{exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair} \\
 exp112 P3(b) & median certified share $\ge 0.25$ at $\alpha = 0.05$ and 300 labels & 0.075; the bar passes only a map with at most one error in its most confident 15\% (found after the run) \claim{exp112-p3b-fails-at-the-level-cut} \\
+exp113 P2 & mean held-out AUROC at least 0.05 below the default split's & 0.047 (0.004 to 0.138 by territory) \claim{exp113-transfer-drop-in-ranking-below-the-bar} \\
 \end{longtable}
 }
 

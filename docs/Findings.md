@@ -63,7 +63,7 @@ artifact under `exp/out/`, with its evidence in the [results record](results/com
   of 1,000 random plots of LCMAP's reference sample and graded at 11,000 others, the map erred on 11.7% of the plots
   and its top probability ranked its errors at AUROC 0.876, the least confident 10% holding 41.6% of them, far above
   two near-chance no-model controls (exp112, preregistered). The fit points were spread at random over the same
-  population, the favourable case; a regional fit is not graded. <!-- claim:exp112-v13-map-confidence-ranks-its-errors -->
+  population, the favourable case; exp113 grades a regional fit. <!-- claim:exp112-v13-map-confidence-ranks-its-errors -->
   The exact interval, the certified zone and the which-map route kept their guarantees. <!-- claim:exp112-labelled-routes-keep-their-guarantees -->
   Preregistered P3(b) does not hold: 300 random labels certified a zone at α = 0.05 on half the draws (median share
   0.075, bar 0.25). Found after the run: the first level the cut tests expects exactly the 45 labels it needs, so even
@@ -71,6 +71,20 @@ artifact under `exp/out/`, with its evidence in the [results record](results/com
   at most one error; this map's holds two. exp110's P3(b) sat on the same edge. <!-- claim:exp112-p3b-fails-at-the-level-cut -->
   The v1.3 map agreed with the reference more often than LCMAP Collection 1.3 and Esri did, but it was fitted on that
   reference's plots, so this is agreement with the reference's conventions, not accuracy. <!-- claim:exp112-agreement-with-the-reference-not-accuracy -->
+- On a regional map, the case exp112 left open, the ranking held. On Ai2's PLANTEUR crop-type benchmark (France's
+  overseas territories, parcel-registry labels), a default logistic regression on 2019 v1.3 embeddings was fitted on
+  100,000 pixels of the other territories and applied to one held out, for each of five (exp113, preregistered). Its confidence
+  ranked the held-out map's window errors at AUROC 0.742 to 0.876, meeting the bar in 5 of 5. The lead over the best
+  no-model control is informative in three territories, where a control ranks errors on its own. <!-- claim:exp113-v13-ranking-holds-on-held-out-territories -->
+  Preregistered P2, that transfer costs the ranking at least 0.05 of AUROC, does not hold: the mean drop is 0.047, from
+  0.004 to 0.138 by territory. <!-- claim:exp113-transfer-drop-in-ranking-below-the-bar -->
+  The exact interval, the certified zone at 400 labels and the which-map route kept their guarantees at all 18 maps. <!-- claim:exp113-labelled-routes-keep-their-guarantees -->
+  In three territories the held-out map is close to an all-Background map (mIoU 0.120 to 0.127, where all-Background
+  scores 0.093 to 0.124), so there the confidence mostly finds crop land called Background. In the other two it
+  classifies crops (Sugarcane IoU 0.71 and 0.72). <!-- claim:exp113-held-out-maps-mostly-background -->
+  The map that agrees best with the labels is v1.3's in four territories and TESSERA v2's in Guyane, mostly by small
+  gaps, consistent with the v1.3 report's ranking without testing it. <!-- claim:exp113-which-embedding-agrees-best -->
+  Windows in the class-edge band err at 0.43 to 0.78 and interior ones at 0.074 to 0.218 (outside Mayotte). <!-- claim:exp113-errors-concentrate-in-the-edge-band -->
 - On three published products, disagreement with a second product (Esri) flagged their confident errors 4.1 and 5.0
   times as often as their confident correct rows on two of them and 1.45 times on the third, so the preregistered
   twofold on all three did not hold; a related product (NLCD for LCMAP) meets the ratio too, and most flagged confident

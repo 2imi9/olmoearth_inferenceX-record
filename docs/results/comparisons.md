@@ -4551,6 +4551,106 @@ Monte Carlo draws agree within their errors, and P1 to P4 come out the same. The
 (`exp/out/exp112_plots.csv`, no coordinate and no embedding) carries the OlmoEarth Artifact License's attribution and
 use restrictions (`exp/out/exp112_NOTICE.md`).
 
+## Train on five territories, map the sixth: PLANTEUR leave-one-island-out with three embeddings (exp113)
+
+exp112 graded a map from OlmoEarth v1.3 embeddings in the favourable case, with its fit points spread at random over
+the population it was graded on. exp113 grades the regional case. Its preregistration is
+[here](../plan/planteur_transfer.md), frozen 3f0f580 before any label or embedding was read.
+
+The data is Ai2's PLANTEUR crop-type benchmark (`allenai/planteur-benchmark`, ODC-BY): 2,750 patches of 128 x 128
+pixels in France's overseas territories, labelled from the parcel registry (eight classes, Background included). It
+ships 2019 embeddings on the label grid from OlmoEarth v1.3 (128 dimensions), TESSERA v2 (128) and AlphaEarth (64).
+
+For each of five territories a default logistic regression (`StandardScaler` then `LogisticRegression`) was fitted on
+100,000 random non-void pixels of the other territories' train patches. It was applied to the held-out territory, and
+the default spatial split was graded beside it. The units are 4 x 4 pixel windows: 142,535 to 820,531 per territory.
+The windows of a territory's test patches are its whole population, so every rate is exact on them.
+
+**The ranking holds in every held-out territory.**
+
+| Held-out territory | Window error rate | v1.3 AUROC (90% bootstrap) | Capture at 10% | Best control (AUROC) | Lead |
+|---|---|---|---|---|---|
+| Guadeloupe | 0.108 | 0.874 (0.870 to 0.879) | 0.420 | boundary (0.738) | 0.137 |
+| Martinique | 0.112 | 0.857 (0.848 to 0.866) | 0.403 | boundary (0.633) | 0.224 |
+| Guyane | 0.172 | 0.816 (0.795 to 0.837) | 0.323 | boundary (0.513) | 0.303 |
+| Réunion | 0.251 | 0.876 (0.868 to 0.884) | 0.320 | distance (0.787) | 0.089 |
+| Mayotte | 0.005 | 0.742 (0.710 to 0.773) | 0.286 | rarity (0.504) | 0.238 |
+| Default split | 0.088 | 0.880 | 0.471 | boundary (0.701) | 0.179 |
+
+Preregistered P1 holds in 5 of 5 (bar: 4). Each territory meets AUROC ≥ 0.70, capture ≥ 0.25 and a lead of 0.05 over
+the best of three no-model controls. The lead is informative in three territories, where a control ranks errors on its
+own: the boundary indicator in Guadeloupe and Martinique, the distance from the fit set's mean in Réunion. In Guyane
+and Mayotte every control is between 0.38 and 0.51, so there the lead mostly measures the AUROC's distance from 0.5,
+as in exp112. TESSERA v2 and AlphaEarth meet both parts in 4 of 5. TESSERA v2 misses in Mayotte (AUROC 0.696) and
+AlphaEarth in Réunion (capture 0.196). <!-- claim:exp113-v13-ranking-holds-on-held-out-territories -->
+
+**P2 does not hold; transfer costs v1.3's ranking 0.047 on average, just under the bar.** The mean held-out AUROC is
+0.833 against 0.880 on the default split. The preregistered bar was a drop of 0.05, and the page set no interval for
+the drop. This is not a ranking that transfer leaves untouched:
+- the drop is 0.006 in Guadeloupe, 0.023 in Martinique, 0.064 in Guyane, 0.004 in Réunion and 0.138 in Mayotte;
+- for TESSERA v2 it is 0.054 and for AlphaEarth 0.079.
+
+The default split's test patches pool all territories, so its AUROC is no single territory's in-distribution value.
+<!-- claim:exp113-transfer-drop-in-ranking-below-the-bar -->
+
+**The labelled routes keep their guarantees at all 18 maps.** The checks:
+- P3: the exact interval for a simple random sample covers the error rate with exact probability at least 0.953, at
+  100 and 400 windows. The interval is the hypergeometric one `estimate` prints. Under the finite-population Wilson
+  interval, the default of `exact_coverage_srs`, coverage falls to 0.895 at Mayotte (TESSERA v2, 100 windows).
+- P4: certify at α = 0.05, δ = 0.10 and 400 labels certifies a zone wrong more often than α on at most 0.0505 of
+  2,000 draws, in each of the 15 held-out maps.
+- P5: the which-map route names the map that agrees worse with the labels with probability at most 0.0108.
+
+At 400 labels v1.3's map certified a zone at α = 0.05 on 85% and 81% of draws in Guadeloupe and Martinique (median
+share 0.70 and 0.65), and on 92% on the default split (median 0.80). In Guyane and Réunion, where it errs on 17% and
+25% of windows, it did so on 26% and 37% (median 0). In Mayotte it certified the whole map, whose error rate is 0.5%.
+<!-- claim:exp113-labelled-routes-keep-their-guarantees -->
+
+**In three of five territories the held-out map is close to an all-Background map.**
+- Guyane's labels are 14% Meadow, which the v1.3 map gets at IoU 0.007.
+- Réunion's are 16% Sugarcane, at IoU 0.013.
+- Mayotte's are 99.4% Background.
+
+Their mIoU over the eight classes is 0.120 to 0.127, where calling every pixel Background would score 0.093 to 0.124.
+There the AUROC mostly measures lower confidence on registry crop land that the map calls Background. Mayotte's 0.5%
+error rate is the registry's crop share, not the map's skill: a 10% review list there holds about 1.5% errors.
+
+In Guadeloupe and Martinique the held-out map does classify crops: Sugarcane at IoU 0.71 and 0.72, Banana at 0.49 and
+0.50, mIoU 0.308 and 0.319 against 0.356 on the default split. The errors are counted against the parcel registry,
+where cropped land outside the registry is Background. <!-- claim:exp113-held-out-maps-mostly-background -->
+
+**Which embedding.** The map that agrees best with the labels is v1.3's in Guadeloupe, Martinique, Réunion and Mayotte,
+and TESSERA v2's in Guyane, by 0.08 points. The gaps are mostly small:
+- 0.12 points or less in Guyane, in Mayotte, and between v1.3 and TESSERA v2 in Réunion. There 400 labels drawn where
+  two maps differ name the better one with probability 0.04 to 0.16 (Mayotte's cells are a census).
+- 0.4 to 1.9 points in Guadeloupe and Martinique, where the probability is 0.65 to 1.0.
+- 10.6 to 10.7 points in Réunion, where AlphaEarth's map trails the other two.
+
+The mean held-out mIoU orders the maps as the v1.3 report's PLANTEUR table does (v1.3 0.200, TESSERA v2 0.185,
+AlphaEarth 0.168; the report's leave-one-island-out mIoU 24.9, 19.1 and 15.8). That is consistent with the report, not
+a test of it: windows, a default logistic regression and a Background-dominated mIoU are not the report's probe.
+<!-- claim:exp113-which-embedding-agrees-best -->
+
+**Errors sit at class edges.** The one-pixel class-edge band of v1.3's map, read as `boundary` writes it, holds 5% to
+8% of the windows in Guadeloupe, Martinique, Réunion and the default split (Guyane 0.6%, Mayotte 0.02%). It errs at 0.43 to 0.78 in the held-out territories outside Mayotte
+and 0.39 on the default split. Interior windows err at 0.074 to 0.218, and 0.065. A crop map's error rate near
+parcel edges and inside them are different numbers, and `estimate` with the band as a condition layer gives each with
+its interval. <!-- claim:exp113-errors-concentrate-in-the-edge-band -->
+
+What it cannot show:
+- one benchmark, one year (2019), crop types on tropical islands, one classifier and one fit size;
+- 100,000 random fit pixels, not a user's few points;
+- labels taken from the parcel registry.
+
+Recorded after an independent audit whose script is `exp/exp113_crosscheck.py`.
+- It draws the same fit pixels (equal sha256 in all six configurations) and fits the stored float32 vectors where the
+  run converts them to float64. That flips a few windows: error counts within 1%, v1.3's AUROC within 0.003.
+- Its own Monte Carlo draws agree within their errors.
+- Every verdict comes out the same.
+
+The run history is on the preregistration page: a first run failed at its verdict step, and the rerun, on 16 CPUs
+rather than the page's 32, is the one recorded.
+
 ## A vision-language model as the reviewer (exp91)
 
 **Question.** The labelled routes need a reviewer. Can a general-purpose vision-language model supply the labels from

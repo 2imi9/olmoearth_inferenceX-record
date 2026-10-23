@@ -297,7 +297,8 @@ outside the 10 m Sentinel setup this project is built on, so not pursued.
 ## After OlmoEarth v1.3 (22 October 2026)
 
 Ai2's v1.3 makes precomputed embeddings the main way to use OlmoEarth: a user fits a small classifier on a few points
-and applies it to an area. Nothing in the release says how accurate such a map is. Item 1 has run (exp112); items 2 and 3 have not.
+and applies it to an area. Nothing in the release says how accurate such a map is. Item 1 has run (exp112), and so has
+the regional case it left open (exp113, below); items 2 and 3 have not.
 
 1. **The embedding route at a probability sample.** Done as exp112 on 22 October 2026
    ([result](../results/comparisons.md#a-map-made-from-olmoearth-v13-embeddings-at-lcmaps-probability-sample-exp112)):
@@ -312,6 +313,12 @@ and applies it to an area. Nothing in the release says how accurate such a map i
    or two tiles would do.
 3. **An ask of Ai2.** The embeddings explorer can train a small classifier and export its map. If the export carried the
    class probabilities beside the class map, the map could be checked without any code.
+
+The regional case, not in the list above, ran as exp113 on 22 October 2026 on Ai2's PLANTEUR benchmark
+([result](../results/comparisons.md#train-on-five-territories-map-the-sixth-planteur-leave-one-island-out-with-three-embeddings-exp113)):
+fitted on the other territories, the map ranked its errors in all five held-out ones, though in three it is close to an
+all-Background map. Open after it: a user's few points rather than 100,000 random pixels, and a held-out area where the
+map transfers its classes.
 
 ## Closed
 
