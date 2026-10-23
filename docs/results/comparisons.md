@@ -4651,6 +4651,105 @@ Recorded after an independent audit whose script is `exp/exp113_crosscheck.py`.
 The run history is on the preregistration page: a first run failed at its verdict step, and the rerun, on 16 CPUs
 rather than the page's 32, is the one recorded.
 
+## Prior shift or feature shift? Splitting exp113's transfer failure with Bayes' rule (exp114)
+
+Bayes' rule splits a classifier's posterior into a likelihood and a prior. So a map can fail on new ground in two
+ways:
+- the class shares change (prior shift), which reweighting can repair;
+- a class's features change (feature shift), which it cannot.
+
+Under prior shift with calibrated posteriors, correcting with the true shares makes the mean corrected posterior equal
+those shares. exp114 ([preregistration](../plan/prior_shift_pathway.md), frozen ec4f05e before any of its statistics)
+refitted exp113's 18 maps, which came out identical to exp113's on every window. It measured that gap on PLANTEUR's
+held-out territories. It also tried two label-free estimates of the shares, EM (Saerens et al. 2002) and BBSE (Lipton
+et al. 2018), and an exact test of such an estimate from random pixel labels.
+
+**Reweighting does not repair Guyane's and Réunion's maps.** Corrected with the true class shares, v1.3's mean
+posterior still misses them, by a total variation of 0.089 in Guyane and 0.198 in Réunion, against 0.009 on the
+default split. Preregistered P1 holds in 2 of 3. The corrected maps find 7.1% of Guyane's Meadow and 9.7% of Réunion's
+Sugarcane, up from 0.7% and 1.3%.
+
+So most of those failures are not a change of class shares. They are feature shift, or miscalibration out of
+distribution, which the gap does not separate. Mayotte is not determined by the gap: its crops are 0.6% of the pixels,
+so the gap could not reach the bar. The corrected map finds none of them. <!-- claim:exp114-prior-correction-leaves-the-gap -->
+
+**Label-free class shares mislead under this shift.** EM's estimate is closer to the true shares than the map's own
+predicted shares in only 3 of 15 held-out maps (P2 does not hold; bar 10). Under feature shift EM amplifies the map's
+biases. In Guyane it puts 31.4% on Pineapple and 17.5% on Tropical tuber, where the truth is 0.1% and 0.2%. BBSE does
+better in 8 of 15, but is far off on all three default-split maps, where there is no shift.
+<!-- claim:exp114-label-free-priors-mislead-under-feature-shift -->
+
+**400 random labels catch a wrong label-free estimate, in and out of distribution.**
+- An exact Bonferroni test of each class's share, from 400 random pixel labels, rejects EM's estimate with probability
+  1.000 on every held-out v1.3 map (P3 holds). Its exact chance of rejecting the true shares is at most 0.023 (P4
+  holds).
+- It also rejects EM on the default split (0.875 for v1.3), where EM is close but sets some rare classes to about
+  zero. So a rejection says the label-free shares are not to be trusted; it does not say which pathway failed.
+- Correcting with the shares those 400 labels estimate finds 7.2% of Guyane's Meadow and 8.9% of Réunion's Sugarcane,
+  about what the oracle does. <!-- claim:exp114-random-labels-catch-a-wrong-prior-estimate -->
+
+What it cannot show:
+- one benchmark and one classifier;
+- out of distribution, the gap does not separate feature shift from miscalibration;
+- whether labels from the new ground repair the map is not tested.
+
+Recorded after an independent audit whose script is `exp/exp114_crosscheck.py`. It was written without the run's script
+or outputs and refitted the maps from exp113's saved fit pixels. Every number it computed matches within 1.1e-9; it did
+not compute the label-corrected maps. All four verdicts are the same.
+
+## Per class, exactly: the class a map draws wrong, from a few hundred random labels (exp115)
+
+exp113's overall error rate hid a whole missing class: Mayotte's map erred on 0.5% of its windows while missing every
+crop. exp115 ([preregistration](../plan/per_class_exact.md), frozen dfb5053; counts amended before the run) grades a
+per-class report in which every interval is exact. Each class gets two things:
+- **Its true share,** with a hypergeometric interval, Bonferroni over the classes. It is set beside the share the map
+  draws, which is known without labels.
+- **Its producer's accuracy,** from exact intervals for the two counts it divides. The map's own count of the class
+  bounds it from above, so a class the map hardly draws gets a low upper end even when no labelled unit falls in it.
+
+Every probability was computed exactly, summed over every possible sample, on 39 fully labelled maps:
+- PLANTEUR's 18;
+- LCMAP Collection 1.3, Esri and the v1.3 map at LCMAP's reference plots;
+- 18 maps of the embedding suite.
+
+**The guarantees hold exactly.** All 706 graded cells cover, 1,412 intervals in all (a share and a producer's accuracy
+each), each with at least its nominal probability; the smallest margin is 0.00013. A map's share intervals hold
+together with probability at least 0.963. P1 and P2 hold. <!-- claim:exp115-exact-per-class-guarantees-hold -->
+
+**400 labels show a class of a few percent that a map draws far too little.** Of 17 classes with a true share of at
+least 5% that the map draws at half of it or less, 16 are flagged with probability at least 0.8. The miss, a 6.1%
+class drawn at 3.0%, is flagged at 0.644, so P3 does not hold as written. Of 10 classes with a share of at least 5% and
+producer's accuracy at most 0.10, 9 get an upper bound of 0.25 or less with probability at least 0.8. The miss is at
+0.684, so P5 does not hold as written.
+
+On exp113's v1.3 maps, Guyane's Meadow (drawn on 0.1% against 14.3%) and Réunion's Sugarcane (0.1% against 16.0%) are
+flagged with probability 1.000. Rarer collapsed crops are flagged less often: Mayotte's, 0.5% of its windows together,
+at most 0.716. Over every class, of 84 drawn at half their share or less with a share under 5%, 15 are flagged with
+probability at least 0.8. Rare classes need more than 400 labels. <!-- claim:exp115-flag-and-bound-show-a-collapsed-class -->
+
+**The flag also fires on classes drawn near their share.** P4 predicted the flag quiet, at most 0.10,
+on classes within 0.02 of their true share. 69 of 164 were flagged more often, so P4 does not hold.
+- 62 of the 69 are rare classes drawn at less than half or more than twice their share, where a flag is right.
+- Of the other 7, 3 are Mayotte's Background, drawn at 99.9% to 100% against 99.5%, a real over-draw. 4 are
+  classes of 5% to 6% drawn at 0.71 to 0.74 of their share.
+
+The flag's power follows the gap measured in sampling errors, so, as the page set out for this failure, it is not to
+be printed without its interval. <!-- claim:exp115-flag-on-near-right-classes -->
+
+Exact, simultaneous producer's-accuracy intervals are wide: at 400 labels the median, over classes, of each class's
+median width is 0.71. They bound a collapsed
+class well and a working one loosely.
+
+What it cannot show:
+- simple random sampling only;
+- the references are taken as right;
+- exp113's outputs, including which classes collapse, were read before freezing, and 13 of P3's 17 classes and all 10
+  of P5's are PLANTEUR's.
+
+Recorded after an independent audit whose script is `exp/exp115_crosscheck.py`. It was written without the run's script
+or outputs, with its own exact interval inversion and sums. Its 831 class counts are identical, its 3,530 class-level
+probabilities agree within 5.7e-10, and all five verdicts are the same.
+
 ## A vision-language model as the reviewer (exp91)
 
 **Question.** The labelled routes need a reviewer. Can a general-purpose vision-language model supply the labels from

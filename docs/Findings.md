@@ -85,6 +85,23 @@ artifact under `exp/out/`, with its evidence in the [results record](results/com
   The map that agrees best with the labels is v1.3's in four territories and TESSERA v2's in Guyane, mostly by small
   gaps, consistent with the v1.3 report's ranking without testing it. <!-- claim:exp113-which-embedding-agrees-best -->
   Windows in the class-edge band err at 0.43 to 0.78 and interior ones at 0.074 to 0.218 (outside Mayotte). <!-- claim:exp113-errors-concentrate-in-the-edge-band -->
+- Bayes' rule splits exp113's failures (exp114, preregistered). Corrected with the true class shares, the v1.3 map's
+  mean posterior still misses them by 0.089 in Guyane and 0.198 in Réunion, against 0.009 in-distribution. So most of
+  those failures are not a change of class shares: they are feature shift, or miscalibration out of distribution,
+  which the gap does not separate. Mayotte, whose crops are 0.6% of the land, is not determined. <!-- claim:exp114-prior-correction-leaves-the-gap -->
+  EM's label-free estimate of the class shares beat the map's own shares in 3 of 15 held-out maps against a predicted
+  10; under feature shift it amplifies the map's biases. <!-- claim:exp114-label-free-priors-mislead-under-feature-shift -->
+  400 random pixel labels rejected that estimate with probability 1.000 on every held-out v1.3 map, while rejecting the
+  true shares at most 2.3% of the time. They also rejected it in-distribution, where it was close, so a rejection says
+  the label-free shares are not to be trusted, not which pathway failed. <!-- claim:exp114-random-labels-catch-a-wrong-prior-estimate -->
+- A per-class report in which every interval is exact kept its guarantees on 39 fully labelled maps (exp115,
+  preregistered): every class's share and producer's accuracy, and the shares jointly. <!-- claim:exp115-exact-per-class-guarantees-hold -->
+  400 random labels flagged 16 of the 17 classes with a share of at least 5% drawn at half of it or less, with
+  probability at least 0.8. They bounded at 0.25, with probability at least 0.8, the producer's accuracy of 9 of 10
+  such classes with producer's accuracy at most 0.10. Each prediction failed by one class. Guyane's Meadow and Réunion's Sugarcane were flagged with
+  probability 1.000, but classes under 1% of a map rarely are. <!-- claim:exp115-flag-and-bound-show-a-collapsed-class -->
+  The predicted quiet on classes within 0.02 of their share did not hold: the flag's power follows the gap in sampling
+  errors, so it is not to be printed without its interval. <!-- claim:exp115-flag-on-near-right-classes -->
 - On three published products, disagreement with a second product (Esri) flagged their confident errors 4.1 and 5.0
   times as often as their confident correct rows on two of them and 1.45 times on the third, so the preregistered
   twofold on all three did not hold; a related product (NLCD for LCMAP) meets the ratio too, and most flagged confident

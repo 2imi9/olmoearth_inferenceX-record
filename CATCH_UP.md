@@ -47,6 +47,13 @@ It never runs the model, so it works on OlmoEarth's outputs, other models' maps 
   territories and applied to one held out, five times. Its confidence ranks its errors at AUROC 0.74 to 0.88 in every
   held-out territory. In three of the five the map is close to all Background, so there it mostly finds crop land the
   map missed. The best-agreeing embedding is v1.3 in four territories and TESSERA v2 in Guyane, mostly by small gaps.
+- **Why it collapsed** (exp114): corrected with the true class shares, the Guyane and Réunion maps still miss them, so
+  most of the failure is not a change of class shares and reweighting does not repair it. A label-free estimate of the
+  shares was no closer than the map's own on 12 of 15 held-out maps; 400 random labels rejected it on every held-out
+  v1.3 map.
+- **Per class, with exact intervals** (exp115): on 39 labelled maps the guarantees held. 400 random labels flagged
+  Guyane's Meadow and Réunion's Sugarcane with probability 1.000. Three of the five predictions failed, two of them by
+  one class each. Classes under 1% of a map need more labels.
 - **Forest Loss Driver** at 2026 MapBiomas alerts (exp104): its confidence ranks its disagreements with the analysts
   at AUROC 0.77.
 - **Another organisation's product**, the Fields of the World field map (exp110): the ranking held in 3 of 4

@@ -78,6 +78,17 @@ all, with the evidence.
   and up to 0.138 in one territory. <!-- claim:exp113-transfer-drop-in-ranking-below-the-bar -->
   In three of the five the held-out map is close to an all-Background map, so there the
   confidence mostly finds crop land the map calls Background. <!-- claim:exp113-held-out-maps-mostly-background -->
+- **Why it collapsed, and how to see it.** Corrected with the true class shares, the Guyane
+  and Réunion maps still miss them (0.089 and 0.198, against 0.009 in-distribution): most of
+  the failure is not a change of class shares, so reweighting does not repair it. <!-- claim:exp114-prior-correction-leaves-the-gap -->
+  A label-free estimate of the class shares was no closer than the map's own shares on 12 of
+  15 held-out maps. <!-- claim:exp114-label-free-priors-mislead-under-feature-shift -->
+  A per-class report with exact intervals kept its guarantees on 39 labelled maps. <!-- claim:exp115-exact-per-class-guarantees-hold -->
+  From 400 random labels it flagged Guyane's Meadow and Réunion's Sugarcane with probability
+  1.000, and 16 of 17 classes of at least 5% drawn at half their share or less with
+  probability at least 0.8. Three of its five predictions failed: P3 and P5 by one class each,
+  and P4 because the flag also fires on classes within 0.02 of their share, mostly rare classes
+  drawn at a fraction of it. Classes under 1% need more than 400 labels. <!-- claim:exp115-flag-and-bound-show-a-collapsed-class -->
 - **Error rate.** From 300 randomly drawn windows, a 95% Wilson interval held the true rate in
   93.3% to 96.1% of 2,000 repeated draws, on each of the suite's seven segmentation tasks. <!-- claim:design-based-interval-is-honest -->
   `estimate` now prints the exact hypergeometric interval instead, which covers at least 95% by

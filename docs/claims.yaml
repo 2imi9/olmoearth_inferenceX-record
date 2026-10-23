@@ -5961,3 +5961,148 @@
   note: >-
     Reported, not graded. The band is drawn on the predicted map, so a map that predicts little but Background
     (Guyane, Mayotte) has few edges. Windows half in the band are a third stratum, not counted in either rate.
+
+- id: exp114-prior-correction-leaves-the-gap
+  statement: "In a preregistered test (exp114, frozen ec4f05e) on exp113's PLANTEUR maps, refitted identically, correcting the OlmoEarth v1.3 map's posteriors with the held-out territory's true class shares (p_s * pi_t / pi_s) leaves the mean corrected posterior 0.089 (Guyane) and 0.198 (Réunion) in total variation from the true shares, against 0.009 on the default split (P1 holds, 2 of 3): most of those failures are not a change of class shares but feature shift or miscalibration out of distribution, which the gap does not separate. The corrected maps find 7.1% of Guyane's Meadow and 9.7% of Réunion's Sugarcane (producer's accuracy), up from 0.7% and 1.3%. Mayotte is not determined by the gap (crops 0.6% of the pixels; 0.005) and its corrected map finds no crop."
+  crosscheck: tests/test_exp114.py::test_exp114_recorded_by_a_second_route
+  status: supported
+  experiments: [exp114, exp113]
+  artifacts: [exp/out/exp114_summary.json, exp/out/exp114_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda m: S['verdicts']['P1']['holds'] is True and C['verdicts']['P1']['holds'] is True and S['verdicts']['P1']['meeting'] == 2
+      and [round(m(c)['pathway_gap'], 3) for c in ('loio:Guyane', 'loio:Réunion', 'loio:Mayotte', 'default')] == [0.089, 0.198, 0.005, 0.009]
+      and [round(m(c)['oracle']['main_producer_accuracy'], 3) for c in ('loio:Guyane', 'loio:Réunion')] == [0.071, 0.097]
+      and [round(m(c)['uncorrected']['main_producer_accuracy'], 3) for c in ('loio:Guyane', 'loio:Réunion')] == [0.007, 0.013]
+      and m('loio:Mayotte')['oracle']['main_producer_accuracy'] == 0.0 and round(1 - m('loio:Mayotte')['pi_t'][0], 4) == 0.0061
+      and all(abs(m(c)['pathway_gap'] - C['maps'][c.replace(':', '_')]['v1.3']['oracle']['gap_tv_mean_posterior_to_pi_t']) < 1e-9 for c in S['maps'])
+      and all(v['window_class_agreement'] == 1.0 for v in S['reproduction'].values()) and len(S['reproduction']) == 18
+    )(lambda c: S['maps'][c]['oe13']))(A['exp/out/exp114_summary.json'], A['exp/out/exp114_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp114-prior-correction-leaves-the-gap}
+    - {file: docs/Findings.md, marker: exp114-prior-correction-leaves-the-gap}
+    - {file: docs/Summary.md, marker: exp114-prior-correction-leaves-the-gap}
+  note: >-
+    Run once at 9bf5f54 (job 1471685) after a pre-run review (P4 regraded on the exact joint probability, the
+    reproduction check moved first). The oracle cuts Guyane's gap by a third (0.130 to 0.089). Predictions written and
+    frozen by me on the owner's overnight approval; a review of the write-up corrected Mayotte's first reading (prior
+    shift) before it was committed.
+
+- id: exp114-label-free-priors-mislead-under-feature-shift
+  statement: "In exp114, preregistered P2, that EM's label-free estimate of the held-out territory's class shares (Saerens et al. 2002) is closer to the true shares than the map's own predicted shares in at least 10 of 15 held-out maps, does not hold: it is closer in 3 (its distance 0.006 to 0.681). Under feature shift EM amplifies the map's biases (Guyane, v1.3: 31.4% Pineapple and 17.5% Tropical tuber where the truth is 0.1% and 0.2%). BBSE is closer in 8 of 15 but far off on all three default-split maps (0.300, 0.191, 0.905), where there is no shift."
+  crosscheck: tests/test_exp114.py::test_exp114_recorded_by_a_second_route
+  status: rejected
+  experiments: [exp114]
+  artifacts: [exp/out/exp114_summary.json, exp/out/exp114_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda held: S['verdicts']['P2']['holds'] is False and S['verdicts']['P2']['count'] == 3 and C['verdicts']['P2']['holds'] is False
+      and sum(S['maps'][c][e]['em']['tv_to_pi_t'] < S['maps'][c][e]['tv_predicted_shares'] for c, e in held) == 3
+      and sum(S['maps'][c][e]['bbse']['tv_to_pi_t'] < S['maps'][c][e]['tv_predicted_shares'] for c, e in held) == 8
+      and [round(S['maps']['default'][e]['bbse']['tv_to_pi_t'], 3) for e in ('oe13', 'tessera2', 'aef')] == [0.3, 0.191, 0.905]
+      and [round(S['maps']['loio:Guyane']['oe13']['em']['pi'][k], 3) for k in (6, 7)] == [0.314, 0.175]
+      and [round(S['maps']['loio:Guyane']['oe13']['pi_t'][k], 3) for k in (6, 7)] == [0.001, 0.002]
+      and [round(f(S['maps'][c][e]['em']['tv_to_pi_t'] for c, e in held), 3) for f in (min, max)] == [0.006, 0.681]
+    )([(c, e) for c in S['maps'] if c != 'default' for e in ('oe13', 'tessera2', 'aef')]))(A['exp/out/exp114_summary.json'], A['exp/out/exp114_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp114-label-free-priors-mislead-under-feature-shift}
+    - {file: docs/Findings.md, marker: exp114-label-free-priors-mislead-under-feature-shift}
+    - {file: docs/Summary.md, marker: exp114-label-free-priors-mislead-under-feature-shift}
+  note: >-
+    EM converged on every map (at most 296 iterations); the second route's estimates match to 3.3e-15. In-distribution
+    (default split) EM is within 0.014 to 0.041. EM maximises a likelihood concave in the priors; the run does not
+    show the maximum is unique.
+
+- id: exp114-random-labels-catch-a-wrong-prior-estimate
+  statement: "In exp114, an exact test of a label-free class-share estimate from 400 random pixel labels (each class's hypergeometric interval at level 1 - 0.05/8) rejects EM's estimate with probability 1.000 on every held-out v1.3 map, all at least 0.05 from the truth (P3 holds), and rejects the true shares with exact probability at most 0.023 (P4 holds, 36 cells). It also rejects EM on the default split (exact 0.875 for v1.3) where EM is close but sets rare classes to about zero, so a rejection says the label-free shares are not to be trusted, not which pathway failed. Correcting with the shares the 400 labels estimate (mean over 100 draws) finds 7.2% of Guyane's Meadow and 8.9% of Réunion's Sugarcane, about what the oracle does."
+  crosscheck: tests/test_exp114.py::test_exp114_recorded_by_a_second_route
+  status: supported
+  experiments: [exp114]
+  artifacts: [exp/out/exp114_summary.json, exp/out/exp114_crosscheck.json]
+  check: |-
+    (lambda S, C: S['verdicts']['P3']['holds'] is True and S['verdicts']['P4']['holds'] is True
+      and C['verdicts']['P3']['holds'] is True and C['verdicts']['P4']['holds'] is True
+      and set(S['verdicts']['P3']['maps']) == {'Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Mayotte'}
+      and min(S['verdicts']['P3']['maps'].values()) == 1.0 and min(S['verdicts']['P3']['exact'].values()) > 0.9999
+      and round(S['verdicts']['P4']['max_size_exact'], 3) == 0.023 and S['verdicts']['P4']['cells'] == 36
+      and round(S['maps']['default']['oe13']['random']['400']['reject_em_exact'], 3) == 0.875
+      and [round(S['maps'][c]['oe13']['random']['400']['label_corrected_mean']['main_producer_accuracy'], 3) for c in ('loio:Guyane', 'loio:Réunion')] == [0.072, 0.089]
+    )(A['exp/out/exp114_summary.json'], A['exp/out/exp114_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp114-random-labels-catch-a-wrong-prior-estimate}
+    - {file: docs/Findings.md, marker: exp114-random-labels-catch-a-wrong-prior-estimate}
+  note: >-
+    The sizes are exact joint probabilities (multivariate hypergeometric by convolution); the union bound is at most
+    0.0246; the second route's exact sizes and powers match to 1.1e-9. The run's own draws agree with the exact
+    rejection probabilities (2 of 36 z above 2, largest 2.34). The label-corrected figures have no second route.
+
+- id: exp115-exact-per-class-guarantees-hold
+  statement: "In a preregistered test (exp115, frozen dfb5053, counts amended before the run) of a per-class report in which every interval is exact (each class's share by a hypergeometric interval at 1 - 0.05/C; producer's accuracy from exact intervals for its two counts at 1 - 0.05/(2C), bounded by the map's own count of the class), computed exactly on 39 fully labelled maps, all 706 graded cells (1,412 intervals) cover with at least their nominal probability (smallest margins 0.00013 for a share and 0.0024 for a producer's accuracy; P1 holds) and a map's share intervals hold together with probability at least 0.963 over 98 cells (P2 holds)."
+  crosscheck: tests/test_exp115.py::test_exp115_recorded_by_a_second_route
+  status: supported
+  experiments: [exp115]
+  artifacts: [exp/out/exp115_summary.json, exp/out/exp115_crosscheck.json]
+  check: |-
+    (lambda S, C: len(S['maps']) == 39 and S['verdicts']['P1']['holds'] is True and S['verdicts']['P1']['cells'] == 706 and C['verdicts']['P1']['cells'] == 1412
+      and round(S['verdicts']['P1']['min_share_coverage_minus_bar'], 5) == 0.00013 and round(S['verdicts']['P1']['min_pa_coverage_minus_bar'], 4) == 0.0024
+      and S['verdicts']['P2']['holds'] is True and S['verdicts']['P2']['cells'] == 98 and round(S['verdicts']['P2']['min_joint_coverage'], 3) == 0.963
+      and C['verdicts']['P1']['verdict'] == 'holds' and C['verdicts']['P2']['verdict'] == 'holds'
+      and abs(C['verdicts']['P2']['smallest_margin']['probability'] - S['verdicts']['P2']['min_joint_coverage']) < 1e-9
+    )(A['exp/out/exp115_summary.json'], A['exp/out/exp115_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp115-exact-per-class-guarantees-hold}
+    - {file: docs/Findings.md, marker: exp115-exact-per-class-guarantees-hold}
+    - {file: docs/Summary.md, marker: exp115-exact-per-class-guarantees-hold}
+  note: >-
+    Guaranteed by construction; the run checks the implementation. Run once at 7e0a71a (job 1472015); a first
+    submission failed on a folder race before reading data. Predictions written and frozen by me on the owner's
+    overnight approval.
+
+- id: exp115-flag-and-bound-show-a-collapsed-class
+  statement: "In exp115, of the 17 classes with a true share of at least 5% that the map draws at half of it or less, 400 random labels flag 16 as drawn too little with probability at least 0.8 (P3 does not hold as written: the miss, a 6.1% class drawn at 3.0%, is flagged with probability 0.644), and of the 10 classes with a share of at least 5% and producer's accuracy at most 0.10, they bound 9 at or below 0.25 with probability at least 0.8 (P5 does not hold as written: the miss is at 0.684). On exp113's v1.3 maps, Guyane's Meadow (drawn on 0.1% against 14.3%) and Réunion's Sugarcane (0.1% against 16.0%) are flagged with probability 1.000; rarer collapsed crops less often (Mayotte's, 0.5% of its windows together, at most 0.716). Over every class, of 84 drawn at half their share or less with a share under 5%, 15 are flagged with probability at least 0.8."
+  crosscheck: tests/test_exp115.py::test_exp115_recorded_by_a_second_route
+  status: rejected
+  experiments: [exp115, exp113]
+  artifacts: [exp/out/exp115_summary.json, exp/out/exp115_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda P3, P5, cl, allc: S['verdicts']['P3']['holds'] is False and S['verdicts']['P5']['holds'] is False
+      and len(P3) == 17 and sum(v >= 0.8 for v in P3.values()) == 16 and round(min(P3.values()), 3) == 0.644
+      and len(P5) == 10 and sum(v >= 0.8 for v in P5.values()) == 9 and round(min(P5.values()), 3) == 0.684
+      and round(cl('planteur|loio:Guyane|oe13', '1')['by_n']['400']['share']['flag_too_little'], 3) == 1.0
+      and round(cl('planteur|loio:Réunion|oe13', '4')['by_n']['400']['share']['flag_too_little'], 3) == 1.0
+      and [round(cl('planteur|loio:Guyane|oe13', '1')[k], 3) for k in ('m', 'p')] == [0.001, 0.143]
+      and round(max(cl('planteur|loio:Mayotte|oe13', str(k))['by_n']['400']['share']['flag_too_little'] for k in range(1, 8) if '400' in cl('planteur|loio:Mayotte|oe13', str(k))['by_n']), 3) == 0.716
+      and sum(1 for m, rec, c in allc if 2 * c['M'] <= c['K'] and 20 * c['K'] < rec['N']) == 84
+      and sum(1 for m, rec, c in allc if 2 * c['M'] <= c['K'] and 20 * c['K'] < rec['N'] and c['by_n']['400']['share']['flag_too_little'] >= 0.8) == 15
+      and C['verdicts']['P3']['verdict'] == 'fails' and C['verdicts']['P5']['verdict'] == 'fails'
+    )(S['verdicts']['P3']['classes'], S['verdicts']['P5']['classes'], lambda m, c: S['maps'][m]['classes'][c],
+      [(m, rec, c) for m, rec in S['maps'].items() if rec['N'] > 400 for c in rec['classes'].values() if '400' in c['by_n']]))(A['exp/out/exp115_summary.json'], A['exp/out/exp115_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp115-flag-and-bound-show-a-collapsed-class}
+    - {file: docs/Findings.md, marker: exp115-flag-and-bound-show-a-collapsed-class}
+    - {file: docs/Summary.md, marker: exp115-flag-and-bound-show-a-collapsed-class}
+  note: >-
+    P3's miss is AlphaEarth's Banana in Martinique (about 24 of its windows labelled at 400, a gap of 3.1 points); P5's
+    is TESSERA v2's Meadow in Martinique (producer's accuracy 0.090). 13 of P3's 17 classes and all 10 of P5's are
+    PLANTEUR's, whose outputs were read before freezing.
+
+- id: exp115-flag-on-near-right-classes
+  statement: "In exp115, preregistered P4, that 400 labels flag at most 10% of the time a class drawn within 0.02 of its true share, does not hold: 69 of 164 such classes are flagged more often. Read after the run, 62 of the 69 are rare classes drawn at less than half or more than twice their share (86 such classes qualify); of the 59 drawn within 0.8 to 1.25 of their share, 3 are flagged above 0.10, all Mayotte's Background, drawn at 99.9% to 100% against 99.5%. The flag's power follows the gap measured in sampling errors, so, as the page set for this failure, it is not to be printed without its interval."
+  crosscheck: tests/test_exp115.py::test_exp115_recorded_by_a_second_route
+  status: rejected
+  experiments: [exp115]
+  artifacts: [exp/out/exp115_summary.json, exp/out/exp115_crosscheck.json]
+  check: |-
+    (lambda S, C: (lambda rows: S['verdicts']['P4']['holds'] is False and S['verdicts']['P4']['classes'] == 164 and len(S['verdicts']['P4']['above_bar']) == 69
+      and len(rows) == 164 and sum(f > 0.1 for r, f, n in rows) == 69
+      and sum(f > 0.1 and (r < 0.5 or r > 2) for r, f, n in rows) == 62 and sum(r < 0.5 or r > 2 for r, f, n in rows) == 86
+      and sorted(n for r, f, n in rows if 0.8 <= r <= 1.25 and f > 0.1) == ['planteur|loio:Mayotte|aef', 'planteur|loio:Mayotte|oe13', 'planteur|loio:Mayotte|tessera2']
+      and sum(0.8 <= r <= 1.25 for r, f, n in rows) == 59 and C['verdicts']['P4']['verdict'] == 'fails'
+    )([(cl['M'] / cl['K'], cl['by_n']['400']['share']['flag_too_little'] + cl['by_n']['400']['share']['flag_too_much'], m)
+       for m, rec in S['maps'].items() if rec['N'] > 400 for c, cl in rec['classes'].items()
+       if '400' in cl['by_n'] and 50 * abs(cl['M'] - cl['K']) <= rec['N']]))(A['exp/out/exp115_summary.json'], A['exp/out/exp115_crosscheck.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp115-flag-on-near-right-classes}
+    - {file: docs/Findings.md, marker: exp115-flag-on-near-right-classes}
+  note: >-
+    The grouping by M/K was done after the run and is reported, not graded; the verdict stands as written. Over every
+    class, 23 of the 83 drawn within 0.8 to 1.25 of their share are flagged above 0.10, mostly real Background
+    over-draws on large classes.

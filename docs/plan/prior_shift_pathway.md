@@ -162,3 +162,112 @@ No new download: exp113's data (54 GB) and fit selections on the cluster's scrat
   page was computed.
 - The first commit of this page (15a84ed) carried the draft status line while its message and the plan index said
   frozen; this commit makes the page say what was decided. No statistic was computed in between.
+
+## Result (recorded 23 October 2026; the text above is the frozen page, unchanged)
+
+Run once: job 1471685 at 9bf5f54, on 16 CPUs (olmoearth-inferencex 1.12.1, scikit-learn 1.9.1). It took 1,971 s by
+the job log; the summary records no run time, and its per-map timings sum to 1,344 s.
+
+Before any statistic of the page was computed, all 18 refitted maps matched exp113's stored windows exactly:
+- class agreement 1.000000 and confidence difference 0 on every window;
+- the patch, window and truth arrays identical;
+- the target class counts, fit selections and split files equal.
+
+After each configuration, the uncorrected mIoU also equalled exp113's. EM converged on every map, in at most 296
+iterations. Recorded after the independent audit and a review below.
+
+| v1.3 map | Pathway gap, uncorrected → oracle | Main crop: mapped area over true area, map → oracle | Main crop found (producer's accuracy), map → oracle | EM's distance to the true shares | 400 labels reject EM (draws; exact) |
+|---|---|---|---|---|---|
+| Guadeloupe | 0.041 → 0.016 | | | 0.112 | 1.000; 1.000 |
+| Martinique | 0.058 → 0.053 | | | 0.125 | 1.000; 1.000 |
+| Guyane | 0.130 → **0.089** | Meadow 0.008 → 0.093 | 0.007 → 0.071 | 0.486 | 1.000; 1.000 |
+| Réunion | 0.213 → **0.198** | Sugarcane 0.014 → 0.102 | 0.013 → 0.097 | 0.354 | 1.000; 1.000 |
+| Mayotte | 0.040 → 0.005 | crops 0.014 → 0.000 | 0.001 → 0.000 | 0.498 | 1.000; 1.000 |
+| default split | 0.007 → 0.009 | | | 0.021 | 0.896; 0.875 |
+
+- **P1 holds** (2 of 3). The oracle gap is 0.089 in Guyane and 0.198 in Réunion. Both are above 0.05 and more than 3
+  times the default split's 0.009.
+  - Mayotte's 0.005 does not meet the bar, but the gap could not have met it there. Its crops are 0.61% of the pixels,
+    so even a map that found none of them would open a gap of at most about 0.006.
+  - After the correction, Mayotte's mean posterior holds 0.28% crops against the true 0.61%, about the shortfall seen
+    in Guyane's Meadow. The corrected map finds no crop.
+  - Martinique, not among the three, also meets the criterion (0.053).
+- **P2 does not hold.** EM's estimate is closer to the true shares than the map's own predicted shares in 3 of the 15
+  held-out maps (Martinique TESSERA v2 and AlphaEarth, Guyane TESSERA v2), against a bar of 10. Its distance to the
+  truth runs from 0.006 to 0.681.
+- **P3 holds.** On all five held-out v1.3 maps EM is at least 0.05 from the truth. 400 random pixel labels reject it
+  with probability 1.000 in the draws and 1.000 exactly.
+- **P4 holds.** The exact probability of rejecting the true shares is at most 0.0232 over the 36 cells. These hold 12
+  distinct values, since the size depends only on each configuration's class counts. The union bound is at most
+  0.0246.
+- **Reported.**
+  - Oracle correction raises pixel accuracy in 13 of the 15 held-out maps. The exceptions are AlphaEarth in Guyane
+    (0.826 → 0.824) and in Réunion (0.638 → 0.612).
+  - BBSE is closer than the map's own shares in 8 of 15. It is far off on all three default-split maps, where there is
+    no shift: 0.300, 0.191 and 0.905, against the maps' 0.044, 0.057 and 0.054. Its error does not follow the
+    condition number of its validation confusion matrix.
+  - Across all 15 held-out maps, 400 labels reject EM with probability 0.910 to 1.000 in the draws (0.914 to 1.000
+    exactly). On the default split they reject it with exact probability 0.875 (v1.3), 0.880 (TESSERA v2) and 0.9998
+    (AlphaEarth), although EM is only 0.014 to 0.041 off there. With 100 labels the draws give 0.988 to 1.000 on the
+    held-out v1.3 maps and 0.419 on the default split (exact 0.408).
+  - Correcting with the priors estimated from 400 random labels, averaged over the first 100 draws (no second route
+    computed this):
+    - Guyane's Meadow is mapped on 0.095 of its true area and found at 0.072;
+    - Réunion's Sugarcane on 0.094, and found at 0.089.
+
+## Notes at recording (23 October 2026, after the run; the frozen text is unchanged)
+
+- **The run history.** The script was written after freezing (afb8005) and exercised on synthetic PLANTEUR-shaped data.
+  - The smoke job (1471535) ran on 6 test patches per configuration with 5,000-pixel fits, which are not the page's
+    maps. Its log printed per-map numbers for those tiny fits. The smoke now prints only sizes and timings.
+  - The pre-run review found one blocking defect: P4 was graded on the union bound, not the exact joint probability
+    the page names. It also found that the reproduction check stopped only after statistics had been computed.
+  - Both were fixed in 9bf5f54 before the run, together with faster EM and report draws (same estimators), partial
+    output and a 12-hour limit. The page's Cost said up to 3 hours.
+- **What the gap shows, and what it does not.** Under prior shift with calibrated posteriors, correcting with the true
+  shares makes the mean posterior equal those shares. In Guyane and Réunion it does not.
+  - The oracle cuts Guyane's gap by a third (0.130 → 0.089) and Réunion's by little (0.213 → 0.198). Part of
+    Guyane's failure is prior shift; most of both is not.
+  - After the correction the mean posterior puts 6.3% on Guyane's Meadow, against 14.3% in the labels. The corrected
+    map draws 1.3% Meadow.
+  - The page's own caveat stands: out of distribution, feature shift and miscalibration both open the gap, and this
+    run does not separate them. "Mostly feature shift" means the remaining gap is not explained by the class shares.
+    It does not show that only labels from the new ground could repair the map; that was not tested.
+- **Why the label-free estimate fails.** EM maximises a likelihood that is concave in the priors. Its estimate is right
+  only if the shift is a prior shift. Under feature shift it amplifies the map's biases:
+  - Guyane, v1.3: 31.4% Pineapple and 17.5% Tropical tuber, where the truth is 0.1% and 0.2%;
+  - Réunion, v1.3: 35.7% Pineapple;
+  - Mayotte, v1.3: 49.9% Orchard.
+
+  It also drives some classes to zero: both routes' estimates hold exact zeros and values near 1e-308. Concavity alone
+  does not make the maximum unique, and this run does not show it is.
+- **What the test says, and what it does not.** 400 random labels test a label-free estimate of the class shares with
+  an exact size. The run drew pixels; whether the window labels a user draws for the error rate or the certified
+  zone serve as well is not tested.
+  - They rejected EM with probability at least 0.91 on every held-out map. They also rejected it on the default split (0.875 exactly for v1.3), where
+    EM was close and its correction raised accuracy slightly (0.9053 → 0.9064). There EM puts about zero on classes
+    such as Orchard and Tropical tuber, and any sample that contains them rejects it.
+  - So a rejection says the label-free shares are not to be trusted. It does not say which pathway caused the failure.
+  - The pathway needs the shares themselves, which the same labels estimate with exact intervals. A gap with its
+    uncertainty, from labels alone, is not graded here.
+- **The audit.** The second route (`exp/exp114_crosscheck.py` at 0b8cb00, job 1471687, 1,714 s) was written by an agent
+  that opened neither the run's script nor its outputs.
+  - **What it saw.** One commit message, afb8005's, in `git log`. That message described P4 as a union bound, and the
+    second route graded P4 on the union bound; its exact joint value, also reported, holds too.
+  - **What it recomputed.** It refits the maps from exp113's saved fit pixels and recomputes with its own code. Every
+    number it computed matches within 1.1e-9: class shares, accuracies, window error rates, gaps, EM's estimates and
+    iteration counts, BBSE, and the exact sizes and powers.
+  - **What it did not compute.** The label-corrected maps, and the check against exp113's stored windows. It compares
+    with exp113's recorded numbers instead.
+  - **The draws.** The run's draws agree with the exact rejection probabilities: 2 of 36 z-scores exceed 2, the largest
+    2.34. In the second route's own draws, one cell (Guadeloupe, TESSERA v2, n = 400) had one non-rejection in 1,000,
+    where the exact chance of any is 0.011. Elsewhere |z| ≤ 1.83.
+  - **The verdicts.** All four are the same.
+- **The review of this write-up.** A review before it was committed corrected several readings in the first draft:
+  - Mayotte, first called prior shift;
+  - BBSE's errors, first blamed on ill-conditioning;
+  - which route's draws were compared;
+  - a "practical rule" that the default split contradicts;
+  - mapped area quoted as if it were the share found.
+- **What it cannot show.** One benchmark and one classifier, and the gap does not separate miscalibration from feature
+  shift out of distribution. The default split's 0.009 bounds miscalibration only in-distribution.

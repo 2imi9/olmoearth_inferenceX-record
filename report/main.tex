@@ -86,8 +86,8 @@ agreement with the reference (they named one on 6\% to 29\% of draws at 50 to 20
 confidence ranked its errors with an AUROC of 0.75; certified zones on that confidence met their guarantee in every
 cell, and at 300 labels the default rule returned no zone on 87\% of draws at $\alpha$ half the error rate, though 65\%
 of the plots lie in a zone within it.
-The record comprises 114 experiment scripts covering 95 experiment numbers (exp01 to exp113) and 268 ledger claims,
-266 of them checked against a committed artifact and 131 by an independent second route, and reports failed
+The record comprises 118 experiment scripts covering 97 experiment numbers (exp01 to exp115) and 274 ledger claims,
+272 of them checked against a committed artifact and 137 by an independent second route, and reports failed
 predictions as failed.
 \end{abstract}
 
@@ -493,12 +493,12 @@ analysts interpreting a simple random sample & LCMAP Reference Data Product v1.2
 Experiments state their predictions and falsification conditions before they run, in their scripts or, for many from
 exp48 on, in a preregistration page (\code{docs/plan}), with dated amendments; four early, exploratory scripts state
 none (exp01, exp18, exp19 and exp32), and results read afterwards are marked as not preregistered here and in the
-ledger. The repository holds 114 experiment scripts named \code{expNN\_*.py},
-covering 95 experiment numbers from exp01 to exp113. The ledger \code{docs/claims.yaml} holds 268 claims, each with a
-statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 92 are supported, 93 measured, 33 mixed, 48 rejected and 2
+ledger. The repository holds 118 experiment scripts named \code{expNN\_*.py},
+covering 97 experiment numbers from exp01 to exp115. The ledger \code{docs/claims.yaml} holds 274 claims, each with a
+statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 95 are supported, 93 measured, 33 mixed, 51 rejected and 2
 superseded, and \code{scripts/claims.py stale} flags only the two superseded ones. After an audit on 23 September 2026
-found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 131 of the
-268 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
+found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 137 of the
+274 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
 name one.
 
 Corrected results appear in their current form. exp78's cluster-corrected arm is now the ratio estimator, which
@@ -956,6 +956,29 @@ it classifies crops \claim{exp113-held-out-maps-mostly-background}. The best-agr
 territories and TESSERA v2 in one, mostly by small gaps \claim{exp113-which-embedding-agrees-best}. An independent
 route drew the same fit pixels and reached the same verdicts.
 
+\subsection{Why the held-out maps collapsed, and an exact per-class report}
+\label{sec:res-pathway}
+
+Bayes' rule splits a classifier's posterior into a likelihood and a prior, so a map fails on new ground through a change
+in the class shares, which reweighting repairs, or through a change in a class's features or calibration, which it does
+not. exp114 (preregistered) refitted exp113's maps, identical on every window, and corrected them with the true class
+shares: the v1.3 maps' mean posterior still missed those shares by 0.089 in Guyane and 0.198 in Réunion, against 0.009
+on the default split, so most of those failures are not a change of class shares, while Mayotte, whose crops are 0.6\%
+of the land, is not determined \claim{exp114-prior-correction-leaves-the-gap}. EM's label-free estimate of the shares
+was closer to the truth than the maps' own shares in 3 of 15 held-out maps against a predicted 10
+\claim{exp114-label-free-priors-mislead-under-feature-shift}. An exact test from 400 random pixel labels rejected it with
+probability 1.000 on every held-out v1.3 map while rejecting the true shares at most 2.3\% of the time; it also rejected
+it in-distribution, where EM was close, so a rejection says the label-free shares are not to be trusted, not which
+pathway failed \claim{exp114-random-labels-catch-a-wrong-prior-estimate}. exp115 (preregistered) graded a per-class
+report in which every interval is exact, each class's share by a hypergeometric interval and its producer's accuracy
+bounded by the map's own count of the class, with probabilities summed over every possible sample on 39 fully labelled
+maps: every guarantee held \claim{exp115-exact-per-class-guarantees-hold}. Of 17 classes with a share of at least 5\%
+drawn at half of it or less, 400 labels flagged 16 with probability at least 0.8, and of 10 such classes with producer's
+accuracy at most 0.10 they bounded 9 at 0.25; each prediction missed by one class, and classes under 1\% of a map were
+rarely flagged \claim{exp115-flag-and-bound-show-a-collapsed-class}. The predicted quiet on classes within 0.02 of their
+share failed: the flag's power follows the gap in sampling errors, so it is not to be printed without its interval
+\claim{exp115-flag-on-near-right-classes}. Independent routes reproduced every graded number of both.
+
 \subsection{Estimation from a labelled sample}
 \label{sec:res-estimate}
 
@@ -1219,9 +1242,9 @@ models. The package reads a model's scores after the fact and loads no model. On
 compares two maps, estimates the error rate, certifies a zone, names the more accurate of two maps by an exact
 test and audits each class's confident calls. It refuses some inputs that would void its intervals, such as a review set offered as a random
 sample, though labels from the confident end of a map, or clustered by tile, pass its check. Beside it stands the record
-of Section~\ref{sec:protocol-ledger}: 114 experiment scripts covering 95 experiment numbers from exp01 to
-exp113, and 268 ledger claims, 266 of them checked against a committed artifact; the failed preregistered predictions
-of exp77 to exp113 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
+of Section~\ref{sec:protocol-ledger}: 118 experiment scripts covering 97 experiment numbers from exp01 to
+exp115, and 274 ledger claims, 272 of them checked against a committed artifact; the failed preregistered predictions
+of exp77 to exp115 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
 the place, the legend and the kind of point at once (which a blind test at fresh plots did not repeat, exp111), the confident errors it does not find, the zone that often returns
 nothing at 300 labels, a which-map design that fell short of practice's z form on nearly equal pairs, and a reviewer
 model that did not help. Other organisations' deployed products outside land cover have been tested once, on one
@@ -1271,20 +1294,20 @@ their errors, it estimates 0.975 to 0.983 for maps 0.883 to 0.914 accurate, and 
 is 0.83, 0.71 and 0.62 on PASTIS Sentinel-2, MADOS and Sen1Floods11 \claim{consensus-order-recovered-only-where-true-gaps-are-large}.
 Within one family it estimates 0.996 to 0.999 for maps 0.81 to 0.93 accurate
 \claim{within-family-consensus-is-the-unanimous-limit}. An error rate therefore requires a reference.
-Table~\ref{tab:failed} lists the failed predictions of exp77 to exp113.
+Table~\ref{tab:failed} lists the failed predictions of exp77 to exp115.
 
 {\footnotesize
 \setlength{\LTcapwidth}{\linewidth}
 \setlength{\LTpre}{6pt}
 \begin{longtable}{@{}l>{\raggedright\arraybackslash}p{0.385\linewidth}>{\raggedright\arraybackslash}p{0.385\linewidth}@{}}
-\caption{Preregistered predictions of exp77 to exp113 recorded as failed or failed as written. exp89 was report-only by
+\caption{Preregistered predictions of exp77 to exp115 recorded as failed or failed as written. exp89 was report-only by
 an amendment made before any result, exp90 was not preregistered, exp100 applied a fixed rule with no predictions,
 exp102 trained a model, the predictions of exp92, exp93, exp94, exp96 (at its preregistered seed) and exp97 held,
 exp103's others held (its review prediction on the point value), exp104's two held (P1 on its point value, its interval
 containing 0.70), exp105's two held (P1 at its bar), exp106's P1 held (on 2 of 3 cells, one of the two blind),
 exp107's P2 held, exp108 and exp109 were report-only, exp110's three held (P3(b) fragile, on the edge exp112 found), exp111's P2(a) held,
-graded for v1.2, with v1 report-only after it failed its gate on rslearn 0.1.17, exp112's P1 held, and exp113's P1 and its
-checks P3 to P5 held.}\label{tab:failed} \\
+graded for v1.2, with v1 report-only after it failed its gate on rslearn 0.1.17, exp112's P1 held, exp113's P1 and its
+checks P3 to P5 held, exp114's P1, P3 and P4 held, and exp115's checks P1 and P2 held.}\label{tab:failed} \\
 \toprule
 Test & Predicted & Observed \\
 \midrule
@@ -1326,6 +1349,10 @@ exp111 P2(b) & STRICT-only errors against STRICT-correct at most 0.65 & 0.656 (0
 exp111 P3 & a 20-label audit flags the grass/shrub pair with probability $\ge 0.5$ & 0.287 \claim{exp111-v12-twenty-label-audit-does-not-reliably-flag-the-pair} \\
 exp112 P3(b) & median certified share $\ge 0.25$ at $\alpha = 0.05$ and 300 labels & 0.075; the bar passes only a map with at most one error in its most confident 15\% (found after the run) \claim{exp112-p3b-fails-at-the-level-cut} \\
 exp113 P2 & mean held-out AUROC at least 0.05 below the default split's & 0.047 (0.004 to 0.138 by territory) \claim{exp113-transfer-drop-in-ranking-below-the-bar} \\
+exp114 P2 & EM's label-free class shares closer to the truth than the map's own in at least 10 of 15 maps & 3 of 15 \claim{exp114-label-free-priors-mislead-under-feature-shift} \\
+exp115 P3 & 400 labels flag every class with a share of at least 5\% drawn at half of it or less, with probability $\ge 0.8$ & 16 of 17; the miss, a 6.1\% class drawn at 3.0\%, 0.644 \claim{exp115-flag-and-bound-show-a-collapsed-class} \\
+exp115 P4 & classes within 0.02 of their share flagged with probability $\le 0.10$ & 69 of 164 above; 62 of them rare classes drawn at under half or over twice their share \claim{exp115-flag-on-near-right-classes} \\
+exp115 P5 & for a class with a share of at least 5\% and producer's accuracy at most 0.10, its upper bound at or below 0.25 with probability $\ge 0.8$ & 9 of 10; the miss 0.684 \claim{exp115-flag-and-bound-show-a-collapsed-class} \\
 \end{longtable}
 }
 
