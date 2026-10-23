@@ -446,10 +446,10 @@ def miou(cm):
     return float(np.mean(ious)), ious
 
 
-def verdicts(S):
+def verdicts(S, territories=TERRITORIES):
     out = {}
     per, below = {}, []
-    for t in TERRITORIES:
+    for t in territories:
         a = S["maps"][f"loio:{t}"][GRADED]["arm1"]
         if a["errors"] < P1_ERROR_FLOOR:
             below.append(t)
@@ -460,14 +460,14 @@ def verdicts(S):
                  "territories_meeting_a": [t for t, v in per.items() if v["a"]],
                  "a_holds": len(below) < 2 and sum(v["a"] for v in per.values()) >= P1_TERRITORIES,
                  "holds": len(below) < 2 and len(met) >= P1_TERRITORIES}
-    loio = float(np.mean([S["maps"][f"loio:{t}"][GRADED]["arm1"]["own"]["auroc"] for t in TERRITORIES]))
+    loio = float(np.mean([S["maps"][f"loio:{t}"][GRADED]["arm1"]["own"]["auroc"] for t in territories]))
     dflt = S["maps"]["default"][GRADED]["arm1"]["own"]["auroc"]
     out["P2"] = {"loio_mean_auroc": loio, "default_auroc": dflt, "drop": dflt - loio, "holds": dflt - loio >= P2_DROP}
     cov = [v for c in S["maps"].values() for m in c.values() for v in m["arm2"].values()]
     out["P3"] = {"min_exact_coverage": min(cov), "holds": min(cov) >= P3_COVERAGE}
-    viol = [S["maps"][f"loio:{t}"][k]["arm3"]["by_alpha"][f"{ALPHA:g}"]["violation_share"] for t in TERRITORIES for k in EMBS]
+    viol = [S["maps"][f"loio:{t}"][k]["arm3"]["by_alpha"][f"{ALPHA:g}"]["violation_share"] for t in territories for k in EMBS]
     out["P4"] = {"max_violation_share": max(viol), "holds": max(viol) <= P4_VIOLATION}
-    worse = [v["p_names_worse"] for t in TERRITORIES for pr in S["which_map"][t].values() for v in pr["n"].values()
+    worse = [v["p_names_worse"] for t in territories for pr in S["which_map"][t].values() for v in pr["n"].values()
              if v["p_names_worse"] is not None]
     out["P5"] = {"max_p_names_worse": max(worse) if worse else None, "holds": all(x <= P5_WRONG for x in worse)}
     return out
@@ -506,10 +506,12 @@ def run(data, private, smoke):
                 f"mIoU {m['miou']:.3f}")
         if c.startswith("loio:"):
             S["which_map"][c.split(":", 1)[1]] = {f"{a}_vs_{b}": arm4(pops[(c, a)], pops[(c, b)]) for a, b in PAIRS}
-    for t in TERRITORIES:
-        if f"loio:{t}" in configs:
-            S["which_map"][t]["best_agreeing_map"] = max(EMBS, key=lambda k: 1 - S["maps"][f"loio:{t}"][k]["arm1"]["theta"])
+    S["best_agreeing_map"] = {t: max(EMBS, key=lambda k: 1 - S["maps"][f"loio:{t}"][k]["arm1"]["theta"])
+                              for t in TERRITORIES if f"loio:{t}" in configs}
     if smoke:
+        # the first run (job 1467772) failed here, in verdicts, on a string stored among the pairs; the smoke now runs
+        # verdicts on the territories it has
+        verdicts(S, [t for t in TERRITORIES if f"loio:{t}" in configs])
         json.dumps(S)
     else:
         S["verdicts"] = verdicts(S)
