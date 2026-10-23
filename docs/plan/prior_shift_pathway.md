@@ -1,7 +1,8 @@
 # Prior shift or feature shift? Splitting exp113's transfer failure with Bayes' rule (exp114 preregistration)
 
-**Status: draft (23 October 2026).** Written before any statistic of this page was computed. exp113's own outputs
-(window error rates, per-class IoU, predicted and true class shares) were read before writing it.
+**Status: frozen (23 October 2026), by me, on the owner's overnight approval; the owner has not reviewed the
+predictions.** Written and frozen before any statistic of this page was computed. exp113's own outputs (window error
+rates, per-class IoU, predicted and true class shares) were read before writing it.
 
 ## The question
 
@@ -86,7 +87,8 @@ Point 3 is a check any user of any classifier map could run.
      outside its interval. Report the rejection probability per map.
    - **The test's size:** the exact probability that the same test rejects the true π_t. By Bonferroni it is at most
      0.05 on every map; it is computed exactly from the class counts.
-   - Reported only: the map corrected with the label-estimated priors, (k_c + 1)/(n + 8), mean over the draws.
+   - Reported only: the map corrected with the label-estimated priors, (k_c + 1)/(n + 8), mean over the first 100
+     draws.
 
 ## Predictions (written by me; see the decision at freezing)
 
@@ -101,7 +103,8 @@ That is, those failures are mostly feature shift, not prior shift.
 in at least 10 of the 15 held-out maps.
 
 **P3, the test's power at 400 labels.** On every held-out v1.3 map where EM's estimate is at least 0.05 from π_t in
-total variation, 400 random labels reject it with probability at least 0.8.
+total variation, 400 random labels reject it with probability at least 0.8. If no v1.3 map is that far off, P3 is
+not determined.
 
 **P4, the test's size (a check).** The exact probability of rejecting the true π_t at n = 100 and 400 is at most 0.05
 on all 18 maps. A failure is a defect: stop, find it, record the defect.
@@ -148,3 +151,14 @@ stay on the cluster's scratch.
 
 No new download: exp113's data (54 GB) and fit selections on the cluster's scratch. One CPU job, 16 CPUs, 32 GB, up to
 3 hours.
+
+## Decisions taken at freezing
+
+- 23 October 2026, about 02:00. The owner asked for maths-trial experiments to run overnight, in rounds, with results
+  by the morning ("I approve what you can do now"), and went to sleep. The arms, bars and predictions above are mine,
+  frozen without the owner's review, and the owner reviews them in the morning.
+- Read before freezing: exp113's recorded outputs, and the dataset README. The README notes a class-balanced label
+  set for training (`ANNOTATIONS_BALANCED`), which exp113 did not use and which is not downloaded. Nothing of this
+  page was computed.
+- The first commit of this page (15a84ed) carried the draft status line while its message and the plan index said
+  frozen; this commit makes the page say what was decided. No statistic was computed in between.
