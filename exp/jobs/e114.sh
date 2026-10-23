@@ -4,13 +4,17 @@
 # `uv run --with` (the record's lock is not changed). No download: exp113's data and private window arrays on scratch.
 #
 #   E114_MODE=smoke  CPU, 8 CPUs, 16 GB, 30 min. The same code on a few patches per configuration; nothing graded.
-#   E114_MODE=run    CPU, 16 CPUs, 32 GB, 6 h. Refused unless the page is frozen at E114_SHA. Refits exp113's maps,
-#                    checks them against exp113's stored window classes, corrects, estimates and grades; writes
-#                    exp114_summary.json to $OUT (copy to exp/out/ when recording).
+#   E114_MODE=run    CPU, 16 CPUs (as exp113's run: the fit's BLAS reductions depend on the thread count), 32 GB,
+#                    12 h (the page's Cost said up to 3 hours; the pre-run review put the worst case, every EM at its
+#                    10,000-iteration cap, at 6 to 9 hours). Refused unless the page is frozen at E114_SHA. Refits
+#                    exp113's maps, checks all 18 against exp113's stored windows before computing anything else,
+#                    then corrects, estimates and grades; writes $OUT/exp114_partial.json after each configuration and
+#                    exp114_summary.json to $OUT at the end (copy to exp/out/ when recording).
 #
 # Submit after commit and push; the login node runs one sbatch per line and nothing else:
 #   SHA=$(git rev-parse HEAD)
 #   ssh aicr "E114_MODE=smoke E114_SHA=$SHA sbatch --parsable -J e114smoke -p cpu -c 8 --mem=16G -t 00:30:00" < exp/jobs/e114.sh
+#   ssh aicr "E114_MODE=run E114_SHA=$SHA sbatch --parsable -J e114run -p cpu -c 16 --mem=32G -t 12:00:00" < exp/jobs/e114.sh
 #SBATCH -A p2026_0089_neu
 #SBATCH -J e114
 #SBATCH -o /home/qi_zim_neu/olmoearth_inferenceX/slurm/%x-%j.out
@@ -48,7 +52,7 @@ if [ "$MODE" = smoke ]; then
 elif [ "$MODE" = run ]; then
   grep -q '^\*\*Status: frozen' docs/plan/prior_shift_pathway.md \
     || { echo "refused: docs/plan/prior_shift_pathway.md is not frozen at E114_SHA"; exit 2; }
-  "${PY[@]}" run --data "$DATA" --e113-private "$E113PRIV"
+  "${PY[@]}" run --data "$DATA" --e113-private "$E113PRIV" --partial "$OUT/exp114_partial.json"
   cp exp/out/exp114_summary.json "$OUT/"
   echo "wrote $OUT/exp114_summary.json"
 else
