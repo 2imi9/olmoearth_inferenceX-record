@@ -11,7 +11,7 @@
   "allenai/olmoearth-paper-embeddings read the same in two separate cache trees on aicr, which the experiments populated on different days.",
   "allenai/OlmoEarth-v1-Base, allenai/OlmoEarth-v1-Nano and isp-uv-es/WorldFloodsv2 read the same on aicr and on the laptop: two machines, two independent downloads, one sha each."
  ],
- "coverage": "Twenty repositories. scripts/upstream_revision.py finds fifteen of them by scanning the code for repo ids on fetcher lines and top-level constants; that scan is a lower bound, since a repo id assigned inside a function (allenai/OlmoEarth-v1-Base, at oe_inferencex/taskcard.py:379) is not reached. The record may pin more than the scan finds, never less, and the test asserts that direction. The six entries exp89 added on 1 October 2026 were resolved with the Hub API before any exp89 run, not read back from a cache; two of them have no revision because the Hub answers 401.",
+ "coverage": "Twenty-two repositories. scripts/upstream_revision.py finds fifteen of them by scanning the code for repo ids on fetcher lines and top-level constants; that scan is a lower bound, since a repo id assigned inside a function (allenai/OlmoEarth-v1-Base, at oe_inferencex/taskcard.py:379) is not reached. The record may pin more than the scan finds, never less, and the test asserts that direction. The six entries exp89 added on 1 October 2026 were resolved with the Hub API before any exp89 run, not read back from a cache; two of them have no revision because the Hub answers 401.",
  "repos": {
   "125oii/dfc2020": {
    "host": "huggingface",
@@ -203,6 +203,18 @@
    "carries": "the Nandi rslearn dataset, exp89's arm N (not run)",
    "named_at": [
     "exp/exp89_finetuned_checkpoints.py:173"
+   ]
+  },
+  "allenai/planteur-benchmark": {
+   "host": "huggingface",
+   "repo_type": "dataset",
+   "revision": "51b74a91424e7dc9ea1fe0042390353658af8185",
+   "read_from": [
+    "aicr:/scratch/qi_zim_neu/olmoearth_inferenceX/e113_data/.cache/huggingface/download"
+   ],
+   "carries": "PLANTEUR, the crop-type benchmark and the three embeddings of exp113 (read 23 October 2026: all 11,006 files' download metadata name this commit)",
+   "named_at": [
+    "exp/exp113_planteur_transfer.py:39"
    ]
   },
   "gastruc/anysat": {
