@@ -10,6 +10,9 @@
 #                    exp113's maps, checks all 18 against exp113's stored windows before computing anything else,
 #                    then corrects, estimates and grades; writes $OUT/exp114_partial.json after each configuration and
 #                    exp114_summary.json to $OUT at the end (copy to exp/out/ when recording).
+#   E114_MODE=crosscheck  CPU, 16 CPUs, 32 GB, 12 h. The independent second route (exp/exp114_crosscheck.py, written
+#                    from the page without the run's script or outputs; numpy, scipy, scikit-learn) on the same data and
+#                    exp113's saved fit pixels; writes $OUT/exp114_crosscheck.json.
 #
 # Submit after commit and push; the login node runs one sbatch per line and nothing else:
 #   SHA=$(git rev-parse HEAD)
@@ -20,7 +23,7 @@
 #SBATCH -o /home/qi_zim_neu/olmoearth_inferenceX/slurm/%x-%j.out
 set -eu
 umask 077
-MODE=${E114_MODE:?E114_MODE is smoke or run}
+MODE=${E114_MODE:?E114_MODE is smoke, run or crosscheck}
 E114_SHA=${E114_SHA:?E114_SHA is the commit to run}
 SCRATCH=/scratch/qi_zim_neu/olmoearth_inferenceX
 CODE=$SCRATCH/e114_code
@@ -55,6 +58,11 @@ elif [ "$MODE" = run ]; then
   "${PY[@]}" run --data "$DATA" --e113-private "$E113PRIV" --partial "$OUT/exp114_partial.json"
   cp exp/out/exp114_summary.json "$OUT/"
   echo "wrote $OUT/exp114_summary.json"
+elif [ "$MODE" = crosscheck ]; then
+  test -f exp/exp114_crosscheck.py || { echo "E114_SHA has no exp/exp114_crosscheck.py"; exit 2; }
+  uv run --frozen --with "scikit-learn==1.9.1" python -I exp/exp114_crosscheck.py --data "$DATA" \
+    --e113-private "$E113PRIV" --out "$OUT/exp114_crosscheck.json"
+  echo "wrote $OUT/exp114_crosscheck.json"
 else
-  echo "E114_MODE is smoke or run, got $MODE"; exit 2
+  echo "E114_MODE is smoke, run or crosscheck, got $MODE"; exit 2
 fi
