@@ -7,6 +7,8 @@
 #                    token) the labels, the three embeddings (OlmoEarth v1.3, TESSERA v2, AlphaEarth), metadata.geojson
 #                    and the split files into $DATA, about 58 GB; no imagery. Resumable (the hub skips finished files);
 #                    refuses if any folder holds fewer than 2,750 files.
+#   E113_MODE=crosscheck  CPU, 16 CPUs, 32 GB, 3 h. The independent second route (exp/exp113_crosscheck.py, written
+#                    without the run's script or outputs) on the same data; writes $OUT/exp113_crosscheck.json.
 #   E113_MODE=run    CPU, 32 CPUs, 64 GB, 6 h. Refused unless the page is frozen at E113_SHA. Fits the 18 maps, reads
 #                    every test patch once, grades, and writes exp113_summary.json to $OUT (copy to exp/out/ when
 #                    recording) and the per-window arrays to $PRIV (no coordinate; kept off the repository).
@@ -20,7 +22,7 @@
 #SBATCH -o /home/qi_zim_neu/olmoearth_inferenceX/slurm/%x-%j.out
 set -eu
 umask 077
-MODE=${E113_MODE:?E113_MODE is fetch or run}
+MODE=${E113_MODE:?E113_MODE is fetch, run or crosscheck}
 E113_SHA=${E113_SHA:?E113_SHA is the commit to run}
 SCRATCH=/scratch/qi_zim_neu/olmoearth_inferenceX
 CODE=$SCRATCH/e113_code
@@ -55,6 +57,10 @@ elif [ "$MODE" = run ]; then
   "${PY[@]}" run --data "$DATA" --private-dir "$PRIV"
   cp exp/out/exp113_summary.json "$OUT/"
   echo "wrote $OUT/exp113_summary.json; private: $(du -sh "$PRIV" | cut -f1)"
+elif [ "$MODE" = crosscheck ]; then
+  test -f exp/exp113_crosscheck.py || { echo "E113_SHA has no exp/exp113_crosscheck.py"; exit 2; }
+  uv run --frozen --with "scikit-learn==1.9.1" python -I exp/exp113_crosscheck.py --data "$DATA" --out "$OUT/exp113_crosscheck.json"
+  echo "wrote $OUT/exp113_crosscheck.json"
 else
-  echo "E113_MODE is fetch or run, got $MODE"; exit 2
+  echo "E113_MODE is fetch, run or crosscheck, got $MODE"; exit 2
 fi
