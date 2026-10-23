@@ -1,7 +1,7 @@
 # Train on five territories, map the sixth: does the tool still find the errors, and which embedding is better there? (exp113 preregistration)
 
-**Status: draft (22 October 2026).** Written before any PLANTEUR embedding or label was read. The predictions below
-wait for the owner's confirmation; the page is frozen by a commit that says so, before any map is fitted.
+**Status: frozen (22 October 2026), the owner having confirmed the predictions as proposed.** Written (draft 513b94d)
+and frozen before any PLANTEUR embedding or label was read and before any map was fitted.
 
 ## The question
 
@@ -132,4 +132,7 @@ files, to the cluster's scratch, about 58 GB; no imagery. One CPU job, 32 CPUs, 
 
 ## Decisions taken at freezing
 
-(Empty until the owner confirms the predictions.)
+- 22 October 2026: the owner confirmed P1 to P5 as proposed, including P2's direction (transfer costs ranking), read
+  as a question whose failure would be the more useful finding; the three embeddings and the fit size of 100,000
+  pixels were agreed earlier the same day. Only the dataset's README, `EMB_MISSING.json` and the two split files
+  were read before freezing (formats and patch counts); no label, embedding or `metadata.geojson` was.
