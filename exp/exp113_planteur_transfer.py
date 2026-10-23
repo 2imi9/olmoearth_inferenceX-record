@@ -111,11 +111,19 @@ def splits(data):
     if (len(tr), len(te)) != DEFAULT_SIZES:
         raise SystemExit(f"exp113: default split has {len(tr)} train and {len(te)} test patches, not {DEFAULT_SIZES}")
     out["default"] = (sorted(tr), sorted(te))
+    island = {int(f["properties"]["ID_PATCH"]): f["properties"].get("Island") for f in G["features"]}
+    for t in TERRITORIES:
+        tr_t, te_t = out[f"loio:{t}"]
+        if set(te_t) != {p for p, i in island.items() if i == t} or any(island.get(p) == t for p in tr_t):
+            raise SystemExit(f"exp113: the leave-one-island-out fold of {t} does not hold out exactly its patches")
     return out
 
 
 def label(data, pid):
-    return np.load(os.path.join(data, "ANNOTATIONS", f"TARGET_{pid}.npy"))[0]
+    a = np.load(os.path.join(data, "ANNOTATIONS", f"TARGET_{pid}.npy"))
+    if a.shape != (1, SIZE, SIZE) or a.dtype != np.uint8 or not np.isin(a, list(range(N_CLASSES)) + [VOID]).all():
+        raise SystemExit(f"exp113: label {pid} has shape {a.shape}, dtype {a.dtype} or values outside 0-7 and 255")
+    return a[0]
 
 
 def embedding(data, key, pid):
@@ -174,7 +182,7 @@ def fit_selection(data, train_ids, n_pixels, seed):
     return out, total
 
 
-def fit_maps(data, configs, n_pixels):
+def fit_maps(data, configs, n_pixels, private=None):
     """{config: {emb: (pipeline, fit mean vector)}} and the fit sets' sizes; each train patch is read once."""
     from sklearn.linear_model import LogisticRegression
     from sklearn.pipeline import make_pipeline
@@ -182,7 +190,14 @@ def fit_maps(data, configs, n_pixels):
     sel, info = {}, {}
     for c, (tr, _) in configs.items():
         sel[c], total = fit_selection(data, tr, n_pixels, SEED)
-        info[c] = {"train_patches": len(tr), "nonvoid_train_pixels": total, "fit_pixels": int(sum(v.size for v in sel[c].values()))}
+        info[c] = {"train_patches": len(tr), "nonvoid_train_pixels": total, "fit_pixels": int(sum(v.size for v in sel[c].values())),
+                   "draw_order": "the configuration's train list in its file order (loio.json; the default split ascending), "
+                                 "each patch's non-void pixels row-major; choice(total, n, replace=False) from default_rng(113)"}
+        pt = np.repeat(np.array(list(sel[c]), np.int64), [v.size for v in sel[c].values()])
+        px = np.concatenate(list(sel[c].values())).astype(np.int64)
+        info[c]["selection_sha256"] = hashlib.sha256(pt.tobytes() + px.tobytes()).hexdigest()
+        if private:
+            np.savez_compressed(os.path.join(private, f"exp113_fitsel_{c.replace(':', '_')}.npz"), patch=pt, pixel=px)
     X = {(c, k): [] for c in configs for k in EMBS}
     Y = {c: [] for c in configs}
     for pid in sorted({p for s in sel.values() for p in s}):
@@ -204,6 +219,7 @@ def fit_maps(data, configs, n_pixels):
             m = make_pipeline(StandardScaler(), LogisticRegression(max_iter=2000)).fit(Xk, y)
             info[c][f"fit_seconds_{k}"] = round(time.time() - t0, 1)
             info[c][f"n_iter_{k}"] = int(np.max(m[-1].n_iter_))
+            info[c][f"converged_{k}"] = bool(np.max(m[-1].n_iter_) < 2000)
             models[c][k] = (m, Xk.mean(0))
         log(f"[exp113] {c}: fitted three maps on {y.size} pixels")
     return models, info
@@ -223,7 +239,7 @@ def predict_all(data, configs, models, private):
     """Per (config, emb), the windows of the test patches: confidence, predicted class, true class, patch, the three
     controls' inputs, the band; and each map's pixel confusion. Each test patch is read once."""
     tests = {c: set(te) for c, (_, te) in configs.items()}
-    pops = {(c, k): {f: [] for f in ("conf", "pred", "true", "patch", "bnd", "dist", "band")} for c in configs for k in EMBS}
+    pops = {(c, k): {f: [] for f in ("conf", "pred", "true", "patch", "win", "bnd", "dist", "band")} for c in configs for k in EMBS}
     conf_px = {(c, k): np.zeros((N_CLASSES, N_CLASSES), np.int64) for c in configs for k in EMBS}
     left_out = {c: 0 for c in configs}
     for pid in sorted(set().union(*tests.values())):
@@ -248,6 +264,7 @@ def predict_all(data, configs, models, private):
                 P["pred"].append(arr["pooled_argmax"][ok])
                 P["true"].append(tcls[ok])
                 P["patch"].append(np.full(int(ok.sum()), pid))
+                P["win"].append(np.flatnonzero(ok.ravel()))
                 P["bnd"].append(arr["boundary"][ok])
                 P["dist"].append(dist[ok])
                 P["band"].append(band_windows(pix)[ok])
@@ -311,7 +328,7 @@ def arm1(P, boot):
     correct = ~err
     out = {"n": int(err.size), "errors": int(err.sum()), "theta": float(err.mean()), "own": own,
            "controls": ctl_stats, "best_control": best, "lead": own["auroc"] - ctl_stats[best]["auroc"],
-           "ceiling_10": float(metrics.attainable_ceiling(CAPTURE_BUDGET, float(err.mean()), int(err.size))),
+           "ceiling_10": float(metrics.attainable_ceiling(CAPTURE_BUDGET, float(err.mean()), int(err.size))) if err.any() else None,
            "confident_error_share": float((P["conf"][err] >= np.median(P["conf"][correct])).mean())
            if err.any() and correct.any() else None,
            "band": {name: {"windows": int((P["band"] == v).sum()),
@@ -326,6 +343,8 @@ def arm1(P, boot):
         q = lambda v: [float(np.quantile(v, 0.05)), float(np.quantile(v, 0.95))]          # noqa: E731
         out["boot90"] = {"auroc": q(a), "lead": q(a - b), "patches": len(pids), "resamples": BOOT, "seed": SEED,
                          "full_matches": bool(abs(float(boot_auroc(Mo, E, C, np.ones((1, len(pids))))[0]) - own["auroc"]) < 1e-9)}
+        if not out["boot90"]["full_matches"]:
+            raise SystemExit("exp113: the patch pair matrix does not reproduce the AUROC")
     return out
 
 
@@ -403,7 +422,7 @@ def arm3(P, draws, name):
 
 def arm4(pa, pb):
     """Two maps' windows of one territory, aligned (the same windows, as both exclude only by the truth)."""
-    if not (np.array_equal(pa["patch"], pb["patch"]) and np.array_equal(pa["true"], pb["true"])):
+    if not all(np.array_equal(pa[f], pb[f]) for f in ("patch", "win", "true")):
         raise SystemExit("exp113: two maps' windows are not aligned")
     a, b, t = pa["pred"], pb["pred"], pa["true"]
     N, D = int(a.size), int((a != b).sum())
@@ -429,14 +448,17 @@ def miou(cm):
 
 def verdicts(S):
     out = {}
-    met, below = [], []
+    per, below = {}, []
     for t in TERRITORIES:
         a = S["maps"][f"loio:{t}"][GRADED]["arm1"]
         if a["errors"] < P1_ERROR_FLOOR:
             below.append(t)
-        elif a["own"]["auroc"] >= P1_AUROC and a["own"]["capture_10"] >= P1_CAPTURE and a["lead"] >= P1_LEAD:
-            met.append(t)
-    out["P1"] = {"territories_meeting": met, "below_floor": below,
+            continue
+        per[t] = {"a": a["own"]["auroc"] >= P1_AUROC and a["own"]["capture_10"] >= P1_CAPTURE, "b": a["lead"] >= P1_LEAD}
+    met = [t for t, v in per.items() if v["a"] and v["b"]]
+    out["P1"] = {"per_territory": per, "below_floor": below, "territories_meeting": met,
+                 "territories_meeting_a": [t for t, v in per.items() if v["a"]],
+                 "a_holds": len(below) < 2 and sum(v["a"] for v in per.values()) >= P1_TERRITORIES,
                  "holds": len(below) < 2 and len(met) >= P1_TERRITORIES}
     loio = float(np.mean([S["maps"][f"loio:{t}"][GRADED]["arm1"]["own"]["auroc"] for t in TERRITORIES]))
     dflt = S["maps"]["default"][GRADED]["arm1"]["own"]["auroc"]
@@ -460,25 +482,39 @@ def run(data, private, smoke):
     if smoke:
         configs = {c: (configs[c][0][:3], configs[c][1][:2]) for c in (f"loio:{TERRITORIES[0]}", "default")}
         n_pixels, draws = 2000, 5
-    models, info = fit_maps(data, configs, n_pixels)
+    models, info = fit_maps(data, configs, n_pixels, None if smoke else private)
+    if not smoke and any(v["fit_pixels"] != FIT_PIXELS for v in info.values()):
+        raise SystemExit("exp113: a fit set is smaller than the page's 100,000 pixels")
     pops, conf_px, left_out = predict_all(data, configs, models, None if smoke else private)
+    import platform
+    import sklearn
     S = {"page": "docs/plan/planteur_transfer.md", "package": oe_inferencex.__version__, "smoke": smoke,
+         "environment": {"scikit_learn": sklearn.__version__, "numpy": np.__version__, "python": platform.python_version()},
          "fit": info, "windows_left_out_by_the_truth": left_out, "maps": {}, "which_map": {}}
     for c in configs:
         S["maps"][c] = {}
         for k in EMBS:
             P = pops[(c, k)]
-            m = {"arm1": arm1(P, boot=(not smoke and k == GRADED and c.startswith("loio:"))), "arm2": arm2(P)}
+            m = {"arm1": arm1(P, boot=(k == GRADED and c.startswith("loio:"))), "arm2": arm2(P)}
             m["miou"], m["iou_per_class"] = miou(conf_px[(c, k)])
-            if c.startswith("loio:"):
-                m["arm3"] = arm3(P, draws, f"{c}/{k}")
+            m["truth_pixels_per_class"] = conf_px[(c, k)].sum(1).tolist()
+            present = [v for v, n in zip(m["iou_per_class"], m["truth_pixels_per_class"]) if n > 0]
+            m["miou_classes_present"] = float(np.mean(present)) if present else None
+            m["arm3"] = arm3(P, draws, f"{c}/{k}")
             S["maps"][c][k] = m
             log(f"[exp113] {c} {k}: theta {m['arm1']['theta']:.4f}, AUROC {m['arm1']['own']['auroc']:.4f}, "
                 f"mIoU {m['miou']:.3f}")
         if c.startswith("loio:"):
             S["which_map"][c.split(":", 1)[1]] = {f"{a}_vs_{b}": arm4(pops[(c, a)], pops[(c, b)]) for a, b in PAIRS}
-    if not smoke:
+    for t in TERRITORIES:
+        if f"loio:{t}" in configs:
+            S["which_map"][t]["best_agreeing_map"] = max(EMBS, key=lambda k: 1 - S["maps"][f"loio:{t}"][k]["arm1"]["theta"])
+    if smoke:
+        json.dumps(S)
+    else:
         S["verdicts"] = verdicts(S)
+        if not S["verdicts"]["P3"]["holds"]:
+            log("[exp113] P3 FAILED: a defect; the summary is written for diagnosis and must not be recorded")
         S["inputs"] = {"loio_json_sha256": sha256_file(os.path.join(data, "splits", "loio.json")),
                        "metadata_sha256": sha256_file(os.path.join(data, "metadata.geojson"))}
         os.makedirs(OUT, exist_ok=True)

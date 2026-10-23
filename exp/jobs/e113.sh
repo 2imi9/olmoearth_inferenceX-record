@@ -43,7 +43,7 @@ git cat-file -e "$E113_SHA^{commit}" 2>/dev/null || git fetch -q origin "$E113_S
 git checkout -q --force --detach "$E113_SHA"
 [ "$(git rev-parse HEAD)" = "$E113_SHA" ] || { echo "checkout is $(git rev-parse HEAD), not E113_SHA"; exit 2; }
 test -f exp/exp113_planteur_transfer.py && test -f docs/plan/planteur_transfer.md || { echo "E113_SHA predates exp113"; exit 2; }
-PY=(uv run --frozen --with "scikit-learn>=1.4" --with "huggingface_hub>=0.24" python exp/exp113_planteur_transfer.py)
+PY=(uv run --frozen --with "scikit-learn==1.9.1" --with "huggingface_hub>=0.24" python exp/exp113_planteur_transfer.py)
 echo "== $(date -Is) job ${SLURM_JOB_ID:-none} on $(hostname): exp113 $MODE at $E113_SHA =="
 
 if [ "$MODE" = fetch ]; then
