@@ -271,3 +271,5 @@ iterations. Recorded after the independent audit and a review below.
   - mapped area quoted as if it were the share found.
 - **What it cannot show.** One benchmark and one classifier, and the gap does not separate miscalibration from feature
   shift out of distribution. The default split's 0.009 bounds miscalibration only in-distribution.
+- **The owner's review.** On 23 October 2026, after reading the results, the owner accepted the findings ("fine by
+  your significant findings") and asked to close the thread with the package change they support (1.14.0).

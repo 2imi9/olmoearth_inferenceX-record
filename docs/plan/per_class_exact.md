@@ -277,3 +277,5 @@ and a review below.
     map.
   - Simple random sampling only. Whether stratifying by confidence finds a rare class's omission with fewer labels is
     not graded.
+- **The owner's review.** On 23 October 2026, after reading the results, the owner accepted the findings ("fine by
+  your significant findings") and asked to close the thread with the package change they support (1.14.0).
