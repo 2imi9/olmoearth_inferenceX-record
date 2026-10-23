@@ -56,7 +56,7 @@ own unit.
 
    The five other segmentation files store no reference class and are left out.
 
-40 maps in all.
+40 maps in all (39: see the amendment before the run).
 
 ## Arms
 
@@ -136,3 +136,27 @@ No download. One CPU job on the cluster, where the PLANTEUR windows are; minutes
   bars and predictions above are mine, frozen without the owner's review, and the owner reviews them in the morning.
 - Read before freezing: the unit files' formats (which files carry a reference class) and exp113's recorded
   outputs. No count of this page was computed.
+
+## Amendment before the run (23 October 2026, about 03:45; no statistic of this page had been computed)
+
+The pre-run review and the second route's author each found that the page's counts do not match its own rule for
+choosing files. The rule stands; the counts are corrected. They also found how exp92's map columns code a plot with no
+class.
+
+- **The suite's files.** `exp/out/exp78_units` holds 17 classification files with a reference class, not 18, and six
+  other segmentation files with none, not five: `m_cashew_plant`, `m_sa_crop_type`, `mados` and the three `pastis`
+  files. So the suite contributes 18 maps, the 17 and Sen1Floods11, and the experiment has **39 maps**, not 40.
+- **Plots with no map class.** In `exp92_plots.csv`, code 0 in the `lcmap` and `esri` columns marks a plot where that
+  product has no class. That is 29 plots for LCMAP and 3 for Esri, never both on one plot; the reference has a class on
+  all of them. The page keeps all 25,000 plots. Such a plot stays in the population and counts toward no class: it is
+  in N, in no class's M, and never correct. Its count is reported. exp92 had dropped those plots, which would change N.
+- **Computation.**
+  - Probabilities are normalised after their total is checked to within 1e-6, since the log-gamma terms carry about
+    1e-9 error at N near a million.
+  - Interval ends are compared with the counts as whole numbers.
+  - The joint coverage is computed by a convolution that does not underflow. The first version gave 0.03 where the
+    exact value is 0.97, on synthetic counts at N 820,531.
+  - P1 allows a shortfall of 1e-9 as floating-point noise, and the margin is reported.
+  - P4 is not determined if no class qualifies.
+
+  None of these changes a quantity the page defines.

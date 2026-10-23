@@ -44,7 +44,8 @@ if [ "$MODE" = run ]; then
   echo "wrote $OUT/exp115_summary.json"
 elif [ "$MODE" = crosscheck ]; then
   test -f exp/exp115_crosscheck.py || { echo "E115_SHA has no exp/exp115_crosscheck.py"; exit 2; }
-  uv run --frozen python -I exp/exp115_crosscheck.py --e113-private "$E113PRIV" --repo . --out "$OUT/exp115_crosscheck.json"
+  uv run --frozen python -I exp/exp115_crosscheck.py --e113-private "$E113PRIV" --repo . --expect-count 39 \
+    --out "$OUT/exp115_crosscheck.json"
   echo "wrote $OUT/exp115_crosscheck.json"
 else
   echo "E115_MODE is run or crosscheck, got $MODE"; exit 2
