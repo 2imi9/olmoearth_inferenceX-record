@@ -161,7 +161,8 @@ def cmd_check(args):
         print(f"{rid:42s} {pinned[:8]:10s} {now[:8]:10s}  {'MOVED' if now != pinned else ''}")
 
     named = repos_named_in_the_code()
-    missing = sorted(set(named) - set(rec["repos"]))
+    # a literal the scan finds that is not a repository is declared in the record with its reason, never dropped silently
+    missing = sorted(set(named) - set(rec["repos"]) - set(rec.get("not_repositories", {})))
     if missing:
         print("\nfetched by the code and not in the record:")
         for rid in missing:

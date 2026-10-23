@@ -62,8 +62,18 @@ def test_the_line_numbers_it_cites_still_name_that_repository():
 
 def test_every_repository_the_code_fetches_is_in_the_record():
     named = upstream.repos_named_in_the_code()
-    missing = sorted(set(named) - set(REPOS))
+    missing = sorted(set(named) - set(REPOS) - set(RECORD.get("not_repositories", {})))
     assert not missing, "fetched and unpinned: " + "; ".join(f"{r} ({', '.join(named[r])})" for r in missing)
+
+
+def test_a_declared_non_repository_says_why_and_is_still_found_where_it_says():
+    """An exception to the pin rule is a reasoned entry the scan still finds: a stale one (its literal gone from the
+    code) or one shadowing a pinned repository fails."""
+    named = upstream.repos_named_in_the_code()
+    for rid, why in RECORD.get("not_repositories", {}).items():
+        assert isinstance(why, str) and len(why) > 20, rid
+        assert rid in named, f"{rid} is declared not a repository but the scan no longer finds it"
+        assert rid not in REPOS
 
 
 def test_the_package_side_is_scanned_from_the_installed_release():

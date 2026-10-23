@@ -271,5 +271,8 @@
    "carries": "Kuro Siwo, the null pair of the evidence hunt",
    "named_at": []
   }
+ },
+ "not_repositories": {
+  "suite/sen1floods11": "a population name (the embedding suite's Sen1Floods11 map) in exp/exp115_crosscheck.py's SMOKE_NAMES constant; that script fetches nothing"
  }
 }
