@@ -6106,3 +6106,94 @@
     The grouping by M/K was done after the run and is reported, not graded; the verdict stands as written. Over every
     class, 23 of the 83 drawn within 0.8 to 1.25 of their share are flagged above 0.10, mostly real Background
     over-draws on large classes.
+
+- id: exp116-target-rule-valid-on-real-maps
+  statement: "In a preregistered test (exp116, frozen debc794) on the embedding suite's 356 fully labelled unit maps, the target rule (1.16.0) at targets 0.25, 0.5 and 0.75, with alpha half each map's error rate, delta 0.1 and 300 or 1,000 random labels, certified a zone wrong more than alpha on at most 0.0925 of 400 draws in every one of its 420 cells per target (bar 0.145; P1 holds); prefix reached 0.095 and Bonferroni 0.0125 on the same draws."
+  crosscheck: tests/test_exp116.py::test_arm_a_recorded_by_a_second_route
+  status: supported
+  experiments: [exp116]
+  artifacts: [exp/out/exp116_summary.json, exp/out/exp116_crosscheck_a.json]
+  check: |-
+    (lambda P: P['P1']['held'] is True and all(P['P1']['by_rule'][r]['cells'] == 420 and P['P1']['by_rule'][r]['cells_over_bar'] == 0 for r in P['P1']['by_rule'])
+      and round(max(P['P1']['by_rule'][f'target_{t}']['max_violation'] for t in ('0.25', '0.5', '0.75')), 4) == 0.095
+      and round(P['P1']['by_rule']['target_0.5']['max_violation'], 4) == 0.0925 and round(P['P1']['by_rule']['bonferroni']['max_violation'], 4) == 0.0125
+    )(A['exp/out/exp116_summary.json']['plan_population']['prereg'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp116-target-rule-valid-on-real-maps}
+  note: >-
+    The largest target-rule violation, 0.095, is at target 0.25 (prefix too); at 0.5 and 0.75 it is 0.0925 and 0.09. The
+    run also read 24 files of exp79's RTX rerun of OlmoEarth Base, outside the plan; on all 380 files every prediction
+    holds as well (run_population in the summary).
+
+- id: exp116-target-rule-certifies-its-target-more-often
+  statement: "In exp116, on the 771 real-map cells where the target zone's own error rate is at most alpha, the target rule certified at least the target on at least as large a share of draws as Bonferroni certified at least that level on 744 (0.965; bar 0.80; P2 holds)."
+  crosscheck: tests/test_exp116.py::test_arm_a_recorded_by_a_second_route
+  status: supported
+  experiments: [exp116]
+  artifacts: [exp/out/exp116_summary.json]
+  check: |-
+    (lambda P: P['P2']['held'] is True and P['P2']['cells_with_the_target_right'] == 771 and round(P['P2']['share_target_at_least_bonferroni'], 3) == 0.965
+    )(A['exp/out/exp116_summary.json']['plan_population']['prereg'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp116-target-rule-certifies-its-target-more-often}
+
+- id: exp116-class-design-exact-intervals-hold
+  statement: "In exp116, the class design (a sample of 400 stratified by map class, Olofsson's allocation) on 269 real maps: each class's user's-accuracy interval covered on at least 0.917 of 400 draws for 2,401 of 2,402 (map, class) pairs, and the class areas and producer's accuracies held together, as did the overall accuracy, on every map (P3 holds; smallest joint coverage 0.9775)."
+  crosscheck: tests/test_exp116.py::test_arm_b_recorded_by_a_second_route
+  status: supported
+  experiments: [exp116]
+  artifacts: [exp/out/exp116_summary.json, exp/out/exp116_crosscheck_b.json]
+  check: |-
+    (lambda P: P['P3']['held'] is True and (P['P3']['pairs'], P['P3']['maps']) == (2402, 269) and round(P['P3']['ua_share_at_bar'] * 2402) == 2401
+      and P['P3']['joint_share_at_bar'] == 1.0 and P['P3']['overall_share_at_bar'] == 1.0
+    )(A['exp/out/exp116_summary.json']['plan_population']['prereg'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp116-class-design-exact-intervals-hold}
+  note: >-
+    The pair below the bar (copernicusfm/pastis_sentinel2 class 3, 0.9125 = 365/400) has exact coverage 0.954 by
+    enumeration (the independent audit); 365 or fewer of 400 has probability 0.00026 there, expected about once in
+    2,402 pairs.
+
+- id: exp116-class-design-narrows-rare-classes
+  statement: "In exp116, for all 1,148 (map, class) pairs whose class is under 5% of the map and holds at least the floor's windows, the class design's mean user's-accuracy interval was narrower than a simple random sample's of the same 400 labels (P4 holds; median width ratio 0.61)."
+  crosscheck: tests/test_exp116.py::test_arm_b_recorded_by_a_second_route
+  status: supported
+  experiments: [exp116]
+  artifacts: [exp/out/exp116_summary.json]
+  check: |-
+    (lambda P: P['P4']['held'] is True and P['P4']['rare_pairs'] == 1148 and P['P4']['share_class_design_narrower'] == 1.0
+    )(A['exp/out/exp116_summary.json']['plan_population']['prereg'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp116-class-design-narrows-rare-classes}
+  note: >-
+    The simple random sample's width counts 1 on a draw with no label in the class, as the plan says, which favours the
+    class design on rare classes; 16 of the pairs are labelled in full under the class design.
+
+- id: exp116-certificates-on-a-real-tile
+  statement: "In exp116 on the package's Dynamic World expert tile at alpha 0.10, the five random samples with a 0.5 target (200 to 600 labels) each certified a zone, true error 5.5% to 8.1% against the expert labels, and each certificate was written and verified with the map given; the class-design sample of 600 labels certified no zone in any of the nine classes (delta split nine ways), so no certificate could be written for it and P5 as worded (all six) does not hold."
+  crosscheck: tests/test_exp116.py::test_the_summary_is_the_rows_and_states_the_departures
+  status: mixed
+  experiments: [exp116]
+  artifacts: [exp/out/exp116_summary.json]
+  check: |-
+    (lambda T: T['P5']['certified'] == 5 and T['P5']['all_verify'] is True and [r['certified'] for r in T['runs']] == [True] * 5 + [False]
+      and round(min(r['zone_true_error'] for r in T['runs'][:5]), 3) == 0.055 and round(max(r['zone_true_error'] for r in T['runs'][:5]), 3) == 0.081
+      and all(r['verified'] for r in T['runs'][:5])
+    )(A['exp/out/exp116_summary.json']['tile'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp116-certificates-on-a-real-tile}
+
+- id: exp116-issued-certificates-can-fail-more-often-than-delta
+  statement: "In exp116 (descriptive, not preregistered), on 46 of the 413 cells where the target rule at 0.5 certified a zone on some draw, more than delta of the zones it certified were wrong (median 0.032), although on every cell the share of all draws certifying a wrong zone stayed under the bar: delta bounds all samples, those that certify nothing included, not the certificates issued."
+  crosscheck: tests/test_exp116.py::test_the_summary_is_the_rows_and_states_the_departures
+  status: measured
+  experiments: [exp116]
+  artifacts: [exp/out/exp116_summary.json]
+  check: |-
+    (lambda I: (I['cells_with_a_certificate'], I['cells_over_delta']) == (413, 46) and round(I['median_wrong_share_among_issued'], 3) == 0.032
+    )(A['exp/out/exp116_summary.json']['plan_population']['issued_certificates_descriptive']['target_0.5'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp116-issued-certificates-can-fail-more-often-than-delta}
+  note: >-
+    The cells over delta are those where certifying is rare: a zone whose true error sits just above alpha is seldom
+    certified, and when it is, it is wrong. The package says so wherever a zone is certified (1.17.0).

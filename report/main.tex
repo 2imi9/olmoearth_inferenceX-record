@@ -31,11 +31,11 @@
 \makeatother
 
 \title{\pkg: confidence-based review, comparison and accuracy estimation for Earth-observation classification maps\\[6pt]
-\large Technical report, version 1.12.2}
+\large Technical report, version 1.17.0}
 \author{Ziming Qi\\[2pt] \small \url{https://github.com/2imi9/olmoearth_inferenceX}\\[-1pt]
 \small \url{https://github.com/2imi9/olmoearth_inferenceX-record}\\[-1pt]
 \small \url{https://olmoearth-inferencex.readthedocs.io}}
-\date{16 October 2026}
+\date{24 October 2026}
 
 \begin{document}
 \maketitle
@@ -284,9 +284,24 @@ make labels a random sample: labels from the confident end of a map, or clustere
 \textbf{Per-class accuracy.} With map class $m$ and reference class $r$, the user's accuracy is
 $\mathrm{UA}_c = \#\{m{=}c, r{=}c\}/\#\{m{=}c\}$, the producer's accuracy $\mathrm{PA}_c = \#\{m{=}c, r{=}c\}/\#\{r{=}c\}$
 and the error-adjusted share $A_c = \#\{r{=}c\}/N$. Under a random sample $\mathrm{UA}_c$ has the exact interval, and
-$A_c$ and $\mathrm{PA}_c$ \citep{olofsson2014} have Wilson intervals at the effective sample size; under the confidence
-design each is a ratio of Horvitz--Thompson (inverse-probability-weighted) totals with a linearised variance. Warnings
+since version 1.14.0 so do $A_c$, by a hypergeometric interval at $1 - 0.05/L$ for $L$ classes, and $\mathrm{PA}_c$
+\citep{olofsson2014}, from exact intervals for its two counts at $1 - 0.05/(2L)$ bounded by the map's own count, so
+that the shares hold together, and the producer's accuracies, with probability at least 0.95 (exp115); under the
+confidence design each is a ratio of Horvitz--Thompson (inverse-probability-weighted) totals with a linearised
+variance. Warnings
 mark classes with fewer than 30 labels, thin or near-census sampling, one to four sampled errors, or no prediction.
+
+\textbf{The class design.} Since version 1.17.0, \code{sample -{}-design class} stratifies by the map's own class, as
+\citet{olofsson2014} advise for accuracy and area: every class gets a floor of labels (50 by default, or all its
+windows) and the rest of the budget goes in proportion to class size. Each class's labels are a simple random sample
+of it, so its user's accuracy has the exact interval and the whole-map error rate the union bound over the classes.
+The count of each reference class in each stratum has an exact hypergeometric interval at $1 - 0.05/(LS)$, with $S$ the
+strata not labelled in full; the class areas and producer's accuracies are monotone in those counts and bounded by
+them, so all of them hold together with probability at least 0.95, and the points beside them are Olofsson's
+stratified estimates. \code{certify} certifies a zone in each class, with $\delta$ split over the classes tested. The
+tests compute the coverage exactly over the stratified draw on 45 small maps, with a negative control that shows the
+computation can see an interval that is too narrow; exp116 grades the design on real maps
+(Section~\ref{sec:est-results}).
 
 \subsection{The certified zone}
 \label{sec:zone}
@@ -310,6 +325,18 @@ $\alpha = 0.009$ for the default $\delta = 0.1$; levels whose expected number of
 before any label is read. The package refuses designs other than random or condition and labels that look like a
 review set, and certifies nothing outside the zone. A p-value within a relative $10^{-9}$ of its level is decided in exact rational arithmetic,
 so that the same labels give the same zone on every C library.
+
+Since version 1.16.0 a zone fixed before labelling, \code{sample -{}-target} $c^*$, is certified by a fallback
+procedure \citep{wiens2003,wiens2005}: the target level holds $0.8\delta$, the smaller levels tested share the rest (all
+of $\delta$ goes to the target when none is tested), a level that passes hands its share up to the next, and larger
+levels are reached only through that hand-up. It is valid on any map, as the prefix and Bonferroni rules are (the
+tests enumerate every error pattern of small maps and every draw), and with the target right it needs about half the
+labels the Bonferroni rule needs for that zone. $\delta$ bounds the probability, over the draw, that the statement
+is wrong, counting the draws that certify nothing. Given that a zone was certified, the chance that it is wrong can
+exceed $\delta$, most where a zone's error rate lies just above $\alpha$, where certifying is rare; since 1.17.0 every
+output that certifies a zone says so. $\alpha$, $\delta$, the rule and the level cut must be chosen before any label,
+since a second run on the same labels is a second test; a sample drawn for a certificate fixes them with the draw
+(Section~\ref{sec:certificate}).
 
 With input conditions, the $L$ conditions holding at least the minimum at the undivided $\delta$ are fixed before any
 label is read (at $\delta/L$ such a condition may still certify nothing), each is certified inside itself at
@@ -336,6 +363,31 @@ in a fixed sequence from the anchor outward \citep{bauer1991}, valid at every lo
 need not be monotone, which is why the sequence starts from a fixed anchor. A zone with no errors needs 71 labels at
 $\alpha = 0.05$ and $\delta = 0.1$, against 45 for the one-look test: the equal weights tolerate errors and pay for it on
 a clean zone \citep{waudbysmith2020,stark2023alpha}.
+
+\subsection{A certificate that travels with the map}
+\label{sec:certificate}
+
+Since version 1.17.0, \code{certificate} packs a certified zone into a bundle that travels with the map: a STAC Item
+whose fields state the guarantee ($\alpha$, $\delta$, the rule, the design, the seed, the target or anchor, the zone's
+coverage, threshold and upper bound, ties at the threshold, per class or condition where the sample has them, and the
+statement in words, with what the population leaves out), mapped onto ISO 19157-1 as a conformance result and a
+coverage result; the zone as a GeoTIFF on the map's window grid; the labelled sample, its sidecar, the zone result and
+any condition layer; and sha256 digests of the map's decoded pixels with its valid mask and transform, and of every
+file in the bundle. It needs a sample drawn with \code{sample -{}-seed-from-map -{}-alpha}: the seed is 128 bits of
+sha256 over the map's digest and the settings that change what \code{certify} gives (the design, the budget, the window
+size, the logits reading, a product's confidence range, the target, the anchor, the class design's floor, the digests
+of a confidence band and of a condition layer, and $\alpha$, $\delta$, the rule and the level cut, which \code{certify}
+then keeps to), and the windows are the first of a fixed random order read from PCG64, the same on every numpy release.
+None of those settings can be changed after labelling without changing the windows. \code{verify} builds the
+certificate again from the user's copy of the map, the bundled labels and the recorded settings, and compares it: it
+draws the sample again, certifies again, rebuilds the STAC Item and the zone mask from that run and requires them to
+be the ones written; it reads bundle rasters only as plain GeoTIFF or .npy files, with no sidecar files and no network,
+and fails closed. Four rounds of adversarial review by independent agents, each finding reproduced by another, found
+forgeries that verified and honest certificates that failed, and each was fixed with a test before release. What a
+certificate cannot show, and says, is taken on the issuer's word: that the labels are right, the map's date, the
+paths and condition names, and that the sample was drawn once. The last is a real limit: any change to the map or the
+settings before labelling gives another draw, and an issuer can keep a favourable one; only randomness the issuer
+cannot choose, such as a public beacon after a commitment, would close it.
 
 \subsection{Which of two maps is more accurate}
 \label{sec:whichmap}
@@ -386,11 +438,14 @@ there. It names the class, not the windows.
 \subsection{Interfaces}
 \label{sec:interfaces}
 
-The command \code{oe-inferencex} has ten subcommands: \code{demo} (a shipped Dynamic World tile), \code{assess}
+The command \code{oe-inferencex} has fifteen subcommands: \code{demo} (a shipped Dynamic World tile), \code{assess}
 (review sets, rasters and cues), \code{from-olmoearth} (an OlmoEarth model's output read into the rasters
 \code{assess} takes), \code{compare} (disagreement and, with labels and dates, the graded block),
 \code{plan} (how many labels a question needs, new in 1.8.0), \code{sample} (the windows to label), \code{estimate} (the error rate, per-class accuracy with \code{-{}-per-class}, or
-the accuracy difference of two maps), \code{certify} (the certified zone and its mask), \code{decide} and \code{mcp}.
+the accuracy difference of two maps), \code{certify} (the certified zone and its mask), \code{decide}, \code{mcp}, \code{from-embeddings} and \code{boundary} (1.13.0:
+a map built from precomputed OlmoEarth v1.3 embeddings, and the windows on a class boundary), \code{scale} (1.15.0: at
+which window size each class can be seen), and \code{certificate} and \code{verify} (1.17.0,
+Section~\ref{sec:certificate}).
 \code{decide} (new in 1.7.0) reads a result that \code{estimate}, \code{certify} or \code{compare} wrote and answers set questions
 with one answer from a fixed set (whether the error rate is below a threshold, a class's user's or producer's accuracy
 above one, which map is more accurate, the certified share), each with its level, its evidence and a sentence that
@@ -425,8 +480,8 @@ synthetic rslearn datasets built to rslearn's source, and exp98 and exp99 are it
 (Section~\ref{sec:res-deployed}).
 
 Since version 1.4.0, \code{oe-inferencex mcp} serves the commands as tools (\code{guide},
-\code{assess}, \code{compare}, \code{sample}, \code{estimate}, \code{certify}, from 1.7.0 \code{decide} and from
-1.8.0 \code{plan}) to an
+\code{assess}, \code{compare}, \code{sample}, \code{estimate}, \code{certify}, from 1.7.0 \code{decide}, from
+1.8.0 \code{plan} and from 1.17.0 \code{verify}) to an
 agent over the Model Context Protocol on local standard input and output, with
 nothing hosted. Each tool runs the command line's own code in process, so a tool and its command give the same numbers
 and refuse the same inputs, and returns compact JSON with the files written, the summary numbers, and three plain
@@ -981,6 +1036,16 @@ share failed: the flag's power follows the gap in sampling errors, so it is not 
 
 \subsection{Estimation from a labelled sample}
 \label{sec:res-estimate}
+\label{sec:est-results}
+
+exp116 (preregistered) graded the class design on 269 of the suite's unit maps, 400 labels and 400 draws each: every
+class's user's accuracy covered on at least 0.917 of draws for 2,401 of 2,402 (map, class) pairs, the one below at
+0.9125 having an exact coverage of 0.954, and the class areas with the producer's accuracies, and the overall
+accuracy, held together on every map (smallest 0.9775) \claim{exp116-class-design-exact-intervals-hold}; for all
+1,148 classes under 5\% of their map the class design's user's-accuracy interval was narrower than a random sample's
+of the same size, a median 0.61 of its width \claim{exp116-class-design-narrows-rare-classes}. The run read 24 files
+outside the plan (a second run of one encoder); on all 380 every prediction holds too, and an independent route written
+from the plan alone reproduces every map of the planned files exactly.
 
 exp78 graded the estimators on the suite's seven segmentation tasks, from an export that reproduces exp70's
 accuracies \claim{exp78-export-reproduces-the-suite}. With 300 randomly sampled windows the finite-population Wilson
@@ -1073,6 +1138,20 @@ median 1.71 times the one-look rule's labels to reach half the largest mean cert
 maps), and over budgets 50 to 3,000 a median mean certified share of 0.146 against 0.222 on the same 279 maps
 \claim{exp97-sequential-certificate-costs-labels}. The default stays the one-look certificate; the sequential one is
 for a reviewer who will look more than once.
+
+exp116 (preregistered) graded the target rule on 420 cells of the suite's unit maps per target (0.25, 0.5, 0.75),
+with $\alpha$ half each map's error rate, $\delta = 0.1$ and 300 or 1,000 random labels: its zone was wrong more than
+$\alpha$ on at most 0.0925 of 400 draws at target 0.5 and 0.095 at 0.25, against a bar of 0.145, where prefix reached
+0.095 and Bonferroni 0.0125 on the same draws \claim{exp116-target-rule-valid-on-real-maps}. On the 771 cells where the
+target zone is wrong at most $\alpha$, it certified at least the target on at least as many draws as Bonferroni
+certified that level on 744 (0.965), on average 0.68 of draws against 0.41 at target 0.5
+\claim{exp116-target-rule-certifies-its-target-more-often}. Read after the run, on 46 of the 413 cells where the target
+rule at 0.5 certified a zone on some draw, more than $\delta$ of the zones it certified were wrong, though no cell's
+share of all draws passed the bar \claim{exp116-issued-certificates-can-fail-more-often-than-delta}: $\delta$ is not
+the chance that an issued certificate is wrong. On the package's Dynamic World tile at $\alpha = 0.10$, five random
+samples with a 0.5 target certified zones 5.5\% to 8.1\% wrong against the expert labels and each certificate verified;
+a class-design sample of 600 labels over nine classes certified nothing, so the preregistered ``all six'' does not hold
+\claim{exp116-certificates-on-a-real-tile}.
 
 \subsection{Use by a language-model agent}
 
@@ -1411,16 +1490,23 @@ exp99's miss. No label-free reading tried has identified the errors a model
 makes confidently; on published products a second product's disagreement flagged them on two of three, short of its
 preregistered bar (exp106), and no OlmoEarth model was tested that way. The ranking carries no guarantee, and a review set is not a sample.
 
+A certified zone's $\delta$ bounds the share of all samples on which its statement is wrong, not the share of
+certificates issued that are wrong; on some real maps more than $\delta$ of those issued were (exp116). A certificate
+shows that its statement is what \code{certify} gives on the recorded draw of the map, with options fixed before the
+labels; it cannot show that the labels are right or that the issuer drew once. The target rule, the class design and
+the certificate are graded on the suite's linear probes and one Dynamic World tile, not yet on a deployed map of an
+agency's own design.
+
 The agent evidence is binary water cards at two model sizes, a trial that passed only under an amended instrument, and
 a five-question pilot with no artifact. exp79's per-unit files are committed only for OlmoEarth Base's seed 0, so some
 crosschecks, including exp90's, cannot be rerun from the repository alone. The Lean proofs are not built in continuous
-integration, and the MCP server's tests run only in the release checks. Probe training was not bit-reproducible across
+integration; the MCP server's tests run in it from 1.17.0. Probe training was not bit-reproducible across
 GPU types, and the work has a single author.
 
 \section{Software}
 \label{sec:software}
 
-\pkg{} is on PyPI as \code{olmoearth-inferencex} (Apache License 2.0); this report describes version 1.12.2.
+\pkg{} is on PyPI as \code{olmoearth-inferencex} (Apache License 2.0); this report describes version 1.17.0.
 Version 1.0.0 (17 September 2026) carried ranking, explanation, comparison and label-fitted fusion; 1.2.0 (22 September)
 added \code{sample} and \code{estimate}; 1.3.0 (24 September) added \code{certify}, per-class accuracy, dates in
 \code{compare} and the exact random-sample interval, and fixed the 33 findings of a second line-by-line review, each
@@ -1434,7 +1520,11 @@ second agent reproduced 60; each fix has a test, and two reviews of the fixes fo
 sign test as the verdict on which of two maps is more accurate, up to a fifth of the differing windows, and 1.11.0 the
 per-class audit of the confident calls, and 1.12.0 the same second reading for \code{estimate} and \code{certify} (1.12.1 corrects a text of the MCP server;
 1.12.2 points its PyPI page's links and its docstrings to the research record, with the code and API of 1.12.1,
-against which the record's checks run).
+against which the record's checks run). 1.13.0 (22 October) added maps from precomputed OlmoEarth v1.3 embeddings and
+the boundary command, 1.14.0 the exact per-class report (exp115), 1.15.0 the scale command, 1.16.0 the target rule,
+and 1.17.0 (24 October) the map certificate, the class design, certify's options fixed with a certificate's draw, the
+statement of what $\delta$ counts, and a log-scale confidence for \code{form="top1"}, whose probability-scale windows
+tie at exactly 1.0 where the logit gap is large, the rounding \citet{barron2026softmax} call softmax collapse.
 Since 1.4.1 each release has been preceded by a review in several lenses (from 1.5.0: statistics, code, and documents
 with tests), whose findings were fixed with tests. For 1.7.0 the suite ran against the built wheel without the source
 tree on Python 3.11, 3.12 and 3.13 with the optional extras (1,392 passed each), on the declared minimum core
@@ -1450,9 +1540,10 @@ bit-exactly with the package's decisions on the suite's 17 single-label tasks \c
 
 \begin{sloppypar}
 The package's code is at \url{https://github.com/2imi9/olmoearth_inferenceX}; the package as released is at tag
-\code{v1.12.2}, whose code and API are those of \code{v1.12.1}. The experiments, their outputs (\code{exp/out/}), the claim ledger and this report are in the research
+\code{v1.17.0}. The experiments, their outputs (\code{exp/out/}), the claim ledger and this report are in the research
 record at \url{https://github.com/2imi9/olmoearth_inferenceX-record}, which was split from the code repository at the
-commit of release 1.12.1 and whose checks run against that release as published on PyPI. The Lean proofs and the
+commit of release 1.12.1 and whose checks run against that release as published on PyPI; exp116 ran against
+the package at the commit its output records, and its checks read only that output. The Lean proofs and the
 experiments archived from the code repository's main branch on 10 October 2026, among them the agent trials exp86 and
 exp87 and their plans, are at its tag \code{v1.9.0} (\url{https://github.com/2imi9/olmoearth_inferenceX/tree/v1.9.0}).
 Documentation is at \url{https://olmoearth-inferencex.readthedocs.io}; the per-experiment record is

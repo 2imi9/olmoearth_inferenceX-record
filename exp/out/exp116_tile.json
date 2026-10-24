@@ -1,0 +1,72 @@
+{
+ "experiment": "exp116 arm C",
+ "package_version": "1.17.0",
+ "package_sha": "9bf2ecb8d46c3bf8b1b31f9965d91ede2ff56207",
+ "runs": [
+  {
+   "sample": "random_200",
+   "budget": 200,
+   "certified": true,
+   "zone_share": 0.53082275390625,
+   "zone_true_error": 0.05530642750373692,
+   "alpha": 0.1,
+   "certificate_written": true,
+   "verified": true,
+   "statement": "The 55% most confident of the 15813 windows counted on this map (8697 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 200 random labels; the exact upper bound on the zone's error rate at that level is 9.3%). 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+  },
+  {
+   "sample": "random_300",
+   "budget": 300,
+   "certified": true,
+   "zone_share": 0.67559814453125,
+   "zone_true_error": 0.08112747312313669,
+   "alpha": 0.1,
+   "certificate_written": true,
+   "verified": true,
+   "statement": "The 70% most confident of the 15813 windows counted on this map (11069 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 300 random labels; the exact upper bound on the zone's error rate at that level is 9.5%). The zone is the mask, not every window at or above the threshold: 10 windows share the threshold's confidence and 1 of them are inside. 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+  },
+  {
+   "sample": "random_400",
+   "budget": 400,
+   "certified": true,
+   "zone_share": 0.5791015625,
+   "zone_true_error": 0.06302698145025296,
+   "alpha": 0.1,
+   "certificate_written": true,
+   "verified": true,
+   "statement": "The 60% most confident of the 15813 windows counted on this map (9488 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 400 random labels; the exact upper bound on the zone's error rate at that level is 9.6%). The zone is the mask, not every window at or above the threshold: 6 windows share the threshold's confidence and 3 of them are inside. 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+  },
+  {
+   "sample": "random_500",
+   "budget": 500,
+   "certified": true,
+   "zone_share": 0.6273193359375,
+   "zone_true_error": 0.07073360575987546,
+   "alpha": 0.1,
+   "certificate_written": true,
+   "verified": true,
+   "statement": "The 65% most confident of the 15813 windows counted on this map (10278 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 500 random labels; the exact upper bound on the zone's error rate at that level is 7.6%). The zone is the mask, not every window at or above the threshold: 3 windows share the threshold's confidence and 1 of them are inside. 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+  },
+  {
+   "sample": "random_600",
+   "budget": 600,
+   "certified": true,
+   "zone_share": 0.67559814453125,
+   "zone_true_error": 0.08112747312313669,
+   "alpha": 0.1,
+   "certificate_written": true,
+   "verified": true,
+   "statement": "The 70% most confident of the 15813 windows counted on this map (11069 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 600 random labels; the exact upper bound on the zone's error rate at that level is 9.7%). The zone is the mask, not every window at or above the threshold: 10 windows share the threshold's confidence and 1 of them are inside. 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+  },
+  {
+   "sample": "class_600",
+   "budget": 600,
+   "certified": false
+  }
+ ],
+ "P5": {
+  "certified": 5,
+  "all_verify": true,
+  "held": true
+ }
+}

@@ -1,0 +1,264 @@
+{
+ "experiment": "exp116",
+ "frozen": "debc794",
+ "package_sha": "9bf2ecb8d46c3bf8b1b31f9965d91ede2ff56207",
+ "package_version": "1.17.0",
+ "plan_population": {
+  "files": 356,
+  "prereg": {
+   "P1": {
+    "bar": 0.145,
+    "by_rule": {
+     "prefix": {
+      "max_violation": 0.095,
+      "cells_over_bar": 0,
+      "cells": 420
+     },
+     "bonferroni": {
+      "max_violation": 0.0125,
+      "cells_over_bar": 0,
+      "cells": 420
+     },
+     "target_0.25": {
+      "max_violation": 0.095,
+      "cells_over_bar": 0,
+      "cells": 420
+     },
+     "target_0.5": {
+      "max_violation": 0.0925,
+      "cells_over_bar": 0,
+      "cells": 420
+     },
+     "target_0.75": {
+      "max_violation": 0.09,
+      "cells_over_bar": 0,
+      "cells": 420
+     }
+    },
+    "held": true
+   },
+   "P2": {
+    "cells_with_the_target_right": 771,
+    "share_target_at_least_bonferroni": 0.9649805447470817,
+    "bar": 0.8,
+    "held": true
+   },
+   "P3": {
+    "pairs": 2402,
+    "maps": 269,
+    "ua_share_at_bar": 0.9995836802664446,
+    "joint_share_at_bar": 1.0,
+    "overall_share_at_bar": 1.0,
+    "coverage_bar": 0.917,
+    "share_bar": 0.99,
+    "held": true
+   },
+   "P4": {
+    "rare_pairs": 1148,
+    "share_class_design_narrower": 1.0,
+    "bar": 0.8,
+    "held": true
+   }
+  },
+  "issued_certificates_descriptive": {
+   "prefix": {
+    "cells_with_a_certificate": 420,
+    "median_wrong_share_among_issued": 0.04065040650406504,
+    "cells_over_delta": 37,
+    "max": 1.0
+   },
+   "bonferroni": {
+    "cells_with_a_certificate": 412,
+    "median_wrong_share_among_issued": 0.0,
+    "cells_over_delta": 14,
+    "max": 1.0
+   },
+   "target_0.25": {
+    "cells_with_a_certificate": 414,
+    "median_wrong_share_among_issued": 0.03841639961769833,
+    "cells_over_delta": 54,
+    "max": 1.0
+   },
+   "target_0.5": {
+    "cells_with_a_certificate": 413,
+    "median_wrong_share_among_issued": 0.031746031746031744,
+    "cells_over_delta": 46,
+    "max": 1.0
+   },
+   "target_0.75": {
+    "cells_with_a_certificate": 408,
+    "median_wrong_share_among_issued": 0.0053489702517162474,
+    "cells_over_delta": 21,
+    "max": 1.0
+   }
+  }
+ },
+ "run_population": {
+  "files": 380,
+  "prereg": {
+   "P1": {
+    "bar": 0.145,
+    "by_rule": {
+     "prefix": {
+      "max_violation": 0.095,
+      "cells_over_bar": 0,
+      "cells": 447
+     },
+     "bonferroni": {
+      "max_violation": 0.0125,
+      "cells_over_bar": 0,
+      "cells": 447
+     },
+     "target_0.25": {
+      "max_violation": 0.095,
+      "cells_over_bar": 0,
+      "cells": 447
+     },
+     "target_0.5": {
+      "max_violation": 0.095,
+      "cells_over_bar": 0,
+      "cells": 447
+     },
+     "target_0.75": {
+      "max_violation": 0.0925,
+      "cells_over_bar": 0,
+      "cells": 447
+     }
+    },
+    "held": true
+   },
+   "P2": {
+    "cells_with_the_target_right": 824,
+    "share_target_at_least_bonferroni": 0.9635922330097088,
+    "bar": 0.8,
+    "held": true
+   },
+   "P3": {
+    "pairs": 2563,
+    "maps": 287,
+    "ua_share_at_bar": 0.9996098322278579,
+    "joint_share_at_bar": 1.0,
+    "overall_share_at_bar": 1.0,
+    "coverage_bar": 0.917,
+    "share_bar": 0.99,
+    "held": true
+   },
+   "P4": {
+    "rare_pairs": 1224,
+    "share_class_design_narrower": 1.0,
+    "bar": 0.8,
+    "held": true
+   }
+  },
+  "issued_certificates_descriptive": {
+   "prefix": {
+    "cells_with_a_certificate": 447,
+    "median_wrong_share_among_issued": 0.04065040650406505,
+    "cells_over_delta": 38,
+    "max": 1.0
+   },
+   "bonferroni": {
+    "cells_with_a_certificate": 439,
+    "median_wrong_share_among_issued": 0.0,
+    "cells_over_delta": 14,
+    "max": 1.0
+   },
+   "target_0.25": {
+    "cells_with_a_certificate": 441,
+    "median_wrong_share_among_issued": 0.038567493112947666,
+    "cells_over_delta": 55,
+    "max": 1.0
+   },
+   "target_0.5": {
+    "cells_with_a_certificate": 440,
+    "median_wrong_share_among_issued": 0.030628517823639775,
+    "cells_over_delta": 48,
+    "max": 1.0
+   },
+   "target_0.75": {
+    "cells_with_a_certificate": 435,
+    "median_wrong_share_among_issued": 0.005763688760806916,
+    "cells_over_delta": 21,
+    "max": 1.0
+   }
+  }
+ },
+ "departures": [
+  "The run read 380 unit files where the plan fixed 356: the cluster's exp79_units also holds exp79's RTX rerun of OlmoEarth Base (olmoearth_base_rtx, 24 files), which the script's glob took in. plan_population is the 356 planned files and is the result; run_population is as run. Every prediction holds on both.",
+  "Arm A counts a draw that certify would refuse (review_set_check: a review set or the confident end) as no zone and no violation, as certify does; 7 of the 178,800 draws, at most one per cell; dividing by the unrefused draws changes no maximum (the independent audit).",
+  "The target is tested at any budget, as certify_zone tests it, also where its expected labels fall below the level cut; the plan did not say so."
+ ],
+ "tile": {
+  "experiment": "exp116 arm C",
+  "package_version": "1.17.0",
+  "package_sha": "9bf2ecb8d46c3bf8b1b31f9965d91ede2ff56207",
+  "runs": [
+   {
+    "sample": "random_200",
+    "budget": 200,
+    "certified": true,
+    "zone_share": 0.53082275390625,
+    "zone_true_error": 0.05530642750373692,
+    "alpha": 0.1,
+    "certificate_written": true,
+    "verified": true,
+    "statement": "The 55% most confident of the 15813 windows counted on this map (8697 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 200 random labels; the exact upper bound on the zone's error rate at that level is 9.3%). 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+   },
+   {
+    "sample": "random_300",
+    "budget": 300,
+    "certified": true,
+    "zone_share": 0.67559814453125,
+    "zone_true_error": 0.08112747312313669,
+    "alpha": 0.1,
+    "certificate_written": true,
+    "verified": true,
+    "statement": "The 70% most confident of the 15813 windows counted on this map (11069 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 300 random labels; the exact upper bound on the zone's error rate at that level is 9.5%). The zone is the mask, not every window at or above the threshold: 10 windows share the threshold's confidence and 1 of them are inside. 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+   },
+   {
+    "sample": "random_400",
+    "budget": 400,
+    "certified": true,
+    "zone_share": 0.5791015625,
+    "zone_true_error": 0.06302698145025296,
+    "alpha": 0.1,
+    "certificate_written": true,
+    "verified": true,
+    "statement": "The 60% most confident of the 15813 windows counted on this map (9488 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 400 random labels; the exact upper bound on the zone's error rate at that level is 9.6%). The zone is the mask, not every window at or above the threshold: 6 windows share the threshold's confidence and 3 of them are inside. 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+   },
+   {
+    "sample": "random_500",
+    "budget": 500,
+    "certified": true,
+    "zone_share": 0.6273193359375,
+    "zone_true_error": 0.07073360575987546,
+    "alpha": 0.1,
+    "certificate_written": true,
+    "verified": true,
+    "statement": "The 65% most confident of the 15813 windows counted on this map (10278 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 500 random labels; the exact upper bound on the zone's error rate at that level is 7.6%). The zone is the mask, not every window at or above the threshold: 3 windows share the threshold's confidence and 1 of them are inside. 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+   },
+   {
+    "sample": "random_600",
+    "budget": 600,
+    "certified": true,
+    "zone_share": 0.67559814453125,
+    "zone_true_error": 0.08112747312313669,
+    "alpha": 0.1,
+    "certificate_written": true,
+    "verified": true,
+    "statement": "The 70% most confident of the 15813 windows counted on this map (11069 windows) are wrong at most 10% of the time; this statement fails on at most 10% of samples like the recorded one (target rule, 600 random labels; the exact upper bound on the zone's error rate at that level is 9.7%). The zone is the mask, not every window at or above the threshold: 10 windows share the threshold's confidence and 1 of them are inside. 571 of the map's 16384 windows are left out as no-data, and nothing here describes them. Alpha, delta and the rule were fixed with the draw, before any label. It is about the zone's windows of 1 px taken together, not each pixel; outside the zone nothing is certified, which does not mean wrong; it assumes the reviewer's labels are right and that the sample was drawn once; and delta counts every sample, those that certify nothing included, so among samples that certify a zone more than delta can be wrong."
+   },
+   {
+    "sample": "class_600",
+    "budget": 600,
+    "certified": false
+   }
+  ],
+  "P5": {
+   "certified": 5,
+   "all_verify": true,
+   "held": true
+  }
+ },
+ "audit": "wf_8dbe7de7-5db: independent routes reproduce arm A on all 420 locally available cells (12,600 numbers, 0 mismatches) and arm B on all 269 locally available maps (2,402 pairs, exact); the prereg block reproduces from the rows"
+}

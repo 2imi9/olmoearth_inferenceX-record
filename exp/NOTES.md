@@ -1694,3 +1694,16 @@ Every U+ combination is worse than plain averaged confidence, by 0.0025 to
 The boundary-first order is also worse on excess AURC (0.0175 against
 0.0094 on v1 Bolivia), which is consistent rather than contradictory: it was
 only ever claimed at fixed review budgets, never as a ranker.
+
+## exp116 — the target rule, the class design and the certificate on real maps (2026-10-24)
+
+Preregistered and frozen in debc794 (docs/plan/target_class_certificate.md) at the owner's "fix all", after the
+final three-rater score named these three parts as untested on real maps. Arms A and B ran on the cluster (job
+1496625, 32 cores, 27 minutes) against the package at 9bf2ecb; arm C locally on the package's Dynamic World tile.
+The cluster's exp79_units holds exp79's RTX rerun of OlmoEarth Base beside the 16 encoders, and the script's glob
+read it: 380 files where the plan fixed 356. exp97 guarded against exactly this and exp116 did not; the summary
+reports the planned 356 as the result and the 380 beside it, and every prediction holds on both. An independent
+second route (wf_8dbe7de7-5db, from the plan alone) reproduced every arm-A cell and arm-B map of the planned files.
+P1 to P4 hold; P5 is mixed (the class-design sample on the tile certified nothing at 600 labels over nine classes).
+Read after the run: on 46 of 413 cells, more than delta of the target rule's issued zones were wrong, though no
+cell's share of all draws passed the bar; the package now says what delta counts wherever a zone is certified.

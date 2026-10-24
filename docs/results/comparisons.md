@@ -4750,6 +4750,36 @@ Recorded after an independent audit whose script is `exp/exp115_crosscheck.py`. 
 or outputs, with its own exact interval inversion and sums. Its 831 class counts are identical, its 3,530 class-level
 probabilities agree within 5.7e-10, and all five verdicts are the same.
 
+## The target rule, the class design and the certificate on real maps (exp116)
+
+Preregistered and frozen before any statistic was computed ([plan](../plan/target_class_certificate.md), debc794);
+run against the package at 9bf2ecb (1.17.0) on the embedding suite's fully labelled unit maps and the package's
+Dynamic World expert tile. The run read 380 unit files where the plan fixed 356: the cluster's copy also holds exp79's
+RTX rerun of OlmoEarth Base (24 files). The results below are the planned 356; every prediction holds on all 380 too
+(`exp/out/exp116_summary.json`). An independent second route, written from the plan alone, reproduces every
+arm-A cell of the planned files to the last digit and every arm-B map exactly (`exp/exp116_crosscheck/`).
+
+- **The target rule is valid on real maps (P1 holds).** With alpha half each map's error rate, delta 0.1, 300 or
+  1,000 random labels and targets 0.25, 0.5 and 0.75, the largest share of 400 draws certifying a zone wrong more than
+  alpha was 0.0925 at target 0.5 and 0.095 at 0.25, over 420 cells each (bar 0.145); prefix 0.095, Bonferroni
+  0.0125. <!-- claim:exp116-target-rule-valid-on-real-maps -->
+- **With the target right, it certifies the target more often (P2 holds).** On 744 of the 771 cells where the target
+  zone is wrong at most alpha (0.965), the target rule certified at least the target on at least as many draws as
+  Bonferroni certified that level; on average over those cells 0.68 against 0.41 at target 0.5. <!-- claim:exp116-target-rule-certifies-its-target-more-often -->
+- **The class design's exact intervals hold (P3 holds).** 400 labels stratified by map class: each class's user's
+  accuracy covered on at least 0.917 of 400 draws for 2,401 of 2,402 pairs, and the class areas with the producer's
+  accuracies, and the overall accuracy, held together on every one of 269 maps (smallest 0.9775). <!-- claim:exp116-class-design-exact-intervals-hold -->
+- **It narrows rare classes (P4 holds).** For all 1,148 classes under 5% of their map, the class design's user's
+  accuracy interval was narrower than a simple random sample's of the same size; median width ratio 0.61. <!-- claim:exp116-class-design-narrows-rare-classes -->
+- **Certificates on a real tile (P5 mixed).** Five random samples with a 0.5 target certified zones 5.5% to 8.1% wrong
+  against the expert labels at alpha 0.10, and each certificate verified; the class-design sample of 600 labels over
+  nine classes certified nothing, so P5's "all six" does not hold as worded. <!-- claim:exp116-certificates-on-a-real-tile -->
+- **What delta counts (descriptive).** On 46 of the 413 cells where the target rule at 0.5 certified a zone on some
+  draw, more than delta of the zones it certified were wrong, though no cell's share of all draws passed the bar:
+  delta bounds every sample, those that certify nothing included, not the certificates issued. <!-- claim:exp116-issued-certificates-can-fail-more-often-than-delta -->
+
+These maps are linear probes on benchmark splits, not landscape maps: the units are the suite's own.
+
 ## A vision-language model as the reviewer (exp91)
 
 **Question.** The labelled routes need a reviewer. Can a general-purpose vision-language model supply the labels from
