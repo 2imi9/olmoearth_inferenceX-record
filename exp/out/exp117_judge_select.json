@@ -1,0 +1,35 @@
+{
+ "rule": "per family (linear quantities; ratios): the betting interval unless a validity gate fails or its median width over the family exceeds the fallback's by more than 10%; then the fallback if its own exact gates hold; else neither. Fixed before the run.",
+ "gates": {
+  "betting_selftest": true,
+  "judge_enum": true,
+  "judge_mc": false,
+  "data_reading_checks": false,
+  "widths_without_errors_or_misses": false,
+  "bsc_enum": true
+ },
+ "verdict": {
+  "linear": "boxed stratified Chernoff (the fallback)",
+  "ratio": "boxed stratified Chernoff (the fallback)"
+ },
+ "data_reading_is_a_precondition": false,
+ "median_betting_over_bsc": {
+  "linear": null,
+  "ratio": null
+ },
+ "count_compared": {
+  "linear": 0,
+  "ratio": 0
+ },
+ "median_betting_over_normal": {
+  "linear": null,
+  "ratio": null
+ },
+ "largest_betting_over_normal": {
+  "linear": null,
+  "ratio": null
+ },
+ "median_m2_over_betting_user_accuracy": null,
+ "table4_largest_absolute_difference_points": null,
+ "e2e": null
+}

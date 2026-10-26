@@ -22,8 +22,9 @@ before the split are in its v1.9.0 tree. The record continues here: exp110 to ex
 recorded in this repository after the split, and their history is this repository's. The package's releases from 1.12.2
 point their PyPI page's links and their docstrings here; 1.13.0 (22 October 2026) adds `from-embeddings` and `boundary`
 and draws 400 labels for the certified zone, as exp112 found; 1.17.0 (24 October 2026) adds the map certificate and the
-class design, which exp116 grades with the target rule of 1.16.0 on fully labelled real maps. The checks below still
-run against 1.12.1, the release the record's experiments ran on; exp116's checks read only its outputs.
+class design, which exp116 grades with the target rule of 1.16.0 on fully labelled real maps; 1.18.0 adds `grade`, an
+agency's stratified sample graded with intervals valid at any sample size, which exp117 runs on NLCD 2016 and GFC2020. The checks below still
+run against 1.12.1, the release the record's experiments ran on; exp116's and exp117's checks read only their outputs.
 
 | Path | Contents |
 |---|---|

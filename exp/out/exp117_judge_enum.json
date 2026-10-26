@@ -1,0 +1,654 @@
+{
+ "note": "alpha 0.1 and 0.3: at 0.05 the threshold 40 is out of reach of these tiny samples and every interval is [0, 1]; a form marked NOT_CLAIMED or NOMINAL is shown, not tested",
+ "mm_engine": {
+  "dynamic_programme_vs_every_order_max_abs_difference": 3.552713678800501e-15,
+  "bound_above_the_evalue_inside_its_interval_max": 0.0,
+  "holds": true
+ },
+ "alpha_0.1": {
+  "areas_mode_drawn_without_replacement": {
+   "N": [
+    5,
+    7
+   ],
+   "n": [
+    3,
+    4
+   ],
+   "W": [
+    0.4166666666666667,
+    0.5833333333333334
+   ],
+   "betting_without_replacement": {
+    "min_coverage": 0.997142857142857,
+    "at_population": [
+     2,
+     3
+    ],
+    "mean_width": 0.6075839296845388
+   },
+   "betting_point_frame_deflated": {
+    "min_coverage": 0.9999999999999998,
+    "at_population": [
+     2,
+     2
+    ],
+    "mean_width": 0.9855410188904472
+   },
+   "betting_point_frame_not_deflated_NOT_CLAIMED": {
+    "min_coverage": 0.9999999999999998,
+    "at_population": [
+     2,
+     2
+    ],
+    "mean_width": 0.7949087573371003
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.5714285714285714,
+    "at_population": [
+     0,
+     1
+    ],
+    "mean_width": 0.34388942760036645
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 0.03229522705078125
+  },
+  "census_and_sampled": {
+   "N": [
+    6,
+    25
+   ],
+   "n": [
+    6,
+    8
+   ],
+   "W": [
+    0.1935483870967742,
+    0.8064516129032258
+   ],
+   "betting_without_replacement": {
+    "min_coverage": 0.9923444976076555,
+    "at_population": [
+     0,
+     15
+    ],
+    "mean_width": 0.5467208377514097
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.32,
+    "at_population": [
+     0,
+     1
+    ],
+    "mean_width": 0.3279585536770068
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 0.08966064453125
+  },
+  "three_strata_weights_not_proportional_one_label": {
+   "N": [
+    4,
+    6,
+    3
+   ],
+   "n": [
+    2,
+    3,
+    1
+   ],
+   "W": [
+    0.2,
+    0.5,
+    0.3
+   ],
+   "betting_without_replacement": {
+    "min_coverage": 0.9972222222222221,
+    "at_population": [
+     2,
+     3,
+     2
+    ],
+    "mean_width": 0.7404805121094586
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.0,
+    "at_population": [
+     0,
+     0,
+     1
+    ],
+    "mean_width": 0.28997653608012125
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 0.02048039436340332
+  },
+  "unknown_values_bounded": {
+   "N": [
+    5,
+    5
+   ],
+   "n": [
+    3,
+    3
+   ],
+   "betting_bounded": {
+    "min_coverage": 0.9999999999999999,
+    "at_population": [
+     [
+      0,
+      0,
+      0,
+      5
+     ],
+     [
+      0,
+      3,
+      0,
+      2
+     ]
+    ],
+    "mean_width": 0.8061352960761758
+   },
+   "normal_drop_NOT_CLAIMED": {
+    "min_coverage": 0.0,
+    "at_population": [
+     [
+      0,
+      3,
+      0,
+      2
+     ],
+     [
+      0,
+      3,
+      1,
+      1
+     ]
+    ],
+    "mean_width": 0.5623231023572417
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 1.004364252090454
+  },
+  "difference": {
+   "N": [
+    5,
+    6
+   ],
+   "n": [
+    3,
+    3
+   ],
+   "betting_without_replacement": {
+    "min_coverage": 0.9900000000000001,
+    "at_population": [
+     [
+      2,
+      2,
+      1
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "mean_width": 1.1806014795901385
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.5,
+    "at_population": [
+     [
+      0,
+      0,
+      5
+     ],
+     [
+      0,
+      1,
+      5
+     ]
+    ],
+    "mean_width": 0.6949297566930993
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 0.24526071548461914
+  },
+  "pure_stratum_rule_and_ratios": {
+   "N": [
+    10,
+    8
+   ],
+   "n": [
+    5,
+    4
+   ],
+   "gamma": 0.01,
+   "m2_pure_stratum": {
+    "min_coverage": 0.976190476190476,
+    "at_population": [
+     4,
+     [
+      0,
+      6,
+      2
+     ]
+    ],
+    "mean_width": 0.4828446934329287
+   },
+   "betting_ratio_uncapped": {
+    "min_coverage": 0.992063492063492,
+    "at_population": [
+     5,
+     [
+      0,
+      0,
+      8
+     ]
+    ],
+    "mean_width": 0.6134764704439375
+   },
+   "betting_ratio_design1_capped": {
+    "min_coverage": 0.9979591836734694,
+    "at_population": [
+     4,
+     [
+      3,
+      4,
+      1
+     ]
+    ],
+    "mean_width": 0.758870471517245
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.49999999999999994,
+    "at_population": [
+     0,
+     [
+      1,
+      5,
+      2
+     ]
+    ],
+    "mean_width": 0.3837572772576422
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 4.367432355880737
+  },
+  "ratio_uncapped": {
+   "N(4, 4)_n(2, 2)_W(0.7, 0.3)": {
+    "betting_ratio_uncapped": {
+     "min_coverage": 0.9999999999999999,
+     "at_population": [
+      [
+       0,
+       0,
+       4
+      ],
+      [
+       0,
+       2,
+       2
+      ]
+     ],
+     "mean_width": 0.8056695080465741
+    },
+    "holds": true,
+    "certified_end_beyond_dense_grid": 0
+   },
+   "N(5, 3)_n(3, 2)_W(0.5, 0.5)": {
+    "betting_ratio_uncapped": {
+     "min_coverage": 0.9999999999999999,
+     "at_population": [
+      [
+       0,
+       1,
+       4
+      ],
+      [
+       1,
+       1,
+       1
+      ]
+     ],
+     "mean_width": 0.7309730363388857
+    },
+    "holds": true,
+    "certified_end_beyond_dense_grid": 0
+   },
+   "holds": true,
+   "seconds": 2.269808769226074
+  }
+ },
+ "alpha_0.3": {
+  "areas_mode_drawn_without_replacement": {
+   "N": [
+    5,
+    7
+   ],
+   "n": [
+    3,
+    4
+   ],
+   "W": [
+    0.4166666666666667,
+    0.5833333333333334
+   ],
+   "betting_without_replacement": {
+    "min_coverage": 0.9857142857142855,
+    "at_population": [
+     2,
+     2
+    ],
+    "mean_width": 0.5635284839710316
+   },
+   "betting_point_frame_deflated": {
+    "min_coverage": 0.9999999999999998,
+    "at_population": [
+     2,
+     2
+    ],
+    "mean_width": 0.9694229478767966
+   },
+   "betting_point_frame_not_deflated_NOT_CLAIMED": {
+    "min_coverage": 0.997142857142857,
+    "at_population": [
+     2,
+     3
+    ],
+    "mean_width": 0.7346369127870943
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.5714285714285714,
+    "at_population": [
+     0,
+     1
+    ],
+    "mean_width": 0.34388942760036645
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 0.032950639724731445
+  },
+  "census_and_sampled": {
+   "N": [
+    6,
+    25
+   ],
+   "n": [
+    6,
+    8
+   ],
+   "W": [
+    0.1935483870967742,
+    0.8064516129032258
+   ],
+   "betting_without_replacement": {
+    "min_coverage": 0.9738760603749161,
+    "at_population": [
+     0,
+     8
+    ],
+    "mean_width": 0.504937738100263
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.32,
+    "at_population": [
+     0,
+     1
+    ],
+    "mean_width": 0.3279585536770068
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 0.09076905250549316
+  },
+  "three_strata_weights_not_proportional_one_label": {
+   "N": [
+    4,
+    6,
+    3
+   ],
+   "n": [
+    2,
+    3,
+    1
+   ],
+   "W": [
+    0.2,
+    0.5,
+    0.3
+   ],
+   "betting_without_replacement": {
+    "min_coverage": 0.9833333333333334,
+    "at_population": [
+     0,
+     3,
+     2
+    ],
+    "mean_width": 0.6900241492744831
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.0,
+    "at_population": [
+     0,
+     0,
+     1
+    ],
+    "mean_width": 0.28997653608012125
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 0.02043604850769043
+  },
+  "unknown_values_bounded": {
+   "N": [
+    5,
+    5
+   ],
+   "n": [
+    3,
+    3
+   ],
+   "betting_bounded": {
+    "min_coverage": 0.9899999999999999,
+    "at_population": [
+     [
+      1,
+      3,
+      1,
+      0
+     ],
+     [
+      1,
+      3,
+      1,
+      0
+     ]
+    ],
+    "mean_width": 0.7870340795901482
+   },
+   "normal_drop_NOT_CLAIMED": {
+    "min_coverage": 0.0,
+    "at_population": [
+     [
+      0,
+      3,
+      0,
+      2
+     ],
+     [
+      0,
+      3,
+      1,
+      1
+     ]
+    ],
+    "mean_width": 0.5623231023572417
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 1.015045166015625
+  },
+  "difference": {
+   "N": [
+    5,
+    6
+   ],
+   "n": [
+    3,
+    3
+   ],
+   "betting_without_replacement": {
+    "min_coverage": 0.9700000000000001,
+    "at_population": [
+     [
+      1,
+      1,
+      3
+     ],
+     [
+      3,
+      3,
+      0
+     ]
+    ],
+    "mean_width": 1.0670377688564128
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.5,
+    "at_population": [
+     [
+      0,
+      0,
+      5
+     ],
+     [
+      0,
+      1,
+      5
+     ]
+    ],
+    "mean_width": 0.6949297566930993
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 0.24477267265319824
+  },
+  "pure_stratum_rule_and_ratios": {
+   "N": [
+    10,
+    8
+   ],
+   "n": [
+    5,
+    4
+   ],
+   "gamma": 0.03,
+   "m2_pure_stratum": {
+    "min_coverage": 0.8968253968253967,
+    "at_population": [
+     5,
+     [
+      0,
+      6,
+      2
+     ]
+    ],
+    "mean_width": 0.4224891067538127
+   },
+   "betting_ratio_uncapped": {
+    "min_coverage": 0.976190476190476,
+    "at_population": [
+     4,
+     [
+      0,
+      1,
+      7
+     ]
+    ],
+    "mean_width": 0.5683040971557299
+   },
+   "betting_ratio_design1_capped": {
+    "min_coverage": 0.9693877551020408,
+    "at_population": [
+     4,
+     [
+      3,
+      5,
+      0
+     ]
+    ],
+    "mean_width": 0.5864426927434073
+   },
+   "normal_NOMINAL": {
+    "min_coverage": 0.49999999999999994,
+    "at_population": [
+     0,
+     [
+      1,
+      5,
+      2
+     ]
+    ],
+    "mean_width": 0.3837572772576422
+   },
+   "holds": true,
+   "normal_falls_below_somewhere": true,
+   "seconds": 4.909935474395752
+  },
+  "ratio_uncapped": {
+   "N(4, 4)_n(2, 2)_W(0.7, 0.3)": {
+    "betting_ratio_uncapped": {
+     "min_coverage": 0.9722222222222222,
+     "at_population": [
+      [
+       0,
+       2,
+       2
+      ],
+      [
+       2,
+       2,
+       0
+      ]
+     ],
+     "mean_width": 0.754092190000746
+    },
+    "holds": true,
+    "certified_end_beyond_dense_grid": 0
+   },
+   "N(5, 3)_n(3, 2)_W(0.5, 0.5)": {
+    "betting_ratio_uncapped": {
+     "min_coverage": 0.9999999999999999,
+     "at_population": [
+      [
+       0,
+       1,
+       4
+      ],
+      [
+       1,
+       1,
+       1
+      ]
+     ],
+     "mean_width": 0.6811418883502484
+    },
+    "holds": true,
+    "certified_end_beyond_dense_grid": 0
+   },
+   "holds": true,
+   "seconds": 2.4658899307250977
+  }
+ },
+ "holds": true,
+ "seconds": 18.786328554153442
+}

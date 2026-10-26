@@ -1,0 +1,563 @@
+{
+ "E1_share_counts": {
+  "N": [
+   6,
+   9
+  ],
+  "n": [
+   3.0,
+   4.0
+  ],
+  "areas_mode": false,
+  "populations": 70,
+  "outcomes": 20,
+  "normal": {
+   "min_coverage": 0.4444444444444444,
+   "at_population": [
+    0,
+    1
+   ],
+   "mean_width": 0.3894949853417403,
+   "seconds": 0.0014851093292236328
+  },
+  "chernoff_global": {
+   "min_coverage": 0.9976190476190474,
+   "at_population": [
+    3,
+    5
+   ],
+   "mean_width": 0.713548954454118,
+   "seconds": 0.11932539939880371
+  },
+  "chernoff_boxed": {
+   "min_coverage": 0.9976190476190474,
+   "at_population": [
+    3,
+    5
+   ],
+   "mean_width": 0.5229104293215883,
+   "seconds": 0.12131905555725098
+  },
+  "chernoff_global_coarse_optimiser": {
+   "min_coverage": 0.9976190476190474,
+   "at_population": [
+    3,
+    5
+   ],
+   "mean_width": 0.7342325777088662,
+   "seconds": 0.018606901168823242
+  },
+  "bennett2_wr": {
+   "min_coverage": 0.9999999999999998,
+   "at_population": [
+    3,
+    5
+   ],
+   "mean_width": 1.0,
+   "seconds": 0.0006806850433349609
+  },
+  "ebmix_wr": {
+   "min_coverage": 0.9999999999999998,
+   "at_population": [
+    3,
+    5
+   ],
+   "mean_width": 0.9963237209638194,
+   "seconds": 0.06929636001586914
+  },
+  "union": {
+   "min_coverage": 0.992063492063492,
+   "at_population": [
+    0,
+    4
+   ],
+   "mean_width": 0.5066666666666666,
+   "seconds": 0.0005900859832763672
+  }
+ },
+ "E1b_share_counts_unequal": {
+  "N": [
+   10,
+   4
+  ],
+  "n": [
+   2.0,
+   3.0
+  ],
+  "areas_mode": false,
+  "populations": 55,
+  "outcomes": 12,
+  "normal": {
+   "min_coverage": 0.2,
+   "at_population": [
+    1,
+    0
+   ],
+   "mean_width": 0.4819188662844525,
+   "seconds": 0.00023102760314941406
+  },
+  "chernoff_global": {
+   "min_coverage": 0.9944444444444445,
+   "at_population": [
+    8,
+    1
+   ],
+   "mean_width": 0.8296080827337846,
+   "seconds": 0.07060384750366211
+  },
+  "chernoff_boxed": {
+   "min_coverage": 0.9944444444444445,
+   "at_population": [
+    8,
+    1
+   ],
+   "mean_width": 0.6408033603604916,
+   "seconds": 0.07109928131103516
+  },
+  "chernoff_global_coarse_optimiser": {
+   "min_coverage": 0.9944444444444445,
+   "at_population": [
+    8,
+    1
+   ],
+   "mean_width": 0.8398518353937422,
+   "seconds": 0.011095046997070312
+  },
+  "bennett2_wr": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    6,
+    2
+   ],
+   "mean_width": 1.0,
+   "seconds": 0.0003981590270996094
+  },
+  "ebmix_wr": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    6,
+    2
+   ],
+   "mean_width": 1.0,
+   "seconds": 0.0016560554504394531
+  },
+  "union": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    6,
+    2
+   ],
+   "mean_width": 0.6428571428571429,
+   "seconds": 0.0003561973571777344
+  }
+ },
+ "E2_share_binomial_three_strata": {
+  "W": [
+   0.6,
+   0.3,
+   0.1
+  ],
+  "n": [
+   3.0,
+   5.0,
+   8.0
+  ],
+  "grid": 21,
+  "outcomes": 216,
+  "normal": {
+   "min_coverage": 0.1424999999999998,
+   "at_p": [
+    0.9500000000000001,
+    0.0,
+    0.05
+   ],
+   "mean_width": 0.5047246678506004,
+   "seconds": 0.009067535400390625
+  },
+  "chernoff_global": {
+   "min_coverage": 0.9791079146874995,
+   "at_p": [
+    0.7000000000000001,
+    0.05,
+    0.0
+   ],
+   "mean_width": 0.7295865037972182,
+   "seconds": 1.3774514198303223
+  },
+  "chernoff_boxed": {
+   "min_coverage": 0.98405677,
+   "at_p": [
+    0.30000000000000004,
+    0.9,
+    1.0
+   ],
+   "mean_width": 0.7195631674073931,
+   "seconds": 1.967559814453125
+  },
+  "chernoff_global_coarse_optimiser": {
+   "min_coverage": 0.9791079146874995,
+   "at_p": [
+    0.7000000000000001,
+    0.05,
+    0.0
+   ],
+   "mean_width": 0.7440938252048294,
+   "seconds": 0.20746970176696777
+  },
+  "bennett2_wr": {
+   "min_coverage": 0.9999999999999981,
+   "at_p": [
+    0.35000000000000003,
+    0.05,
+    0.25
+   ],
+   "mean_width": 1.0,
+   "seconds": 0.012402772903442383
+  },
+  "ebmix_wr": {
+   "min_coverage": 0.9999999999999981,
+   "at_p": [
+    0.35000000000000003,
+    0.05,
+    0.25
+   ],
+   "mean_width": 1.0,
+   "seconds": 0.03728127479553223
+  }
+ },
+ "E3_share_areas_mode_drawn_without_replacement": {
+  "N": [
+   5,
+   7
+  ],
+  "n": [
+   3.0,
+   4.0
+  ],
+  "areas_mode": true,
+  "populations": 48,
+  "outcomes": 20,
+  "normal": {
+   "min_coverage": 0.5714285714285714,
+   "at_population": [
+    0,
+    1
+   ],
+   "mean_width": 0.5326778645866762,
+   "seconds": 0.0003349781036376953
+  },
+  "chernoff_global": {
+   "min_coverage": 0.997142857142857,
+   "at_population": [
+    3,
+    4
+   ],
+   "mean_width": 0.7135094220656232,
+   "seconds": 0.11646866798400879
+  },
+  "chernoff_boxed": {
+   "min_coverage": 0.9999999999999998,
+   "at_population": [
+    1,
+    6
+   ],
+   "mean_width": 0.7248421723206471,
+   "seconds": 0.17006754875183105
+  },
+  "chernoff_global_coarse_optimiser": {
+   "min_coverage": 0.997142857142857,
+   "at_population": [
+    3,
+    4
+   ],
+   "mean_width": 0.733005085224628,
+   "seconds": 0.018429040908813477
+  },
+  "bennett2_wr": {
+   "min_coverage": 0.9999999999999998,
+   "at_population": [
+    1,
+    6
+   ],
+   "mean_width": 1.0,
+   "seconds": 0.0006382465362548828
+  },
+  "ebmix_wr": {
+   "min_coverage": 0.9999999999999998,
+   "at_population": [
+    1,
+    6
+   ],
+   "mean_width": 0.9943723102742957,
+   "seconds": 0.006881237030029297
+  }
+ },
+ "E4_ratio_counts": {
+  "kind": "ratio",
+  "N": [
+   4,
+   8
+  ],
+  "n": [
+   3.0,
+   3.0
+  ],
+  "populations": 675,
+  "outcomes": 100,
+  "normal": {
+   "min_coverage": 0.24107142857142858,
+   "at_population": [
+    [
+     0,
+     2,
+     2
+    ],
+    [
+     1,
+     1,
+     6
+    ]
+   ],
+   "mean_width": 0.4341955209706289,
+   "seconds": 0.0022459030151367188
+  },
+  "chernoff_global": {
+   "min_coverage": 0.9955357142857142,
+   "at_population": [
+    [
+     1,
+     3,
+     0
+    ],
+    [
+     5,
+     3,
+     0
+    ]
+   ],
+   "mean_width": 0.8864436557846181,
+   "seconds": 8.41773247718811
+  },
+  "chernoff_boxed": {
+   "min_coverage": 0.9999999999999998,
+   "at_population": [
+    [
+     0,
+     1,
+     3
+    ],
+    [
+     2,
+     4,
+     2
+    ]
+   ],
+   "mean_width": 0.6135281832324377,
+   "seconds": 10.830320835113525
+  },
+  "chernoff_boxed_coarse_optimiser": {
+   "min_coverage": 0.9999999999999998,
+   "at_population": [
+    [
+     0,
+     1,
+     3
+    ],
+    [
+     2,
+     4,
+     2
+    ]
+   ],
+   "mean_width": 0.6217031250016799,
+   "seconds": 1.4773125648498535
+  }
+ },
+ "E5_difference_counts": {
+  "kind": "difference",
+  "N": [
+   5,
+   6
+  ],
+  "n": [
+   3.0,
+   3.0
+  ],
+  "populations": 588,
+  "outcomes": 100,
+  "normal": {
+   "min_coverage": 0.5,
+   "at_population": [
+    [
+     0,
+     0,
+     5
+    ],
+    [
+     0,
+     1,
+     5
+    ]
+   ],
+   "mean_width": 0.6949297566930993,
+   "seconds": 0.0018110275268554688
+  },
+  "union": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    [
+     0,
+     0,
+     5
+    ],
+    [
+     2,
+     3,
+     1
+    ]
+   ],
+   "mean_width": 0.9090909090909087,
+   "seconds": 0.0012497901916503906
+  },
+  "chernoff_global": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    [
+     0,
+     0,
+     5
+    ],
+    [
+     2,
+     3,
+     1
+    ]
+   ],
+   "mean_width": 1.5784336632240639,
+   "seconds": 0.57887864112854
+  },
+  "chernoff_boxed": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    [
+     0,
+     0,
+     5
+    ],
+    [
+     2,
+     3,
+     1
+    ]
+   ],
+   "mean_width": 0.9090909091171174,
+   "seconds": 0.578843355178833
+  },
+  "chernoff_boxed_coarse_optimiser": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    [
+     0,
+     0,
+     5
+    ],
+    [
+     2,
+     3,
+     1
+    ]
+   ],
+   "mean_width": 0.9217066177491717,
+   "seconds": 0.09183883666992188
+  }
+ },
+ "E6_unassigned": {
+  "N": [
+   5,
+   5
+  ],
+  "n": [
+   3.0,
+   3.0
+  ],
+  "populations": 3136,
+  "outcomes": 100,
+  "bounded_boxed": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    [
+     0,
+     0,
+     0,
+     5
+    ],
+    [
+     2,
+     0,
+     0,
+     3
+    ]
+   ],
+   "mean_width": 0.6000000000176635,
+   "seconds": 0.5895025730133057
+  },
+  "bounded_global": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    [
+     0,
+     0,
+     0,
+     5
+    ],
+    [
+     2,
+     0,
+     0,
+     3
+    ]
+   ],
+   "mean_width": 0.8868299457230405,
+   "seconds": 0.578693151473999
+  },
+  "drop_normal": {
+   "min_coverage": 0.0,
+   "at_population": [
+    [
+     0,
+     3,
+     0,
+     2
+    ],
+    [
+     0,
+     3,
+     1,
+     1
+    ]
+   ],
+   "mean_width": 0.5623231023572417,
+   "seconds": 0.0020906925201416016
+  },
+  "drop_boxed": {
+   "min_coverage": 0.9999999999999999,
+   "at_population": [
+    [
+     0,
+     0,
+     0,
+     5
+    ],
+    [
+     2,
+     0,
+     0,
+     3
+    ]
+   ],
+   "mean_width": 0.8546630144277947,
+   "seconds": 0.6848771572113037
+  }
+ },
+ "seconds_total": 29.138416528701782
+}

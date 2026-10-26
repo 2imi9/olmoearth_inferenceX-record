@@ -1,0 +1,456 @@
+{
+ "points": 21612,
+ "strata": 149,
+ "maps": [
+  "gfc_v2",
+  "worldcover_forest"
+ ],
+ "classes": [
+  "0",
+  "1"
+ ],
+ "alpha": 0.05,
+ "rule": "a point is right when the map's class equals its reference label",
+ "overall_accuracy": {
+  "gfc_v2": {
+   "estimate": 0.9150627376612703,
+   "normal_theory": [
+    0.9107113927889775,
+    0.9194140825335632
+   ],
+   "method": "betting",
+   "interval": [
+    0.9077125903265753,
+    0.9219079941838828
+   ],
+   "labels": 21612
+  },
+  "worldcover_forest": {
+   "estimate": 0.9141266602966827,
+   "normal_theory": [
+    0.9096824729514108,
+    0.9185708476419545
+   ],
+   "method": "betting",
+   "interval": [
+    0.9065360236901938,
+    0.9210829997606638
+   ],
+   "labels": 21612
+  }
+ },
+ "differences": {
+  "gfc_v2 minus worldcover_forest": {
+   "estimate": 0.0009360773645883391,
+   "normal_theory": [
+    -0.003415911045866582,
+    0.005288065775043149
+   ],
+   "method": "betting",
+   "interval": [
+    -0.005933170381823061,
+    0.007989981800463397
+   ],
+   "disagreeing_points": 1770
+  }
+ },
+ "per_class": {
+  "gfc_v2": {
+   "0": {
+    "labels_mapped": 14271,
+    "labels_reference": 15019,
+    "user": {
+     "labels_in_denominator": 14271,
+     "method": "box of two betting intervals",
+     "estimate": 0.9630747506040878,
+     "normal_theory": [
+      0.9593655713075561,
+      0.9667839299006195
+     ],
+     "interval": [
+      0.9546779827194658,
+      0.9698548478767872
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 15019,
+     "method": "box of two betting intervals",
+     "estimate": 0.9137283150128247,
+     "normal_theory": [
+      0.9086214268934321,
+      0.9188352031322173
+     ],
+     "interval": [
+      0.9035078849219864,
+      0.9232161929380125
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.7001962200771373,
+     "normal_theory": [
+      0.6940064094316805,
+      0.7063860307225942
+     ],
+     "method": "betting",
+     "interval": [
+      0.6900362077726925,
+      0.7101164245321456
+     ]
+    },
+    "map_share_estimate": 0.6643192669604562
+   },
+   "1": {
+    "labels_mapped": 7341,
+    "labels_reference": 6593,
+    "user": {
+     "labels_in_denominator": 7341,
+     "method": "box of two betting intervals",
+     "estimate": 0.8200459490756966,
+     "normal_theory": [
+      0.8097175005228405,
+      0.8303743976285527
+     ],
+     "interval": [
+      0.7978115267949483,
+      0.8407999061195532
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 6593,
+     "method": "box of two betting intervals",
+     "estimate": 0.918179301750847,
+     "normal_theory": [
+      0.9101946625159629,
+      0.9261639409857312
+     ],
+     "interval": [
+      0.8987515916449127,
+      0.9339150522583027
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.2998037799228625,
+     "normal_theory": [
+      0.29361396927740563,
+      0.3059935905683194
+     ],
+     "method": "betting",
+     "interval": [
+      0.28988357546785437,
+      0.3099637922273075
+     ]
+    },
+    "map_share_estimate": 0.33568073303954415
+   }
+  },
+  "worldcover_forest": {
+   "0": {
+    "labels_mapped": 14313,
+    "labels_reference": 15019,
+    "user": {
+     "labels_in_denominator": 14313,
+     "method": "box of two betting intervals",
+     "estimate": 0.951610768720582,
+     "normal_theory": [
+      0.9472339105070907,
+      0.9559876269340734
+     ],
+     "interval": [
+      0.9421341801315556,
+      0.9593694663107042
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 15019,
+     "method": "box of two betting intervals",
+     "estimate": 0.9243618052261737,
+     "normal_theory": [
+      0.9196103006437881,
+      0.9291133098085593
+     ],
+     "interval": [
+      0.9147429131108654,
+      0.9332035680633425
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.7001962200771373,
+     "normal_theory": [
+      0.6940064094316805,
+      0.7063860307225942
+     ],
+     "method": "betting",
+     "interval": [
+      0.6900362077726925,
+      0.7101164245321456
+     ]
+    },
+    "map_share_estimate": 0.6801464036322723
+   },
+   "1": {
+    "labels_mapped": 7299,
+    "labels_reference": 6593,
+    "user": {
+     "labels_in_denominator": 7299,
+     "method": "box of two betting intervals",
+     "estimate": 0.834419313474898,
+     "normal_theory": [
+      0.8242711151603657,
+      0.8445675117894302
+     ],
+     "interval": [
+      0.8124273548962602,
+      0.8546973357818461
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 6593,
+     "method": "box of two betting intervals",
+     "estimate": 0.8902223259570178,
+     "normal_theory": [
+      0.8807897201204189,
+      0.8996549317936167
+     ],
+     "interval": [
+      0.8679449377624462,
+      0.9086042975945626
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.2998037799228625,
+     "normal_theory": [
+      0.29361396927740563,
+      0.3059935905683194
+     ],
+     "method": "betting",
+     "interval": [
+      0.28988357546785437,
+      0.3099637922273075
+     ]
+    },
+    "map_share_estimate": 0.31985359636772775
+   }
+  }
+ },
+ "error_matrix": {
+  "gfc_v2": {
+   "rows_map_columns_reference": [
+    "0",
+    "1"
+   ],
+   "share": [
+    [
+     0.639789112349364,
+     0.024530154611024008
+    ],
+    [
+     0.06040710772770535,
+     0.27527362531183297
+    ]
+   ],
+   "unsampled_share": 0.0
+  },
+  "worldcover_forest": {
+   "rows_map_columns_reference": [
+    "0",
+    "1"
+   ],
+   "share": [
+    [
+     0.6472346420029803,
+     0.03291176162922613
+    ],
+    [
+     0.052961578074091284,
+     0.2668920182936311
+    ]
+   ],
+   "unsampled_share": 0.0
+  }
+ },
+ "unknown": {
+  "reference": 0,
+  "gfc_v2": 0,
+  "worldcover_forest": 0
+ },
+ "notes": [
+  "Each interval holds at 95% on its own, at every sample size; the intervals do not hold jointly. The normal-theory interval beside each one is the agency's (Stehman 2014, Olofsson et al. 2014): nominal, and in a small class or a stratum of few labels it can cover far less than it says. Its ends are the estimate plus or minus 1.96 standard errors, unclipped, as agencies publish them, so they can pass 0 or 100%."
+ ],
+ "design": {
+  "sizes_from": "strata file",
+  "sizes": "area",
+  "frame": "units of 1 drawn without replacement, read as points in an area",
+  "unsampled_share": 0.0,
+  "labels_per_stratum": {
+   "1001": 82,
+   "1002": 108,
+   "1003": 300,
+   "1004": 161,
+   "1006": 228,
+   "1008": 113,
+   "1014": 58,
+   "1015": 30,
+   "1101": 106,
+   "1102": 197,
+   "1103": 625,
+   "1104": 298,
+   "1106": 319,
+   "1114": 69,
+   "1200": 123,
+   "1210": 59,
+   "1221": 239,
+   "1222": 315,
+   "1223": 176,
+   "2001": 45,
+   "2002": 33,
+   "2003": 54,
+   "2004": 43,
+   "2006": 186,
+   "2008": 51,
+   "2014": 54,
+   "2015": 53,
+   "2025": 320,
+   "2027": 463,
+   "2029": 247,
+   "2030": 8,
+   "2101": 54,
+   "2102": 55,
+   "2103": 78,
+   "2104": 50,
+   "2106": 81,
+   "2114": 176,
+   "2125": 174,
+   "2200": 77,
+   "2210": 172,
+   "2221": 93,
+   "2222": 91,
+   "2223": 92,
+   "2225": 102,
+   "4001": 96,
+   "4002": 65,
+   "4003": 66,
+   "4004": 108,
+   "4006": 112,
+   "4008": 65,
+   "4014": 54,
+   "4015": 55,
+   "4025": 54,
+   "4027": 69,
+   "4029": 63,
+   "4101": 162,
+   "4102": 106,
+   "4103": 261,
+   "4104": 305,
+   "4106": 312,
+   "4114": 300,
+   "4125": 193,
+   "4200": 109,
+   "4210": 45,
+   "4221": 94,
+   "4222": 95,
+   "4223": 78,
+   "4224": 99,
+   "4226": 99,
+   "5004": 55,
+   "5006": 56,
+   "5008": 244,
+   "5014": 54,
+   "5015": 454,
+   "5025": 49,
+   "5027": 375,
+   "5029": 68,
+   "5104": 60,
+   "5106": 93,
+   "5114": 117,
+   "5125": 794,
+   "5200": 78,
+   "5210": 85,
+   "5221": 97,
+   "5222": 95,
+   "5223": 89,
+   "5225": 87,
+   "5226": 101,
+   "5227": 84,
+   "6004": 104,
+   "6006": 263,
+   "6014": 53,
+   "6025": 261,
+   "6027": 787,
+   "6029": 107,
+   "6030": 33,
+   "6040": 149,
+   "6104": 67,
+   "6106": 103,
+   "6114": 66,
+   "6125": 303,
+   "6200": 96,
+   "6210": 46,
+   "6221": 95,
+   "6222": 90,
+   "6223": 97,
+   "6224": 90,
+   "6226": 102,
+   "6227": 93,
+   "7001": 53,
+   "7002": 55,
+   "7003": 136,
+   "7004": 554,
+   "7006": 468,
+   "7008": 87,
+   "7014": 141,
+   "7015": 272,
+   "7101": 136,
+   "7102": 136,
+   "7103": 135,
+   "7104": 80,
+   "7106": 96,
+   "7114": 97,
+   "7200": 188,
+   "7210": 85,
+   "7222": 63,
+   "7223": 73,
+   "7225": 98,
+   "8001": 243,
+   "8002": 272,
+   "8003": 405,
+   "8004": 109,
+   "8006": 105,
+   "8008": 55,
+   "8014": 108,
+   "8015": 55,
+   "8029": 50,
+   "8101": 105,
+   "8102": 132,
+   "8103": 407,
+   "8104": 55,
+   "8106": 137,
+   "8114": 216,
+   "8200": 100,
+   "8210": 73,
+   "8221": 94,
+   "8222": 86,
+   "8223": 90,
+   "8226": 99
+  }
+ },
+ "inputs": {
+  "points": "/scratch/qi_zim_neu/olmoearth_inferenceX/agency/e2e/1534186/gfc.csv",
+  "strata": "/scratch/qi_zim_neu/olmoearth_inferenceX/agency/1525456/src/strata_size.csv",
+  "stratum": "stratum",
+  "reference": "ref_forest",
+  "alternate": null,
+  "maps": [
+   "gfc_v2",
+   "worldcover_forest"
+  ],
+  "weight": null,
+  "nodata": [],
+  "pure": {},
+  "sampled_strata_only": false
+ },
+ "written_by": {
+  "package": "olmoearth-inferencex",
+  "version": "1.18.0",
+  "command": "grade"
+ }
+}

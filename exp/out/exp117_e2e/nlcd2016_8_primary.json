@@ -1,0 +1,903 @@
+{
+ "points": 4629,
+ "strata": 21,
+ "maps": [
+  "nlcd8",
+  "lcmap"
+ ],
+ "classes": [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "8"
+ ],
+ "alpha": 0.05,
+ "rule": "a point is right when the map's class equals its reference label",
+ "overall_accuracy": {
+  "nlcd8": {
+   "estimate": 0.8488599664099784,
+   "normal_theory": [
+    0.8345157594856466,
+    0.8632041733343102
+   ],
+   "method": "betting",
+   "interval": [
+    0.8242793405403859,
+    0.8709001662425706
+   ],
+   "labels": 4629
+  },
+  "lcmap": {
+   "estimate": 0.8301390591173075,
+   "normal_theory": [
+    0.8154889014529552,
+    0.8447892167816597
+   ],
+   "method": "betting",
+   "interval": [
+    0.8050365204261922,
+    0.852673057521784
+   ],
+   "labels": 4629
+  }
+ },
+ "differences": {
+  "nlcd8 minus lcmap": {
+   "estimate": 0.01872090729267084,
+   "normal_theory": [
+    0.0070954920640122765,
+    0.030346322521329405
+   ],
+   "method": "betting",
+   "interval": [
+    -6.032096463570724e-05,
+    0.03751296133920334
+   ],
+   "disagreeing_points": 1115
+  }
+ },
+ "per_class": {
+  "nlcd8": {
+   "1": {
+    "labels_mapped": 1202,
+    "labels_reference": 1201,
+    "user": {
+     "labels_in_denominator": 1202,
+     "method": "box of two betting intervals",
+     "estimate": 0.9099426964263986,
+     "normal_theory": [
+      0.8860413644868587,
+      0.9338440283659385
+     ],
+     "interval": [
+      0.8117543218887101,
+      0.989835103942674
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 1201,
+     "method": "box of two betting intervals",
+     "estimate": 0.6487540181966365,
+     "normal_theory": [
+      0.5902798806895432,
+      0.7072281557037298
+     ],
+     "interval": [
+      0.5254444148744587,
+      0.7725946161850228
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.07703792071447486,
+     "normal_theory": [
+      0.07000588285042489,
+      0.08406995857852484
+     ],
+     "method": "betting",
+     "interval": [
+      0.06679617773463065,
+      0.09007388985764919
+     ]
+    },
+    "map_share_estimate": 0.054925063757651715
+   },
+   "2": {
+    "labels_mapped": 670,
+    "labels_reference": 757,
+    "user": {
+     "labels_in_denominator": 670,
+     "method": "box of two betting intervals",
+     "estimate": 0.8907508520586147,
+     "normal_theory": [
+      0.862335431229424,
+      0.9191662728878054
+     ],
+     "interval": [
+      0.8338363871726242,
+      0.9363866688246241
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 757,
+     "method": "box of two betting intervals",
+     "estimate": 0.8593210974028594,
+     "normal_theory": [
+      0.8306928299294396,
+      0.8879493648762793
+     ],
+     "interval": [
+      0.795846364456798,
+      0.9104854087833069
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.24104586028707897,
+     "normal_theory": [
+      0.23070107070801396,
+      0.251390649866144
+     ],
+     "method": "betting",
+     "interval": [
+      0.22438257511398518,
+      0.25847602878567955
+     ]
+    },
+    "map_share_estimate": 0.23254066241710283
+   },
+   "3": {
+    "labels_mapped": 1175,
+    "labels_reference": 1042,
+    "user": {
+     "labels_in_denominator": 1175,
+     "method": "box of two betting intervals",
+     "estimate": 0.8246682110056166,
+     "normal_theory": [
+      0.7958581127061612,
+      0.853478309305072
+     ],
+     "interval": [
+      0.7702260477944172,
+      0.8710765226951482
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 1042,
+     "method": "box of two betting intervals",
+     "estimate": 0.9243362570849971,
+     "normal_theory": [
+      0.9086315856991707,
+      0.9400409284708235
+     ],
+     "interval": [
+      0.8867243679918896,
+      0.9523678945387619
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.33187250341067553,
+     "normal_theory": [
+      0.31978788856111073,
+      0.34395711826024034
+     ],
+     "method": "betting",
+     "interval": [
+      0.3113943886385684,
+      0.35081164492979156
+     ]
+    },
+    "map_share_estimate": 0.37198206931970906
+   },
+   "4": {
+    "labels_mapped": 883,
+    "labels_reference": 1108,
+    "user": {
+     "labels_in_denominator": 883,
+     "method": "box of two betting intervals",
+     "estimate": 0.9094149424668354,
+     "normal_theory": [
+      0.8874996038428313,
+      0.9313302810908395
+     ],
+     "interval": [
+      0.8651297511005288,
+      0.9449999662977595
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 1108,
+     "method": "box of two betting intervals",
+     "estimate": 0.8013797315057841,
+     "normal_theory": [
+      0.777098141332395,
+      0.8256613216791733
+     ],
+     "interval": [
+      0.7479613514394693,
+      0.8465591869328359
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.2873426577669495,
+     "normal_theory": [
+      0.27710963989078885,
+      0.29757567564311016
+     ],
+     "method": "betting",
+     "interval": [
+      0.2712144143130786,
+      0.30475059358972345
+     ]
+    },
+    "map_share_estimate": 0.253207387715464
+   },
+   "5": {
+    "labels_mapped": 221,
+    "labels_reference": 208,
+    "user": {
+     "labels_in_denominator": 221,
+     "method": "pure-stratum rule",
+     "estimate": 0.9173044401253497,
+     "normal_theory": [
+      0.8799341056690801,
+      0.9546747745816193
+     ],
+     "interval": [
+      0.8027456974540632,
+      0.9632619718029009
+     ],
+     "pure_stratum": "1"
+    },
+    "producer": {
+     "labels_in_denominator": 208,
+     "method": "box of two betting intervals",
+     "estimate": 0.9439987238877355,
+     "normal_theory": [
+      0.9060724908264723,
+      0.9819249569489987
+     ],
+     "interval": [
+      0.6506793709311623,
+      1.0
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.016810994215466127,
+     "normal_theory": [
+      0.015850136572396808,
+      0.017771851858535446
+     ],
+     "method": "betting",
+     "interval": [
+      0.012967208137212083,
+      0.021606480086560964
+     ]
+    },
+    "map_share_estimate": 0.01730020742569997
+   },
+   "6": {
+    "labels_mapped": 372,
+    "labels_reference": 238,
+    "user": {
+     "labels_in_denominator": 372,
+     "method": "box of two betting intervals",
+     "estimate": 0.5501112595946578,
+     "normal_theory": [
+      0.48912395703528216,
+      0.6110985621540335
+     ],
+     "interval": [
+      0.42745745108223987,
+      0.6712290957620991
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 238,
+     "method": "box of two betting intervals",
+     "estimate": 0.9018996399456883,
+     "normal_theory": [
+      0.8461711200883228,
+      0.9576281598030538
+     ],
+     "interval": [
+      0.7137838588033569,
+      1.0
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.03640781200580469,
+     "normal_theory": [
+      0.03213531361961788,
+      0.04068031039199149
+     ],
+     "method": "betting",
+     "interval": [
+      0.02917223573944483,
+      0.044306109534090865
+     ]
+    },
+    "map_share_estimate": 0.05969009353387981
+   },
+   "8": {
+    "labels_mapped": 106,
+    "labels_reference": 75,
+    "user": {
+     "labels_in_denominator": 106,
+     "method": "pure-stratum rule",
+     "estimate": 0.5801713489616844,
+     "normal_theory": [
+      0.48109935515642277,
+      0.6792433427669461
+     ],
+     "interval": [
+      0.42121462854306124,
+      0.7176837245273646
+     ],
+     "pure_stratum": "6"
+    },
+    "producer": {
+     "labels_in_denominator": 75,
+     "method": "box of two betting intervals",
+     "estimate": 0.6335408161397994,
+     "normal_theory": [
+      0.4509897332489357,
+      0.8160918990306631
+     ],
+     "interval": [
+      0.13730791620756044,
+      1.0
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.0094822515995503,
+     "normal_theory": [
+      0.006623556146577893,
+      0.012340947052522708
+     ],
+     "method": "betting",
+     "interval": [
+      0.004520057669864741,
+      0.01643747307336696
+     ]
+    },
+    "map_share_estimate": 0.010354515830492614
+   }
+  },
+  "lcmap": {
+   "1": {
+    "labels_mapped": 853,
+    "labels_reference": 1201,
+    "user": {
+     "labels_in_denominator": 853,
+     "method": "box of two betting intervals",
+     "estimate": 0.9316608732733331,
+     "normal_theory": [
+      0.8896533053241164,
+      0.9736684412225499
+     ],
+     "interval": [
+      0.7794924873988603,
+      1.0
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 1201,
+     "method": "box of two betting intervals",
+     "estimate": 0.5016239076850982,
+     "normal_theory": [
+      0.4500396303289909,
+      0.5532081850412055
+     ],
+     "interval": [
+      0.3833626034795309,
+      0.626162916825866
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.07703792071447486,
+     "normal_theory": [
+      0.07000588285042489,
+      0.08406995857852484
+     ],
+     "method": "betting",
+     "interval": [
+      0.06679617773463065,
+      0.09007388985764919
+     ]
+    },
+    "map_share_estimate": 0.04147867956819536
+   },
+   "2": {
+    "labels_mapped": 903,
+    "labels_reference": 757,
+    "user": {
+     "labels_in_denominator": 903,
+     "method": "box of two betting intervals",
+     "estimate": 0.8418076709462314,
+     "normal_theory": [
+      0.8135328570544511,
+      0.8700824848380118
+     ],
+     "interval": [
+      0.7817091680846942,
+      0.8906195712680389
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 757,
+     "method": "box of two betting intervals",
+     "estimate": 0.8761657001064997,
+     "normal_theory": [
+      0.846526799065362,
+      0.9058046011476375
+     ],
+     "interval": [
+      0.8105471295873704,
+      0.9268428116039112
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.24104586028707897,
+     "normal_theory": [
+      0.23070107070801396,
+      0.251390649866144
+     ],
+     "method": "betting",
+     "interval": [
+      0.22438257511398518,
+      0.25847602878567955
+     ]
+    },
+    "map_share_estimate": 0.25088404658846564
+   },
+   "3": {
+    "labels_mapped": 1166,
+    "labels_reference": 1042,
+    "user": {
+     "labels_in_denominator": 1166,
+     "method": "box of two betting intervals",
+     "estimate": 0.8303553182031121,
+     "normal_theory": [
+      0.8029024060638615,
+      0.8578082303423628
+     ],
+     "interval": [
+      0.7740052628786391,
+      0.8766735436623134
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 1042,
+     "method": "box of two betting intervals",
+     "estimate": 0.8956355287074005,
+     "normal_theory": [
+      0.8748219962703778,
+      0.9164490611444231
+     ],
+     "interval": [
+      0.8483861880048572,
+      0.9311342533087438
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.33187250341067553,
+     "normal_theory": [
+      0.31978788856111073,
+      0.34395711826024034
+     ],
+     "method": "betting",
+     "interval": [
+      0.3113943886385684,
+      0.35081164492979156
+     ]
+    },
+    "map_share_estimate": 0.3579633905385095
+   },
+   "4": {
+    "labels_mapped": 1104,
+    "labels_reference": 1108,
+    "user": {
+     "labels_in_denominator": 1104,
+     "method": "box of two betting intervals",
+     "estimate": 0.8709588829540651,
+     "normal_theory": [
+      0.847779586293005,
+      0.8941381796151252
+     ],
+     "interval": [
+      0.8208615778620031,
+      0.9109617910924467
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 1108,
+     "method": "box of two betting intervals",
+     "estimate": 0.817246171212266,
+     "normal_theory": [
+      0.7911007084936214,
+      0.8433916339309105
+     ],
+     "interval": [
+      0.7609070377037268,
+      0.8648938879083782
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.2873426577669495,
+     "normal_theory": [
+      0.27710963989078885,
+      0.29757567564311016
+     ],
+     "method": "betting",
+     "interval": [
+      0.2712144143130786,
+      0.30475059358972345
+     ]
+    },
+    "map_share_estimate": 0.26962201256793544
+   },
+   "5": {
+    "labels_mapped": 205,
+    "labels_reference": 208,
+    "user": {
+     "labels_in_denominator": 205,
+     "method": "box of two betting intervals",
+     "estimate": 0.8293839759784873,
+     "normal_theory": [
+      0.7332465678028551,
+      0.9255213841541196
+     ],
+     "interval": [
+      0.523427872094964,
+      1.0
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 208,
+     "method": "box of two betting intervals",
+     "estimate": 0.8848748970767037,
+     "normal_theory": [
+      0.8366550885757161,
+      0.9330947055776914
+     ],
+     "interval": [
+      0.5925087487256457,
+      1.0
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.016810994215466127,
+     "normal_theory": [
+      0.015850136572396808,
+      0.017771851858535446
+     ],
+     "method": "betting",
+     "interval": [
+      0.012967208137212083,
+      0.021606480086560964
+     ]
+    },
+    "map_share_estimate": 0.017935753772693453
+   },
+   "6": {
+    "labels_mapped": 310,
+    "labels_reference": 238,
+    "user": {
+     "labels_in_denominator": 310,
+     "method": "box of two betting intervals",
+     "estimate": 0.543853011674983,
+     "normal_theory": [
+      0.47654699898751385,
+      0.6111590243624522
+     ],
+     "interval": [
+      0.39538972028467767,
+      0.6872201626981345
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 238,
+     "method": "box of two betting intervals",
+     "estimate": 0.7889839821495798,
+     "normal_theory": [
+      0.7202064720919297,
+      0.8577614922072299
+     ],
+     "interval": [
+      0.5903183700791873,
+      0.9428012400779522
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.03640781200580469,
+     "normal_theory": [
+      0.03213531361961788,
+      0.04068031039199149
+     ],
+     "method": "betting",
+     "interval": [
+      0.02917223573944483,
+      0.044306109534090865
+     ]
+    },
+    "map_share_estimate": 0.05281791197445787
+   },
+   "8": {
+    "labels_mapped": 88,
+    "labels_reference": 75,
+    "user": {
+     "labels_in_denominator": 88,
+     "method": "box of two betting intervals",
+     "estimate": 0.49811572684828853,
+     "normal_theory": [
+      0.3346972957522565,
+      0.6615341579443206
+     ],
+     "interval": [
+      0.020629925839848486,
+      1.0
+     ]
+    },
+    "producer": {
+     "labels_in_denominator": 75,
+     "method": "box of two betting intervals",
+     "estimate": 0.48844750513366864,
+     "normal_theory": [
+      0.3287143532948137,
+      0.6481806569725236
+     ],
+     "interval": [
+      0.02036280240580553,
+      1.0
+     ]
+    },
+    "reference_share": {
+     "estimate": 0.0094822515995503,
+     "normal_theory": [
+      0.006623556146577893,
+      0.012340947052522708
+     ],
+     "method": "betting",
+     "interval": [
+      0.004520057669864741,
+      0.01643747307336696
+     ]
+    },
+    "map_share_estimate": 0.00929820498974273
+   }
+  }
+ },
+ "error_matrix": {
+  "nlcd8": {
+   "rows_map_columns_reference": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "8"
+   ],
+   "share": [
+    [
+     0.049978660617029415,
+     0.0013238210711222272,
+     0.0008091482362102317,
+     0.002658831972206513,
+     0.00012116798376776484,
+     5.302509296818355e-06,
+     2.813136801870465e-05
+    ],
+    [
+     0.01153749204780624,
+     0.2071357931863103,
+     0.004642548425055476,
+     0.007579581508468382,
+     2.0350376856715322e-05,
+     0.0010832645817379961,
+     0.0005416322908689981
+    ],
+    [
+     0.007618391920723091,
+     0.027357456290073016,
+     0.3067617876320538,
+     0.027071277883498918,
+     0.0,
+     0.0007328617429643556,
+     0.0024402938503979093
+    ],
+    [
+     0.006214957167475888,
+     0.0021080552866080313,
+     0.012947705369752182,
+     0.23027058193143168,
+     0.0002557329403208925,
+     0.0009485999308115357,
+     0.00046175508905911295
+    ],
+    [
+     8.769024533565878e-05,
+     0.00018756282660556522,
+     8.769024533565878e-05,
+     0.0002661163199905383,
+     0.01586955708668419,
+     0.0007985451177648603,
+     3.045583983561918e-06
+    ],
+    [
+     0.0010573384144457168,
+     0.0027018058193732444,
+     0.003381555196218648,
+     0.01917206132074357,
+     0.0005411402438530674,
+     0.0328361925392455,
+     0.0
+    ],
+    [
+     0.0005433903016588248,
+     0.00023136580698791473,
+     0.003242068306051576,
+     0.00032420683060515774,
+     3.045583983561918e-06,
+     3.045583983561918e-06,
+     0.006007393417222011
+    ]
+   ],
+   "unsampled_share": 0.0
+  },
+  "lcmap": {
+   "rows_map_columns_reference": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "8"
+   ],
+   "share": [
+    [
+     0.0386440628287296,
+     1.8917611043890672e-05,
+     2.28288587218863e-05,
+     0.0027687365357508395,
+     2.6512546484091776e-06,
+     3.045583983561918e-06,
+     1.8436895317118835e-05
+    ],
+    [
+     0.018168751548378333,
+     0.21119611493620358,
+     0.0075503594719966765,
+     0.010703239321251933,
+     0.00011004776969826411,
+     0.002526182683391031,
+     0.0006293508575473354
+    ],
+    [
+     0.010242334610247412,
+     0.024305629577601903,
+     0.29723680505567035,
+     0.021662258829002454,
+     6.0555938810562254e-05,
+     0.00059730418647854,
+     0.0038585023406997416
+    ],
+    [
+     0.008355552356571587,
+     0.002206512917584166,
+     0.019882316883206907,
+     0.2348296868859921,
+     0.00029389721979067323,
+     0.004043871116357716,
+     1.0175188428357661e-05
+    ],
+    [
+     0.000216295776491753,
+     7.073112723891992e-05,
+     0.000690303358728204,
+     0.0012363646154584839,
+     0.014875626776167685,
+     0.0005122279379007758,
+     0.00033420418070766774
+    ],
+    [
+     0.0012696328475342187,
+     0.003187303615316111,
+     0.0023968954774167273,
+     0.01582819463497418,
+     0.001410704901523572,
+     0.02872518049769305,
+     0.0
+    ],
+    [
+     0.00014129074652192845,
+     6.065050209193827e-05,
+     0.004092994304936145,
+     0.00031417694451563784,
+     5.751035482700034e-05,
+     0.0,
+     0.00463158213685008
+    ]
+   ],
+   "unsampled_share": 0.0
+  }
+ },
+ "unknown": {
+  "reference": 0,
+  "nlcd8": 0,
+  "lcmap": 0
+ },
+ "notes": [
+  "Each interval holds at 95% on its own, at every sample size; the intervals do not hold jointly. The normal-theory interval beside each one is the agency's (Stehman 2014, Olofsson et al. 2014): nominal, and in a small class or a stratum of few labels it can cover far less than it says. Its ends are the estimate plus or minus 1.96 standard errors, unclipped, as agencies publish them, so they can pass 0 or 100%.",
+  "The pure-stratum rule was not used for class(es) 1, 2, 3, 4, 6 of nlcd8, which have more than one declared pure stratum; their user's accuracies take the box interval.",
+  "User's accuracy of class(es) 5, 8 of nlcd8 uses the pure-stratum rule: each class fills one declared stratum (every unit there mapped as it), and the interval is a union bound of exact hypergeometric intervals, at 0.1 of alpha for the strata declared pure for no class."
+ ],
+ "design": {
+  "sizes_from": "weights",
+  "sizes": "units",
+  "frame": "units drawn without replacement",
+  "unsampled_share": 0.0,
+  "labels_per_stratum": {
+   "1": 190,
+   "2": 249,
+   "3": 249,
+   "4": 160,
+   "5": 247,
+   "6": 95,
+   "7": 245,
+   "8": 245,
+   "9": 143,
+   "10": 395,
+   "11": 195,
+   "12": 124,
+   "13": 288,
+   "14": 156,
+   "15": 139,
+   "16": 295,
+   "17": 295,
+   "18": 248,
+   "19": 248,
+   "20": 170,
+   "21": 253
+  }
+ },
+ "inputs": {
+  "points": "/scratch/qi_zim_neu/olmoearth_inferenceX/agency/e2e/1534186/nlcdB2016.csv",
+  "strata": null,
+  "stratum": "stratum",
+  "reference": "ref8",
+  "alternate": null,
+  "maps": [
+   "nlcd8",
+   "lcmap"
+  ],
+  "weight": "weight",
+  "nodata": [],
+  "pure": {
+   "1": "5",
+   "2": "1",
+   "3": "1",
+   "4": "1",
+   "5": "1",
+   "6": "8",
+   "7": "4",
+   "8": "4",
+   "9": "4",
+   "10": "3",
+   "11": "3",
+   "12": "2",
+   "13": "2",
+   "14": "6",
+   "15": "6"
+  },
+  "sampled_strata_only": false
+ },
+ "written_by": {
+  "package": "olmoearth-inferencex",
+  "version": "1.18.0",
+  "command": "grade"
+ }
+}

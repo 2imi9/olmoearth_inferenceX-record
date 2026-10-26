@@ -1,0 +1,144 @@
+{
+ "draws": 300,
+ "alpha": 0.05,
+ "gate": 0.9122508278236462,
+ "gate_note": "coverage at least 0.95 - 3 Monte Carlo standard errors at 0.95",
+ "gfc_oa_point_frame": {
+  "theta": 0.9150627376612703,
+  "model": "points drawn independently (point frame), each stratum's rate as observed",
+  "errors": 0,
+  "first_error": null,
+  "betting": {
+   "coverage": 1.0,
+   "mean_width_points": 1.41712017710163,
+   "draws": 300
+  },
+  "normal": {
+   "coverage": 0.9533333333333334,
+   "mean_width_points": 0.8694719248460439,
+   "draws": 300
+  },
+  "holds": true
+ },
+ "gfc_minus_worldcover_point_frame": {
+  "theta": 0.0009360773645878577,
+  "model": "points drawn independently, each stratum's (+1, -1, 0) shares as observed",
+  "errors": 0,
+  "first_error": null,
+  "betting": {
+   "coverage": 1.0,
+   "mean_width_points": 1.3856449873320713,
+   "draws": 300
+  },
+  "normal": {
+   "coverage": 0.95,
+   "mean_width_points": 0.8672205561009788,
+   "draws": 300
+  },
+  "holds": true
+ },
+ "nlcd_oa_primary_or_alternate_point_frame": {
+  "theta": 0.8638724418296853,
+  "model": "points drawn independently (point frame), each stratum's rate as observed",
+  "errors": 0,
+  "first_error": null,
+  "betting": {
+   "coverage": 1.0,
+   "mean_width_points": 4.265887776147605,
+   "draws": 300
+  },
+  "normal": {
+   "coverage": 0.9366666666666666,
+   "mean_width_points": 2.6296702677858983,
+   "draws": 300
+  },
+  "holds": true
+ },
+ "nlcd_oa_primary_population_10n": {
+  "theta": 0.7211334217077977,
+  "model": "each stratum a population of 10 x n_h units drawn without replacement",
+  "errors": 0,
+  "first_error": null,
+  "betting": {
+   "coverage": 0.9966666666666667,
+   "mean_width_points": 5.518556494491115,
+   "draws": 300
+  },
+  "normal": {
+   "coverage": 0.97,
+   "mean_width_points": 3.373411658650141,
+   "draws": 300
+  },
+  "holds": true
+ },
+ "nlcd_user_52_box_population_10n": {
+  "theta": 0.8671921092149514,
+  "model": "each stratum a population of 10 x n_h units with the observed shares, drawn without replacement",
+  "errors": 0,
+  "first_error": null,
+  "box": {
+   "coverage": 1.0,
+   "mean_width_points": 10.53805799839997,
+   "draws": 300
+  },
+  "normal": {
+   "coverage": 0.96,
+   "mean_width_points": 5.872481555820232,
+   "draws": 300
+  },
+  "holds": true
+ },
+ "nlcd_user_23_box_population_10n": {
+  "theta": 0.7673362008238767,
+  "model": "each stratum a population of 10 x n_h units with the observed shares, drawn without replacement",
+  "errors": 0,
+  "first_error": null,
+  "box": {
+   "coverage": 1.0,
+   "mean_width_points": 81.39221519578335,
+   "draws": 300
+  },
+  "normal": {
+   "coverage": 0.94,
+   "mean_width_points": 11.89177022684207,
+   "draws": 300
+  },
+  "holds": true
+ },
+ "nlcd_producer_52_box_population_10n": {
+  "theta": 0.9406384502935079,
+  "model": "each stratum a population of 10 x n_h units with the observed shares, drawn without replacement",
+  "errors": 0,
+  "first_error": null,
+  "box": {
+   "coverage": 1.0,
+   "mean_width_points": 7.598922742534428,
+   "draws": 300
+  },
+  "normal": {
+   "coverage": 0.9633333333333334,
+   "mean_width_points": 3.4767006682957784,
+   "draws": 300
+  },
+  "holds": true
+ },
+ "nlcd_user_24_box_population_10n": {
+  "theta": 0.7492189581645817,
+  "model": "each stratum a population of 10 x n_h units with the observed shares, drawn without replacement",
+  "errors": 0,
+  "first_error": null,
+  "box": {
+   "coverage": 1.0,
+   "mean_width_points": 100.0,
+   "draws": 300
+  },
+  "normal": {
+   "coverage": 0.95,
+   "mean_width_points": 9.970388301102307,
+   "draws": 300
+  },
+  "holds": true
+ },
+ "holds": true,
+ "seconds": 97.21289372444153
+}

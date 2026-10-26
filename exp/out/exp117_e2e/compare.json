@@ -1,0 +1,1608 @@
+{
+ "overall": [
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "estimate": 0.8638724418296851,
+   "interval": [
+    0.8411277472229344,
+    0.8839755659820412
+   ],
+   "normal": [
+    0.8506654438006331,
+    0.8770794398587372
+   ],
+   "width_over_normal": 1.62216344186819,
+   "published": 86.4,
+   "estimate_minus_published_points": -0.012755817031489869,
+   "judge_betting": [
+    0.8411277472229344,
+    0.8839755659820412
+   ],
+   "abs_difference_to_judge": 0.0,
+   "judge_estimate_difference": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "estimate": 0.7211334217077977,
+   "interval": [
+    0.6910471720806939,
+    0.7494662606882372
+   ],
+   "normal": [
+    0.7033254495269298,
+    0.7389413938886656
+   ],
+   "width_over_normal": 1.6402510070828298,
+   "published": 72.1,
+   "estimate_minus_published_points": 0.013342170779779394,
+   "judge_betting": [
+    0.6910471720806939,
+    0.7494662606882372
+   ],
+   "abs_difference_to_judge": 0.0,
+   "judge_estimate_difference": 0.0
+  },
+  {
+   "run": "nlcd2011_l2_alt",
+   "map": "nlcd",
+   "estimate": 0.8650733895163035,
+   "interval": [
+    0.8425974592055425,
+    0.8848944522990863
+   ],
+   "normal": [
+    0.8520350820542356,
+    0.8781116969783714
+   ],
+   "width_over_normal": 1.6220277523212863,
+   "published": 86.5,
+   "estimate_minus_published_points": 0.007338951630359247,
+   "judge_betting": [
+    0.8425974592055425,
+    0.8848944522990863
+   ],
+   "abs_difference_to_judge": 0.0,
+   "judge_estimate_difference": 0.0
+  },
+  {
+   "run": "nlcd2016_l1_primary",
+   "map": "nlcd1",
+   "estimate": 0.7898569703252322,
+   "interval": [
+    0.7621710826894201,
+    0.8157279198540053
+   ],
+   "normal": [
+    0.7734549602827406,
+    0.8062589803677237
+   ],
+   "width_over_normal": 1.6326303003668214,
+   "published": 79.0,
+   "estimate_minus_published_points": -0.014302967476780282,
+   "judge_betting": [
+    0.7621710826894201,
+    0.8157279198540053
+   ],
+   "abs_difference_to_judge": 0.0,
+   "judge_estimate_difference": 0.0
+  },
+  {
+   "run": "nlcd2016_l1_alt",
+   "map": "nlcd1",
+   "estimate": 0.9070386013378376,
+   "interval": [
+    0.8870480197597601,
+    0.9242141688035233
+   ],
+   "normal": [
+    0.8955788009636442,
+    0.9184984017120311
+   ],
+   "width_over_normal": 1.6215879784196872,
+   "published": 90.6,
+   "estimate_minus_published_points": 0.10386013378376902,
+   "judge_betting": [
+    0.8870480197597601,
+    0.9242141688035233
+   ],
+   "abs_difference_to_judge": 0.0,
+   "judge_estimate_difference": 0.0
+  },
+  {
+   "run": "gfc2020",
+   "map": "gfc_v2",
+   "estimate": 0.9150627376612703,
+   "interval": [
+    0.9077125903265753,
+    0.9219079941838828
+   ],
+   "normal": [
+    0.9107113927889775,
+    0.9194140825335632
+   ],
+   "width_over_normal": 1.631151319181425,
+   "published": 91.0,
+   "estimate_minus_published_points": 0.5062737661270376,
+   "judge_betting": [
+    0.9077125903265753,
+    0.9219079941838828
+   ],
+   "abs_difference_to_judge": 0.0,
+   "judge_estimate_difference": 0.0
+  },
+  {
+   "run": "gfc2020",
+   "map": "worldcover_forest",
+   "estimate": 0.9141266602966827,
+   "interval": [
+    0.9065360236901938,
+    0.9210829997606638
+   ],
+   "normal": [
+    0.9096824729514108,
+    0.9185708476419545
+   ],
+   "width_over_normal": 1.6366294825471743,
+   "published": null,
+   "estimate_minus_published_points": null,
+   "judge_betting": [
+    0.9065360236901938,
+    0.9210829997606638
+   ],
+   "abs_difference_to_judge": 0.0,
+   "judge_estimate_difference": 0.0
+  }
+ ],
+ "differences": [
+  {
+   "run": "nlcd2016_8_alt",
+   "difference": "nlcd8 minus lcmap",
+   "estimate": 0.013369164770277608,
+   "interval": [
+    -0.001677047067190074,
+    0.028648020794335594
+   ],
+   "normal": [
+    0.004099612987260803,
+    0.022638716553294413
+   ],
+   "width_over_normal": 1.6357353932196428,
+   "judge_betting": [
+    -0.001677047067190074,
+    0.028648020794335594
+   ],
+   "abs_difference_to_judge": 0.0
+  },
+  {
+   "run": "nlcd2016_8_primary",
+   "difference": "nlcd8 minus lcmap",
+   "estimate": 0.01872090729267084,
+   "interval": [
+    -6.032096463570724e-05,
+    0.03751296133920334
+   ],
+   "normal": [
+    0.0070954920640122765,
+    0.030346322521329405
+   ],
+   "width_over_normal": 1.6159974316966639,
+   "judge_betting": [
+    -6.032096463570724e-05,
+    0.03751296133920334
+   ],
+   "abs_difference_to_judge": 0.0
+  },
+  {
+   "run": "gfc2020",
+   "difference": "gfc_v2 minus worldcover_forest",
+   "estimate": 0.0009360773645883391,
+   "interval": [
+    -0.005933170381823061,
+    0.007989981800463397
+   ],
+   "normal": [
+    -0.003415911045866582,
+    0.005288065775043149
+   ],
+   "width_over_normal": 1.599631119057969,
+   "judge_betting": [
+    -0.005933170381823061,
+    0.007989981800463397
+   ],
+   "abs_difference_to_judge": 0.0
+  }
+ ],
+ "per_class": [
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "11",
+   "user": 0.9886302184872046,
+   "user_interval": [
+    0.8976209624291269,
+    0.9987470145373244
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.9745879141546666,
+    1.0026725228197424
+   ],
+   "producer": 0.9622565062138025,
+   "producer_interval": [
+    0.6845390514217083,
+    1.0
+   ],
+   "producer_normal": [
+    0.9288312257161755,
+    0.9956817867114296
+   ],
+   "share": 0.017774374853999183,
+   "share_interval": [
+    0.01403227272131602,
+    0.022513848605854037
+   ],
+   "labels_mapped": 221,
+   "published_user_producer": [
+    99,
+    95
+   ],
+   "minus_published_points": [
+    -0.13697815127954982,
+    1.2256506213802538
+   ],
+   "judge_user_m2": [
+    0.8976209624291269,
+    0.9987470145373244
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.6845390514217083,
+    1.0
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "21",
+   "user": 0.8744073183548942,
+   "user_interval": [
+    0.7936866311100425,
+    0.9176245529065982
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.8337120639102271,
+    0.9151025727995612
+   ],
+   "producer": 0.6018592422417357,
+   "producer_interval": [
+    0.4363153050292888,
+    0.7699042559177706
+   ],
+   "producer_normal": [
+    0.5324883945744544,
+    0.671230089909017
+   ],
+   "share": 0.043298084517939844,
+   "share_interval": [
+    0.03574945547585884,
+    0.053270047133011644
+   ],
+   "labels_mapped": 359,
+   "published_user_producer": [
+    88,
+    61
+   ],
+   "minus_published_points": [
+    -0.5592681645105841,
+    -0.8140757758264314
+   ],
+   "judge_user_m2": [
+    0.7936866311100425,
+    0.9176245529065982
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.4363153050292888,
+    0.7699042559177706
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "22",
+   "user": 0.7433357563469757,
+   "user_interval": [
+    0.6328197177230187,
+    0.8137470704447249
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.6898350425610513,
+    0.7968364701329
+   ],
+   "producer": 0.6943662299099608,
+   "producer_interval": [
+    0.36983167685642654,
+    1.0
+   ],
+   "producer_normal": [
+    0.5817854776130672,
+    0.8069469822068543
+   ],
+   "share": 0.016357189167130394,
+   "share_interval": [
+    0.01145540451125271,
+    0.022980786811601206
+   ],
+   "labels_mapped": 316,
+   "published_user_producer": [
+    74,
+    70
+   ],
+   "minus_published_points": [
+    0.3335756346975671,
+    -0.5633770090039292
+   ],
+   "judge_user_m2": [
+    0.6328197177230187,
+    0.8137470704447249
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.36983167685642654,
+    1.0
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "23",
+   "user": 0.7673362008238765,
+   "user_interval": [
+    0.5879460984598749,
+    0.8631385628845568
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.7042999054512684,
+    0.8303724961964847
+   ],
+   "producer": 0.8203698855868826,
+   "producer_interval": [
+    0.18792204932311812,
+    1.0
+   ],
+   "producer_normal": [
+    0.7437301320410156,
+    0.8970096391327497
+   ],
+   "share": 0.006735402071074151,
+   "share_interval": [
+    0.002977633909871713,
+    0.011470983791191713
+   ],
+   "labels_mapped": 244,
+   "published_user_producer": [
+    77,
+    84
+   ],
+   "minus_published_points": [
+    -0.2663799176123405,
+    -1.9630114413117354
+   ],
+   "judge_user_m2": [
+    0.5879460984598749,
+    0.8631385628845568
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.18792204932311812,
+    1.0
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "24",
+   "user": 0.7492189581645817,
+   "user_interval": [
+    0.4642595624726924,
+    0.8709898610302376
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.6966736855639283,
+    0.8017642307652352
+   ],
+   "producer": 0.7613241342828482,
+   "producer_interval": [
+    0.0,
+    1.0
+   ],
+   "producer_normal": [
+    0.636914485451148,
+    0.8857337831145483
+   ],
+   "share": 0.0026002263557623638,
+   "share_interval": [
+    0.0,
+    0.0072724276854856384
+   ],
+   "labels_mapped": 283,
+   "published_user_producer": [
+    75,
+    78
+   ],
+   "minus_published_points": [
+    -0.07810418354182502,
+    -1.8675865717151794
+   ],
+   "judge_user_m2": [
+    0.4642595624726924,
+    0.8709898610302376
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.0,
+    1.0
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "31",
+   "user": 0.7680353703679272,
+   "user_interval": [
+    0.5977928237430077,
+    0.8670791185469541
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.6834357463339363,
+    0.8526349944019181
+   ],
+   "producer": 0.7346626281657982,
+   "producer_interval": [
+    0.2713659403628672,
+    1.0
+   ],
+   "producer_normal": [
+    0.5674710889416168,
+    0.9018541673899796
+   ],
+   "share": 0.010824879469788702,
+   "share_interval": [
+    0.00609111523085204,
+    0.017457617938894998
+   ],
+   "labels_mapped": 106,
+   "published_user_producer": [
+    77,
+    77
+   ],
+   "minus_published_points": [
+    -0.1964629632072814,
+    -3.533737183420186
+   ],
+   "judge_user_m2": [
+    0.5977928237430077,
+    0.8670791185469541
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.2713659403628672,
+    1.0
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "41",
+   "user": 0.8934125018737199,
+   "user_interval": [
+    0.8342938422658076,
+    0.9331280315033939
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.8561414410978005,
+    0.9306835626496393
+   ],
+   "producer": 0.7928090551475742,
+   "producer_interval": [
+    0.6973165118808883,
+    0.8698730907564798
+   ],
+   "producer_normal": [
+    0.7530053326283173,
+    0.8326127776668311
+   ],
+   "share": 0.10971272606420386,
+   "share_interval": [
+    0.09924172267501774,
+    0.12140188747589775
+   ],
+   "labels_mapped": 308,
+   "published_user_producer": [
+    90,
+    79
+   ],
+   "minus_published_points": [
+    -0.6587498126280167,
+    0.2809055147574213
+   ],
+   "judge_user_m2": [
+    0.8342938422658076,
+    0.9331280315033939
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.6973165118808883,
+    0.8698730907564798
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "42",
+   "user": 0.9176493122737301,
+   "user_interval": [
+    0.8647154834632584,
+    0.9518033649430641
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.8853705394487181,
+    0.9499280850987422
+   ],
+   "producer": 0.8344961313315984,
+   "producer_interval": [
+    0.7501196005401474,
+    0.9002410946305274
+   ],
+   "producer_normal": [
+    0.7986112259083352,
+    0.8703810367548616
+   ],
+   "share": 0.1297828594035604,
+   "share_interval": [
+    0.11891069642739183,
+    0.14172172256083115
+   ],
+   "labels_mapped": 395,
+   "published_user_producer": [
+    93,
+    85
+   ],
+   "minus_published_points": [
+    -1.2350687726269882,
+    -1.5503868668401566
+   ],
+   "judge_user_m2": [
+    0.8647154834632584,
+    0.9518033649430641
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.7501196005401474,
+    0.9002410946305274
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "43",
+   "user": 0.7395735668236463,
+   "user_interval": [
+    0.6305978444716539,
+    0.8239548360211317
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.6702983437156019,
+    0.8088487899316906
+   ],
+   "producer": 0.7789042688641153,
+   "producer_interval": [
+    0.584249761774331,
+    0.941425894826611
+   ],
+   "producer_normal": [
+    0.7078268034648869,
+    0.8499817342633438
+   ],
+   "share": 0.03591638055549664,
+   "share_interval": [
+    0.028952592825518764,
+    0.04372752109130573
+   ],
+   "labels_mapped": 180,
+   "published_user_producer": [
+    75,
+    78
+   ],
+   "minus_published_points": [
+    -1.0426433176353669,
+    -0.10957311358846766
+   ],
+   "judge_user_m2": [
+    0.6305978444716539,
+    0.8239548360211317
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.584249761774331,
+    0.941425894826611
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "52",
+   "user": 0.8671921092149513,
+   "user_interval": [
+    0.8205505021661935,
+    0.9046135942569141
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.8362549927298057,
+    0.8981292257000968
+   ],
+   "producer": 0.9406384502935079,
+   "producer_interval": [
+    0.8940660808480836,
+    0.9733225886076312
+   ],
+   "producer_normal": [
+    0.9222992526238597,
+    0.9589776479631561
+   ],
+   "share": 0.20995815443051968,
+   "share_interval": [
+    0.19580810617952693,
+    0.22288651172045348
+   ],
+   "labels_mapped": 679,
+   "published_user_producer": [
+    87,
+    95
+   ],
+   "minus_published_points": [
+    -0.280789078504867,
+    -0.9361549706492127
+   ],
+   "judge_user_m2": [
+    0.8205505021661935,
+    0.9046135942569141
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.8940660808480836,
+    0.9733225886076312
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "71",
+   "user": 0.9008669284020988,
+   "user_interval": [
+    0.8384541526381221,
+    0.9441680983510858
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.8637873946760681,
+    0.9379464621281295
+   ],
+   "producer": 0.9126466770316032,
+   "producer_interval": [
+    0.839901547067263,
+    0.963143873119526
+   ],
+   "producer_normal": [
+    0.8837516870682048,
+    0.9415416669950015
+   ],
+   "share": 0.14237986759957677,
+   "share_interval": [
+    0.12992339389923302,
+    0.15403437932582165
+   ],
+   "labels_mapped": 496,
+   "published_user_producer": [
+    91,
+    91
+   ],
+   "minus_published_points": [
+    -0.9133071597901221,
+    0.2646677031603133
+   ],
+   "judge_user_m2": [
+    0.8384541526381221,
+    0.9441680983510858
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.839901547067263,
+    0.963143873119526
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "81",
+   "user": 0.7646640116726567,
+   "user_interval": [
+    0.6642016624814898,
+    0.8421713471580626
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.6902717155720481,
+    0.8390563077732653
+   ],
+   "producer": 0.7542731130139351,
+   "producer_interval": [
+    0.5858906352946346,
+    0.8808921285508048
+   ],
+   "producer_normal": [
+    0.689535436587084,
+    0.8190107894407861
+   ],
+   "share": 0.06591128538660661,
+   "share_interval": [
+    0.054195949955392564,
+    0.0787633703973114
+   ],
+   "labels_mapped": 154,
+   "published_user_producer": [
+    77,
+    76
+   ],
+   "minus_published_points": [
+    -0.5335988327343273,
+    -0.5726886986064983
+   ],
+   "judge_user_m2": [
+    0.6642016624814898,
+    0.8421713471580626
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.5858906352946346,
+    0.8808921285508048
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "82",
+   "user": 0.9303920489538378,
+   "user_interval": [
+    0.8865662494432268,
+    0.9587303760130141
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.9020635582448142,
+    0.9587205396628613
+   ],
+   "producer": 0.9348760810650227,
+   "producer_interval": [
+    0.8736189673777168,
+    0.9777888484321126
+   ],
+   "producer_normal": [
+    0.9098652266503652,
+    0.9598869354796803
+   ],
+   "share": 0.16672151936263277,
+   "share_interval": [
+    0.1553633106779131,
+    0.1779083073645964
+   ],
+   "labels_mapped": 516,
+   "published_user_producer": [
+    93,
+    94
+   ],
+   "minus_published_points": [
+    0.039204895383775806,
+    -0.5123918934977212
+   ],
+   "judge_user_m2": [
+    0.8865662494432268,
+    0.9587303760130141
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.8736189673777168,
+    0.9777888484321126
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "90",
+   "user": 0.6135872987157469,
+   "user_interval": [
+    0.5116260853055637,
+    0.7052170932318399
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.5380576987005808,
+    0.689116898730913
+   ],
+   "producer": 0.9629050095948961,
+   "producer_interval": [
+    0.758170753893491,
+    1.0
+   ],
+   "producer_normal": [
+    0.9326107888165781,
+    0.9931992303732141
+   ],
+   "share": 0.028481303467035694,
+   "share_interval": [
+    0.02198571917620029,
+    0.035022874554329064
+   ],
+   "labels_mapped": 170,
+   "published_user_producer": [
+    61,
+    96
+   ],
+   "minus_published_points": [
+    0.3587298715746883,
+    0.29050095948960575
+   ],
+   "judge_user_m2": [
+    0.5116260853055637,
+    0.7052170932318399
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.758170753893491,
+    1.0
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_alt",
+   "map": "nlcd",
+   "class": "95",
+   "user": 0.679785393420935,
+   "user_interval": [
+    0.5271950419658695,
+    0.796851305225836
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.6076133706632384,
+    0.7519574161786317
+   ],
+   "producer": 0.7524786436367267,
+   "producer_interval": [
+    0.3765142518180042,
+    1.0
+   ],
+   "producer_normal": [
+    0.6368888959005276,
+    0.8680683913729258
+   ],
+   "share": 0.013545747294672901,
+   "share_interval": [
+    0.00885986836579633,
+    0.01939378157675975
+   ],
+   "labels_mapped": 202,
+   "published_user_producer": [
+    69,
+    80
+   ],
+   "minus_published_points": [
+    -1.021460657906502,
+    -4.752135636327338
+   ],
+   "judge_user_m2": [
+    0.5271950419658695,
+    0.796851305225836
+   ],
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_share": 0.0,
+   "judge_producer_box": [
+    0.3765142518180042,
+    1.0
+   ],
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "11",
+   "user": 0.9173044401253497,
+   "user_interval": [
+    0.8027456974540632,
+    0.9632619718029009
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.8799341056690801,
+    0.9546747745816193
+   ],
+   "producer": 0.9439987238877355,
+   "producer_interval": [
+    0.6506793709311623,
+    1.0
+   ],
+   "producer_normal": [
+    0.9060724908264723,
+    0.9819249569489987
+   ],
+   "share": 0.016810994215466127,
+   "share_interval": [
+    0.012967208137212083,
+    0.021606480086560964
+   ],
+   "labels_mapped": 221,
+   "judge_user_m2": [
+    0.8027456974540632,
+    0.9632619718029009
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "21",
+   "user": 0.7177122155886213,
+   "user_interval": [
+    0.6302811924491717,
+    0.7834478197626314
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.6623024358397391,
+    0.7731219953375035
+   ],
+   "producer": 0.419856242836878,
+   "producer_interval": [
+    0.2792733998089801,
+    0.5827434980698042
+   ],
+   "producer_normal": [
+    0.362848690008084,
+    0.476863795665672
+   ],
+   "share": 0.05094476427130293,
+   "share_interval": [
+    0.04108857248849773,
+    0.06348637363349496
+   ],
+   "labels_mapped": 359,
+   "judge_user_m2": [
+    0.6302811924491717,
+    0.7834478197626314
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "22",
+   "user": 0.4309482330913101,
+   "user_interval": [
+    0.33976536858576273,
+    0.5339861323875525
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.3699726222844202,
+    0.4919238438982
+   ],
+   "producer": 0.42538770545850596,
+   "producer_interval": [
+    0.1277152244671466,
+    0.7755297673574973
+   ],
+   "producer_normal": [
+    0.3397647877815463,
+    0.5110106231354656
+   ],
+   "share": 0.015479339087295159,
+   "share_interval": [
+    0.01028093269538033,
+    0.022317876964777383
+   ],
+   "labels_mapped": 316,
+   "judge_user_m2": [
+    0.33976536858576273,
+    0.5339861323875525
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "23",
+   "user": 0.471904442385639,
+   "user_interval": [
+    0.33064834397491855,
+    0.6236226401813658
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.39680381523379565,
+    0.5470050695374824
+   ],
+   "producer": 0.47054336581332107,
+   "producer_interval": [
+    0.0,
+    1.0
+   ],
+   "producer_normal": [
+    0.39925791843670166,
+    0.5418288131899405
+   ],
+   "share": 0.007221741840151682,
+   "share_interval": [
+    0.003333797897731472,
+    0.012046031784812783
+   ],
+   "labels_mapped": 244,
+   "judge_user_m2": [
+    0.33064834397491855,
+    0.6236226401813658
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "24",
+   "user": 0.6324684066667168,
+   "user_interval": [
+    0.37931384397191453,
+    0.797823380917371
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.5731728395096564,
+    0.6917639738237772
+   ],
+   "producer": 0.49265775025858316,
+   "producer_interval": [
+    0.0,
+    1.0
+   ],
+   "producer_normal": [
+    0.40617419199930216,
+    0.5791413085178642
+   ],
+   "share": 0.003392075515725105,
+   "share_interval": [
+    0.0,
+    0.008087872654762407
+   ],
+   "labels_mapped": 283,
+   "judge_user_m2": [
+    0.37931384397191453,
+    0.797823380917371
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "31",
+   "user": 0.5801713489616844,
+   "user_interval": [
+    0.42121462854306124,
+    0.7176837245273646
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.48109935515642277,
+    0.6792433427669461
+   ],
+   "producer": 0.6335408161397994,
+   "producer_interval": [
+    0.13730791620756044,
+    1.0
+   ],
+   "producer_normal": [
+    0.4509897332489357,
+    0.8160918990306631
+   ],
+   "share": 0.0094822515995503,
+   "share_interval": [
+    0.004520057669864741,
+    0.01643747307336696
+   ],
+   "labels_mapped": 106,
+   "judge_user_m2": [
+    0.42121462854306124,
+    0.7176837245273646
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "41",
+   "user": 0.8231441262967802,
+   "user_interval": [
+    0.7562043511665358,
+    0.874392798361918
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.7767672774231223,
+    0.8695209751704381
+   ],
+   "producer": 0.67311192839088,
+   "producer_interval": [
+    0.5728862705839326,
+    0.7602397210363117
+   ],
+   "producer_normal": [
+    0.6318992767579834,
+    0.7143245800237765
+   ],
+   "share": 0.11905898596670703,
+   "share_interval": [
+    0.10600671305969911,
+    0.1334064741958798
+   ],
+   "labels_mapped": 308,
+   "judge_user_m2": [
+    0.7562043511665358,
+    0.874392798361918
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "42",
+   "user": 0.8452910108425611,
+   "user_interval": [
+    0.7826010248109816,
+    0.892547468409058
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.8021302758181975,
+    0.8884517458669247
+   ],
+   "producer": 0.7536912453985106,
+   "producer_interval": [
+    0.6590737888895821,
+    0.831143154882751
+   ],
+   "producer_normal": [
+    0.7142314643568337,
+    0.7931510264401875
+   ],
+   "share": 0.13236638324504169,
+   "share_interval": [
+    0.11889035908918544,
+    0.1468119367939238
+   ],
+   "labels_mapped": 395,
+   "judge_user_m2": [
+    0.7826010248109816,
+    0.892547468409058
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "43",
+   "user": 0.5189199067337672,
+   "user_interval": [
+    0.41178267370127064,
+    0.6249811681568482
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.4393218879002329,
+    0.5985179255673014
+   ],
+   "producer": 0.5465023774083466,
+   "producer_interval": [
+    0.3391423817742103,
+    0.7530357335853671
+   ],
+   "producer_normal": [
+    0.4666840403083714,
+    0.6263207145083218
+   ],
+   "share": 0.0359172885552008,
+   "share_interval": [
+    0.027293642367652637,
+    0.045877360515305554
+   ],
+   "labels_mapped": 180,
+   "judge_user_m2": [
+    0.41178267370127064,
+    0.6249811681568482
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "52",
+   "user": 0.6764787534540313,
+   "user_interval": [
+    0.6185098421675853,
+    0.7306389369139186
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.6330991370656674,
+    0.7198583698423952
+   ],
+   "producer": 0.8088109500727101,
+   "producer_interval": [
+    0.7229211730965907,
+    0.8764575076720315
+   ],
+   "producer_normal": [
+    0.7738394048968941,
+    0.8437824952485261
+   ],
+   "share": 0.19047908455356477,
+   "share_interval": [
+    0.17007465000207844,
+    0.21126824772463948
+   ],
+   "labels_mapped": 679,
+   "judge_user_m2": [
+    0.6185098421675853,
+    0.7306389369139186
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "71",
+   "user": 0.6495851649184418,
+   "user_interval": [
+    0.5656610378450379,
+    0.7267995838218764
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.5873591502596711,
+    0.7118111795772124
+   ],
+   "producer": 0.6626703205701898,
+   "producer_interval": [
+    0.545087090157845,
+    0.7626924618507452
+   ],
+   "producer_normal": [
+    0.6167649887134947,
+    0.7085756524268849
+   ],
+   "share": 0.14139341885711076,
+   "share_interval": [
+    0.12129730080884116,
+    0.1619427047038542
+   ],
+   "labels_mapped": 496,
+   "judge_user_m2": [
+    0.5656610378450379,
+    0.7267995838218764
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "81",
+   "user": 0.6437710850432242,
+   "user_interval": [
+    0.539139785484918,
+    0.7360481809513506
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.5596907140779607,
+    0.7278514560084878
+   ],
+   "producer": 0.543139239132028,
+   "producer_interval": [
+    0.37695447636053436,
+    0.6978239794317568
+   ],
+   "producer_normal": [
+    0.4762632729807396,
+    0.6100152052833163
+   ],
+   "share": 0.07706160397156224,
+   "share_interval": [
+    0.06175164138960554,
+    0.0943431657554541
+   ],
+   "labels_mapped": 154,
+   "judge_user_m2": [
+    0.539139785484918,
+    0.7360481809513506
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "82",
+   "user": 0.8880564269217103,
+   "user_interval": [
+    0.8379550913450354,
+    0.9243643690989325
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.8526997071440086,
+    0.923413146699412
+   ],
+   "producer": 0.9072315076277506,
+   "producer_interval": [
+    0.8363599621176837,
+    0.9581538786802568
+   ],
+   "producer_normal": [
+    0.8778327660003419,
+    0.9366302492551594
+   ],
+   "share": 0.16398425631551675,
+   "share_interval": [
+    0.15052710588612683,
+    0.17725049181161268
+   ],
+   "labels_mapped": 516,
+   "judge_user_m2": [
+    0.8379550913450354,
+    0.9243643690989325
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "90",
+   "user": 0.4519670456126805,
+   "user_interval": [
+    0.3566616901433916,
+    0.5527157661737577
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.3746793766132196,
+    0.5292547146121414
+   ],
+   "producer": 0.8640435833177466,
+   "producer_interval": [
+    0.5890435747350584,
+    1.0
+   ],
+   "producer_normal": [
+    0.7958740901279081,
+    0.932213076507585
+   ],
+   "share": 0.023379653322256316,
+   "share_interval": [
+    0.016679522553744164,
+    0.030677998489807123
+   ],
+   "labels_mapped": 170,
+   "judge_user_m2": [
+    0.3566616901433916,
+    0.5527157661737577
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "nlcd2016_l2_primary",
+   "map": "nlcd",
+   "class": "95",
+   "user": 0.5398069406028395,
+   "user_interval": [
+    0.39626292673454455,
+    0.6782860255637415
+   ],
+   "user_method": "pure-stratum rule",
+   "user_normal": [
+    0.4623856250122578,
+    0.6172282561934213
+   ],
+   "producer": 0.621270516364065,
+   "producer_interval": [
+    0.24601525089490026,
+    1.0
+   ],
+   "producer_normal": [
+    0.507027752134229,
+    0.7355132805939011
+   ],
+   "share": 0.013028158683548372,
+   "share_interval": [
+    0.008120864196222044,
+    0.019083782339158972
+   ],
+   "labels_mapped": 202,
+   "judge_user_m2": [
+    0.39626292673454455,
+    0.6782860255637415
+   ],
+   "abs_difference_to_judge_user": 0.0
+  },
+  {
+   "run": "gfc2020",
+   "map": "gfc_v2",
+   "class": "0",
+   "user": 0.9630747506040878,
+   "user_interval": [
+    0.9546779827194658,
+    0.9698548478767872
+   ],
+   "user_method": "box of two betting intervals",
+   "user_normal": [
+    0.9593655713075561,
+    0.9667839299006195
+   ],
+   "producer": 0.9137283150128247,
+   "producer_interval": [
+    0.9035078849219864,
+    0.9232161929380125
+   ],
+   "producer_normal": [
+    0.9086214268934321,
+    0.9188352031322173
+   ],
+   "share": 0.7001962200771373,
+   "share_interval": [
+    0.6900362077726925,
+    0.7101164245321456
+   ],
+   "labels_mapped": 14271,
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "gfc2020",
+   "map": "gfc_v2",
+   "class": "1",
+   "user": 0.8200459490756966,
+   "user_interval": [
+    0.7978115267949483,
+    0.8407999061195532
+   ],
+   "user_method": "box of two betting intervals",
+   "user_normal": [
+    0.8097175005228405,
+    0.8303743976285527
+   ],
+   "producer": 0.918179301750847,
+   "producer_interval": [
+    0.8987515916449127,
+    0.9339150522583027
+   ],
+   "producer_normal": [
+    0.9101946625159629,
+    0.9261639409857312
+   ],
+   "share": 0.2998037799228625,
+   "share_interval": [
+    0.28988357546785437,
+    0.3099637922273075
+   ],
+   "labels_mapped": 7341,
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "gfc2020",
+   "map": "worldcover_forest",
+   "class": "0",
+   "user": 0.951610768720582,
+   "user_interval": [
+    0.9421341801315556,
+    0.9593694663107042
+   ],
+   "user_method": "box of two betting intervals",
+   "user_normal": [
+    0.9472339105070907,
+    0.9559876269340734
+   ],
+   "producer": 0.9243618052261737,
+   "producer_interval": [
+    0.9147429131108654,
+    0.9332035680633425
+   ],
+   "producer_normal": [
+    0.9196103006437881,
+    0.9291133098085593
+   ],
+   "share": 0.7001962200771373,
+   "share_interval": [
+    0.6900362077726925,
+    0.7101164245321456
+   ],
+   "labels_mapped": 14313,
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_producer": 0.0
+  },
+  {
+   "run": "gfc2020",
+   "map": "worldcover_forest",
+   "class": "1",
+   "user": 0.834419313474898,
+   "user_interval": [
+    0.8124273548962602,
+    0.8546973357818461
+   ],
+   "user_method": "box of two betting intervals",
+   "user_normal": [
+    0.8242711151603657,
+    0.8445675117894302
+   ],
+   "producer": 0.8902223259570178,
+   "producer_interval": [
+    0.8679449377624462,
+    0.9086042975945626
+   ],
+   "producer_normal": [
+    0.8807897201204189,
+    0.8996549317936167
+   ],
+   "share": 0.2998037799228625,
+   "share_interval": [
+    0.28988357546785437,
+    0.3099637922273075
+   ],
+   "labels_mapped": 7299,
+   "abs_difference_to_judge_user": 0.0,
+   "abs_difference_to_judge_producer": 0.0
+  }
+ ],
+ "worst_abs_difference_to_judge": 0.0
+}

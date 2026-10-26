@@ -1,0 +1,13 @@
+21612 points in 149 strata (units of 1 drawn without replacement, read as points in an area); a point is right when the map's class equals its reference label
+overall accuracy: estimate [95% interval, valid at any sample size] (normal theory, nominal)
+  gfc_v2: 91.51% [90.77, 92.19] (normal 91.07, 91.94)
+  worldcover_forest: 91.41% [90.65, 92.11] (normal 90.97, 91.86)
+  gfc_v2 minus worldcover_forest: +0.09 points [-0.59, 0.80] (normal -0.34, 0.53), 1770 points where they differ
+gfc_v2 per class: user's accuracy | producer's accuracy | share of the reference
+  0: 96.3% [95.5, 97.0] (normal 95.9, 96.7) | 91.4% [90.4, 92.3] (normal 90.9, 91.9) | 70.02% [69.00, 71.01] (normal 69.40, 70.64)
+  1: 82.0% [79.8, 84.1] (normal 81.0, 83.0) | 91.8% [89.9, 93.4] (normal 91.0, 92.6) | 29.98% [28.99, 31.00] (normal 29.36, 30.60)
+worldcover_forest per class: user's accuracy | producer's accuracy | share of the reference
+  0: 95.2% [94.2, 95.9] (normal 94.7, 95.6) | 92.4% [91.5, 93.3] (normal 92.0, 92.9) | 70.02% [69.00, 71.01] (normal 69.40, 70.64)
+  1: 83.4% [81.2, 85.5] (normal 82.4, 84.5) | 89.0% [86.8, 90.9] (normal 88.1, 90.0) | 29.98% [28.99, 31.00] (normal 29.36, 30.60)
+note: Each interval holds at 95% on its own, at every sample size; the intervals do not hold jointly. The normal-theory interval beside each one is the agency's (Stehman 2014, Olofsson et al. 2014): nominal, and in a small class or a stratum of few labels it can cover far less than it says. Its ends are the estimate plus or minus 1.96 standard errors, unclipped, as agencies publish them, so they can pass 0 or 100%.
+wrote /scratch/qi_zim_neu/olmoearth_inferenceX/agency/e2e/1534186/gfc2020.json

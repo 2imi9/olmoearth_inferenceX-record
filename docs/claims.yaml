@@ -6197,3 +6197,93 @@
   note: >-
     The cells over delta are those where certifying is rare: a zone whose true error sits just above alpha is seldom
     certified, and when it is, it is wrong. The package says so wherever a zone is certified (1.17.0).
+
+- id: exp117-grade-reproduces-published-overall-accuracies
+  statement: "In exp117, `oe-inferencex grade` (1.18.0, aicr job 1534186) reproduced the published overall accuracies of NLCD 2016's assessment (set B, 4,629 points in 21 strata, weights as published) to within 0.02 points: 86.39% by the primary-or-alternate rule (published 86.4%), 72.11% by the primary label (72.1%), 86.51% for 2011 (86.5%) and 78.99% at level I (79.0%); level I with the alternate gave 90.70% against 90.6%, and GFC2020 V2 91.51% on its 21,612 points (published as 91%)."
+  crosscheck: tests/test_exp117.py::test_overall_accuracy_by_a_second_route
+  status: supported
+  experiments: [exp117]
+  artifacts: [exp/out/exp117_summary.json]
+  check: |-
+    (lambda O: [round(100 * r['estimate'], 2) for r in O] == [86.39, 72.11, 86.51, 78.99, 90.7, 91.51, 91.41]
+      and all(abs(O[i]['estimate_minus_published_points']) < 0.02 for i in range(4))
+      and [r['published'] for r in O[:6]] == [86.4, 72.1, 86.5, 79.0, 90.6, 91.0]
+    )(A['exp/out/exp117_summary.json']['end_to_end']['overall'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp117-grade-reproduces-published-overall-accuracies}
+  note: >-
+    GFC2020's published figure is the rounded "91%" exp94 quoted; NLCD's are from the paper's text as the record holds
+    them. NLCD's rule counts a map class equal to the primary or the alternate reference label as right.
+
+- id: exp117-valid-interval-costs-1-6-times-normal
+  statement: "In exp117, on all 10 overall accuracies and two-map differences graded on NLCD 2016 and GFC2020, the interval valid at any sample size (stratified betting) was 1.60 to 1.64 times as wide as the agency's normal-theory interval, and every interval grade printed equalled the one the design study's scripts computed (largest difference 0.0)."
+  crosscheck: tests/test_exp117.py::test_the_shipped_intervals_equal_the_design_studys
+  status: measured
+  experiments: [exp117]
+  artifacts: [exp/out/exp117_summary.json]
+  check: |-
+    (lambda E: E['width_over_normal_overall_and_differences']['n'] == 10
+      and round(E['width_over_normal_overall_and_differences']['min'], 2) == 1.6 and round(E['width_over_normal_overall_and_differences']['max'], 2) == 1.64
+      and E['worst_abs_difference_to_the_design_study'] == 0.0
+    )(A['exp/out/exp117_summary.json']['end_to_end'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp117-valid-interval-costs-1-6-times-normal}
+
+- id: exp117-intervals-hold-exactly-and-in-simulation
+  statement: "In exp117's design study, the chosen engine's dynamic programme matched every order of the labels to 3.6e-15, its expected e-value at the truth was at most 1.000000000000001, and all 8 linear and 4 ratio cells covered by exact enumeration; the judge's 14 enumerated cells at alpha 0.1 and 0.3 held for every form claimed valid (least slack 0.076) while normal theory covered as little as 0; in 300 simulated draws at the agency designs' shapes (8 cases) the valid intervals covered 0.997 to 1.000 and normal theory 0.937 to 0.970."
+  crosscheck: tests/test_exp117.py::test_the_summary_against_the_raw_outputs
+  status: supported
+  experiments: [exp117]
+  artifacts: [exp/out/exp117_summary.json]
+  check: |-
+    (lambda S: S['selftest']['linear_cells_holding'] == S['selftest']['linear_cells'] == 8 and S['selftest']['ratio_cells_holding'] == S['selftest']['ratio_cells'] == 4
+      and S['selftest']['dynamic_programme_vs_every_order_max_abs_difference'] < 1e-14 and S['selftest']['largest_expected_evalue_without_replacement'] <= 1 + 1e-12
+      and S['judge_enumeration']['cells'] == S['judge_enumeration']['cells_holding'] == 14 and round(S['judge_enumeration']['least_slack_over_claimed_forms'], 3) == 0.076
+      and S['judge_enumeration']['normal_min_coverage'] == 0.0 and S['simulation']['cases_holding'] == S['simulation']['cases'] == 8
+      and round(S['simulation']['valid_coverage']['min'], 3) == 0.997 and round(S['simulation']['normal_coverage']['min'], 3) == 0.937
+      and round(S['simulation']['normal_coverage']['max'], 3) == 0.97
+    )(A['exp/out/exp117_summary.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp117-intervals-hold-exactly-and-in-simulation}
+
+- id: exp117-design-study-widths
+  statement: "In exp117's design study (not preregistered; the method was chosen after these widths, against a selection rule that had chosen the fallback because three of its gates could not be evaluated), the betting interval was a median 0.91 of the boxed stratified Chernoff fallback's width on 12 linear quantities (0.55 to 1.10), and the box of two betting intervals a median 0.98 of the fallback's on 30 user's and producer's accuracies (0.62 to 1.15) and 1.27 of the certified ratio scan's (1.00 to 1.52)."
+  crosscheck: tests/test_exp117.py::test_the_summary_against_the_raw_outputs
+  status: measured
+  experiments: [exp117]
+  artifacts: [exp/out/exp117_summary.json]
+  check: |-
+    (lambda W: (W['linear_betting_over_fallback']['n'], W['ratio_box_over_fallback']['n'], W['ratio_box_over_scan']['n']) == (12, 30, 30)
+      and [round(W['linear_betting_over_fallback'][k], 2) for k in ('median', 'min', 'max')] == [0.91, 0.55, 1.1]
+      and [round(W['ratio_box_over_fallback'][k], 2) for k in ('median', 'min', 'max')] == [0.98, 0.62, 1.15]
+      and [round(W['ratio_box_over_scan'][k], 2) for k in ('median', 'min', 'max')] == [1.27, 1.0, 1.52]
+    )(A['exp/out/exp117_summary.json']['design_study_widths'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp117-design-study-widths}
+
+- id: exp117-normal-theory-calls-a-difference-the-valid-interval-does-not
+  statement: "In exp117, NLCD 2016 led LCMAP at eight classes by 1.34 points of overall accuracy by the primary-or-alternate rule, which normal theory calls significant (0.41 to 2.26) and the valid interval does not (-0.17 to 2.86); by the primary label 1.87 points, 0.71 to 3.03 against -0.01 to 3.75."
+  crosscheck: tests/test_exp117.py::test_the_shipped_intervals_equal_the_design_studys
+  status: measured
+  experiments: [exp117]
+  artifacts: [exp/out/exp117_summary.json]
+  check: |-
+    (lambda D: [round(100 * x, 2) for x in [D[0]['estimate']] + D[0]['normal'] + D[0]['interval']] == [1.34, 0.41, 2.26, -0.17, 2.86]
+      and [round(100 * x, 2) for x in [D[1]['estimate']] + D[1]['normal'] + D[1]['interval']] == [1.87, 0.71, 3.03, -0.01, 3.75]
+    )(A['exp/out/exp117_summary.json']['end_to_end']['differences'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp117-normal-theory-calls-a-difference-the-valid-interval-does-not}
+
+- id: exp117-pure-stratum-rule-narrower-than-box
+  statement: "In exp117, for all 15 NLCD 2016 classes with a declared no-change stratum, the user's accuracy interval by the pure-stratum rule was narrower than the box of two betting intervals, a median 0.61 of its width (0.32 to 0.76), and 1.20 to 3.87 times the normal-theory width (median 1.43)."
+  crosscheck: tests/test_exp117.py::test_the_shipped_intervals_equal_the_design_studys
+  status: measured
+  experiments: [exp117]
+  artifacts: [exp/out/exp117_summary.json]
+  check: |-
+    (lambda P: P['classes'] == P['pure_narrower'] == 15
+      and [round(P['pure_over_box'][k], 2) for k in ('median', 'min', 'max')] == [0.61, 0.32, 0.76]
+      and [round(P['pure_over_normal'][k], 2) for k in ('median', 'min', 'max')] == [1.43, 1.2, 3.87]
+    )(A['exp/out/exp117_summary.json']['end_to_end']['pure_stratum_rule_vs_box'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp117-pure-stratum-rule-narrower-than-box}

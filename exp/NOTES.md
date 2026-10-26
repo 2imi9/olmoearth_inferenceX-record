@@ -1707,3 +1707,25 @@ second route (wf_8dbe7de7-5db, from the plan alone) reproduced every arm-A cell 
 P1 to P4 hold; P5 is mixed (the class-design sample on the tile certified nothing at 600 labels over nine classes).
 Read after the run: on 46 of 413 cells, more than delta of the target rule's issued zones were wrong, though no
 cell's share of all draws passed the bar; the package now says what delta counts wherever a zone is certified.
+
+## exp117 — grading an agency's stratified sample (2026-10-26)
+
+Not preregistered. After 1.17.2 the owner chose the agency workflow first of three items: grade a map with an outside
+agency's stratified reference sample, NLCD 2016 AA and GFC2020, with intervals valid at any sample size. A first design
+workflow ran its computations on the laptop and was stopped ("turn off the fans"); from then on nothing ran locally.
+Sizing (aicr 1523908) showed union bounds over strata valid and useless. A second design workflow (three designs, a
+judge) chose the stratified betting e-value; the judge's job (1525456) ran the self-tests and enumerations, which all
+held, but its widths step and simulation reached their time limits (the certified ratio scan took up to 2,327 s per
+ratio), so its selection rule, fixed before the run, returned the fallback with three gates unevaluated. The box of two
+betting intervals for ratios and a simulation followed (1531551: coverage 0.997 to 1.000, normal theory 0.937 to
+0.970), and the betting interval and the box were chosen after seeing the widths: a departure, stated in the results.
+The package's `grade` (branch agency, 1.18.0) ports the engine; a review workflow (four angles, adversarially verified)
+confirmed 26 defects (input handling, notes, tests, and a difference bound wider than it needed to be; none that made an
+interval invalid on a correctly read sample), fixed before the end-to-end run
+(1533266, at 0d9de25), whose every interval equals the design study's. A second review round confirmed 8 more (the table
+reader too strict for pandas' and R's files, a stratum column that is a map's refused, the sizes file's header, and weights
+whose printing allows several sizes, where a near-census could be read as a census and the pure-stratum rule return a
+point that missed the truth); fixed in 5d8b434 (1.18.0), whose end-to-end run (1534186) printed the same numbers. Two
+job-script slips on the way: three NLCD
+alternate labels outside the legend (50, 91) broke the 8-class crosswalk, and `uv run` outside the project found no
+command; both fixed in the script, not in the package.

@@ -4750,6 +4750,64 @@ Recorded after an independent audit whose script is `exp/exp115_crosscheck.py`. 
 or outputs, with its own exact interval inversion and sums. Its 831 class counts are identical, its 3,530 class-level
 probabilities agree within 5.7e-10, and all five verdicts are the same.
 
+## Grading an agency's stratified sample (exp117)
+
+**Question.** The 1.17.0 raters found no route to grade a map with an agency's published stratified sample. Can the
+package report what an agency reports (overall, user's and producer's accuracy, class shares, the difference of two
+maps) with intervals that hold at every sample size, and at what cost against the agency's normal-theory intervals?
+Not preregistered: a design study on the cluster, then the shipped command, `oe-inferencex grade` (1.18.0), run end to
+end. The scripts are in `exp/exp117_agency/`, their outputs in `exp/out/exp117_*`, and the numbers below in
+`exp/out/exp117_summary.json`. The data are exp94's points: NLCD 2016's assessment (Wickham et al. 2021), set B,
+4,629 points in 21 strata, and GFC2020's (Bourgoin et al.), 21,612 points in 149 strata whose areas are in
+`exp/out/exp117_gfc2020_strata_size.csv` (CC BY 4.0, (c) European Union; line endings changed only).
+
+**The design study** (aicr jobs 1523908, 1525456 and 1531551). A union bound over the strata is valid and useless: 12
+points wide for GFC2020's overall accuracy where normal theory gives 0.9, 60 to 94 for NLCD's user's accuracies
+(`exp117_sizing.json`). Three designs and a judge chose a stratified betting e-value: each stratum's e-value, averaged
+exactly over the orders of its labels, depends on the stratum means only through their weighted total, so the strata
+need no union bound. Ratios take the box of two such intervals, and a user's accuracy whose class fills one declared
+pure stratum (NLCD's 15 no-change strata) an exact pure-stratum rule. Unknown values are bounded.
+
+- The engine's exact self-tests hold: its dynamic programme agrees with every order of the labels to 3.6e-15, the
+  largest expected e-value at the truth is 1.000000000000001, and all 8 linear and 4 ratio cells cover. The judge's
+  14 enumerated cells at alpha 0.1 and 0.3 (areas, a census stratum, non-proportional weights, unknown values, the
+  difference, the pure-stratum rule) hold for every form claimed valid, with at least 0.076 to spare; normal theory
+  covers as little as 0 in one of them. In a simulation at the agency designs' shapes (300 draws, 8 cases) the
+  valid intervals covered on 0.997 to 1.000 of draws and normal theory on 0.937 to 0.970. <!-- claim:exp117-intervals-hold-exactly-and-in-simulation -->
+- **A departure.** The rule fixed before the judge's run chose the fallback (a boxed stratified Chernoff bound) for
+  both families, because three of its gates could not be evaluated: the widths step and the simulation reached their
+  time limits with 29 items computed. The betting interval for linear quantities and the box for ratios were chosen
+  after, on those 29 items and the box run: betting against the fallback a median 0.91 of its width (0.55 to 1.10)
+  for linear quantities; the box a median 0.98 of the fallback's (0.62 to 1.15) and 1.27 of the certified ratio scan's
+  (1.00 to 1.52), which took up to 39 minutes per ratio (2,327 s) where the box took at most 6 s. Read the choice as made after
+  seeing widths. <!-- claim:exp117-design-study-widths -->
+
+**End to end** (job 1534186, 1.18.0 at 5d8b434; job 1533266 at 0d9de25 printed the same numbers). Every interval `grade` printed equals the
+design study's own, whose scripts read the points their own way (largest difference 0.0); the package's interval
+code is a port of theirs.
+
+- **The published accuracies are reproduced.** NLCD 2016 level II, primary or alternate label: 86.39% (published
+  86.4%); primary label only 72.11% (72.1%); 2011 86.51% (86.5%); level I, primary 78.99% (79.0%). Level I with the
+  alternate is 90.70% against 90.6%. GFC2020 V2 is 91.51% accurate (published as 91%). <!-- claim:exp117-grade-reproduces-published-overall-accuracies -->
+- **The cost is 1.6 times the width.** On every overall accuracy and two-map difference (10), the valid interval is
+  1.60 to 1.64 times as wide as normal theory's: NLCD 2016 84.11% to 88.40% against 85.07% to 87.71%, GFC2020 V2 90.77%
+  to 92.19% against 91.07% to 91.94%. <!-- claim:exp117-valid-interval-costs-1-6-times-normal -->
+- **Normal theory finds a difference the valid interval does not.** NLCD leads LCMAP at eight classes by 1.34 points by
+  the primary-or-alternate rule: normal theory 0.41 to 2.26, the valid interval -0.17 to 2.86; by the primary label
+  1.87 points, 0.71 to 3.03 against -0.01 to 3.75. GFC2020 V2 and WorldCover differ by 0.09 points (-0.59 to 0.80). <!-- claim:exp117-normal-theory-calls-a-difference-the-valid-interval-does-not -->
+- **The pure-stratum rule.** For all 15 NLCD classes the user's accuracy by the pure-stratum rule is narrower than the
+  box: a median 0.61 of its width (0.32 to 0.76), and 1.20 to 3.87 times normal theory's (median 1.43). Class 21:
+  79.4% to 91.8%, where the box gives 69.9% to 100%. <!-- claim:exp117-pure-stratum-rule-narrower-than-box -->
+- **Small classes.** The producer's accuracy of a class with few labels can say nothing: NLCD 24, 0.26% of the
+  reference, gets 0 to 100%. Against Table 4 of Wickham et al. as transcribed from the paper's text (not checked
+  against the PDF), each class's user's accuracy is within 1.24 points and its producer's within 4.75; 10 of the 15
+  are within 1.5 points on both.
+
+**What it does not show.** Validity is shown exactly on small designs and by simulation at the observed shares, not
+on the agencies' populations, which no one has labelled in full. The intervals hold one at a time, not jointly. The
+choice of method was made after seeing widths (above). Three of NLCD's alternate labels lie outside its legend (50
+twice, 91 once) and count as no alternate.
+
 ## The target rule, the class design and the certificate on real maps (exp116)
 
 Preregistered and frozen before any statistic was computed ([plan](../plan/target_class_certificate.md), debc794);

@@ -1,0 +1,23 @@
+4629 points in 21 strata (units drawn without replacement); a point is right when the map's class equals its reference label or its alternate label; the reference class is the map's class where it equals the alternate, else the reference label
+overall accuracy: estimate [95% interval, valid at any sample size] (normal theory, nominal)
+  nlcd: 86.51% [84.26, 88.49] (normal 85.20, 87.81)
+nlcd per class: user's accuracy | producer's accuracy | share of the reference
+  11: 96.2% [85.7, 99.4] (normal 94.0, 98.5)* | 96.4% [69.6, 100.0] (normal 93.2, 99.7) | 1.85% [1.47, 2.33] (normal 1.76, 1.94)
+  21: 88.2% [80.0, 92.5] (normal 84.2, 92.2)* | 62.1% [45.2, 79.0] (normal 55.0, 69.2) | 4.21% [3.48, 5.18] (normal 3.72, 4.70)
+  22: 74.7% [63.8, 81.5] (normal 69.3, 80.1)* | 69.9% [37.0, 100.0] (normal 58.5, 81.3) | 1.61% [1.12, 2.28] (normal 1.34, 1.89)
+  23: 78.8% [61.1, 87.1] (normal 72.4, 85.1)* | 83.8% [18.4, 100.0] (normal 76.3, 91.3) | 0.65% [0.28, 1.12] (normal 0.58, 0.72)
+  24: 75.3% [47.2, 86.8] (normal 69.9, 80.7)* | 76.5% [0.0, 100.0] (normal 63.5, 89.4) | 0.25% [0.00, 0.71] (normal 0.20, 0.29)
+  31: 75.6% [58.3, 86.0] (normal 67.0, 84.1)* | 72.5% [25.8, 100.0] (normal 55.1, 90.0) | 1.08% [0.60, 1.78] (normal 0.81, 1.36)
+  41: 90.1% [84.3, 93.9] (normal 86.5, 93.7)* | 78.5% [69.0, 86.2] (normal 74.5, 82.5) | 11.14% [10.09, 12.32] (normal 10.48, 11.80)
+  42: 92.5% [87.4, 95.8] (normal 89.4, 95.6)* | 84.3% [76.2, 90.6] (normal 80.9, 87.8) | 13.14% [12.08, 14.30] (normal 12.49, 13.79)
+  43: 75.2% [64.6, 83.1] (normal 68.2, 82.2)* | 76.7% [57.6, 92.8] (normal 69.8, 83.6) | 3.63% [2.94, 4.40] (normal 3.22, 4.04)
+  52: 86.6% [82.0, 90.3] (normal 83.6, 89.6)* | 94.6% [90.2, 97.7] (normal 92.9, 96.3) | 20.69% [19.32, 21.91] (normal 19.91, 21.47)
+  71: 88.9% [82.5, 93.5] (normal 85.3, 92.6)* | 89.7% [82.2, 95.1] (normal 86.6, 92.8) | 14.61% [13.33, 15.84] (normal 13.88, 15.34)
+  81: 76.3% [66.3, 84.1] (normal 69.0, 83.7)* | 77.7% [60.9, 90.1] (normal 71.3, 84.2) | 6.43% [5.28, 7.67] (normal 5.72, 7.13)
+  82: 93.3% [89.0, 96.0] (normal 90.5, 96.2)* | 93.6% [87.6, 97.8] (normal 91.2, 96.0) | 16.51% [15.39, 17.60] (normal 15.87, 17.14)
+  90: 61.5% [51.4, 70.5] (normal 53.9, 69.1)* | 96.3% [75.7, 100.0] (normal 93.2, 99.3) | 2.84% [2.19, 3.49] (normal 2.49, 3.19)
+  95: 70.4% [55.5, 81.2] (normal 63.1, 77.6)* | 73.7% [36.6, 100.0] (normal 62.2, 85.3) | 1.37% [0.90, 1.97] (normal 1.14, 1.61)
+  * user's accuracy by the pure-stratum rule
+note: Each interval holds at 95% on its own, at every sample size; the intervals do not hold jointly. The normal-theory interval beside each one is the agency's (Stehman 2014, Olofsson et al. 2014): nominal, and in a small class or a stratum of few labels it can cover far less than it says. Its ends are the estimate plus or minus 1.96 standard errors, unclipped, as agencies publish them, so they can pass 0 or 100%.
+note: User's accuracy of class(es) 11, 21, 22, 23, 24, 31, 41, 42, 43, 52, 71, 81, 82, 90, 95 of nlcd uses the pure-stratum rule: each class fills one declared stratum (every unit there mapped as it), and the interval is a union bound of exact hypergeometric intervals, at 0.1 of alpha for the strata declared pure for no class.
+wrote /scratch/qi_zim_neu/olmoearth_inferenceX/agency/e2e/1534186/nlcd2011_l2_alt.json

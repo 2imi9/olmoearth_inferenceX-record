@@ -1,0 +1,92 @@
+{
+ "alpha": 0.05,
+ "mixture_size": 12,
+ "mixture_size_ratios": 12,
+ "span": 10.0,
+ "kappa": 0.9,
+ "numpy": "2.5.2",
+ "python": "3.12.14",
+ "selftest": {
+  "dynamic_programme_vs_every_order_max_abs_difference": 3.552713678800501e-15,
+  "largest_expected_evalue": {
+   "without_replacement": 1.000000000000001,
+   "with_replacement_deflated": 1.000000000000001,
+   "with_replacement_plain_NEGATIVE_CONTROL": 1.000000000000001
+  },
+  "evalue_property_holds": true,
+  "linear_min_coverage": {
+   "N(6, 4)_n(3, 2)_W(0.5, 0.5)_alpha0.1": {
+    "betting": 0.9999999999999988,
+    "normal_theory_nominal": 0.49999999999999994,
+    "oracle_c_NOT_VALID": 0.9833333333333338,
+    "holds": true
+   },
+   "N(6, 4)_n(3, 2)_W(0.5, 0.5)_alpha0.3": {
+    "betting": 0.9833333333333338,
+    "normal_theory_nominal": 0.49999999999999994,
+    "oracle_c_NOT_VALID": 0.9166666666666663,
+    "holds": true
+   },
+   "N(6, 4)_n(3, 2)_W(0.85, 0.15)_alpha0.1": {
+    "betting": 0.9999999999999988,
+    "normal_theory_nominal": 0.4999999999999997,
+    "oracle_c_NOT_VALID": 0.9833333333333338,
+    "holds": true
+   },
+   "N(6, 4)_n(3, 2)_W(0.85, 0.15)_alpha0.3": {
+    "betting": 0.9750000000000018,
+    "normal_theory_nominal": 0.4999999999999997,
+    "oracle_c_NOT_VALID": 0.9000000000000011,
+    "holds": true
+   },
+   "N(5, 5)_n(4, 1)_W(0.3, 0.7)_alpha0.1": {
+    "betting": 0.9999999999999952,
+    "normal_theory_nominal": 0.0,
+    "oracle_c_NOT_VALID": 0.9999999999999952,
+    "holds": true
+   },
+   "N(5, 5)_n(4, 1)_W(0.3, 0.7)_alpha0.3": {
+    "betting": 0.9999999999999952,
+    "normal_theory_nominal": 0.0,
+    "oracle_c_NOT_VALID": 0.9599999999999953,
+    "holds": true
+   },
+   "N(5, 4, 3)_n(2, 2, 1)_W(0.6, 0.3, 0.1)_alpha0.1": {
+    "betting": 0.9944444444444432,
+    "normal_theory_nominal": 0.0,
+    "oracle_c_NOT_VALID": 0.9833333333333331,
+    "holds": true
+   },
+   "N(5, 4, 3)_n(2, 2, 1)_W(0.6, 0.3, 0.1)_alpha0.3": {
+    "betting": 0.9833333333333331,
+    "normal_theory_nominal": 0.0,
+    "oracle_c_NOT_VALID": 0.9166666666666665,
+    "holds": true
+   }
+  },
+  "ratio_min_coverage": {
+   "N(4, 4)_n(2, 2)_W(0.7, 0.3)_alpha0.1": {
+    "betting": 0.9999999999999991,
+    "certified_end_beyond_dense_grid": 0,
+    "holds": true
+   },
+   "N(4, 4)_n(2, 2)_W(0.7, 0.3)_alpha0.3": {
+    "betting": 0.9999999999999991,
+    "certified_end_beyond_dense_grid": 0,
+    "holds": true
+   },
+   "N(5, 3)_n(3, 2)_W(0.5, 0.5)_alpha0.1": {
+    "betting": 0.9999999999999978,
+    "certified_end_beyond_dense_grid": 0,
+    "holds": true
+   },
+   "N(5, 3)_n(3, 2)_W(0.5, 0.5)_alpha0.3": {
+    "betting": 0.9999999999999978,
+    "certified_end_beyond_dense_grid": 0,
+    "holds": true
+   }
+  },
+  "seconds": 1.0434095859527588
+ },
+ "seconds": 1.0434527397155762
+}
