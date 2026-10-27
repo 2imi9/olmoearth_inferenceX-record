@@ -1740,3 +1740,17 @@ primary-or-alternate user's accuracies all reproduced only when the 2011 primary
 86.955%, the caption's 86.9% truncated; the text's 86.4% is the one-alternate rule `grade` uses by default); no rule
 reproduced its producer's accuracies. The package's `--alternate` now takes several columns (1.18.1), and
 `grade --alternate alt p11` gives the same 15 user's accuracies (1540166). The Elsevier page images are not committed.
+
+## exp118 — grade's intervals by a second route, and their coverage at NLCD's shape (2026-10-26)
+
+Preregistered and frozen in 000bdf7 at the owner's "one by one, follow the prerequisite principle", after the 1.18.0
+score. Arm A: an agent wrote the second route from the plan's specification alone (no package, no design-study
+scripts); it ran on aicr (1541331, 34 s) and reproduced every interval within the plan's bars, the pure-stratum rule
+within 1.1e-7 where the hypergeometric tails are decided in floating point. Arm B1: 5,000 draws at NLCD's shape with
+1.18.1 from PyPI (1541238, 64 cores, 27 minutes; the smoke run 1541082 had timed it): every valid interval held; normal
+theory fell below the bar on 33 of 91 quantities, all per-class, and held on the overall accuracies and the difference.
+That last point corrects how exp117's NLCD-LCMAP finding reads: at n = 4,629 normal theory covers that difference, and
+the disagreement is the valid interval's width. Arm B2 (GFC2020) was cancelled after seven minutes (1541240), before any
+result was read: the owner asked whether the compute was necessary, and B2 tests the with-replacement case the
+interval is built for. The owner then asked about a model-internal version for OlmoEarth v1.3 (weights public on the
+Hub); decided to finish the general product first (the report, step 3), then design that study.
