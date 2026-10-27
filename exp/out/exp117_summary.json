@@ -851,7 +851,7 @@
      "producer_minus_published": -4.752135636327338
     }
    ],
-   "caveat": "Table 4 as transcribed in practitioner_sbui.py from the paper's text, not checked against the PDF"
+   "caveat": "Table 4 as transcribed in practitioner_sbui.py; read again from the PDF it is right, and the gap is the table's unstated rule (exp117_table4.json)"
   },
   "smallest_class_producer": {
    "class": "24",

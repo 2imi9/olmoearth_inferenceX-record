@@ -4799,9 +4799,18 @@ code is a port of theirs.
   box: a median 0.61 of its width (0.32 to 0.76), and 1.20 to 3.87 times normal theory's (median 1.43). Class 21:
   79.4% to 91.8%, where the box gives 69.9% to 100%. <!-- claim:exp117-pure-stratum-rule-narrower-than-box -->
 - **Small classes.** The producer's accuracy of a class with few labels can say nothing: NLCD 24, 0.26% of the
-  reference, gets 0 to 100%. Against Table 4 of Wickham et al. as transcribed from the paper's text (not checked
-  against the PDF), each class's user's accuracy is within 1.24 points and its producer's within 4.75; 10 of the 15
-  are within 1.5 points on both.
+  reference, gets 0 to 100%.
+- **NLCD's per-class table, reconciled after the 1.18.0 score.** Against Table 4 of Wickham et al. as first
+  transcribed, the primary-or-alternate user's accuracies were within 1.24 points and the producer's within 4.75, and
+  three raters asked for the cause. Read from the PDF (page 4, rendered on the cluster), the transcription is right.
+  Every per-class accuracy by the primary label is reproduced, 15 user's and 15 producer's, and so is the text's overall
+  accuracy by the primary-or-alternate rule (86.39%, text 86.4%). The table's primary-or-alternate columns follow a
+  rule the paper does not state. Accepting the 2011 primary reference label too reproduces all 15 user's accuracies
+  (largest gap 0.47 points) and gives 86.955% overall, the caption's 86.9% truncated. Accepting the 2011 alternate
+  instead gives 86.884%, the caption's figure rounded, but only 10 of the 15. No rule tried reproduces the producer's
+  accuracies: the best matches 7 of 15, 4.40 points off at class 95 and 3.53 at class 31. `grade --alternate alt p11` (1.18.1, aicr
+  1540166) gives the same 15 user's accuracies. The points' labels equal the agency's own reference file for all 4,629
+  points (aicr 1540024). <!-- claim:exp117-nlcd-table4-reconciled -->
 
 **What it does not show.** Validity is shown exactly on small designs and by simulation at the observed shares, not
 on the agencies' populations, which no one has labelled in full. The intervals hold one at a time, not jointly. The

@@ -142,7 +142,8 @@ S["end_to_end"]["nlcd_per_class_against_table4_as_transcribed"] = {
     "within_1_5_points_both": sum(abs(x["user_minus_published"]) <= 1.5 and abs(x["producer_minus_published"]) <= 1.5
                                   for x in pub),
     "by_class": pub,
-    "caveat": "Table 4 as transcribed in practitioner_sbui.py from the paper's text, not checked against the PDF"}
+    "caveat": "Table 4 as transcribed in practitioner_sbui.py; read again from the PDF it is right, and the gap is "
+               "the table's unstated rule (exp117_table4.json)"}
 smallest = min(alt.items(), key=lambda kv: kv[1]["reference_share"]["estimate"])
 S["end_to_end"]["smallest_class_producer"] = {"class": smallest[0], "share": smallest[1]["reference_share"]["estimate"],
                                               "producer_interval": smallest[1]["producer"]["interval"]}

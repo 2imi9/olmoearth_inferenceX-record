@@ -1729,3 +1729,14 @@ point that missed the truth); fixed in 5d8b434 (1.18.0), whose end-to-end run (1
 job-script slips on the way: three NLCD
 alternate labels outside the legend (50, 91) broke the 8-class crosswalk, and `uv run` outside the project found no
 command; both fixed in the script, not in the package.
+
+**exp117, 26 October 2026, later: NLCD's Table 4 reconciled.** The 1.18.0 score (three raters, median 81) asked why
+the primary-or-alternate per-class accuracies were up to 4.75 points off Table 4. The paper's PDF could not be read on
+the laptop and nothing runs there; its pages were rendered on aicr (pymupdf, jobs 1539878 and 1539905) and Table 4 read
+from the image: the transcription was right. The agency's own reference file (the shapefile's dbf) holds the same
+labels as exp94 for all 4,629 points (1540024). A battery of agreement rules (1540024, 1540059, 1540086;
+`exp/exp117_agency/table4.py` keeps the decisive ones, from the record's points alone) found the table's
+primary-or-alternate user's accuracies all reproduced only when the 2011 primary label is accepted too (overall
+86.955%, the caption's 86.9% truncated; the text's 86.4% is the one-alternate rule `grade` uses by default); no rule
+reproduced its producer's accuracies. The package's `--alternate` now takes several columns (1.18.1), and
+`grade --alternate alt p11` gives the same 15 user's accuracies (1540166). The Elsevier page images are not committed.

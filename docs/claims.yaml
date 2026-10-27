@@ -6287,3 +6287,23 @@
     )(A['exp/out/exp117_summary.json']['end_to_end']['pure_stratum_rule_vs_box'])
   cited_in:
     - {file: docs/results/comparisons.md, marker: exp117-pure-stratum-rule-narrower-than-box}
+
+- id: exp117-nlcd-table4-reconciled
+  statement: "In exp117, read from the PDF, Table 4 of Wickham et al. (2021) is as the record transcribed it. On the record's NLCD 2016 points, the paper's estimators reproduce all 15 per-class user's and 15 producer's accuracies by the primary label (largest gap 0.47 points) and the text's 86.4% overall by the primary-or-alternate rule (86.39%). The table's primary-or-alternate user's accuracies are all reproduced only when the 2011 primary label is accepted too (15 of 15, largest gap 0.47; overall 86.955%, the caption's 86.9% truncated). Its producer's accuracies match no rule tried (the best matches 7 of 15, 4.40 points off at class 95)."
+  crosscheck: tests/test_exp117.py::test_table4_by_the_package_and_a_second_route
+  status: measured
+  experiments: [exp117]
+  artifacts: [exp/out/exp117_table4.json]
+  check: |-
+    (lambda T: T['primary']['user']['matches_after_rounding'] == T['primary']['producer']['matches_after_rounding'] == 15
+      and round(T['rules']['text: primary or alternate']['overall'], 2) == 86.39
+      and T['rules']['primary, alternate or 2011 primary']['user']['matches_after_rounding'] == 15
+      and round(T['rules']['primary, alternate or 2011 primary']['overall'], 3) == 86.955
+      and max(d['matches_after_rounding'] for r in T['rules'].values() for d in r['producer'].values()) == 7
+      and T['grade_alternate_alt_p11']['matches_table4_after_rounding'] == 15
+    )(A['exp/out/exp117_table4.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp117-nlcd-table4-reconciled}
+  note: >-
+    Accepting the 2011 alternate instead gives 86.884% overall, the caption's figure rounded, but reproduces only 10 of
+    the 15 user's accuracies. The paper computed its estimates in SAS and publishes no code.

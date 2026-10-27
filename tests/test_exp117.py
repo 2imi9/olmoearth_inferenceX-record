@@ -125,3 +125,20 @@ def test_the_summary_against_the_raw_outputs():
     assert len(over_bsc) == W["ratio_box_over_fallback"]["n"] == 30
     assert abs(statistics.median(over_bsc) - W["ratio_box_over_fallback"]["median"]) < 1e-12
     assert abs(statistics.median(over_scan) - W["ratio_box_over_scan"]["median"]) < 1e-12
+
+
+def test_table4_by_the_package_and_a_second_route():
+    """NLCD 2016's per-class accuracies two ways: the package's grade (primary label, 1.18.0; primary, alternate and
+    2011 primary, 1.18.1) and exp/exp117_agency/table4.py (standard library), each against Table 4 as read from the
+    PDF."""
+    T = _json("exp117_table4.json")
+    prim = _json("exp117_e2e", "nlcd2016_l2_primary.json")["per_class"]["nlcd"]
+    p11 = _json("exp117_e2e", "nlcd2016_l2_alt_p11.json")["per_class"]["nlcd"]
+    for c, (mine, pub) in T["primary"]["user"]["by_class"].items():
+        assert abs(100 * prim[c]["user"]["estimate"] - mine) < 1e-3 and round(mine) == pub
+    for c, (mine, pub) in T["primary"]["producer"]["by_class"].items():
+        assert abs(100 * prim[c]["producer"]["estimate"] - mine) < 1e-3 and round(mine) == pub
+    rule = T["rules"]["primary, alternate or 2011 primary"]["user"]["by_class"]
+    for c, (mine, pub) in rule.items():
+        assert abs(100 * p11[c]["user"]["estimate"] - mine) < 1e-3 and round(mine) == pub
+    assert len(rule) == 15
