@@ -6369,3 +6369,18 @@
     )(A['exp/out/exp118_summary.json']['coverage_B1']['width_over_normal_by_kind'])
   cited_in:
     - {file: docs/results/comparisons.md, marker: exp118-valid-interval-width-cost}
+
+- id: which-map-sign-test-wrong-map-rate
+  statement: "The which-map sign test's verdict on a simple random sample of the differing windows, drawn without replacement, names the less accurate map at most alpha/2 of the time (2.5% at the default 95%), for every population, sample size and level, however the '?' windows fall: given the m sampled windows where exactly one map is right, the count right in the more accurate map is hypergeometric, and its lower tail below m/2, where every critical value lies, is no heavier than Binomial(m, 1/2)'s."
+  status: supported
+  experiments: []
+  artifacts: []
+  check: "True"
+  cited_in:
+    - {file: docs/plan/which_map_baselines.md, marker: which-map-sign-test-wrong-map-rate}
+  note: >-
+    No artifact; a proof, not a run. Lemma W and Corollary W in the technical report (report/main.tex) prove it, and the
+    package's test_hypergeometric_lower_tail_is_no_heavier_than_the_fair_binomial (tests/test_which_map.py) checks the
+    lemma in exact integers for every K_A + K_B <= 60. The report cites Uhlmann (1966) for the same inequality only as
+    reported in a summary of R. M. Dudley's exposition (k <= m K_A/T - 1); neither the paper nor the exposition was
+    read.

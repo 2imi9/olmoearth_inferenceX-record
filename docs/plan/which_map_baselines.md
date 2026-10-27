@@ -17,6 +17,10 @@ points). P2 holds (5 of 9); the owner chose to adopt the sign test only up to a 
 past a quarter to two fifths it names the better map less often than the interval. The package change is made for
 1.10.0 (`estimate.which_map_rule`).
 
+**Added 27 October 2026 (the frozen text is unchanged).** The argument under "What the wrong-map conditions check"
+stops short: the tail comparison holds for the lower tail below m/2, which is where every critical value lies, and the
+step from K_A = K_B to K_A > K_B needs a coupling (proof: report Lemma W, and Corollary W for the '?' windows). <!-- claim:which-map-sign-test-wrong-map-rate -->
+
 - **Not blind for the populations:** each pair's counts are on the record (exp92 and exp94, Q1): N, the reference rows
   where both maps have a class; D, those where the maps differ; K_A and K_B, those among D where only map A, or only
   map B, agrees with the reference. Every arm's operating characteristic is a function of (N, D, K_A, K_B), so the

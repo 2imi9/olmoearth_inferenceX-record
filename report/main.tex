@@ -422,14 +422,78 @@ $\ell_a = L(a)$ and $h_a = U(a+u)$ and likewise for $b$, and
 with probability at least 95\% by the union bound, however the \code{?} windows fall. The interval is conservative.
 Since version 1.10.0 the map is named, while $5n \le D$, by the exact two-sided sign test on $a$ and $b$ at 5\%: $a$
 only if the test on $(a, b+u)$ names it, and $b$ only if the test on $(a+u, b)$ does, so the test on the true counts
-names the same map however the \code{?} windows fall. Drawn without replacement, given the number of sampled windows
-where one map is right, the count right in $a$ is hypergeometric, with tails no heavier than the binomial's at
-$K_a = K_b$ and stochastically increasing in $K_a$, so the test names the less accurate map at most 2.5\% of the time; the package's tests check this exactly
-around the switch. For $5n > D$, and in a census, the map is named when the interval excludes 0; the switch depends only
+names the same map however the \code{?} windows fall. Given the number $m$ of sampled windows where exactly one map is
+right, the count right in $a$ is $\mathrm{Hypergeom}(K_a + K_b, K_a, m)$, drawn without replacement; when
+$K_a \ge K_b$ its lower tail below $m/2$ is no heavier than that of $\mathrm{Bin}(m, 1/2)$ (Lemma~W below), so the
+test names the less accurate map at most 2.5\% of the time (Corollary~W) \claim{which-map-sign-test-wrong-map-rate}. The package's tests check the lemma in exact
+integers for every $K_a + K_b \le 60$, and the verdict's rate exactly around the switch.
+For $5n > D$, and in a census, the map is named when the interval excludes 0; the switch depends only
 on $n$ and $D$, so each rule keeps its rate. The interval is printed as the size of the difference either way, and can
 include 0 when the test names a map. The switch at a fifth was chosen after exp107
 (Section~\ref{sec:res-whichmap}). The package does not give either map's accuracy, which needs a sample of all windows,
 it assumes the labels are right, and \code{certify} refuses this sample.
+
+\textbf{Lemma W (the which-map tails).} Let $T = K_a + K_b \ge 1$ with $K_a \ge K_b$, let $1 \le m \le T$, and let
+$X \sim \mathrm{Hypergeom}(T, K_a, m)$ be the number of marked units in a simple random sample of $m$ of $T$ units of
+which $K_a$ are marked. Then for every integer $k < m/2$,
+\begin{equation}
+  P(X \le k) \le P\bigl(\mathrm{Bin}(m, 1/2) \le k\bigr).
+  \label{eq:lemma-w}
+\end{equation}
+
+\textit{Proof.} For $k < 0$ both sides are 0. First let $T = 2K$ and $K_a = K_b = K$. Write $f$ and $g$ for the
+probability functions of $X$ and of $\mathrm{Bin}(m, 1/2)$ on $0, \dots, m$, and $r = f/g$ ($g > 0$ there). For $x$
+and $x + 1$ both in the support of $f$,
+\[
+  \frac{r(x+1)}{r(x)} = \frac{f(x+1)/f(x)}{g(x+1)/g(x)}
+  = \frac{(K - x)(m - x)/\bigl((x + 1)(K - m + x + 1)\bigr)}{(m - x)/(x + 1)} = \frac{K - x}{K - m + x + 1},
+\]
+which is at least 1 exactly when $x \le (m-1)/2$. The support, $\max(0, m - K) \le x \le \min(m, K)$, is symmetric
+about $m/2$, and so are $f$ and $g$; hence $r(x) = r(m - x)$, and $r$, which is 0 off the support, does not increase in
+$|x - m/2|$. Fix $0 \le k < m/2$ and let $\mathcal{L} = \{x \le k\}$, $\mathcal{U} = \{x \ge m - k\}$ and
+$\mathcal{I}$ the integers in between. By symmetry $f(\mathcal{L}) = f(\mathcal{U})$ and $g(\mathcal{L}) =
+g(\mathcal{U})$, and every value of $r$ on $\mathcal{I}$ is at least every value of $r$ on $\mathcal{L} \cup
+\mathcal{U}$. If $\mathcal{I}$ is empty, $m$ is odd, $k = (m-1)/2$ and $f(\mathcal{L}) = 1/2 = g(\mathcal{L})$.
+Otherwise suppose $f(\mathcal{L}) > g(\mathcal{L})$. Then $f(\mathcal{L} \cup \mathcal{U}) > g(\mathcal{L} \cup
+\mathcal{U})$, so $r > 1$ somewhere on $\mathcal{L} \cup \mathcal{U}$, hence $r > 1$ everywhere on $\mathcal{I}$ and
+$f(\mathcal{I}) > g(\mathcal{I})$, and $1 = 2f(\mathcal{L}) + f(\mathcal{I}) > 2g(\mathcal{L}) + g(\mathcal{I}) = 1$,
+a contradiction. So $f(\mathcal{L}) \le g(\mathcal{L})$, which is (\ref{eq:lemma-w}).
+
+Now let $K_a > K_b$. Adding one unmarked unit to a population of $T$ makes the marked count stochastically smaller:
+draw a simple random sample of $m$ of the $T$ units and, with probability $m/(T+1)$, replace a uniformly chosen member
+by the new unit. An $m$-subset without the new unit then has probability
+$(1 - \frac{m}{T+1}) / \binom{T}{m} = 1/\binom{T+1}{m}$, and one with it, reached from $T - m + 1$ subsets, has
+probability $(T - m + 1) \cdot \frac{m}{T+1} \cdot \frac{1}{m} / \binom{T}{m} = 1/\binom{T+1}{m}$, so the result is a
+simple random sample of $m$ of the $T + 1$ units, and its marked count is never larger. Adding $K_a - K_b$ unmarked
+units one at a time gives $P(X \le k) \le P(X' \le k)$ with $X' \sim \mathrm{Hypergeom}(2K_a, K_a, m)$, and as
+$m \le T \le 2K_a$, the first part applies to $X'$. $\square$
+
+\textbf{Corollary W (the verdict).} Whatever $D$, $n$, the level $1 - \alpha$ and the windows marked \code{?}, the
+sign test's verdict names map $b$ with probability at most $\alpha/2$ when $K_a \ge K_b$, and map $a$ with probability
+at most $\alpha/2$ when $K_b \ge K_a$.
+
+\textit{Proof.} Take $K_a \ge K_b$; the other case swaps the maps. Let $a^*$ and $b^*$ be the sampled windows truly
+right in $a$ and in $b$, and $m^* = a^* + b^*$. Given $m^*$, those windows are a simple random sample of the
+$T = K_a + K_b$ windows where exactly one map is right, so $a^*$ given $m^*$ is $\mathrm{Hypergeom}(T, K_a, m^*)$. Let
+$k_m$ be the largest $k$ with $2P(\mathrm{Bin}(m, 1/2) \le k) < \alpha$, or $-1$; the two-sided test on $(x, y)$ with
+$x < y$ names $b$ exactly when $x \le k_{x+y}$. The verdict names $b$ only if $b > a + u$ and $a + u \le k_{a+b+u}$.
+As the labels are taken to be right, $a^* \le a + u$ and $b^* \ge b$. The p-value $2P(\mathrm{Bin}(x + y, 1/2) \le x)$
+does not increase when $x$ falls or $y$ rises, since
+$P(\mathrm{Bin}(m+1, 1/2) \le x) = \frac{1}{2}P(\mathrm{Bin}(m, 1/2) \le x) + \frac{1}{2}P(\mathrm{Bin}(m, 1/2) \le x - 1)$;
+so then $b^* > a^*$ and $a^* \le k_{m^*}$. As $P(\mathrm{Bin}(m^*, 1/2) \le k_{m^*}) < \alpha/2 < 1/2$,
+$k_{m^*} < m^*/2$, and by Lemma~W the conditional probability of that event is at most
+$P(\mathrm{Bin}(m^*, 1/2) \le k_{m^*}) < \alpha/2$. For $m^* = 0$, outside the lemma, $k_0 = -1$ and the event is
+empty, which also covers $T = 0$. Averaging over $m^*$ gives the bound. $\square$
+
+The inequality is Uhlmann's \citep{uhlmann1966}: as reported in a summary of R.~M.~Dudley's exposition of it, the paper
+proves $P(X \le k) \le P(\mathrm{Bin}(m, K_a/T) \le k)$ for $k \le m K_a/T - 1$, and as the binomial distribution
+function decreases in its probability, with $K_a/T \ge 1/2$ this gives (\ref{eq:lemma-w}) for $k \le m/2 - 1$. That
+covers every critical value of the sign test, since $k_m < m/2$ is an integer and $k_m = (m-1)/2$ would give
+$2P(\mathrm{Bin}(m, 1/2) \le k_m) = 1$; it misses only $k = (m-1)/2$ for odd $m$, where the lemma holds with equality at
+$K_a = K_b$. Neither the paper nor the exposition was read for this report, so the proof above is complete without
+them. Hoeffding's comparison of sampling with and without replacement \citep{hoeffding1963} is not enough here: it
+orders expectations of convex functions, which bounds the tails exponentially, not the exact distribution function that
+the critical values use.
 
 \subsection{A per-class audit of the confident calls}
 \label{sec:audit}
