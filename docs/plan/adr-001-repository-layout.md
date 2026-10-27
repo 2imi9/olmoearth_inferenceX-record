@@ -1,6 +1,8 @@
 # ADR-001: Repository and package layout for 1.0
 
 **Status:** Accepted (2026-09-17). All five items applied the same day; the release is tagged `v1.0.0` under Apache-2.0.
+From 1.19.0 (2026-10-27) its package-layout clause ("the package, flat") is superseded by
+[ADR-002](adr-002-feature-folders.md), feature folders; its decisions on the record, `exp/jobs/` and artifacts stand.
 **Date:** 2026-09-17
 **Deciders:** Ziming (2imi9). If Ai2 takes the refinement up jointly, the two-repository question below is theirs as well.
 

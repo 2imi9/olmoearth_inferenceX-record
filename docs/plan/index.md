@@ -51,5 +51,6 @@ for preregistering are in the [protocol](../method/protocol.md).
 
 | Page | Written | Purpose |
 |---|---|---|
-| [Layout decision (ADR-001)](adr-001-repository-layout.md) | 2026-09-17 | Repository and package layout for 1.0; accepted and applied the same day |
+| [Layout decision (ADR-001)](adr-001-repository-layout.md) | 2026-09-17 | Repository and package layout for 1.0; accepted and applied the same day; its package-layout clause is superseded by ADR-002 from 1.19.0 |
+| [Feature folders (ADR-002)](adr-002-feature-folders.md) | 2026-10-26 | The package in folders by feature, old import paths kept by one alias finder; accepted 2026-10-27, for 1.19.0 |
 | [Cleanup audit](cleanup-audit-2026-09-17.md) | 2026-09-17 | Review of all 808 tracked files at commit c5f25ec; tiers 1 and 2 applied the same day |
