@@ -4750,6 +4750,37 @@ Recorded after an independent audit whose script is `exp/exp115_crosscheck.py`. 
 or outputs, with its own exact interval inversion and sums. Its 831 class counts are identical, its 3,530 class-level
 probabilities agree within 5.7e-10, and all five verdicts are the same.
 
+## grade's intervals by a second route, and their coverage at NLCD's design shape (exp118)
+
+Preregistered and frozen before any statistic was computed ([plan](../plan/grade_second_route_and_coverage.md),
+000bdf7), after the 1.18.0 score found exp117's check of the intervals not independent and its 300-draw simulation too
+small. The numbers are in `exp/out/exp118_summary.json`. **A departure:** the plan's arm B2 (GFC2020, 2,000 draws with
+replacement) was cancelled after seven minutes, before any of its results was read (aicr 1541240), for its compute
+cost: draws with replacement are the case the betting interval is built for, and normal theory's shortfall was the
+question B1 answers.
+
+- **The second route reproduces grade (P1 holds).** An agent wrote `exp/exp118_crosscheck/second_route.py` from the
+  plan's specification alone, without the package or the design study's scripts (a test checks its imports), and its
+  own self-tests passed (its average over orders matches enumeration to 1.8e-15). On exp117's five runs it reproduced
+  every interval `grade` printed: linear quantities within 8.0e-15, differences 1.2e-14, boxes 6.7e-13, normal theory
+  8.9e-16, and the pure-stratum rule within 1.1e-7 (bar 1e-6), whose hypergeometric tails are decided in floating
+  point near their level (aicr 1541331). <!-- claim:exp118-second-route-reproduces-grade -->
+- **Every valid interval holds at NLCD's shape (P2 holds).** Each stratum of NLCD 2016's set B made a population of ten
+  copies of its labelled points; 5,000 draws without replacement, graded by 1.18.1 from PyPI (aicr 1541238). On all 91
+  quantities (overall accuracies, NLCD's lead over LCMAP, and every class's user's and producer's accuracy and reference
+  share) the valid interval covered at least the bar 0.9408; the least was 0.9826 (class 81's user's accuracy). <!-- claim:exp118-valid-intervals-hold-at-nlcd-shape -->
+- **Normal theory falls short on classes, not overall (P3 holds).** Normal theory covered below the bar on 33 of the
+  91: 16 of 29 producer's accuracies (least 0.835), 9 of 29 reference shares (least 0.896) and 8 of 29 user's
+  accuracies (least 0.712, LCMAP's water at eight classes). On the three overall accuracies and the difference it
+  covered 0.948 to 0.951, as it says. <!-- claim:exp118-normal-theory-short-on-classes-not-overall -->
+- **The cost (descriptive).** Mean width over normal theory's: 1.62 to 1.63 for overall accuracy, 1.64 for the
+  difference; medians 1.90 for user's accuracy (1.19 to 4.17), 2.40 for producer's (1.99 to 5.65) and 1.74 for
+  reference shares (1.65 to 8.42). <!-- claim:exp118-valid-interval-width-cost -->
+
+**What it does not show.** The populations are the samples copied ten times, so they hold the samples' shares, not the
+agency's map, and a population of ten copies per label makes each draw closer to a census than the agency's.
+GFC2020's coverage was not measured (above).
+
 ## Grading an agency's stratified sample (exp117)
 
 **Question.** The 1.17.0 raters found no route to grade a map with an agency's published stratified sample. Can the
@@ -4794,7 +4825,9 @@ code is a port of theirs.
   to 92.19% against 91.07% to 91.94%. <!-- claim:exp117-valid-interval-costs-1-6-times-normal -->
 - **Normal theory finds a difference the valid interval does not.** NLCD leads LCMAP at eight classes by 1.34 points by
   the primary-or-alternate rule: normal theory 0.41 to 2.26, the valid interval -0.17 to 2.86; by the primary label
-  1.87 points, 0.71 to 3.03 against -0.01 to 3.75. GFC2020 V2 and WorldCover differ by 0.09 points (-0.59 to 0.80). <!-- claim:exp117-normal-theory-calls-a-difference-the-valid-interval-does-not -->
+  1.87 points, 0.71 to 3.03 against -0.01 to 3.75. GFC2020 V2 and WorldCover differ by 0.09 points (-0.59 to 0.80).
+  At this sample size normal theory is not wrong there: in exp118 it covered that difference on 0.948 of 5,000 draws
+  at NLCD's design shape. The disagreement is the valid interval's width, the price of holding at every sample size. <!-- claim:exp117-normal-theory-calls-a-difference-the-valid-interval-does-not -->
 - **The pure-stratum rule.** For all 15 NLCD classes the user's accuracy by the pure-stratum rule is narrower than the
   box: a median 0.61 of its width (0.32 to 0.76), and 1.20 to 3.87 times normal theory's (median 1.43). Class 21:
   79.4% to 91.8%, where the box gives 69.9% to 100%. <!-- claim:exp117-pure-stratum-rule-narrower-than-box -->

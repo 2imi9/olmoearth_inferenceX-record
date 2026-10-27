@@ -1,0 +1,291 @@
+{
+ "plan": "docs/plan/grade_second_route_and_coverage.md (frozen 000bdf7)",
+ "jobs": {
+  "second_route": 1541331,
+  "coverage_B1": 1541238,
+  "coverage_B2": "1541240, cancelled after 7 minutes, before any result was read"
+ },
+ "second_route": {
+  "by_family": {
+   "linear": {
+    "largest_abs_difference": 7.993605777301127e-15,
+    "where": "gfc2020: overall_accuracy/gfc_v2 interval_hi"
+   },
+   "difference": {
+    "largest_abs_difference": 1.2434497875801753e-14,
+    "where": "nlcd2016_8_alt: differences/nlcd8 minus lcmap interval_hi"
+   },
+   "box": {
+    "largest_abs_difference": 6.663003482287877e-13,
+    "where": "nlcd2011_l2_alt: per_class/nlcd/23/producer interval_lo"
+   },
+   "pure-stratum rule": {
+    "largest_abs_difference": 1.0838110708899507e-07,
+    "where": "nlcd2016_l2_primary: per_class/nlcd/52/user interval_hi"
+   },
+   "normal theory": {
+    "largest_abs_difference": 8.881784197001252e-16,
+    "where": "gfc2020: per_class/gfc_v2/0/user normal_theory_hi"
+   },
+   "estimate": {
+    "largest_abs_difference": 7.771561172376096e-16,
+    "where": "gfc2020: per_class/gfc_v2/0/user estimate"
+   },
+   "overall": {
+    "largest_abs_difference": 1.0838110708899507e-07,
+    "where": "nlcd2016_l2_primary: per_class/nlcd/52/user interval_hi"
+   },
+   "overall_including_estimates": {
+    "largest_abs_difference": 1.0838110708899507e-07,
+    "where": "nlcd2016_l2_primary: per_class/nlcd/52/user interval_hi"
+   }
+  },
+  "P1_holds": true,
+  "selftest": {
+   "order_average_vs_enumeration_max_abs_diff": 1.7763568394002505e-15,
+   "hypergeometric_tail_vs_exact_max_abs_diff": 1.0658141036401503e-14,
+   "hypergeometric_intervals_differing_from_exact": []
+  },
+  "runs": [
+   "gfc2020",
+   "nlcd2011_l2_alt",
+   "nlcd2016_8_alt",
+   "nlcd2016_l2_alt",
+   "nlcd2016_l2_primary"
+  ]
+ },
+ "coverage_B1": {
+  "package": "1.18.1",
+  "draws": 5000,
+  "quantities": 91,
+  "errors": 0,
+  "bar": 0.9407533789955465,
+  "P2_holds": true,
+  "valid_least": {
+   "quantity": "0/user/nlcd/81",
+   "coverage": 0.9826
+  },
+  "P3_holds": true,
+  "normal_below_bar": 33,
+  "normal_below_bar_quantities": [
+   [
+    "1/user/lcmap/5",
+    0.7116
+   ],
+   [
+    "0/producer/nlcd/90",
+    0.8354
+   ],
+   [
+    "1/producer/lcmap/8",
+    0.8356
+   ],
+   [
+    "1/producer/nlcd8/5",
+    0.8538
+   ],
+   [
+    "0/producer/nlcd/11",
+    0.8626
+   ],
+   [
+    "1/producer/nlcd8/8",
+    0.8722
+   ],
+   [
+    "1/user/lcmap/8",
+    0.8774
+   ],
+   [
+    "1/user/nlcd8/5",
+    0.884
+   ],
+   [
+    "0/user/nlcd/11",
+    0.8856
+   ],
+   [
+    "1/user/lcmap/1",
+    0.8904
+   ],
+   [
+    "1/producer/lcmap/5",
+    0.891
+   ],
+   [
+    "1/producer/nlcd8/6",
+    0.8952
+   ],
+   [
+    "1/reference_share/lcmap/5",
+    0.8956
+   ],
+   [
+    "0/producer/nlcd/31",
+    0.9096
+   ],
+   [
+    "1/reference_share/nlcd8/8",
+    0.9154
+   ],
+   [
+    "0/reference_share/nlcd/31",
+    0.9186
+   ],
+   [
+    "1/reference_share/nlcd8/5",
+    0.9226
+   ],
+   [
+    "0/producer/nlcd/22",
+    0.9238
+   ],
+   [
+    "0/reference_share/nlcd/22",
+    0.9238
+   ],
+   [
+    "0/producer/nlcd/95",
+    0.9242
+   ],
+   [
+    "0/producer/nlcd/24",
+    0.9264
+   ],
+   [
+    "0/producer/nlcd/23",
+    0.9296
+   ],
+   [
+    "1/reference_share/lcmap/8",
+    0.9304
+   ],
+   [
+    "0/reference_share/nlcd/11",
+    0.931
+   ],
+   [
+    "0/reference_share/nlcd/24",
+    0.933
+   ],
+   [
+    "0/user/nlcd/31",
+    0.9346
+   ],
+   [
+    "1/producer/lcmap/6",
+    0.9346
+   ],
+   [
+    "0/user/nlcd/81",
+    0.9356
+   ],
+   [
+    "0/user/nlcd/71",
+    0.9362
+   ],
+   [
+    "0/reference_share/nlcd/95",
+    0.9374
+   ],
+   [
+    "0/producer/nlcd/52",
+    0.9384
+   ],
+   [
+    "1/producer/nlcd8/2",
+    0.9386
+   ],
+   [
+    "0/producer/nlcd/71",
+    0.9406
+   ]
+  ],
+  "normal_least": {
+   "quantity": "1/user/lcmap/5",
+   "coverage": 0.7116
+  },
+  "normal_by_kind": {
+   "difference": {
+    "n": 1,
+    "below_bar": 0,
+    "least": 0.9478,
+    "median": 0.9478
+   },
+   "overall": {
+    "n": 3,
+    "below_bar": 0,
+    "least": 0.9496,
+    "median": 0.9498
+   },
+   "producer": {
+    "n": 29,
+    "below_bar": 16,
+    "least": 0.8354,
+    "median": 0.9386
+   },
+   "reference_share": {
+    "n": 29,
+    "below_bar": 9,
+    "least": 0.8956,
+    "median": 0.9468
+   },
+   "user": {
+    "n": 29,
+    "below_bar": 8,
+    "least": 0.7116,
+    "median": 0.9436
+   }
+  },
+  "overall_and_difference": {
+   "0/overall/nlcd": {
+    "valid": 0.9984,
+    "normal": 0.951
+   },
+   "1/overall/nlcd8": {
+    "valid": 0.9988,
+    "normal": 0.9496
+   },
+   "1/overall/lcmap": {
+    "valid": 0.9974,
+    "normal": 0.9498
+   },
+   "1/difference/nlcd8 minus lcmap": {
+    "valid": 0.998,
+    "normal": 0.9478
+   }
+  },
+  "width_over_normal_by_kind": {
+   "difference": {
+    "n": 1,
+    "median": 1.6363916812149077,
+    "min": 1.6363916812149077,
+    "max": 1.6363916812149077
+   },
+   "overall": {
+    "n": 3,
+    "median": 1.6265092993817045,
+    "min": 1.6218705958649868,
+    "max": 1.6294633656023354
+   },
+   "producer": {
+    "n": 29,
+    "median": 2.4032762263117022,
+    "min": 1.986770182278866,
+    "max": 5.65067563022024
+   },
+   "reference_share": {
+    "n": 29,
+    "median": 1.7420908573434182,
+    "min": 1.645506782558192,
+    "max": 8.417773796185024
+   },
+   "user": {
+    "n": 29,
+    "median": 1.895316896356702,
+    "min": 1.1933313358185194,
+    "max": 4.171800746319405
+   }
+  }
+ }
+}

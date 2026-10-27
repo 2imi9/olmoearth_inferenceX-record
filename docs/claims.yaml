@@ -6307,3 +6307,65 @@
   note: >-
     Accepting the 2011 alternate instead gives 86.884% overall, the caption's figure rounded, but reproduces only 10 of
     the 15 user's accuracies. The paper computed its estimates in SAS and publishes no code.
+
+- id: exp118-second-route-reproduces-grade
+  statement: "In a preregistered check (exp118, frozen 000bdf7), a second implementation written from the plan's specification alone, without the package or the design study's scripts, reproduced every interval grade printed on exp117's five runs: linear quantities within 8.0e-15, differences 1.2e-14, boxes 6.7e-13, normal theory 8.9e-16 and the pure-stratum rule 1.1e-7 (bar 1e-6); its average over label orders matched enumeration to 1.8e-15 (P1 holds)."
+  crosscheck: tests/test_exp118.py::test_the_second_route_agrees_with_grade_on_every_quantity
+  status: supported
+  experiments: [exp118]
+  artifacts: [exp/out/exp118_summary.json]
+  check: |-
+    (lambda R: R['P1_holds'] is True
+      and R['by_family']['linear']['largest_abs_difference'] < 1e-14 and R['by_family']['difference']['largest_abs_difference'] < 2e-14
+      and R['by_family']['box']['largest_abs_difference'] < 1e-12 and R['by_family']['normal theory']['largest_abs_difference'] < 1e-15
+      and 1e-7 < R['by_family']['pure-stratum rule']['largest_abs_difference'] < 1.2e-7
+      and R['selftest']['order_average_vs_enumeration_max_abs_diff'] < 2e-15 and R['selftest']['hypergeometric_intervals_differing_from_exact'] == []
+    )(A['exp/out/exp118_summary.json']['second_route'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp118-second-route-reproduces-grade}
+
+- id: exp118-valid-intervals-hold-at-nlcd-shape
+  statement: "In exp118, on populations of ten copies of each of NLCD 2016's labelled points per stratum, 5,000 draws without replacement graded by grade 1.18.1: every one of 91 quantities (overall accuracies, NLCD's lead over LCMAP, and every class's user's and producer's accuracy and reference share) had its valid interval cover at least the preregistered bar 0.9408; the least was 0.9826 (P2 holds)."
+  crosscheck: tests/test_exp118.py::test_the_summary_against_the_raw_coverage
+  status: supported
+  experiments: [exp118]
+  artifacts: [exp/out/exp118_summary.json]
+  check: |-
+    (lambda B: B['P2_holds'] is True and B['quantities'] == 91 and B['draws'] == 5000 and B['errors'] == 0
+      and round(B['bar'], 4) == 0.9408 and B['valid_least']['coverage'] == 0.9826
+    )(A['exp/out/exp118_summary.json']['coverage_B1'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp118-valid-intervals-hold-at-nlcd-shape}
+  note: >-
+    The plan's arm B2 (GFC2020) was cancelled after seven minutes, before any result was read, for its compute cost.
+
+- id: exp118-normal-theory-short-on-classes-not-overall
+  statement: "In exp118's 5,000 draws at NLCD 2016's design shape, normal theory covered below the bar 0.9408 on 33 of 91 quantities: 16 of 29 producer's accuracies (least 0.835), 9 of 29 reference shares (least 0.896) and 8 of 29 user's accuracies (least 0.712); on the three overall accuracies and NLCD's lead over LCMAP it covered 0.948 to 0.951 (P3 holds)."
+  crosscheck: tests/test_exp118.py::test_the_summary_against_the_raw_coverage
+  status: supported
+  experiments: [exp118]
+  artifacts: [exp/out/exp118_summary.json]
+  check: |-
+    (lambda B: B['P3_holds'] is True and B['normal_below_bar'] == 33
+      and [B['normal_by_kind'][k]['below_bar'] for k in ('producer', 'reference_share', 'user', 'overall', 'difference')] == [16, 9, 8, 0, 0]
+      and [round(B['normal_by_kind'][k]['least'], 3) for k in ('producer', 'reference_share', 'user')] == [0.835, 0.896, 0.712]
+      and round(min(v['normal'] for v in B['overall_and_difference'].values()), 3) == 0.948
+      and round(max(v['normal'] for v in B['overall_and_difference'].values()), 3) == 0.951
+    )(A['exp/out/exp118_summary.json']['coverage_B1'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp118-normal-theory-short-on-classes-not-overall}
+
+- id: exp118-valid-interval-width-cost
+  statement: "In exp118 (descriptive), the valid intervals' mean width over normal theory's was 1.62 to 1.63 for overall accuracy and 1.64 for NLCD's lead over LCMAP; medians 1.90 for user's accuracy (1.19 to 4.17), 2.40 for producer's (1.99 to 5.65) and 1.74 for reference shares (1.65 to 8.42)."
+  crosscheck: tests/test_exp118.py::test_the_summary_against_the_raw_coverage
+  status: measured
+  experiments: [exp118]
+  artifacts: [exp/out/exp118_summary.json]
+  check: |-
+    (lambda W: [round(W['overall'][k], 2) for k in ('min', 'max')] == [1.62, 1.63] and round(W['difference']['median'], 2) == 1.64
+      and [round(W['user'][k], 2) for k in ('median', 'min', 'max')] == [1.9, 1.19, 4.17]
+      and [round(W['producer'][k], 2) for k in ('median', 'min', 'max')] == [2.4, 1.99, 5.65]
+      and [round(W['reference_share'][k], 2) for k in ('median', 'min', 'max')] == [1.74, 1.65, 8.42]
+    )(A['exp/out/exp118_summary.json']['coverage_B1']['width_over_normal_by_kind'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp118-valid-interval-width-cost}
