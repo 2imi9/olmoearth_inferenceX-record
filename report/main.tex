@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -31,11 +32,11 @@
 \makeatother
 
 \title{\pkg: confidence-based review, comparison and accuracy estimation for Earth-observation classification maps\\[6pt]
-\large Technical report, version 1.17.0}
+\large Technical report, version 1.19.0}
 \author{Ziming Qi\\[2pt] \small \url{https://github.com/2imi9/olmoearth_inferenceX}\\[-1pt]
 \small \url{https://github.com/2imi9/olmoearth_inferenceX-record}\\[-1pt]
 \small \url{https://olmoearth-inferencex.readthedocs.io}}
-\date{24 October 2026}
+\date{27 October 2026}
 
 \begin{document}
 \maketitle
@@ -86,25 +87,33 @@ agreement with the reference (they named one on 6\% to 29\% of draws at 50 to 20
 confidence ranked its errors with an AUROC of 0.75; certified zones on that confidence met their guarantee in every
 cell, and at 300 labels the default rule returned no zone on 87\% of draws at $\alpha$ half the error rate, though 65\%
 of the plots lie in a zone within it.
-The record comprises 119 experiment scripts covering 98 experiment numbers (exp01 to exp116) and 280 ledger claims,
-278 of them checked against a committed artifact and 143 by an independent second route, and reports failed
-predictions as failed.
+Given an agency's stratified reference sample, the package reproduces the published overall accuracies of NLCD 2016's
+assessment (86.39\% against 86.4\%) and GFC2020's, each with a stratified betting interval valid in finite samples,
+with no large-sample approximation, and 1.60 to 1.64 times as wide as the agency's normal-theory interval; at NLCD's
+design shape the normal-theory intervals covered below 0.9408 (0.95 less three Monte Carlo standard errors) on 33 of
+91 quantities, all of them per class, and the valid ones on none.
+The record comprises 121 experiment scripts covering 99 experiment numbers from exp01 to exp118 (exp117's design study
+is in a folder of its own), and 291 ledger claims, 289 of them checked against a committed artifact and 154 by an
+independent second route, and reports failed predictions as failed.
 \end{abstract}
 
 \section{Introduction}
 
 A classification map from an Earth-observation model is usually applied where no reference labels exist. This
-report addresses four questions: which windows to review first when only a fraction can be checked; how two maps of
+report addresses five questions: which windows to review first when only a fraction can be checked; how two maps of
 one area differ, when they come from different crops, backbones, sensors, encoders, training states or dates; once
 some windows are labelled, how wrong the map is, how accurate each class is, and which part of it can be used with a
-stated error bound; and which of two maps is more accurate, from as few labels as possible.
+stated error bound; which of two maps is more accurate, from as few labels as possible; and what an agency's published
+stratified reference sample says about a map, with intervals that hold at its sample size.
 
 \pkg{} ranks $4\times4$-pixel windows by the model's confidence margin with label-free cues (Section~\ref{sec:ranking}),
 compares two maps with regard to their dates (Section~\ref{sec:compare}), estimates error rates and per-class
 accuracies from a labelled sample (Section~\ref{sec:estimate}), certifies a zone of the most confident windows
-(Section~\ref{sec:zone}), and estimates the accuracy difference of two maps from labels where they differ
-(Section~\ref{sec:whichmap}). It reads arrays and rasters and loads no model, and it serves the same commands to a
-language-model agent (Section~\ref{sec:interfaces}); Figure~\ref{fig:overview} shows its six outputs. In the
+(Section~\ref{sec:zone}), estimates the accuracy difference of two maps from labels where they differ
+(Section~\ref{sec:whichmap}), and grades a map with an agency's stratified reference sample
+(Section~\ref{sec:agency}). It reads arrays and rasters and loads no model, and it serves the same commands to a
+language-model agent (Section~\ref{sec:interfaces}); Figure~\ref{fig:overview} shows the six outputs that work on a map's windows; \code{grade}, which reads an agency's
+points, is not drawn. In the
 evaluation the label-free readings are graded against labels and never fitted to them \claim{labels-grade-never-train}.
 
 \begin{figure}[t]
@@ -130,7 +139,10 @@ measures are \citet{rottmann2020} and \citet{meyer2021}. The estimators follow d
 evaluation sample by its confidence was proposed by \citet{kumar2016}, and prediction-powered inference
 \citep{angelopoulos2023ppi}, including a design-based spatial form \citep{shirota2026} and applications to
 remote-sensing maps \citep{lu2024regression}, addresses the same estimation
-task. The certified zone follows risk control by exact tests \citep{bates2021,angelopoulos2021}. Disagreement maps
+task. The intervals for an agency's stratified sample are built from the exponential-supermartingale and betting
+intervals for sampling without replacement \citep{waudbysmith2020,waudbysmith2024,stark2023alpha}, related to the stratified tests of risk-limiting audits
+\citep{ottoboni2018,spertus2022}, and are reported beside the design-based estimates of \citet{stehman2014}
+(Section~\ref{sec:agency}). The certified zone follows risk control by exact tests \citep{bates2021,angelopoulos2021}. Disagreement maps
 between land-cover products \citep{fritz2008} and paired accuracy tests on a shared sample \citep{foody2004} precede the
 comparison of two maps, and the bounds for a reviewer who errs are the partially identified form of the correction of
 \citet{rogan1978}. \citet{lehmann2026} report that geospatial foundation models grow overconfident under corruption
@@ -435,17 +447,229 @@ label is read (both readings hold together at least 90\% of the time, by the uni
 class but cannot clear a good one on a large zone: at $\alpha = 0.05$, \textit{below} needs at least 72 error-free labels
 there. It names the class, not the windows.
 
+\subsection{An agency's stratified sample}
+\label{sec:agency}
+
+Since version 1.18.0, \code{grade} reads the points of an agency's accuracy assessment, such as NLCD's
+\citep{wickham2021} or GFC2020's \citep{colditz2025,bourgoin2026}: each point's stratum, its reference label, optional
+alternate labels, the class each map gives it, and the strata's sizes, from a weight column or a file, in units or as
+areas. It returns what the agency reports: overall accuracy, each class's user's and producer's accuracy and share of
+the reference, with two maps the difference of their overall accuracies on the same points, and the error matrix as
+estimated shares without intervals. Each number has an interval valid at the sample's size, with no large-sample
+approximation, and beside it the
+agency's normal-theory interval \citep{stehman2014,olofsson2014}, which is nominal. The code is
+\code{oe\_inferencex.agency} and \code{oe\_inferencex.agency.stratified}; \code{grade} is not among the MCP server's
+tools.
+
+\textbf{Setting.} The population is split into $H$ sampled strata with shares $W_h > 0$ and strata holding no label
+with total share $W_u$, $\sum_h W_h + W_u = 1$. Stratum $h$ holds $N_h$ units; a stratum whose size is an area is a
+point frame, $N_h = \infty$, whose draws are independent and identically distributed. Each unit carries a value
+$x \in [0,1]$, with mean $\mu_h$ in stratum $h$. The $n_h \ge 1$ labels of stratum $h$ are a simple random sample
+without replacement, the strata are drawn independently, and each $n_h$ is fixed before sampling. A linear quantity is
+$\theta = \sum_h W_h \mu_h$ over the sampled strata, the quantity itself when every stratum is sampled and otherwise its
+part on them: overall accuracy ($x = 1$ where the point is right), a class's share of the reference ($x = 1$ where its
+reference class is the class), and the difference of two maps' accuracies, $2\theta - 1$ when every stratum is
+sampled, with $x = (1 + d)/2$ and $d = \mathrm{right}_a - \mathrm{right}_b \in \{-1, 0, 1\}$. A point is right
+when the map's class equals its reference label or, with alternate labels, any of them (NLCD's rule); its reference
+class is then the map's class where that equals an alternate, and the primary label otherwise. So $x$ takes at most
+three values.
+
+\textbf{The stratum e-value.} In draw order $t = 0, \dots, n_h - 1$, with $S_t$ the sum of the first $t$ values,
+$m_t(\mu) = (N_h \mu - S_t)/(N_h - t)$ is the mean of the units not yet drawn when the stratum's mean is $\mu$
+($m_t(\mu) = \mu$ for a point frame). For a bet size $c > 0$ shared by all strata, let
+$\lambda_t = c W_h (N_h - t)/(N_h n_h)$ ($c W_h / n_h$ for a point frame) and
+$c_t = \min\bigl((1/2 + S_t)/(t+1),\ \kappa/\lambda_t\bigr)$ with $\kappa = 0.9$, a running mean of the labels before
+step $t$, started at $1/2$ and clipped. Then
+\begin{equation}
+  K_h(\mu) = \prod_{t=0}^{n_h - 1} \bigl(1 + \lambda_t (X_t - c_t)\bigr)\, \exp\bigl(\lambda_t (c_t - m_t(\mu))\bigr).
+  \label{eq:stratum-evalue}
+\end{equation}
+Each factor bets on the next value against the guess $c_t$ and pays back the guess's distance from the mean the null
+states. $\lambda_t$ is fixed by the design; $c_t$ and $m_t(\mu)$ depend on the labels only through those before step
+$t$, and $c_t$ does not depend on $\mu$.
+
+\textbf{Lemma 1 (validity in a stratum).} At the stratum's true mean, $\mathrm{E}\,K_h(\mu_h) \le 1$.
+
+\textit{Proof.} As $X_t \ge 0$ and $\lambda_t c_t \le \kappa$, the bet $1 + \lambda_t (X_t - c_t)$ is at least
+$1 - \kappa > 0$, so every factor is positive. Given the
+labels before step $t$, $X_t$ is a uniform draw from the $N_h - t$ units not yet drawn, whose mean is $m_t(\mu_h)$
+(for a point frame, an independent draw of mean $\mu_h$). With $y = \lambda_t (m_t(\mu_h) - c_t)$ the factor's
+conditional mean is $(1 + y)e^{-y} \le 1$, since $1 + y \le e^y$. A product of nonnegative factors, each with
+conditional mean at most 1 given the past, has mean at most 1 (condition on the past step by step). $\square$
+
+The inequality $1 + y \le e^y$ is the last step (their inequality (ii)) in the proof of Theorem 3.2 of the arXiv
+version of \citet{waudbysmith2020} (Appendix B.3), taken after their use of the inequality of \citet{fan2015}; the
+factor in (\ref{eq:stratum-evalue}) is the intermediate quantity of that proof.
+
+\textbf{Lemma 2 (linearity).} $\log K_h(\mu) = A_h - c W_h \mu$, where $A_h$ does not depend on $\mu$.
+
+\textit{Proof.} $\mu$ enters (\ref{eq:stratum-evalue}) only through $-\lambda_t m_t(\mu)$, whose coefficient of $\mu$
+is $-\lambda_t N_h / (N_h - t) = -c W_h / n_h$ at every step (for a point frame, $-\lambda_t = -c W_h / n_h$
+directly); over the $n_h$ steps these add to $-c W_h$. The rest,
+$A_h = \sum_t [\log(1 + \lambda_t (X_t - c_t)) + \lambda_t c_t + \lambda_t S_t/(N_h - t)]$, its last term absent for a
+point frame, is free of $\mu$ because $c_t$ is. $\square$
+
+So $\prod_h K_h(\mu_h) = \exp(\sum_h A_h - c\theta)$ depends on the stratum means only through $\theta$: no split of
+$\theta$ among the strata needs to be searched.
+
+\textbf{Lemma 3 (orders and the mixture).} Let $\bar A_h(c)$ be the logarithm of the average of $e^{A_h}$ over all
+orders of stratum $h$'s labels, and let $c_1, \dots, c_K$ be fixed before sampling. Then
+\begin{equation}
+  M(\theta_0) = \frac{1}{K} \sum_{k=1}^{K} \exp\Bigl(\sum_h \bar A_h(c_k) - c_k \theta_0\Bigr)
+  \label{eq:mixture}
+\end{equation}
+satisfies $\mathrm{E}\,M(\theta) \le 1$ at the true $\theta$.
+
+\textit{Proof.} The sample has no order of its own; list it in a uniformly random order. The sequence is then
+distributed as draws made one at a time without replacement (for a point frame, it is the exchangeable draws
+themselves), so Lemma~1 applies to it, and the average over its $n_h!$ orders is the conditional expectation of
+$K_h(\mu_h)$ given the set of labelled units; as $-c W_h \mu_h$ is the same in every order, that is
+$\exp(\bar A_h(c) - c W_h \mu_h)$, whose mean is $\mathrm{E}\,K_h(\mu_h) \le 1$ by Lemma~1. The strata are
+drawn independently, so the mean of the product over strata is the product of the means, at most 1, and by Lemma 2 the
+product is $\exp(\sum_h \bar A_h(c) - c\theta)$. An average with fixed weights of quantities with mean at most 1 has
+mean at most 1. $\square$
+
+$A_h$ depends on an order only through the counts of each value seen so far, so a dynamic programme over those counts
+sums every order exactly, with no order drawn at random, in about $K n_h (k_1 + 1)(k_2 + 1)$ steps for the two smaller
+of the three counts $k_1, k_2$. The grid holds $K = 12$ values of $c$, geometric from $c_{\mathrm{lo}}$ to
+$10\,c_{\mathrm{lo}}$, with $c_{\mathrm{lo}} = \sqrt{2 \ln(2/\alpha) / V}$ and $V = \sum_h W_h^2/(4 n_h)$: the bet
+that is best to second order when every stratum has the largest variance, $1/4$, with larger values for populations
+whose strata have smaller variance, as accuracies near 1 give; one $c$ serves every stratum. The grid is fixed by the weights, the sample sizes and $\alpha$, never by the
+labels.
+
+\textbf{Theorem 1 (the betting interval).} $M(\theta_0)$ decreases in $\theta_0$. Let $L$ be the largest
+$\theta_0 \in [0, \sum_h W_h]$ with $M(\theta_0) \ge 2/\alpha$, or 0 if there is none, and $U$ the same construction
+applied to the values $1 - x$, subtracted from $\sum_h W_h$. Then $P(L \le \theta \le U) \ge 1 - \alpha$ for every
+population and every allocation $(n_h)$ fixed before sampling.
+
+\textit{Proof.} Every $c_k > 0$, so each term of (\ref{eq:mixture}) decreases in $\theta_0$, and $M$ is continuous.
+If $L > \theta$ then $M(\theta) \ge M(L) \ge 2/\alpha$, which by Markov's inequality and Lemma 3 has probability at
+most $\alpha/2$. The values $1 - x$ have the weighted sum $\sum_h W_h (1 - \mu_h) = \sum_h W_h - \theta$, so $U < \theta$ also has probability
+at most $\alpha/2$, and a union bound over the two ends completes the proof. $\square$
+
+Each interval is a $1 - \alpha$ statement on its own (95\% by default); the intervals \code{grade} prints do not hold jointly. The interval is
+for a fixed sample, not sequential: $\lambda_t$ uses the final $n_h$, and the average over orders needs the whole
+sample, so a look after more labels is a new test.
+
+\textbf{Unknown values and strata with no label.} A unit whose value cannot be known (a map's no-data, a point with no
+reference label) is set to its least possible value for the lower end and its greatest for the upper end; for a
+difference, over the joint completions of the point's unknown values, either map's class or its reference label. When
+whether a value can be known is an attribute of the unit, as a map's no-data is, the population completed at the least
+values is a fixed population whose $\theta$ is at most the true one, and the sample is a simple random sample of it, so
+the lower half of the proof of Theorem~1 gives a lower end that fails with probability at most $\alpha/2$ under any
+completion; its upper half, on the population completed at the greatest values, gives the upper end, and the union
+bound gives $1 - \alpha$ for the two. When it is instead an outcome of the labelling (a drawn point left without a
+reference label), the same holds provided whether a drawn point gets a label depends only on that point and on chance
+independent of the draws, not on which other points were drawn or in what order: fixing that chance in advance
+for every unit makes it an attribute of the unit again (for a point frame, the recorded values are then independent
+draws whose mean is at most $\mu_h$). Gaps that depend on the other draws are not covered. An unknown is never dropped,
+which would grade another population. The strata holding no label add 0 to the lower end and $W_u$ to the upper; for a
+difference this reads $2L - 1$ and $2\min(1, U + W_u) - 1$, as their part of it lies in $[-W_u, W_u]$.
+
+\textbf{Proposition 1 (an area read as points).} A stratum given as an area whose units have a stated area
+(\code{-{}-unit-area}), or one whose weights are printed too coarsely to give one whole number of units, is read as a
+point frame. If it was in fact drawn without replacement from $N_h \ge N_{\mathrm{lo}}$ units, the fewest its size
+allows and at least $n_h$ (a stated unit area that allows fewer than $n_h$ units is refused; weights that allow fewer
+give $N_{\mathrm{lo}} = n_h$, as $n_h$ units were drawn), multiplying its e-value by
+$\exp\bigl(-c W_h (n_h - 1) / (2 (N_{\mathrm{lo}} - n_h + 1))\bigr)$ keeps its mean at most 1.
+
+\textit{Proof.} With $\lambda = c W_h / n_h$, at the stratum's true mean $\mu$ the factor's conditional mean is
+$(1 + \lambda(m_t - c_t)) e^{\lambda(c_t - \mu)} \le e^{\lambda (m_t - \mu)}$, $m_t$ being the true mean of the units
+not yet drawn, and, as $\mu \le 1$ and $S_t \ge 0$,
+$m_t - \mu = (t\mu - S_t)/(N_h - t) \le t/(N_{\mathrm{lo}} - n_h + 1)$ for $t \le n_h - 1$.
+Deflating step $t$ by $e^{-\lambda t/(N_{\mathrm{lo}} - n_h + 1)}$ therefore gives factors with conditional mean at
+most 1, and $\sum_{t < n_h} \lambda t / (N_{\mathrm{lo}} - n_h + 1) = c W_h (n_h - 1)/(2 (N_{\mathrm{lo}} - n_h + 1))$.
+The deflation depends neither on the order nor on $\mu$, so Lemmas 2 and 3 hold as before. $\square$
+
+\textbf{Proposition 2 (the box for ratios).} A user's or producer's accuracy is
+$R = \theta_y / (\theta_y + \theta_w)$ with indicators $y$ and $w$, $y + w \le 1$ at each unit: for the user's accuracy
+of class $j$, $y$ marks a unit mapped $j$ and right and $w$ one mapped $j$ and wrong; for the producer's, $y$ marks a
+unit mapped $j$ whose reference class is $j$ and $w$ one of reference class $j$ mapped otherwise. With
+$[L_y, U_y]$ and $[L_w, U_w]$ the betting intervals at $\alpha/2$ and $\theta_y + \theta_w > 0$ (a class the map
+never gives has no user's accuracy, one the reference never holds no producer's),
+$R \in [L_y/(L_y + U_w),\ U_y/(U_y + L_w)]$ with probability at least $1 - \alpha$, an end whose denominator is 0 being
+read as 0 below and 1 above.
+
+\textit{Proof.} Both intervals hold together with probability at least $1 - \alpha$ by the union bound. $R$ increases in
+$\theta_y$ and decreases in $\theta_w$ ($\partial R/\partial\theta_y = \theta_w/(\theta_y + \theta_w)^2 \ge 0$,
+$\partial R/\partial\theta_w = -\theta_y/(\theta_y + \theta_w)^2 \le 0$), so on that event $R$ lies between its values
+at those ends; an end read as 0 or 1 holds trivially. $\square$
+
+\textbf{Proposition 3 (the pure-stratum rule).} An agency's design can hold, for a class $j$, a stratum $o$ every unit
+of which the map labels $j$, such as NLCD's no-change strata (\code{-{}-pure}). Let $\mathcal{M}$ be the strata
+declared pure for no class (a stratum pure for another class holds no unit mapped $j$), $p_o$ the share of $o$'s units
+that are right, and $a_h$ and $b_h$ the shares of stratum $h$'s units mapped $j$ and right, and mapped $j$ and wrong.
+Then
+\begin{equation}
+  \mathrm{UA}_j =\frac{W_o p_o + \sum_{h \in \mathcal{M}} W_h a_h}{W_o + \sum_{h \in \mathcal{M}} W_h (a_h + b_h)}.
+  \label{eq:pure}
+\end{equation}
+Take the exact hypergeometric interval of Section~\ref{sec:estimate}, each tail at half the complement of its level,
+for $p_o$ at level $1 - (\alpha - \gamma)$ and for each $a_h$ and $b_h$ at $1 - \gamma/(2M')$, with $M'$ the strata of $\mathcal{M}$ not labelled in full (a stratum labelled
+in full is known exactly) and $\gamma = \alpha/10$ ($\gamma = 0$ when $M' = 0$). With probability at least
+$1 - \alpha$, $\mathrm{UA}_j$ lies between (\ref{eq:pure}) evaluated at the lower end of $p_o$, the lower ends of the
+$a_h$ and the upper ends of the $b_h$, and (\ref{eq:pure}) at the opposite ends.
+
+\textit{Proof.} By the union bound all the intervals hold together except with probability at most
+$(\alpha - \gamma) + 2M' \gamma/(2M') = \alpha$. $\mathrm{UA}_j$ increases in $p_o$, which enters only the numerator;
+it increases in each $a_h$, which adds $W_h a_h$ to numerator and denominator alike, the ratio being at most 1 at every
+point of the box as $p_o \le 1$ and $b_h \ge 0$; and it decreases in each $b_h$, which enters only the denominator. So,
+moving one coordinate at a time, on that event $\mathrm{UA}_j$ lies between its values at those ends. $\square$
+
+The rule needs every stratum's size in whole units, every stratum sampled and no unknown value, and it applies to the
+user's accuracy of the first map given, the one the strata were drawn from, for a class with exactly one declared pure
+stratum; a class with two or more takes the box of Proposition~2. A declaration contradicted by a labelled point,
+mapped otherwise or unknown, is refused; at the units no one labelled it is the agency's statement.
+
+\textbf{What else is printed, and the limits.} Beside each interval stand Stehman's estimate and normal-theory
+interval, with the finite-population correction and ratios linearised \citep{stehman2014}, its ends unclipped as
+agencies publish them; a stratum holding one label adds no variance to it, which \code{grade} notes, as the interval is
+then narrower than it can justify. The dynamic programme is capped at $5 \times 10^{10}$ steps per stratum; an interval that needs
+a stratum above the cap is printed as not computed, and the other numbers are still given. The tests check the
+programme against every order, the e-value's mean at the truth, and, by enumerating every population and sample of
+small designs, the coverage of each interval and of the bounds on unknown values.
+
+\textbf{Relation to prior work.} The stratum e-values are the exponential supermartingales for sampling without
+replacement of \citet[Theorem~3.2]{waudbysmith2020} and the betting martingales of \citet[Section~5]{waudbysmith2024}
+and \citet{stark2023alpha}, all of which centre each draw at the mean of the units not yet drawn; here the bet is fixed
+and proportional to the stratum's weight, and the centre is a predictable guess paid back exponentially. Their
+logarithms are then linear in the stratum means with slopes $-c W_h$ (Lemma 2), so their product depends on the strata
+only through $\theta$. Stratified audits instead test $\theta \le \theta_0$ as a union over the ways $\theta_0$ can be
+split among the strata and search it: SUITE \citep{ottoboni2018} and SHANGRLA's stratified form
+\citep{stark2020shangrla} by combining stratum p-values with Fisher's function, ALPHA \citep[Section~5]{stark2023alpha}
+and \citet{spertus2022,spertus2024} by multiplying stratum test supermartingales and minimising over the splits;
+\citet{spertus2022} report the search prohibitively slow for ALPHA's data-dependent bets beyond two strata, and
+\citet{spertus2024} expensive in general. \citet[Section~3.6]{spertus2022} note that with their empirical-Bernstein
+supermartingale, whose logarithm is linear or piecewise linear in the stratum nulls, the search is a linear programme
+that is fast even for 58 strata; the slopes chosen here make that objective constant over the splits, so no search is
+left. At a fixed sample size the linearity is the familiar property of a Chernoff-type bound for a stratified mean, and
+\citet{spertus2022} state it for their empirical-Bernstein supermartingale with without-replacement nulls; what we did
+not find is the bet $\lambda_t = c W_h (N_h - t)/(N_h n_h)$ that gives every stratum the same slope $-c W_h$ in its
+mean, so that the product depends on the strata only through $\theta$ and the search over splits disappears. Pooled
+designs avoid the search by importance-weighting one adaptively sampled stream \citep{shekhar2023,hait2026,lin2026atlas},
+and \citet[Proposition~2]{spertus2024} and the stratum-resolved design of \citet{hait2026} add stratum bounds after a
+\v{S}id\'ak or Bonferroni split of $\alpha$, a conservative combination; the design here keeps the agency's fixed
+$n_h$, one $\alpha$ and no importance weights. Averaging an e-value over the orders of the sample conditions it on a
+sufficient statistic, which keeps it an e-value \citep{deroos2026}, and \citet[Remark~1]{waudbysmith2024} average their
+empirical-Bernstein process over $B$ random permutations of independent data; we did not find the exact average, over
+all orders and computed over counts, for a without-replacement betting e-value. The mixture over $c$ is a finite
+mixture of exponential supermartingales over bets fixed in advance \citep{howard2021}, as the grid Kelly scheme of
+\citet[Appendix~B.6]{waudbysmith2024} averages capital over a grid of fixed bets; \citet{lindon2026} also fixes a
+mixture in advance, for clustered outcomes in linear models, with no finite population or strata. The estimates beside
+each interval are those of \citet{stehman2014}, which reduce to those of \citet{olofsson2014} when the strata are the
+map classes. We found no earlier use of a betting interval in the accuracy assessment of maps.
+
 \subsection{Interfaces}
 \label{sec:interfaces}
 
-The command \code{oe-inferencex} has fifteen subcommands: \code{demo} (a shipped Dynamic World tile), \code{assess}
+The command \code{oe-inferencex} has sixteen subcommands: \code{demo} (a shipped Dynamic World tile), \code{assess}
 (review sets, rasters and cues), \code{from-olmoearth} (an OlmoEarth model's output read into the rasters
 \code{assess} takes), \code{compare} (disagreement and, with labels and dates, the graded block),
 \code{plan} (how many labels a question needs, new in 1.8.0), \code{sample} (the windows to label), \code{estimate} (the error rate, per-class accuracy with \code{-{}-per-class}, or
 the accuracy difference of two maps), \code{certify} (the certified zone and its mask), \code{decide}, \code{mcp}, \code{from-embeddings} and \code{boundary} (1.13.0:
 a map built from precomputed OlmoEarth v1.3 embeddings, and the windows on a class boundary), \code{scale} (1.15.0: at
-which window size each class can be seen), and \code{certificate} and \code{verify} (1.17.0,
-Section~\ref{sec:certificate}).
+which window size each class can be seen), \code{certificate} and \code{verify} (1.17.0,
+Section~\ref{sec:certificate}), and \code{grade} (1.18.0, Section~\ref{sec:agency}).
 \code{decide} (new in 1.7.0) reads a result that \code{estimate}, \code{certify} or \code{compare} wrote and answers set questions
 with one answer from a fixed set (whether the error rate is below a threshold, a class's user's or producer's accuracy
 above one, which map is more accurate, the certified share), each with its level, its evidence and a sentence that
@@ -536,6 +760,7 @@ surveyors in the field & LUCAS Copernicus 2022, the module described for 2018 by
 farmers' declarations & EuroCrops \citep{schneider2023}, labelled in both years \\
 the model authors' validation sets & Ai2's fine-tuned FT-AWF and Forest Loss Driver models \\
 analysts interpreting a simple random sample & LCMAP Reference Data Product v1.2 \citep{pengra2020}, 25,000 plots; the East Africa TimeSync sample (exp94, exp99, exp103) \\
+analysts interpreting a stratified sample & NLCD 2016's assessment \citep{wickham2021}, GFC2020's validation set \citep{colditz2025,bourgoin2026} (exp94, exp117, exp118) \\
 \bottomrule
 \end{tabularx}
 \caption{Labelled testbeds by origin of the reference.}
@@ -548,12 +773,13 @@ analysts interpreting a simple random sample & LCMAP Reference Data Product v1.2
 Experiments state their predictions and falsification conditions before they run, in their scripts or, for many from
 exp48 on, in a preregistration page (\code{docs/plan}), with dated amendments; four early, exploratory scripts state
 none (exp01, exp18, exp19 and exp32), and results read afterwards are marked as not preregistered here and in the
-ledger. The repository holds 119 experiment scripts named \code{expNN\_*.py},
-covering 98 experiment numbers from exp01 to exp116. The ledger \code{docs/claims.yaml} holds 280 claims, each with a
-statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 99 are supported, 94 measured, 34 mixed, 51 rejected and 2
+ledger. The repository holds 121 experiment scripts named \code{expNN\_*.py},
+covering 99 experiment numbers; with exp117, whose design study is in its own folder,
+\code{exp/exp117\_agency/}, the experiments run from exp01 to exp118. The ledger \code{docs/claims.yaml} holds 291 claims, each with a
+statement, status, artifacts and an executable check (two rest on no committed artifact and say so); 104 are supported, 100 measured, 34 mixed, 51 rejected and 2
 superseded, and \code{scripts/claims.py stale} flags only the two superseded ones. After an audit on 23 September 2026
-found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 143 of the
-280 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
+found that 138 of the then 167 checks read a result back from its own artifact, second routes were added: 154 of the
+291 claims name a \code{crosscheck} test that reaches the number by another route, and every claim from exp79 on must
 name one.
 
 Corrected results appear in their current form. exp78's cluster-corrected arm is now the ratio estimator, which
@@ -915,6 +1141,62 @@ on CGLS, so the preregistered twofold on all three did not hold; Esri repeats 69
 most flagged confident rows are correct (10.0\% to 27.9\% are errors)
 \claim{exp106-second-opinion-flags-confident-errors-on-two-of-three}. A related product, NLCD for LCMAP, meets the
 ratio too, so it does not measure independence \claim{exp106-a-related-second-product-also-meets-the-ratio}.
+
+\subsection{Two agencies' stratified samples: NLCD 2016 and GFC2020}
+\label{sec:res-agency}
+
+exp117 (not preregistered) built \code{grade} (Section~\ref{sec:agency}) and graded it on two of exp94's samples by
+their agencies' designs: NLCD 2016's assessment \citep{wickham2021}, set B, 4,629 points in 21 strata, and GFC2020's
+validation set \citep{colditz2025,bourgoin2026}, 21,612 points in 149 strata given as areas. In its design study the
+dynamic programme matched every order of the labels to $3.6\times10^{-15}$, the expected e-value at the truth was at
+most 1.000000000000001, a judge's 14 enumerated cells at $\alpha$ 0.1 and 0.3 held for every form claimed valid (least
+slack 0.076) where normal theory covered as little as 0, and in a simulation at the designs' shapes (300 draws, 8
+cases) the valid intervals covered 0.997 to 1.000 and normal theory 0.937 to 0.970
+\claim{exp117-intervals-hold-exactly-and-in-simulation}. The selection rule fixed in advance chose a boxed stratified
+Chernoff fallback because three of its gates could not be evaluated in time; the betting interval (a median 0.91 of the
+fallback's width, 0.55 to 1.10) and the box (0.98 of the fallback's, and 1.27 of a certified scan of the ratio that took
+up to 2,327\,s where the box took about 6\,s) were chosen afterwards, on widths \claim{exp117-design-study-widths}.
+
+Run end to end, \code{grade} 1.18.0 reproduces NLCD 2016's published overall accuracies: 86.39\% by the
+primary-or-alternate rule (published 86.4\%), 72.11\% by the primary label (72.1\%), 86.51\% for 2011 (86.5\%) and
+78.99\% at level~I (79.0\%); level~I with the alternate is 90.70\% against 90.6\%, and GFC2020 V2 is 91.51\% accurate
+(published as 91.5\%, 91\% in the abstract) \claim{exp117-grade-reproduces-published-overall-accuracies}. On all 10
+overall accuracies and differences the valid interval is 1.60 to 1.64 times as wide as normal theory's, and every
+printed interval equals the design study's own (largest difference 0.0)
+\claim{exp117-valid-interval-costs-1-6-times-normal}; for NLCD 2016 the two are 84.11\% to 88.40\% and 85.07\% to
+87.71\% (\code{exp/out/exp117\_summary.json}). NLCD leads LCMAP at eight classes by 1.34 points, 0.41 to 2.26
+by normal theory and $-0.17$ to 2.86 by the valid interval. Normal theory is not wrong there: it covered that
+difference on 0.948 of 5,000 draws at NLCD's shape (exp118) \claim{exp118-normal-theory-short-on-classes-not-overall},
+so the disagreement is the valid interval's width
+\claim{exp117-normal-theory-calls-a-difference-the-valid-interval-does-not}. For all 15 NLCD classes the pure-stratum
+rule's user's-accuracy interval is narrower than the box, a median 0.61 of its width (0.32 to 0.76) and 1.20 to 3.87
+times normal theory's (median 1.43); class 21 gets 79.4\% to 91.8\% where the box gives 69.9\% to 100\%
+\claim{exp117-pure-stratum-rule-narrower-than-box}. A class with few labels can get a producer's accuracy of 0 to
+100\% (NLCD's class 24, 0.26\% of the reference).
+
+NLCD's per-class table (Table~4 of \citealp{wickham2021}) was reconciled after 1.18.0. It was transcribed correctly,
+and by the primary label all 15 user's and 15 producer's accuracies are reproduced (largest gap 0.47 points). The
+table's primary-or-alternate user's accuracies are reproduced, all 15, only when the 2011 primary label is also
+accepted, a rule the paper does not state; that gives 86.955\% overall, which the caption of Table~4 in the published
+version prints, truncated, as 86.9\% where the text and Table~1 give 86.4\%. No rule tried
+reproduces its producer's accuracies (the best matches 7 of 15, 4.40 points off at class 95). Since 1.18.1
+\code{-{}-alternate} takes several columns, and with the 2011 primary label as one of them \code{grade} gives the same
+15 user's accuracies \claim{exp117-nlcd-table4-reconciled}.
+
+exp118 (preregistered, frozen at 000bdf7) checked \code{grade} twice. A second implementation written from the plan
+alone, without the package or the design study's scripts, reproduced every interval of the five exp117 runs its plan
+named (NLCD 2016 level~II by both rules, 2011, NLCD against LCMAP, and GFC2020), within
+$1.2\times10^{-14}$ for linear quantities and differences, $6.7\times10^{-13}$ for boxes and $1.1\times10^{-7}$ for the
+pure-stratum rule (bar $10^{-6}$) \claim{exp118-second-route-reproduces-grade}. On populations of ten copies of each
+NLCD 2016 stratum's points, over 5,000 draws without replacement graded by 1.18.1 from PyPI, the valid interval covered
+at least the bar of 0.9408 (0.95 less three Monte Carlo standard errors) on all 91 quantities, the least 0.9826 \claim{exp118-valid-intervals-hold-at-nlcd-shape}.
+Normal theory fell below the bar on 33 of the 91, all per class: 16 of 29 producer's accuracies (least 0.835), 9 of 29
+reference shares and 8 of 29 user's accuracies (least 0.712, LCMAP's water at eight classes); on the overall
+accuracies and the difference it covered 0.948 to 0.951 \claim{exp118-normal-theory-short-on-classes-not-overall}. The
+valid intervals' mean width over normal theory's was 1.62 to 1.63 for overall accuracy, with medians of 1.90 for user's
+accuracy (1.19 to 4.17) and 2.40 for producer's (1.99 to 5.65) \claim{exp118-valid-interval-width-cost}. The plan's
+GFC2020 arm was cancelled for its compute cost before any of its results was read, so GFC2020's coverage was not
+measured, and the copied populations hold the samples' shares and make each draw closer to a census than the agency's.
 
 \subsection{Another organisation's deployed field map}
 \label{sec:res-ftw}
@@ -1316,14 +1598,27 @@ calibration windows, missed 14 of the 19 map errors it judged (74\%), and the wi
 \claim{exp91-vlm-reviewer-shares-the-maps-errors}. No human reviewer's rates have been measured, and \code{certify}
 takes no reviewer rate (Section~\ref{sec:zone}).
 
+\textbf{An agency's sample.} Good practice grades a map from a stratified sample with design-based estimates and
+normal-theory intervals \citep{olofsson2014,stehman2014}, which are nominal. \code{grade} reads an agency's published
+points as they stand and gives each of its numbers an interval valid in finite samples, with the agency's
+interval beside it. It reproduces four of NLCD 2016's published overall accuracies to within 0.02 points (a fifth,
+level~I with the alternate label, to 0.10) and GFC2020's
+\claim{exp117-grade-reproduces-published-overall-accuracies}, at 1.60 to 1.64 times normal theory's width for overall
+accuracies and differences \claim{exp117-valid-interval-costs-1-6-times-normal}. At NLCD's design shape normal theory
+fell below the bar on 33 of 91 quantities, all per class, and the valid intervals on none
+\claim{exp118-valid-intervals-hold-at-nlcd-shape} \claim{exp118-normal-theory-short-on-classes-not-overall}. The cost is
+width: normal theory calls NLCD's 1.34-point lead over LCMAP significant and the valid interval does not
+\claim{exp117-normal-theory-calls-a-difference-the-valid-interval-does-not}. The stratified betting interval needs no
+search over how the weighted mean splits among the strata (Section~\ref{sec:agency}); the parts it borrows are named there.
+
 \textbf{What is new.} The parts exist; this work joins them for classification maps from Earth-observation foundation
 models. The package reads a model's scores after the fact and loads no model. One tool ranks a map's windows for review,
 compares two maps, estimates the error rate, certifies a zone, names the more accurate of two maps by an exact
-test and audits each class's confident calls. It refuses some inputs that would void its intervals, such as a review set offered as a random
+test, audits each class's confident calls and grades a map with an agency's stratified sample. It refuses some inputs that would void its intervals, such as a review set offered as a random
 sample or, since 1.16.0, labels drawn from the confident end of a map, though labels clustered by tile pass its check.
-Beside it stands the record of Section~\ref{sec:protocol-ledger}: 119 experiment scripts covering 98 experiment numbers
-from exp01 to exp116, and 280 ledger claims, 278 of them checked against a committed artifact; the failed preregistered
-predictions of exp77 to exp116 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
+Beside it stands the record of Section~\ref{sec:protocol-ledger}: 121 experiment scripts covering 99 experiment
+numbers from exp01 to exp118 (exp117's design study is in a folder of its own), and 291 ledger claims, 289 of them
+checked against a committed artifact; the failed preregistered predictions of exp77 to exp118 are listed in Table~\ref{tab:failed}. It reports failures beside successes: the ranking's miss in runs that changed the year,
 the place, the legend and the kind of point at once (which a blind test at fresh plots did not repeat, exp111), the confident errors it does not find, the zone that often returns
 nothing at 300 labels, a which-map design that fell short of practice's z form on nearly equal pairs, and a reviewer
 model that did not help. Other organisations' deployed products outside land cover have been tested once, on one
@@ -1373,20 +1668,22 @@ their errors, it estimates 0.975 to 0.983 for maps 0.883 to 0.914 accurate, and 
 is 0.83, 0.71 and 0.62 on PASTIS Sentinel-2, MADOS and Sen1Floods11 \claim{consensus-order-recovered-only-where-true-gaps-are-large}.
 Within one family it estimates 0.996 to 0.999 for maps 0.81 to 0.93 accurate
 \claim{within-family-consensus-is-the-unanimous-limit}. An error rate therefore requires a reference.
-Table~\ref{tab:failed} lists the failed predictions of exp77 to exp116.
+Table~\ref{tab:failed} lists the failed predictions of exp77 to exp118.
 
 {\footnotesize
 \setlength{\LTcapwidth}{\linewidth}
 \setlength{\LTpre}{6pt}
 \begin{longtable}{@{}l>{\raggedright\arraybackslash}p{0.385\linewidth}>{\raggedright\arraybackslash}p{0.385\linewidth}@{}}
-\caption{Preregistered predictions of exp77 to exp116 recorded as failed or failed as written. exp89 was report-only by
+\caption{Preregistered predictions of exp77 to exp118 recorded as failed or failed as written. exp89 was report-only by
 an amendment made before any result, exp90 was not preregistered, exp100 applied a fixed rule with no predictions,
 exp102 trained a model, the predictions of exp92, exp93, exp94, exp96 (at its preregistered seed) and exp97 held,
 exp103's others held (its review prediction on the point value), exp104's two held (P1 on its point value, its interval
 containing 0.70), exp105's two held (P1 at its bar), exp106's P1 held (on 2 of 3 cells, one of the two blind),
 exp107's P2 held, exp108 and exp109 were report-only, exp110's three held (P3(b) fragile, on the edge exp112 found), exp111's P2(a) held,
 graded for v1.2, with v1 report-only after it failed its gate on rslearn 0.1.17, exp112's P1 held, exp113's P1 and its
-checks P3 to P5 held, exp114's P1, P3 and P4 held, exp115's checks P1 and P2 held, and exp116's P1 to P4 held.}\label{tab:failed} \\
+checks P3 to P5 held, exp114's P1, P3 and P4 held, exp115's checks P1 and P2 held, exp116's P1 to P4 held, exp117
+was not preregistered, and exp118's P1 held and its P2 and P3 held on arm B1 (NLCD 2016), its GFC2020 arm B2
+cancelled before any result was read.}\label{tab:failed} \\
 \toprule
 Test & Predicted & Observed \\
 \midrule
@@ -1440,8 +1737,9 @@ exp116 P5 & all six certificates on the Dynamic World tile written and verified 
 \section{Limitations}
 \label{sec:limits}
 
-On published products, seven products against six reference samples have been graded (exp92 to exp94), five of the
-samples probability samples, with the points standing in for each map and the products compared through crosswalks;
+On published products, seven products against six reference samples have been graded (exp92 to exp94; exp117 and
+exp118 grade two of them, NLCD 2016's and GFC2020's, by their agencies' designs), five of the samples probability
+samples, with the points standing in for each map and the products compared through crosswalks;
 whether a reference point trained a product was not checked, and several pairs are related by construction or
 training; the rest of the
 labelled-route evidence is linear probes on frozen embeddings, graded against benchmark splits that are not probability
@@ -1498,6 +1796,16 @@ labels; it cannot show that the labels are right or that the issuer drew once. T
 the certificate are graded on the suite's linear probes and one Dynamic World tile, not yet on a deployed map of an
 agency's own design.
 
+\code{grade}'s intervals are proved valid for the design it assumes (Section~\ref{sec:agency}), and their computation
+is checked exactly on small designs and by simulation; they have not been checked on an agency's population, which no
+one has labelled in full. The simulation at NLCD's shape drew from populations copied from the sample, closer to a
+census than the agency's draw, and GFC2020's coverage was not measured (exp118). The intervals hold one at a time, not
+jointly, and only for a sample read once, and the pure-stratum rule takes the agency's word that a declared stratum is
+pure at the units no one labelled. The method was chosen after seeing widths, as exp117 was not preregistered.
+The producer's accuracy of a small class can be 0 to 100\% (NLCD's class 24), three of NLCD's alternate labels lie
+outside its legend and count as no alternate, and no rule tried reproduces the producer's accuracies of NLCD's Table~4.
+The valid interval costs width: normal theory and it disagree on whether NLCD leads LCMAP.
+
 The agent evidence is binary water cards at two model sizes, a trial that passed only under an amended instrument, and
 a five-question pilot with no artifact. exp79's per-unit files are committed only for OlmoEarth Base's seed 0, so some
 crosschecks, including exp90's, cannot be rerun from the repository alone. The Lean proofs are not built in continuous
@@ -1507,7 +1815,7 @@ GPU types, and the work has a single author.
 \section{Software}
 \label{sec:software}
 
-\pkg{} is on PyPI as \code{olmoearth-inferencex} (Apache License 2.0); this report describes version 1.17.0.
+\pkg{} is on PyPI as \code{olmoearth-inferencex} (Apache License 2.0); this report describes version 1.19.0.
 Version 1.0.0 (17 September 2026) carried ranking, explanation, comparison and label-fitted fusion; 1.2.0 (22 September)
 added \code{sample} and \code{estimate}; 1.3.0 (24 September) added \code{certify}, per-class accuracy, dates in
 \code{compare} and the exact random-sample interval, and fixed the 33 findings of a second line-by-line review, each
@@ -1526,6 +1834,18 @@ the boundary command, 1.14.0 the exact per-class report (exp115), 1.15.0 the sca
 and 1.17.0 (24 October) the map certificate, the class design, certify's options fixed with a certificate's draw, the
 statement of what $\delta$ counts, and a log-scale confidence for \code{form="top1"}, whose probability-scale windows
 tie at exactly 1.0 where the logit gap is large, the rounding \citet{barron2026softmax} call softmax collapse.
+1.17.1 (25 October) made the zone test's null count exact and printed Olofsson's normal-theory intervals beside the
+class design's exact ones, and 1.17.2 fixed the findings of a bug hunt and five reviews of its fixes, each with a test
+that fails before its fix. 1.18.0 (26 October) added \code{grade} (Section~\ref{sec:agency}), and 1.18.1 let
+\code{-{}-alternate} take several columns, after the reconciliation of NLCD's Table~4 (exp117). 1.19.0 (27 October)
+changes the layout and nothing else but the version stamp and one output line that names a moved file: the modules other than \code{demo} and \code{mcp\_server} are in folders by feature
+(\code{review}, \code{compare}, \code{scale}, \code{estimate}, \code{certify}, \code{plan}, \code{decide},
+\code{agency}, \code{readers}, \code{research}, \code{common} and \code{cli}), so the stratified intervals are
+\code{oe\_inferencex.agency.stratified}; function bodies moved verbatim, every import path of 1.18.1 still gives the
+same module, and the public names and the command are unchanged. A moved module's name is new, so a pickle written by
+1.19.0 does not load in 1.18.1, and tools that resolve imports from files do not see the old paths. Before its release,
+1.18.1 and 1.19.0 ran the same 157 commands and calls and wrote the same 418 files byte for byte, and the suite passed 1,321 tests
+on Python 3.11, 3.12 and 3.13.
 Since 1.4.1 each release has been preceded by a review in several lenses (from 1.5.0: statistics, code, and documents
 with tests), whose findings were fixed with tests. For 1.7.0 the suite ran against the built wheel without the source
 tree on Python 3.11, 3.12 and 3.13 with the optional extras (1,392 passed each), on the declared minimum core
@@ -1541,16 +1861,18 @@ bit-exactly with the package's decisions on the suite's 17 single-label tasks \c
 
 \begin{sloppypar}
 The package's code is at \url{https://github.com/2imi9/olmoearth_inferenceX}; the package as released is at tag
-\code{v1.17.0}. The experiments, their outputs (\code{exp/out/}), the claim ledger and this report are in the research
+\code{v1.19.0}. The experiments, their outputs (\code{exp/out/}), the claim ledger and this report are in the research
 record at \url{https://github.com/2imi9/olmoearth_inferenceX-record}, which was split from the code repository at the
 commit of release 1.12.1 and whose checks run against that release as published on PyPI; exp116 ran against
-the package at the commit its output records, and its checks read only that output. The Lean proofs and the
+the package at the commit its output records, exp117's end-to-end run against 1.18.0 at commit 5d8b434 and exp118's
+coverage run against 1.18.1 from PyPI, and their ledger checks read their committed outputs. The Lean proofs and the
 experiments archived from the code repository's main branch on 10 October 2026, among them the agent trials exp86 and
 exp87 and their plans, are at its tag \code{v1.9.0} (\url{https://github.com/2imi9/olmoearth_inferenceX/tree/v1.9.0}).
 Documentation is at \url{https://olmoearth-inferencex.readthedocs.io}; the per-experiment record is
 \code{docs/results/comparisons.md} in the research record. The
 data used are published by their providers: Sen1Floods11, GEOID-Flood, WorldFloods~v2, DFC2020, Dynamic World, LUCAS
-Copernicus 2022, EuroCrops, LCMAP's Reference Data Product v1.2 and Collection 1.3 (USGS), Esri's 10\,m Annual Land Use
+Copernicus 2022, EuroCrops, LCMAP's Reference Data Product v1.2 and Collection 1.3 (USGS), NLCD 2016's
+accuracy-assessment points (USGS), GFC2020's validation set and its strata's areas \citep[JRC, CC BY 4.0;][]{colditz2025data}, Esri's 10\,m Annual Land Use
 Land Cover v2, the OlmoEarth paper embeddings on Hugging Face (\nolinkurl{allenai/olmoearth-paper-embeddings}) and
 Ai2's published fine-tuned checkpoints, with upstream revisions pinned in \code{exp/out/upstream\_revisions.json}.
 Their licences differ (\code{docs/testbeds.md}): WorldFloods~v2 is non-commercial, Sen1Floods11's labels carry no
