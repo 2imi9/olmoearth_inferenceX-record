@@ -32,7 +32,7 @@
 \makeatother
 
 \title{\pkg: confidence-based review, comparison and accuracy estimation for Earth-observation classification maps\\[6pt]
-\large Technical report, version 1.19.0}
+\large Technical report, version 1.20.1}
 \author{Ziming Qi\\[2pt] \small \url{https://github.com/2imi9/olmoearth_inferenceX}\\[-1pt]
 \small \url{https://github.com/2imi9/olmoearth_inferenceX-record}\\[-1pt]
 \small \url{https://olmoearth-inferencex.readthedocs.io}}
@@ -315,6 +315,16 @@ tests compute the coverage exactly over the stratified draw on 45 small maps, wi
 computation can see an interval that is too narrow; exp116 grades the design on real maps
 (Section~\ref{sec:est-results}).
 
+\textbf{An interval valid at every sample size (\code{-{}-valid}, 1.20.0).} The intervals above are exact under a
+random sample and approximate or union bounds under the others. Since 1.20.0, \code{estimate -{}-valid} prints beside
+each design's own interval one that holds at every sample size: a census where every stratum is labelled in full, the
+exact hypergeometric interval where one stratum is labelled in part, and otherwise the stratified betting interval of
+Theorem~1 (Section~\ref{sec:agency}) with the strata labelled in full added exactly, a \code{?} window read as right
+at the lower end and wrong at the upper. With \code{-{}-per-class} each class's user's accuracy, producer's accuracy and
+share get such an interval by post-stratification on the map's class, each on its own. It is opt-in and refused on the
+tile and audit designs; its tests enumerate every population and draw of small stratified maps. Its measured width is
+exp119's (Section~\ref{sec:res-agency}).
+
 \subsection{The certified zone}
 \label{sec:zone}
 
@@ -358,6 +368,14 @@ testing at $\alpha(1 - E_1)$ is valid only if the miss rate holds inside every z
 model's confident errors sit. In a construction from a review of 2 October 2026, misses placed in the confident half
 of a map, with a whole-map miss rate of exactly $E_1$, certified on every draw a zone that was wrong 10\% of the time
 at $\alpha = 5\%$.
+
+Since 1.20.0 the same construction gives a verdict per part of a map. \code{sample -{}-design profile} fixes, from the
+map alone before any label, at most twelve profiles (cells of a confidence band, an input condition, the map's class
+and a grid block, the small cells folded into one), and labels each at random; \code{certify} on that sample gives each
+profile labelled in part an exact two-sided hypergeometric interval at $1 - \delta/L$ and calls it good when the
+interval lies at or below $\alpha$, bad when above, and undecided otherwise, so all $L$ verdicts are right together
+except on at most $\delta$ of samples (a profile labelled in full compares its rate exactly). The package's tests
+enumerate every error pattern and draw of small maps; the verdicts have not been run on a real map.
 
 This guarantee is for one sample whose size is fixed before labelling, read once. Rerunning \code{certify} as labels
 are added runs a new test at each look, and the chance that some look certifies a wrong zone grows with the looks
@@ -658,6 +676,13 @@ read as 0 below and 1 above.
 $\theta_y$ and decreases in $\theta_w$ ($\partial R/\partial\theta_y = \theta_w/(\theta_y + \theta_w)^2 \ge 0$,
 $\partial R/\partial\theta_w = -\theta_y/(\theta_y + \theta_w)^2 \le 0$), so on that event $R$ lies between its values
 at those ends; an end read as 0 or 1 holds trivially. $\square$
+
+Since 1.20.0, \code{grade -{}-ratio direct} offers in place of the box one betting test of
+$\theta_y - r(\theta_y + \theta_w) \le 0$ inverted over $r$, each end at $\alpha/2$, scanned in fixed bins of $r$
+inside which the test's statistic is monotone, with the null read as $\theta_0 = r$ so that unsampled strata keep it
+valid; its monotonicity argument is in the package's documentation and is not proved here. Its work is bounded before
+it starts, and above the bound \code{grade} gives the box in its place: a choice made on the data, which
+\code{-{}-ratio box} fixes in advance, and the reason the box stays the default (exp119, Section~\ref{sec:res-agency}).
 
 \textbf{Proposition 3 (the pure-stratum rule).} An agency's design can hold, for a class $j$, a stratum $o$ every unit
 of which the map labels $j$, such as NLCD's no-change strata (\code{-{}-pure}). Let $\mathcal{M}$ be the strata
@@ -1261,6 +1286,16 @@ valid intervals' mean width over normal theory's was 1.62 to 1.63 for overall ac
 accuracy (1.19 to 4.17) and 2.40 for producer's (1.99 to 5.65) \claim{exp118-valid-interval-width-cost}. The plan's
 GFC2020 arm was cancelled for its compute cost before any of its results was read, so GFC2020's coverage was not
 measured, and the copied populations hold the samples' shares and make each draw closer to a census than the agency's.
+
+What 1.20.0's new intervals cost was measured as release checks, descriptive and not preregistered (exp119). On the
+demo tile, \code{estimate -{}-valid}'s interval was 1.72 and 1.64 times as wide as the confidence design's Wilson
+interval at 300 and 1,000 labels, and 0.60 times as wide as the class design's union bound at 1,000 labels, where it is
+both narrower and valid; on one core the whole-map interval took at most 0.27~s and the per-class ones at most 1.05~s
+\claim{exp119-valid-interval-cost-on-the-demo-tile}. On NLCD 2016's eight-class two-map grade, the 26 direct ratio
+intervals of \code{grade -{}-ratio direct} took 627~s in all on one core (446~s at a tolerance of $10^{-4}$), each a
+median 0.82 of the box's width (0.64 to 0.92) and a median 1.73 times normal theory's (1.62 to 3.56)
+\claim{exp119-ratio-direct-cost-on-nlcd}. GFC2020's direct intervals lie above the work bound, so \code{grade} gives
+the box there, and the box stays the default.
 
 \subsection{Another organisation's deployed field map}
 \label{sec:res-ftw}
@@ -1868,7 +1903,10 @@ jointly, and only for a sample read once, and the pure-stratum rule takes the ag
 pure at the units no one labelled. The method was chosen after seeing widths, as exp117 was not preregistered.
 The producer's accuracy of a small class can be 0 to 100\% (NLCD's class 24), three of NLCD's alternate labels lie
 outside its legend and count as no alternate, and no rule tried reproduces the producer's accuracies of NLCD's Table~4.
-The valid interval costs width: normal theory and it disagree on whether NLCD leads LCMAP.
+The valid interval costs width: normal theory and it disagree on whether NLCD leads LCMAP. Of 1.20.0's additions,
+\code{estimate -{}-valid}'s coverage across the record's fully labelled maps was not measured and its width is known
+on one tile, the per-profile verdicts were checked by enumeration only, and the direct ratio interval's monotonicity
+argument is stated in the package and not proved here (exp119).
 
 The agent evidence is binary water cards at two model sizes, a trial that passed only under an amended instrument, and
 a five-question pilot with no artifact. exp79's per-unit files are committed only for OlmoEarth Base's seed 0, so some
@@ -1879,7 +1917,7 @@ GPU types, and the work has a single author.
 \section{Software}
 \label{sec:software}
 
-\pkg{} is on PyPI as \code{olmoearth-inferencex} (Apache License 2.0); this report describes version 1.19.0.
+\pkg{} is on PyPI as \code{olmoearth-inferencex} (Apache License 2.0); this report describes version 1.20.1.
 Version 1.0.0 (17 September 2026) carried ranking, explanation, comparison and label-fitted fusion; 1.2.0 (22 September)
 added \code{sample} and \code{estimate}; 1.3.0 (24 September) added \code{certify}, per-class accuracy, dates in
 \code{compare} and the exact random-sample interval, and fixed the 33 findings of a second line-by-line review, each
@@ -1910,6 +1948,17 @@ same module, and the public names and the command are unchanged. A moved module'
 1.19.0 does not load in 1.18.1, and tools that resolve imports from files do not see the old paths. Before its release,
 1.18.1 and 1.19.0 ran the same 157 commands and calls and wrote the same 418 files byte for byte, and the suite passed 1,321 tests
 on Python 3.11, 3.12 and 3.13.
+1.20.0 (27 October) added four things, each checked by exact enumeration in its tests and none changing an earlier
+output: \code{estimate -{}-valid}, which prints beside each of \code{estimate}'s designs' own intervals one valid at
+every sample size (Section~\ref{sec:estimate}); \code{grade -{}-ratio direct}, a ratio interval by inverting the
+linear test, with the box of Proposition~2 kept as the default (Section~\ref{sec:agency}); the profile design and
+its per-profile verdicts (Section~\ref{sec:zone}); and a test of Lemma~W in exact integers (Section~\ref{sec:whichmap}).
+Their measured costs are exp119's (Section~\ref{sec:res-agency}). 1.20.1 (27 October) changed documentation only: a
+README checked line by line against the code and the record, an example figure that had been drawn upside down since
+1.12.3 (the benchmark's chips are stored south-up) redrawn north up, and two medians of 1.20.0's \code{-{}-ratio
+direct} figures corrected from the job's outputs (0.82 of the box's width and 1.73 times normal theory's, not 0.83 and
+1.74). Before 1.20.0's release the suite passed 1,459 tests on Python 3.11, 3.12 and 3.13, and 1.19.0 and the release
+candidate wrote the same files byte for byte apart from the new options in five commands' help and one refusal text.
 Since 1.4.1 each release has been preceded by a review in several lenses (from 1.5.0: statistics, code, and documents
 with tests), whose findings were fixed with tests. For 1.7.0 the suite ran against the built wheel without the source
 tree on Python 3.11, 3.12 and 3.13 with the optional extras (1,392 passed each), on the declared minimum core
