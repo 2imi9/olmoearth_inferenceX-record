@@ -1,0 +1,14 @@
+  0.170 s  exit 1  /scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/src/.venv/bin/oe-inferencex estimate confidence300.csv --out confidence300.json
+estimate: writing confidence300.json would overwrite the input confidence300.json; name another --out
+  0.217 s  exit 0  /scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/src/.venv/bin/oe-inferencex estimate confidence300.csv --valid --out confidence300_valid.json
+  0.404 s  exit 0  /scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/src/.venv/bin/oe-inferencex estimate confidence300.csv --valid --per-class --out confidence300_valid_pc.json
+  0.169 s  exit 1  /scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/src/.venv/bin/oe-inferencex estimate confidence1000.csv --out confidence1000.json
+estimate: writing confidence1000.json would overwrite the input confidence1000.json; name another --out
+  0.266 s  exit 0  /scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/src/.venv/bin/oe-inferencex estimate confidence1000.csv --valid --out confidence1000_valid.json
+  1.045 s  exit 0  /scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/src/.venv/bin/oe-inferencex estimate confidence1000.csv --valid --per-class --out confidence1000_valid_pc.json
+sample class 300 failed
+  0.158 s  exit 1  /scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/src/.venv/bin/oe-inferencex estimate class1000.csv --out class1000.json
+estimate: writing class1000.json would overwrite the input class1000.json; name another --out
+  0.253 s  exit 0  /scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/src/.venv/bin/oe-inferencex estimate class1000.csv --valid --out class1000_valid.json
+  0.809 s  exit 0  /scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/src/.venv/bin/oe-inferencex estimate class1000.csv --valid --per-class --out class1000_valid_pc.json
+482M	/scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014

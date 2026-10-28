@@ -1,0 +1,29 @@
+{
+ "design": "confidence",
+ "n_labelled": 1000,
+ "n_population": 16380,
+ "nominal_coverage": 0.95,
+ "estimate": 0.18734319525279494,
+ "low": 0.16667647840641223,
+ "high": 0.2099269004162911,
+ "starved_strata": 0,
+ "effective_n": 1249.2264182488282,
+ "method": "stratified by confidence margin; Wilson interval on the design's effective sample size",
+ "half_width": 0.021625211004939443,
+ "scope": "This is the error rate of the whole map. If part of the map was predicted from other inputs, that part's rate can differ widely from it. On a PASTIS map with half its tiles read without the optical input by a probe trained on radar plus optical, that half's rate was 74.1% against 19.7% on the rest, while random samples of 300 estimated 46.9% on average. Read by a probe trained on radar alone, that half was still 28.3% wrong against 19.7% (exp88). Draw the sample with --condition to get each part's rate.",
+ "valid_interval": {
+  "estimate": 0.18734319525279491,
+  "low": 0.15333450339348784,
+  "high": 0.22416601137667416,
+  "half_width": 0.03541575399159316,
+  "guarantee": "valid",
+  "form": "betting",
+  "method": "stratified by confidence margin; valid at every sample size: the betting interval for a stratified sample drawn without replacement (Waudby-Smith and Ramdas 2020; the interval grade gives), the strata labelled in full added exactly"
+ },
+ "sample": "/scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/confidence1000.csv",
+ "written_by": {
+  "package": "olmoearth-inferencex",
+  "version": "1.20.0",
+  "command": "estimate"
+ }
+}

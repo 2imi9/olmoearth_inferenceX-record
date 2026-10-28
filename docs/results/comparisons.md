@@ -4754,6 +4754,27 @@ Recorded after an independent audit whose script is `exp/exp115_crosscheck.py`. 
 or outputs, with its own exact interval inversion and sums. Its 831 class counts are identical, its 3,530 class-level
 probabilities agree within 5.7e-10, and all five verdicts are the same.
 
+## What 1.20.0's new intervals cost: release checks (exp119)
+
+Descriptive, not an experiment with predictions: the measured costs the package's 1.20.0 CHANGELOG and Usage quote,
+committed here so each has an artifact. The raw outputs are in `exp/out/exp119/`; `exp/exp119_summary.py` reads them
+into `exp/out/exp119_summary.json` (aicr job 1556952), and `tests/test_exp119.py` recomputes every figure by a second
+route (another traversal of the JSON, the job's printed table, another parse of the log).
+
+- **`estimate --valid` on the demo tile** (aicr job 1554014). The interval valid at every sample size was 1.72 and 1.64
+  times as wide as the confidence design's Wilson interval at 300 and 1,000 labels, and 0.60 times as wide as the class
+  design's union bound at 1,000 labels: there it is both narrower and valid. On one core the whole-map interval took
+  at most 0.27 s and the per-class ones at most 1.05 s. <!-- claim:exp119-valid-interval-cost-on-the-demo-tile -->
+- **`grade --ratio direct` on NLCD 2016** (aicr job 1553048, the eight-class two-map grade of set B, NLCD against
+  LCMAP). The 26 direct ratio intervals took 627 s in all on one core at tolerance 1e-6 (446 s at 1e-4); each was a
+  median 0.82 of the box's width (0.64 to 0.92) and a median 1.73 times normal theory's (1.62 to 3.56). <!-- claim:exp119-ratio-direct-cost-on-nlcd -->
+
+**What it does not show.** One tile and one agency grade. Coverage of `--valid` across the record's fully labelled maps
+was not measured, and GFC2020's direct intervals were not computed: their work bounds (3.6e10 to 1.2e11) lie above the
+package's limit, so grade gives the box there, and the job's GFC2020 tasks were cancelled once that was known. The
+1.20.0 CHANGELOG first gave the two medians as 0.83 and 1.74; recomputed from the JSON they are 0.82 and 1.73 (1.74
+was against normal theory's interval cut to 0 to 100%), corrected in 1.20.1.
+
 ## grade's intervals by a second route, and their coverage at NLCD's design shape (exp118)
 
 Preregistered and frozen before any statistic was computed ([plan](../plan/grade_second_route_and_coverage.md),

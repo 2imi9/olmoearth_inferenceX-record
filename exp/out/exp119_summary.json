@@ -1,0 +1,111 @@
+{
+ "jobs": {
+  "ratio_direct": "1553048 (tasks 0 and 2; GFC2020's tasks were cancelled once their work bounds were known)",
+  "valid": 1554014
+ },
+ "ratio_direct": {
+  "nlcd2016_8_direct": {
+   "n_direct": 26,
+   "n_timed": 26,
+   "seconds_in_all": 627.4355919837253,
+   "seconds_largest": 136.12654467998073,
+   "tolerance": 1e-06,
+   "width_over_box": {
+    "max": 0.9165418654575094,
+    "median": 0.8210165045735266,
+    "min": 0.6354941566272029,
+    "n": 26
+   },
+   "width_over_normal": {
+    "max": 3.5564612843667764,
+    "median": 1.725443032705308,
+    "min": 1.6176776750036028,
+    "n": 26
+   }
+  },
+  "nlcd2016_8_direct_tol4": {
+   "n_direct": 26,
+   "n_timed": 26,
+   "seconds_in_all": 445.6379412820097,
+   "seconds_largest": 95.45558541500941,
+   "tolerance": 0.0001,
+   "width_over_box": {
+    "max": 0.91693906101603,
+    "median": 0.8212546571669916,
+    "min": 0.6355623917306912,
+    "n": 26
+   },
+   "width_over_normal": {
+    "max": 3.556974383690618,
+    "median": 1.725842413362965,
+    "min": 1.6179409779895557,
+    "n": 26
+   }
+  }
+ },
+ "sources": {
+  "j2/class1000_valid.json": "7c6fe4244e54bf3da457a188eed800733c269567436c050fa1f2b828a4cf4575",
+  "j2/class1000_valid_pc.json": "2110b43e0c6a3247380f2149337a10be8068a207c2ae786c6fbdd38c917d9c27",
+  "j2/confidence1000_valid.json": "78c7a0ed2689b31dc8fa76a03daf01f11431976f4624b9024e263403b030e009",
+  "j2/confidence1000_valid_pc.json": "11c3ad67bf17a931540adda8f8bf7b9ebe384aecce9d367b68f065ab43a4492b",
+  "j2/confidence300_valid.json": "52cf27482e0daac75be0cfd335457d9fe5c42aa5bb049758013a3ffd9b9cd926",
+  "j2/confidence300_valid_pc.json": "b1f6bddff03b3bd4d235ad8b6f1863fe6090214dfdbb35ef3675067b462abaa6",
+  "j2/oeix-j2-1554014.out": "128a9b724ef72d645a71783ea34bbc4760be8ab6e1397a7ef85694a348847ec2",
+  "j3/nlcd2016_8_direct.json": "94b5de473b0daf07c13230c9fdf19a6ce0821f2e1adbecd6f0299de5f5336d45",
+  "j3/nlcd2016_8_direct.timings.jsonl": "752cdfa15c196115bed4edebd45b2e7719a27c5bdf17c5ea6586b04a63c9c51a",
+  "j3/nlcd2016_8_direct_tol4.json": "a198a5b611ac86747952c44359b6298e4ff464f866e4cb017de2cfaac79903dd",
+  "j3/nlcd2016_8_direct_tol4.timings.jsonl": "1f1aedfbf4004d40445b5f19b5c39c3726932a668ba263f5ac819c88286eaf07"
+ },
+ "valid": {
+  "class1000": {
+   "design_interval": [
+    0.14236874236874236,
+    0.24462759462759462
+   ],
+   "design_method": "stratified by map class; sum of each class's exact interval at 1 - 0.05/L, weighted by its share of the map (union bound); covers at least 95% by construction",
+   "seconds_per_class": 0.809,
+   "seconds_whole_map": 0.253,
+   "valid_form": "betting",
+   "valid_interval": [
+    0.16030783958859227,
+    0.22139220434938528
+   ],
+   "width_ratio_valid_over_design": 0.597350384944352
+  },
+  "confidence1000": {
+   "design_interval": [
+    0.16667647840641223,
+    0.2099269004162911
+   ],
+   "design_method": "stratified by confidence margin; Wilson interval on the design's effective sample size",
+   "seconds_per_class": 1.045,
+   "seconds_whole_map": 0.266,
+   "valid_form": "betting",
+   "valid_interval": [
+    0.15333450339348784,
+    0.22416601137667416
+   ],
+   "width_ratio_valid_over_design": 1.6377067480869345
+  },
+  "confidence300": {
+   "design_interval": [
+    0.19112865379950345,
+    0.27836750269000365
+   ],
+   "design_method": "stratified by confidence margin; Wilson interval on the design's effective sample size",
+   "seconds_per_class": 0.404,
+   "seconds_whole_map": 0.217,
+   "valid_form": "betting",
+   "valid_interval": [
+    0.1605653366039945,
+    0.31018621203241287
+   ],
+   "width_ratio_valid_over_design": 1.7150716375936867
+  }
+ },
+ "valid_seconds": {
+  "per_class_max": 1.045,
+  "whole_map_max": 0.266
+ },
+ "what": "descriptive release checks of olmoearth-inferencex 1.20.0, not an experiment with predictions"
+}

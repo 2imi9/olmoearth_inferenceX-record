@@ -1,0 +1,140 @@
+{
+ "design": "class",
+ "n_labelled": 1000,
+ "n_population": 16380,
+ "nominal_coverage": 0.95,
+ "estimate": 0.18911201261604738,
+ "low": 0.14236874236874236,
+ "high": 0.24462759462759462,
+ "conditions_in_interval": 7,
+ "starved_strata": 0,
+ "design_variance": 8.968225168672645e-05,
+ "method": "stratified by map class; sum of each class's exact interval at 1 - 0.05/L, weighted by its share of the map (union bound); covers at least 95% by construction",
+ "half_width": 0.05112942612942613,
+ "by_condition": true,
+ "per_condition": {
+  "class 0": {
+   "value": 0,
+   "n_population": 10,
+   "share_of_map": 0.0006105006105006105,
+   "n_labelled": 10,
+   "n_wrong": 10,
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "half_width": 0.0,
+   "method": "exact hypergeometric interval (the labels in the class are a simple random sample of it)"
+  },
+  "class 1": {
+   "value": 1,
+   "n_population": 440,
+   "share_of_map": 0.026862026862026864,
+   "n_labelled": 67,
+   "n_wrong": 43,
+   "estimate": 0.6417910447761194,
+   "low": 0.525,
+   "high": 0.7454545454545455,
+   "half_width": 0.11022727272727273,
+   "method": "exact hypergeometric interval (the labels in the class are a simple random sample of it)"
+  },
+  "class 2": {
+   "value": 2,
+   "n_population": 86,
+   "share_of_map": 0.005250305250305251,
+   "n_labelled": 53,
+   "n_wrong": 53,
+   "estimate": 1.0,
+   "low": 0.9651162790697675,
+   "high": 1.0,
+   "half_width": 0.017441860465116255,
+   "method": "exact hypergeometric interval (the labels in the class are a simple random sample of it)"
+  },
+  "class 4": {
+   "value": 4,
+   "n_population": 5256,
+   "share_of_map": 0.3208791208791209,
+   "n_labelled": 256,
+   "n_wrong": 10,
+   "estimate": 0.0390625,
+   "low": 0.019406392694063926,
+   "high": 0.06982496194824962,
+   "half_width": 0.02520928462709285,
+   "method": "exact hypergeometric interval (the labels in the class are a simple random sample of it)"
+  },
+  "class 5": {
+   "value": 5,
+   "n_population": 512,
+   "share_of_map": 0.03125763125763126,
+   "n_labelled": 70,
+   "n_wrong": 63,
+   "estimate": 0.9,
+   "low": 0.8125,
+   "high": 0.955078125,
+   "half_width": 0.0712890625,
+   "method": "exact hypergeometric interval (the labels in the class are a simple random sample of it)"
+  },
+  "class 6": {
+   "value": 6,
+   "n_population": 2694,
+   "share_of_map": 0.16446886446886447,
+   "n_labelled": 155,
+   "n_wrong": 90,
+   "estimate": 0.5806451612903226,
+   "low": 0.5011135857461024,
+   "high": 0.6570155902004454,
+   "half_width": 0.0779510022271715,
+   "method": "exact hypergeometric interval (the labels in the class are a simple random sample of it)"
+  },
+  "class 7": {
+   "value": 7,
+   "n_population": 7328,
+   "share_of_map": 0.4473748473748474,
+   "n_labelled": 337,
+   "n_wrong": 20,
+   "estimate": 0.05934718100890208,
+   "low": 0.03711790393013101,
+   "high": 0.08938318777292577,
+   "half_width": 0.02613264192139738,
+   "method": "exact hypergeometric interval (the labels in the class are a simple random sample of it)"
+  },
+  "class 8": {
+   "value": 8,
+   "n_population": 54,
+   "share_of_map": 0.0032967032967032967,
+   "n_labelled": 52,
+   "n_wrong": 52,
+   "estimate": 1.0,
+   "low": 0.9814814814814815,
+   "high": 1.0,
+   "half_width": 0.009259259259259245,
+   "method": "exact hypergeometric interval (the labels in the class are a simple random sample of it)"
+  }
+ },
+ "condition_note": "Each class's interval is its own 95% statement; the intervals do not hold jointly at 95%. The whole-map rate weights each class by its share of the map and can hide a class that is much worse. Each class's own interval is exact. The whole-map interval takes each class's exact interval at 1 - 0.05/L, where L is the number of classes not labelled in full, and weights it by the class's share of the map, so it covers at least 95% by construction; it is wider than the usual stratified interval. What the design buys is each class's own accuracy: every class gets at least its floor of labels, or all its windows, and the rest go in proportion to class size (Olofsson et al. 2014). If only the whole-map rate is needed, --design random can give a narrower interval.",
+ "outside_condition_intervals": [
+  "class 0",
+  "class 1",
+  "class 2",
+  "class 4",
+  "class 5",
+  "class 6",
+  "class 7",
+  "class 8"
+ ],
+ "condition_by": "map class",
+ "valid_interval": {
+  "estimate": 0.18911201261604738,
+  "low": 0.16030783958859227,
+  "high": 0.22139220434938528,
+  "half_width": 0.030542182380396507,
+  "guarantee": "valid",
+  "form": "betting",
+  "method": "stratified by map class; valid at every sample size: the betting interval for a stratified sample drawn without replacement (Waudby-Smith and Ramdas 2020; the interval grade gives), the strata labelled in full added exactly"
+ },
+ "sample": "/scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/class1000.csv",
+ "written_by": {
+  "package": "olmoearth-inferencex",
+  "version": "1.20.0",
+  "command": "estimate"
+ }
+}

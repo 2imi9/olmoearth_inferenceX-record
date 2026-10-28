@@ -1754,3 +1754,13 @@ the disagreement is the valid interval's width. Arm B2 (GFC2020) was cancelled a
 result was read: the owner asked whether the compute was necessary, and B2 tests the with-replacement case the
 interval is built for. The owner then asked about a model-internal version for OlmoEarth v1.3 (weights public on the
 Hub); decided to finish the general product first (the report, step 3), then design that study.
+
+## exp119 — what 1.20.0's new intervals cost: release checks (2026-10-27)
+
+Descriptive, no predictions. The 1.20.0 CHANGELOG and Usage quoted measured costs (aicr jobs 1554014 and 1553048) that
+had no artifact in the record; the 1.20.0 Fable rating named that gap. The raw outputs are now committed in
+`exp/out/exp119/`, summarised by `exp/exp119_summary.py` on aicr (job 1556952), and checked by a second route in
+`tests/test_exp119.py`. Recomputing found two medians off by one hundredth (0.83 and 1.74 in the CHANGELOG; 0.82 and
+1.73 from the JSON, the 1.74 having been against normal theory's interval cut to 0 to 100%), corrected in the
+package's 1.20.1. The head-to-head with Spertus-Stark and ALPHA once planned under this number was dropped by the
+owner on 27 October ("only do the meaningful things"), so the id is used here.

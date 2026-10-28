@@ -6384,3 +6384,30 @@
     lemma in exact integers for every K_A + K_B <= 60. The report cites Uhlmann (1966) for the same inequality only as
     reported in a summary of R. M. Dudley's exposition (k <= m K_A/T - 1); neither the paper nor the exposition was
     read.
+
+- id: exp119-valid-interval-cost-on-the-demo-tile
+  statement: "On the demo tile (aicr job 1554014), estimate --valid's interval was 1.72 and 1.64 times as wide as the confidence design's Wilson interval at 300 and 1,000 labels, and 0.60 times as wide as the class design's union bound at 1,000 labels; on one core the whole-map interval took at most 0.27 s and the per-class ones at most 1.05 s."
+  crosscheck: tests/test_exp119.py::test_the_valid_widths_and_times_by_a_second_parse
+  status: measured
+  experiments: [exp119]
+  artifacts: [exp/out/exp119_summary.json]
+  check: |-
+    (lambda S: [round(S['valid'][k]['width_ratio_valid_over_design'], 2) for k in ('confidence300', 'confidence1000', 'class1000')] == [1.72, 1.64, 0.6]
+      and S['valid_seconds']['whole_map_max'] <= 0.27 and S['valid_seconds']['per_class_max'] <= 1.05
+    )(A['exp/out/exp119_summary.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp119-valid-interval-cost-on-the-demo-tile}
+
+- id: exp119-ratio-direct-cost-on-nlcd
+  statement: "On NLCD 2016's eight-class two-map grade (aicr job 1553048), the 26 direct ratio intervals took 627 s in all on one core at tolerance 1e-6 (446 s at 1e-4); each was a median 0.82 of the box's width (0.64 to 0.92) and a median 1.73 times normal theory's (1.62 to 3.56)."
+  crosscheck: tests/test_exp119.py::test_the_direct_widths_by_a_second_traversal
+  status: measured
+  experiments: [exp119]
+  artifacts: [exp/out/exp119_summary.json]
+  check: |-
+    (lambda D, T: D['n_direct'] == 26 and round(D['seconds_in_all']) == 627 and round(T['seconds_in_all']) == 446
+      and [round(D['width_over_box'][k], 2) for k in ('median', 'min', 'max')] == [0.82, 0.64, 0.92]
+      and [round(D['width_over_normal'][k], 2) for k in ('median', 'min', 'max')] == [1.73, 1.62, 3.56]
+    )(A['exp/out/exp119_summary.json']['ratio_direct']['nlcd2016_8_direct'], A['exp/out/exp119_summary.json']['ratio_direct']['nlcd2016_8_direct_tol4'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp119-ratio-direct-cost-on-nlcd}

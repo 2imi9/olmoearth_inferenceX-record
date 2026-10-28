@@ -1,0 +1,497 @@
+{
+ "design": "confidence",
+ "n_labelled": 1000,
+ "n_population": 16380,
+ "nominal_coverage": 0.95,
+ "estimate": 0.18734319525279494,
+ "low": 0.16667647840641223,
+ "high": 0.2099269004162911,
+ "starved_strata": 0,
+ "effective_n": 1249.2264182488282,
+ "method": "stratified by confidence margin; Wilson interval on the design's effective sample size",
+ "half_width": 0.021625211004939443,
+ "scope": "This is the error rate of the whole map. If part of the map was predicted from other inputs, that part's rate can differ widely from it. On a PASTIS map with half its tiles read without the optical input by a probe trained on radar plus optical, that half's rate was 74.1% against 19.7% on the rest, while random samples of 300 estimated 46.9% on average. Read by a probe trained on radar alone, that half was still 28.3% wrong against 19.7% (exp88). Draw the sample with --condition to get each part's rate.",
+ "valid_interval": {
+  "estimate": 0.18734319525279491,
+  "low": 0.15333450339348784,
+  "high": 0.22416601137667416,
+  "half_width": 0.03541575399159316,
+  "guarantee": "valid",
+  "form": "betting",
+  "method": "stratified by confidence margin; valid at every sample size: the betting interval for a stratified sample drawn without replacement (Waudby-Smith and Ramdas 2020; the interval grade gives), the strata labelled in full added exactly"
+ },
+ "per_class": {
+  "0": {
+   "map_share": 0.0006105006105006105,
+   "n_labelled_map_class": 0,
+   "n_labelled_reference_class": 0,
+   "user_accuracy": null,
+   "producer_accuracy": null,
+   "reference_share": {
+    "estimate": 0.0,
+    "low": 0.0,
+    "high": 0.0038267584855551234
+   },
+   "warning": "fewer than 30 labelled windows (0 the map calls this class, 0 the reference does); the interval is wide and, below about ten, not to be trusted",
+   "warning_codes": [
+    "few labels"
+   ],
+   "valid": {
+    "user_accuracy": null,
+    "producer_accuracy": null,
+    "reference_share": {
+     "estimate": 0.0,
+     "low": 0.0,
+     "high": 0.007149370786670773,
+     "form": "betting",
+     "drawn": "within"
+    }
+   }
+  },
+  "1": {
+   "map_share": 0.026862026862026864,
+   "n_labelled_map_class": 33,
+   "n_labelled_reference_class": 44,
+   "user_accuracy": {
+    "estimate": 0.2184616871356053,
+    "low": 0.11274451281130962,
+    "high": 0.3807659633083105
+   },
+   "producer_accuracy": {
+    "estimate": 0.162210425068903,
+    "low": 0.08255010676126007,
+    "high": 0.294100235909406
+   },
+   "reference_share": {
+    "estimate": 0.046075421047439995,
+    "low": 0.03508729645436735,
+    "high": 0.06028963859451826
+   },
+   "valid": {
+    "user_accuracy": {
+     "estimate": null,
+     "estimate_range": [
+      0.24532085561497327,
+      0.2521390374331551
+     ],
+     "low": 0.0,
+     "high": 0.5645276849305394,
+     "form": "betting"
+    },
+    "producer_accuracy": {
+     "estimate": null,
+     "estimate_range": [
+      0.1444706597724729,
+      0.1478920952770103
+     ],
+     "low": 0.0,
+     "high": 0.42990473896151077,
+     "form": "box"
+    },
+    "reference_share": {
+     "estimate": 0.04607542104743999,
+     "low": 0.02783333581407987,
+     "high": 0.06926988482463516,
+     "form": "betting",
+     "drawn": "too little"
+    }
+   }
+  },
+  "2": {
+   "map_share": 0.005250305250305251,
+   "n_labelled_map_class": 8,
+   "n_labelled_reference_class": 0,
+   "user_accuracy": {
+    "estimate": 0.0,
+    "low": 0.0,
+    "high": 0.32440756488388023
+   },
+   "producer_accuracy": null,
+   "reference_share": {
+    "estimate": 0.0,
+    "low": 0.0,
+    "high": 0.0038267584855551234
+   },
+   "warning": "fewer than 30 labelled windows (8 the map calls this class, 0 the reference does); the interval is wide and, below about ten, not to be trusted",
+   "warning_codes": [
+    "few labels"
+   ],
+   "valid": {
+    "user_accuracy": {
+     "estimate": null,
+     "estimate_range": [
+      0.0,
+      0.2558139534883721
+     ],
+     "low": 0.0,
+     "high": 0.5116279069767442,
+     "form": "exact"
+    },
+    "producer_accuracy": null,
+    "reference_share": {
+     "estimate": 0.0,
+     "low": 0.0,
+     "high": 0.007149370786670773,
+     "form": "betting",
+     "drawn": "within"
+    }
+   }
+  },
+  "3": {
+   "map_share": 0.0,
+   "n_labelled_map_class": 0,
+   "n_labelled_reference_class": 0,
+   "user_accuracy": null,
+   "producer_accuracy": null,
+   "reference_share": {
+    "estimate": 0.0,
+    "low": 0.0,
+    "high": 0.0038267584855551234
+   },
+   "warning": "fewer than 30 labelled windows (0 the map calls this class, 0 the reference does); the interval is wide and, below about ten, not to be trusted",
+   "warning_codes": [
+    "few labels"
+   ],
+   "valid": {
+    "user_accuracy": null,
+    "producer_accuracy": null,
+    "reference_share": {
+     "estimate": 0.0,
+     "low": 0.0,
+     "high": 0.007149370786670773,
+     "form": "betting",
+     "drawn": "within"
+    }
+   }
+  },
+  "4": {
+   "map_share": 0.3208791208791209,
+   "n_labelled_map_class": 319,
+   "n_labelled_reference_class": 404,
+   "user_accuracy": {
+    "estimate": 0.9672326396354606,
+    "low": 0.9418404362706727,
+    "high": 0.9817534956040748
+   },
+   "producer_accuracy": {
+    "estimate": 0.7575032200593971,
+    "low": 0.7157911213483339,
+    "high": 0.7948480067118897
+   },
+   "reference_share": {
+    "estimate": 0.40684736306486197,
+    "low": 0.3784076331043707,
+    "high": 0.4359255324663482
+   },
+   "valid": {
+    "user_accuracy": {
+     "estimate": 0.9656443599584917,
+     "low": 0.920876949120469,
+     "high": 0.9970519746182661,
+     "form": "betting"
+    },
+    "producer_accuracy": {
+     "estimate": 0.7627458159928993,
+     "low": 0.6987684990978204,
+     "high": 0.8216392722261385,
+     "form": "box"
+    },
+    "reference_share": {
+     "estimate": 0.40684736306486197,
+     "low": 0.3596628885800825,
+     "high": 0.45519275156389943,
+     "form": "betting",
+     "drawn": "too little"
+    }
+   }
+  },
+  "5": {
+   "map_share": 0.03125763125763126,
+   "n_labelled_map_class": 37,
+   "n_labelled_reference_class": 8,
+   "user_accuracy": {
+    "estimate": 0.2170277706762528,
+    "low": 0.11627637505239266,
+    "high": 0.36866009099534014
+   },
+   "producer_accuracy": {
+    "estimate": 1.0,
+    "low": 0.6755924351161198,
+    "high": 1.0
+   },
+   "reference_share": {
+    "estimate": 0.008593844561235865,
+    "low": 0.004472885066522567,
+    "high": 0.016448795283551684
+   },
+   "warning": "fewer than 30 labelled windows (37 the map calls this class, 8 the reference does); the interval is wide and, below about ten, not to be trusted",
+   "warning_codes": [
+    "few labels"
+   ],
+   "valid": {
+    "user_accuracy": {
+     "estimate": 0.22091733870967742,
+     "low": 0.0034652485126684947,
+     "high": 0.5332839653568869,
+     "form": "betting"
+    },
+    "producer_accuracy": {
+     "estimate": 1.0,
+     "low": 0.0,
+     "high": 1.0,
+     "form": "box"
+    },
+    "reference_share": {
+     "estimate": 0.008593844561235865,
+     "low": 0.0,
+     "high": 0.021852820945994725,
+     "form": "betting",
+     "drawn": "too much"
+    }
+   }
+  },
+  "6": {
+   "map_share": 0.16446886446886447,
+   "n_labelled_map_class": 153,
+   "n_labelled_reference_class": 77,
+   "user_accuracy": {
+    "estimate": 0.450411270335792,
+    "low": 0.3794876023130356,
+    "high": 0.5234092201874111
+   },
+   "producer_accuracy": {
+    "estimate": 0.910589212885414,
+    "low": 0.8305021855980621,
+    "high": 0.9548907905729433
+   },
+   "reference_share": {
+    "estimate": 0.07633830834243376,
+    "low": 0.06265855961012508,
+    "high": 0.09270925501883427
+   },
+   "valid": {
+    "user_accuracy": {
+     "estimate": 0.43412263611972113,
+     "low": 0.3293498902472293,
+     "high": 0.5439178888746384,
+     "form": "betting"
+    },
+    "producer_accuracy": {
+     "estimate": 0.9135232537579272,
+     "low": 0.7289910667648685,
+     "high": 1.0,
+     "form": "box"
+    },
+    "reference_share": {
+     "estimate": 0.07633830834243376,
+     "low": 0.05384446936442088,
+     "high": 0.1029532720877029,
+     "form": "betting",
+     "drawn": "too much"
+    }
+   }
+  },
+  "7": {
+   "map_share": 0.4473748473748474,
+   "n_labelled_map_class": 446,
+   "n_labelled_reference_class": 467,
+   "user_accuracy": {
+    "estimate": 0.9515636078208451,
+    "low": 0.9281223711683763,
+    "high": 0.9676266786419155
+   },
+   "producer_accuracy": {
+    "estimate": 0.9063994239104608,
+    "low": 0.877720296788883,
+    "high": 0.9288971213007396
+   },
+   "reference_share": {
+    "estimate": 0.4621450629840284,
+    "low": 0.4333061981262867,
+    "high": 0.4912394902788487
+   },
+   "valid": {
+    "user_accuracy": {
+     "estimate": 0.9508399227721961,
+     "low": 0.9119728917350755,
+     "high": 0.9803215237614255,
+     "form": "betting"
+    },
+    "producer_accuracy": {
+     "estimate": 0.9087836980028735,
+     "low": 0.8583665852752794,
+     "high": 0.9483923993893761,
+     "form": "box"
+    },
+    "reference_share": {
+     "estimate": 0.4621450629840284,
+     "low": 0.4143092313512113,
+     "high": 0.5105979185570179,
+     "form": "betting",
+     "drawn": "within"
+    }
+   }
+  },
+  "8": {
+   "map_share": 0.0032967032967032967,
+   "n_labelled_map_class": 4,
+   "n_labelled_reference_class": 0,
+   "user_accuracy": {
+    "estimate": 0.0,
+    "low": 0.0,
+    "high": 0.4898908364545973
+   },
+   "producer_accuracy": null,
+   "reference_share": {
+    "estimate": 0.0,
+    "low": 0.0,
+    "high": 0.0038267584855551234
+   },
+   "warning": "fewer than 30 labelled windows (4 the map calls this class, 0 the reference does); the interval is wide and, below about ten, not to be trusted; the share rests on 4 sampled errors; the user's accuracy rests on 4 sampled errors (4 the map calls this class wrongly, 0 of this class it misses); one error more or fewer in the draw moves the estimate by a whole window's weight, and the interval can miss it",
+   "warning_codes": [
+    "few labels",
+    "few errors"
+   ],
+   "valid": {
+    "user_accuracy": {
+     "estimate": null,
+     "estimate_range": [
+      0.0,
+      0.09259259259259259
+     ],
+     "low": 0.0,
+     "high": 0.6111111111111112,
+     "form": "exact"
+    },
+    "producer_accuracy": null,
+    "reference_share": {
+     "estimate": 0.0,
+     "low": 0.0,
+     "high": 0.007149370786670773,
+     "form": "betting",
+     "drawn": "within"
+    }
+   }
+  }
+ },
+ "confusion_counts": [
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   7,
+   0,
+   0,
+   26,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   8,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  [
+   0,
+   6,
+   0,
+   0,
+   309,
+   0,
+   0,
+   4,
+   0
+  ],
+  [
+   0,
+   5,
+   0,
+   0,
+   19,
+   8,
+   0,
+   5,
+   0
+  ],
+  [
+   0,
+   19,
+   0,
+   0,
+   33,
+   0,
+   70,
+   31,
+   0
+  ],
+  [
+   0,
+   7,
+   0,
+   0,
+   7,
+   0,
+   7,
+   425,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   2,
+   0,
+   0,
+   2,
+   0
+  ]
+ ],
+ "overall_accuracy": {
+  "estimate": 0.8126568047472051,
+  "low": 0.7900730995837091,
+  "high": 0.8333235215935879
+ },
+ "per_class_method": "stratified by confidence margin: ratios of Horvitz-Thompson totals with linearised variance; shares as Horvitz-Thompson totals",
+ "overall_accuracy_valid": {
+  "estimate": 0.8126568047472051,
+  "low": 0.7758339886233258,
+  "high": 0.8466654966065122,
+  "form": "betting"
+ },
+ "per_class_valid_note": "--valid: each interval on a line marked valid holds at 95% on its own, for every map and every number of labels: the user's accuracy over the windows the map calls the class in each stratum (exact where they lie in one stratum labelled in part), the producer's accuracy from two such intervals at 97.5% each (a box), and the share over the strata. They do not hold jointly, and a share the map draws outside its own interval is flagged on that interval alone. The line below each is the table estimate prints without --valid, unchanged.",
+ "sample": "/scratch/qi_zim_neu/olmoearth_inferenceX/checks/j2/1554014/confidence1000.csv",
+ "written_by": {
+  "package": "olmoearth-inferencex",
+  "version": "1.20.0",
+  "command": "estimate"
+ }
+}
