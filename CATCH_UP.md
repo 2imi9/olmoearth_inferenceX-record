@@ -13,7 +13,8 @@ with its confidence) and tells you:
 - which of two maps is better.
 
 It never runs the model, so it works on OlmoEarth's outputs, other models' maps and published products.
-`pip install "olmoearth-inferencex[geo,mcp]"` (1.20.0). Code and pictures: https://github.com/2imi9/olmoearth_inferenceX
+`pip install "olmoearth-inferencex[geo,mcp]"` (1.20.1; 1.20.0's code with its documentation checked). Code and
+pictures: https://github.com/2imi9/olmoearth_inferenceX
 
 Words used below: a **window** is a small block of pixels (4 by 4 by default); the **margin** is the top class score
 minus the second; the **review set** is the least confident windows, to check first (it is not a sample, so it says
@@ -49,11 +50,11 @@ removed its unanswered runs; the 7B model needed the tools and still misstated i
 agent at 7B called the tool on 17 of 40 runs unaided and on 30 with the skill pinned (0.76 of the package's
 capture), so pinning helped but did not make it reliable.
 
-## New since 23 October (1.14.0 to 1.20.0)
+## New since 23 October (1.14.0 to 1.20.1)
 
-- **Grading a map with an agency's own sample.** `grade` reads a published stratified reference sample. On NLCD 2016
-  and GFC2020 it reproduces the published overall accuracies, and gives each accuracy a valid interval beside the
-  agency's normal-theory one (exp117).
+- **Grading a map with an agency's own sample.** `grade` reads a published stratified reference sample. It reproduces
+  NLCD 2016's published overall accuracies to 0.02 points, and gives 91.5% for GFC2020 against its published 91%; each
+  accuracy gets a valid interval beside the agency's normal-theory one (exp117).
 - **Normal-theory per-class intervals fall short in simulation.** In 5,000 simulated samples at NLCD 2016's design
   (populations built from its sample copied ten times), the usual normal-theory intervals covered below the
   preregistered bar (94.1%) on 33 of 91 quantities, all per class, one as low as 71%. On overall accuracy they covered

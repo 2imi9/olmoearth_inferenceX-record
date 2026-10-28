@@ -4769,7 +4769,9 @@ route (another traversal of the JSON, the job's printed table, another parse of 
   LCMAP). The 26 direct ratio intervals took 627 s in all on one core at tolerance 1e-6 (446 s at 1e-4); each was a
   median 0.82 of the box's width (0.64 to 0.92) and a median 1.73 times normal theory's (1.62 to 3.56). <!-- claim:exp119-ratio-direct-cost-on-nlcd -->
 
-**What it does not show.** One tile and one agency grade. Coverage of `--valid` across the record's fully labelled maps
+**What it does not show.** One tile and one agency grade. The class design is reported at 1,000 labels only: `sample`
+refuses a budget below `--min-per-class` (50 by default) for each class the tile holds, so its 300-label class sample
+was not drawn (the job log's "sample class 300 failed"). Coverage of `--valid` across the record's fully labelled maps
 was not measured, and GFC2020's direct intervals were not computed: their work bounds (3.6e10 to 1.2e11) lie above the
 package's limit, so grade gives the box there, and the job's GFC2020 tasks were cancelled once that was known. The
 1.20.0 CHANGELOG first gave the two medians as 0.83 and 1.74; recomputed from the JSON they are 0.82 and 1.73 (1.74
