@@ -1316,6 +1316,10 @@ reproduce from it to the last digit. <!-- claim:calibrate-family-lock -->
 
 ## DFC2020: eight-class land cover, both sensors, our own encoder, two references (exp66)
 
+> **Side note.** This section is an internal record, not a publication of DFC2020 results. Anyone who wants to take
+> these results further, Ai2 included, needs case-by-case approval from the IEEE GRSS IADF technical committee and
+> TUM under the contest terms before publishing them (see the end of this section).
+
 Ai2 suggested DFC2020 as a labelled evaluation set. It is the first dense
 testbed here that is neither binary flood water nor read through Ai2's
 published embeddings: eight land-cover classes at 10 m, Sentinel-1 and
