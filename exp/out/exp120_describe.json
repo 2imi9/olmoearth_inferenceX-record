@@ -1,0 +1,190 @@
+{
+ "a_valid_cells": 1655,
+ "a_profile_cells": 903,
+ "a_valid_cells_below_0.95": 85,
+ "a_profile_cells_wrong_above_0.05": 0,
+ "a_profile_cells_miss_above_0.10": 32,
+ "a_profile_mean_miss": 0.07013842746400886,
+ "a_profile_mean_wrong": 0.0006810631229235881,
+ "a_valid_pooled_coverage": 0.9878957703927492,
+ "a_valid_not_computed": 0,
+ "a_plain_by_design": {
+  "class_1000": {
+   "cells": 174,
+   "min": 0.9775,
+   "below_0.917": 0,
+   "below_0.95": 0
+  },
+  "class_400": {
+   "cells": 152,
+   "min": 0.9825,
+   "below_0.917": 0,
+   "below_0.95": 0
+  },
+  "confidence_1000": {
+   "cells": 174,
+   "min": 0.92,
+   "below_0.917": 0,
+   "below_0.95": 74
+  },
+  "confidence_300": {
+   "cells": 269,
+   "min": 0.91,
+   "below_0.917": 10,
+   "below_0.95": 123
+  },
+  "proportional_1000": {
+   "cells": 174,
+   "min": 0.915,
+   "below_0.917": 1,
+   "below_0.95": 65
+  },
+  "proportional_300": {
+   "cells": 269,
+   "min": 0.92,
+   "below_0.917": 0,
+   "below_0.95": 113
+  },
+  "random_1000": {
+   "cells": 174,
+   "min": 0.9225,
+   "below_0.917": 0,
+   "below_0.95": 46
+  },
+  "random_300": {
+   "cells": 269,
+   "min": 0.93,
+   "below_0.917": 0,
+   "below_0.95": 39
+  }
+ },
+ "b_valid": [
+  {
+   "design": "random",
+   "n": 300,
+   "valid": 0.9675,
+   "plain": 0.9675
+  },
+  {
+   "design": "random",
+   "n": 1000,
+   "valid": 0.9575,
+   "plain": 0.9575
+  },
+  {
+   "design": "confidence",
+   "n": 300,
+   "valid": 1.0,
+   "plain": 0.9475
+  },
+  {
+   "design": "confidence",
+   "n": 1000,
+   "valid": 1.0,
+   "plain": 0.9425
+  },
+  {
+   "design": "proportional",
+   "n": 300,
+   "valid": 1.0,
+   "plain": 0.9375
+  },
+  {
+   "design": "proportional",
+   "n": 1000,
+   "valid": 0.9975,
+   "plain": 0.95
+  },
+  {
+   "design": "class",
+   "n": 400,
+   "valid": 0.9975,
+   "plain": 1.0
+  },
+  {
+   "design": "class",
+   "n": 1000,
+   "valid": 1.0,
+   "plain": 1.0
+  }
+ ],
+ "b_profiles": [
+  {
+   "spec": "confidence:4",
+   "alpha": 0.1,
+   "wrong": 0.0,
+   "miss": 0.105,
+   "decided_share_of_tested": 0.75
+  },
+  {
+   "spec": "confidence:4",
+   "alpha": 0.2,
+   "wrong": 0.0,
+   "miss": 0.0825,
+   "decided_share_of_tested": 0.7575
+  },
+  {
+   "spec": "confidence:4",
+   "alpha": 0.3,
+   "wrong": 0.0,
+   "miss": 0.07,
+   "decided_share_of_tested": 0.983125
+  },
+  {
+   "spec": "class",
+   "alpha": 0.1,
+   "wrong": 0.0,
+   "miss": 0.0275,
+   "decided_share_of_tested": 0.7720833333333333
+  },
+  {
+   "spec": "class",
+   "alpha": 0.2,
+   "wrong": 0.0,
+   "miss": 0.0425,
+   "decided_share_of_tested": 0.99875
+  },
+  {
+   "spec": "class",
+   "alpha": 0.3,
+   "wrong": 0.0,
+   "miss": 0.03,
+   "decided_share_of_tested": 1.0
+  },
+  {
+   "spec": "grid:2,confidence:2",
+   "alpha": 0.1,
+   "wrong": 0.0025,
+   "miss": 0.0675,
+   "decided_share_of_tested": 0.591875
+  },
+  {
+   "spec": "grid:2,confidence:2",
+   "alpha": 0.2,
+   "wrong": 0.0025,
+   "miss": 0.0525,
+   "decided_share_of_tested": 0.6971875
+  },
+  {
+   "spec": "grid:2,confidence:2",
+   "alpha": 0.3,
+   "wrong": 0.0025,
+   "miss": 0.0475,
+   "decided_share_of_tested": 0.6440625
+  }
+ ],
+ "a_refusal_kinds": {
+  "ValueError: a budget of 400 cannot give each of the 10 map classes its 50 labels ": 32,
+  "ValueError: a budget of 400 cannot give each of the 12 map classes its 50 labels ": 6,
+  "ValueError: a budget of 400 cannot give each of the 17 map classes its 50 labels ": 19,
+  "ValueError: a budget of 400 cannot give each of the 15 map classes its 50 labels ": 10,
+  "ValueError: a budget of 400 cannot give each of the 19 map classes its 50 labels ": 42,
+  "ValueError: the partition gives 19 profiles after folding the cells under 100 windows into": 99,
+  "ValueError: the partition gives 17 profiles after folding the cells under 100 windows into": 18,
+  "ValueError: the partition gives 16 profiles after folding the cells under 100 windows into": 9,
+  "ValueError: a budget of 400 cannot give each of the 14 map classes its 50 labels ": 6,
+  "ValueError: the partition gives 14 profiles after folding the cells under 100 windows into": 9,
+  "ValueError: a budget of 400 cannot give each of the 18 map classes its 50 labels ": 2,
+  "ValueError: the partition gives 18 profiles after folding the cells under 100 windows into": 6
+ }
+}

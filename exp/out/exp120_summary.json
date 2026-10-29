@@ -1,0 +1,114 @@
+{
+ "experiment": "exp120",
+ "package_version": "1.20.3",
+ "tile_package_version": "1.20.3",
+ "draws": 400,
+ "maps_a": 356,
+ "tile_error_rate": 0.19275279833048758,
+ "tile_windows": 15813,
+ "P1": {
+  "cells_a": 1655,
+  "share_a_at_bar": 1.0,
+  "cells_b": 8,
+  "all_b_at_bar": true,
+  "min_coverage_a": 0.9225,
+  "min_coverage_b": 0.9575,
+  "cells_a_below": [],
+  "held": true
+ },
+ "P2": {
+  "cells_a": 903,
+  "share_a_at_bar": 1.0,
+  "cells_b": 9,
+  "all_b_at_bar": true,
+  "max_share_a": 0.0225,
+  "max_share_b": 0.0025,
+  "held": true
+ },
+ "P3": {
+  "cells_a": 903,
+  "share_a_at_bar": 1.0,
+  "cells_b": 9,
+  "all_b_at_bar": true,
+  "max_share_a": 0.13,
+  "max_share_b": 0.105,
+  "held": true
+ },
+ "valid_by_design_a": {
+  "random_300": {
+   "cells": 269,
+   "median_valid_coverage": 0.96,
+   "median_plain_coverage": 0.96,
+   "median_width_valid_over_plain": 1.0,
+   "refused_draws": 0
+  },
+  "random_1000": {
+   "cells": 174,
+   "median_valid_coverage": 0.955,
+   "median_plain_coverage": 0.955,
+   "median_width_valid_over_plain": 1.0,
+   "refused_draws": 0
+  },
+  "confidence_300": {
+   "cells": 269,
+   "median_valid_coverage": 1.0,
+   "median_plain_coverage": 0.95,
+   "median_width_valid_over_plain": 1.773242365483785,
+   "refused_draws": 0
+  },
+  "confidence_1000": {
+   "cells": 174,
+   "median_valid_coverage": 1.0,
+   "median_plain_coverage": 0.95,
+   "median_width_valid_over_plain": 1.6548740297034281,
+   "refused_draws": 0
+  },
+  "proportional_300": {
+   "cells": 269,
+   "median_valid_coverage": 1.0,
+   "median_plain_coverage": 0.9525,
+   "median_width_valid_over_plain": 1.7189963351432722,
+   "refused_draws": 0
+  },
+  "proportional_1000": {
+   "cells": 174,
+   "median_valid_coverage": 1.0,
+   "median_plain_coverage": 0.9525,
+   "median_width_valid_over_plain": 1.6431893736944605,
+   "refused_draws": 0
+  },
+  "class_400": {
+   "cells": 152,
+   "median_valid_coverage": 1.0,
+   "median_plain_coverage": 1.0,
+   "median_width_valid_over_plain": 1.0128288539681418,
+   "refused_draws": 0
+  },
+  "class_1000": {
+   "cells": 174,
+   "median_valid_coverage": 1.0,
+   "median_plain_coverage": 1.0,
+   "median_width_valid_over_plain": 0.6179857773206062,
+   "refused_draws": 0
+  }
+ },
+ "refused": {
+  "a_valid_cells_all_refused": 117,
+  "a_profile_cells_all_refused": 141,
+  "b_refused_draws": 0
+ },
+ "decided": {
+  "a_mean_decided_share_of_tested": 0.7778519629907477,
+  "b_mean_decided_share_of_tested": 0.77875
+ },
+ "guards": {
+  "b_map_class_mismatch": 0,
+  "b_population_mismatch": 0
+ },
+ "bars": {
+  "cover": 0.917,
+  "wrong": 0.083,
+  "miss": 0.145,
+  "share": 0.99
+ }
+}

@@ -18,16 +18,16 @@ the links that now cross between the two repositories; the claim citations that 
 two demo claims now cited in `docs/Findings.md`; the report's title block and availability section, with the PDF
 rebuilt; the upstream-revision check (`scripts/upstream_revision.py` and its test), which now reads the package's
 files from the installed release; and `.gitignore`. Their earlier history is in that repository. Experiments archived
-before the split are in its v1.9.0 tree. The record continues here: exp110 to exp119 were run and
-recorded in this repository after the split (exp119 descriptive, the rest preregistered), and their history is this repository's. The package's releases from 1.12.2
+before the split are in its v1.9.0 tree. The record continues here: exp110 to exp120 were run and
+recorded in this repository after the split (exp117 not preregistered, exp119 descriptive, the rest preregistered), and their history is this repository's. The package's releases from 1.12.2
 point their PyPI page's links and their docstrings here; 1.13.0 (22 October 2026) adds `from-embeddings` and `boundary`
 and draws 400 labels for the certified zone, as exp112 found; 1.17.0 (24 October 2026) adds the map certificate and the
 class design, which exp116 grades with the target rule of 1.16.0 on fully labelled real maps; 1.18.0 adds `grade`, an
 agency's stratified sample graded with intervals valid at any sample size, which exp117 runs on NLCD 2016 and GFC2020,
 and exp118 checks by a second implementation and by simulation at NLCD's design; 1.20.0 (27 October 2026) adds
-`estimate --valid`, `grade --ratio direct` and per-profile verdicts, whose measured costs exp119 records (1.20.1 is
+`estimate --valid`, `grade --ratio direct` and per-profile verdicts, whose measured costs exp119 records and whose coverage exp120 grades on fully labelled maps, linear-probe maps and one Dynamic World tile (1.20.1 is
 its documentation, checked). The checks below still
-run against 1.12.1, the release the record's experiments ran on; exp116's to exp119's checks read only their outputs.
+run against 1.12.1, the release the record's experiments ran on; exp116's to exp120's checks read only their outputs.
 
 | Path | Contents |
 |---|---|

@@ -1,0 +1,14 @@
+{
+ "maps_first": 357,
+ "maps_second": 357,
+ "cells_compared": 2833,
+ "differences": 0,
+ "first_differences": [],
+ "identical": true,
+ "versions": [
+  "1.20.3",
+  "1.20.3",
+  "1.20.3",
+  "1.20.3"
+ ]
+}

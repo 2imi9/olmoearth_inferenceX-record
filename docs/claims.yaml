@@ -6411,3 +6411,52 @@
     )(A['exp/out/exp119_summary.json']['ratio_direct']['nlcd2016_8_direct'], A['exp/out/exp119_summary.json']['ratio_direct']['nlcd2016_8_direct_tol4'])
   cited_in:
     - {file: docs/results/comparisons.md, marker: exp119-ratio-direct-cost-on-nlcd}
+
+- id: exp120-valid-interval-covers-on-real-maps
+  statement: "In a preregistered test (exp120, frozen 1c41b86) with olmoearth-inferencex 1.20.3, estimate --valid's interval covered the map's true error rate on at least 0.9225 of 400 draws in every one of 1,655 cells on 269 of the embedding suite's 356 fully labelled unit maps (those with at least 600 units; random, confidence and proportional designs at 300 and 1,000 labels, the class design at 400 on 152 maps and at 1,000; bar 0.917 on 99% of cells; P1 holds), and on at least 0.9575 in each of the Dynamic World expert tile's 8 cells run through the command line. Every cell below 0.95 was a simple random sample, where --valid is the exact interval estimate already gave; under the stratified designs it covered on at least 0.99 of draws in every cell."
+  crosscheck: tests/test_exp120.py::test_every_cell_recorded_by_a_second_route
+  status: supported
+  experiments: [exp120]
+  artifacts: [exp/out/exp120_summary.json]
+  check: |-
+    (lambda P: P['held'] is True and P['cells_a'] == 1655 and P['share_a_at_bar'] == 1.0 and round(P['min_coverage_a'], 4) == 0.9225
+      and P['cells_b'] == 8 and P['all_b_at_bar'] is True and round(P['min_coverage_b'], 4) == 0.9575
+    )(A['exp/out/exp120_summary.json']['P1'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp120-valid-interval-covers-on-real-maps}
+  note: >-
+    The unit maps are linear probes on benchmark splits, not landscape maps; the tile is one 128 x 128 Dynamic World
+    tile, which an unregistered first check (aicr 1580392) had already run with other seeds.
+
+- id: exp120-profile-verdicts-hold-on-real-maps
+  statement: "In exp120, the per-profile verdicts (800 labels, delta 0.1) called some profile wrongly on at most 0.0225 of 400 draws in each of 903 cells on 174 unit maps, run through the package's functions as sample --design profile and certify call them (profiles by confidence:4 on all 174 and by class on 127; alpha half, one and twice each map's error rate; bar 0.083 on 99% of cells; P2 holds), and on at most 0.0025 in each of the tile's 9 cells run through the command line (confidence:4, class and grid:2,confidence:2 at alpha 0.1, 0.2 and 0.3); some profile's interval missed its rate on at most 0.13 and 0.105 of draws (bar 0.145; P3 holds)."
+  crosscheck: tests/test_exp120.py::test_every_cell_recorded_by_a_second_route
+  status: supported
+  experiments: [exp120]
+  artifacts: [exp/out/exp120_summary.json]
+  check: |-
+    (lambda S: S['P2']['held'] is True and S['P3']['held'] is True and S['P2']['cells_a'] == S['P3']['cells_a'] == 903
+      and S['P2']['cells_b'] == 9 and round(S['P2']['max_share_a'], 4) == 0.0225 and round(S['P2']['max_share_b'], 4) == 0.0025
+      and round(S['P3']['max_share_a'], 4) == 0.13 and round(S['P3']['max_share_b'], 4) == 0.105
+    )(A['exp/out/exp120_summary.json'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp120-profile-verdicts-hold-on-real-maps}
+  note: >-
+    The unit maps are linear probes on benchmark splits, not landscape maps; the tile is one 128 x 128 Dynamic World
+    tile, which an unregistered first check (aicr 1580392) had already run with other seeds. A profile's interval does
+    not depend on alpha, so the 903 interval-miss cells are 301 (map, field) cases each drawn three times.
+
+- id: exp120-valid-interval-width-on-real-maps
+  statement: "On exp120's unit maps, estimate --valid's interval was a median 1.77 and 1.65 times as wide as the confidence design's interval at 300 and 1,000 labels (1.72 and 1.64 under the proportional design), the same interval under a simple random sample, and 1.01 and 0.62 times the class design's union bound at 400 and 1,000 labels."
+  crosscheck: tests/test_exp120.py::test_the_widths_by_a_second_traversal
+  status: measured
+  experiments: [exp120]
+  artifacts: [exp/out/exp120_summary.json]
+  check: |-
+    (lambda V: [round(V[k]['median_width_valid_over_plain'], 2) for k in ('confidence_300', 'confidence_1000', 'proportional_300', 'proportional_1000', 'random_300', 'random_1000', 'class_400', 'class_1000')] == [1.77, 1.65, 1.72, 1.64, 1.0, 1.0, 1.01, 0.62]
+    )(A['exp/out/exp120_summary.json']['valid_by_design_a'])
+  cited_in:
+    - {file: docs/results/comparisons.md, marker: exp120-valid-interval-width-on-real-maps}
+  note: >-
+    Linear-probe maps, not landscape maps. The widths are checked by a second pass over the first route's own output
+    (the second route compares coverage counts, not widths).

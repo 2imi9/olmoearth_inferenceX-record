@@ -1764,3 +1764,21 @@ had no artifact in the record; the 1.20.0 Fable rating named that gap. The raw o
 1.73 from the JSON, the 1.74 having been against normal theory's interval cut to 0 to 100%), corrected in the
 package's 1.20.1. The head-to-head with Spertus-Stark and ALPHA once planned under this number was dropped by the
 owner on 27 October ("only do the meaningful things"), so the id is used here.
+
+## exp120 — estimate --valid and the per-profile verdicts on fully labelled real maps (2026-10-29)
+
+Preregistered and frozen in 1c41b86 (docs/plan/valid_and_profiles_on_real_maps.md) at the owner's "记录" (record it),
+after the 1.20.0 Fable rating named two gaps: `--valid`'s coverage measured on no fully labelled map, and the per-profile
+verdicts never run on a real map. Before the plan, an unregistered first check on the Dynamic World tile (aicr 1580392,
+500 draws per cell, package 1.20.2 with the mask fix) had passed every bar; the plan says so, and arm B reruns that tile
+with fresh seeds. The run used olmoearth-inferencex 1.20.3 from PyPI, installed clean in the job (1580985; a first
+submission at 64 cores, 1580923, was cancelled while still pending for a free node, and the job ran at 48 cores,
+arm A in 60 minutes, arm B in 1). Arm A ran exp116's 356 unit files (sha256 checked against exp/out/exp116_ab.json);
+arm B ran the command line end to end. P1 to P3 hold: `--valid` covered on at least 0.9225 of draws in every cell, a
+wrong verdict on at most 0.0225, an interval miss on at most 0.13. The second route (`exp/exp120_crosscheck.py`) was
+written by an agent from the plan and the package's source without opening the first script (wf_a000f14d-8a5) and
+checked against the plan by a second agent; it ran on aicr (1581168), and its counts equal
+the run's on all 2,833 cells of the 357 maps (`exp/exp120_compare.py`, no difference). The writing agent ran
+`python3 -c "print(1)"` on the laptop once, against the owner's rule;
+it touched no file. Read after the run: the interval given without `--valid` fell below the bar on 11 cells (10 of them
+the confidence design at 300 labels), where `--valid` fell on none (`exp/exp120_describe.py`, aicr 1582199).

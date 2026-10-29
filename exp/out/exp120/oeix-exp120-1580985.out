@@ -1,0 +1,48 @@
+install exit 0
+version 1.20.3 1.20.3
+== arm A
+Thu Oct 29 12:12:09 EDT 2026
+arm A: 356 maps written to out/exp120_units.json
+arm A exit 0
+Thu Oct 29 13:12:28 EDT 2026
+== arm B
+arm B written to out/exp120_tile.json
+arm B exit 0
+Thu Oct 29 13:13:24 EDT 2026
+== summary
+{
+ "P1": {
+  "cells_a": 1655,
+  "share_a_at_bar": 1.0,
+  "cells_b": 8,
+  "all_b_at_bar": true,
+  "min_coverage_a": 0.9225,
+  "min_coverage_b": 0.9575,
+  "cells_a_below": [],
+  "held": true
+ },
+ "P2": {
+  "cells_a": 903,
+  "share_a_at_bar": 1.0,
+  "cells_b": 9,
+  "all_b_at_bar": true,
+  "max_share_a": 0.0225,
+  "max_share_b": 0.0025,
+  "held": true
+ },
+ "P3": {
+  "cells_a": 903,
+  "share_a_at_bar": 1.0,
+  "cells_b": 9,
+  "all_b_at_bar": true,
+  "max_share_a": 0.13,
+  "max_share_b": 0.105,
+  "held": true
+ }
+}
+summary exit 0
+3575bd8716966553c9b69f13ba0d3560bbcf9b693f1fda53a9e964f15e307cb6  out/exp120_summary.json
+6c3ef7db327ffff7f547ae79e6bc1592a4c48e0a67f18a9e1e2536a138ed609c  out/exp120_tile.json
+2a9a37ab05339a8cb7ef24ee2ce3a6284a28d1acb473274c8d655306a2c41bbe  out/exp120_units.json
+e784bccd0bdced363289b6aa84567bd7fae7bfd539b25dbd3ae619441632d39e  exp/exp120_valid_profiles.py
+41ac4ed8818fe081f43eebbd2b3e1835887836fdc717c9aa9aa71870be4980a6  exp116_ab.json

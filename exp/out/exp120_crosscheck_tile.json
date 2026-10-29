@@ -1,0 +1,123 @@
+{
+ "route": "second",
+ "package_version": "1.20.3",
+ "draws": 400,
+ "maps": {
+  "dynamic_world_tile": {
+   "n_units": 15813,
+   "error_rate": 0.19275279833048758,
+   "cells": {
+    "0": {
+     "draws": 400,
+     "refused": 0,
+     "valid_covers": 387,
+     "valid_not_computed": 0,
+     "plain_covers": 387
+    },
+    "1": {
+     "draws": 400,
+     "refused": 0,
+     "valid_covers": 383,
+     "valid_not_computed": 0,
+     "plain_covers": 383
+    },
+    "2": {
+     "draws": 400,
+     "refused": 0,
+     "valid_covers": 400,
+     "valid_not_computed": 0,
+     "plain_covers": 379
+    },
+    "3": {
+     "draws": 400,
+     "refused": 0,
+     "valid_covers": 400,
+     "valid_not_computed": 0,
+     "plain_covers": 377
+    },
+    "4": {
+     "draws": 400,
+     "refused": 0,
+     "valid_covers": 400,
+     "valid_not_computed": 0,
+     "plain_covers": 375
+    },
+    "5": {
+     "draws": 400,
+     "refused": 0,
+     "valid_covers": 399,
+     "valid_not_computed": 0,
+     "plain_covers": 380
+    },
+    "6": {
+     "draws": 400,
+     "refused": 0,
+     "valid_covers": 399,
+     "valid_not_computed": 0,
+     "plain_covers": 400
+    },
+    "7": {
+     "draws": 400,
+     "refused": 0,
+     "valid_covers": 400,
+     "valid_not_computed": 0,
+     "plain_covers": 400
+    },
+    "100": {
+     "draws": 400,
+     "refused": 0,
+     "any_wrong": 0,
+     "any_miss": 42
+    },
+    "101": {
+     "draws": 400,
+     "refused": 0,
+     "any_wrong": 0,
+     "any_miss": 33
+    },
+    "102": {
+     "draws": 400,
+     "refused": 0,
+     "any_wrong": 0,
+     "any_miss": 28
+    },
+    "110": {
+     "draws": 400,
+     "refused": 0,
+     "any_wrong": 0,
+     "any_miss": 11
+    },
+    "111": {
+     "draws": 400,
+     "refused": 0,
+     "any_wrong": 0,
+     "any_miss": 17
+    },
+    "112": {
+     "draws": 400,
+     "refused": 0,
+     "any_wrong": 0,
+     "any_miss": 12
+    },
+    "120": {
+     "draws": 400,
+     "refused": 0,
+     "any_wrong": 1,
+     "any_miss": 27
+    },
+    "121": {
+     "draws": 400,
+     "refused": 0,
+     "any_wrong": 1,
+     "any_miss": 21
+    },
+    "122": {
+     "draws": 400,
+     "refused": 0,
+     "any_wrong": 1,
+     "any_miss": 19
+    }
+   }
+  }
+ }
+}

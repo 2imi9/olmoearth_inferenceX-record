@@ -4754,6 +4754,49 @@ Recorded after an independent audit whose script is `exp/exp115_crosscheck.py`. 
 or outputs, with its own exact interval inversion and sums. Its 831 class counts are identical, its 3,530 class-level
 probabilities agree within 5.7e-10, and all five verdicts are the same.
 
+## estimate --valid and the per-profile verdicts on fully labelled real maps (exp120)
+
+Preregistered and frozen before any statistic of arm A was computed ([plan](../plan/valid_and_profiles_on_real_maps.md),
+1c41b86), run against olmoearth-inferencex 1.20.3 from PyPI (aicr job 1580985, 48 cores, 61 minutes). Arm A: exp116's
+356 unit maps of the embedding suite (sha256 checked), through the package's functions as the command line calls them;
+arm B: the package's Dynamic World expert tile (15,813 labelled windows, error rate 19.3%) through the command line end
+to end. 400 draws per cell. A second route, written by an agent from the plan and the package's source without opening
+the first script (`exp/exp120_crosscheck.py`, aicr job 1581168), draws every cell again with the same seeds and grades
+it with its own code: its counts equal the run's on all 2,833 cells of the 357 maps. `tests/test_exp120.py` checks
+every coverage and verdict count equal and recomputes the predictions from the cells.
+
+- **`--valid` holds (P1).** The valid interval covered the map's true error rate on at least 0.9225 of draws in every one
+  of the 1,655 cells on 269 of the 356 unit maps (those with at least 600 units; random, confidence and proportional
+  designs at 300 and 1,000 labels, the class design at 400 on 152 maps and at 1,000; bar 0.917 on 99% of cells), and
+  on at least 0.9575 in each of the tile's 8 cells. Every cell below 0.95 was a simple random sample, where `--valid`
+  is the exact interval `estimate` already gave; under the stratified designs it covered on at least 0.99 of draws in
+  every cell. <!-- claim:exp120-valid-interval-covers-on-real-maps -->
+- **The verdicts hold (P2, P3).** Some profile was called wrongly on at most 0.0225 of draws in each of the 903 verdict
+  cells on 174 unit maps, run through the package's functions as `sample --design profile` and `certify` call them
+  (profiles by `confidence:4` on all 174 and by `class` on 127, 800 labels, delta 0.1, alpha half, one and twice each
+  map's error rate; bar 0.083), and on at most 0.0025 in the tile's 9 cells through the command line (also by
+  `grid:2,confidence:2`, alpha 0.1, 0.2, 0.3); some profile's interval missed on at most 0.13 and 0.105 of draws (bar
+  0.145). A profile's interval does not depend on alpha, so the 903 miss cells are 301 (map, field) cases each drawn
+  three times. <!-- claim:exp120-profile-verdicts-hold-on-real-maps -->
+- **What `--valid` costs here.** A median 1.77 and 1.65 times the confidence design's interval at 300 and 1,000 labels
+  (1.72 and 1.64 under the proportional design), the same interval under a simple random sample, and 1.01 and 0.62
+  times the class design's union bound at 400 and 1,000 labels (checked by a second pass over the run's output; the
+  second route compares counts, not widths). <!-- claim:exp120-valid-interval-width-on-real-maps -->
+
+**Beside the predictions** (`exp/out/exp120_describe.json`, descriptive). Pooled over the unit maps' cells the valid
+interval covered on 0.988 of draws; 85 of 1,655 cells were below 0.95, none below the bar. The interval given without
+`--valid` fell below 0.917 on 10 of the 269 confidence-design cells at 300 labels (lowest 0.91) and on 1 of the 174
+proportional cells at 1,000 (0.915), where `--valid` fell on none. A wrong verdict was rare (0.0007 of draws on average,
+no cell above 0.05); an interval miss averaged 0.070 of draws, with 32 of the 903 cells above delta's 0.10 and none
+above the bar. Of the profiles labelled in part, 0.78 were decided (good or bad) in both arms. The package refused 117
+class-design cells (more classes than 50 labels each allows) and 141 verdict cells (more than 12 profiles); a refusal
+is counted, never graded.
+
+**What it does not show.** The unit maps are linear probes on benchmark splits, not landscape maps; the only landscape
+map is one 128 x 128 Dynamic World tile, which an unregistered first check (aicr 1580392, 29 October) had already run
+with other seeds, so arm B is not independent of what was seen. Budgets, fields and alphas are the plan's; other
+partitions, smaller budgets and maps deployed by OlmoEarth were not tested.
+
 ## What 1.20.0's new intervals cost: release checks (exp119)
 
 Descriptive, not an experiment with predictions: the measured costs the package's 1.20.0 CHANGELOG and Usage quote,
