@@ -1,6 +1,6 @@
 # Where this stands: a five-minute catch-up for the OlmoEarth team
 
-Ziming Qi, 17 October 2026; updated 27 October 2026.
+Ziming Qi, 17 October 2026; updated 29 October 2026.
 
 ## What it is
 
@@ -13,8 +13,8 @@ with its confidence) and tells you:
 - which of two maps is better.
 
 It never runs the model, so it works on OlmoEarth's outputs, other models' maps and published products.
-`pip install "olmoearth-inferencex[geo,mcp]"` (1.20.1; 1.20.0's code with its documentation checked). Code and
-pictures: https://github.com/2imi9/olmoearth_inferenceX
+`pip install "olmoearth-inferencex[geo,mcp]"` (1.20.3: 1.20.0's methods, and certificates for maps that are not
+north up). Code and pictures: https://github.com/2imi9/olmoearth_inferenceX
 
 Words used below: a **window** is a small block of pixels (4 by 4 by default); the **margin** is the top class score
 minus the second; the **review set** is the least confident windows, to check first (it is not a sample, so it says
@@ -50,7 +50,7 @@ removed its unanswered runs; the 7B model needed the tools and still misstated i
 agent at 7B called the tool on 17 of 40 runs unaided and on 30 with the skill pinned (0.76 of the package's
 capture), so pinning helped but did not make it reliable.
 
-## New since 23 October (1.14.0 to 1.20.1)
+## New since 23 October (1.14.0 to 1.20.3)
 
 - **Grading a map with an agency's own sample.** `grade` reads a published stratified reference sample. It reproduces
   NLCD 2016's published overall accuracies to 0.02 points, and gives 91.5% for GFC2020 against its published 91%; each
@@ -66,8 +66,15 @@ capture), so pinning helped but did not make it reliable.
   producer's accuracies match no rule tried (the best, 7 of 15) (exp117).
 - **Per-profile verdicts** (`sample --design profile`). A map split before labelling into up to 12 profiles
   (confidence band, class, grid block, input condition) gets good, bad or undecided for each; all the verdicts are
-  right together except on at most 10% of samples by default. Checked by exact enumeration in the package's tests,
-  not yet on a real map.
+  right together except on at most 10% of samples by default. Checked by exact enumeration in the package's tests
+  and, preregistered, on maps labelled in full: some profile was called wrongly on at most 2.25% of draws on 174 of the
+  embedding suite's maps and at most 0.25% on a Dynamic World tile (exp120).
+- **An interval valid at any sample size** (`estimate --valid`). On 269 of the suite's maps labelled in full and the
+  Dynamic World tile, it covered the true error rate on at least 92.25% of draws in every one of 1,663 settings
+  (the preregistered bar 91.7%), where the usual interval fell below that bar on 11; it is 1.65 to 1.77 times as wide
+  under the confidence design (exp120). The suite's maps are linear probes on benchmark splits, not landscape maps.
+- **Certificates for maps that are not north up** (1.20.3): a south-up, rotated or ungeoreferenced map now gets one,
+  and `verify` refuses a zone mask whose georeferencing another GIS would read differently.
 - **Two maps, proved.** With labels where two maps differ, the sign test names the less accurate map at most 2.5% of
   the time (at 95%), while the labels are at most a fifth of the windows where they differ.
 - Exact per-class intervals, a design stratified by map class, and a re-checkable certificate of the trusted zone.

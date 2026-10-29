@@ -32,7 +32,7 @@
 \makeatother
 
 \title{\pkg: confidence-based review, comparison and accuracy estimation for Earth-observation classification maps\\[6pt]
-\large Technical report, version 1.20.1}
+\large Technical report, version 1.20.3}
 \author{Ziming Qi\\[2pt] \small \url{https://github.com/2imi9/olmoearth_inferenceX}\\[-1pt]
 \small \url{https://github.com/2imi9/olmoearth_inferenceX-record}\\[-1pt]
 \small \url{https://olmoearth-inferencex.readthedocs.io}}
@@ -323,7 +323,7 @@ Theorem~1 (Section~\ref{sec:agency}) with the strata labelled in full added exac
 at the lower end and wrong at the upper. With \code{-{}-per-class} each class's user's accuracy, producer's accuracy and
 share get such an interval by post-stratification on the map's class, each on its own. It is opt-in and refused on the
 tile and audit designs; its tests enumerate every population and draw of small stratified maps. Its measured width is
-exp119's (Section~\ref{sec:res-agency}).
+exp119's, and exp120 grades its coverage on maps labelled in full (Section~\ref{sec:res-agency}).
 
 \subsection{The certified zone}
 \label{sec:zone}
@@ -375,7 +375,8 @@ and a grid block, the small cells folded into one), and labels each at random; \
 profile labelled in part an exact two-sided hypergeometric interval at $1 - \delta/L$ and calls it good when the
 interval lies at or below $\alpha$, bad when above, and undecided otherwise, so all $L$ verdicts are right together
 except on at most $\delta$ of samples (a profile labelled in full compares its rate exactly). The package's tests
-enumerate every error pattern and draw of small maps; the verdicts have not been run on a real map.
+enumerate every error pattern and draw of small maps, and exp120 grades the verdicts on maps labelled in full
+(Section~\ref{sec:res-agency}).
 
 This guarantee is for one sample whose size is fixed before labelling, read once. Rerunning \code{certify} as labels
 are added runs a new test at each look, and the chance that some look certifies a wrong zone grows with the looks
@@ -1297,6 +1298,24 @@ median 0.82 of the box's width (0.64 to 0.92) and a median 1.73 times normal the
 \claim{exp119-ratio-direct-cost-on-nlcd}. GFC2020's direct intervals lie above the work bound, so \code{grade} gives
 the box there, and the box stays the default.
 
+Whether \code{estimate -{}-valid} and the per-profile verdicts keep their guarantees where every window is labelled was
+preregistered as exp120 and run with 1.20.3: on the suite's unit maps (linear probes on benchmark splits) through the
+package's functions, and on the Dynamic World expert tile (15,813 labelled windows, error rate 19.3\%) through the
+command line, 400 draws per cell. The valid interval covered the map's error rate on at least 0.9225 of draws in each
+of 1,655 cells on 269 maps (random, confidence and proportional designs at 300 and 1,000 labels, the class design at
+400 and 1,000) and on at least 0.9575 in each of the tile's eight cells, against a bar of 0.917; every cell below 0.95
+was a simple random sample, where it is the exact interval \code{estimate} already gave
+\claim{exp120-valid-interval-covers-on-real-maps}. The interval given without \code{-{}-valid} fell below that bar on
+11 cells, ten of them the confidence design at 300 labels. With 800 labels, $\delta = 0.1$ and $\alpha$ half, one and
+twice each map's error rate, some profile's verdict was wrong on at most 0.0225 of draws in each of 903 cells on 174
+maps and on at most 0.0025 on the tile, and some profile's interval missed its rate on at most 0.13 and 0.105 of draws,
+against bars of 0.083 and 0.145 \claim{exp120-profile-verdicts-hold-on-real-maps}. The valid interval was a median
+1.77 and 1.65 times as wide as the confidence design's at 300 and 1,000 labels, the same interval under a random
+sample, and 1.01 and 0.62 times the class design's union bound at 400 and 1,000 labels
+\claim{exp120-valid-interval-width-on-real-maps}. A second implementation, written from the plan and the package's
+source without the first script, gave the same counts on all 2,833 cells. The tile had been run once before the plan,
+with other seeds.
+
 \subsection{Another organisation's deployed field map}
 \label{sec:res-ftw}
 
@@ -1904,9 +1923,10 @@ pure at the units no one labelled. The method was chosen after seeing widths, as
 The producer's accuracy of a small class can be 0 to 100\% (NLCD's class 24), three of NLCD's alternate labels lie
 outside its legend and count as no alternate, and no rule tried reproduces the producer's accuracies of NLCD's Table~4.
 The valid interval costs width: normal theory and it disagree on whether NLCD leads LCMAP. Of 1.20.0's additions,
-\code{estimate -{}-valid}'s coverage across the record's fully labelled maps was not measured and its width is known
-on one tile, the per-profile verdicts were checked by enumeration only, and the direct ratio interval's monotonicity
-argument is stated in the package and not proved here (exp119).
+\code{estimate -{}-valid} and the per-profile verdicts are graded on the suite's linear probes and one Dynamic World
+tile, which a check before the plan had already run (exp120), not on a deployed map, and at the plan's budgets,
+fields and levels only; the direct ratio interval's monotonicity argument is stated in the package and not proved
+here (exp119).
 
 The agent evidence is binary water cards at two model sizes, a trial that passed only under an amended instrument, and
 a five-question pilot with no artifact. exp79's per-unit files are committed only for OlmoEarth Base's seed 0, so some
@@ -1917,7 +1937,7 @@ GPU types, and the work has a single author.
 \section{Software}
 \label{sec:software}
 
-\pkg{} is on PyPI as \code{olmoearth-inferencex} (Apache License 2.0); this report describes version 1.20.1.
+\pkg{} is on PyPI as \code{olmoearth-inferencex} (Apache License 2.0); this report describes version 1.20.3.
 Version 1.0.0 (17 September 2026) carried ranking, explanation, comparison and label-fitted fusion; 1.2.0 (22 September)
 added \code{sample} and \code{estimate}; 1.3.0 (24 September) added \code{certify}, per-class accuracy, dates in
 \code{compare} and the exact random-sample interval, and fixed the 33 findings of a second line-by-line review, each
@@ -1957,7 +1977,12 @@ Their measured costs are exp119's (Section~\ref{sec:res-agency}). 1.20.1 (27 Oct
 README checked line by line against the code and the record, an example figure that had been drawn upside down since
 1.12.3 (the benchmark's chips are stored south-up) redrawn north up, and two medians of 1.20.0's \code{-{}-ratio
 direct} figures corrected from the job's outputs (0.82 of the box's width and 1.73 times normal theory's, not 0.83 and
-1.74). Before 1.20.0's release the suite passed 1,459 tests on Python 3.11, 3.12 and 3.13, and 1.19.0 and the release
+1.74). 1.20.2 (29 October) changed documentation only, a shorter README. 1.20.3 (29 October) gives a certificate to a
+map that is not north up: GDAL writes a south-up, rotated or ungeoreferenced grid as a ModelTransformation matrix,
+which the zone mask's tag check had refused since 1.17.0, so \code{certificate} refused its own mask. It also reads a
+mask's georeferencing as written: a PixelScale with a negative $y$ step, which GDAL reads as north up and libgeotiff
+mirrors, had passed \code{verify}; it is now refused, as are a matrix holding terms GDAL ignores, a second tiepoint
+and any tag given twice. The suite passed 1,464 tests before its release. Before 1.20.0's release the suite passed 1,459 tests on Python 3.11, 3.12 and 3.13, and 1.19.0 and the release
 candidate wrote the same files byte for byte apart from the new options in five commands' help and one refusal text.
 Since 1.4.1 each release has been preceded by a review in several lenses (from 1.5.0: statistics, code, and documents
 with tests), whose findings were fixed with tests. For 1.7.0 the suite ran against the built wheel without the source
