@@ -19,8 +19,8 @@ and each has a gate prepared here.
 
 | ViT3 property | Consequence for an audit | Gate, and where it lives |
 |---|---|---|
-| The inner model is fit on all tokens of the input, so a window's features depend on the crop it was inferred in | Tiling instability becomes structural; the value measured on a frozen ViT does not transfer | `signals.crop_dependence`: the share of windows whose decision flips across the four offsets, a map property reported beside the reseed floor |
-| One full-batch inner step at learning rate 1.0 | Two engines or two precisions can drift more than a frozen ViT does | `compare.determinism_check`: the same tiles inferred twice, disagreement and margin drift against the family's reseed floor, pass or fail |
+| The inner model is fit on all tokens of the input, so a window's features depend on the crop it was inferred in | Tiling instability becomes structural; the value measured on a frozen ViT does not transfer | `signals.crop_dependence`: the share of windows whose decision flips across the four offsets, a map property reported beside the frozen family's crop-offset disagreement (exp57) |
+| One full-batch inner step at learning rate 1.0 | Two engines or two precisions can drift more than a frozen ViT does | `compare.determinism_check`: the same tiles inferred twice, disagreement and margin drift against P4's floor, pass or fail |
 | A self-supervised reconstruction residual exists per token at inference, for free | A new label-free reading people will want to use as an error score | `scripts/suite_regression.py --signal`: any per-unit reading scored beside the margin and the two no-model controls on the 24 tasks |
 | The adapted weights move by a measurable amount per input | A per-tile novelty score, the typicality family in new form | The same entry point; and, on the comparison side, a cue for where two inferences differ |
 
@@ -43,8 +43,16 @@ existing bars, so they carry over to any adaptive design unchanged.
   the same tiles and offsets. Base's number is recorded first, from exp18's
   cache, and the factor is stated then.
 - **P4** Under bf16 the map disagrees with the fp32 map on no more than the
-  family's reseed floor (exp57: 2 to 4% of windows). If it does, that engine
-  is not used for an audit, and the record says so.
+  family's floor, the 2 to 4% of windows that another crop offset or backbone
+  version moved in exp57. If it does, that engine is not used for an audit,
+  and the record says so.
+
+Amended 7 November 2026, before any run: P4's floor was called the family's
+reseed floor. exp57's 2 to 4% is the move between crop offsets and backbone
+versions; reseeding a probe moved 0.2 to 0.6% of windows (exp63, exp83). The
+threshold is unchanged, so a bf16 map under it can still move more than a
+reseed does; olmoearth-inferencex's Usage and `determinism_check` docstring
+say the same.
 
 Also on the record before the run: a test-time-training OlmoEarth is a new
 model family, so every fusion fitted in exp65 is refit or dropped, and the
@@ -76,6 +84,6 @@ map, not for ranking it.
 3. Infer exp18's Bolivia tiles at the four offsets, pool the decisions, and
    call `crop_dependence`; compare with Base; that is P3.
 4. Infer the same tiles under fp32 and bf16 and call `determinism_check` with
-   the reseed floor; that is P4.
+   P4's floor; that is P4.
 
 Each step is one job. None has been run; nothing here is a claim.
