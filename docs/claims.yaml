@@ -712,7 +712,7 @@
   note: no artifact; exp07 left only a feature cache (exp/out/exp07_tiny_feats.npy), no summary or figure
 
 - id: fine-tuned-model-audit
-  statement: The replica of the fine-tuned AWF model reproduces the reported accuracy (0.881 vs 0.895) on the 344 validation points with 41 errors; confidence (AURC 0.0262) and tiling instability (0.0235) rank its errors best and are tied (the CI of their difference spans zero, P(instability better) 0.93), everything else is significantly worse, and it is overconfident (ECE 0.080).
+  statement: The replica of the fine-tuned AWF model reproduces Ai2's accuracy on the 344 validation points to within 5 of those points (0.881 with 41 errors, against the 0.895 Ai2 publishes, copied); confidence (AURC 0.0262) and tiling instability (0.0235) rank its errors best and are tied (the CI of their difference spans zero, P(instability better) 0.93), everything else is significantly worse, and it is overconfident (ECE 0.080).
   crosscheck: tests/test_recorded.py::test_exp21_fine_tuned_model_metrics_from_the_per_window_table
   status: supported
   experiments: [exp21]
@@ -1089,7 +1089,7 @@
     - {file: docs/results/comparisons.md, marker: cross-encoder-phi-on-their-embeddings}
 
 - id: encode-path-reproduces-their-probe
-  statement: Ai2's probe on their own OlmoEarth Base embeddings reaches mIoU 0.789 against the paper's 79.2, and our Sentinel-1 encode of the same model with the same probe agrees with it window for window (phi 0.937 on 2,419 matched test tiles, accuracies within 0.002 on the shared block).
+  statement: The record's rerun of Ai2's probe on their own OlmoEarth Base embeddings reaches mIoU 0.789 (fp32) against the 79.2 the OlmoEarth paper reports for this Sentinel-1 linear probe on Sen1Floods11 (copied), and our Sentinel-1 encode of the same model with the same probe agrees with it window for window (phi 0.937 on 2,419 matched test tiles, accuracies within 0.002 on the shared block).
   status: measured
   experiments: [exp51]
   artifacts: [exp/out/exp51_summary.json]
@@ -1119,7 +1119,7 @@
     - {file: docs/results/comparisons.md, marker: finetune-corrects-frozen-errors}
 
 - id: finetune-dissolves-bolivia-exception
-  statement: The fine-tuned S2 model's own confidence beats the no-model NDWI-level control on Bolivia under both backbones (preregistered P1), so the Bolivia exception belonged to the frozen encoder; on the multi-region split it ties pooled under v1 while winning per tile, and beats it under v1.2.
+  statement: The fine-tuned S2 model's own confidence beats the no-model NDWI-level control on Bolivia under both backbones (preregistered P1; one fine-tune per backbone at seed 0, a single run), so the Bolivia exception belonged to the frozen encoder; on the multi-region split it ties pooled under v1 while winning per tile, and beats it under v1.2.
   status: supported
   experiments: [exp52]
   artifacts: [exp/out/exp52_summary.json]
@@ -1804,7 +1804,7 @@
     - {file: docs/results/comparisons.md, marker: dfc2020-atlas-holds-with-our-own-encoder}
 
 - id: dw-margin-ranks-a-production-model
-  statement: "On Dynamic World's 409 expert-annotated test tiles (4,348,526 windows of 4 px), the served product's own margin ranks its own errors better than a control that sees neither the imagery nor the probabilities, only how rare the predicted class is within its tile: pooled excess AURC 0.0637 against 0.1120, a lead of 0.0483, on 315 tiles against 91 (one-sided p = 2.7e-30); the product agrees with the expert consensus on 0.7367 of windows, against the 0.74 its own paper reports, and our pooled decision reproduces its published Top-1 on 0.9899; preregistered P1 holds."
+  statement: "On Dynamic World's 409 expert-annotated test tiles (4,348,526 windows of 4 px), the served product's own margin ranks its own errors better than a control that sees neither the imagery nor the probabilities, only how rare the predicted class is within its tile: pooled excess AURC 0.0637 against 0.1120, a lead of 0.0483, on 315 tiles against 91 (one-sided p = 2.7e-30); the product agrees with the expert consensus on 0.7367 of windows, against the 0.74 its paper (Brown et al. 2022) reports for agreement with the expert consensus, a copied figure, and our pooled decision reproduces its published Top-1 on 0.9899; preregistered P1 holds."
   crosscheck: tests/test_recorded.py::test_exp67_dynamic_world_recomputes_from_the_committed_windows
   status: supported
   experiments: [exp67]
@@ -2975,7 +2975,7 @@
     flip also costs a second probe fit and a strength chosen on a labelled holdout, which the margin does not.
 
 - id: the-ranking-ceiling-is-the-tasks-not-the-encoder
-  statement: "The share of the random-to-perfect ranking gap the margin takes is a property of the task, not of the encoder: over the 16 encoders of Ai2's suite it runs from 0.551 (Satlas Base) to 0.693 (OlmoEarth Large), OlmoEarth Large is the best of the sixteen and Base ties for second, the OlmoEarth size series moves it only from 0.648 to 0.693 across four model sizes, and the spread between tasks (sd 0.160) is 2.8 times the spread within a task across all sixteen encoders (sd 0.058)."
+  statement: "The share of the random-to-perfect ranking gap the margin takes is a property of the task, not of the encoder: over the 16 encoders of Ai2's suite at probe seed 0 it runs from 0.551 (Satlas Base) to 0.693 (OlmoEarth Large), OlmoEarth Large is highest and Base ties for second with Galileo Base (the ten-seed set is claim exp79-encoder-ordering-stable-as-a-set), the OlmoEarth size series moves it only from 0.648 to 0.693 across four model sizes, and the spread between tasks (sd 0.160) is 2.8 times the spread within a task across all sixteen encoders (sd 0.058). The encoders differ in architecture, pretraining data, size and probe learning rate together, so no gap between them is attributed to any one of these."
   status: measured
   experiments: [exp74, exp70]
   artifacts: [exp/out/headroom_by_encoder.json, exp/out/exp70_summary.json, exp/out/exp74_summary.json]
@@ -4090,7 +4090,7 @@
     the pooled estimate misses the cloudy part by half the gap between the parts.
 
 - id: exp88-matched-head-ranks-normally
-  statement: "On the same 458,638 PASTIS windows, the confident errors belong to a probe read on an input it was not trained on. OlmoEarth Base's S1+S2 probe read on the S1 embeddings errs on 73.6% of the windows; 59.8% of its errors have a margin at or above 0.8206, the median margin of the windows it gets right on S1+S2, and its margin's AUROC for errors is 0.59. The probe the record trained on the S1 embeddings errs on 28.4%; 3.9% of its errors are that confident, and its AUROC is 0.79 (the S1+S2 probe on S1+S2: 19.5%, 6.0% and 0.83). On exp88's half-cloudy map with the S1 probe on the cloudy tiles, the parts err on 28.3% and 19.7%, and the 5% review set by margin holds 13.4% of the cloudy part's errors and 12.9% of the clear part's (4.3% and 18.3% with exp88's probe). OlmoEarth Large: 49.9%, 12.8% and 0.72 with the S1+S2 probe on S1; 27.9%, 2.9% and 0.80 with the S1 probe; 14.0% and 12.6% in the review set. On CropHarvest China 6, with a probe trained on each input, the optical input is the more useful one: Base's S1 probe errs on 35.6% and its S2 probe on 26.6% (the S1+S2 probe: 22.6% on S1+S2 and 28.9% read on S1 without refit), and Large's on 36.7% and 27.4% (full input 26.9%)."
+  statement: "On the same 458,638 PASTIS windows, the confident errors belong to a probe read on an input it was not trained on. OlmoEarth Base's S1+S2 probe read on the S1 embeddings errs on 73.6% of the windows; 59.8% of its errors have a margin at or above 0.8206, the median margin of the windows it gets right on S1+S2, and its margin's AUROC for errors is 0.59. The probe the record trained on the S1 embeddings, at a learning rate of 0.1 where the S1+S2 probe used 0.01, errs on 28.4%; 3.9% of its errors are that confident, and its AUROC is 0.79 (the S1+S2 probe on S1+S2: 19.5%, 6.0% and 0.83). On exp88's half-cloudy map with the S1 probe on the cloudy tiles, the parts err on 28.3% and 19.7%, and the 5% review set by margin holds 13.4% of the cloudy part's errors and 12.9% of the clear part's (4.3% and 18.3% with exp88's probe). OlmoEarth Large: 49.9%, 12.8% and 0.72 with the S1+S2 probe on S1; 27.9%, 2.9% and 0.80 with the S1 probe; 14.0% and 12.6% in the review set. On CropHarvest China 6, with a probe trained on each input, the optical input is the more useful one: Base's S1 probe errs on 35.6% and its S2 probe on 26.6% (the S1+S2 probe: 22.6% on S1+S2 and 28.9% read on S1 without refit), and Large's on 36.7% and 27.4% (full input 26.9%)."
   crosscheck: tests/test_exp88.py::test_the_matched_head_by_a_second_route
   status: measured
   experiments: [exp88, exp78, exp79]
@@ -4265,7 +4265,7 @@
     tested cause; MADOS's tiles are also small (median 6 valid windows) and Sen1Floods11's are mostly full.
 
 - id: exp89-finetuned-report-only
-  statement: "Report-only (exp89; no prediction graded, the validation sets being too small). On Ai2's fine-tuned FT-AWF (344 validation points, 41 errors; replica 88.1% against Ai2's 89.5%) and Forest Loss Driver (109 windows, 25 errors; 77.1% against 76.1%), the top-1 confidence ranks the errors with AUROC 0.867 and 0.808. A 10% review holds 41.5% and 32.0% of the errors (random 9.9% and 10.1%, ceiling 82.9% and 44.0%), against 19.5% and 18.3% for the best no-encoder control by AURC (the no-encoder classifier's uncertainty, AUROC 0.641; class rarity, 0.646). The capture difference's cluster-bootstrap 95% interval includes zero on both (-2.1 to +40.6 and -7.7 to +28.5 points); the AURC difference's excludes it (-0.064 to -0.022 and -0.117 to -0.014). On FT-AWF at 300 of 344 labels, the random design's exact interval covers on 96.1% of 2,000 draws and the confidence design's on 94.1% at 0.70 of its width; certify at alpha 0.05 certifies a median 75% (the no-encoder order 20%) and exceeds alpha on 1.75% of draws. With every label, the confidence order could certify 75% and 95% of FT-AWF at alpha 0.05 and 0.10 and 60% and 80% of Forest Loss Driver at 0.10 and 0.15, against 25%, 75%, 10% and 50% for the no-encoder classifier's order."
+  statement: "Report-only (exp89; no prediction graded, the validation sets being too small). On Ai2's fine-tuned FT-AWF (344 validation points, 41 errors; replica 88.1% against Ai2's published 89.5%) and Forest Loss Driver (109 windows, 25 errors; 77.1% against Ai2's published 76.1%; Ai2's figures are copied, on the validation units each checkpoint was chosen on), the top-1 confidence ranks the errors with AUROC 0.867 and 0.808. A 10% review holds 41.5% and 32.0% of the errors (random 9.9% and 10.1%, ceiling 82.9% and 44.0%), against 19.5% and 18.3% for the best no-encoder control by AURC (the no-encoder classifier's uncertainty, AUROC 0.641; class rarity, 0.646). The capture difference's cluster-bootstrap 95% interval includes zero on both (-2.1 to +40.6 and -7.7 to +28.5 points); the AURC difference's excludes it (-0.064 to -0.022 and -0.117 to -0.014). On FT-AWF at 300 of 344 labels, the random design's exact interval covers on 96.1% of 2,000 draws and the confidence design's on 94.1% at 0.70 of its width; certify at alpha 0.05 certifies a median 75% (the no-encoder order 20%) and exceeds alpha on 1.75% of draws. With every label, the confidence order could certify 75% and 95% of FT-AWF at alpha 0.05 and 0.10 and 60% and 80% of Forest Loss Driver at 0.10 and 0.15, against 25%, 75%, 10% and 50% for the no-encoder classifier's order."
   crosscheck: tests/test_exp89.py::test_the_report_only_numbers_by_a_second_route
   status: measured
   experiments: [exp89, exp21]
@@ -4890,7 +4890,7 @@
     closed. Like P1, it describes the plots with 2017 input only.
 
 - id: exp99-error-rate-of-plots-with-2017-input
-  statement: "Report-only (P3): over the 271 plots with 2017 input, design-weighted with Kenya and Tanzania as strata (0.563 and 0.437 of the region's 107,679 km²), the 2017 map's error rate is 35.5% under STRICT (exact interval, at least 95%: 26.0% to 45.8%; 91 errors) and 13.4% under LENIENT (7.5% to 21.9%; 37 errors); beside Ai2's 10.5% error plus 5 points the frozen call is 'not determined'. The rates describe the plots with 2017 input, not the 100 km region: the 38 plots without input are not missing at random. Filled as all correct or all wrong, the stratified rate over all 309 plots lies between 31.2% and 43.4% under STRICT (interval envelope 22.6% to 53.1%) and between 11.8% and 24.1% under LENIENT (6.5% to 33.2%)."
+  statement: "Report-only (P3): over the 271 plots with 2017 input, design-weighted with Kenya and Tanzania as strata (0.563 and 0.437 of the region's 107,679 km²), the 2017 map's error rate is 35.5% under STRICT (exact interval, at least 95%: 26.0% to 45.8%; 91 errors) and 13.4% under LENIENT (7.5% to 21.9%; 37 errors); beside Ai2's 10.5% error plus 5 points (the error is one minus the 0.895 Ai2 publishes at its 344 validation points) the frozen call is 'not determined'. The rates describe the plots with 2017 input, not the 100 km region: the 38 plots without input are not missing at random. Filled as all correct or all wrong, the stratified rate over all 309 plots lies between 31.2% and 43.4% under STRICT (interval envelope 22.6% to 53.1%) and between 11.8% and 24.1% under LENIENT (6.5% to 33.2%)."
   crosscheck: tests/test_exp99.py::test_exp99_error_rates_and_missing_plots_by_a_second_route
   status: measured
   experiments: [exp99]
@@ -5916,7 +5916,7 @@
     Background, so some of the map's Background calls may be right on the ground.
 
 - id: exp113-which-embedding-agrees-best
-  statement: "In exp113 the map that agrees best with the labels is v1.3's in Guadeloupe, Martinique, Réunion and Mayotte and TESSERA v2's in Guyane. The gaps are 0.12 points or less in Guyane, Mayotte and between v1.3 and TESSERA v2 in Réunion, where 400 labels drawn where two maps differ name the better map with probability 0.04 to 0.16 (Mayotte's maps differ on 40 to 120 windows, a census); 0.4 to 1.9 points in Guadeloupe and Martinique (probability 0.65 to 1.0); and 10.6 to 10.7 points against AlphaEarth in Réunion. The mean held-out pixel mIoU orders the maps v1.3 (0.200), TESSERA v2 (0.185), AlphaEarth (0.168), the order of the v1.3 report's PLANTEUR table; that is consistent with the report, not a test of it."
+  statement: "In exp113, from one fit per map on one draw of fit pixels (a single run: the fit pixels were never redrawn), the map that agrees best with the labels is v1.3's in Guadeloupe, Martinique, Réunion and Mayotte and TESSERA v2's in Guyane. The gaps are 0.12 points or less in Guyane, Mayotte and between v1.3 and TESSERA v2 in Réunion, where 400 labels drawn where two maps differ name the better map with probability 0.04 to 0.16 (Mayotte's maps differ on 40 to 120 windows, a census); 0.4 to 1.9 points in Guadeloupe and Martinique (probability 0.65 to 1.0); and 10.6 to 10.7 points against AlphaEarth in Réunion. The mean held-out pixel mIoU orders the maps v1.3 (0.200), TESSERA v2 (0.185), AlphaEarth (0.168), the order of the v1.3 report's PLANTEUR table; that is consistent with the report, not a test of it."
   crosscheck: tests/test_exp113.py::test_exp113_recorded_by_a_second_route
   status: measured
   experiments: [exp113]

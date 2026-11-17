@@ -5,7 +5,7 @@ The research record behind the olmoearth-inferencex package: the experiments, th
 ledger that ties each stated result to an output, the pages that report the results, and the technical report.
 
 The package, its documentation and its own tests are in https://github.com/2imi9/olmoearth_inferenceX
-(documentation: https://olmoearth-inferencex.readthedocs.io; releases: https://pypi.org/project/olmoearth-inferencex/).
+(documentation: https://olmoearth-inferencex.readthedocs.io; releases: https://github.com/2imi9/olmoearth_inferenceX/releases).
 
 A five-minute summary of what was done and found, for the OlmoEarth team: [CATCH_UP.md](CATCH_UP.md).
 
@@ -25,7 +25,7 @@ and draws 400 labels for the certified zone, as exp112 found; 1.17.0 (24 October
 class design, which exp116 grades with the target rule of 1.16.0 on fully labelled real maps; 1.18.0 adds `grade`, an
 agency's stratified sample graded with intervals valid at any sample size, which exp117 runs on NLCD 2016 and GFC2020,
 and exp118 checks by a second implementation and by simulation at NLCD's design; 1.20.0 (27 October 2026) adds
-`estimate --valid`, `grade --ratio direct` and per-profile verdicts, whose measured costs exp119 records and whose coverage exp120 grades on fully labelled maps, linear-probe maps and one Dynamic World tile (1.20.1 is
+`estimate --valid`, `grade --ratio direct` and per-profile verdicts, of which exp119 records the measured costs of the first two and exp120 grades the first's coverage and the verdicts on fully labelled linear-probe maps and one Dynamic World tile (1.20.1 is
 its documentation, checked). The checks below still
 run against 1.12.1, the release the record's experiments ran on; exp116's to exp120's checks read only their outputs.
 
@@ -35,7 +35,7 @@ run against 1.12.1, the release the record's experiments ran on; exp116's to exp
 | `scripts/` | named entry points: the claim ledger, the suite-regression runner, the upstream-revision check, scoring an area with a public fine-tuned model, the demo sample builder |
 | `docs/claims.yaml` | the claim ledger: each claim, the artifacts it rests on, its check and where it is cited |
 | `docs/` | Summary, Findings, the technique ledger, results, method, preregistrations (`plan/`), test sets, related work |
-| `report/` | the technical report (`main.tex`, `main.pdf`, `references.bib`) |
+| `report/` | the technical report (`main.tex`, `main.pdf`, `references.bib`) and the GPU job list its Compute section cites (`gpu_jobs.csv`) |
 | `tests/` | every claim against its artifact, the experiments' code, and the package's outputs against the recorded numbers |
 
 Sixteen test files share their name with a test file of the package. Thirteen hold only the tests of that file that
