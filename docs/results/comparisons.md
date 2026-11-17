@@ -80,9 +80,12 @@ over timesteps and band sets, legacy month-index timestamps, bilinear x4
 upsampling before the 1x1 convolution. Run on the 344 expert-labelled
 validation points of the official spatial split.
 
-**Accuracy.** 0.881 on 16-px crops (the training regime), 0.878 on 32-px,
-against the reported 0.895; 0.898 when the containing patch's logits are
-read directly instead of the interpolated pixel. The frozen-encoder probe of
+**Accuracy.** 0.881 on 16-px crops (the training regime), 0.878 on 32-px, and
+0.898 when the containing patch's logits are read directly instead of the
+interpolated pixel. Ai2 publishes 0.895 for the checkpoint; that figure is
+copied, not rerun. Ai2's evaluation configuration reads each point at a random
+position in a 16-px crop, and its checkpoint was chosen on these points. It is
+5 of the 344 points above the 16-px readout and inside the readouts' range. The frozen-encoder probe of
 exp16 reaches 0.817 on the same points; 28 of the fine-tuned model's 41
 errors are also probe errors. <!-- claim:fine-tuned-vs-probe-errors -->
 
@@ -625,8 +628,10 @@ our own S1 encodes of v1 and v1.2 (arms B and C), all graded on 4-px windows.
 | panopticon | 0.777 | 0.9113 | 0.0229 | 0.784 | 0.78 |
 | satlas_base | 0.727 | 0.8871 | 0.0394 | 0.620 | 0.56 |
 
-On their own embeddings OlmoEarth Base reaches mIoU 0.789 against the
-paper's 79.2, and our S1 encode of the same model with the same probe agrees
+On their own embeddings, under the record's fp32 rerun of the probe, OlmoEarth
+Base reaches mIoU 0.789 against the 79.2 the OlmoEarth paper reports for this
+Sentinel-1 linear probe on Sen1Floods11 (copied), and our S1 encode of
+the same model with the same probe agrees
 with it window for window (phi 0.937 on the 2,419 matched test tiles,
 accuracy 0.9151 against 0.9164 on the shared block): the encode path <!-- claim:encode-path-reproduces-their-probe -->
 reproduces their probe. Three results follow.
@@ -664,7 +669,10 @@ against 0.789). Source `exp/out/exp51_summary.json`, job 761713.
 Ai2's fine-tuning recipe restated in fp32 (a linear per-pixel head on the pooled
 window tokens, the backbone frozen for the first fifth of the epochs then
 unfrozen at a tenth of the learning rate, a plateau scheduler on validation
-mIoU, the best checkpoint kept; lr 3e-4, 12 epochs, batch 32, our choices),
+mIoU, the best checkpoint kept; lr 3e-4, 12 epochs, batch 32, our choices;
+one run per configuration at seed 0, so no seed spread is measured; exp57
+reran the S2 v1 fine-tune at the same seed, window accuracy 0.9539 / 0.9666 on
+Bolivia / the test split against 0.9540 / 0.9674, and no other seed was run),
 trained on the bucket's train split and graded on Bolivia and the exp18 test
 sample, which it never sees. Each fine-tuned model's own shift-averaged
 decision goes through exp47's protocol, and its error set is cross-tabbed
@@ -1421,7 +1429,8 @@ is zero-indexed. Comparing them directly gives 0.3% agreement; comparing
 `lulc - 1` to `label` gives the real number. Pixels are pooled to the 4 px
 windows scored everywhere here, giving 4,348,526 windows over 409 tiles, 95% of
 a window annotated on average. Dynamic World agrees with the expert consensus
-on 73.7% of them, against the 74% its own paper reports, and our pooled
+on 73.7% of them, against the 74% its paper (Brown et al. 2022) reports for
+agreement with the expert consensus (copied, not rerun), and our pooled
 decision reproduces its published Top-1 on 99.0%, so the pipeline reads the
 product correctly.
 
@@ -2012,6 +2021,12 @@ and +0.1134 at large (0.729, 24 of 24): flat to slightly narrowing with
 capacity, a spread of 0.018, while the count of tasks won rises. Nothing here
 says the signal needs a large encoder, and nothing says a larger one widens
 it. <!-- claim:suite-lead-across-olmoearth-sizes -->
+
+**These accuracies are reruns.** Every accuracy in this section is the record's own probe on Ai2's published
+embeddings at probe seed 0, under one recipe: AdamW with exp51's schedule, Ai2's per-model learning rate on the
+segmentation tasks whose settings name one and exp70's default otherwise, scored as accuracy over the graded units
+(4-px windows, or samples on classification tasks), micro-averaged. They are one seed's, not comparable with any
+paper's mIoU or F1, and not a ranking of the encoders.
 
 The first run of this experiment read the embedding control per window from
 OlmoEarth's patch grid, so encoders with another patch size scored none of
@@ -3009,7 +3024,9 @@ no verdict, and no claim of support is drawn from them. Mangrove, the graded arm
 | FT-AWF | 344 points | 41 | 88.1% | 89.5% |
 | Forest Loss Driver | 109 windows | 25 | 77.1% | 76.1% |
 
-FT-AWF's replica gives exp21's prediction on all 344 points. Forest Loss Driver's validation split holds 113
+Ai2's figures are copied, not rerun: FT-AWF's is over the 344 points, each read at a random position in a 16-px
+crop, and Forest Loss Driver's is 83 of the 109 windows, micro, read from its confusion matrix; each checkpoint was
+chosen on those units. FT-AWF's replica gives exp21's prediction on all 344 points. Forest Loss Driver's validation split holds 113
 windows; 4 carry a label outside the ten classes and are dropped, leaving Ai2's 109. Its accuracy is the same under
 each of the four flips Ai2's validation drew from.
 
@@ -3672,7 +3689,7 @@ P2 holding, what ranking there is lies in the least confident tail. <!-- claim:e
 P3 is descriptive. Over the plots with 2017 input, with the countries as strata, the error rate is 35.5% under STRICT
 (the package's exact interval, at least 95%: 26.0% to 45.8%; Kenya 57 of 192, Tanzania 34 of 79) and 13.4% under
 LENIENT (7.5% to 21.9%; 27 of 192, 10 of 79). Stehman's ratio estimator gives 35.0% and 13.5%, the unweighted rates are
-33.6% and 13.7%. Beside Ai2's 10.5% error plus 5 points (15.5%), the call fixed in advance is "not determined": a gap
+33.6% and 13.7%. Beside Ai2's 10.5% error plus 5 points (15.5%; the error is one minus the 0.895 Ai2 publishes at its 344 validation points, copied), the call fixed in advance is "not determined": a gap
 needs LENIENT's interval wholly above 15.5%, and its low end is 7.5%. STRICT's interval lies wholly above 15.5%, but
 under the frozen rule that alone makes no gap call. The two rules differ mostly at the grass/shrub boundary, where AWF
 publishes no threshold: 48 of the 54 plots wrong under STRICT only (39 Open Grassland read as shrubland/savanna, 9
@@ -4624,7 +4641,8 @@ In Guadeloupe and Martinique the held-out map does classify crops: Sugarcane at 
 where cropped land outside the registry is Background. <!-- claim:exp113-held-out-maps-mostly-background -->
 
 **Which embedding.** The map that agrees best with the labels is v1.3's in Guadeloupe, Martinique, Réunion and Mayotte,
-and TESSERA v2's in Guyane, by 0.08 points. The gaps are mostly small:
+and TESSERA v2's in Guyane, by 0.08 points. Each map is one fit on one draw of fit pixels, which was never redrawn, so this
+is a single run. The gaps are mostly small:
 - 0.12 points or less in Guyane, in Mayotte, and between v1.3 and TESSERA v2 in Réunion. There 400 labels drawn where
   two maps differ name the better one with probability 0.04 to 0.16 (Mayotte's cells are a census).
 - 0.4 to 1.9 points in Guadeloupe and Martinique, where the probability is 0.65 to 1.0.
@@ -5016,12 +5034,14 @@ encoder-task pairs.
 | OlmoEarth Nano | 0.654 | | Satlas Base | 0.551 |
 | Galileo Tiny | 0.652 | | OlmoEarth Tiny | 0.648 |
 
-**OlmoEarth is the best of the sixteen, not the bottleneck.** Large takes more of the headroom than any other
-encoder in the suite and Base ties for second, so the ceiling is not a weakness this model has and the others
-do not. **Scale is not the lever either**: across the OlmoEarth size series the statistic runs 0.654, 0.648,
+**OlmoEarth is not the bottleneck.** At probe seed 0, Large takes more of the headroom than any other encoder
+in the suite and Base ties for second with Galileo Base. Under exp79's ten probe seeds the best is OlmoEarth Large
+or Base, both in seed 0's top three with Galileo Base, so the record names that set of three, not a winner. Either way the
+ceiling is not a weakness this model has and the others do not. The encoders differ in architecture, pretraining
+data, size and probe learning rate together, so no gap between them is attributed to any one of these. **Scale is not the lever either**: across the OlmoEarth size series the statistic runs 0.654, 0.648,
 0.680, 0.693 from nano to large, about four points from the smallest model to the largest.
 **And it does not track accuracy**: the sixteen span 0.551 to 0.693 on this statistic while their median task
-accuracy spans 0.66 to 0.76, so how accurate a model is and how rankable its errors are come apart. What the
+accuracy (the record's probe reruns, micro accuracy over the graded units) spans 0.66 to 0.76, so how accurate a model is and how rankable its errors are come apart. What the
 number does track is the task: the spread between tasks is 0.160 of standard deviation against 0.058 within a
 task across all sixteen encoders, a ratio of 2.8, so replacing the entire model moves this statistic
 considerably less than changing which task it is run on. <!-- claim:the-ranking-ceiling-is-the-tasks-not-the-encoder -->
